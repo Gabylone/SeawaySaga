@@ -1,0 +1,69 @@
+Nom;Fréquence %;Sprite ID;;;;;;;;;
+Naufragé;6,78;0;;;;;;;;;
+[debut];;;;;;;;;;;
+Narrator : L'île est immense, mais une gigantesque colonne de fumée tourne au dessus d'elle.;;;;;;;;;;;
+SetChoices2;;;;;;;;;;;
+Choice : (partir);Choice : (accoster sur l'île);;;;;;;;;;
+PlayerSpeak : On a rien à faire ici !;Fade;;;;;;;;;;
+Leave;Node=>naufragé;;;;;;;;;;
+;AddToInventory;;;;;;;;;;
+;;;;;;;;;;;
+[naufragé];;;;;;;;;;;
+NewCrew1;;;;;;;;;;;
+RandomPercent75;;Node=>plage déserte;OtherSpeak : Oh non encore vous !;;;;;;;;
+Narrator : Un naufragé est au bord de la plage. Il vous fait des signes.;Narrator : Un petit enfant attend sur l'île, la peau sur les os.;;OtherSpeak : Je vous en pris laissez moi en vie;;;;;;;;
+PlayerSpeak : Tout va bien ?;OtherSpeak : On m'a abandonné ici;;Node=>combat dialogue;;;;;;;;
+OtherSpeak : 3 ans que je suis coincé ici !;OtherSpeak : Mes parents n'aimaiment pas mon comportement.;;;;;;;;;;
+OtherSpeak : Emmenez moi avec vous, je vous en prie !;Node=>dialogue enfant;;;;;;;;;;
+Node=>dialogue;;;;;;;;;;;
+;;;;;;;;;[dialogue enfant];;
+[dialogue];;;;;;;;;SetChoices2;;
+SetChoices3;;;;;;;;;Choice : Monte un coup alors ! (membre);;Choice : Je dois y aller (partir)
+Choice : Monte !(membre);Choice : Donne nous tout ce que tu as ou c’est fini toi ! (attaquer);;Choice : Désolé mon gars, pas assez de place à bord;;;;;;OtherSpeak : Je sais pas si je peux vous faire confiance.;;OtherSpeak : Vous êtes sans cœur...
+Node=>ajouté à l'équipage;RandomRange2;;RandomRange3;;;;;;OtherSpeak :  J'ai besoin de savoir que je garderais mon âme d'enfant.;;Leave
+<;OtherSpeak : Mais je n'ai absolument rien !;RemoveKarma;OtherSpeak : Donnez moi au moins quelque chose à manger;;;Node=>combat naufragé;OtherSpeak : Je comprends…;;OtherSpeak : Je veux une peluche à bord, ensuite je monterai.;;
+;Node=>combat dialogue;Node=>combat naufragé;SetChoices2;;;;Leave;;SetChoices2;;
+;;;Choice : Tiens.;;Choice : Non continue à manger des noix de coco.;;;;Choice : (donner peluche);;Choice : Je dois y aller (partir)
+;;;[switch manger];;OtherSpeak : Vous êtes sans coeur !;;;;CheckInInventory<Peluche>/Misc;;OtherSpeak : Vous êtes sans cœur...
+;;;Node=>donner à manger;OtherSpeak : Vous m'avez déjà assez donné;RemoveKarma;;;;OtherSpeak : Merci m'sieur !;PlayerSpeak : J’en ai pas, désolé.;Leave
+;;;[donner à manger];Leave;Node=>plage déserte;;;;OtherSpeak : Me voilà !;OtherSpeak : …;
+;;;CheckInInventory/Food;;;;;;RandomRange2;Leave;
+;;;RemoveFromInventory/Food;OtherSpeak : Mais… Vous n'avez rien…;;;;;AddMember;OtherSpeak : D'ailleurs en attendant quelqu'un;
+;;;OtherSpeak : Merci…;RemoveKarma;;;;;Node=>naufragé;OtherSpeak : J'ai fabriqué ce magnifique collier de nouilles.;
+[ajouté à l'équipage];;;AddKarma;HideOther;;;;;;AddToInventory<Collier de nouilles>/Misc;
+OtherSpeak : Merci m'sieur !;;;Switch=>switch manger;Node=>debut;;;;;;SetChoices2;
+AddMember;;;HideOther;;;;;;;Choice : Merci (membre);Choice : J'ai changé d'avis.
+Node=>plage déserte;;;Node=>debut;;;;;;;AddMember;OtherSpeak : Ah...
+;;;;;;;;;;Node=>naufragé;Node=>naufragé
+;;;;;;;;;;;
+[combat dialogue];;;;;;;;;;;
+SetChoices2;;;;;;;;;;;
+Choice : Mon couillon t'es en vaine : On s'en va.(partir);Choice : Rien à foutre(attaquer);;;;;;;;;;
+OtherSpeak : …;RemoveKarma;;;;;;;;;;
+Leave;RandomRange2;;;;;;;;;;
+;OtherSpeak : Tenez…;OtherSpeak : Faudra passer sur mon cadavre ! ;;;;;;;;;
+;LootMisc;Node=>combat naufragé;;;;;;;;;
+;HideOther;;;;;;;;;;
+;Node=>debut;;;;;;;;;;
+;;;;;;;;;;;
+;;;;;;;;;;;
+;;;;;;;;;;;
+;;;;;;;;;;;
+;;;;;;;;;;;
+;;;;;;;;;;;
+[combat naufragé];;;;;;;;;;;
+OtherSpeak : A l’aide !;;;;;;;;;;;
+LaunchCombat;;;;;;;;;;;
+Node=>plage déserte;;;;;;;;;;;
+;;;;;;;;;;;
+;;;;;;;;;;;
+[plage déserte];;;;;;;;;;;
+Narrator : La plage est vide.;;;;;;;;;;;
+CheckQuest=>choix plage;;;;;;;;;;;
+[choix plage];;;;;;;;;;;
+SetChoices4;;;;;;;;;;;
+Choice : On lève l'ancre !(partir);Choice : On va rester ici pour la nuit(dormir);Choice : (Chercher de la nourriture)(loot);;Choice : (Retourner voir naufragé);;;;;;;
+Leave;ChangeTimeOfDay;RandomPercent65;;Node=>naufragé;;;;;;;
+;Narrator : Le bateau est sur une petite île. L'air est frais et matinal.;PlayerSpeak : Il n'y a rien de comestible ici !;PlayerSpeak : Bingo !;;;;;;;;
+;Node=>choix plage;Node=>choix plage;LootFood;;;;;;;;
+;;;Node=>choix plage;;;;;;;;

@@ -1,0 +1,34 @@
+Nom;Fréquence %;Sprite ID;;;;;;
+Poules;0;1;;;;;;
+[poules];;;;;;;;
+Narrator : CAPITAINE s'approche de l'enclos, quand les poules commencent à s'exciter.;Node=>plus de poules;;;;;;;
+SetChoices2;;;;;;;;
+Choice : Retournons voir la fermière (partir);Choice : On en chope une ! (dex);;;;;;;[plus de poules]
+Fade;Switch=>poules;;;;;;;PlayerSpeak : On dirait que toutes les poules se sont cachées.
+Leave;CheckStatDEX;;;;;;;PlayerSpeak : Après mon passage.
+;PlayerSpeak : Je l'ai !;RandomRange2;;;;;;Fade
+;AddToInventory<Poulet>/Food;PlayerSpeak : Argh !;PlayerSpeak : Je l'ai !;;;;;Leave
+;AddToInventory<Poulet>/Food;PlayerSpeak : Elle m'a totalement échappé;PlayerSpeak : Ah non est s'échappe !;;;;;
+;AddToInventory<Poulet>/Food;Node=>test ferme;AddToInventory<Plume>/Misc;;;;;
+;Node=>test ferme;;AddToInventory<Plume>/Misc;;;;;
+;;;AddToInventory<Plume>/Misc;;;;;
+;;;PlayerSpeak : C'est toujours ça de pris.;;;;;
+[test ferme];;;Node=>test ferme;;;;;
+RandomRange2;;;;;;;;
+Node=>fermière mécontante;PlayerSpeak : On dirait que la fermière ne m'a même pas vu;;;;;;;
+;Leave;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+[fermière mécontante];;;;;;;;
+Narrator : Alors que CAPITAINE s'adonne au crime, le maître des lieux apparaît.;;;;;;[combat fermier];;
+NewCrew1;;;;;;LaunchCombat;;
+OtherSpeak : Non mais oh !;;;;;;Leave;;
+OtherSpeak : Vous allez là payer cette poule.;;;;;;;;
+OtherSpeak : 50 pièces tout rond.;;;;;;;;
+SetChoices3;;;;;;;;
+Choice : Hors de question (attaquer);Choice : Je pensais pas qu'elle était à vous (cha);;Choice : Tenez (trade);;;;;
+OtherSpeak : Quel cûlot;CheckStatCHA;;CheckGold50;;;;;
+Node=>combat fermier;OtherSpeak : Oh...;OtherSpeak : Ouais c'est ça.;RemoveGold50;OtherSpeak : Vous n'avez meme pas assez ?;;;;
+;OtherSpeak : Faites attention la prochaine fois...;OtherSpeak : Vous m'avez pris pour une mûre.;OtherSpeak : C'est mieux...;OtherSpeak : Vous m'avez pris pour une mûre.;;;;
+;Leave;Node=>combat fermier;Leave;Node=>combat fermier;;;;

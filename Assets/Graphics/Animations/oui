@@ -1,0 +1,169 @@
+﻿using UnityEngine;
+using UnityEngine.UI;
+using System.Collections;
+using System.Collections.Generic;
+
+public class CrewManager : MonoBehaviour {
+
+		// managed crew
+	Crew managedCrew;
+
+	List<CrewMember> crewMembers = new List<CrewMember> ();
+
+	[SerializeField] private Crews.Side side;
+	[SerializeField] private Transform[] crewAnchors;
+
+	private int currentMemberCapacity = 2;
+	private int maxMemberCapacity = 4;
+
+	private bool placingCrew = false;
+
+	[SerializeField] private float placingDuration = 0.5f;
+
+	private float timer = 0f;
+
+	[SerializeField]
+	private Vector3[] crewDecals = new Vector3 [2] { new Vector3(0.3f,0f),new Vector3(0f, 0.35f)};
+
+	void Start () {
+		NavigationManager.Instance.EnterNewChunk += AddToStates;
+		StoryFunctions.Instance.getFunction += HandleGetFunction;
+	}
+
+	void HandleGetFunction (FunctionType func, string cellParameters)
+	{
+		if (func == FunctionType.ChangeTimeOfDay)
+			AddToStates ();
+
+	}
+
+	void AddToStates ()
+	{
+		for (int i = 0; i < CrewMembers.Count; i++) {
+			CrewMembers [i].UpdateHunger ();
+		}
+	}
+
+	#region crew placement
+	public void ShowCrew () {
+		foreach (CrewMember member in crewMembers) {
+			member.Icon.MoveToPoint (member.Icon.previousPlacingType);
+		}
+	}
+	public void UpdateCrew ( Crews.PlacingType placingType ) {
+
+		foreach ( CrewMember member in crewMembers ) {
+			member.Icon.MoveToPoint (placingType);
+		}
+	}
+	public float PlacingDuration {
+		get {
+			return placingDuration;
+		}
+		set {
+			placingDuration = value;
+		}
+	}
+
+	public Transform[] mapAnchors;
+
+	public Transform[] CrewAnchors {
+		get {
+			return crewAnchors;
+		}
+	}
+	#endregion
+
+	#region crew list
+	public void AddMember ( CrewMember member ) {
+
+		if (crewMembers.Count == currentMemberCapacity)
+			return;
+
+		managedCrew.Add (member.MemberID);
+		crewMembers.Add (member);
+	}
+	public List<CrewMember> CrewMembers {
+		get {
+			return crewMembers;
+		}
+	}
+	public CrewMember captain {
+		get {
+			return crewMembers [0];
+		}
+	}
+	public void RemoveMember ( CrewMember member ) {
+
+		member.Icon.MoveToPoint (Crews.PlacingType.Hidden);
+
+		managedCrew.Remove (member.MemberID);
+		crewMembers.Remove (member);
+
+		if ( CrewMembers.Count == 0 && side == Crews.Side.Player) {
+			if (CombatManager.Instance.Fighting == false) {
+				GameManager.Instance.GameOver ();
+			}
+		}
+	}
+	public void DeleteCrew () {
+
+		foreach (CrewMember member in CrewMembers)
+			member.Icon.MoveToPoint (Crews.PlacingType.Hidden);
+
+		foreach ( CrewMember member in CrewMembers )
+			Destroy (member.IconObj);
+
+		crewMembers.Clear ();
+	}
+
+	#endregion
+
+	#region creation
+	public void setCrew (Crew crew) {
+
+		DeleteCrew ();
+
+		CrewCreator.Instance.TargetSide = side;
+
+		for (int i = 0; i < crew.MemberIDs.Count; ++i ) {
+
+			CrewMember member = CrewCreator.Instance.NewMember (crew.MemberIDs [i]);
+			CrewMembers.Add (member);
+
+			member.Icon.MoveToPoint (Crews.PlacingType.Map);
+		}
+
+		ManagedCrew = crew;
+
+		UpdateCrew (Crews.PlacingType.Map);
+	}
+	#endregion
+
+	#region property
+	public int MaxMember {
+		get {
+			return maxMemberCapacity;
+		}
+	}
+
+	public int MemberCapacity {
+		get {
+			return currentMemberCapacity;
+		}
+		set {
+			currentMemberCapacity = Mathf.Clamp (value, 0, MaxMember);
+			BoatUpgradeManager.Instance.UpdateInfo ();
+		}
+	}
+	#endregion
+
+	public Crew ManagedCrew {
+		get {
+			return managedCrew;
+		}
+		set {
+			managedCrew = value;
+		}
+	}
+}

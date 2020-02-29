@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<BoatData xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <boats>
+    <OtherBoatInfo>
+      <Name>bateau</Name>
+      <previousCoords>
+        <x>0</x>
+        <y>0</y>
+      </previousCoords>
+      <coords>
+        <x>4</x>
+        <y>5</y>
+      </coords>
+      <currentDirection>SouthEast</currentDirection>
+      <id>0</id>
+      <storyManager>
+        <storyHandlers>
+          <StoryHandler>
+            <row>0</row>
+            <col>0</col>
+            <fallBackLayer>0</fallBackLayer>
+            <storyID>0</storyID>
+            <storyType>Boat</storyType>
+            <contentDecals />
+            <loots />
+            <crews />
+          </StoryHandler>
+        </storyHandlers>
+      </storyManager>
+      <alreadyMet>false</alreadyMet>
+      <color>
+        <r>0.262189656</r>
+        <g>0.08118537</g>
+        <b>0.119044028</b>
+        <a>1</a>
+      </color>
+      <timeToShowBoat>1.5</timeToShowBoat>
+    </OtherBoatInfo>
+    <OtherBoatInfo>
+      <Name>bateau</Name>
+      <previousCoords>
+        <x>0</x>
+        <y>0</y>
+      </previousCoords>
+      <coords>
+        <x>2</x>
+        <y>2</y>
+      </coords>
+      <currentDirection>SouthWest</currentDirection>
+      <id>1</id>
+      <storyManager>
+        <storyHandlers>
+          <StoryHandler>
+            <row>0</row>
+            <col>0</col>
+            <fallBackLayer>0</fallBackLayer>
+            <storyID>1</storyID>
+            <storyType>Boat</storyType>
+            <contentDecals />
+            <loots />
+            <crews />
+          </StoryHandler>
+        </storyHandlers>
+      </storyManager>
+      <alreadyMet>false</alreadyMet>
+      <color>
+        <r>0.7922847</r>
+        <g>0.285157531</g>
+        <b>0.2706997</b>
+        <a>1</a>
+      </color>
+      <timeToShowBoat>1.5</timeToShowBoat>
+    </OtherBoatInfo>
+  </boats>
+</BoatData>

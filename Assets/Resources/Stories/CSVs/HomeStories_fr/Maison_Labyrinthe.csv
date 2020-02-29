@@ -1,0 +1,42 @@
+Nom;Fréquence / 5;Sprite ID;;;
+Maison_Labyrinthe;25;1;;;
+[premiere visite];;;[chambre];;
+Narrator : A l’est d’ici se trouve le labyrinthe de NOMTRESOR, qui cache, à ce qu’on dit, un immense trésor.;Node=>retour;;Narrator : CAPITAINE est dans sa chambre d’enfant. Son bureau est à côté de son lit, recouvert de documents diverses sur les mystères de l’océan.;;
+Narrator : CAPITAINE, et son bateau, le NOMBATEAU, décide enfin de partir à sa recherche.; ;;[choix chambre];;
+SetChoices2;;;SetChoices3;;
+Choice : (lever l’ancre);Choice : (faire un tour dans la maison);;Choice : (retourner au salon) (partir);Choice : (dormir jusqu'au lendemain) (dormir);Choice : (bureau) (quete)
+PlayerSpeak : C’est parti !;Fade;;Fade;ChangeTimeOfDay;Narrator : Il est dit qu’au centre de l’océan, très loin à l’est d’ici, se trouve une île immense et labyrinthique.
+Switch=>premiere visite;Node=>salon;;Node=>salon;Node=>salon;Narrator : L’île au labyrinthe est entourée de grotte énigmatiques, aux butins précieux et nombreux.
+Leave;;;;;Narrator : Il est dit qu’il vaut mieux bien se préparer dans les villages et îles autour du labyrinthe…
+;;;;;Narrator : ...Avant se s’aventurer dans le labyrinthe et les immenses mers qui l’entoure.
+;;;;;Node=>choix chambre
+;;;;;
+;;;;;
+;;;;;
+[retour];;;;;
+Narrator :  Revoilà CAPITAINE sur sa petite île natale. Un petit chemin de pierre mène à sa chaumière coquette.;;;;;
+PlayerSpeak : C'est chez moi !;;;;;
+CheckQuest=>salon;;;;;
+[salon];;;;;
+SetChoices4;;;;;
+Choice : (partir);Choice : (aller dans la chambre);Choice : (aller dans la cuisine);Choice : (aller  dans le jardin);;
+PlayerSpeak : Hop !;Fade;Fade;Fade;;
+Leave;Node=>chambre;Node=>cuisine;Node=>jardin;;
+;;;;;
+;;;;;
+[cuisine];;;;;
+SetChoices2;;;;;
+Choice : (retourner salon) (partir);Choice : (regarder garde manger) (loot);;;;
+Fade;LootFood;;;;
+Node=>salon;Node=>cuisine;;;;
+;;;;;
+[jardin];;;;;
+CheckDay;;;;;
+Narrator : Le jardin est ensoleillé et calme. Quelques oiseaux chantent.;Narrator : La nuit est douce et calme. On entend le hululement d'une chouette.;;;;
+Node=>choix jardin;Node=>choix jardin;;;;
+;;;;;
+[choix jardin];;;;;
+SetChoices2;;;;;
+Choice : (retourner salon)(partir);Choice : (observer le jardin);;;;
+Fade;Node=>jardin;;;;
+Node=>salon;;;;;

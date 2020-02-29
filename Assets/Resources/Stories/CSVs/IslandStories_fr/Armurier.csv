@@ -1,0 +1,26 @@
+Nom;Fréquence %;Sprite ID;;;;;;;;;;
+Armurier;1,69;1;;;;;;;;;;
+Narrator : L'île est petite, plate et verte. ;;;;;;;;;;;;
+CheckQuest=>debut;;;;;;;;;;;;
+[debut];;;;;;;;;;;;
+Narrator : Sur la plage un panneau indique une direction : « Marchand d'étoffe et de cuir »;;;;;;;;;;;;
+SetChoices2;;;;;;;;;;;;
+Choice : (partir);Choice : (suivre panneau);;;;;;;;;;;
+Leave;Fade;;;;;;;;;;;
+;Node=>marchand;;;;;;;;;;;
+;;;;;;;;;;;;
+;;;;;;;;;;;;
+[marchand];;;;;;;;;;;;
+NewCrew;;;;;;;;;;;;
+Node=>choix;Node=>mort;Node=>combat;;;;;;;;;;
+;;;;;;;;;;;;
+[choix];;;;;;[choix autre];;;;;[combat];
+SetChoices4;;;;;;SetChoices3;;;;;OtherSpeak : ?!?;
+Choice : (partir);Choice : Montrez moi votre marchandise(trade);Choice : Le trésor de NOMTRESOR ?;;Choice : (autre);;Choice : Haut les mains (attaquer);Choice : Les affaires vont bien ?(quete);;;Choice : (autre);LaunchCombat;
+OtherSpeak : Au revoir !;TradeClothes;RandomPercent20;;Node=>choix autre;;Node=>combat;RandomPercent65;;;Node=>choix;RemoveKarma;
+Leave;Node=>choix;OtherSpeak : Ça n'intéresse que les pirates DIRECTIONTOFORMULA;OtherSpeak : Ça ne me dit rien.;;;;OtherSpeak : Très bien.;NewQuest=>choix;;;[mort];
+;;Node=>choix;Node=>choix;;;;OtherSpeak : Les pirates comme les soldats viennent s'habiller ici.;;;;PlayerSpeak : Le voilà mort !;
+;;;;;;;Node=>choix;;;;SetChoices2;
+;;;;;;;;;;;Choice : (partir);Choice : (fouiller la fripperie)
+;;;;;;;;;;;Leave;LootClothes
+;;;;;;;;;;;;Leave

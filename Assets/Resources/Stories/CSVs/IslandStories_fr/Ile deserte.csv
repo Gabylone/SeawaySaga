@@ -1,0 +1,53 @@
+Nom;Fréquence %;Sprite ID;;;;
+Île Déserte;16,95;0;;;;
+RandomPercent65;;;;;;
+Node=>ile sans arbuste;RandomRange2;;;;;
+;Node=>ile avec arbuste;Node=>ile avec gros rocher;;;;
+[ile sans arbuste];;;;;;
+Narrator : Le bateau accoste sur un îlot plus petit que NOMBATEAU. La plage est totalement déserte.;;;;;;
+CheckQuest=>choix;;;;;;
+[choix];;;;;;
+SetChoices2;;;;;;
+Choice : On lève l'ancre !(partir);Choice : On va rester ici pour la nuit(dormir);;;;;
+Leave;ChangeTimeOfDay;;;;;
+;Narrator : Le bateau est sur une petite île. L'air est frais et matinal.;;;;;
+;Node=>choix;;;;;
+[ile avec arbuste];;;;;;
+Narrator : Le NOMBATEAU accoste sur une petite île.;;;;;;
+Narrator : Quelques arbustes ont poussés au bout de la plage;;;;;;
+CheckQuest=>choix food;;;;;;
+[choix food];;;;;;
+SetChoices3;;;;;;
+Choice : On lève l'ancre !(partir);Choice : On va rester ici pour la nuit(dormir);Choice : (Chercher de la nourriture)(loot);;;;
+Leave;ChangeTimeOfDay;RandomPercent65;;;;
+;Narrator : Le bateau est sur une petite île. L'air est frais et matinal.;PlayerSpeak : Bingo !;PlayerSpeak : Il n'y a rien de comestible ici !;;;
+;Node=>choix food;LootFood;Node=>choix food;;;
+;;Node=>choix food;;;;
+;;;;;;
+;;;;;;
+;;;;;;
+;;;;;;
+[ile avec gros rocher];;;;;;
+Narrator : Le bateau accoste sur une petite île.;;;;;;
+Narrator : Au milieu se dresse un immense rocher.;;;;;;
+CheckQuest=>choix plage rocher;;;;;;
+[choix plage rocher];;;;;;
+SetChoices3;;;;;;
+Choice : On lève l'ancre !(partir);Choice : On va rester ici pour la nuit(dormir);Choice : (monter le rocher);;;;
+Leave;ChangeTimeOfDay;RandomRange2;;;;
+;Narrator : Le bateau est sur une petite île. L'air est frais et matinal.;Fade;Narrator : Le rocher est bien trop glissant pour y monter normalement. CAPITAINE va falloir escalader;;;
+;Node=>choix food;Node=>rocher;SetChoices2;;;
+;;;Choice : (retourner sur la plage);Choice : (escalader)(dex);;
+;;;Node=>choix plage rocher;CheckStatDEX;;
+;;;;Fade;Narrator : En essayant de monter, CAPITAINE tombe en arrière.;
+[rocher];;;;PlayerSpeak : Fouh... J'y suis.;[mal];
+PlayerSpeak : Wow !;;;;Node=>rocher;PlayerSpeak : Aie !;PlayerSpeak : Aie !
+PlayerSpeak : La vue est impressionante.;;;;;RemoveHealth10;Fade
+[choix rocher];;;;;Fade;Switch=>mal
+SetChoices3;;;;;Switch=>mal;Node=>choix plage rocher
+Choice : On redescend !;Choice : (regarder l'horizon);Choice : (observer avec longue vue);;;Node=>choix plage rocher;
+Fade;PlayerSpeak : On voit pas grand chose.;CheckInInventory<Longue vue>/Misc;;;;
+Node=>choix plage rocher;Node=>choix rocher;Fade;PlayerSpeak : Je n'ai pas de Longue vue...;;;
+;;ObserveHorizon;Node=>choix rocher;;;
+;;PlayerSpeak : On y voilà nettement plus clair.;;;;
+;;Node=>choix rocher;;;;

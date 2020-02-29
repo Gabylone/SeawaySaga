@@ -1,0 +1,42 @@
+Nom;Fréquence / 5;Sprite ID;;;
+Maison_Periple;25;1;;;
+[premiere visite];;;[chambre];;
+Narrator : Personne ne sait ce qui se trouve au nord de l’océan, derrière la grande mer de NOMTRESOR. Aujourd’hui, CAPITAINE décide enfin la traverser à bord de son bateau, le NOMBATEAU.;Node=>retour;;Narrator : CAPITAINE est dans sa chambre d’enfant. Son bureau est à côté de son lit, recouvert de documents diverses sur les mystères de l’océan.;;
+Narrator : Il est dit que le pirate fou qui fera ce périple long et dangereux, trouvera un tout autre monde et le fameux trésor de NOMTRESOR; ;;[choix chambre];;
+SetChoices2;;;SetChoices3;;
+Choice : (lever l’ancre);Choice : (faire un tour dans la maison);;Choice : (retourner au salon) (partir);Choice : (dormir jusqu'au lendemain) (dormir);Choice : (bureau) (quete)
+PlayerSpeak : C’est parti !;Fade;;Fade;ChangeTimeOfDay;Narrator : Des écrits parlent des océans environnants :
+Switch=>premiere visite;Node=>salon;;Node=>salon;Node=>salon;Narrator : Il est dit que ceux qui ont essayait de voir ce qu’il se trouvait au-delà de la mer de NOMTRESOR pour chercher sont trésor, ne sont jamais revenus.
+Leave;;;;;Narrator : On ne sait pas combien de nuits il faut naviguer pour atteindre un semblant de vie. Mais on parle quand même de quelque îles désertes, quelques bandits, ou naufragés.
+;;;;;Narrator : On parle aussi d’une ferme, tout à l’ouest de la mer. Mais ce n’est qu’une légende.
+;;;;;Node=>choix chambre
+;;;;;
+;;;;;
+;;;;;
+[retour];;;;;
+Narrator :  Revoilà CAPITAINE sur sa petite île natale. Un petit chemin de pierre mène à sa chaumière coquette.;;;;;
+PlayerSpeak : C'est chez moi !;;;;;
+CheckQuest=>salon;;;;;
+[salon];;;;;
+SetChoices4;;;;;
+Choice : (partir);Choice : (aller dans la chambre);Choice : (aller dans la cuisine);Choice : (aller  dans le jardin);;
+PlayerSpeak : Hop !;Fade;Fade;Fade;;
+Leave;Node=>chambre;Node=>cuisine;Node=>jardin;;
+;;;;;
+;;;;;
+[cuisine];;;;;
+SetChoices2;;;;;
+Choice : (retourner salon) (partir);Choice : (regarder garde manger) (loot);;;;
+Fade;LootFood;;;;
+Node=>salon;Node=>cuisine;;;;
+;;;;;
+[jardin];;;;;
+CheckDay;;;;;
+Narrator : Le jardin est ensoleillé et calme. Quelques oiseaux chantent.;Narrator : La nuit est douce et calme. On entend le hululement d'une chouette.;;;;
+Node=>choix jardin;Node=>choix jardin;;;;
+;;;;;
+[choix jardin];;;;;
+SetChoices2;;;;;
+Choice : (retourner salon)(partir);Choice : (observer le jardin);;;;
+Fade;Node=>jardin;;;;
+Node=>salon;;;;;

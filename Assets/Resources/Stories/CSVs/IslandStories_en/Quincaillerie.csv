@@ -1,0 +1,28 @@
+Nom histoire;Fréquence %;Sprite ID;;;;;;;;;;;
+Quincaillerie;1,69;1;;;;;;;;;;;
+Narrator : The island is flat, green and very small;;;;;;;;;;;;;
+CheckQuest=>debut;;;;;;;;;;;;;
+[debut];;;;;;;;;;;;;
+Narrator : A pannel on the beach says : « Stuff, things, and miscellaneous items »;;;;;;;;;;;;;
+SetChoices2;;;;;;;;;;;;;
+Choice : (partir);Choice : (follow pannel);;;;;;;;;;;;
+Leave;Fade;;;;;;;;;;;;
+;Node=>marchand;;;;;;;;;;;;
+;;;;;;;;;;;;;
+;;;;;;;;;;;;;
+;;;;;;;;;;;;;
+[marchand];;;;;;;;;;;;;
+NewCrew;;;;;;;;;;;;;
+OtherSpeak : Howdy, sailor !;Node=>mort;Node=>combat;;;;;;;;;;;
+[choix];;;;;;[choix autre];;;;;;[combat];
+SetChoices4;;;;;;SetChoices3;;;;;;OtherSpeak : ?!?;
+Choice : (partir);Choice : Show me your merchandise (trade);Choice : The treasure of NOMTRESOR ?;;Choice : (autre);;Choice : Give me all you random things ! (attaquer);Choice : Tout va bien pour vous ?(quete);;;Choice : (autre);;LaunchCombat;
+OtherSpeak : See you !;TradeMisc;RandomPercent20;;Node=>choix autre;;Node=>combat;RandomPercent65;;;Node=>choix;;RemoveKarma;
+Leave;Node=>choix;OtherSpeak : Only sailors from the DIRECTIONTOFORMULA are interested;OtherSpeak : Nope, first time I hear about it;;;;OtherSpeak : People rarely cross oceans;NewQuest=>choix;;;;[mort];
+;;Node=>choix;Node=>choix;;;;OtherSpeak : To buy me things I found at the bottom of the ocean;;;;;PlayerSpeak : The vendor’s lying dead on the floor !;
+;;;;;;;OtherSpeak : Never the less, yes;;;;;SetChoices2;
+;;;;;;;Node=>choix;;;;;Choice : (partir);Choice : (search the shop)
+;;;;;;;;;;;;Leave;LootMisc
+;;;;;;;;;;;;;PlayerSpeak : Just things and stuff
+;;;;;;;;;;;;;PlayerSpeak : I didn’t know what I expected..
+;;;;;;;;;;;;;Leave

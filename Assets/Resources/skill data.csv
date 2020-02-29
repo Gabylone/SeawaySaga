@@ -1,0 +1,26 @@
+;nom;;;;;description
+;fr;en;Cost;Charge;Prop.;Actif
+Default;Attaquer;Attack;5;0;2;Le coup classique : il inflige à l’adversaire des dégâts au corps à corps, en fonction de la force et de l’épée de l'attaquant
+;Tirer;Shoot;5;0;2;Le coup inflige à l’adversaire des dégâts à distance, en fonction de la dextérité et du pistolet de l'attaquant
+;Fuir;Flee;3;0;2;Le membre fait un jet de dé. Si le jet de dé contient un six, le membre fuit le combat. C’est un peu lâche mais personne ne vous en voudra.
+;Finir tour;Skip Turn;0;0;0;Met fin au tour du membre
+Brute;Matraque;Cosh;7;3;2;La Brute assomme la cible pendant un tour ( requiert arme corps à corps )
+;Saillie;Wallop;7;4;3;La Brute inflige la moitié de ses dégâts à chaque membre de l'équipage adverse ( requiert arme corps à corps )
+;Cabriole;Leap;6;3;2;La Brute se prépare pendant 1 tour, puis d’un magnifique soubresaut, retombe sur la cible et lui inflige le triple de ses dégâts ( requiert arme corps à corps )
+;Furie;Fury;10;6;3;Pendant 2 tours, la Brute gagne 2 fois plus d’énergie. Y’a des jours comme ça, tout va mal.
+Chirurgien;Coup de bistouri;Bistoury Blow;7;3;3;Vite fait bien fait, le Chirurgien soigne les vilains bobos de la cible
+;Piquouze;Jag;4;3;2;La cible gagne des points de vie, chaque tour, pendant 3 tours. La vie dans les veines.
+;Mort-au-rats;Rat Poison;3;4;2;La cible perd des points de vie, chaque tour, pendant 3 tours. Si le Chirurgien sait soigner, il peut aussi faire le contraire.
+;Tournée de rhum;Rhum Round;9;5;4;Le chirurgien rend des points de vie à tout l’équipage. Ou plutôt, ils oublient qu’ils ont mal.
+Cuistot;Piston;Helpmate;3;2;2;Une tape sur l’épaule un des bons de la part du Cuistot : L’ego du membre se gonfle et les dégâts qui lui sont infligés sont divisés par 2 pendant 3 tours.
+;Provocation;Edgy Goading;3;2;2;Grande gueule devant l’éternel : les 3 prochaines attaques sont dirigées vers la cible du Cuistot. « Jéjé a dit que vous étiez tous moches »
+;Toast;Toast Up;3;2;2;Le Cuistot a l’art des bons mots. La puissance d'attaque de la cible est doublée pendant 3 tours.
+;Promesse de festin;Pledge of feast;3;2;2;Le Cuistot remplit la barre d'énergie d'un membre. « Ce soir, on dîne »
+Flibustier;Tir à la tête;Headshot;6;3;2;Le Flibustier attend pendant un tour, puis inflige le triple de ses dégâts ( requiert arme à distance )
+;Mitraille;Grape Shot;7;4;3;Ça va beaucoup plus vite quand on vise pas. Le Flibustier inflige le tiers des ses dégâts à 4 cibles aléatoires ( requiert arme à distance )
+;Piège à loup;Bear Trap;3;2;2;Le prochain attaquant du Flibustier perd des points de vie.
+;Dynamite;Dynamite;8;4;3;Le Flibustier inflige des dégâts à tous les adversaires.
+Joueur;Pile ou face;Heads or Tails;3;1;2;Lance une pièce. Si l'Escroc fait face, il inflige le double de ses dégâts, sinon, il rate son coup.
+;Vol;Robbery;4;1;2;De ses doigts de fées, l’Escroc vole des pièces d’or à l’adversaire. « Dans la folie du combat, personne n’a rien vu ! »
+;Juron;Cuss;3;1;2;L’Escroc fait pleurer l’adversaire. Réduit la puissance d'attaque de la cible. Annule l'effet « Toast » . Le fieffé coquin a frappé là où sa faisait mal.
+;Langue de bois;Double Talk;10;5;3;L'Escroc fait un jet de dé qui, si réussi, fait fuir tout l'équipage. C’est l’arnaque du siècle.

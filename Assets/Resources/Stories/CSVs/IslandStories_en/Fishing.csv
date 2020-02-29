@@ -1,0 +1,11 @@
+Nom;Fréquence %;Sprite ID;;;;;;;;;
+Fishing;0;1;;;;;;;;;
+[debut];;;;;;;;;;;
+PlayerSpeak : Je peux voir des choses bouger ici !;;;;;[fish];;;;;[fail fish];
+SetChoices2;;;;;CheckInInventory<Canne à pêche>/Misc;;;;;RandomPercent25;
+Choice : (partir);Choice : (pêcher);;Choice : add canne a peche;;CheckStatSTR;;;PlayerSpeak : Je n'ai pas de canne à pêche;;PlayerSpeak : Le poisson s’est échappé !;PlayerSpeak : Le poisson s’est échappé !
+Leave;Node=>fish;;AddToInventory<Canne à pêche>/Misc;;Fade;Node=>fail fish;;Leave;;PlayerSpeak : Ma canne à pêche s’est brisée !;Leave
+;;;Node=>debut;;PlayerSpeak : La pêche est bonne !;;;;;Leave;
+;;;;;RandomRange3;;;;;;
+;;;;;AddToInventory<Maquereau>/Misc;AddToInventory<Hareng>/Misc;AddToInventory<Sardine>/Misc;;;;
+;;;;;Leave;Leave;Leave;;;;

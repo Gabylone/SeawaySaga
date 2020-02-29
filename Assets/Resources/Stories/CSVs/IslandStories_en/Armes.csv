@@ -1,0 +1,26 @@
+Nom histoire;Fréquence %;Sprite ID;;;;;;;;;;;
+Armes;1,69;1;;;;;;;;;;;
+Narrator : The island is made of little hills, and rocky cliffs.;;;;;;;;;;;;;
+CheckQuest=>debut;;;;;;;;;;;;;
+[debut];;;;;;;;;;;;;
+Narrator : A pannel leads shows a path : « Seller of all kinds of weapons »;;;;;;;;;;;;;
+SetChoices2;;;;;;;;;;;;;
+Choice : (partir);Choice : (follow pannel);;;;;;;;;;;;
+Leave;Fade;;;;;;;;;;;;
+;Node=>marchand;;;;;;;;;;;;
+;;;;;;;;;;;;;
+;;;;;;;;;;;;;
+;;;;;;;;;;;;;
+[marchand];;;;;;;;;;;;;
+NewCrew;;;;;;;;;;;;;
+OtherSpeak : Hey, sea man !;Node=>mort;Node=>combat;;;;;;;;;;;
+[choix];;;;;;[choix autre];;;;;;[combat];
+SetChoices4;;;;;;SetChoices3;;;;;;OtherSpeak : ?!?;
+Choice : (partir);Choice : Show me your weapons (trade);Choice : The treasure of NOMTRESOR ?;;Choice : (autre);;Choice : This is a robbery ! (attaquer);Choice : How are things on your island ? (quete);;;Choice : (autre);;LaunchCombat;
+OtherSpeak : This is goodbye !;TradeWeapons;RandomPercent20;;Node=>choix autre;;Node=>combat;RandomPercent65;;;Node=>choix;;RemoveKarma;
+Leave;Node=>choix;OtherSpeak : Only sailors from the DIRECTIONTOFORMULA are interested;OtherSpeak : Nope, first time I hear about it;;;;OtherSpeak : You mean moraly, as a weapon vendor ? ;NewQuest=>choix;;;;[mort];
+;;Node=>choix;Node=>choix;;;;OtherSpeak : I haven’t got he chance to see what people did with my weapons;;;;;PlayerSpeak : The weapons vendor is dead !;
+;;;;;;;OtherSpeak : So very good;;;;;SetChoices2;
+;;;;;;;Node=>choix;;;;;Choice : (partir);Choice : (search the armory)
+;;;;;;;;;;;;Leave;LootWeapons
+;;;;;;;;;;;;;Leave

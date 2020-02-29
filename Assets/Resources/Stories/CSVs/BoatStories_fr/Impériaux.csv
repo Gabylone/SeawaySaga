@@ -1,0 +1,52 @@
+Nom;Fréquence / 5;Boat Type;;;;;;;;;;;;;;;
+Impériaux;41,67;1;;;;;;;;;;;;;;;
+Narrator : Un grand bateau impérial alpage CAPITAINE. Ses canons sont braqués sur son bateau, et le marin en chef apparaît sur le pont.;;;;;;;;;;;;;;;;;
+[apparition capitaine];;;;;;;;;;;;;;;;;
+NewCrew;;;;;;;;;;;;;;;;;
+Node=>check karma;Node=>bateau vide;OtherSpeak : Revoilà ces manants !;;;;;;;;;;;;;;;
+;;Node=>combat;;;[choix];;;;;;;[combat];;;;;
+[check karma];;;;;SetChoices4;;;;;;;LaunchCombat;;;;;
+CheckKarma;;;;;Choice : Une petite ballade !(partir);Choice : Bobby Dick ?;;Choice : On casse du bateau !(attaquer);Choice : On a besoin d'aide ! (cha);;;RemoveKarma;;;;;
+OtherSpeak : Dites donc ! Vous seriez pas CAPITAINE ?;OtherSpeak : Qu'est-ce que vous faites dans ces mers ?;OtherSpeak : Dites, donc, vous avez pas l'air très commode.;OtherSpeak : Nom de bleu !;;OtherSpeak : Très bien;OtherSpeak : Vous allez pas le trouver ici.;OtherSpeak : C'est pas fini ces bétises de pirate…;OtherSpeak : Manant !;CheckStatCHA;;;RemoveKarma;;;;;
+OtherSpeak : Quelqu'un de fiable à ce qu'on dit !;Node=>choix;OtherSpeak : Pas pirate ! Mais pas saint non plus !;OtherSpeak : Votre tête est sur tous les avis de recherches !;;OtherSpeak : Circulez alors.;OtherSpeak : On parle de ces légendes DIRECTIONTOFORMULA;Node=>choix;Node=>combat;Node=>déjà choix;OtherSpeak : Faut prouver que vous la méritez, notre aide.;;Node=>bateau vide;;;;;
+OtherSpeak : Est-ce qu'on peut faire quelque chose pour vous ?;;OtherSpeak : Si vous voyez qu'est-ce que je veux dire.;OtherSpeak : Je vous emmène voir le chef.;;Leave;Node=>choix;;;;Node=>choix;;;;;;;
+Node=>déjà choix;;OtherSpeak : Qu'est-ce que tu veux ?;SetChoices2;;;;;;;;;;;;;;
+;;Node=>choix;Choice : Me touche pas(attaquer);Choice : OK.;;;;;;;;;;;;;
+;;;OtherSpeak : Tu l'aura voulu.;HideOther;;;;;;;;;;;;;
+;;;Node=>combat;Fade;;;;;;;;;;;;;
+[déjà choix];;;;Node=>mauvais karma;;;[besoin];;;;;;;;;;
+OtherSpeak : Avec plaisir.;OtherSpeak : Il ne faut pas abuser de notre générosité;;;;;;Switch=>déjà choix;;;;;[mec1];;[mec2];;[mec3];
+Node=>besoin;Node=>choix;;;;;;OtherSpeak : vous avez besoin de quelque chose ?;;;;;NewCrew1;;NewCrew1;;NewCrew1;
+;;;;;;;SetChoices4;;;;;OtherSpeak : Le fameux CAPITAINE ! Quel chance;;OtherSpeak : Yo;;OtherSpeak : Enchanté;
+;;;;;;;Choice : Des marins ! (membre);Choice : De la bouffe !(loot);Choice : Des armes !(loot);Choice : Ça ira…(partir);;SetChoices2;;SetChoices2;;SetChoices2;
+[bateau vide];;;;;;;OtherSpeak : Laissez moi voir;OtherSpeak : Servez vous;OtherSpeak : Servez vous;AddKarma;;Choice : Allez monte (membre);Choice : Je veux voir quelqu'un d'autre(autre);Choice : Allez monte (membre);Choice : Je veux voir quelqu'un d'autre(autre);Choice : Allez monte (membre);Choice : Je veux voir quelqu'un d'autre(autre)
+Narrator : Le bateau est vide.;;;;;;;OtherSpeak : Y'en a bien un ou deux qui doit trainer dans le coin;LootFood;LootWeapons;OtherSpeak : !;;OtherSpeak : C'est une splendide nouvelle !;Node=>mec2;OtherSpeak : Allons y;Node=>mec3;OtherSpeak : Tout de suite;OtherSpeak : J'étais le dernier
+SetChoices2;;;;;;;HideOther;OtherSpeak : Qu'est-ce que je peux faire d'autre;OtherSpeak : Qu'est-ce que je peux faire d'autre;OtherSpeak : Vous êtes décidément une légende de bonté !;;OtherSpeak : Partons de suite;;AddMember;;AddMember;OtherSpeak : Je vous ramène au chef
+Choice : (partir);Choice : (fouiller)(loot);;;;;;Fade;Node=>choix;Node=>choix;OtherSpeak : Qu'est-ce que je peux faire pour vous;;AddMember;;Leave;;Leave;Node=>apparition capitaine
+DestroyShip;Fade;;;;;;Node=>mec1;;;Node=>choix;;Leave;;;;;
+Leave;RandomPercent20;;;;;;;;;;;;;;;;
+;PlayerSpeak : Rien de bien beau…;[fouille];;;;;;;;;;;;;;;
+;Fade;RandomRange3;;;PlayerSpeak : Il n'y a plus rien.;;;;;;;;;;;;
+;Node=>bateau vide;PlayerSpeak : Des armes ! ;PlayerSpeak : De quoi manger.;PlayerSpeak : Des babioles;Fade;;;;;;;;;;;;
+;;LootWeapons;LootFood;LootMisc;Node=>bateau vide;;;;;;;;;;;;
+;;Switch=>fouille;Switch=>fouille;Switch=>fouille;;;;;;;;;;;;;
+;;Fade;Fade;Fade;;;;;;;;;;;;;
+;;Node=>bateau vide;Node=>bateau vide;Node=>bateau vide;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;
+[mauvais karma];;;;;;;;;;;;;;;;;
+OtherSpeak : Il y a BOUNTY pièces d'or sur ta tête.;;;;;;;;;;;;;;;;;
+OtherSpeak : Paye BOUNTY ou meurs.;;;;;;;;;;;;;;;;;
+SetChoices3;;;;;;;;;;;;;;;;;
+Choice : Voilà l'argent…(trade);;Choice : Il en est hors de question(attaquer);Choice : (tenter de fuir)(dex);;;;;;;;;;;;;;
+PayBounty;;OtherSpeak : Alors on va prendre NOMBATEAU;CheckStatDEX;;;;;;;;;;;;;;
+OtherSpeak : Bien… Tu es en règle.;OtherSpeak : Tu n'a pas assez;OtherSpeak :  Et vous mettre à la mer;OtherSpeak : !;OtherSpeak : Délit de fuite !;;;;;;;;;;;;;
+OtherSpeak : Tu peux continuer à Naviguer;OtherSpeak : On va devoir prendre NOMBATEAU;Node=>combat;HideOther;OtherSpeak :  Vous êtes déjà morts.;;;;;;;;;;;;;
+Leave;OtherSpeak :  Et vous mettre à la mer;;Fade;Node=>combat;;;;;;;;;;;;;
+;Node=>combat;;Narrator : CAPITAINE est sur la plage. Les soldats arrivent au loin.;;;;;;;;;;;;;;
+;;;SetChoices1;;;;;;;;;;;;;;
+;;;Choice : (prendre le large)(partir);;;;;;;;;;;;;;
+;;;Leave;;;;;;;;;;;;;;
