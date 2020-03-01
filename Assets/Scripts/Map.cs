@@ -40,6 +40,8 @@ public class Map : MonoBehaviour {
     {
         UpdateUI();
 
+        Debug.Log("map name : " + mapParameters.mapName);
+
         max = System.Enum.GetValues(typeof(TutorialStep)).Length;
 
     }
