@@ -20,7 +20,19 @@ public class Flag : MonoBehaviour {
 
     public LayerMask layerMask;
 
-	void Awake () {
+    public float minX;
+    public float maxX = 1f;
+    public float minY;
+    public float maxY = 1f;
+
+    public float currX;
+    public float currY;
+
+    public Directions direction;
+
+    public Sprite[] sprites;
+
+    void Awake () {
 		Instance = this;
 	}
 
@@ -38,8 +50,8 @@ public class Flag : MonoBehaviour {
 
     private void Update()
     {
-        //if ( WorldTouch.Instance.touching )
-        if (WorldTouch.Instance.touching && Swipe.Instance.timer > Swipe.Instance.minimumTime )
+        // NEW 
+        if (WorldTouch.Instance.touching)
         {
             if (!visible)
                 Show();
@@ -55,20 +67,20 @@ public class Flag : MonoBehaviour {
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, layerMask))
         {
-            transform.position = hit.point;
             PlayerBoat.Instance.SetTargetPos(hit.point);
         }
-        else
-        {
-            Debug.Log("failed to update flag position");
-        }
+    }
+
+    public void SetPos(Vector3 pos)
+    {
+        transform.position = pos;
     }
 
     void HandleChunkEvent ()
 	{
-        Show();
+        /*Show();
         transform.localPosition = Vector3.zero;
-        PlayerBoat.Instance.SetTargetPos(transform.position);
+        PlayerBoat.Instance.SetTargetPos(transform.position);*/
     }
 
     public void HandleOnEndMovement()

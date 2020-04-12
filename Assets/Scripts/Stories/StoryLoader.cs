@@ -62,8 +62,6 @@ public class StoryLoader : MonoBehaviour {
         // set language
         path += GameManager.language.ToString();
 
-        Debug.Log("loading language : " + GameManager.language.ToString());
-
 		GetFiles (path);
 
 		for (int i = 0; i < storyFiles.Length; ++i )

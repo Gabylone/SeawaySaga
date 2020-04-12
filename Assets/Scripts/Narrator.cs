@@ -24,6 +24,8 @@ public class Narrator : MonoBehaviour {
 
 		StoryInput.onPressInput += HandleOnPressInput;
 
+        HideNarrator();
+
 	}
 
 	void HandleGetFunction (FunctionType func, string cellParameters)
@@ -64,15 +66,16 @@ public class Narrator : MonoBehaviour {
 	#region narrator
 	public void ShowNarratorTimed (string text) {
 
-		ShowNarrator (text);
-
         narratorButtonObj.SetActive(false);
+
+        ShowNarrator(text);
+
 
 		Invoke ("HideNarrator" , 2.5f );
 	}
 	public void ShowNarrator (string text) {
 
-        InGameMenu.Instance.HideMenuButtons();
+        //InGameMenu.Instance.HideMenuButtons();
 
         //Crews.playerCrew.captain.Icon.MoveToPoint(Crews.PlacingType.Hidden);
         //Crews.enemyCrew.captain.Icon.MoveToPoint(Crews.PlacingType.Hidden);
@@ -84,10 +87,15 @@ public class Narrator : MonoBehaviour {
 		narratorObj.SetActive (true);
 
 		narratorText.text = NameGeneration.CheckForKeyWords (text);
+
+        foreach (var layoutGroup in GetComponentsInChildren<VerticalLayoutGroup>())
+        {
+            LayoutRebuilder.ForceRebuildLayoutImmediate(layoutGroup.GetComponent<RectTransform>());
+        }
 	}
 	public void HideNarrator () {
 
-        InGameMenu.Instance.ShowMenuButtons();
+        //InGameMenu.Instance.ShowMenuButtons();
 
         narratorObj.SetActive (false);
 	}

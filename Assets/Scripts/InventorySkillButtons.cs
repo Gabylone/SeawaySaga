@@ -11,7 +11,7 @@ public class InventorySkillButtons : MonoBehaviour {
 		
 		skillButtons = GetComponentsInChildren<SkillButton_Inventory> (true);
 
-		SkillMenu.onShowSkillMenu += HandleOnShowCharacterStats;
+		SkillMenu.Instance.onShowSkillMenu += HandleOnShowCharacterStats;
 		HandleOnShowCharacterStats ();
 	}
 

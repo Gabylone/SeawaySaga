@@ -9,7 +9,7 @@ public class MapParameters
 
     public string mapName = "";
 
-    public int numberOfNumberBoats = 100;
+    public int boatAmount = 100;
 
     public int endFightLevel = 10;
 

@@ -11,6 +11,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fighter Group (Enemy)
       objectReference: {fileID: 0}
+    - target: {fileID: 4000011242880408, guid: 75926882cf8076140bba24757b41fa58, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 33
+      objectReference: {fileID: 0}
     - target: {fileID: 224000012342919566, guid: 75926882cf8076140bba24757b41fa58,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -116,9 +120,35 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 4000011242880408, guid: 75926882cf8076140bba24757b41fa58, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 33
+    - target: {fileID: 224800058837486476, guid: 75926882cf8076140bba24757b41fa58,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4267701292860833736, guid: 75926882cf8076140bba24757b41fa58,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4267701292860833736, guid: 75926882cf8076140bba24757b41fa58,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4267701292860833736, guid: 75926882cf8076140bba24757b41fa58,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4267701292860833736, guid: 75926882cf8076140bba24757b41fa58,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4267701292860833736, guid: 75926882cf8076140bba24757b41fa58,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 75926882cf8076140bba24757b41fa58, type: 3}

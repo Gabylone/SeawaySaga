@@ -17,6 +17,8 @@ public class Swipe : MonoBehaviour {
 
 	public float minimumTime = 0.5f;
 
+    public bool enableSwipe = true;
+
 	bool swiping = false;
 
 	public float timer = 0f;
@@ -30,15 +32,13 @@ public class Swipe : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-		WorldTouch.onPointerDown += HandlePointerDownEvent;
+		if (enableSwipe)
+        {
+            WorldTouch.onPointerDown += HandlePointerDownEvent;
+        }
 	}
 
 	void HandlePointerDownEvent ()
-	{
-		Swipe_Start ();
-	}
-
-	void HandleOnTouchWorld ()
 	{
 		Swipe_Start ();
 	}

@@ -45,6 +45,6 @@ public class Wave : MonoBehaviour {
 
     public void Move()
     {
-        _transform.localPosition = new Vector3(Random.Range(minimumX, maximumX), 0.39f , Random.Range(minimumY, maximumY));
+        _transform.position = PlayerBoat.Instance.transform.position + new Vector3(Random.Range(minimumX, maximumX), 0.39f , Random.Range(minimumY, maximumY));
     }
 }

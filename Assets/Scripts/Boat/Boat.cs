@@ -11,7 +11,7 @@ public class Boat : MonoBehaviour {
 	[Header ("Boat Elements")]
 	[SerializeField]
 	private Transform boatMesh;
-    public Transform getTransform;
+    public Transform GetTransform;
     public Animator animator;
 
 	[Space]
@@ -25,7 +25,7 @@ public class Boat : MonoBehaviour {
 
 	public virtual void Start () {
 		
-		getTransform = GetComponent<Transform> ();
+		GetTransform = GetComponent<Transform> ();
         SetSpeed(startSpeed);
 
 	}
@@ -44,7 +44,7 @@ public class Boat : MonoBehaviour {
 
 	void CheckForBounds ()
 	{
-		Vector2 p = (Vector2)getTransform.position;
+		Vector2 p = (Vector2)GetTransform.position;
 
 	}
 
@@ -52,7 +52,7 @@ public class Boat : MonoBehaviour {
 
 	private void SetBoatRotation () {
 
-		Vector3 targetDir = (targetPos - getTransform.position).normalized;
+		Vector3 targetDir = (targetPos - GetTransform.position).normalized;
 
 		float targetAngle = Vector3.Angle (targetDir, Vector3.forward);
 		if (Vector3.Dot (Vector3.right, targetDir) < 0)
@@ -78,6 +78,8 @@ public class Boat : MonoBehaviour {
 
 	public virtual void EndMovenent() {
 		moving = false;
+        agent.isStopped = true;
+        Debug.Log("ending movement");
 	}
     #endregion
 

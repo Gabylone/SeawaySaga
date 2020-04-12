@@ -80,8 +80,7 @@ public class Card : MonoBehaviour {
 	{
 		if (pickable) {
 
-            ShowTargetFeedback(Color.magenta);
-            targetFeedbackImage.GetComponent<Animator>().SetBool("bouncing", true);
+            ShowTargetFeedback(Color.red);
         }
         else {
 
@@ -94,16 +93,29 @@ public class Card : MonoBehaviour {
 	}
 
 	void ShowTargetFeedback(Color color) {
-		targetFeedbackImage.color = color;
+
+        foreach (var item in linkedFighter.GetComponentsInChildren<SpriteOutline>())
+        {
+            item.enabled = true;
+            item.color = color;
+        }
+
+		/*targetFeedbackImage.color = color;
 
 		targetFeedbackImage.gameObject.SetActive (true);
-		Tween.Bounce (targetFeedbackImage.transform);
+		Tween.Bounce (targetFeedbackImage.transform);*/
 	}
 
 	void HideTargetFeedback () {
-        targetFeedbackImage.GetComponent<Animator>().SetBool("bouncing", false);
-		targetFeedbackImage.gameObject.SetActive (false);
-	}
+
+        foreach (var item in linkedFighter.GetComponentsInChildren<SpriteOutline>())
+        {
+            item.enabled = false;
+        }
+        /*targetFeedbackImage.GetComponent<Animator>().SetBool("bouncing", false);
+        targetFeedbackImage.gameObject.SetActive(false);*/
+
+    }
 
 	void HandleOnChangeState (Fighter.states currState, Fighter.states prevState)
 	{

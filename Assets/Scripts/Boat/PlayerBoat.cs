@@ -19,12 +19,9 @@ public class PlayerBoat : Boat {
 
 		WorldTouch.onPointerExit += HandleOnPointerExit;
 
-		StoryLauncher.Instance.onPlayStory += EndMovenent;
 		StoryLauncher.Instance.onEndStory += EndMovenent;
 
 		NavigationManager.Instance.EnterNewChunk += HandleChunkEvent;
-
-		NavigationManager.Instance.EnterNewChunk += UpdatePositionOnScreen;
 
 	}
 
@@ -33,9 +30,18 @@ public class PlayerBoat : Boat {
         base.Update();
     }
 
+    public override void SetTargetPos(Vector3 p)
+    {
+        base.SetTargetPos(p);
+
+        Flag.Instance.SetPos(p);
+    }
+
     void HandleChunkEvent ()
 	{
-        //SetTargetPos(NavigationManager.Instance.GetAnchor(Directions.None));
+        UpdatePositionOnScreen();
+
+        CamBehavior.Instance.RefreshCamOnPlayer();
 	}
 
 	void HandleOnTouchIsland ()
@@ -46,7 +52,7 @@ public class PlayerBoat : Boat {
     #region events
     private void HandleOnPointerExit()
     {
-        Tween.Bounce(getTransform);
+        Tween.Bounce(GetTransform);
     }
     #endregion
 
@@ -67,15 +73,16 @@ public class PlayerBoat : Boat {
         Flag.Instance.HandleOnEndMovement();
 	}
 
-	public override void UpdatePositionOnScreen ()
-	{
-		base.UpdatePositionOnScreen ();
+    public override void UpdatePositionOnScreen()
+    {
+        base.UpdatePositionOnScreen();
 
-        getTransform.position = NavigationManager.Instance.GetOppositeCornerPosition(Boats.playerBoatInfo.currentDirection);
+        GetTransform.position = NavigationManager.Instance.GetOppositeCornerPosition(Boats.playerBoatInfo.currentDirection);
 
-	}
+        SetTargetPos( GetTransform.position );
+    }
 
-	void OnTriggerEnter (Collider collider) {
+    void OnTriggerEnter (Collider collider) {
 
 		if (collider.tag == "Flag" && !WorldTouch.Instance.touching)
         {

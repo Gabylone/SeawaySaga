@@ -97,8 +97,6 @@ public class MapGenerator : MonoBehaviour {
         // set map scale
         mapParameters.SetScale(rows.Length);
 
-        Debug.Log("setting map scale to : ");
-
         // init chunks
         Chunk.chunks.Clear();
 
@@ -141,14 +139,11 @@ public class MapGenerator : MonoBehaviour {
                             {
                                 case StoryType.Treasure:
                                     SaveManager.Instance.GameData.treasureCoords = c;
-                                    Debug.Log("treasure is at : " + c.ToString());
                                     break;
                                 case StoryType.Home:
                                     SaveManager.Instance.GameData.homeCoords = c;
-                                    Debug.Log("home is at : " + c.ToString());
                                     break;
                                 case StoryType.Clue:
-                                    Debug.Log("clue is at : " + c.ToString());
                                     Formula newFormula = new Formula();
                                     newFormula.name = NameGeneration.Instance.randomWord;
                                     newFormula.coords = c;

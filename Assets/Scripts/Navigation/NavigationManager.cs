@@ -34,25 +34,6 @@ public class NavigationManager : MonoBehaviour {
 		Instance = this;
 	}
 
-	void Start () {
-
-		StoryLauncher.Instance.onPlayStory += HandlePlayStory;
-		StoryLauncher.Instance.onEndStory += HandleEndStory;
-
-	}
-
-	#region event handler
-	void HandleEndStory ()
-	{
-		navigationTriggers.SetActive (true);
-	}
-
-	void HandlePlayStory ()
-	{
-		navigationTriggers.SetActive (false);
-	}
-    #endregion
-
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.DownArrow))

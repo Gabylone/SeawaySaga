@@ -10,6 +10,19 @@ public class Boats : MonoBehaviour {
 
 	private BoatData boatData;
 
+    public GameObject enemyBoatGroup;
+    public EnemyBoat currentEnemyBoat;
+    public int currentBoatAmount = 0;
+    public EnemyBoat[] enemyBoats;
+
+    public bool meetingPlayer = false;
+
+    public delegate void OnMeetPlayer();
+    public OnMeetPlayer onMeetPlayer;
+
+    public delegate void OnLeavePLayer();
+    public OnLeavePLayer onLeavePlayer;
+
 	public List<OtherBoatInfo> getBoats {
 		//= new List<OtherBoatInfo> ();
 		get {
@@ -17,15 +30,6 @@ public class Boats : MonoBehaviour {
 		}
 	}
 
-	[SerializeField]
-    private int NumberOfBoats {
-        
-        get
-        {
-            return MapGenerator.mapParameters.numberOfNumberBoats;
-        }
-
-    }
 
 	[Header("Movement")]
 	[SerializeField]
@@ -45,9 +49,11 @@ public class Boats : MonoBehaviour {
 
 	void Start () {
 
-		Karma.onChangeKarma += HandleOnChangeKarma;
+        enemyBoats = enemyBoatGroup.GetComponentsInChildren<EnemyBoat>(true );
 
-		NavigationManager.Instance.EnterNewChunk += SaveBoats;
+        Karma.onChangeKarma += HandleOnChangeKarma;
+
+		NavigationManager.Instance.EnterNewChunk += HandleOnChunkEvent;
 
 		StoryFunctions.Instance.getFunction += HandleGetFunction;
 	}
@@ -61,28 +67,80 @@ public class Boats : MonoBehaviour {
 		boatData = new BoatData ();
 		boatData.boats = new List<OtherBoatInfo> ();
 
-		for (int i = 0; i < NumberOfBoats; i++) {
+		for (int i = 0; i < MapGenerator.mapParameters.boatAmount; i++) {
             OtherBoatInfo newBoat = CreateNewBoat();
         }
     }
 
 	#region story
+
+    public void MeetPlayer()
+    {
+        meetingPlayer = true;
+
+        if (onMeetPlayer != null)
+        {
+            onMeetPlayer();
+        }
+    }
+
+    public void LeaveOtherBoat()
+    {
+        meetingPlayer = false;
+
+        if (onLeavePlayer != null)
+        {
+            onLeavePlayer();
+        }
+    }
+
 	void HandleGetFunction (FunctionType func, string cellParameters)
 	{
 		if ( func == FunctionType.DestroyShip ) {
-
             DestroyCurrentShip();
-
-
 		}
 	}
 
+    void HandleOnChunkEvent()
+    {
+        foreach (var enemyBoat in enemyBoats)
+        {
+            enemyBoat.Hide();
+        }
+
+        currentBoatAmount = 0;
+
+        foreach (var item in boatData.boats)
+        {
+            item.HandleChunkEvent();
+
+            if (item.coords == Boats.playerBoatInfo.coords)
+            {
+                EnemyBoat enemyBoat = enemyBoats[currentBoatAmount];
+
+                enemyBoat.id = currentBoatAmount;
+
+                enemyBoat.Show(item);
+
+                ++currentBoatAmount;
+
+                if (currentBoatAmount == enemyBoats.Length)
+                {
+                    Debug.LogError( "reached max boat amout on screen" );
+                    break;
+                }
+
+            }
+        }
+
+        SaveBoats();
+    }
+
     void DestroyCurrentShip()
     {
-        OtherBoatInfo boatInfo = EnemyBoat.Instance.OtherBoatInfo;
-        boatData.boats.Remove(boatInfo);
+        boatData.boats.Remove(currentEnemyBoat.boatInfo);
 
-        EnemyBoat.Instance.Hide();
+        currentEnemyBoat.Hide();
 
         Debug.Log("destroying boat");
 

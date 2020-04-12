@@ -18,7 +18,7 @@ public class CharacterMenuButton : MonoBehaviour {
     {
 
         InGameMenu.Instance.onOpenMenu += HandleOpenInventory;
-        SkillMenu.onHideSkillMenu += UpdateUI;
+        SkillMenu.Instance.onHideSkillMenu += UpdateUI;
 
         UpdateUI();
 

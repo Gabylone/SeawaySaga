@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Arrow : MonoBehaviour
 {
-    /*public Directions dir;
+    public Directions dir;
 
-    private void OnMouseEnter()
+    /*private void OnMouseEnter()
     {
         if ( WorldTouch.Instance.touching && WorldTouch.Instance.IsEnabled () )
         {

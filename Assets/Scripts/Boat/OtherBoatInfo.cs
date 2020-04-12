@@ -20,8 +20,6 @@ public class OtherBoatInfo : BoatInfo {
 	public override void Init ()
 	{
 		base.Init ();
-
-		NavigationManager.Instance.EnterNewChunk += HandleChunkEvent;
 	}
 
     public void ShiftFromPlayerPosition()
@@ -64,7 +62,7 @@ public class OtherBoatInfo : BoatInfo {
 		}
 	}
 
-	void HandleChunkEvent ()
+	public void HandleChunkEvent ()
 	{
         if ( NavigationManager.Instance.chunksTravelled < 2)
         {
@@ -73,22 +71,6 @@ public class OtherBoatInfo : BoatInfo {
         }
 
         UpdatePosition ();
-
-		CheckForPlayer ();
-	}
-
-	void CheckForPlayer ()
-	{
-        if (coords == Boats.playerBoatInfo.coords)
-        {
-            /*if (currentDirection == Boats.playerBoatInfo.currentDirection)
-            {
-                currentDirection++;
-                if (currentDirection == Directions.None)
-                    currentDirection = Directions.North;
-            }*/
-            ShowOnScreen();
-        }
 	}
 
 	public void MoveToOtherChunk ()
@@ -116,9 +98,12 @@ public class OtherBoatInfo : BoatInfo {
 			SwitchDirection ();
 
 		} else {
-			if (Random.value < changeOfChangeDirection) {
-				//currentDirection = (Directions)Random.Range (0, 8);
-			}
+
+            if (Random.value < changeOfChangeDirection)
+            {
+                // currentDirection = (Directions)Random.Range (0, 8);
+            }
+
 		}
 
 		SetCoords(newCoords);
@@ -126,15 +111,9 @@ public class OtherBoatInfo : BoatInfo {
 	}
 
 	private void SwitchDirection () {
-//		Debug.Log ("switching direction from " + currentDirection.ToString () + " ...");
 
 		currentDirection = NavigationManager.GetOppositeDirection (currentDirection);
 
-//		Debug.Log ("... to " + currentDirection.ToString ());
-	}
-
-	public void ShowOnScreen () {
-		EnemyBoat.Instance.Show (this);
 	}
 
 	void OnDestroy() {

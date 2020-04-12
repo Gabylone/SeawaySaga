@@ -255,7 +255,11 @@ public class SaveManager : MonoBehaviour
 
 		NavigationManager.Instance.ChangeChunk (Directions.None);
 
+        Vector3 islandPos = Island.Instance.transform.position + new Vector3(-2f, 0, -1.5f);
 
+        PlayerBoat.Instance.transform.position = islandPos;
+        PlayerBoat.Instance.SetTargetPos(islandPos);
+        CamBehavior.Instance.RefreshCamOnPlayer();
 	}
 	public void SaveCurrentIsland () {
 		//

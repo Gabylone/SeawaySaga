@@ -549,14 +549,20 @@ public class LootUI : MonoBehaviour {
 
     public void OpenMemberLoot()
     {
-        OpenMemberLoot(Crews.playerCrew.captain);
+        OpenMemberLoot(CrewMember.GetSelectedMember);
     }
 
     public void OpenMemberLoot(CrewMember targetCrewMember)
     {
+        // basic open the menu stuff
         InGameMenu.Instance.Open();
-
         DisplayCrew.Instance.Show(targetCrewMember);
+        //
+
+        if (BoatUpgradeManager.Instance.opened)
+        {
+            BoatUpgradeManager.Instance.Close();
+        }
 
         if (visible)
         {

@@ -102,9 +102,14 @@ public class MemberIcon : MonoBehaviour {
             return;
         }
 
-        LootUI.Instance.OpenMemberLoot(member);
-
-        SkillMenu.Instance.Close();
+        if ( SkillMenu.Instance.opened)
+        {
+            SkillMenu.Instance.Show(member);
+        }
+        else
+        {
+            LootUI.Instance.OpenMemberLoot(member);
+        }
     }
     #endregion
 

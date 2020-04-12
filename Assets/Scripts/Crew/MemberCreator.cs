@@ -7,6 +7,8 @@ public class MemberCreator : MonoBehaviour {
 
 	public static MemberCreator Instance;
 
+    public CanvasGroup canvasGroup;
+
 	public enum CreationStep {
 		CaptainName,
 		//BoatName,
@@ -186,26 +188,21 @@ public class MemberCreator : MonoBehaviour {
 
     void EndMemberCreation () {
 
-        //animator.SetTrigger("close");
-
-        rayblocker.DOFade(0f, tweenDuration);
-        fadeImage.DOFade(0f, tweenDuration);
-
         HideStep(CreationStep.Appearance);
 
 		confirmButtonObj.SetActive (false);
 		previousButtonObj.SetActive (false);
 
-        Crews.playerCrew.captain.Icon.transform.SetParent(iconInitParent);
-        Crews.playerCrew.captain.Icon.MoveToPoint(Crews.PlacingType.Map);
-        InGameMenu.Instance.canOpen = true;
+        canvasGroup.DOFade(0f , tweenDuration);
 
         Invoke("EndMemberCreationDelay",tweenDuration);
 
 	}
 	void EndMemberCreationDelay () {
 
-        fadeImage.DOFade(0f, tweenDuration);
+        Crews.playerCrew.captain.Icon.transform.SetParent(iconInitParent);
+        Crews.playerCrew.captain.Icon.MoveToPoint(Crews.PlacingType.Map);
+        InGameMenu.Instance.canOpen = true;
 
         Hide();
 

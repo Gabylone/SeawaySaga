@@ -44,17 +44,7 @@ public class InGameMenu : MonoBehaviour {
 	public void Init () {
 
 		LootUI.useInventory += HandleUseInventory;
-
-		StoryLauncher.Instance.onPlayStory += HandlePlayStory;
 	}
-
-
-	#region events
-	void HandlePlayStory ()
-	{
-		Hide ();
-	}
-	#endregion
 
 	#region event handling
 	void HandleUseInventory (InventoryActionType actionType)

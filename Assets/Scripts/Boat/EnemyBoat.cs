@@ -3,9 +3,9 @@ using System.Collections;
 
 public class EnemyBoat : Boat {
 
-	public static EnemyBoat Instance;
+    public int id = 0;
 
-	private OtherBoatInfo otherBoatInfo;
+	public OtherBoatInfo boatInfo;
 
 	public bool followPlayer = false;
 
@@ -28,18 +28,12 @@ public class EnemyBoat : Boat {
 
     public GameObject group;
 
-	void Awake (){
-		Instance = this;
-	}
-
 	public override void Start ()
 	{
 		base.Start();
 
-		StoryLauncher.Instance.onPlayStory += HandlePlayStoryEvent;
-		StoryLauncher.Instance.onEndStory += HandleEndStoryEvent;
-
-		NavigationManager.Instance.EnterNewChunk += HandleChunkEvent;
+        Boats.Instance.onMeetPlayer += HandleOnMeetPlayer;
+        Boats.Instance.onLeavePlayer += HandleOnLeavePlayer;
 
 		boxCollider = GetComponent<BoxCollider> ();
 
@@ -47,32 +41,9 @@ public class EnemyBoat : Boat {
 
     }
 
-	void HandleChunkEvent ()
-	{
-        Hide();
-    }
-
-	void HandlePlayStoryEvent ()
-	{
-		EndMovenent ();
-	}
-
-	void HandleEndStoryEvent ()
-	{
-		if (StoryReader.Instance.CurrentStoryHandler.storyType == StoryType.Boat)
-        {
-            reachedPlayer = false;
-            followPlayer = false;
-
-            ExitScreen();
-            SetSpeed(leavingSpeed);
-        }
-    }
-
     public override void SetTargetPos(Vector3 p)
     {
         base.SetTargetPos(p);
-
     }
 
     public override void Update ()
@@ -83,44 +54,55 @@ public class EnemyBoat : Boat {
 
             if (Vector2.Distance(targetPos, transform.position) < 0.5f)
             {
-                Leave();
+                ExitToOtherChunk();
             }
 
 		}
         else 
         {
-            SetTargetPos(PlayerBoat.Instance.transform.position);
+            if( moving)
+            {
+                SetTargetPos(PlayerBoat.Instance.transform.position);
+            }
         }
     }
 
-    void Leave()
+    void ExitToOtherChunk()
     {
-        otherBoatInfo.MoveToOtherChunk();
+        boatInfo.MoveToOtherChunk();
 
         DisplayMinimap.Instance.UpdateOtherBoatsMinimapIcon();
 
         Hide();
     }
 
-	public void Show ( OtherBoatInfo boatInfo ) 
+    #region boat appears
+    public void Show ( OtherBoatInfo boatInfo ) 
 	{
-        this.otherBoatInfo = boatInfo;
+        this.boatInfo = boatInfo;
 
-        CancelInvoke("ShowDelay");
-        Invoke("ShowDelay", timeToShowBoat);
-
-    }
-
-    void ShowDelay()
-    {
         exitingScreen = false;
         boxCollider.enabled = true;
+
+        EndMovenent();
 
         Visible = true;
 
         UpdatePositionOnScreen();
 
-        if (otherBoatInfo.storyManager.CurrentStoryHandler.Story.param == 0)
+        CancelInvoke("ShowDelay");
+        Invoke("ShowDelay", timeToShowBoat * id);
+    }
+
+    void ShowDelay()
+    {
+        GoToTargetDestination();
+    }
+    #endregion
+
+    void GoToTargetDestination()
+    {
+        if (boatInfo.storyManager.CurrentStoryHandler.Story.param == 0)
         {
             // go about
             ExitScreen();
@@ -132,13 +114,13 @@ public class EnemyBoat : Boat {
         {
             SetSpeed(followPlayer_Speed);
 
-            SetTargetPos(PlayerBoat.Instance.getTransform.position);
+            SetTargetPos(PlayerBoat.Instance.GetTransform.position);
         }
     }
 
     void ExitScreen()
     {
-        Vector3 corner = NavigationManager.Instance.GetCornerPosition(otherBoatInfo.currentDirection);
+        Vector3 corner = NavigationManager.Instance.GetCornerPosition(boatInfo.currentDirection);
         //Debug.Log("target position : " + otherBoatInfo.currentDirection);
 
         Vector3 p = corner + (corner - Vector3.zero).normalized * decalToCenter;
@@ -149,19 +131,24 @@ public class EnemyBoat : Boat {
     }
 
 	public void Hide () {
+
         CancelInvoke("ShowDelay");
 
         Visible = false;
-		OtherBoatInfo = null;
 	}
 
 	public override void UpdatePositionOnScreen ()
 	{
 		base.UpdatePositionOnScreen ();
 
-        Vector3 corner = NavigationManager.Instance.GetOppositeCornerPosition(otherBoatInfo.currentDirection);
+        Vector3 corner = NavigationManager.Instance.GetOppositeCornerPosition(boatInfo.currentDirection);
 
-        getTransform.position = corner;
+        Vector3 dir = (corner - Vector3.zero).normalized;
+
+        Vector3 p = corner + dir * 25f;
+
+        GetTransform.position = p;
+        SetTargetPos(p);
 
 		metPlayer = false;
 	}
@@ -169,11 +156,12 @@ public class EnemyBoat : Boat {
 	#region world
 	void OnTriggerEnter (Collider other) {
 
-		if (metPlayer == false) {
+		if (metPlayer == false && moving && !Boats.Instance.meetingPlayer) {
 
             if (other.tag == "Player")
             {
-                Enter();
+                Debug.Log("meeting player");
+                MeetPlayer();
             }
 
 		}
@@ -185,15 +173,19 @@ public class EnemyBoat : Boat {
 	#endregion
 
 	#region story
-	public void Enter () {
+	public void MeetPlayer () {
+
+        Boats.Instance.currentEnemyBoat = this;
 
         Tween.Bounce(transform);
+
+        Boats.Instance.MeetPlayer();
 
         // if he met the player once IN THE SCREEN
         metPlayer = true;
 
         // if he met the player in the WHOLE story
-        otherBoatInfo.alreadyMet = true;
+        boatInfo.alreadyMet = true;
 
 		reachedPlayer = true;
 
@@ -201,8 +193,29 @@ public class EnemyBoat : Boat {
 
         SetSpeed(0);
 
-		StoryLauncher.Instance.PlayStory (OtherBoatInfo.storyManager, StoryLauncher.StorySource.boat);
+		StoryLauncher.Instance.PlayStory (boatInfo.storyManager, StoryLauncher.StorySource.boat);
 	}
+
+    public void LeavePlayer()
+    {
+        Boats.Instance.LeaveOtherBoat();
+
+        reachedPlayer = false;
+        followPlayer = false;
+
+        ExitScreen();
+        SetSpeed(leavingSpeed);
+    }
+
+    void HandleOnMeetPlayer()
+    {
+        EndMovenent();
+    }
+
+    void HandleOnLeavePlayer()
+    {
+        GoToTargetDestination();
+    }
 
     private void OnMouseDown()
     {
@@ -213,14 +226,6 @@ public class EnemyBoat : Boat {
     #endregion
 
     #region properties
-    public OtherBoatInfo OtherBoatInfo {
-		get {
-			return otherBoatInfo;
-		}
-		set {
-			otherBoatInfo = value;
-		}
-	}
 
 	public bool Visible {
 		get {

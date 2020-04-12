@@ -109,7 +109,7 @@ public class Skill : MonoBehaviour {
 	}
 
 	public virtual void OnSetTarget () {
-		if (goToTarget) {
+		if ( animationType == SkillManager.AnimationType.CloseAttack && goToTarget) {
 			fighter.onReachTarget += HandleOnReachTarget;
 			fighter.ChangeState (Fighter.states.moveToTarget);
 		} else {
@@ -135,11 +135,12 @@ public class Skill : MonoBehaviour {
 	}
 
 	public void TriggerAnimation () {
+
 		if (!playAnim)
 			return;
 
-		fighter.Animator.SetInteger("hitType",(int)animationType);
-		fighter.Animator.SetTrigger ( "hit" );
+		fighter.animator.SetInteger("hitType",(int)animationType);
+		fighter.animator.SetTrigger ( "hit" );
 		//
 	}
 

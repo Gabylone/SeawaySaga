@@ -57,26 +57,32 @@ public class StoryLauncher : MonoBehaviour {
 			return;
 
         CurrentStorySource = source;
+        StoryReader.Instance.CurrentStoryManager = storyManager;
+        StoryReader.Instance.Reset();
+
+        CamBehavior.Instance.Zoom();
+
+        PlayerBoat.Instance.EndMovenent();
+        InGameMenu.Instance.Hide();
+
+        Invoke("DisplayBackground", 1f);
+    }
+
+    void DisplayBackground()
+    {
+        InGameBackGround.Instance.UpdateStartSprite();
+
+        Invoke("StartStory", 1f);
+    }
+
+    void StartStory()
+    {
+        Transitions.Instance.ActionTransition.FadeIn(0.5f);
 
         if (onPlayStory != null)
             onPlayStory();
 
-        StoryReader.Instance.CurrentStoryManager = storyManager;
-        StoryReader.Instance.Reset ();
-
-
         playingStory = true;
-
-        PlayStoryDelay();
-        //Invoke("PlayStoryDelay", 1f);
-	}
-
-    void PlayStoryDelay()
-    {
-        Transitions.Instance.ActionTransition.FadeIn(0.5f);
-
-        // place captain
-        //Crews.playerCrew.captain.Icon.MoveToPoint(Crews.PlacingType.Discussion);
         StoryReader.Instance.UpdateStory();
     }
 
@@ -90,6 +96,10 @@ public class StoryLauncher : MonoBehaviour {
 			Chunk.currentChunk.state = ChunkState.VisitedIsland;
             SaveManager.Instance.GameData.progression++;
 			break;
+            case StorySource.boat:
+                //
+                Boats.Instance.currentEnemyBoat.LeavePlayer();
+                break;
 		default:
 			break;
 		}

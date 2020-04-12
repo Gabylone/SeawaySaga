@@ -628,13 +628,11 @@ public class TutoStep_OtherBoats: TutoStep {
 
 	void HandlePlayStoryEvent ()
 	{
-
 		if (StoryLauncher.Instance.CurrentStorySource == StoryLauncher.StorySource.boat) {
 
 			StoryLauncher.Instance.onPlayStory -= HandlePlayStoryEvent;
 			Display ();
 			WaitForConfirm ();
-
 		}
 	}
 
@@ -716,13 +714,13 @@ public class TutoStep_SkillMenu : TutoStep {
 	{
 		base.Init ();
 
-		SkillMenu.onShowSkillMenu += HandleOnShowCharacterStats;
+		SkillMenu.Instance.onShowSkillMenu += HandleOnShowCharacterStats;
 
 	}
 
 	void HandleOnShowCharacterStats ()
 	{
-		SkillMenu.onShowSkillMenu -= HandleOnShowCharacterStats;
+		SkillMenu.Instance.onShowSkillMenu -= HandleOnShowCharacterStats;
 		Display ();
 		WaitForConfirm ();
 	}

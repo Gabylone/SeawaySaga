@@ -106,7 +106,7 @@ public class DisplayMinimap : MonoBehaviour {
 
 		InitMap ();
 
-		InitBoatIcons ();
+		//InitBoatIcons ();
 
 		//HandleChunkEvent ();
 
@@ -351,7 +351,7 @@ public class DisplayMinimap : MonoBehaviour {
             boatPos.y += enemyBoatIconDecal.y;
         }
 
-        if (EnemyBoat.Instance.OtherBoatInfo != null)
+        if (Boats.Instance.currentBoatAmount > 0)
         {
             boatPos.x += enemyBoatIconDecal.x;
         }
@@ -396,7 +396,7 @@ public class DisplayMinimap : MonoBehaviour {
 
 	public void UpdateOtherBoatsMinimapIcon()
 	{
-        foreach (var item in minimapBoatIcons)
+        /*foreach (var item in minimapBoatIcons)
         {
             item.gameObject.SetActive(false);
         }
@@ -407,14 +407,7 @@ public class DisplayMinimap : MonoBehaviour {
 
             //++boatIndexInRange;
 
-			/*if ( boatInfo.coords <= Boats.playerBoatInfo.coords + (currentShipRange+1) && boatInfo.coords >= Boats.playerBoatInfo.coords - (currentShipRange+1) ) {
-
-				PlaceOtherBoatIcon (boatInfo,boatIndexInRange);
-
-				++boatIndexInRange;
-
-			}*/
-        }
+        }*/
 	}
 
 	void PlaceOtherBoatIcon (OtherBoatInfo boatInfo) {

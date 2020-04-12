@@ -6,6 +6,8 @@ using DG.Tweening;
 
 public class InGameBackGround : MonoBehaviour {
 
+    public static InGameBackGround Instance;
+
     public enum Type
     {
         Island,
@@ -31,16 +33,20 @@ public class InGameBackGround : MonoBehaviour {
     public Type previousType;
     public Type currentType;
 
-	// Use this for initialization
-	void Start () {
+    private void Awake()
+    {
+        Instance = this;
+    }
 
-        StoryLauncher.Instance.onPlayStory += HandleOnPlayStory;
+    // Use this for initialization
+    void Start () {
+
         StoryLauncher.Instance.onEndStory += HandleOnEndStory;
 
         Hide();
 	}
 
-    void HandleOnPlayStory()
+    public void UpdateStartSprite()
     {
         FadeIn();
 

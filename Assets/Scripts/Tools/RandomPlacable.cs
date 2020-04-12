@@ -136,7 +136,7 @@ public class RandomPlacable : MonoBehaviour
     {
         canTrigger = false;
 
-        Tween.Bounce(PlayerBoat.Instance.getTransform);
+        Tween.Bounce(PlayerBoat.Instance.GetTransform);
     }
 
     public void Disappear()

@@ -12,12 +12,15 @@ public class SkillMenu : MonoBehaviour {
 
     public GameObject showSkillMenuButton;
 
+    public delegate void OnHideCharacterStats();
+    public OnHideCharacterStats onHideSkillMenu;
+
+    public delegate void OnShowCharacterStats();
+    public OnShowCharacterStats onShowSkillMenu;
+
     private void Awake()
     {
         Instance = this;
-
-        onShowSkillMenu = null;
-        onHideSkillMenu = null;
     }
 
     void Start () {
@@ -34,34 +37,33 @@ public class SkillMenu : MonoBehaviour {
 	}
 
 	#region character stats
-	public delegate void OnShowCharacterStats();
-	public static OnShowCharacterStats onShowSkillMenu;
 	public void Show () {
 
+        Show(CrewMember.GetSelectedMember);
+	}
+    public void Show (CrewMember member)
+    {
+        // basic open the menu stuff
         InGameMenu.Instance.Open();
-        //DisplayCrew.Instance.Show(CrewMember.GetSelectedMember);
+        DisplayCrew.Instance.Show(member);
 
         showSkillMenuButton.SetActive(false);
 
         DisplayCrew.Instance.ShowSkillMenu();
 
-        LootUI.Instance.Hide();
-
         opened = true;
+        group.SetActive(true);
 
-		group.SetActive (true);
+        if (onShowSkillMenu != null)
+            onShowSkillMenu();
+    }
 
-		if (onShowSkillMenu != null)
-			onShowSkillMenu ();
-	}
-	public delegate void OnHideCharacterStats ();
-	public static OnHideCharacterStats onHideSkillMenu;
 	public void Close () {
 
         showSkillMenuButton.SetActive(true);
 
-        //InGameMenu.Instance.Hide();
-        //DisplayCrew.Instance.Hide();
+        InGameMenu.Instance.Hide();
+        DisplayCrew.Instance.Hide();
 
         DisplayCrew.Instance.HideSkillMenu();
 

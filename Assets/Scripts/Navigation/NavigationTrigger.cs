@@ -26,19 +26,13 @@ public class NavigationTrigger : MonoBehaviour {
         arrowImage = arrowGroup.GetComponentInChildren<Image>();
 
         NavigationManager.Instance.EnterNewChunk += HandleChunkEvent;
-        Swipe.onSwipe += HandleOnSwipe;
 
         WorldTouch.onPointerDown += HandleOnTouchWorld;
 
-        StoryLauncher.Instance.onPlayStory += HandlePlayStoryEvent;
-
+        // decomment this to activate swipe
+        //Swipe.onSwipe += HandleOnSwipe;
         Deselect();
 
-    }
-
-	void HandlePlayStoryEvent ()
-	{
-        Deselect();
     }
 
 	void HandleOnTouchWorld ()
@@ -48,10 +42,19 @@ public class NavigationTrigger : MonoBehaviour {
 
 	void HandleChunkEvent ()
 	{
-        Deselect();
+        Coords targetCoords = Boats.playerBoatInfo.coords + NavigationManager.Instance.getNewCoords(direction);
+
+        if (targetCoords.x < 0 || targetCoords.x > MapGenerator.Instance.MapScale - 1 || targetCoords.y < 0 || targetCoords.y > MapGenerator.Instance.MapScale - 1)
+        {
+            gameObject.SetActive(false);
+        }
+        else
+        {
+            gameObject.SetActive(true);
+        }
     }
 
-	void HandleOnSwipe (Directions direction)
+	/*void HandleOnSwipe (Directions direction)
 	{
         Deselect();
 
@@ -61,8 +64,6 @@ public class NavigationTrigger : MonoBehaviour {
 
             if (targetCoords.x < 0 || targetCoords.x > MapGenerator.Instance.MapScale - 1 || targetCoords.y < 0 || targetCoords.y > MapGenerator.Instance.MapScale - 1)
             {
-                
-
                 OutOfMapFeedback();
                 return;
             }
@@ -74,16 +75,32 @@ public class NavigationTrigger : MonoBehaviour {
 
 			Select ();
 		}
-	}
+	}*/
 
 	void OnTriggerStay ( Collider other ) {
+
 		if (other.tag == "Player" && selected ) {
 			NavigationManager.Instance.ChangeChunk (direction);
             Deselect();
 		}
 	}
-//
-	void Select ()
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            Transitions.Instance.ScreenTransition.FadeIn(0.5f);
+            Invoke("ChangeChunk", 0.5f);
+        }
+    }
+
+    void ChangeChunk()
+    {
+        Transitions.Instance.ScreenTransition.FadeOut(0.5f);
+        NavigationManager.Instance.ChangeChunk(direction);
+    }
+    //
+    void Select ()
 	{
         CancelInvoke("OutOfMapFeedbackDelay");
 
@@ -105,7 +122,7 @@ public class NavigationTrigger : MonoBehaviour {
 
         arrowGroup.SetActive(false);
 
-        _boxCollider.enabled = false;
+        //_boxCollider.enabled = false;
     }
 
     void OutOfMapFeedback()

@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <GameData xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <progression>0</progression>
+  <progression>2</progression>
   <globalID>1</globalID>
   <playerCrew>
     <hostile>false</hostile>
@@ -9,15 +9,15 @@
     <MemberIDs>
       <Member>
         <id>0</id>
-        <Name>Achab</Name>
+        <Name>Pabodie </Name>
         <health>100</health>
         <maxHealth>100</maxHealth>
-        <currentHunger>1</currentHunger>
+        <currentHunger>2</currentHunger>
         <Lvl>1</Lvl>
         <xp>0</xp>
         <skillPoints>0</skillPoints>
         <specialSkillsIndexes>
-          <int>12</int>
+          <int>8</int>
         </specialSkillsIndexes>
         <stats>
           <int>1</int>
@@ -25,29 +25,29 @@
           <int>1</int>
           <int>1</int>
         </stats>
-        <daysOnBoard>1</daysOnBoard>
+        <daysOnBoard>2</daysOnBoard>
         <equipedWeapon>
-          <ID>41</ID>
+          <ID>49</ID>
           <names>
-            <string>Dague cassée</string>
-            <string>Broken dagger</string>
+            <string>Vielle poivrière</string>
+            <string>Old blunderbuss</string>
           </names>
-          <value>11</value>
-          <price>18</price>
+          <value>14</value>
+          <price>30</price>
           <weight>10</weight>
           <level>1</level>
-          <spriteID>1</spriteID>
+          <spriteID>0</spriteID>
           <type>0</type>
           <category>Weapon</category>
         </equipedWeapon>
         <equipedCloth>
-          <ID>153</ID>
+          <ID>156</ID>
           <names>
-            <string>Habit de paysan</string>
-            <string>Farmer clothing</string>
+            <string>Salopette</string>
+            <string>Overall</string>
           </names>
-          <value>11</value>
-          <price>22</price>
+          <value>12</value>
+          <price>23</price>
           <weight>10</weight>
           <level>1</level>
           <spriteID>0</spriteID>
@@ -55,16 +55,16 @@
           <category>Clothes</category>
         </equipedCloth>
         <Male>false</Male>
-        <job>Cook</job>
+        <job>Surgeon</job>
         <characterIDS>
           <int>0</int>
-          <int>4</int>
           <int>0</int>
+          <int>4</int>
           <int>3</int>
-          <int>2</int>
           <int>1</int>
+          <int>3</int>
+          <int>4</int>
           <int>1</int>
-          <int>2</int>
           <int>0</int>
           <int>0</int>
         </characterIDS>
@@ -76,28 +76,27 @@
     <col>0</col>
     <ids>
       <ArrayOfInt>
-        <int>24</int>
-        <int>38</int>
-        <int>7</int>
         <int>28</int>
-        <int>35</int>
-        <int>19</int>
+        <int>11</int>
+        <int>7</int>
+        <int>10</int>
+        <int>22</int>
       </ArrayOfInt>
       <ArrayOfInt />
       <ArrayOfInt />
       <ArrayOfInt />
     </ids>
-    <weight>17</weight>
+    <weight>19</weight>
     <AllItems>
       <ArrayOfItem>
         <Item>
-          <ID>24</ID>
+          <ID>28</ID>
           <names>
-            <string>Betterave</string>
-            <string>Beetroot</string>
+            <string>Poire</string>
+            <string>Peer</string>
           </names>
-          <value>28</value>
-          <price>5</price>
+          <value>32</value>
+          <price>3</price>
           <weight>2</weight>
           <level>0</level>
           <spriteID>0</spriteID>
@@ -105,16 +104,16 @@
           <category>Provisions</category>
         </Item>
         <Item>
-          <ID>38</ID>
+          <ID>11</ID>
           <names>
-            <string>Tarte aux pommes</string>
-            <string>Applepie</string>
+            <string>Maquereau</string>
+            <string>Mackerel</string>
           </names>
-          <value>100</value>
-          <price>2</price>
-          <weight>2</weight>
+          <value>44</value>
+          <price>10</price>
+          <weight>4</weight>
           <level>0</level>
-          <spriteID>0</spriteID>
+          <spriteID>1</spriteID>
           <type>0</type>
           <category>Provisions</category>
         </Item>
@@ -133,41 +132,27 @@
           <category>Provisions</category>
         </Item>
         <Item>
-          <ID>28</ID>
+          <ID>10</ID>
           <names>
-            <string>Poire</string>
-            <string>Peer</string>
+            <string>Homard</string>
+            <string>Lobster</string>
           </names>
-          <value>32</value>
-          <price>3</price>
-          <weight>2</weight>
+          <value>45</value>
+          <price>13</price>
+          <weight>4</weight>
           <level>0</level>
-          <spriteID>0</spriteID>
+          <spriteID>1</spriteID>
           <type>0</type>
           <category>Provisions</category>
         </Item>
         <Item>
-          <ID>35</ID>
+          <ID>22</ID>
           <names>
-            <string>Pomme</string>
-            <string>Apple</string>
+            <string>Rumsteak</string>
+            <string>Rumsteak</string>
           </names>
-          <value>25</value>
-          <price>8</price>
-          <weight>2</weight>
-          <level>0</level>
-          <spriteID>0</spriteID>
-          <type>0</type>
-          <category>Provisions</category>
-        </Item>
-        <Item>
-          <ID>19</ID>
-          <names>
-            <string>Cochon</string>
-            <string>Pig</string>
-          </names>
-          <value>49</value>
-          <price>18</price>
+          <value>48</value>
+          <price>13</price>
           <weight>5</weight>
           <level>0</level>
           <spriteID>2</spriteID>
@@ -186,7 +171,7 @@
   <bounty>0</bounty>
   <formulas>
     <Formula>
-      <name>bala</name>
+      <name>jine</name>
       <coords>
         <x>4</x>
         <y>5</y>
@@ -196,16 +181,16 @@
     </Formula>
   </formulas>
   <playerBoatInfo>
-    <Name>Le Péquod</Name>
+    <Name>L'Arkham</Name>
     <previousCoords>
-      <x>0</x>
-      <y>4</y>
+      <x>1</x>
+      <y>5</y>
     </previousCoords>
     <coords>
       <x>0</x>
       <y>4</y>
     </coords>
-    <currentDirection>None</currentDirection>
+    <currentDirection>SouthWest</currentDirection>
     <shipRange>1</shipRange>
     <crewCapacity>2</crewCapacity>
     <cargoLevel>1</cargoLevel>
@@ -224,5 +209,5 @@
   <raining>false</raining>
   <currentRain>0</currentRain>
   <night>false</night>
-  <timeOfDay>6</timeOfDay>
+  <timeOfDay>7</timeOfDay>
 </GameData>

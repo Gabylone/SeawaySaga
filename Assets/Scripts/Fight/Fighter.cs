@@ -44,7 +44,7 @@ public class Fighter : MonoBehaviour {
 	[Header ("Components")]
 	[SerializeField]
 	private Transform bodyTransform;
-	private Animator animator;
+	public Animator animator;
 	public CrewMember crewMember;
 	public Transform arrowAnchor;
     public StatusGroup statusGroup;
@@ -311,7 +311,7 @@ public class Fighter : MonoBehaviour {
 
 			// self
 		ChangeState (states.dead);
-		Animator.SetBool ("dead", true);
+		animator.SetBool ("dead", true);
 
 		killed = true;
 
@@ -336,7 +336,7 @@ public class Fighter : MonoBehaviour {
 
 	public virtual void MoveToTarget_Start () {
 
-		Animator.SetFloat ("move", 1);
+		animator.SetFloat ("move", 1);
 
 		Vector3 dir = new Vector3 ( TargetFighter.crewMember.side == Crews.Side.Enemy ? -1 : 1 , 0 , 0 ); 
 
@@ -369,7 +369,7 @@ public class Fighter : MonoBehaviour {
 	#region move back
 	public virtual void MoveBack_Start () {
 
-		Animator.SetFloat ("move", 1);
+		animator.SetFloat ("move", 1);
 
         transform.DOMove(initPos, moveBackDuration);
 
@@ -383,7 +383,7 @@ public class Fighter : MonoBehaviour {
 	}
 
 	public virtual void MoveBack_Exit () {
-		Animator.SetFloat ("move", 0);
+		animator.SetFloat ("move", 0);
 	}
 	#endregion
 
@@ -626,11 +626,6 @@ public class Fighter : MonoBehaviour {
 	#endregion
 
 	#region getters
-	public Animator Animator {
-		get {
-			return animator;
-		}
-	}
 	public Transform BodyTransform {
 		get {
 			return bodyTransform;
