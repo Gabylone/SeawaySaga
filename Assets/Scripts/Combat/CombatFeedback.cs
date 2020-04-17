@@ -40,15 +40,15 @@ public class CombatFeedback : MonoBehaviour {
 
 		// tween
 		Tween.ClearFade (transform);
-		CancelInvoke ("Fade");
-		CancelInvoke ("Hide");
 
 		// pos
 		transform.localPosition = initPos;
         transform.DOLocalMove(initPos + Vector3.up * fadeDecal, fadeDuration);
 
-		// invokes
-		Invoke ("Fade",fadeDuration/2f);
+        // invokes
+        CancelInvoke("Fade");
+        CancelInvoke("Hide");
+        Invoke ("Fade",fadeDuration/2f);
 		Invoke ("Hide", fadeDuration);
 	}
 
@@ -60,21 +60,17 @@ public class CombatFeedback : MonoBehaviour {
 			return;
 		}
 
-		SetFeedbackInfo (status, color);
-		ShowFeedbackInfo ();
+        Debug.Log("display status  : " + status);
+
+        text.gameObject.SetActive(false);
+
+        // status
+        statusImage.color = color;
+        statusImage.gameObject.SetActive(true);
+        statusImage.sprite = SkillManager.statusSprites[(int)status];
+
+        ShowFeedbackInfo ();
 	
-	}
-	void SetFeedbackInfo (Fighter.Status status, Color color)
-	{
-		// bg
-		backgroundImage.color = color;
-
-		// ui text
-		text.gameObject.SetActive (false);
-
-		// status
-		statusImage.gameObject.SetActive (true);
-		statusImage.sprite = SkillManager.statusSprites [(int)status];
 	}
 	#endregion
 
@@ -86,21 +82,18 @@ public class CombatFeedback : MonoBehaviour {
 			return;
 		}
 
-		SetFeedbackInfo (content, color);
-		ShowFeedbackInfo ();
+        // ui text
+        text.gameObject.SetActive(true);
+        text.color = color;
 
-	}
-	void SetFeedbackInfo (string content, Color color)
-	{
-		// bg
-		backgroundImage.color = color;
+        text.text = content;
 
-		// ui text
-		text.gameObject.SetActive (true);
-		text.text = content;
+        Debug.Log("display status content : " + content);
 
-		// status
-		statusImage.gameObject.SetActive (false);
+        // status
+        statusImage.gameObject.SetActive(false);
+        ShowFeedbackInfo ();
+
 	}
 	#endregion
 
@@ -116,6 +109,8 @@ public class CombatFeedback : MonoBehaviour {
 
 	void Hide () {
 		displaying = false;
+        text.gameObject.SetActive(false);
+        statusImage.gameObject.SetActive(false);
 		group.SetActive (false);
 	}
 

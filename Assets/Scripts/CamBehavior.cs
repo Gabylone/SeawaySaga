@@ -46,7 +46,7 @@ public class CamBehavior : MonoBehaviour
     {
         if ( zoomed)
         {
-            Vector3 targetPos = Island.Instance.transform.position;
+            Vector3 targetPos = IslandManager.Instance.currentIsland.transform.position;
 
             if (StoryLauncher.Instance.CurrentStorySource == StoryLauncher.StorySource.boat)
             {
@@ -85,9 +85,16 @@ public class CamBehavior : MonoBehaviour
     public void Zoom()
     {
         //Vector3 dirFromIsland = Island.Instance.transform.position - decal;
+        
+        if ( IslandManager.Instance.currentIsland == null)
+        {
+            return;
+        }
 
         if (StoryLauncher.Instance.CurrentStorySource == StoryLauncher.StorySource.other)
+        {
             return;
+        }
 
         zoomed = true;
     }

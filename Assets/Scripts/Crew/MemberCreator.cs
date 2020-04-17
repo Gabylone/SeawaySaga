@@ -193,21 +193,31 @@ public class MemberCreator : MonoBehaviour {
 		confirmButtonObj.SetActive (false);
 		previousButtonObj.SetActive (false);
 
-        canvasGroup.DOFade(0f , tweenDuration);
+        Transitions.Instance.ScreenTransition.FadeIn(tweenDuration);
 
-        Invoke("EndMemberCreationDelay",tweenDuration);
+        Invoke("EndMemberCreationDelay", tweenDuration);
+    }
 
-	}
-	void EndMemberCreationDelay () {
-
+    void EndMemberCreationDelay()
+    {
         Crews.playerCrew.captain.Icon.transform.SetParent(iconInitParent);
         Crews.playerCrew.captain.Icon.MoveToPoint(Crews.PlacingType.Map);
+
+        Invoke("EndMemberCreationDelay2", tweenDuration);
+    }
+
+    void EndMemberCreationDelay2 () {
+
+        Transitions.Instance.ScreenTransition.FadeOut(tweenDuration);
+
         InGameMenu.Instance.canOpen = true;
 
         Hide();
 
 		SaveManager.Instance.SaveGameData ();
-		StoryLauncher.Instance.PlayStory (Chunk.currentChunk.IslandData.storyManager, StoryLauncher.StorySource.island);
+
+        // ici je mets le premiere island data, parce que le ID 0 est lié à la maison en l'occurance. Mais quel bordel nom de dieu.
+        IslandManager.Instance.islands[0].Enter();
 	}
 
 	public void ChangeBoatName () {

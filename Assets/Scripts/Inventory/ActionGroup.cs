@@ -38,7 +38,11 @@ public class ActionGroup : MonoBehaviour {
             case ItemCategory.Weapon:
             case ItemCategory.Clothes:
 
-                if (LootUI.Instance.SelectedItem == CrewMember.GetSelectedMember.GetEquipment(LootUI.Instance.SelectedItem.EquipmentPart)
+                Item item = CrewMember.GetSelectedMember.GetEquipment(LootUI.Instance.SelectedItem.EquipmentPart);
+
+                if (item != null
+                    &&
+                    LootUI.Instance.SelectedItem == item
                     &&
                     DisplayItem_Loot.selectedDisplayItem.index == 0
                     &&

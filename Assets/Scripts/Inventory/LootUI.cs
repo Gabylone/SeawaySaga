@@ -34,7 +34,10 @@ public class LootUI : MonoBehaviour {
     {
         selectedItemDisplay.Hide();
     }
-	public Item SelectedItem {
+
+   
+
+    public Item SelectedItem {
 		
 		get {
 
@@ -44,6 +47,7 @@ public class LootUI : MonoBehaviour {
 		set {
 			
 			selectedItem = value;
+
 			selectedItemDisplay.HandledItem = value;
 
 			UpdateActionButton (value);
@@ -94,7 +98,7 @@ public class LootUI : MonoBehaviour {
 
 	[Header("Actions")]
 	[SerializeField]
-	private ActionGroup actionGroup;
+	public ActionGroup actionGroup;
 
 	void Awake () {
 		Instance = this;
@@ -312,11 +316,17 @@ public class LootUI : MonoBehaviour {
 	#region item button	
 	public void UpdateItemButtons () {
 
+        /*if (LootUI.Instance.currentSide == Crews.Side.Enemy)
+        {
+            displayWeaponItem.gameObject.SetActive(false);
+            displayClotheItem.gameObject.SetActive(false);
+            return;
+        }*/
+
         Item weapon = CrewMember.GetSelectedMember.GetEquipment(CrewMember.EquipmentPart.Weapon);
         if (weapon != null)
         {
-            displayWeaponItem.gameObject.SetActive(true);
-            displayWeaponItem.HandledItem = weapon;
+            displayWeaponItem.Show(weapon);
         }
         else
         {
@@ -326,8 +336,7 @@ public class LootUI : MonoBehaviour {
         Item clothe = CrewMember.GetSelectedMember.GetEquipment(CrewMember.EquipmentPart.Clothes);
         if ( clothe != null)
         {
-            displayClotheItem.gameObject.SetActive(true);
-            displayClotheItem.HandledItem = clothe;
+            displayClotheItem.Show(clothe);
         }
         else
         {
@@ -361,14 +370,13 @@ public class LootUI : MonoBehaviour {
 			if ( itemIndex < handledLoot.AllItems [(int)currentCat].Count ) {
 
                 Item item = handledLoot.AllItems[(int)currentCat][itemIndex];
-				displayItem.HandledItem = item;
 
-                displayItem.gameObject.SetActive(true);
+                displayItem.Show(item);
 
             }
             else
             {
-                displayItem.gameObject.SetActive(false);
+                displayItem.Hide();
             }
 
             itemIndex++;

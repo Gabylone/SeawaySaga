@@ -14,6 +14,8 @@ public class BoatUpgradeManager : MonoBehaviour {
     public delegate void OnOpenBoatUpgrade();
     public OnOpenBoatUpgrade onOpenBoatUpgrade;
 
+    public Animator animator;
+
     public enum UpgradeType {
 		Crew,
 		Cargo,
@@ -58,6 +60,7 @@ public class BoatUpgradeManager : MonoBehaviour {
 		RayBlocker.onTouchRayBlocker += HandleOnTouchRayBlocker;
 
 		Hide ();
+
 	}
 
 	void HandleOnTouchRayBlocker ()
@@ -84,16 +87,24 @@ public class BoatUpgradeManager : MonoBehaviour {
 
 		opened = true;
 
+        animator.SetBool("opened", true);
+
         if (onOpenBoatUpgrade != null)
 			onOpenBoatUpgrade ();
 	}
 
-	void Hide () {
-		menuObj.SetActive (false);
-	}
+	
+
     public void Close()
     {
+        if (!opened)
+        {
+            return;
+        }
+
         InGameMenu.Instance.Hide();
+
+        animator.SetBool("opened", false);
 
         opened = false;
 
@@ -103,8 +114,13 @@ public class BoatUpgradeManager : MonoBehaviour {
 
         }
 
-        Hide();
+        Invoke( "Hide" , 0.5f );
 
+    }
+
+    void Hide()
+    {
+        menuObj.SetActive(false);
     }
     #endregion
 

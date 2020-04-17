@@ -7,10 +7,14 @@ public class CombatManager : MonoBehaviour {
 
 	public static CombatManager Instance;
 
-	public bool fighting = false;
+    public bool fighting = false;
 
-	// stsatesyes ?
-	public enum States {
+    public Color selectionColor_Enemies;
+    public Color selectionColor_Allies;
+    public Color selectionColor_Self;
+
+    // stsatesyes ?
+    public enum States {
 		
 		None,
 

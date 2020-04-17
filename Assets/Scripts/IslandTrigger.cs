@@ -11,11 +11,16 @@ public class IslandTrigger : MonoBehaviour {
 
     public NavMeshObstacle navMeshObstacle;
 
+    private void Start()
+    {
+        island = GetComponentInParent<Island>();
+    }
+
     void OnTriggerStay(Collider col)
     {
         if (col.tag == "Player")
         {
-            Island.Instance.CollideWithPlayer();
+            island.CollideWithPlayer();
         }
     }
 

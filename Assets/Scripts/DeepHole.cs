@@ -17,7 +17,7 @@ public class DeepHole : RandomPlacable
 
         transform.localScale = Vector3.one;
 
-        CheckProximityWithPlayer();
+        CanSpawn();
 
         
     }

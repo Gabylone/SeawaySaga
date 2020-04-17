@@ -41,8 +41,6 @@ public class DisplayItem_Selected : DisplayItem {
         {
             base.HandledItem = value;
 
-            Show();
-
             /// NAME
             nameText.text = "" + value.name;
 
@@ -129,14 +127,18 @@ public class DisplayItem_Selected : DisplayItem {
 
     }
 
-    void Show()
+    public override void Show(Item item)
     {
+        base.Show(item);
+
         group.SetActive(true);
     }
 
-    public void Hide()
+    public override void Hide()
     {
+        base.Hide();
+
         group.SetActive(false);
     }
-    
+
 }

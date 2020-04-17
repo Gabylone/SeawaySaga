@@ -30,7 +30,17 @@ public class NavigationManager : MonoBehaviour {
 
     public int chunksTravelled = 0;
 
-	void Awake () {
+    public float minX = -40f;
+    public float maxX = 40f;
+    public float minY = -40f;
+    public float maxY = 40f;
+
+    public Vector2 GetRandomIslandPosition()
+    {
+        return new Vector2(Random.Range(minX, maxX), Random.Range(minY, maxY));
+    }
+
+    void Awake () {
 		Instance = this;
 	}
 
@@ -175,7 +185,6 @@ public class NavigationManager : MonoBehaviour {
         return anchors[(int)direction];
     }
     public LayerMask layerMask;
-    public float minX = 0f;
     public Vector3 GetOppositeCornerPosition(Directions dir)
     {
         return GetCornerPosition(GetOppositeDirection(dir));
@@ -183,23 +192,6 @@ public class NavigationManager : MonoBehaviour {
     public Vector3 GetCornerPosition(Directions dir)
     {
         return anchors[(int)dir].transform.position;
-
-        /*Vector2 viewPort = (getDir(dir) + Vector2.one) / 2f;
-
-        if ( viewPort.x < minX)
-        {
-            viewPort.x = minX;
-        }
-
-        Ray ray = Camera.allCameras[0].ViewportPointToRay(viewPort);
-
-        RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, layerMask))
-        {
-            return hit.point;
-        }
-
-        return Vector3.zero;*/
     }
 
     #endregion
@@ -426,7 +418,7 @@ public struct Coords {
 
 					Chunk chunk = Chunk.GetChunk (coords);
 
-					if (chunk.IslandData != null) {
+					if (chunk.HasIslands()) {
 						return coords;
 					}
 

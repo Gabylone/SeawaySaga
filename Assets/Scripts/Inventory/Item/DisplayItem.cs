@@ -13,8 +13,18 @@ public class DisplayItem : MonoBehaviour {
 
     }
 
-	#region params
-	public virtual Item HandledItem {
+    public virtual void Show(Item item)
+    {
+        HandledItem = item;
+    }
+
+    public virtual void Hide()
+    {
+
+    }
+
+    #region params
+    public virtual Item HandledItem {
 		get {
 			return handledItem;
 		}

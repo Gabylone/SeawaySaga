@@ -19,26 +19,51 @@ public class Chunk
 	public static Dictionary<Coords,Chunk> chunks = new Dictionary<Coords, Chunk>();
 
 	public ChunkState state;
-	private IslandData islandData;
+
+    // c'est ici que tout se passe
+    public IslandData[] islandDatas;
 
 	public Chunk () {
 		
 	}
 
-	public void InitIslandData (IslandData _islandData) {
+	public void AddIslandData (IslandData _newIslandData) {
+
+        if ( islandDatas == null)
+        {
+            islandDatas = new IslandData[0];
+        }
+
+        IslandData[] tmp_IslandDatas = new IslandData[islandDatas.Length + 1];
+
+        for (int i = 0; i < islandDatas.Length; i++)
+        {
+            tmp_IslandDatas[i] = islandDatas[i];
+        }
+
+        tmp_IslandDatas[tmp_IslandDatas.Length - 1] = _newIslandData;
+
+        islandDatas = tmp_IslandDatas;
+
 		state = ChunkState.UndiscoveredIsland;
-		islandData = _islandData;
-	}
-	public void SetIslandData (IslandData _islandData ) {
-		islandData = _islandData;
 	}
 
+    public bool HasIslands()
+    {
+        return islandDatas != null && islandDatas.Length > 0;
+    }
+
+    public IslandData GetIslandData(int id)
+    {
+        return islandDatas[id];
+    }
+
 	public IslandData IslandData {
-		get {
-			return islandData;
+		get {   
+			return islandDatas[0];
 		}
 		set {
-			islandData = value;
+			islandDatas[0] = value;
 		}
 	}
 

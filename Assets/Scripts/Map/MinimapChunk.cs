@@ -16,10 +16,15 @@ public class MinimapChunk : MonoBehaviour {
 
 	public GameObject questGroup;
 
-	public void InitChunk (Coords worldCoords)
+    private int id = 0;
+
+	public void InitChunk (int _id, Coords worldCoords)
 	{
+        id = _id;
+
 		Chunk chunk = Chunk.GetChunk (worldCoords);
-		IslandData islandData = chunk.IslandData;
+
+		IslandData islandData = chunk.GetIslandData(id);
 
 		image.sprite = Island.minimapSprites[islandData.storyManager.storyHandlers [0].Story.param];
 
@@ -83,7 +88,24 @@ public class MinimapChunk : MonoBehaviour {
 		
 		Tween.Bounce (islandGroup.transform);
 
-        IslandInfo.Instance.DisplayIslandInfo(Chunk.GetChunk(coords));
+        Chunk chunk = Chunk.GetChunk(coords);
+        IslandData islandData = chunk.GetIslandData(id);
+        string str = "";
+
+        if (islandData.storyManager.CurrentStoryHandler.Story.name.StartsWith("Maison"))
+        {
+            str = "Maison";
+        }
+        else if (chunk.state == ChunkState.VisitedIsland)
+        {
+            str = chunk.GetIslandData(id).storyManager.CurrentStoryHandler.Story.name;
+        }
+        else
+        {
+            str = "?";
+        }
+
+        IslandInfo.Instance.DisplayIslandInfo(str);
         IslandInfo.Instance.ShowAtTransform(islandGroup.transform);
     }
 }

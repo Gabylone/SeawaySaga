@@ -79,7 +79,6 @@ public class Boat : MonoBehaviour {
 	public virtual void EndMovenent() {
 		moving = false;
         agent.isStopped = true;
-        Debug.Log("ending movement");
 	}
     #endregion
 

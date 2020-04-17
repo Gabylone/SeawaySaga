@@ -5,12 +5,12 @@ using System.Linq;
 
 public class Island : RandomPlacable {
 
-	public static Island Instance;
-
 	public static Sprite[] sprites;
 	public static Sprite[] minimapSprites;
 
     public GameObject[] islandMeshes;
+
+    public int id = 0;
 
 	private Image image;
 
@@ -37,10 +37,6 @@ public class Island : RandomPlacable {
     public bool targeted = false;
 
     #region mono
-    void Awake () {
-		Instance = this;
-    }
-
     public override void Start()
     {
         base.Start();
@@ -101,7 +97,8 @@ public class Island : RandomPlacable {
 
 	#region story
 	public void Enter () {
-        StoryLauncher.Instance.PlayStory(Chunk.currentChunk.IslandData.storyManager, StoryLauncher.StorySource.island);
+        IslandManager.Instance.currentIsland = this;
+        StoryLauncher.Instance.PlayStory(Chunk.currentChunk.GetIslandData(id).storyManager, StoryLauncher.StorySource.island);
 	}
     #endregion
 
@@ -110,20 +107,18 @@ public class Island : RandomPlacable {
 
 		Chunk chunk = Chunk.GetChunk (coords);
 
-		IslandData islandData = chunk.IslandData;
+		if (chunk.HasIslands() && chunk.islandDatas.Length > id) {
 
-		bool onIslandChunk = islandData != null;
+            IslandData islandData = chunk.GetIslandData(id);
 
-		if (onIslandChunk) {
-
-			gameObject.SetActive ( true );
+            gameObject.SetActive ( true );
 
             //GetComponent<RectTransform> ().anchoredPosition = chunk.IslandData.positionOnScreen;
-            transform.localPosition = new Vector3( chunk.IslandData.worldPosition.x  , 0f , chunk.IslandData.worldPosition.y);
+            transform.localPosition = new Vector3(islandData.worldPosition.x  , 0f , islandData.worldPosition.y);
 
             //Debug.Log( "local position : " + transform.localPosition.x + " / local position " + transform.localPosition.y );
 
-            transform.rotation = Quaternion.EulerAngles(0,chunk.IslandData.worldRotation,0);
+            transform.rotation = Quaternion.EulerAngles(0, islandData.worldRotation,0);
 
             //GetComponentInChildren<Image>().sprite = sprites [islandData.storyManager.storyHandlers [0].Story.param];
 
@@ -131,6 +126,7 @@ public class Island : RandomPlacable {
             {
                 item.SetActive(false);
             }
+
             islandMeshes[islandData.storyManager.storyHandlers[0].Story.param].SetActive(true);
 
 		} else {
@@ -155,14 +151,6 @@ public class Island : RandomPlacable {
 
         targeted = true;
     }
-
-    public Vector2 GetRandomPosition () {
-
-		if ( _transform == null )
-			_transform= GetComponent<RectTransform> ();
-
-        return new Vector2 (Random.Range(minX,maxX) , Random.Range(minY,maxY) );
-	}
 
     public void CollideWithPlayer()
     {

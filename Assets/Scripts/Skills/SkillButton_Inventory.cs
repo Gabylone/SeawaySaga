@@ -12,7 +12,10 @@ public class SkillButton_Inventory : SkillButton {
 
     private bool selected = false;
 
-	public override void Start ()
+    public delegate void OnUnlockSkill();
+    public static OnUnlockSkill onUnlockSkill;
+
+    public override void Start ()
 	{
 		base.Start ();
 
@@ -27,25 +30,8 @@ public class SkillButton_Inventory : SkillButton {
 			SetSkill (skill);
 	}
 
-	public delegate void OnUnlockSkill ();
-	public static OnUnlockSkill onUnlockSkill;
 	public void OnPointerDown () {
 
-        /*
-        if ( selected)
-        {
-            selected = false;
-            HideDescription();
-        }
-        else
-        {
-            selected = true;
-            ShowDescription();
-        }
-        */
-
-        
-		//Tween.Bounce (skillImage.transform);
 
 		if ( CrewMember.GetSelectedMember.SkillPoints >= GetSkillCost() ) {
 

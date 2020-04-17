@@ -14,7 +14,7 @@ public class UIBackground : MonoBehaviour {
 
 	public float duration = 0.3f;
 
-	public GameObject uiGroup;
+	public GameObject group;
     public GameObject playerIconsObj;
 
 	// Use this for initialization
@@ -74,7 +74,7 @@ public class UIBackground : MonoBehaviour {
         rectTransform.DOAnchorPos(initPos, duration);
 
         playerIconsObj.SetActive(true);
-		//uiGroup.SetActive (true);
+		group.SetActive (true);
     }
 
 	void MoveBackGround ()
@@ -90,7 +90,7 @@ public class UIBackground : MonoBehaviour {
         rectTransform.DOAnchorPos(new Vector2(hiddenX, initPos.y), duration);
 
         playerIconsObj.SetActive(false);
-		//uiGroup.SetActive (false);
+		group.SetActive (false);
 
     }
 }

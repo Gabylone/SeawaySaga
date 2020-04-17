@@ -51,18 +51,10 @@ public class IslandInfo : MonoBehaviour {
         }
     }
 
-	public void DisplayIslandInfo (Chunk chunk)
+	public void DisplayIslandInfo (string str)
 	{
-        if (chunk.IslandData.storyManager.CurrentStoryHandler.Story.name.StartsWith("Maison"))
-        {
-            uiText.text = "Maison";
-        }
-		else if (chunk.state == ChunkState.VisitedIsland)
-        {
-			uiText.text = chunk.IslandData.storyManager.CurrentStoryHandler.Story.name;
-		} else {
-			uiText.text = "?";
-		}
+
+        uiText.text = str;
 	}
 
     public void ShowAtTransform(Transform tr)

@@ -31,9 +31,7 @@ public class DisplayStoryItem : MonoBehaviour {
 
 	public void DisplayItem (Item item)
 	{
-		group.SetActive (true);
-
-		displayItem.HandledItem = item;
+        displayItem.Show(item);
 
 		Tween.Bounce (displayItem.transform);
 	}

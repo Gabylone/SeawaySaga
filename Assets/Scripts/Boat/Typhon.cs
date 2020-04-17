@@ -19,7 +19,7 @@ public class Typhon : RandomPlacable
     {
         base.HandleOnEnterNewChunk();
 
-        CheckProximityWithPlayer();
+        CanSpawn();
 
         transform.localScale = Vector3.one;
     }

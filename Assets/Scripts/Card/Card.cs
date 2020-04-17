@@ -80,12 +80,19 @@ public class Card : MonoBehaviour {
 	{
 		if (pickable) {
 
-            ShowTargetFeedback(Color.red);
+            if ( linkedFighter.crewMember.side == Crews.Side.Enemy)
+            {
+                ShowTargetFeedback(CombatManager.Instance.selectionColor_Enemies);
+            }
+            else
+            {
+                ShowTargetFeedback(CombatManager.Instance.selectionColor_Allies);
+            }
         }
         else {
 
 			if ( playingTurn ) {
-				ShowTargetFeedback (Color.white);
+				ShowTargetFeedback (CombatManager.Instance.selectionColor_Allies);
 			} else {
 				HideTargetFeedback ();
 			}
@@ -100,18 +107,19 @@ public class Card : MonoBehaviour {
             item.color = color;
         }
 
-		/*targetFeedbackImage.color = color;
+        /*targetFeedbackImage.color = color;
 
 		targetFeedbackImage.gameObject.SetActive (true);
 		Tween.Bounce (targetFeedbackImage.transform);*/
-	}
+    }
 
-	void HideTargetFeedback () {
+    void HideTargetFeedback () {
 
         foreach (var item in linkedFighter.GetComponentsInChildren<SpriteOutline>())
         {
             item.enabled = false;
         }
+
         /*targetFeedbackImage.GetComponent<Animator>().SetBool("bouncing", false);
         targetFeedbackImage.gameObject.SetActive(false);*/
 
@@ -188,7 +196,7 @@ public class Card : MonoBehaviour {
 
 		UpdateMember ();
 
-		ShowTargetFeedback (Color.white);
+		ShowTargetFeedback (CombatManager.Instance.selectionColor_Self);
 
 		energyGroup.SetActive (true);
 

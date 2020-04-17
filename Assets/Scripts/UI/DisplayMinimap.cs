@@ -16,8 +16,10 @@ public class DisplayMinimap : MonoBehaviour {
 	public GameObject minimapChunkParent;
     public GameObject enemyIconParent;
 
-	// minimap
-	public RectTransform overallRectTranfsorm;
+    public float minimapChunkDecal = 3f;
+
+    // minimap
+    public RectTransform overallRectTranfsorm;
 	public RectTransform scrollViewRectTransform;
 	public Mask viewPortMask;
 
@@ -306,29 +308,38 @@ public class DisplayMinimap : MonoBehaviour {
 
 	#region map chunk
 	void PlaceMapChunk(Coords c) {
-        
-        if ( minimapChunks.ContainsKey(c))
+
+        /*if ( minimapChunks.ContainsKey(c))
         {
             Debug.Log("un minimap chunk est déjà présent à : " + c.ToString());
             return;
+        }*/
+
+        for (int i = 0; i < Chunk.GetChunk(c).islandDatas.Length; i++)
+        {
+            // INST
+            GameObject minimapChunk_Obj = Instantiate(minimapChunkPrefab, minimapChunkParent.transform);
+
+            // SCALE
+            minimapChunk_Obj.transform.localScale = Vector3.one;
+
+            // POS
+            float x = (minimapChunkScale.x / 2) + (c.x * overallRectTranfsorm.rect.width / MapGenerator.Instance.MapScale);
+            float y = (minimapChunkScale.y / 2) + c.y * minimapChunkScale.y + /*multiple island decal*/ i * minimapChunkDecal;
+            Vector2 pos = new Vector2(x, y);
+
+            minimapChunk_Obj.GetComponent<RectTransform>().anchoredPosition = pos;
+
+            MinimapChunk minimapChunk = minimapChunk_Obj.GetComponent<MinimapChunk>();
+
+            minimapChunk.InitChunk(i,c);
+
+            Debug.LogError( "!Là, il faut gérer le lien avec les quêtes etc... les multiple minimap chunks!" );
+            if ( minimapChunks.ContainsKey(c) == false)
+            {
+                minimapChunks.Add(c, minimapChunk);
+            }
         }
-
-		// INST
-		GameObject minimapChunk = Instantiate (minimapChunkPrefab, minimapChunkParent.transform);
-
-		// SCALE
-		minimapChunk.transform.localScale = Vector3.one;
-
-		// POS
-		float x = (minimapChunkScale.x/2) 	+ (c.x * overallRectTranfsorm.rect.width / MapGenerator.Instance.MapScale);
-		float y = (minimapChunkScale.y / 2) + c.y * minimapChunkScale.y;
-		Vector2 pos = new Vector2 (x,y);
-
-		minimapChunk.GetComponent<RectTransform>().anchoredPosition = pos;
-
-		minimapChunk.GetComponent<MinimapChunk> ().InitChunk (c);
-
-		minimapChunks.Add (c, minimapChunk.GetComponent<MinimapChunk> ());
 
 	}
 	#endregion
@@ -346,7 +357,7 @@ public class DisplayMinimap : MonoBehaviour {
 
 		Vector2 boatPos = getPosFromCoords (Boats.playerBoatInfo.coords);
 
-        if (Chunk.currentChunk.IslandData != null)
+        if (Chunk.currentChunk.HasIslands())
         {
             boatPos.y += enemyBoatIconDecal.y;
         }
@@ -367,7 +378,7 @@ public class DisplayMinimap : MonoBehaviour {
     {
         Vector2 targetPos = getPosFromCoords(c);
 
-        if (Chunk.GetChunk(c).IslandData != null)
+        if (Chunk.GetChunk(c).HasIslands())
         {
             targetPos.y += enemyBoatIconDecal.y;
         }

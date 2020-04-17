@@ -82,12 +82,7 @@ public class GameManager : MonoBehaviour {
 
 		if (KeepOnLoad.dataToLoad < 0) {
 
-			if (hideMemberCreation ) {
-				StoryLauncher.Instance.PlayStory (Chunk.currentChunk.IslandData.storyManager, StoryLauncher.StorySource.island);
-			} else {
-				MemberCreator.Instance.Show ();
-			}
-
+            MemberCreator.Instance.Show();
 
 		}
 

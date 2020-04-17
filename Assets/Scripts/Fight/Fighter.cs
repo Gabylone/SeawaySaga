@@ -214,10 +214,11 @@ public class Fighter : MonoBehaviour {
 
 		ChangeState (Fighter.states.none);
 
+        /*
         Vector3 targetPos = CombatManager.Instance.playerFighters_Parent.transform.position;
         targetPos.x += crewMember.side == Crews.Side.Enemy ? 0.5f : -0.5f;
 
-        transform.DOMove(targetPos, moveBackDuration);
+        transform.DOMove(targetPos, moveBackDuration);*/
 
         if ( HasStatus(Status.PreparingAttack) ) {
 
@@ -336,9 +337,9 @@ public class Fighter : MonoBehaviour {
 
 	public virtual void MoveToTarget_Start () {
 
-		animator.SetFloat ("move", 1);
+		animator.SetBool ("move", true);
 
-		Vector3 dir = new Vector3 ( TargetFighter.crewMember.side == Crews.Side.Enemy ? -1 : 1 , 0 , 0 ); 
+        Vector3 dir = new Vector3 ( TargetFighter.crewMember.side == Crews.Side.Enemy ? -1 : 1 , 0 , 0 ); 
 
 		Vector3 targetPos = TargetFighter.transform.position + dir * stopDistance;
 
@@ -357,7 +358,7 @@ public class Fighter : MonoBehaviour {
 
 	public virtual void MoveToTarget_Exit () {
 		
-		animator.SetFloat ("move", 0);
+		animator.SetBool ("move", false);
 
 		if (onReachTarget != null) {
 			onReachTarget ();
@@ -369,7 +370,7 @@ public class Fighter : MonoBehaviour {
 	#region move back
 	public virtual void MoveBack_Start () {
 
-		animator.SetFloat ("move", 1);
+		animator.SetBool ("move", true);
 
         transform.DOMove(initPos, moveBackDuration);
 
@@ -383,8 +384,8 @@ public class Fighter : MonoBehaviour {
 	}
 
 	public virtual void MoveBack_Exit () {
-		animator.SetFloat ("move", 0);
-	}
+		animator.SetBool ("move", false);
+    }
 	#endregion
 
 	#region hit
@@ -808,14 +809,14 @@ public class Fighter : MonoBehaviour {
 		RemoveStatus (status, 1);
 	}
 
-	public void RemoveStatus (Status status, int count) {
+	public void RemoveStatus (Status status, int valueToRemove) {
 
         if (statusCount[(int)status] == 0)
         {
             return;
         }
 
-		statusCount[(int)status] -= count;
+		statusCount[(int)status] -= valueToRemove;
 		statusCount [(int)status] = Mathf.Clamp (statusCount [(int)status], 0, 10);
 
         statusGroup.HandleOnRemoveStatus(status, statusCount[(int)status]);

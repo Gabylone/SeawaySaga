@@ -44,11 +44,6 @@ public class PlayerBoat : Boat {
         CamBehavior.Instance.RefreshCamOnPlayer();
 	}
 
-	void HandleOnTouchIsland ()
-	{
-		SetTargetPos (Island.Instance.transform.position);
-	}
-
     #region events
     private void HandleOnPointerExit()
     {

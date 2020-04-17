@@ -82,9 +82,6 @@ public class MapGenerator : MonoBehaviour {
 
     IEnumerator LoadMapFromFileCoroutine()
     {
-        int l = 0;
-        int a = 0;
-
         TextAsset textAsset = Resources.Load("Maps/" + mapParameters.mapName) as TextAsset;
 
         if ( textAsset == null)
@@ -123,51 +120,45 @@ public class MapGenerator : MonoBehaviour {
                 {
                     Coords c = new Coords(cellIndex , (rows.Length-1) - rowIndex);
 
-                    for (int storyTypeIndex = 0; storyTypeIndex < 4; storyTypeIndex++)
+                    string[] storyNames = cells[cellIndex].Split(',');
+
+                    for (int storyAmount = 0; storyAmount < storyNames.Length; storyAmount++)
                     {
-                        StoryType storyType = (StoryType)storyTypeIndex;
-
-                        int storyID = StoryLoader.Instance.FindIndexByName(cells[cellIndex], storyType);
-
-                        if (storyID < 0)
+                        for (int storyTypeIndex = 0; storyTypeIndex < 4; storyTypeIndex++)
                         {
+                            StoryType storyType = (StoryType)storyTypeIndex;
 
-                        }
-                        else
-                        {
-                            switch (storyType)
+                            int storyID = StoryLoader.Instance.FindIndexByName(storyNames[storyAmount], storyType);
+
+                            if (storyID < 0)
                             {
-                                case StoryType.Treasure:
-                                    SaveManager.Instance.GameData.treasureCoords = c;
-                                    break;
-                                case StoryType.Home:
-                                    SaveManager.Instance.GameData.homeCoords = c;
-                                    break;
-                                case StoryType.Clue:
-                                    Formula newFormula = new Formula();
-                                    newFormula.name = NameGeneration.Instance.randomWord;
-                                    newFormula.coords = c;
-                                    FormulaManager.Instance.formulas.Add(newFormula);
-                                    break;
-                                default:
-                                    break;
+
+                            }
+                            else
+                            {
+                                switch (storyType)
+                                {
+                                    case StoryType.Treasure:
+                                        SaveManager.Instance.GameData.treasureCoords = c;
+                                        break;
+                                    case StoryType.Home:
+                                        SaveManager.Instance.GameData.homeCoords = c;
+                                        break;
+                                    case StoryType.Clue:
+                                        Formula newFormula = new Formula();
+                                        newFormula.name = NameGeneration.Instance.randomWord;
+                                        newFormula.coords = c;
+                                        FormulaManager.Instance.formulas.Add(newFormula);
+                                        break;
+                                    default:
+                                        break;
+                                }
+
+                                CreateIsland(c, storyType);
+                                Chunk.GetChunk(c).GetIslandData(storyAmount).storyManager.InitHandler(storyType, storyID);
                             }
 
-                            Chunk.GetChunk(c).InitIslandData(new IslandData(storyType));
-                            Chunk.GetChunk(c).IslandData.storyManager.InitHandler(storyType, storyID);
                         }
-
-                        ++l;
-                        ++a;
-
-                        if (l > islandCreation_LoadLimit)
-                        {
-                            l = 0;
-                            //yield return new WaitForEndOfFrame();
-                        }
-                        //LoadingScreen.Instance.Push(a);
-
-
                     }
 
                 }
@@ -180,7 +171,6 @@ public class MapGenerator : MonoBehaviour {
         SaveManager.Instance.SaveAllIslands();
 
     }
-
 
 	public void LoadMap() {
 
@@ -220,7 +210,7 @@ public class MapGenerator : MonoBehaviour {
 
     public void CreateIsland( Coords c , StoryType type )
     {
-        Chunk.GetChunk(c).InitIslandData(new IslandData(type));
+        Chunk.GetChunk(c).AddIslandData(new IslandData(type));
 
     }
 
@@ -292,9 +282,13 @@ public class MapGenerator : MonoBehaviour {
             {
                 Coords c = new Coords(x, y);
 
-                if (Chunk.GetChunk(c).IslandData != null)
+                for (int i = 0; i < Chunk.GetChunk(c).islandDatas.Length; i++)
                 {
-                    textFile_STR += Chunk.GetChunk(c).IslandData.storyManager.storyHandlers[0].Story.name;
+                    textFile_STR += Chunk.GetChunk(c).GetIslandData(i).storyManager.storyHandlers[0].Story.name;
+                    if ( i < Chunk.GetChunk(c).islandDatas.Length - 1)
+                    {
+                        textFile_STR += ",";
+                    }
                 }
 
                 textFile_STR += ";";

@@ -34,12 +34,12 @@ public class DisplayItem_Loot : DisplayItem {
 
     public void EquipmentSelect()
     {
-        if (LootUI.Instance.currentSide == Crews.Side.Enemy)
-            return;
         Select();
+
+        LootUI.Instance.actionGroup.HideAll();
     }
 
-	public void Select () {
+    public void Select () {
 
 		if ( selected ) {
 			Deselect ();
@@ -59,7 +59,7 @@ public class DisplayItem_Loot : DisplayItem {
 		LootUI.Instance.SelectedItem = HandledItem;
 		LootUI.Instance.selectedItemDisplay.transform.position = (Vector2)transform.position + LootUI.Instance.selectedItemDisplay.decalToItem;
 
-		Tween.Bounce (transform);
+        Tween.Bounce (transform);
 
 		button.image.color = LootManager.Instance.selectedButtonColor;
 
@@ -86,21 +86,6 @@ public class DisplayItem_Loot : DisplayItem {
 		}
 
 		float a = 0.7f;
-
-        /*if (CrewMember.GetSelectedMember.GetEquipment(HandledItem.EquipmentPart) == HandledItem && index == 0 )
-        {
-            if (HandledItem.category == ItemCategory.Clothes || HandledItem.category == ItemCategory.Weapon)
-            {
-                image.sprite = LootUI.Instance.equipedItemSprite;
-
-                //image.color = LootManager.Instance.item_EquipedColor;
-                image.color = Color.white;
-
-                return;
-            }
-        }
-
-        image.sprite = LootUI.Instance.itemSprite;*/
 
         if ( HandledItem.level > CrewMember.GetSelectedMember.Level ) {
 
@@ -146,6 +131,20 @@ public class DisplayItem_Loot : DisplayItem {
         }
     }
 
+    public override void Show(Item item)
+    {
+        base.Show(item);
+
+        group.SetActive(true);
+    }
+
+    public override void Hide()
+    {
+        base.Hide();
+
+        group.SetActive(false);
+    }
+
     public override Item HandledItem {
 		get {
 			return base.HandledItem;
@@ -153,13 +152,6 @@ public class DisplayItem_Loot : DisplayItem {
 		set {
 			
 			base.HandledItem = value;
-
-			if (value == null) {
-				group.SetActive (false);
-				return;
-			}
-
-			group.SetActive (true);
 
 			UpdateColor ();
 

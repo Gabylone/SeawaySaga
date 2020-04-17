@@ -218,7 +218,7 @@ public class SaveManager : MonoBehaviour
 
 				Chunk targetChunk = Chunk.GetChunk (c);
 
-				if (targetChunk.IslandData == null)
+				if (!targetChunk.HasIslands())
 					continue;
 
 				string fileName = "chk" + "x" + c.x + "y" + c.y;
@@ -255,7 +255,7 @@ public class SaveManager : MonoBehaviour
 
 		NavigationManager.Instance.ChangeChunk (Directions.None);
 
-        Vector3 islandPos = Island.Instance.transform.position + new Vector3(-2f, 0, -1.5f);
+        Vector3 islandPos = IslandManager.Instance.islands[0].transform.position + new Vector3(-2f, 0, -1.5f);
 
         PlayerBoat.Instance.transform.position = islandPos;
         PlayerBoat.Instance.SetTargetPos(islandPos);

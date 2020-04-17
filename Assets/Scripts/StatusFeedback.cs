@@ -6,16 +6,17 @@ using DG.Tweening;
 
 public class StatusFeedback : MonoBehaviour {
 
-	public Image statusImage_BG;
 	public Image statusImage_Fill;
 
-    public Image backgroundImage_BG;
-    public Image backgroundImage_Fill;
+    public Text text_Count;
 
     public float tweenDur = 0.5f;
 	public float tweenScaleAmount = 1.2f;
 
 	public Fighter.Status status;
+
+    public delegate void OnTouchStatusFeedback(Fighter.Status status);
+    public static OnTouchStatusFeedback onTouchStatusFeedback;
 
     int max = 1;
 
@@ -34,28 +35,16 @@ public class StatusFeedback : MonoBehaviour {
         this.status = status;
 
 		statusImage_Fill.sprite = SkillManager.statusSprites [(int)status];
-        statusImage_BG.sprite = SkillManager.statusSprites [(int)status];
 	}
 
     private void UpdateUI(int i)
     {
-        float lerp = i / max;
-
-        statusImage_Fill.fillAmount = lerp;
-        backgroundImage_Fill.fillAmount = lerp;
+        text_Count.text = "" + i;
     }
 
 	public void SetColor (Color color)
 	{
 		statusImage_Fill.color = color;
-		backgroundImage_Fill.color = color;
-
-		/*int a = 0;
-		foreach (var item in GetComponentsInChildren<Image>()) {
-			if ( a > 0 )
-				HOTween.To ( item , tweenDur , "color" , Color.black );
-			++a;
-		}*/
 	}
 
 	public void Hide ()
@@ -68,8 +57,6 @@ public class StatusFeedback : MonoBehaviour {
         gameObject.SetActive(true);
     }
 
-	public delegate void OnTouchStatusFeedback ( Fighter.Status status);
-	public static OnTouchStatusFeedback onTouchStatusFeedback;
 	public void OnPointerDown () 
 	{
 		Tween.Bounce (transform);

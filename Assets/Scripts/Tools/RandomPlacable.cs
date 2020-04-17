@@ -46,14 +46,9 @@ public class RandomPlacable : MonoBehaviour
         canTrigger = true;
     }
 
-    public void CheckProximityWithPlayer()
+    public void CanSpawn()
     {
         Hide();
-
-        if (Chunk.currentChunk.IslandData != null)
-        {
-            return;
-        }
 
         if ( NavigationManager.Instance.chunksTravelled < 2)
         {
@@ -64,9 +59,12 @@ public class RandomPlacable : MonoBehaviour
         {
             ResetPosition();
 
-            if (Vector3.Distance(transform.position, Island.Instance.transform.position) < minDistanceToIsland)
+            for (int i = 0; i < Chunk.currentChunk.islandDatas.Length; i++)
             {
-                return;
+                if (Vector3.Distance(transform.position, IslandManager.Instance.islands[i].transform.position) < minDistanceToIsland)
+                {
+                    return;
+                }
             }
 
             if (Vector3.Distance(transform.position, PlayerBoat.Instance.transform.position) < minDistanceToPlayerBoat)
