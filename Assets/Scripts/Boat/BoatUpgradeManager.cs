@@ -128,11 +128,11 @@ public class BoatUpgradeManager : MonoBehaviour {
 
 		switch (upgradeType) {
 		case UpgradeType.Crew:
-			return Boats.playerBoatInfo.crewCapacity * 100;
+			return Boats.Instance.playerBoatInfo.crewCapacity * 100;
 		case UpgradeType.Cargo:
-			return Boats.playerBoatInfo.cargoLevel * 150;
+			return Boats.Instance.playerBoatInfo.cargoLevel * 150;
 		case UpgradeType.Longview:
-			return Boats.playerBoatInfo.shipRange * 200;
+			return Boats.Instance.playerBoatInfo.shipRange * 200;
 		default:
 			return -1;
 		}
@@ -157,10 +157,10 @@ public class BoatUpgradeManager : MonoBehaviour {
 			Crews.playerCrew.CurrentMemberCapacity++;
 			break;
 		case UpgradeType.Cargo:
-			Boats.playerBoatInfo.cargoLevel++;
+			Boats.Instance.playerBoatInfo.cargoLevel++;
 			break;
 		case UpgradeType.Longview:
-			Boats.playerBoatInfo.shipRange++;
+			Boats.Instance.playerBoatInfo.shipRange++;
 			break;
 		}
 
@@ -178,10 +178,10 @@ public class BoatUpgradeManager : MonoBehaviour {
 
     public void UpdateInfo () {
 
-		nameTextUI.text = Boats.playerBoatInfo.Name;
+		nameTextUI.text = Boats.Instance.playerBoatInfo.Name;
 
-        boatUpgradeButtons[0].UpdateUI( Boats.playerBoatInfo.shipRange );
-        boatUpgradeButtons[1].UpdateUI( Boats.playerBoatInfo.cargoLevel);
+        boatUpgradeButtons[0].UpdateUI( Boats.Instance.playerBoatInfo.shipRange );
+        boatUpgradeButtons[1].UpdateUI( Boats.Instance.playerBoatInfo.cargoLevel);
 
         UpgradeCrewButton();
 	}
@@ -261,7 +261,7 @@ public class BoatUpgradeManager : MonoBehaviour {
     {
         memberToRemove = i;
 
-        MessageDisplay.Instance.Show("Abandonner " + Crews.playerCrew.CrewMembers[i].MemberName + " ?");
+        MessageDisplay.Instance.Show("Abandon " + Crews.playerCrew.CrewMembers[i].MemberName + " ?");
         MessageDisplay.onValidate += ConfirmRemoveMember;
     }
 

@@ -14,6 +14,8 @@ public enum StoryType {
 [System.Serializable]
 public class StoryManager  {
 
+    public bool hasBeenPlayed = false;
+
 	public List<StoryHandler> storyHandlers = new List<StoryHandler>();
 
 	public StoryManager () {
@@ -44,6 +46,8 @@ public class StoryManager  {
 		get {
 			if ( StoryReader.Instance.currentStoryLayer >= storyHandlers.Count ) {
 				Debug.LogError ("Le layer d'histoire est au dessus du nombre de story handlers");
+				Debug.Log ("Current Story Layer : " + StoryReader.Instance.currentStoryLayer);
+				Debug.Log ("Story Handlers Count : " + storyHandlers.Count);
 				return storyHandlers [0];
 			}
 			return storyHandlers [StoryReader.Instance.currentStoryLayer];
@@ -114,8 +118,6 @@ public class StoryHandler {
 
 	public void SetCrew (Crew targetCrew) {
 		crews.Add (targetCrew);
-		if (StoryLauncher.Instance.CurrentStorySource == StoryLauncher.StorySource.boat)
-			Debug.Log ("adding crew to BOAT story: " + targetCrew.MemberIDs [0].Name);
 	
 	}
 

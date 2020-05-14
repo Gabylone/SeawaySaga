@@ -8,9 +8,6 @@ public class Transitions : MonoBehaviour {
 	[SerializeField]
 	private Transition screenTransition;
 
-	[SerializeField]
-	private Transition actionTransition;
-
 	public float defaultTransition = 0.3f;
 
 	void Awake () {
@@ -25,7 +22,6 @@ public class Transitions : MonoBehaviour {
 		StoryFunctions.Instance.getFunction += HandleGetFunction;
 
 		if (CombatManager.Instance) {
-			CombatManager.Instance.onFightStart += HandleFightStarting;
 			CombatManager.Instance.onFightEnd += HandleFightEnding;
 		}
 
@@ -37,23 +33,19 @@ public class Transitions : MonoBehaviour {
 //		actionTransition.Fade = true;
 	}
 
-	void HandleFightStarting ()
-	{
-		actionTransition.FadeOut (0.5f);
-	}
-
 	void HandleGetFunction (FunctionType func, string cellParameters)
 	{
 		switch (func) {
 
             case FunctionType.Fade:
 
-			    FadeScreen ();
 
 			    StoryReader.Instance.NextCell ();
 
-                StoryReader.Instance.Wait (defaultTransition);
-                //StoryReader.Instance.UpdateStory();
+			    /*FadeScreen ();
+                StoryReader.Instance.Wait (defaultTransition);*/
+
+                StoryReader.Instance.UpdateStory();
 
                 break;
 		}
@@ -65,15 +57,6 @@ public class Transitions : MonoBehaviour {
 		}
 		set {
 			screenTransition = value;
-		}
-	}
-
-	public Transition ActionTransition {
-		get {
-			return actionTransition;
-		}
-		set {
-			actionTransition = value;
 		}
 	}
 

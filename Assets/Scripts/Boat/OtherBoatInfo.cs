@@ -22,21 +22,6 @@ public class OtherBoatInfo : BoatInfo {
 		base.Init ();
 	}
 
-    public void ShiftFromPlayerPosition()
-    {
-        if (coords == Coords.current)
-        {
-            if (coords.x > (float)MapGenerator.Instance.MapScale / 2)
-            {
-                SetCoords(coords - new Coords(1, 0));
-            }
-            else
-            {
-                SetCoords(coords + new Coords(1, 0));
-            }
-        }
-    }
-
 	public override void Randomize ()
 	{
 		base.Randomize ();
@@ -66,7 +51,6 @@ public class OtherBoatInfo : BoatInfo {
 	{
         if ( NavigationManager.Instance.chunksTravelled < 2)
         {
-            ShiftFromPlayerPosition();
             return;
         }
 
@@ -77,7 +61,7 @@ public class OtherBoatInfo : BoatInfo {
 	{
 		Coords newCoords = coords + NavigationManager.Instance.getNewCoords (currentDirection);
 
-		if (newCoords.x >= MapGenerator.Instance.MapScale - 1) {
+		if (newCoords.x >= MapGenerator.Instance.MapScale_X - 1) {
 
 			newCoords.x = coords.x;
 			SwitchDirection ();
@@ -87,7 +71,7 @@ public class OtherBoatInfo : BoatInfo {
 			newCoords.x = coords.x;
 			SwitchDirection ();
 			//
-		} else if (newCoords.y>= MapGenerator.Instance.MapScale - 1) {
+		} else if (newCoords.y>= MapGenerator.Instance.MapScale_Y - 1) {
 
 			newCoords.y = coords.y;
 			SwitchDirection ();

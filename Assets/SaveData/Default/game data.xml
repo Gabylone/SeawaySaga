@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <GameData xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <progression>0</progression>
-  <globalID>4</globalID>
+  <globalID>1</globalID>
   <playerCrew>
     <hostile>false</hostile>
     <row>0</row>
@@ -9,7 +9,7 @@
     <MemberIDs>
       <Member>
         <id>0</id>
-        <Name>Crochet</Name>
+        <Name>The Captain</Name>
         <health>100</health>
         <maxHealth>100</maxHealth>
         <currentHunger>1</currentHunger>
@@ -17,7 +17,7 @@
         <xp>0</xp>
         <skillPoints>0</skillPoints>
         <specialSkillsIndexes>
-          <int>16</int>
+          <int>4</int>
         </specialSkillsIndexes>
         <stats>
           <int>1</int>
@@ -27,16 +27,16 @@
         </stats>
         <daysOnBoard>1</daysOnBoard>
         <equipedWeapon>
-          <ID>46</ID>
+          <ID>39</ID>
           <names>
-            <string>Poivrière rouillée</string>
-            <string>Rusty blunderbuss</string>
+            <string>Epée rouillée</string>
+            <string>Rusty sword</string>
           </names>
-          <value>9</value>
-          <price>17</price>
+          <value>14</value>
+          <price>23</price>
           <weight>10</weight>
           <level>1</level>
-          <spriteID>0</spriteID>
+          <spriteID>1</spriteID>
           <type>0</type>
           <category>Weapon</category>
         </equipedWeapon>
@@ -46,70 +46,8 @@
             <string>Toge en tissu</string>
             <string>Linnen gown</string>
           </names>
-          <value>11</value>
-          <price>22</price>
-          <weight>10</weight>
-          <level>1</level>
-          <spriteID>0</spriteID>
-          <type>0</type>
-          <category>Clothes</category>
-        </equipedCloth>
-        <Male>false</Male>
-        <job>Flibuster</job>
-        <characterIDS>
-          <int>0</int>
-          <int>3</int>
-          <int>0</int>
-          <int>3</int>
-          <int>2</int>
-          <int>4</int>
-          <int>1</int>
-          <int>3</int>
-          <int>0</int>
-          <int>0</int>
-        </characterIDS>
-      </Member>
-      <Member>
-        <id>1</id>
-        <Name>Gabriel</Name>
-        <health>100</health>
-        <maxHealth>100</maxHealth>
-        <currentHunger>1</currentHunger>
-        <Lvl>1</Lvl>
-        <xp>0</xp>
-        <skillPoints>0</skillPoints>
-        <specialSkillsIndexes>
-          <int>8</int>
-        </specialSkillsIndexes>
-        <stats>
-          <int>1</int>
-          <int>1</int>
-          <int>1</int>
-          <int>1</int>
-        </stats>
-        <daysOnBoard>1</daysOnBoard>
-        <equipedWeapon>
-          <ID>48</ID>
-          <names>
-            <string>Vieux pistolet</string>
-            <string>Old pistol</string>
-          </names>
-          <value>8</value>
-          <price>17</price>
-          <weight>10</weight>
-          <level>1</level>
-          <spriteID>0</spriteID>
-          <type>0</type>
-          <category>Weapon</category>
-        </equipedWeapon>
-        <equipedCloth>
-          <ID>154</ID>
-          <names>
-            <string>Tenue de voyageur</string>
-            <string>Traveller gear</string>
-          </names>
           <value>10</value>
-          <price>19</price>
+          <price>15</price>
           <weight>10</weight>
           <level>1</level>
           <spriteID>0</spriteID>
@@ -117,140 +55,16 @@
           <category>Clothes</category>
         </equipedCloth>
         <Male>true</Male>
-        <job>Surgeon</job>
+        <job>Brute</job>
         <characterIDS>
-          <int>5</int>
-          <int>2</int>
-          <int>3</int>
           <int>0</int>
-          <int>0</int>
-          <int>3</int>
-          <int>3</int>
-          <int>2</int>
-          <int>1</int>
-          <int>0</int>
-        </characterIDS>
-      </Member>
-      <Member>
-        <id>2</id>
-        <Name>Levis</Name>
-        <health>100</health>
-        <maxHealth>100</maxHealth>
-        <currentHunger>1</currentHunger>
-        <Lvl>1</Lvl>
-        <xp>0</xp>
-        <skillPoints>0</skillPoints>
-        <specialSkillsIndexes>
-          <int>20</int>
-        </specialSkillsIndexes>
-        <stats>
-          <int>1</int>
-          <int>1</int>
-          <int>1</int>
-          <int>1</int>
-        </stats>
-        <daysOnBoard>1</daysOnBoard>
-        <equipedWeapon>
-          <ID>46</ID>
-          <names>
-            <string>Poivrière rouillée</string>
-            <string>Rusty blunderbuss</string>
-          </names>
-          <value>9</value>
-          <price>17</price>
-          <weight>10</weight>
-          <level>1</level>
-          <spriteID>0</spriteID>
-          <type>0</type>
-          <category>Weapon</category>
-        </equipedWeapon>
-        <equipedCloth>
-          <ID>154</ID>
-          <names>
-            <string>Tenue de voyageur</string>
-            <string>Traveller gear</string>
-          </names>
-          <value>10</value>
-          <price>19</price>
-          <weight>10</weight>
-          <level>1</level>
-          <spriteID>0</spriteID>
-          <type>0</type>
-          <category>Clothes</category>
-        </equipedCloth>
-        <Male>true</Male>
-        <job>Gambler</job>
-        <characterIDS>
-          <int>2</int>
-          <int>2</int>
-          <int>1</int>
-          <int>3</int>
           <int>4</int>
           <int>2</int>
-          <int>4</int>
-          <int>1</int>
-          <int>1</int>
           <int>0</int>
-        </characterIDS>
-      </Member>
-      <Member>
-        <id>3</id>
-        <Name>Nestor</Name>
-        <health>100</health>
-        <maxHealth>100</maxHealth>
-        <currentHunger>1</currentHunger>
-        <Lvl>1</Lvl>
-        <xp>0</xp>
-        <skillPoints>0</skillPoints>
-        <specialSkillsIndexes>
-          <int>8</int>
-        </specialSkillsIndexes>
-        <stats>
           <int>1</int>
-          <int>1</int>
-          <int>1</int>
-          <int>1</int>
-        </stats>
-        <daysOnBoard>1</daysOnBoard>
-        <equipedWeapon>
-          <ID>43</ID>
-          <names>
-            <string>Bâton solide</string>
-            <string>Solid stick</string>
-          </names>
-          <value>7</value>
-          <price>16</price>
-          <weight>10</weight>
-          <level>1</level>
-          <spriteID>1</spriteID>
-          <type>0</type>
-          <category>Weapon</category>
-        </equipedWeapon>
-        <equipedCloth>
-          <ID>155</ID>
-          <names>
-            <string>Fourrure</string>
-            <string>Fur</string>
-          </names>
-          <value>14</value>
-          <price>21</price>
-          <weight>10</weight>
-          <level>1</level>
-          <spriteID>1</spriteID>
-          <type>0</type>
-          <category>Clothes</category>
-        </equipedCloth>
-        <Male>true</Male>
-        <job>Surgeon</job>
-        <characterIDS>
-          <int>5</int>
-          <int>0</int>
-          <int>0</int>
-          <int>5</int>
-          <int>2</int>
-          <int>4</int>
-          <int>0</int>
           <int>3</int>
+          <int>3</int>
+          <int>0</int>
           <int>1</int>
           <int>0</int>
         </characterIDS>
@@ -262,87 +76,47 @@
     <col>0</col>
     <ids>
       <ArrayOfInt>
-        <int>6</int>
-        <int>9</int>
-        <int>32</int>
-        <int>35</int>
-        <int>21</int>
+        <int>15</int>
+        <int>33</int>
         <int>19</int>
+        <int>10</int>
+        <int>12</int>
+        <int>10</int>
+        <int>12</int>
+        <int>10</int>
       </ArrayOfInt>
       <ArrayOfInt />
       <ArrayOfInt />
       <ArrayOfInt />
     </ids>
-    <weight>22</weight>
+    <weight>32</weight>
     <AllItems>
       <ArrayOfItem>
         <Item>
-          <ID>6</ID>
+          <ID>15</ID>
           <names>
-            <string>Crabe</string>
-            <string>Crab</string>
+            <string>Lapin</string>
+            <string>Rabbit</string>
           </names>
-          <value>45</value>
+          <value>55</value>
           <price>13</price>
-          <weight>4</weight>
+          <weight>5</weight>
           <level>0</level>
-          <spriteID>1</spriteID>
+          <spriteID>2</spriteID>
           <type>0</type>
           <category>Provisions</category>
         </Item>
         <Item>
-          <ID>9</ID>
+          <ID>33</ID>
           <names>
-            <string>Cabillaud</string>
-            <string>Hude codfish</string>
+            <string>Orange</string>
+            <string>Orange</string>
           </names>
-          <value>40</value>
-          <price>12</price>
-          <weight>4</weight>
-          <level>0</level>
-          <spriteID>1</spriteID>
-          <type>0</type>
-          <category>Provisions</category>
-        </Item>
-        <Item>
-          <ID>32</ID>
-          <names>
-            <string>Clémentine</string>
-            <string>Clementine</string>
-          </names>
-          <value>28</value>
+          <value>33</value>
           <price>4</price>
           <weight>2</weight>
           <level>0</level>
           <spriteID>0</spriteID>
-          <type>0</type>
-          <category>Provisions</category>
-        </Item>
-        <Item>
-          <ID>35</ID>
-          <names>
-            <string>Pomme</string>
-            <string>Apple</string>
-          </names>
-          <value>25</value>
-          <price>8</price>
-          <weight>2</weight>
-          <level>0</level>
-          <spriteID>0</spriteID>
-          <type>0</type>
-          <category>Provisions</category>
-        </Item>
-        <Item>
-          <ID>21</ID>
-          <names>
-            <string>Petit jambon</string>
-            <string>Small ham</string>
-          </names>
-          <value>54</value>
-          <price>15</price>
-          <weight>5</weight>
-          <level>0</level>
-          <spriteID>2</spriteID>
           <type>0</type>
           <category>Provisions</category>
         </Item>
@@ -352,11 +126,81 @@
             <string>Cochon</string>
             <string>Pig</string>
           </names>
-          <value>49</value>
-          <price>18</price>
+          <value>46</value>
+          <price>14</price>
           <weight>5</weight>
           <level>0</level>
           <spriteID>2</spriteID>
+          <type>0</type>
+          <category>Provisions</category>
+        </Item>
+        <Item>
+          <ID>10</ID>
+          <names>
+            <string>Homard</string>
+            <string>Lobster</string>
+          </names>
+          <value>45</value>
+          <price>7</price>
+          <weight>4</weight>
+          <level>0</level>
+          <spriteID>1</spriteID>
+          <type>0</type>
+          <category>Provisions</category>
+        </Item>
+        <Item>
+          <ID>12</ID>
+          <names>
+            <string>Esturgeon</string>
+            <string>Sturgeon</string>
+          </names>
+          <value>36</value>
+          <price>13</price>
+          <weight>4</weight>
+          <level>0</level>
+          <spriteID>1</spriteID>
+          <type>0</type>
+          <category>Provisions</category>
+        </Item>
+        <Item>
+          <ID>10</ID>
+          <names>
+            <string>Homard</string>
+            <string>Lobster</string>
+          </names>
+          <value>45</value>
+          <price>7</price>
+          <weight>4</weight>
+          <level>0</level>
+          <spriteID>1</spriteID>
+          <type>0</type>
+          <category>Provisions</category>
+        </Item>
+        <Item>
+          <ID>12</ID>
+          <names>
+            <string>Esturgeon</string>
+            <string>Sturgeon</string>
+          </names>
+          <value>36</value>
+          <price>13</price>
+          <weight>4</weight>
+          <level>0</level>
+          <spriteID>1</spriteID>
+          <type>0</type>
+          <category>Provisions</category>
+        </Item>
+        <Item>
+          <ID>10</ID>
+          <names>
+            <string>Homard</string>
+            <string>Lobster</string>
+          </names>
+          <value>45</value>
+          <price>7</price>
+          <weight>4</weight>
+          <level>0</level>
+          <spriteID>1</spriteID>
           <type>0</type>
           <category>Provisions</category>
         </Item>
@@ -370,26 +214,16 @@
   <playerGold>50</playerGold>
   <karma>0</karma>
   <bounty>0</bounty>
-  <formulas>
-    <Formula>
-      <name>kopa</name>
-      <coords>
-        <x>4</x>
-        <y>5</y>
-      </coords>
-      <verified>false</verified>
-      <found>false</found>
-    </Formula>
-  </formulas>
+  <formulas />
   <playerBoatInfo>
-    <Name>Le Jolly Roger</Name>
+    <Name>The Greedy Anchor</Name>
     <previousCoords>
       <x>0</x>
-      <y>4</y>
+      <y>3</y>
     </previousCoords>
     <coords>
       <x>0</x>
-      <y>4</y>
+      <y>3</y>
     </coords>
     <currentDirection>None</currentDirection>
     <shipRange>1</shipRange>
@@ -398,12 +232,12 @@
     <level>1</level>
   </playerBoatInfo>
   <treasureCoords>
-    <x>4</x>
-    <y>2</y>
+    <x>0</x>
+    <y>0</y>
   </treasureCoords>
   <homeCoords>
     <x>0</x>
-    <y>4</y>
+    <y>3</y>
   </homeCoords>
   <currentQuests />
   <finishedQuests />
@@ -411,4 +245,5 @@
   <currentRain>0</currentRain>
   <night>false</night>
   <timeOfDay>6</timeOfDay>
+  <treasureName>The Nasty Gulls</treasureName>
 </GameData>

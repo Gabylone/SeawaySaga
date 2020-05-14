@@ -12,13 +12,32 @@ public class MapGenerator : MonoBehaviour {
 
     string textFile_STR = "";
 
+    public int test_row = 0;
+    public int test_col = 0;
+
     public Dictionary<Coords, string> islandNames = new Dictionary<Coords, string>();
 
-    public int MapScale
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            Debug.Log( GetCellLoc(test_row,test_col ));
+        }
+    }
+
+    public int MapScale_X
     {
         get
         {
-            return mapParameters.GetScale();
+            return mapParameters.mapScale_X;
+        }
+    }
+
+    public int MapScale_Y
+    {
+        get
+        {
+            return mapParameters.mapScale_Y;
         }
     }
 
@@ -41,6 +60,8 @@ public class MapGenerator : MonoBehaviour {
 
 	public int islandCreation_LoadLimit = 1;
 
+    public string treasureName = "";
+
 	void Awake () {
 		Instance = this;
 	}
@@ -55,9 +76,11 @@ public class MapGenerator : MonoBehaviour {
 
 		discoveredCoords = new DiscoveredCoords ();
 
-        //InitChunks();
+        string str_name = CrewCreator.Instance.boatNames[Random.Range(0, CrewCreator.Instance.boatNames.Length)];
+        string str_adj = CrewCreator.Instance.boatAdjectives[Random.Range(0, CrewCreator.Instance.boatAdjectives.Length)];
+        string fullName = str_adj + " " + str_name;
 
-        //GenerateNewMap();
+        treasureName = "The " + fullName + "s";
 
         LoadMapFromFile();
 
@@ -90,23 +113,25 @@ public class MapGenerator : MonoBehaviour {
         }
 
         string[] rows = textAsset.text.Split('\n');
+        string[] firstRowCells = rows[0].Split(';');
 
         // set map scale
-        mapParameters.SetScale(rows.Length);
+        mapParameters.mapScale_X = firstRowCells.Length;
+        mapParameters.mapScale_Y = rows.Length;
 
         // init chunks
         Chunk.chunks.Clear();
 
-        for (int x = 0; x < MapScale; x++)
+        for (int x = 0; x < MapScale_X; x++)
         {
-            for (int y = 0; y < MapScale; y++)
+            for (int y = 0; y < MapScale_Y; y++)
             {
                 Coords c = new Coords(x, y);
                 Chunk.chunks.Add(c, new Chunk());
             }
         }
 
-        LoadingScreen.Instance.StartLoading("Chargement îles", MapScale * MapScale);
+        LoadingScreen.Instance.StartLoading("Chargement îles", MapScale_X * MapScale_Y);
 
         for (int rowIndex = 0; rowIndex < rows.Length; rowIndex++)
         {
@@ -114,28 +139,35 @@ public class MapGenerator : MonoBehaviour {
 
             string[] cells = row.Split(';');
 
-            for (int cellIndex = 0; cellIndex < cells.Length; cellIndex++)
+            for (int colIndex = 0; colIndex < cells.Length; colIndex++)
             {
-                if (cells[cellIndex].Length > 0)
+                if (cells[colIndex].Length > 0)
                 {
-                    Coords c = new Coords(cellIndex , (rows.Length-1) - rowIndex);
+                    Coords c = new Coords(colIndex , (rows.Length-1) - rowIndex);
 
-                    string[] storyNames = cells[cellIndex].Split(',');
+                    string[] storyNames = cells[colIndex].Split(',');
 
                     for (int storyAmount = 0; storyAmount < storyNames.Length; storyAmount++)
                     {
+                        bool foundStory = false;
+
+                        string storyName = storyNames[storyAmount];
+                        storyName = storyName.TrimEnd('\r', '\n', '\t');
+
                         for (int storyTypeIndex = 0; storyTypeIndex < 4; storyTypeIndex++)
                         {
                             StoryType storyType = (StoryType)storyTypeIndex;
 
-                            int storyID = StoryLoader.Instance.FindIndexByName(storyNames[storyAmount], storyType);
+                            int storyID = StoryLoader.Instance.FindIndexByName(storyName, storyType);
 
                             if (storyID < 0)
                             {
-
+                                
                             }
                             else
                             {
+                                foundStory = true;
+
                                 switch (storyType)
                                 {
                                     case StoryType.Treasure:
@@ -158,7 +190,14 @@ public class MapGenerator : MonoBehaviour {
                                 Chunk.GetChunk(c).GetIslandData(storyAmount).storyManager.InitHandler(storyType, storyID);
                             }
 
+                            
                         }
+
+                        if (!foundStory)
+                        {
+                            Debug.LogError("couldn't find story : " + storyName + " at " + GetCellLoc(rowIndex,colIndex));
+                        }
+
                     }
 
                 }
@@ -172,20 +211,41 @@ public class MapGenerator : MonoBehaviour {
 
     }
 
-	public void LoadMap() {
+    public string GetCellLoc ( int row, int col)
+    {
+        string alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+        string letter;
+
+        int div = col / alphabet.Length;
+        if (div >0)
+        {
+            int mod = col % alphabet.Length;
+            letter = "" + alphabet[div-1] + alphabet[mod];
+        }
+        else
+        {
+            letter = "" + alphabet[col % alphabet.Length];
+        }
+
+        return "col : " + letter + " row : " + (row+1);
+    }
+
+    public void LoadMap() {
 
 		discoveredCoords = SaveTool.Instance.LoadFromCurrentMap ("discovered coords.xml", "DiscoveredCoords") as DiscoveredCoords;
 
 		Chunk.chunks.Clear ();
 
-		for (int x = 0; x < MapScale; x++) {
-			for (int y = 0; y < MapScale; y++) {
-				
-				Coords c = new Coords (x, y);
+		for (int x = 0; x < MapScale_X; x++) {
 
-				Chunk.chunks.Add (c, new Chunk ());
-				//				Chunk.chunks[c].stae
-			}
+            for (int y = 0; y < MapScale_Y; y++)
+            {
+                Coords c = new Coords(x, y);
+
+                Chunk.chunks.Add(c, new Chunk());
+            }
+
 		}
 
 		foreach (var item in discoveredCoords.coords) {
@@ -199,8 +259,8 @@ public class MapGenerator : MonoBehaviour {
 		
 		Chunk.chunks.Clear ();
 
-		for (int x = 0; x < MapScale; x++) {
-			for (int y = 0; y < MapScale; y++) {
+		for (int x = 0; x < MapScale_X; x++) {
+			for (int y = 0; y < MapScale_Y; y++) {
 
 				Coords c = new Coords (x, y);
 				Chunk.chunks.Add (c, new Chunk ());
@@ -231,17 +291,17 @@ public class MapGenerator : MonoBehaviour {
 //	void CreateNormalIslands () {
 
 
-		int max = (int)((float)(IslandsPerCol * MapScale));
+		int max = (int)((float)(IslandsPerCol * MapScale_X));
 		LoadingScreen.Instance.StartLoading ("Création îles",max );
 
 		int l = 0;
 		int a = 0;
 
-		for ( int y = 0; y < MapScale ; ++y ) {
+		for ( int y = 0; y < MapScale_Y ; ++y ) {
 
 			for (int i = 0; i < IslandsPerCol; ++i ) {
 
-				int x = Random.Range ( 0, MapScale );
+				int x = Random.Range ( 0, MapScale_X );
 
 				Coords c = new Coords ( x , y );
 
@@ -276,15 +336,15 @@ public class MapGenerator : MonoBehaviour {
 
     private void CreateTextFile()
     {
-        for (int y = 0; y < MapScale; y++)
+        for (int y = 0; y < MapScale_Y; y++)
         {
-            for (int x = 0; x < MapScale; x++)
+            for (int x = 0; x < MapScale_X; x++)
             {
                 Coords c = new Coords(x, y);
 
                 for (int i = 0; i < Chunk.GetChunk(c).islandDatas.Length; i++)
                 {
-                    textFile_STR += Chunk.GetChunk(c).GetIslandData(i).storyManager.storyHandlers[0].Story.name;
+                    textFile_STR += Chunk.GetChunk(c).GetIslandData(i).storyManager.storyHandlers[0].Story.dataName;
                     if ( i < Chunk.GetChunk(c).islandDatas.Length - 1)
                     {
                         textFile_STR += ",";
@@ -307,18 +367,7 @@ public class MapGenerator : MonoBehaviour {
     #region tools
     public Coords RandomCoords{
 		get {
-			return new Coords (Random.Range ( 0, MapScale ),Random.Range ( 0, MapScale ));
-		}
-	}
-	public int RandomX {
-		get {
-			return Random.Range ( 0, MapScale );
-		}
-	}
-
-	public int RandomY {
-		get {
-			return Random.Range ( 0, MapScale );
+			return new Coords (Random.Range ( 0, MapScale_X ),Random.Range ( 0, MapScale_Y ));
 		}
 	}
 	#endregion

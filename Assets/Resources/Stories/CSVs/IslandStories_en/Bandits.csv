@@ -1,12 +1,13 @@
 Nom;Fréquence %;Sprite ID;;
 Bandits;5,08;0;;
 [debut];;;;
-Narrator : The crew board a small island;;;;
+SetBG(Island);;;;
+Narrator : The crew lands on a small island.;;;;
 [arrivée bandits];;;;
 NewCrew;;;;
-Narrator : A bunch of armed men go forth;Node=>bandits morts;OtherSpeak : Oh well ? Did you forget about us ?;;
-OtherSpeak : Ay !;;Node=>payed ?;;
-PlayerSpeak : Ahoy !;;;;
+Narrator : A bunch of armed men run towards CAPITAINE and the crew.;Node=>bandits morts;OtherSpeak : Oh well? Did you forget about us?;;
+OtherSpeak : Ayyyy!;;Node=>payed ?;;
+PlayerSpeak : Ahoy!;;;;
 Node=>payed ?;;;;
 ;;;;
 [payed ?];;;;
@@ -14,32 +15,52 @@ Node=>chantage;Node=>a payé;;;
 ;;;;
 ;;;;
 [chantage];;;;
-OtherSpeak : We’ll make it simple : a third of your gold or you’re dead meat;;;;
+OtherSpeak : We’ll make it simple : a third of your gold or you’re dead meat.;;;;
 SetChoices3;;;;
-Choice : Here…(trade);;Choice : I’d rather DIE !(attaquer);Choice : But I’m penniless !(cha);
+Choice : Here… (trade);;Choice : Over me dead body! (attack);Choice : But I’m penniless!(cha);
 Switch=>payed ?;;LaunchCombat;CheckStatCHA;
-CheckGoldTHIRD;OtherSpeak : Are you kidding my ?;Node=>bandits morts;OtherSpeak : You remind me of me, at your age.;OtherSpeak : You think this is the first time I hear this
-RemoveGoldTHIRD;OtherSpeak : Guns up, boys !;;OtherSpeak : We’re all in the same crap !;LaunchCombat
-OtherSpeak : Good boy…;LaunchCombat;;OtherSpeak : Good luck;Node=>bandits morts
-OtherSpeak : See you next time;Node=>bandits morts;;Leave;
+CheckGoldTHIRD;OtherSpeak : Are you kidding me?;Node=>bandits morts;OtherSpeak : You remind me of me, at your age...;OtherSpeak : You think this is the first time I hear this.
+RemoveGoldTHIRD;OtherSpeak : Guns up, boys!;;OtherSpeak : We’re all in the same crap!;LaunchCombat
+OtherSpeak : Good boy…;LaunchCombat;;OtherSpeak : Good luck, mate!;Node=>bandits morts
+OtherSpeak : See you next time.;Node=>bandits morts;;Leave;
 Leave;;;;
 ;;;;
 [a payé];;;;
-OtherSpeak : What are you doing here ?;;;;
-OtherSpeak : Wanna lose even more money ?;;;;
+OtherSpeak : What are you doing here?;;;;
+OtherSpeak : Wanna give us even more money?;;;;
 [choix payé];;;;
 SetChoices4;;;;
-Choice : (partir);Choice : (fight) (attaquer);Choice : (look around);Choice : Can I be of any use to you ?(quete);
+Choice : (leave);Choice : (fight) (attack);Choice : (look around);Choice : Can I be of any use to you? (quest);
 Leave;LaunchCombat;Node=>ile vide;RandomPercent65;
-;Node=>bandits morts;;OtherSpeak : Nope, we’re good;NewQuest=>choix payé
-;;;OtherSpeak : Take your boat out of here;
+;Node=>bandits morts;;OtherSpeak : Nope, we’re good.;NewQuest=>choix payé
+;;;OtherSpeak : Take your boat out of here.;
 ;;;Node=>choix payé;
 ;;;;
 [bandits morts];;;;
-Narrator : The shore is riddled with dead bandits;;;;
+Narrator : The shore is riddled with dead bandits.;;;;
 [ile vide];;;;
 SetChoices3;;;;
-Choice : (partir);Choice : (stay for the night)(dormir);Choice : (look around);;
-Leave;ChangeTimeOfDay;PlayerSpeak : There’s not much on shore;;
+Choice : (leave);Choice : (stay until NEXTTIME) (sleep);Choice : (look around);;
+Leave;ChangeTimeOfDay;PlayerSpeak : There’s not much on this shore.;;
 ;Node=>bandits morts;CheckQuest=>ile vide;;
 ;;Node=>ile vide;;
+;;;;
+;;;;
+;;;;
+;;;;
+;;;;
+;;;;
+;;;;
+;;;;
+;;;;
+;;;;
+;;;;
+;;;;
+;;;;
+;;;;
+;;;;
+;;;;
+;;;;
+;;;;
+;;;;
+;Choice : Let’s set camp here. We’ll sleep until NEXTTIME (sleep);;;

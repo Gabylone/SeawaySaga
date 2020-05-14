@@ -22,10 +22,7 @@ public class ClockUI : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
 	{
-//		CrewInventory.Instance.openInventory += HandleOpenInventory;
-
 		TimeManager.onNextHour += UpdateNeedle;
-//		NavigationManager.Instance.EnterNewChunk += UpdateNeedle;
 		StoryFunctions.Instance.getFunction += HandleGetFunction;
 
 		InitClock ();
@@ -59,7 +56,7 @@ public class ClockUI : MonoBehaviour {
 		float angle = TimeManager.Instance.timeOfDay * 360f / TimeManager.Instance.dayDuration;
 		Vector3 targetAngles = new Vector3 (0,0, angle);
 
-        clockBackground.Rotate(targetAngles, duration);
+        clockBackground.DORotate(targetAngles, duration);
 		//clockBackground.eulerAngles = targetAngles;
 	}
 }

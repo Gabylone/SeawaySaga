@@ -347,6 +347,9 @@ public class CombatManager : MonoBehaviour {
 	private void PlayerMemberChoice_Start () {
 
 		cancelPlayerMemberChoiceButton.SetActive (true);
+
+        SkillDescription.Instance.Show(currentSkill);
+
 		Tween.Bounce (cancelPlayerMemberChoiceButton.transform);
 
 		if (currentSkill.targetType == Skill.TargetType.Self) {
@@ -355,13 +358,15 @@ public class CombatManager : MonoBehaviour {
 			ChoosingTarget (Crews.Side.Enemy);
 		}
 
-	}
-	private void PlayerMemberChoice_Update () {}
+
+    }
+    private void PlayerMemberChoice_Update () {}
 	private void PlayerMemberChoice_Exit () {
 		DisablePickable ();
+        SkillDescription.Instance.Hide();
 		cancelPlayerMemberChoiceButton.SetActive (false);
 
-	}
+    }
 	public void CancelPlayerMemberChoice () {
 		ChangeState (States.PlayerActionChoice);
 	}
@@ -586,7 +591,6 @@ public class CombatManager : MonoBehaviour {
 			Invoke ("ExitFight", 1f);
 			break;
 		case OutCome.EnemyCrewKilled:
-			Transitions.Instance.ActionTransition.FadeIn (0.5f);
 			ReceiveXp ();
 			Invoke ("ExitFight", 1f);
 			Invoke ("ShowLoot", 1.5f);

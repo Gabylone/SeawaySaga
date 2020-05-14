@@ -13,14 +13,17 @@ public class Skill_BistouryBlow : Skill {
 
 		CrewMember member = fighter.TargetFighter.crewMember;
 
-		if (member.MemberID.Male) {
+        /*if (member.MemberID.Male) {
 			string str = "Relève toi, mon petit " + member.MemberName;
 			fighter.Speak (str);
 		} else {
 			string str = "Relève toi, ma petite " + member.MemberName;
 			fighter.Speak (str);
-		}
-	}
+		}*/
+
+        string str = "This will make you feel better, " + member.MemberName;
+        fighter.Speak(str);
+    }
 
 	public override void ApplyEffect ()
 	{

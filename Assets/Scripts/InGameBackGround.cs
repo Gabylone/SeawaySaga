@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using System;
 
 public class InGameBackGround : MonoBehaviour {
 
@@ -19,18 +20,15 @@ public class InGameBackGround : MonoBehaviour {
         Boat,
     }
 
-    public Sprite[] sprites;
-
 	public GameObject group;
 
-    bool visible = false;
+    private bool visible = false;
 
-	public Image backGroundImage;
-	public Image darkImage;
+	public Image image;
+    public Sprite[] sprites;
 
-	public float fadeDuration = 1f;
+    public float fadeDuration = 1f;
 
-    public Type previousType;
     public Type currentType;
 
     private void Awake()
@@ -41,14 +39,56 @@ public class InGameBackGround : MonoBehaviour {
     // Use this for initialization
     void Start () {
 
-        StoryLauncher.Instance.onEndStory += HandleOnEndStory;
+        StoryFunctions.Instance.getFunction += HandleGetFunction;
 
         Hide();
 	}
 
-    public void UpdateStartSprite()
+    private void HandleGetFunction(FunctionType func, string cellParameters)
     {
-        FadeIn();
+        if (func == FunctionType.SetBG)
+        {
+            string backgroundName = cellParameters.Remove(0, 1);
+
+            backgroundName = backgroundName.Remove(backgroundName.Length - 1);
+
+            Type backgroundType = Type.Island;
+
+            bool paramIsValid = Enum.TryParse(backgroundName, out backgroundType);
+
+            if ( !paramIsValid)
+            {
+                Debug.LogError("Unparsable background type : " + backgroundName + " going with island");
+            }
+
+            if (currentType != backgroundType)
+            {
+                currentType = backgroundType;
+
+                Transitions.Instance.FadeScreen();
+
+                StoryReader.Instance.NextCell();
+                StoryReader.Instance.Wait(Transitions.Instance.defaultTransition + 0.5f);
+
+                Invoke("SetSpriteDelay", Transitions.Instance.defaultTransition);
+            }
+            else
+            {
+                StoryReader.Instance.NextCell();
+                StoryReader.Instance.UpdateStory();
+            }
+
+        }
+    }
+
+    void SetSpriteDelay()
+    {
+        SetSprite(currentType);
+    }
+
+    public void ShowBackground()
+    {
+        Show();
 
         if (StoryLauncher.Instance.CurrentStorySource == StoryLauncher.StorySource.boat)
         {
@@ -60,62 +100,20 @@ public class InGameBackGround : MonoBehaviour {
         }
     }
 
-    void HandleOnEndStory()
-    {
-        FadeOut();
-    }
-
-    void FadeOut()
-    {
-        backGroundImage.DOFade(0, fadeDuration);
-        darkImage.DOFade(0, fadeDuration);
-
-        Invoke("Hide", fadeDuration);
-    }
-
-    public void FadeIn()
-    {
-        Show();
-
-        darkImage.color = Color.clear;
-        backGroundImage.color = Color.clear;
-
-        backGroundImage.DOColor(Color.white, fadeDuration);
-        darkImage.DOFade(1, fadeDuration);
-    }
-
     void SetSprite( Type type )
     {
-        previousType = currentType;
         currentType = type;
 
-        if ( visible )
-        {
-            backGroundImage.color = Color.clear;
-            backGroundImage.DOFade(0f , fadeDuration);
-
-            Invoke("SetSpriteDelay", fadeDuration);
-        }
-        else
-        {
-            backGroundImage.sprite = sprites[(int)currentType];
-        }
+        image.sprite = sprites[(int)type];
     }
 
-    void SetSpriteDelay()
-    {
-        backGroundImage.sprite = sprites[(int)currentType];
-
-        backGroundImage.DOColor(Color.white, fadeDuration);
-    }
-
-    void Show()
+    public void Show()
     {
         group.SetActive(true);
         visible = true;
     }
 
-	void Hide ()
+	public void Hide ()
     {
         group.SetActive(false);
         visible = false;

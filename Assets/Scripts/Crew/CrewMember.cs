@@ -159,22 +159,25 @@ public class CrewMember {
 
 	public delegate void OnLevelUp (CrewMember member);
 	public OnLevelUp onLevelUp;
-	public void LevelUp () {
-		
-		++Level;
+    public void LevelUp()
+    {
 
-		CurrentXp = CurrentXp - xpToLevelUp;
+        ++Level;
 
-		SkillPoints += 2;
+        CurrentXp = CurrentXp - xpToLevelUp;
 
-		if ( Level == maxLevel ) {
-			CurrentXp = 0;
-		}
+        SkillPoints += 2;
 
-		if (onLevelUp != null) {
-			onLevelUp (this);
-		}
-	}
+        if (Level == maxLevel)
+        {
+            CurrentXp = 0;
+        }
+
+        if (onLevelUp != null)
+        {
+            onLevelUp(this);
+        }
+    }
 	public delegate void OnWrongLevel();
 	public static OnWrongLevel onWrongLevel;
 	public bool CheckLevel ( int lvl ) {
@@ -293,12 +296,9 @@ public class CrewMember {
 		Health -= Mathf.RoundToInt(f);
 	}
 
-	public delegate void OnCrewMemberKilled (CrewMember crewMember);
-	public static OnCrewMemberKilled onCrewMemberKilled;
 	public void Kill () {
 
-		if (onCrewMemberKilled != null)
-			onCrewMemberKilled (this);
+        Crews.Instance.KillMember(this);
 
         //if (this == selectedMember)
         //Debug.Log ("le membre mourrant est bel et bien le séléctionné");
@@ -322,7 +322,7 @@ public class CrewMember {
 
 			if ( Health - hungerDamage <= 0 )
 			{
-				Narrator.Instance.ShowNarratorTimed (" Après " + daysOnBoard + " jours à bord, " + MemberName + " est mort d'une faim atroce");
+				Narrator.Instance.ShowNarratorTimed (" After " + daysOnBoard + " days on board, " + MemberName + " tragically dies of hunger");
 			}
 
 			RemoveHealth(hungerDamage);

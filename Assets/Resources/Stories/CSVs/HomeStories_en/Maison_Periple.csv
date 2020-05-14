@@ -1,42 +1,44 @@
 Nom;Fréquence / 5;Sprite ID;;;
-Maison_Periple;25;1;;;
+Maison_Periple;1;1;;;
 [premiere visite];;;[chambre];;
-Narrator : Personne ne sait ce qui se trouve au nord de l’océan, derrière la grande mer de NOMTRESOR. Aujourd’hui, CAPITAINE décide enfin la traverser à bord de son bateau, le NOMBATEAU.;Node=>retour;;Narrator : CAPITAINE est dans sa chambre d’enfant. Son bureau est à côté de son lit, recouvert de documents diverses sur les mystères de l’océan.;;
-Narrator : Il est dit que le pirate fou qui fera ce périple long et dangereux, trouvera un tout autre monde et le fameux trésor de NOMTRESOR; ;;[choix chambre];;
+Narrator : Nobody knows what mysteries are hiding north of the ocean, behind the sea of NOMTRESOR. Today, CAPITAINE finally decides to go and find out, aboard the NOMBATEAU.;Node=>retour;;Narrator : CAPITAINE are in their childhood bedroom. Next to their bed, the desk is covered with drawings, books and tales about the ocean.;;
+Narrator : It’s been told that the fool venturing in this long and dangerous journey, will find a whole different world, as well as the famous NOMTRESOR.; ;;[choix chambre];;
 SetChoices2;;;SetChoices3;;
-Choice : (lever l’ancre);Choice : (faire un tour dans la maison);;Choice : (retourner au salon) (partir);Choice : (dormir jusqu'au lendemain) (dormir);Choice : (bureau) (quete)
-PlayerSpeak : C’est parti !;Fade;;Fade;ChangeTimeOfDay;Narrator : Des écrits parlent des océans environnants :
-Switch=>premiere visite;Node=>salon;;Node=>salon;Node=>salon;Narrator : Il est dit que ceux qui ont essayait de voir ce qu’il se trouvait au-delà de la mer de NOMTRESOR pour chercher sont trésor, ne sont jamais revenus.
-Leave;;;;;Narrator : On ne sait pas combien de nuits il faut naviguer pour atteindre un semblant de vie. Mais on parle quand même de quelque îles désertes, quelques bandits, ou naufragés.
-;;;;;Narrator : On parle aussi d’une ferme, tout à l’ouest de la mer. Mais ce n’est qu’une légende.
+Choice : (set sail);Choice : (enter the house);;Choice : (go back to the living room) (leave);Choice : (sleep until NEXTTIME) (sleep);Choice : (desk) (quest)
+PlayerSpeak : Let’s go !;Fade;;Fade;ChangeTimeOfDay;Narrator : The most worn down book talks about the waters surrounding this island :
+Switch=>premiere visite;Node=>salon;;Node=>salon;Node=>salon;Narrator : It says that those who left seeking to unveil the mysteries beyond the sea of NOMTRESOR, and to find its treasure, never came back.
+Leave;;;;;Narrator : Nobody knows how far one should travel to find life out there. But there are rumors about desert islands, bandits and castaways.
+;;;;;Narrator : There is also the legend of a farm, far to the west. But nobody believes this story.
 ;;;;;Node=>choix chambre
 ;;;;;
 ;;;;;
 ;;;;;
 [retour];;;;;
-Narrator :  Revoilà CAPITAINE sur sa petite île natale. Un petit chemin de pierre mène à sa chaumière coquette.;;;;;
-PlayerSpeak : C'est chez moi !;;;;;
+Narrator : CAPITAINE steps back on the small island where they grew up. A rock path leads to their childhood cottage.;;;;;
+PlayerSpeak : Home!;;;;;
 CheckQuest=>salon;;;;;
 [salon];;;;;
+SetBG(House);;;;;
 SetChoices4;;;;;
-Choice : (partir);Choice : (aller dans la chambre);Choice : (aller dans la cuisine);Choice : (aller  dans le jardin);;
-PlayerSpeak : Hop !;Fade;Fade;Fade;;
+Choice : (leave);Choice : (go into the bedroom);Choice : (go into the kitchen);Choice : (go into the garden);;
+PlayerSpeak : Hop!;Fade;Fade;Fade;;
 Leave;Node=>chambre;Node=>cuisine;Node=>jardin;;
 ;;;;;
 ;;;;;
 [cuisine];;;;;
 SetChoices2;;;;;
-Choice : (retourner salon) (partir);Choice : (regarder garde manger) (loot);;;;
+Choice : (go back to the living room) (leave);Choice : (check the pantry) (loot);;;;
 Fade;LootFood;;;;
 Node=>salon;Node=>cuisine;;;;
 ;;;;;
 [jardin];;;;;
+SetBG(Forest);;;;;
 CheckDay;;;;;
-Narrator : Le jardin est ensoleillé et calme. Quelques oiseaux chantent.;Narrator : La nuit est douce et calme. On entend le hululement d'une chouette.;;;;
+Narrator : The garden is peaceful as always. Over the distant sound of the sea, a few seagulls cry out. Sunlight is gently warming CAPITAINE up.;Narrator : The night is quiet and mild. The only sounds breaking the silence are the surrounding hum of crickets, and the hooting of an owl nearby.;;;;
 Node=>choix jardin;Node=>choix jardin;;;;
 ;;;;;
 [choix jardin];;;;;
 SetChoices2;;;;;
-Choice : (retourner salon)(partir);Choice : (observer le jardin);;;;
+Choice : (go back to the living room)(leave);Choice : (watch the garden);;;;
 Fade;Node=>jardin;;;;
 Node=>salon;;;;;

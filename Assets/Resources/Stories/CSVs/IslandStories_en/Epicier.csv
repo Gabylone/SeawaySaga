@@ -1,26 +1,27 @@
 Nom histoire;Fréquence %;Sprite ID;;;;;;;;;;;
 Epicier;1,69;1;;;;;;;;;;;
-Narrator : The island is quite vast, you don’t see the end of it. Yet, it seems totally empty.;;;;;;;;;;;;;
+Narrator : The island is so vast you don’t see the end of it. And yet, it seems completely empty.;;;;;;;;;;;;;
 CheckQuest=>debut;;;;;;;;;;;;;
 [debut];;;;;;;;;;;;;
-Narrator : On the beach : « A boire et à manger » is written on a wooden plannel;;;;;;;;;;;;;
+Narrator : On the beach : « Food & drinks » is written on a wooden sign.;;;;;;;;;;;;;
 SetChoices2;;;;;;;;;;;;;
-Choice : (partir);Choice : (follow pannel direction);;;;;;;;;;;;
+Choice : (leave);Choice : (follow the sign);;;;;;;;;;;;
 Leave;Fade;;;;;;;;;;;;
 ;Node=>marchand;;;;;;;;;;;;
 ;;;;;;;;;;;;;
 ;;;;;;;;;;;;;
 ;;;;;;;;;;;;;
 [marchand];;;;;;;;;;;;;
+SetBG(House);;;;;;;;;;;;;
 NewCrew;;;;;;;;;;;;;
-OtherSpeak : Hey traveller !;Node=>mort;Node=>combat;;;;;;;;;;;
+OtherSpeak : Hey, traveller!;Node=>mort;Node=>combat;;;;;;;;;;;
 [choix];;;;;;[choix autre];;;;;;[combat];
-SetChoices4;;;;;;SetChoices3;;;;;;OtherSpeak : ?!?;
-Choice : (partir);Choice : Show me what you sell (trade);Choice : The treasure of NOMTRESOR ?;;Choice : (autre);;Choice : Surrender the food ! (attaquer) ;Choice : All is good for you ?(quete);;;Choice : (autre);;LaunchCombat;
-OtherSpeak : Bye  bye !;TradeFood;RandomPercent20;;Node=>choix autre;;Node=>combat;RandomPercent65;;;Node=>choix;;RemoveKarma;
-Leave;Node=>choix;OtherSpeak : Only pirates from the DIRECTIONTOFORMULA are interrested;OtherSpeak : I haven’t heard about it;;;;OtherSpeak : You know what they say;NewQuest=>choix;;;;[mort];
-;;Node=>choix;Node=>choix;;;;OtherSpeak : The bigger the laugh, the bigger the belly;;;;;PlayerSpeak : We killed the farmer !;
+SetChoices4;;;;;;SetChoices4;;;;;;OtherSpeak : Why?!;
+Choice : (leave);Choice : Show me what you sell. (trade);Choice : The treasure of NOMTRESOR?;;Choice : (other);;Choice : Give us the food! (attack) ;Choice : Is everything ok? (quest);;Choice : Tell me about the ocean !;;Choice : (other);LaunchCombat;
+OtherSpeak : Bye bye !;TradeFood;RandomPercent20;;Node=>choix autre;;Node=>combat;RandomPercent65;;RandomRange2;;Node=>choix;RemoveKarma;
+Leave;Node=>choix;OtherSpeak : Only pirates from the DIRECTIONTOFORMULA are interested. You should go there too!;OtherSpeak : I haven’t heard about it.;;;;OtherSpeak : You know what they say...;NewQuest=>choix;GiveTip;OtherSpeak : I’d prefer we talk business only;;[mort];
+;;Node=>choix;Node=>choix;;;;OtherSpeak : The bigger the laugh, the bigger the belly!;;Node=>choix;Node=>choix;;PlayerSpeak : We killed him! It wasn't too hard.;
 ;;;;;;;Node=>choix;;;;;SetChoices2;
-;;;;;;;;;;;;Choice : (partir);Choice : (search the farm)
+;;;;;;;;;;;;Choice : (leave);Choice : (search the farm)
 ;;;;;;;;;;;;Leave;LootFood
 ;;;;;;;;;;;;;Leave

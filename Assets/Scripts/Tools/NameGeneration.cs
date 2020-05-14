@@ -44,33 +44,47 @@ public class NameGeneration : MonoBehaviour {
 	public static string CheckForKeyWords ( string text ) {
 
 		if ( text.Contains ("CAPITAINE") ) {
-			text = text.Replace ( "CAPITAINE" , Crews.playerCrew.captain.MemberName );
-		}
+			text = text.Replace ( "CAPITAINE" , "<i>" + Crews.playerCrew.captain.MemberName + "</i>");
+
+        }
 
 		if ( text.Contains ("OTHERNAME") ) {
-			text = text.Replace ( "OTHERNAME" , Crews.enemyCrew.captain.MemberName );
-		}
+			text = text.Replace ("OTHERNAME", "<i>" + Crews.enemyCrew.captain.MemberName + "</i>");
+        }
 
 		if ( text.Contains ("NOMBATEAU") ) {
-			text = text.Replace ( "NOMBATEAU" , Boats.playerBoatInfo.Name);
-		}
+			text = text.Replace ("NOMBATEAU", "<i>" + Boats.Instance.playerBoatInfo.Name + "</i>");
+        }
 
 		if ( text.Contains ("DIRECTIONTOFORMULA") ) {
-			text = text.Replace ( "DIRECTIONTOFORMULA" , FormulaManager.Instance.getDirectionToFormula () );
-		}
+			text = text.Replace ("DIRECTIONTOFORMULA", "<b>" + FormulaManager.Instance.getDirectionToFormula() + "</b>");
+        }
+
+        if (text.Contains("NEXTTIME"))
+        {
+            if (TimeManager.Instance.dayState == TimeManager.DayState.Day)
+            {
+                text = text.Replace("NEXTTIME", "<i>" + "the night" + " </i>");
+
+            }
+            else
+            {
+                text = text.Replace("NEXTTIME", "<i>" + "the morning" + " </i>");
+            }
+        }
 
         if (text.Contains("NOMTRESOR"))
         {
-            text = text.Replace("NOMTRESOR", MapGenerator.mapParameters.mapName);
+            text = text.Replace("NOMTRESOR", "<i>" + MapGenerator.Instance.treasureName + " </i>");
         }
 
         if ( text.Contains ("BOUNTY") ) {
-			text = text.Replace ( "BOUNTY" , Karma.Instance.bounty.ToString () );
-		}
+            text = text.Replace("BOUNTY", "<i>" + Karma.Instance.bounty.ToString() + " </i>");
+        }
 
 		if ( text.Contains ("FORMULA") ) {
 
-			Formula formula = FormulaManager.Instance.formulas.Find(x=>x.coords == Boats.playerBoatInfo.coords);
+			Formula formula = FormulaManager.Instance.formulas.Find(x=>x.coords == Boats.Instance.playerBoatInfo.coords);
 
 			if ( formula.found == false ) {
 				if ( onDiscoverFormula != null ) {
@@ -80,15 +94,15 @@ public class NameGeneration : MonoBehaviour {
 
 			formula.found = true;
 
-			text = text.Replace ( "FORMULA" , formula.name.ToUpper() );
-		}
+            text = text.Replace("FORMULA", "<i>" + formula.name.ToUpper() + " </i>");
+        }
 
 		if ( text.Contains ("RANDOMFEMALENAME") ) {
-			text = text.Replace ( "RANDOMFEMALENAME" , CrewCreator.Instance.femaleNames[Random.Range (0,CrewCreator.Instance.femaleNames.Length)]);
+			text = text.Replace ( "RANDOMFEMALENAME" , CrewCreator.Instance.womanNames[Random.Range (0,CrewCreator.Instance.womanNames.Length)]);
 		}
 
 		if ( text.Contains ("RANDOMMALENAME") ) {
-			text = text.Replace ( "RANDOMMALENAME" , CrewCreator.Instance.maleNames[Random.Range (0,CrewCreator.Instance.maleNames.Length)]);
+			text = text.Replace ( "RANDOMMALENAME" , CrewCreator.Instance.manNames[Random.Range (0,CrewCreator.Instance.manNames.Length)]);
 		}
 
 		return text;

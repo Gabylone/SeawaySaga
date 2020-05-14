@@ -10,7 +10,7 @@ public class Skill_PledgeOfFeast : Skill {
 	{
 		base.OnSetTarget ();
 
-		string str = "Ce soir, " + fighter.TargetFighter.crewMember.MemberName + " c'est double ration pour toi !";
+		string str = "Tonight, " + fighter.TargetFighter.crewMember.MemberName + ", I'm opening a new bottle for you !";
 		fighter.Speak (str);
 
 	}

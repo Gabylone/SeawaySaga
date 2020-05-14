@@ -19,8 +19,6 @@ public class PlayerBoat : Boat {
 
 		WorldTouch.onPointerExit += HandleOnPointerExit;
 
-		StoryLauncher.Instance.onEndStory += EndMovenent;
-
 		NavigationManager.Instance.EnterNewChunk += HandleChunkEvent;
 
 	}
@@ -61,7 +59,10 @@ public class PlayerBoat : Boat {
 
         SetTargetPos(transform.position);
 
-        agent.isStopped = true;
+        if (agent.isOnNavMesh)
+        {
+            agent.isStopped = true;
+        }
 
         moving = false;
 
@@ -72,7 +73,7 @@ public class PlayerBoat : Boat {
     {
         base.UpdatePositionOnScreen();
 
-        GetTransform.position = NavigationManager.Instance.GetOppositeCornerPosition(Boats.playerBoatInfo.currentDirection);
+        GetTransform.position = NavigationManager.Instance.GetOppositeCornerPosition(Boats.Instance.playerBoatInfo.currentDirection);
 
         SetTargetPos( GetTransform.position );
     }

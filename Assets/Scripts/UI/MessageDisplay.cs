@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+using DG.Tweening;
+
 public class MessageDisplay : MonoBehaviour {
 
 	public static MessageDisplay Instance;
@@ -12,6 +14,8 @@ public class MessageDisplay : MonoBehaviour {
 
 	[SerializeField]
 	private GameObject group;
+
+    public CanvasGroup canvasGroup;
 
 	public delegate void OnValidate ();
 	public static OnValidate onValidate;
@@ -24,7 +28,7 @@ public class MessageDisplay : MonoBehaviour {
 
     private void Start()
     {
-        Close();
+        CloseDelay();
     }
 
     public void Show (string str) {
@@ -33,7 +37,11 @@ public class MessageDisplay : MonoBehaviour {
 
 		uiText.text = str;
 
-	}
+        canvasGroup.alpha = 0f;
+        canvasGroup.DOFade(1f, 0.4f);
+
+
+    }
 
 	public void Validate () {
 
@@ -52,7 +60,14 @@ public class MessageDisplay : MonoBehaviour {
 
 	void Close ()
 	{
-		group.SetActive (false);
+        canvasGroup.DOFade(0f, 0.4f);
+        Invoke("CloseDelay", 0.4f);
+        
 	}
+
+    void CloseDelay()
+    {
+        group.SetActive(false);
+    }
 
 }

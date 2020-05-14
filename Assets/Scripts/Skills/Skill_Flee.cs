@@ -23,7 +23,7 @@ public class Skill_Flee : Skill {
 			fighter.escaped = true;
 			fighter.EndTurn ();
 
-			string str = "TAYO !";
+			string str = "See you, sucker !";
 			fighter.Speak (str);
 
 			fighter.Fade ();
@@ -31,12 +31,11 @@ public class Skill_Flee : Skill {
 
 			CombatManager.Instance.DeleteFighter (fighter);
 			CombatManager.Instance.NextTurn ();
-			print ("SKIPPING TURN : Fleeing");
 
 		} else if ( DiceManager.Instance.HighestResult == 1 ) {
 
 
-			fighter.combatFeedback.Display("Fuite !", Color.magenta);
+			fighter.combatFeedback.Display("Fled !", Color.magenta);
 			fighter.AddStatus (Fighter.Status.KnockedOut);
 
 			fighter.crewMember.energy = 0;
@@ -46,7 +45,7 @@ public class Skill_Flee : Skill {
 
 		} else {
 
-			fighter.combatFeedback.Display("Raté !",Color.red);
+			fighter.combatFeedback.Display("Miss !",Color.red);
 
 			EndSkill ();
 

@@ -158,10 +158,6 @@ public class DisplayItem_Loot : DisplayItem {
             itemImage.enabled = true;
             itemImage.sprite = LootManager.Instance.getItemSprite(value.category, value.spriteID);
 
-            /*if (value.spriteID < 0) {
-				itemImage.enabled = false;
-			} else {
-			}*/
 
 		}
 	}

@@ -8,7 +8,7 @@ public class Skill_Cuss : Skill {
 	{
 		base.OnSetTarget ();
 
-		string str = "Tu puerais pas un peu toi ?";
+		string str = "What's that smell ? Is this YOU ?!";
 		fighter.Speak (str);
 
 	}

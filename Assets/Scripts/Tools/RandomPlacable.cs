@@ -6,11 +6,6 @@ using DG.Tweening;
 
 public class RandomPlacable : MonoBehaviour
 {
-    public float minX = 0f;
-    public float maxX = 0f;
-    public float maxY = 0f;
-    public float minY = 0f;
-
     public float chanceAppearing = 15f;
 
     public float disappearDelay = 0.3f;
@@ -78,8 +73,8 @@ public class RandomPlacable : MonoBehaviour
 
     void ResetPosition()
     {
-        float x = Random.Range(minX, maxX);
-        float y = Random.Range(minY, maxY);
+        float x = Random.Range(NavigationManager.Instance.minX, NavigationManager.Instance.maxX);
+        float y = Random.Range(NavigationManager.Instance.minY, NavigationManager.Instance.maxY);
 
         transform.position = new Vector3(x, 0f, y);
     }

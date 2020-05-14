@@ -57,7 +57,9 @@ public class StoryLauncher : MonoBehaviour {
 			return;
 
         CurrentStorySource = source;
+
         StoryReader.Instance.CurrentStoryManager = storyManager;
+        StoryReader.Instance.CurrentStoryManager.hasBeenPlayed = true;
         StoryReader.Instance.Reset();
 
         CamBehavior.Instance.Zoom();
@@ -66,72 +68,87 @@ public class StoryLauncher : MonoBehaviour {
         InGameMenu.Instance.Hide();
 
         Invoke("DisplayBackground", 1f);
+
+        playingStory = true;
     }
 
     void DisplayBackground()
     {
-        InGameBackGround.Instance.UpdateStartSprite();
+        Transitions.Instance.ScreenTransition.FadeIn(0.5f);
 
         Invoke("StartStory", 1f);
     }
 
     void StartStory()
     {
-        Transitions.Instance.ActionTransition.FadeIn(0.5f);
+        QuestManager.Instance.metPersonOnIsland = false;
+
+        InGameBackGround.Instance.ShowBackground();
+        Transitions.Instance.ScreenTransition.FadeOut(0.5f);
+
+        playingStory = true;
 
         if (onPlayStory != null)
             onPlayStory();
 
-        playingStory = true;
         StoryReader.Instance.UpdateStory();
     }
 
-	public void EndStory () {
+    public void EndStory()
+    {
 
-		switch (CurrentStorySource) {
-		case StorySource.none:
-			// kek
-			break;
-		case StorySource.island:
-			Chunk.currentChunk.state = ChunkState.VisitedIsland;
-            SaveManager.Instance.GameData.progression++;
-			break;
+        switch (CurrentStorySource)
+        {
+            case StorySource.none:
+                // kek
+                break;
+            case StorySource.island:
+                Chunk.currentChunk.state = ChunkState.VisitedIsland;
+                SaveManager.Instance.GameData.progression++;
+                break;
             case StorySource.boat:
                 //
                 Boats.Instance.currentEnemyBoat.LeavePlayer();
                 break;
-		default:
-			break;
-		}
+            default:
+                break;
+        }
 
+        // hides crew when leaving ISLAND AND STORY
+        if (StoryReader.Instance.CurrentStoryHandler.storyType != StoryType.Quest)
+            Crews.enemyCrew.UpdateCrew(Crews.PlacingType.Hidden);
 
+        if (StoryReader.Instance.currentStoryLayer > 0)
+        {
+            StoryReader.Instance.FallBackToPreviousStory();
+            return;
+        }
 
-		// hides crew when leaving ISLAND AND STORY
-		if ( StoryReader.Instance.CurrentStoryHandler.storyType != StoryType.Quest )
-			Crews.enemyCrew.UpdateCrew (Crews.PlacingType.Hidden);
+        Chunk.currentChunk.Save(Coords.current);
 
-		if ( StoryReader.Instance.currentStoryLayer > 0 ) {
-			StoryReader.Instance.FallBackToPreviousStory ();
-			return;
-		}
+        Invoke("EndStoryDelay", 0.5f);
 
-		playingStory = false;
+        Transitions.Instance.ScreenTransition.FadeIn( 0.5f );
 
-		Transitions.Instance.ActionTransition.FadeOut (0.5f);
+    }
 
-		// place captain
-		Crews.playerCrew.captain.Icon.MoveToPoint (Crews.PlacingType.Map);
+    void EndStoryDelay()
+    {
+        Transitions.Instance.ScreenTransition.FadeOut(0.5f);
 
+        playingStory = false;
 
+        // place captain
+        Crews.playerCrew.captain.Icon.MoveToPoint(Crews.PlacingType.Map);
 
-		if (onEndStory != null)
-			onEndStory ();
+        InGameBackGround.Instance.Hide();
 
-		Chunk.currentChunk.Save (Coords.current);
+        if (onEndStory != null)
+            onEndStory();
 
-	}
+    }
 
-	public bool PlayingStory {
+    public bool PlayingStory {
 		get {
 			return playingStory;
 		}

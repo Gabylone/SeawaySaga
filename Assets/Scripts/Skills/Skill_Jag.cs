@@ -13,14 +13,9 @@ public class Skill_Jag : Skill {
 
 		CrewMember member = fighter.TargetFighter.crewMember;
 
-		if (member.MemberID.Male) {
-			string str = "Tiens bon mon petit " + member.MemberName;
-			fighter.Speak (str);
-		} else {
-			string str = "Tiens bon ma petite " + member.MemberName;
-			fighter.Speak (str);
-		}
-	}
+        string str = "Take this, " + member.MemberName + " you'll feel better, I promise";
+        fighter.Speak(str);
+    }
 
 	public override void ApplyEffect ()
 	{

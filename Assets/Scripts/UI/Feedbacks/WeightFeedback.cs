@@ -22,6 +22,6 @@ public class WeightFeedback : InfoFeedbacks {
 
 	void HandleOnTooMuchWeight ()
 	{
-		Print ("Cargo plein", Color.red);
+		Print ("Full Cargo", Color.red);
 	}
 }

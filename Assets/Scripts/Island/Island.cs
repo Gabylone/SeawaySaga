@@ -58,7 +58,7 @@ public class Island : RandomPlacable {
 
 		WorldTouch.onPointerExit += HandleOnTouchWorld;
 
-		UpdatePositionOnScreen (Boats.playerBoatInfo.coords);
+		UpdatePositionOnScreen (Boats.Instance.playerBoatInfo.coords);
 	}
 
 	void HandleOnSwipe (Directions direction)
@@ -76,7 +76,7 @@ public class Island : RandomPlacable {
     {
         base.HandleOnEnterNewChunk();
 
-        UpdatePositionOnScreen (Boats.playerBoatInfo.coords);
+        UpdatePositionOnScreen (Boats.Instance.playerBoatInfo.coords);
 
 	}
 

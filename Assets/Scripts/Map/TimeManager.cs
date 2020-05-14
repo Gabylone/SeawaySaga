@@ -17,14 +17,20 @@ public class TimeManager : MonoBehaviour {
 	public int rainDuration = 10;
 	private int rainRate = 0;
 
-	public Image nightImage;
+    public float minMaskScale = 6f;
+    public float maxMaskScale = 10f;
+
 
 	public int nightStartTime = 21;
 	public int nightEndTime = 4;
 
+	public Image nightImage;
 	public Image rainImage;
 
-	public DayState dayState = DayState.Day;
+    public GameObject nightMask_Group;
+    public GameObject rainMask_Group;
+
+    public DayState dayState = DayState.Day;
 	public bool raining = false;
 
 	public enum DayState {
@@ -48,9 +54,19 @@ public class TimeManager : MonoBehaviour {
 		NavigationManager.Instance.EnterNewChunk += NextHour;
 
 		UpdateRainRate ();
+
+        Invoke("UpdateWeather",0.001f);
 	}
 
-	public void Reset () {
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            NextHour();
+        }
+    }
+
+    public void Reset () {
 		timeOfDay = startTime;
 	}
 
@@ -106,27 +122,28 @@ public class TimeManager : MonoBehaviour {
 
 	IEnumerator GoToWeather ( DayState targetWeather ) {
 
-		//		float dur = Transitions.Instance.ScreenTransition.Duration;
-		float dur = 0.1f;
+        Transitions.Instance.ScreenTransition.FadeIn(0.5f);
 
-		int l = 0;
-		while ( dayState != targetWeather ) {
+		yield return new WaitForSeconds (0.5f);
 
-			NextHour ();
+        int l = 0;
+        while (dayState != targetWeather)
+        {
 
-			yield return new WaitForSeconds (dur);
+            NextHour();
 
-			++l;
+            ++l;
 
-			if (l == 24) {
-				Debug.LogError ("reach limit weather");
-				break;
-			}
-		}
+            if (l == 24)
+            {
+                Debug.LogError("reach limit weather");
+                break;
+            }
+        }
 
-		yield return new WaitForSeconds (0.01f);
+        Transitions.Instance.ScreenTransition.FadeOut(0.5f);
 
-		StoryReader.Instance.NextCell ();
+        StoryReader.Instance.NextCell ();
 		StoryReader.Instance.UpdateStory ();
 	}
 
@@ -217,7 +234,6 @@ public class TimeManager : MonoBehaviour {
 
 		UpdateWeather ();
 
-
 		if (onSetTimeOfDay != null)
 			onSetTimeOfDay (DayState.Day);
 
@@ -257,7 +273,6 @@ public class TimeManager : MonoBehaviour {
 		SaveManager.Instance.GameData.timeOfDay = timeOfDay;
 
 		SaveManager.Instance.GameData.currentRain = currentRain;
-
 	}
 
 	public void Load () {
@@ -266,12 +281,39 @@ public class TimeManager : MonoBehaviour {
 		dayState = SaveManager.Instance.GameData.night ? DayState.Night : DayState.Day;
 		timeOfDay = SaveManager.Instance.GameData.timeOfDay;
 		currentRain = SaveManager.Instance.GameData.currentRain;
+	}
 
-		UpdateWeather ();
-	}
 	void UpdateWeather() {
-		nightImage.gameObject.SetActive (dayState == DayState.Night);
-		//rainImage.gameObject.SetActive (raining);
-	}
+
+        // set mask scales
+        int range = Boats.Instance.playerBoatInfo.shipRange;
+        float lerp = range - 1 / 3;
+        Vector3 scale = Vector3.one * Mathf.Lerp(minMaskScale, minMaskScale, lerp);
+        scale.y = nightMask_Group.transform.localScale.y;
+        nightMask_Group.transform.localScale = scale;
+        rainMask_Group.transform.localScale = scale;
+
+        if (dayState == DayState.Night)
+        {
+            nightImage.gameObject.SetActive(true);
+            nightMask_Group.SetActive(true);
+        }
+        else
+        {
+            nightImage.gameObject.SetActive(false);
+            nightMask_Group.SetActive(false);
+        }
+
+        if (raining)
+        {
+            rainImage.gameObject.SetActive(true);
+            rainMask_Group.SetActive(true);
+        }
+        else
+        {
+            rainImage.gameObject.SetActive(false);
+            rainMask_Group.SetActive(false);
+        }
+    }
 	#endregion
 }

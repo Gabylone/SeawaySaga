@@ -1,47 +1,48 @@
 Nom;Fréquence %;Sprite ID;;;;;;;;;
 Naufragé;6,78;0;;;;;;;;;
 [debut];;;;;;;;;;;
-Narrator : The island is immense, and a gigantic collumn of smoke raises of top of it.;;;;;;;;;;;
+SetBG(Island);;;;;;;;;;;
+Narrator : The island is huge and a tall column of smoke is rising from its shore.;;;;;;;;;;;
 SetChoices2;;;;;;;;;;;
-Choice : (leave) (partir);Choice : (accost on land);;;;;;;;;;
-PlayerSpeak : We’ve got nothing to do here;Fade;;;;;;;;;;
+Choice : (leave);Choice : (accost on land);;;;;;;;;;
+PlayerSpeak : There's nothing to do here.;Fade;;;;;;;;;;
 Leave;Node=>naufragé;;;;;;;;;;
-;AddToInventory;;;;;;;;;;
+;;;;;;;;;;;
 ;;;;;;;;;;;
 [naufragé];;;;;;;;;;;
 NewCrew1;;;;;;;;;;;
-RandomPercent75;;Node=>plage déserte;OtherSpeak : YOU AGAIN ?!;;;;;;;;
-Narrator : A castaway is standing on the shore. He waves at you.;Narrator : A small child is sitting on the shore, skin n’ bones.;;OtherSpeak : I beg you, leave me alive;;;;;;;;
-PlayerSpeak : Hey there.;OtherSpeak : I’ve been abandonned on this island…;;Node=>combat dialogue;;;;;;;;
-OtherSpeak : Three years i’ve been stranded on this island !;OtherSpeak : My parents didn’t like my behavior.;;;;;;;;;;
-OtherSpeak : Take me with you, I beg you !;Node=>dialogue enfant;;;;;;;;;;
+RandomPercent75;;Node=>plage déserte;OtherSpeak : YOU AGAIN?!;;;;;;;;
+Narrator : A castaway is standing on the shore. He waves at CAPITAINE as they approach.;Narrator : A small child is sitting on the shore, skin n’ bones.;;OtherSpeak : I beg you, leave me alone! I have NOTHING to give you.;;;;;;;;
+PlayerSpeak : Hey there.;OtherSpeak : I’ve been abandoned on this island…;;Node=>combat dialogue;;;;;;;;
+OtherSpeak : Three years I’ve been stranded on this island!;OtherSpeak : My parents didn’t like my behavior.;;;;;;;;;;
+OtherSpeak : Take me with you, I beg you!;Node=>dialogue enfant;;;;;;;;;;
 Node=>dialogue;;;;;;;;;;;
 ;;;;;;;;;[dialogue enfant];;
 [dialogue];;;;;;;;;SetChoices2;;
-SetChoices3;;;;;;;;;Choice : Climb on ship, sailor (membre);;Choice : I’ll be on my way (partir)
-Choice : Climb aboard! (membre);Choice : Give us everything or you’re done ! (attaquer);;Choice : Sorry pal’, no room on board;;;;;;OtherSpeak : I don’t know if I can trust you…;;OtherSpeak : You heartless bastard
-Node=>ajouté à l'équipage;RandomRange2;;RandomRange3;;;;;;OtherSpeak :  I need to know if I’ll keep my child sould;;Leave
-<;OtherSpeak : But I have NOTHING;RemoveKarma;OtherSpeak : Give me at least something to get my teeth into;;;Node=>combat naufragé;OtherSpeak : I understand;;OtherSpeak : I’ll join only if there’s a teddy bear on deck;;
+SetChoices3;;;;;;;;;Choice : Climb on ship, sailor! (member);;Choice : We have places to be lads! Anchors aweigh! (leave)
+Choice : Climb aboard! (member);Choice : Give us everything or you’re done! (attack);;Choice : Sorry pal’, no room on board.;;;;;;OtherSpeak : I'm afraid of storms and travelling on a big boat like this.;;OtherSpeak : You heartless bastard!
+Node=>ajouté à l'équipage;RandomRange2;;RandomRange3;;;;;;OtherSpeak : I need something soft and cuddly to hold onto.;;Leave
+<;OtherSpeak : But... I told you I've been stranded here... I have NOTHING of value!;RemoveKarma;OtherSpeak : Give me at least something to sink my teeth into! Please!;;;Node=>combat naufragé;OtherSpeak : I understand.;;OtherSpeak : I’ll only join if you have a teddy bear on board.;;
 ;Node=>combat dialogue;Node=>combat naufragé;SetChoices2;;;;Leave;;SetChoices2;;
-;;;Choice : Here;;Choice : You keep eating coconuts alright ?;;;;Choice : (give teddybear);;Choice : I’ll be on my way (partir)
-;;;CheckInInventory/Food;;OtherSpeak : You’re heartless !;;;;CheckInInventory<Peluche>/Misc;;OtherSpeak : You heartless bastard
-;;;RemoveFromInventory/Food;;RemoveKarma;;;;OtherSpeak : Thanks good sur !;PlayerSpeak : Don’t have any, sorry;Leave
-;;;OtherSpeak : Thanks;;Node=>plage déserte;;;;OtherSpeak : Here I am !;OtherSpeak : …;
+;;;Choice : Here...;;Choice : Ye keep eating coconuts alright? They be good for your health.;;;;Choice : (give teddybear);;Choice : We have places to be lads! Anchors aweigh! (leave)
+;;;CheckInInventory/Food;;OtherSpeak : You’re heartless!;;;;CheckInInventory<Peluche>/Misc;;OtherSpeak : You heartless bastard!
+;;;RemoveFromInventory/Food;;RemoveKarma;;;;OtherSpeak : Thanks good sir.;PlayerSpeak : Don’t have any, sorry.;Leave
+;;;OtherSpeak : Thank you so much!;;Node=>plage déserte;;;;OtherSpeak : Here I am!;OtherSpeak : …;
 ;;;[switch manger];;;;;;RandomRange2;Leave;
-;;;AddKarma;HideOther;;;;;AddMember;OtherSpeak : By the way, while waiting :;
-;;;Switch=>switch manger;Node=>debut;;;;;Node=>naufragé;OtherSpeak : I made this wonderful noodle neckless;
+;;;AddKarma;HideOther;;;;;AddMember;OtherSpeak : By the way, while waiting:;
+;;;Switch=>switch manger;Node=>debut;;;;;Node=>naufragé;OtherSpeak : I made this pasta necklace, I want you to have it!;
 [ajouté à l'équipage];;;HideOther;;;;;;;AddToInventory<Collier de nouilles>/Misc;
 OtherSpeak : Aye, aye, sir !;;;Node=>debut;;;;;;;SetChoices2;
-AddMember;;;;;;;;;;Choice : Thanks (membre);Choice : I changed my mind
+AddMember;;;;;;;;;;Choice : Thanks (member);Choice : I changed my mind.
 Node=>plage déserte;;;;;;;;;;AddMember;OtherSpeak : Ah...
 ;;;;;;;;;;Node=>naufragé;Node=>naufragé
 ;;;;;;;;;;;
 [combat dialogue];;;;;;;;;;;
 SetChoices2;;;;;;;;;;;
-Choice : Buddy, you’re in luck, we’re leaving;Choice : Who cares ? (attaquer);;;;;;;;;;
+Choice : Buddy, you’re in luck, we’re leaving;Choice : Who cares? (attack);;;;;;;;;;
 OtherSpeak : …;RemoveKarma;;;;;;;;;;
 Leave;RandomRange2;;;;;;;;;;
-;OtherSpeak : Here you go…;OtherSpeak : Faudra passer sur mon cadavre ! ;;;;;;;;;
+;OtherSpeak : Here you go…;OtherSpeak : Over my dead body! ;;;;;;;;;
 ;LootMisc;Node=>combat naufragé;;;;;;;;;
 ;HideOther;;;;;;;;;;
 ;Node=>debut;;;;;;;;;;
@@ -62,8 +63,8 @@ Narrator : The shore is empty;;;;;;;;;;;
 CheckQuest=>choix plage;;;;;;;;;;;
 [choix plage];;;;;;;;;;;
 SetChoices4;;;;;;;;;;;
-Choice : Let’s weight anchor !(partir);Choice : Let’s set camp here (dormir);Choice : (search for food) (loot);;Choice : (Retourner voir naufragé);;;;;;;
+Choice : Let’s weight anchor! (leave);Choice : Let’s set camp here. We’ll sleep NEXTTIME (sleep);Choice : (search for food) (loot);;Choice : (Go back to the castaway);;;;;;;
 Leave;ChangeTimeOfDay;RandomPercent65;;Node=>naufragé;;;;;;;
-;Narrator : The boat is anchored on the shore. The morning air is fresh and light.;PlayerSpeak : Nothing to get my teeths into.;PlayerSpeak : Bingo !;;;;;;;;
+;Narrator : The boat is anchored on the shore. The morning air is refreshing and light.;PlayerSpeak : Nothing to sink my teeth into.;PlayerSpeak : Bingo!;;;;;;;;
 ;Node=>choix plage;Node=>choix plage;LootFood;;;;;;;;
 ;;;Node=>choix plage;;;;;;;;

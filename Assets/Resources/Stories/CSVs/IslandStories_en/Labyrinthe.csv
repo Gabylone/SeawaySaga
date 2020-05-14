@@ -1,15 +1,16 @@
 Nom histoire;Fréquence %;Sprite ID;;;;;;
 Labyrinthe;0;0;;;;;;
-Narrator : L'ile est couverte de sapins à perte de vue. On ne voit pas à quelques mètres derrière les arbres.;;;;;;;;
+Narrator : As far as the eye can see, the island is covered with pine trees. The trees are so close to each other it’s hard to see what’s ahead.;;;;;;;;
 [choix bateau];;;;;[description de rien];;;
 SetChoices2;;;;;RandomRedoRange3;;;
-Choice : (partir);Choice : (entrer dans la foret);;;;Narrator : Le feuillage des arbres s’épaissit avec la brume. On ne voit plus rien a un mètre. C'est un vrai labyrinthe.;Narrator : CAPITAINE a déjà vu ces rochers, ces racines et ces sapins. On tourne en rond. C'est un vrai labyrinthe.;Narrator : Un immense falaise bloque le chemin. Depuis son sommet, CAPITAINE voit des sapins a perte de vue. L’horizon ne presente pas un bout d ocean. C'est un vrai labyrinthe.;
+Choice : (leave);Choice : (go into the forest);;;;Narrator : The leaves in the trees and the fog are getting thicker. It's extremely hard to see anything, a real labyrinth.;Narrator : CAPITAINE remembers these rocks, roots and pine trees. They've seen them 5 times by now. The crew is going in circles, it’s a real labyrinth.;Narrator : A drop prevents the crew from going further. From the top of the cliff, pine trees as far as CAPITAINE can see. Neither NOMBATEAU or the ocean can be spotted on the horizon. A real labyrinth.;
 Leave;Node=>entrée forêt;;;;Node=>choix 1;Node=>choix 1;Node=>choix 1;
 ;;;;;;;;
 [entrée forêt];;;;;;;;
-CheckQuest=>choix entrée forêt;PlayerSpeak : Il est hors de question,;;;;;;;
-Narrator :  NOMBATEAU s'eloigne de plus en plus, on ne voit que son mat derrirère les immenses arbres.;PlayerSpeak : Que je remette les pieds dans ce labyrinthe.;;;;;;;
-[choix entrée forêt];Leave;;;;;;;
+SetBG(Forest);PlayerSpeak : It’s out of the question.;;;;;;;
+CheckQuest=>choix entrée forêt;PlayerSpeak : I’m not stepping into this labyrinth ever again.;;;;;;;
+Narrator :  CAPITAINE is getting further away from NOMBATEAU, the top of its tallest mast barely visible now behind the massive trees.;Leave;;;;;;;
+[choix entrée forêt];;;;;;;;
 SetChoices2;;;;;;;;
 Choice : (rebrousser chemin);Choice : (continuer vers la forêt);;;;;;;
 Fade;Node=>choix 1;;;;;;;
@@ -21,9 +22,9 @@ Node=>choix bateau;;;;;;;;
 ;;;;;;;;
 [choix 1];;;;;;;;
 ChangeTimeOfDay;;;;[lieu 1];;;;
-Narrator :  Un immense arbre tordu fait de l’ombre à un gros rocher mousseux.;;;;RandomPercent80;;;;
+Narrator :  The crew reaches a crossing. Three paths are offered to CAPITAINE, separated by a dead twisted tree and a big mossy rock.;;;;RandomPercent70;;;;
 SetChoices3;;;;Node=>description de rien;RandomRange4;;;
-Choice : (contourner le rocher);Choice : (prendre la direction de l’arbre);Choice : (passer entre les deux);;;ChangeStory=>Bandits[arrivée bandits/choix 1];ChangeStory=>Manoir[debut/choix 1];ChangeStory=>Bois[milieu foret/choix 1];ChangeStory=>Ferme[debut/choix 1]
+Choice : (go around the rock);Choice : (take the tree’s direction);Choice : (pass between the two);;;ChangeStory=>Bandits[arrivée bandits/choix 1];ChangeStory=>Manoir[debut/choix 1];ChangeStory=>Bois[milieu foret/choix 1];ChangeStory=>Ferme[debut/choix 1]
 Node=>lieu 1;Node=>choix 2;Node=>lieu 1;;;;;;
 ;;;;;;;;
 ;;;;;;;;
@@ -31,42 +32,43 @@ Node=>lieu 1;Node=>choix 2;Node=>lieu 1;;;;;;
 ;;;;;;;;
 [choix 2];;;;;;;;
 Fade;;;;[lieu 2];;;;
-Narrator : Une cavité fend une falaise colossale. CAPITAINE entend un ruissellement au loin.;;;;RandomPercent80;;;;
+Narrator : A massive cliff is split in two in front of the crew. CAPITAINE can also faintly hear a water stream in the distance.;;;;RandomPercent70;;;;
 SetChoices3;;;;Node=>description de rien;RandomRange4;;;
-Choice : (suivre ruissellement);Choice : (grimper falaise);Choice : (entrer dans cavité);;;ChangeStory=>Bandits[arrivée bandits/choix 1];ChangeStory=>Manoir[debut/choix 1];ChangeStory=>Bois[milieu foret/choix 1];ChangeStory=>Ferme[debut/choix 1]
+Choice : (follow water stream);Choice : (climb the cliff);Choice : (get into the crack);;;ChangeStory=>Bandits[arrivée bandits/choix 1];ChangeStory=>Manoir[debut/choix 1];ChangeStory=>Bois[milieu foret/choix 1];ChangeStory=>Ferme[debut/choix 1]
 Node=>lieu 2;Node=>lieu 2;Node=>choix 3;;;;;;
 ;;;;;;;;
 ;;;;;;;;
 [choix 3];;;;[lieu 3];;;;
-Narrator : Un champs de blé s’étend devant CAPITAINE en sortant de la cavité. A l’est, d’imposantes cimes sapinesques.;;;;RandomPercent80;;;;
-Narrator : Une brume épaisse voile l’ouest.;;;;Node=>description de rien;RandomRange4;;;
+Narrator : After walking for what felt like hours, the crew finally steps outside of the crack. A wheat field stretches in front of them.;;;;RandomPercent70;;;;
+Narrator : The top of pine trees can be seen to the east. It's impossible to see what's to the west as a thick fog covers the area.;;;;Node=>description de rien;RandomRange4;;;
 SetChoices3;;;;;ChangeStory=>Bandits[arrivée bandits/choix 1];ChangeStory=>Manoir[debut/choix 1];ChangeStory=>Bois[milieu foret/choix 1];ChangeStory=>Ferme[debut/choix 1]
 Choice : (vers les cimes);Choice : (vers le brouillard);Choice : (traverser le champs);;;;;;
 Node=>lieu 3;Node=>choix 4;Node=>lieu 3;;;;;;
 ;;;;;;;;
 ;;;;;;;;
 [choix 4];;;;[lieu 4];;;;
-Narrator : La brume dévoile une clairière. Elle est traversée par une rivière et recouverte d’un tapis de feuille morte.;;;;RandomPercent80;;;;
+Narrator : La brume dévoile une clairière. Elle est traversée par une rivière et recouverte d’un tapis de feuille morte.;;;;RandomPercent70;;;;
 SetChoices3;;;;Node=>description de rien;RandomRange4;;;
-Choice : (descendre la rivière);Choice : (remonter la rivière);Choice : (traverser la rivière);;;ChangeStory=>Bandits[arrivée bandits/choix 1];ChangeStory=>Manoir[debut/choix 1];ChangeStory=>Bois[milieu foret/choix 1];ChangeStory=>Ferme[debut/choix 1]
+Choice : (to the trees);Choice : (to the fog);Choice : (walk through the field);;;ChangeStory=>Bandits[arrivée bandits/choix 1];ChangeStory=>Manoir[debut/choix 1];ChangeStory=>Bois[milieu foret/choix 1];ChangeStory=>Ferme[debut/choix 1]
 Node=>lieu 4;Node=>lieu 4;Node=>choix 5;;;;;;
 ;;;;;;;;
 ;;;;;;;;
 ;;;;;;;;
 [choix 5];;;;[lieu 5];;;;
-Narrator : Une plaine verdoyante s’étend à perte de vue. Elle est bordée, à l’est, par un marécage, et à l’ouest par une un gigantesque saule pleureur.;;;;RandomPercent80;;;;
+Narrator : A grassy plain stretches before the crew. Far to the distance to the east, CAPITAINE sees what appears to be a swamp, and to the west, a gigantic weeping willow.;;;;RandomPercent70;;;;
 SetChoices3;;;;Node=>description de rien;RandomRange4;;;
-Choice : (vers le saule);Choice : (vers le marécage);Choice : (traverser la plaine);;;ChangeStory=>Bandits[arrivée bandits/choix 1];ChangeStory=>Manoir[debut/choix 1];ChangeStory=>Bois[milieu foret/choix 1];ChangeStory=>Ferme[debut/choix 1]
+Choice : (to the weeping willow);Choice : (to the swamp);Choice : (walk through the plain);;;ChangeStory=>Bandits[arrivée bandits/choix 1];ChangeStory=>Manoir[debut/choix 1];ChangeStory=>Bois[milieu foret/choix 1];ChangeStory=>Ferme[debut/choix 1]
 Node=>lieu 5;Node=>fin;Node=>lieu 5;;;;;;
 ;;;;;;;;
 ;;;;;;;;
 ;;;;;;;;
 [fin];;;;;;;;
-Narrator : Au beau milieu du marécage, une petite grotte apparaît devant CAPITAINE.;;;;;;;;
+Narrator : In the middle of the swampy area, CAPITAINE finds a cave hidden between the roots of a big tree.;;;;;;;;
 SetChoices2;;;;;;;;
 Choice : (entrer);Choice : (continuer sa route);;;;;;;
-Fade;PlayerSpeak : A moi la mer !;;;;;;;
-PlayerSpeak : Quel immense butin !;Leave;;;;;;;
+Fade;PlayerSpeak : Back to the sea!;;;;;;;
+SetBG(Cave);Leave;;;;;;;
+PlayerSpeak : Sweet sweet loot!;;;;;;;;
 Loot;;;;;;;;
-PlayerSpeak : A moi la mer !;;;;;;;;
+PlayerSpeak : Back to the sea!;;;;;;;;
 Leave;;;;;;;;

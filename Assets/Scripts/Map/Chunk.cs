@@ -21,7 +21,7 @@ public class Chunk
 	public ChunkState state;
 
     // c'est ici que tout se passe
-    public IslandData[] islandDatas;
+    public IslandData[] islandDatas = new IslandData[0];
 
 	public Chunk () {
 		
@@ -58,18 +58,9 @@ public class Chunk
         return islandDatas[id];
     }
 
-	public IslandData IslandData {
-		get {   
-			return islandDatas[0];
-		}
-		set {
-			islandDatas[0] = value;
-		}
-	}
-
 	public static Chunk currentChunk {
 		get {
-			return chunks[Boats.playerBoatInfo.coords];
+			return chunks[Boats.Instance.playerBoatInfo.coords];
 		}
 	}
 

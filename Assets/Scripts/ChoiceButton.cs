@@ -30,6 +30,8 @@ public class ChoiceButton : MonoBehaviour
 
     public Image feedbackImage;
 
+    public int id = 0;
+
     public void Init(string str)
     {
         gameObject.SetActive(true);
@@ -43,8 +45,10 @@ public class ChoiceButton : MonoBehaviour
             str = str.Remove(str.Length - ChoiceManager.Instance.bubblePhrases[(int)type].Length);
         }
 
-        str = FitText(str);
+        //str = FitText(str);
+
         str = NameGeneration.CheckForKeyWords(str);
+                text.color = Color.black;
         text.text = str;
 
         // image
@@ -69,10 +73,20 @@ public class ChoiceButton : MonoBehaviour
         {
             feedbackImage.enabled = true;
             feedbackImage.sprite = ChoiceManager.Instance.feedbackSprites[(int)type];
+
+            if ( type == Type.Attack)
+            {
+                text.color = Color.white;
+            }
         }
 
         // tween
         Tween.Bounce(_transform, 0.2f, 1.1f);
+    }
+
+    public void Select()
+    {
+        ChoiceManager.Instance.Choose(id);
     }
 
     private string FitText(string str)

@@ -103,6 +103,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   color: {r: 0, g: 0.8301887, b: 0.03881059, a: 1}
   outlineSize: 4
+  targetAlpha: 0.2
 --- !u!1 &1000010442489814
 GameObject:
   m_ObjectHideFlags: 0
@@ -315,6 +316,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   color: {r: 0, g: 0.8301887, b: 0.03881059, a: 1}
   outlineSize: 4
+  targetAlpha: 0.2
 --- !u!1 &1000011559984462
 GameObject:
   m_ObjectHideFlags: 0
@@ -668,6 +670,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   color: {r: 0, g: 0.8301887, b: 0.03881059, a: 1}
   outlineSize: 4
+  targetAlpha: 0.2
 --- !u!1 &1000012328391146
 GameObject:
   m_ObjectHideFlags: 0
@@ -834,6 +837,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   color: {r: 0, g: 0.8301887, b: 0.03881059, a: 1}
   outlineSize: 4
+  targetAlpha: 0.2
 --- !u!1 &1000012631278640
 GameObject:
   m_ObjectHideFlags: 0
@@ -1390,6 +1394,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   color: {r: 0, g: 0.8301887, b: 0.03881059, a: 1}
   outlineSize: 4
+  targetAlpha: 0.2
 --- !u!1 &1000013690149524
 GameObject:
   m_ObjectHideFlags: 0
@@ -1570,6 +1575,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   color: {r: 0, g: 0.8301887, b: 0.03881059, a: 1}
   outlineSize: 4
+  targetAlpha: 0.2
 --- !u!1 &1007713289488024
 GameObject:
   m_ObjectHideFlags: 0
@@ -2212,7 +2218,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -1.33, y: 1.79}
+  m_AnchoredPosition: {x: -1.51, y: 0.53}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1687709177256002

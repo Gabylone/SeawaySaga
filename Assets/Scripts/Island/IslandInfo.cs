@@ -42,7 +42,7 @@ public class IslandInfo : MonoBehaviour {
     {
         if (boatInfo.alreadyMet)
         {
-            string storyName = boatInfo.storyManager.storyHandlers[0].Story.name;
+            string storyName = boatInfo.storyManager.storyHandlers[0].Story.displayName;
             uiText.text = storyName;
         }
         else

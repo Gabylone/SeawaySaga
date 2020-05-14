@@ -6,16 +6,13 @@ public class NavigationTrigger : MonoBehaviour {
 
 	public static bool anyTargeted = false;
 
-	public GameObject arrowGroup;
-    public Image arrowImage;
-
-    BoxCollider _boxCollider;
+    private BoxCollider _boxCollider;
 
 	public Directions direction;
 
-	Transform _transform;
+	private Transform _transform;
 
-    bool selected = false;
+    private bool selected = false;
 
     public float outOfMapFeedbackDuration = 1f;
 
@@ -23,7 +20,6 @@ public class NavigationTrigger : MonoBehaviour {
     {
         _boxCollider = GetComponent<BoxCollider>();
         _transform = GetComponent<Transform>();
-        arrowImage = arrowGroup.GetComponentInChildren<Image>();
 
         NavigationManager.Instance.EnterNewChunk += HandleChunkEvent;
 
@@ -42,9 +38,9 @@ public class NavigationTrigger : MonoBehaviour {
 
 	void HandleChunkEvent ()
 	{
-        Coords targetCoords = Boats.playerBoatInfo.coords + NavigationManager.Instance.getNewCoords(direction);
+        Coords targetCoords = Boats.Instance.playerBoatInfo.coords + NavigationManager.Instance.getNewCoords(direction);
 
-        if (targetCoords.x < 0 || targetCoords.x > MapGenerator.Instance.MapScale - 1 || targetCoords.y < 0 || targetCoords.y > MapGenerator.Instance.MapScale - 1)
+        if (targetCoords.x < 0 || targetCoords.x > MapGenerator.Instance.MapScale_X - 1 || targetCoords.y < 0 || targetCoords.y > MapGenerator.Instance.MapScale_Y - 1)
         {
             gameObject.SetActive(false);
         }
@@ -58,7 +54,7 @@ public class NavigationTrigger : MonoBehaviour {
 	{
         Deselect();
 
-        Coords targetCoords = Boats.playerBoatInfo.coords + NavigationManager.Instance.getNewCoords(direction);
+        Coords targetCoords = Boats.Instance.playerBoatInfo.coords + NavigationManager.Instance.getNewCoords(direction);
 
         if ( direction == this.direction ) {
 
@@ -106,12 +102,6 @@ public class NavigationTrigger : MonoBehaviour {
 
         selected = true;
 
-        arrowGroup.SetActive(true);
-
-        arrowImage.color = Color.white;
-
-        Tween.Bounce(arrowGroup.transform);
-
         _boxCollider.enabled = true;
 
     }
@@ -120,21 +110,13 @@ public class NavigationTrigger : MonoBehaviour {
     {
         selected = false;
 
-        arrowGroup.SetActive(false);
-
         //_boxCollider.enabled = false;
     }
 
     void OutOfMapFeedback()
     {
-        DialogueManager.Instance.SetDialogueTimed("Il n'y a rien par là", Crews.playerCrew.captain);
+        DialogueManager.Instance.SetDialogueTimed("Nothing to see in this direction", Crews.playerCrew.captain);
         Crews.playerCrew.captain.Icon.MoveToPoint(Crews.PlacingType.Discussion);
-
-        arrowGroup.SetActive(true);
-
-        arrowImage.color = Color.red;
-
-        Tween.Bounce(arrowGroup.transform);
 
         CancelInvoke("OutOfMapFeedbackDelay");
         Invoke("OutOfMapFeedbackDelay", outOfMapFeedbackDuration);
@@ -143,8 +125,6 @@ public class NavigationTrigger : MonoBehaviour {
     void OutOfMapFeedbackDelay()
     {
         Crews.playerCrew.captain.Icon.MoveToPoint(Crews.PlacingType.Map);
-
-        arrowGroup.SetActive(false);
     }
 
 }

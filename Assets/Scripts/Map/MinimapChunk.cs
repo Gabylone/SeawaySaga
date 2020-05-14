@@ -16,17 +16,17 @@ public class MinimapChunk : MonoBehaviour {
 
 	public GameObject questGroup;
 
-    private int id = 0;
+    public Text uiText_IslandCount;
 
-	public void InitChunk (int _id, Coords worldCoords)
+	public void InitChunk (Coords worldCoords)
 	{
-        id = _id;
-
 		Chunk chunk = Chunk.GetChunk (worldCoords);
 
-		IslandData islandData = chunk.GetIslandData(id);
+		IslandData islandData = chunk.GetIslandData(0);
 
 		image.sprite = Island.minimapSprites[islandData.storyManager.storyHandlers [0].Story.param];
+
+        //uiText_IslandCount.text = "";
 
 		coords = worldCoords;
 
@@ -68,19 +68,24 @@ public class MinimapChunk : MonoBehaviour {
 
     public void SetVisited ()
     {
+        //uiText_IslandCount.text = "" + Chunk.GetChunk(coords).islandDatas.Length;
+
         gameObject.SetActive(true);
 		image.color = Color.white;
     }
 
 	public void SetDiscovered ()
     {
+        //uiText_IslandCount.text = "";
         gameObject.SetActive(true);
-		image.color = new Color( 0.5f,0.5f,0.5f );
+        image.color = new Color( 0.5f,0.5f,0.5f );
 	}
 
     void SetUndiscovered()
     {
-        gameObject.SetActive(false);
+        //uiText_IslandCount.text = "";
+
+        //gameObject.SetActive(false);
         image.color = Color.clear;
     }
 
@@ -89,16 +94,29 @@ public class MinimapChunk : MonoBehaviour {
 		Tween.Bounce (islandGroup.transform);
 
         Chunk chunk = Chunk.GetChunk(coords);
-        IslandData islandData = chunk.GetIslandData(id);
         string str = "";
 
-        if (islandData.storyManager.CurrentStoryHandler.Story.name.StartsWith("Maison"))
+        if (chunk.state == ChunkState.VisitedIsland)
         {
-            str = "Maison";
-        }
-        else if (chunk.state == ChunkState.VisitedIsland)
-        {
-            str = chunk.GetIslandData(id).storyManager.CurrentStoryHandler.Story.name;
+            //str = chunk.GetIslandData(0).storyManager.CurrentStoryHandler.Story.displayName;
+            for (int i = 0; i < chunk.islandDatas.Length; i++)
+            {
+                IslandData islandData = chunk.GetIslandData(i);
+
+                if ( islandData.storyManager.hasBeenPlayed)
+                {
+                    str += islandData.storyManager.CurrentStoryHandler.Story.displayName;
+                }
+                else
+                {
+                    str += "?";
+                }
+
+                if ( i < chunk.islandDatas.Length -1)
+                {
+                    str += "\n";
+                }
+            }
         }
         else
         {

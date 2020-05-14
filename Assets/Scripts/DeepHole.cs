@@ -26,7 +26,7 @@ public class DeepHole : RandomPlacable
     {
         base.Trigger();
 
-        int storyID = StoryLoader.Instance.FindIndexByName("Fishing", StoryType.Normal);
+        int storyID = StoryLoader.Instance.FindIndexByName("Peche", StoryType.Normal);
 
         StoryManager newStoryManager = new StoryManager();
 

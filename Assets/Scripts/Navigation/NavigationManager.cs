@@ -67,7 +67,7 @@ public class NavigationManager : MonoBehaviour {
     #region movementf
     public void ChangeChunk ( Directions newDirection ) {
 
-		Boats.playerBoatInfo.Move (newDirection);
+		Boats.Instance.playerBoatInfo.Move (newDirection);
 
         chunksTravelled++;
 
@@ -90,7 +90,7 @@ public class NavigationManager : MonoBehaviour {
 	}
 	public Directions getDirectionToPoint ( Vector2 point ) {
 
-		Vector2 direction = point - (Vector2)Boats.playerBoatInfo.coords;
+		Vector2 direction = point - (Vector2)Boats.Instance.playerBoatInfo.coords;
 
 		for (int i = 0; i < 8; ++i ) {
 			if ( Vector2.Angle ( direction , NavigationManager.Instance.getDir((Directions)i) ) < 45f ) {
@@ -106,23 +106,23 @@ public class NavigationManager : MonoBehaviour {
 
 		switch (dir) {
 		case Directions.North:
-			return "au nord";
+			return "north";
 		case Directions.NorthEast:
-			return "au nord est";
+			return "north east";
 		case Directions.East:
-			return "à l'est";
+			return "east";
 		case Directions.SouthEast:
-			return "au sud est";
+			return "south east";
 		case Directions.South:
-			return "au sud";
+			return "south";
 		case Directions.SouthWest:
-			return "au sud ouest";
+			return "south west";
 		case Directions.West:
-			return "à l'ouest";
+			return "west";
 		case Directions.NorthWest:
-			return "au nord ouest";
+			return "north west";
 		case Directions.None:
-			return "nulle part";
+			return "nowhere";
 		}
 
 		return "nulle part";
@@ -212,7 +212,7 @@ public class NavigationManager : MonoBehaviour {
 
 	public static Coords CurrentCoords {
 		get {
-			return Boats.playerBoatInfo.coords;
+			return Boats.Instance.playerBoatInfo.coords;
 		}
 	}
 
@@ -258,13 +258,13 @@ public struct Coords {
 
 	public static Coords previous {
 		get {
-			return Boats.playerBoatInfo.previousCoords;
+			return Boats.Instance.playerBoatInfo.previousCoords;
 		}
 	}
 
 	public static Coords current {
 		get {
-			return Boats.playerBoatInfo.coords;
+			return Boats.Instance.playerBoatInfo.coords;
 		}
 	}
 
@@ -282,7 +282,7 @@ public struct Coords {
 
 	public bool OutOfMap ()
 	{
-		return x < 0 || x >= MapGenerator.Instance.MapScale || y < 0 || y >= MapGenerator.Instance.MapScale;
+		return x < 0 || x >= MapGenerator.Instance.MapScale_X || y < 0 || y >= MapGenerator.Instance.MapScale_Y;
 	}
 
 	// overrides
@@ -402,7 +402,7 @@ public struct Coords {
 		
 		int radius = 1;
 
-		while ( radius < MapGenerator.Instance.MapScale ) {
+		while ( radius < MapGenerator.Instance.MapScale_X && radius < MapGenerator.Instance.MapScale_Y) {
 
 			for (int x = -radius; x < radius; x++) {
 				for (int y = -radius; y < radius; y++) {
@@ -412,11 +412,11 @@ public struct Coords {
 
 					Coords coords = new Coords (originCoords.x + x, originCoords.y + y);
 
-					if (coords > MapGenerator.Instance.MapScale || coords <= 0) {
+					if (coords.x >= MapGenerator.Instance.MapScale_X|| coords.y >= MapGenerator.Instance.MapScale_Y|| coords <= 0) {
 						continue;
 					}
 
-					Chunk chunk = Chunk.GetChunk (coords);
+                    Chunk chunk = Chunk.GetChunk (coords);
 
 					if (chunk.HasIslands()) {
 						return coords;

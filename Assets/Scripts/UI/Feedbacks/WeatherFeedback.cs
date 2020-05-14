@@ -17,17 +17,17 @@ public class WeatherFeedback : InfoFeedbacks {
 
 	void HandleOnSetRain ()
 	{
-		Print ("Pluie !", Color.cyan);
+		Print ("Raining !", Color.cyan);
 	}
 
 	void HandleOnSetTimeOfDay (TimeManager.DayState dayState)
 	{
 		switch (dayState) {
 		case TimeManager.DayState.Day:
-			Print ("Jour", Color.yellow);
+			Print ("Day", Color.yellow);
 			break;
 		case TimeManager.DayState.Night:
-			Print ("Nuit", Color.blue);
+			Print ("Night", Color.blue);
 			break;
 		default:
 			break;
@@ -37,7 +37,7 @@ public class WeatherFeedback : InfoFeedbacks {
 	void HandleOnWrongLevel ()
 	{
 //		Print ("niveau insuffisant");
-		Print ("Niveau trop bas");
+		Print ("Insufficient Level");
 	}
 
 	void HandleOnFinishQuest (Quest quest)

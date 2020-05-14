@@ -12,10 +12,10 @@ public class SkillManager : MonoBehaviour {
 
 	public static string[] jobNames = new string[5] {
 		"Brute",
-		"Medecin",
-		"Cuistot",
-		"Flibustier",
-		"Escroc"
+		"Doctor",
+		"Cook",
+		"Filibuster",
+		"Crook"
 	};
 
 	public TextAsset skillData;

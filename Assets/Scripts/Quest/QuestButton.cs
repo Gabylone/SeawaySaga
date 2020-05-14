@@ -49,7 +49,7 @@ public class QuestButton : MonoBehaviour {
 
 		Quest quest = QuestManager.Instance.currentQuests [id];
 
-        nameText.text = quest.Story.name;
+        nameText.text = quest.Story.displayName;
 
     }
 }

@@ -27,31 +27,31 @@ public class QuestFeedback : MonoBehaviour {
 	void HandleGetFunction (FunctionType func, string cellParameters)
 	{
 		if ( func == FunctionType.AccomplishQuest ) {
-			Display ("Quête " + Quest.currentQuest.Story.name + " accomplie !");
+			Display ("Quest " + Quest.currentQuest.Story.displayName + " is completed !");
 		}
 	}
 
 	void HandleOnGiveUpQuest (Quest quest)
 	{
-		Display ("Quête " + quest.Story.name + " abandonnée !");
+		Display ("Quest " + quest.Story.displayName + " abandoned !");
 	}
 
 	void HandleOnFinishQuest (Quest quest)
 	{
-		Display ("Quête " + quest.Story.name + " finie !");
+		Display ("Quest " + quest.Story.displayName + " finished !");
 	}
 
 	void HandleOnDiscoverFormula (Formula Formula)
 	{
-		Display ("Nouvel Indice !");
+		Display ("New Clue !");
 	}
 
 	void HandleNewQuestEvent ()
 	{
 		if (QuestManager.Instance.currentQuests.Count == QuestManager.Instance.maxQuestAmount) {
-			Display ("Nombre maximum de quête atteint");
+			Display ("Max quests amount reached");
 		} else {
-			Display ("Nouvelle Quête");
+			Display ("New Quest !");
 		}
 	}
 

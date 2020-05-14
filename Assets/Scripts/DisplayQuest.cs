@@ -38,11 +38,11 @@ public class DisplayQuest : MonoBehaviour {
         Show();
 
         currentQuest = quest;
-        nameText.text = quest.Story.name;
+        nameText.text = quest.Story.displayName;
 
-        rewardText.text = "Récompense : " + quest.goldValue + " / XP : " + quest.experience;
+        rewardText.text = "Reward : " + quest.goldValue + " / XP : " + quest.experience;
 
-        descriptionText.text = "Donnée par " + quest.giver.Name + "\n";
+        descriptionText.text = "Given by " + quest.giver.Name + "\n";
 
         descriptionText.text += "\n";
 
@@ -62,7 +62,7 @@ public class DisplayQuest : MonoBehaviour {
         }
         else
         {
-            levelText.text = "Niveau conseillé : " + quest.level.ToString();
+            levelText.text = "Quest level : " + quest.level.ToString();
             levelText.gameObject.SetActive(true);
             achievedFeedback.SetActive(false);
         }
@@ -73,7 +73,7 @@ public class DisplayQuest : MonoBehaviour {
     {
         Show();
 
-        nameText.text = "Le Trésor";
+        nameText.text = "Treasure of " + MapGenerator.Instance.treasureName;
 
         DisplayFormulasOnDescription();
 
@@ -110,7 +110,7 @@ public class DisplayQuest : MonoBehaviour {
 
         if (foundOne == false)
         {
-            str = "Aucun indices";
+            str = "No clues yet";
         }
 
         descriptionText.text = str;
@@ -136,7 +136,7 @@ public class DisplayQuest : MonoBehaviour {
     {
         MessageDisplay.onValidate += HandleOnValidate;
 
-        MessageDisplay.Instance.Show("Abandonner quête ?");
+        MessageDisplay.Instance.Show("Abandon quest ?");
     }
 
     public void HandleOnValidate()

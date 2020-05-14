@@ -10,10 +10,14 @@ public class QuestManager : MonoBehaviour {
 	public List<Quest> currentQuests = new List<Quest>();
 	public List<Quest> finishedQuests = new List<Quest>();
 
+    public bool metPersonOnIsland = false;
+
 	public delegate void OnNewQuest ();
 	public OnNewQuest onNewQuest;
 
 	public int maxQuestAmount = 20;
+
+    public bool showingQuestOnMap = false;
 
 	void Awake () {
 
@@ -26,17 +30,19 @@ public class QuestManager : MonoBehaviour {
         onFinishQuest = null;
         onGiveUpQuest = null;
         onNewQuest = null;
-        
 
-	}
 
-	void Start () {
+    }
+
+    void Start () {
 
 		StoryFunctions.Instance.getFunction+= HandleGetFunction;
 
-		CrewMember.onCrewMemberKilled += HandleOnCrewMemberKilled;
+		Crews.Instance.onCrewMemberKilled += HandleOnCrewMemberKilled;
 
-	}
+        StoryInput.Instance.onPressInput += HandleOnPressInput;
+
+    }
 
     void HandleOnCrewMemberKilled (CrewMember crewMember)
 	{
@@ -71,9 +77,10 @@ public class QuestManager : MonoBehaviour {
 			SendPlayerBackToGiver ();
 			break;
 		case FunctionType.ShowQuestOnMap:
-			ShowQuestOnMap ();
-			break;
-		case FunctionType.FinishQuest:
+			Story_ShowQuestOnMap ();
+            StoryInput.Instance.WaitForInput();
+                break;
+            case FunctionType.FinishQuest:
 			FinishQuest ();
 			break;
 		case FunctionType.AccomplishQuest:
@@ -90,8 +97,6 @@ public class QuestManager : MonoBehaviour {
 			break;
 		}
 	}
-
-   
 
     void CheckIfQuestIsAccomplished ()
 	{
@@ -184,9 +189,9 @@ public class QuestManager : MonoBehaviour {
 	#region completed quest
 	void HandleCompletedQuest (Quest quest )
 	{
-		string phrase = "Je vous ai déjà parlé de mes problèmes, et vous avez clairement abandonné";
+		string phrase = "I've told you I have a problem, but you gave up on me";
 		if (quest.accomplished) {
-			phrase = "Merci beaucoup de m'avoir aidé !";
+			phrase = "I'll never thank you enough for helping me";
 		}
 
 		DialogueManager.Instance.SetDialogueTimed (phrase, Crews.enemyCrew.captain);
@@ -200,7 +205,7 @@ public class QuestManager : MonoBehaviour {
 
 	void ContinueQuest () {
 
-		Quest quest = currentQuests.Find (x => x.targetCoords == Boats.playerBoatInfo.coords);
+		Quest quest = currentQuests.Find (x => x.targetCoords == Boats.Instance.playerBoatInfo.coords);
 
 		if ( quest != null) {
 
@@ -269,18 +274,37 @@ public class QuestManager : MonoBehaviour {
 	}
 
 	#region map stuff
-	public void ShowQuestOnMap () {
+	public void Story_ShowQuestOnMap () {
+
+        StoryReader.Instance.NextCell();
+        StoryReader.Instance.Wait(1);
+
+        showingQuestOnMap = true;
 		Quest.currentQuest.ShowOnMap ();
-	}
+    }
+
+    public void HideQuestOnMap()
+    {
+        showingQuestOnMap = false;
+    }
 
 	public void SendPlayerBackToGiver () {
 		Debug.LogError ("SEND PLAYER BACK TO GIVER DOESNT EXIST ANYMORE");
 	}
-	#endregion
 
-	public Quest Coords_CheckForTargetQuest {
+    void HandleOnPressInput()
+    {
+        /*if (showingQuestOnMap)
+        {
+            StoryReader.Instance.ContinueStory();
+        }*/
+    }
+
+    #endregion
+
+    public Quest Coords_CheckForTargetQuest {
 		get {
-			return currentQuests.Find ( x=> x.targetCoords == Boats.playerBoatInfo.coords);
+			return currentQuests.Find ( x=> x.targetCoords == Boats.Instance.playerBoatInfo.coords);
 		}
 	}
 
@@ -288,7 +312,7 @@ public class QuestManager : MonoBehaviour {
 		get {
 
 			foreach (Quest quest in currentQuests) {
-				print (quest.Story.name);
+				print (quest.Story.dataName);
 				print (quest.layer);
 			}
 
@@ -300,7 +324,7 @@ public class QuestManager : MonoBehaviour {
 
 			return currentQuests.Find ( x => x.giver.SameAs(Crews.enemyCrew.captain.MemberID));
 //			return currentQuests.Find ( x => 
-//				x.originCoords == Boats.playerBoatInfo.coords && 
+//				x.originCoords == Boats.Instance.playerBoatInfo.coords && 
 //				storyLayer == x.layer &&
 //				x.row == StoryReader.Instance.Col &&
 //				x.col == StoryReader.Instance.Row
@@ -320,7 +344,7 @@ public class QuestManager : MonoBehaviour {
 			return finishedQuests.Find ( x => x.giver.SameAs(Crews.enemyCrew.captain.MemberID));
 
 //			return finishedQuests.Find ( x => 
-//				x.originCoords == Boats.playerBoatInfo.coords && 
+//				x.originCoords == Boats.Instance.playerBoatInfo.coords && 
 //				storyLayer == x.layer &&
 //				x.row == StoryReader.Instance.Col &&
 //				x.col == StoryReader.Instance.Row

@@ -21,8 +21,8 @@ public class Skill_Leap: Skill {
 		base.Trigger (fighter);
 
 		if (onDelay == false) {
-			string str = "Ouuuuh toi, tu paies rien pour attendre !";
-			fighter.Speak (str);
+			string str = "You wait and see... I'm gonna smash your brains out";
+            fighter.Speak (str);
 		}
 
 	}

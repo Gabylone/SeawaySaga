@@ -17,6 +17,14 @@ public class EnemyBoat : Boat {
 
     private bool exitingScreen = false;
 
+    public enum MovementType
+    {
+        FollowPlayer,
+        MoveAround,
+    }
+
+    public MovementType movementType;
+
 	public float leavingSpeed = 20f;
 	public float followPlayer_Speed= 15f;
 
@@ -96,13 +104,22 @@ public class EnemyBoat : Boat {
 
     void ShowDelay()
     {
+        if (boatInfo.storyManager.CurrentStoryHandler.Story.param == 0)
+        {
+            movementType = MovementType.MoveAround;
+        }
+        else
+        {
+            movementType = MovementType.FollowPlayer;
+        }
+
         GoToTargetDestination();
     }
     #endregion
 
     void GoToTargetDestination()
     {
-        if (boatInfo.storyManager.CurrentStoryHandler.Story.param == 0)
+        if (movementType == MovementType.MoveAround)
         {
             // go about
             ExitScreen();
@@ -156,24 +173,37 @@ public class EnemyBoat : Boat {
 	#region world
 	void OnTriggerEnter (Collider other) {
 
-		if (metPlayer == false && moving && !Boats.Instance.meetingPlayer) {
-
-            if (other.tag == "Player")
-            {
-                Debug.Log("meeting player");
-                MeetPlayer();
-            }
-
-		}
-        else
+        if (other.tag == "Player")
         {
-            print("met player");
+            MeetPlayer();
         }
 	}
 	#endregion
 
 	#region story
 	public void MeetPlayer () {
+
+        // a story is currently going
+        if (StoryLauncher.Instance.PlayingStory)
+        {
+            return;
+        }
+
+        // the boat has already met the player
+        if (metPlayer)
+        {
+            return;
+        }
+        // the boat is not actually idle
+        if (!moving)
+        {
+            return;
+        }
+        // another boat is meeting the player
+        if (Boats.Instance.meetingPlayer)
+        {
+            return;
+        }
 
         Boats.Instance.currentEnemyBoat = this;
 

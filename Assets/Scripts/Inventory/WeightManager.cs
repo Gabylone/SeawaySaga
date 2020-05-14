@@ -103,7 +103,7 @@ public class WeightManager : MonoBehaviour {
 
 	public int CurrentCapacity {
 		get {
-			return Boats.playerBoatInfo.GetCargoCapacity();
+			return Boats.Instance.playerBoatInfo.GetCargoCapacity();
 		}
 	}
 	#endregion

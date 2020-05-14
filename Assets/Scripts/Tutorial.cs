@@ -150,7 +150,6 @@ public enum TutorialStep {
 
 public class TutoStep {
 
-
 	public TutorialStep step;
 
 	public DisplayInfo.Corner corner = DisplayInfo.Corner.None;
@@ -234,31 +233,16 @@ public class TutoStep_Movements: TutoStep {
 
 	void HandleEndStoryEvent ()
 	{
-
 		if (count > 0) {
 
 			Display ();
-            DisplayInfo_Tuto.Instance.handObj.SetActive(true);
-
             StoryLauncher.Instance.onEndStory -= HandleEndStoryEvent;
-
-            Tutorial.onHideTutorial += HandleOnHideTutorial;
-
             WaitForConfirm();
 
         }
 
         count++;
 
-	}
-
-
-    void HandleOnHideTutorial()
-	{
-        DisplayInfo_Tuto.Instance.handObj.SetActive(false);
-        Tutorial.onHideTutorial -= HandleOnHideTutorial;
-
-        //Kill();
 	}
 
 }
@@ -350,7 +334,7 @@ public class TutoStep_Crew: TutoStep {
 	{
 		base.Init ();
 
-		NavigationManager.Instance.EnterNewChunk += HandleChunkEvent;
+		//NavigationManager.Instance.EnterNewChunk += HandleChunkEvent;
 	}
 
 	void HandleChunkEvent ()
@@ -373,7 +357,7 @@ public class TutoStep_CrewMenu: TutoStep {
 	{
 		base.Init ();
 
-		InGameMenu.Instance.onOpenMenu += HandleOpenInventory;
+		//InGameMenu.Instance.onOpenMenu += HandleOpenInventory;
 	}
 
 	void HandleOpenInventory ()
@@ -450,7 +434,7 @@ public class TutoStep_Status: TutoStep {
 	{
 		base.Init ();
 
-		CombatManager.Instance.onFightStart += HandleFightStarting;
+		//CombatManager.Instance.onFightStart += HandleFightStarting;
 	}
 
 	void HandleFightStarting ()
@@ -502,7 +486,7 @@ public class TutoStep_Skills: TutoStep {
 	{
 		base.Init ();
 
-		CombatManager.Instance.onChangeState += HandleOnChangeState;
+		//CombatManager.Instance.onChangeState += HandleOnChangeState;
 	}
 
 	void HandleOnChangeState (CombatManager.States currState, CombatManager.States prevState)
@@ -524,7 +508,6 @@ public class TutoStep_Skills2: TutoStep {
 		base.Init ();
 
         // enlevé celui là parce qu'il dit de la merde mainteannt
-
 		//Tutorial.onDisplayTutorial += HandleOnDisplayTutorial;
 	}
 
@@ -585,7 +568,7 @@ public class TutoStep_QuestMenu: TutoStep {
 	{
 		base.Init ();
 
-		QuestMenu.onOpenQuestMenu += HandleOnOpenQuestMenu;
+		//QuestMenu.onOpenQuestMenu += HandleOnOpenQuestMenu;
 	}
 
 	void HandleOnOpenQuestMenu ()
@@ -668,7 +651,7 @@ public class TutoStep_Food: TutoStep {
 	{
 		base.Init ();
 
-		LootUI.useInventory += HandleUseInventory;
+		//LootUI.useInventory += HandleUseInventory;
 	}
 
 	void HandleUseInventory (InventoryActionType actionType)
@@ -692,7 +675,7 @@ public class TutoStep_LevelUp: TutoStep {
 	{
 		base.Init ();
 
-		Crews.playerCrew.captain.onLevelUp += HandleOnLevelUp;
+		//Crews.playerCrew.captain.onLevelUp += HandleOnLevelUp;
 
 
 	}
@@ -714,7 +697,7 @@ public class TutoStep_SkillMenu : TutoStep {
 	{
 		base.Init ();
 
-		SkillMenu.Instance.onShowSkillMenu += HandleOnShowCharacterStats;
+		//SkillMenu.Instance.onShowSkillMenu += HandleOnShowCharacterStats;
 
 	}
 
@@ -733,7 +716,7 @@ public class TutoStep_Weapon: TutoStep {
 	{
 		base.Init ();
 
-		LootUI.useInventory += HandleUseInventory;
+		//LootUI.useInventory += HandleUseInventory;
 
 	}
 
@@ -768,7 +751,7 @@ public class TutoStep_ItemMenu1: TutoStep {
 	{
 		base.Init ();
 
-		LootUI.onSetSelectedItem += HandleOnSetSelectedItem;
+		//LootUI.onSetSelectedItem += HandleOnSetSelectedItem;
 	}
 
 	void HandleOnSetSelectedItem ()
@@ -791,7 +774,7 @@ public class TutoStep_ItemMenu2: TutoStep {
 	{
 		base.Init ();
 
-		Tutorial.onDisplayTutorial += HandleOnDisplayTutorial;
+		//Tutorial.onDisplayTutorial += HandleOnDisplayTutorial;
 	}
 
 	void HandleOnDisplayTutorial (TutoStep tutoStep)
@@ -821,7 +804,7 @@ public class TutoStep_Minimap : TutoStep {
 	{
 		base.Init ();
 
-		NavigationManager.Instance.EnterNewChunk += HandleChunkEvent;
+		//NavigationManager.Instance.EnterNewChunk += HandleChunkEvent;
 	}
 
 	void HandleChunkEvent ()
@@ -845,7 +828,7 @@ public class TutoStep_SkillInfo: TutoStep {
 	{
 		base.Init ();
 
-		Tutorial.onDisplayTutorial += HandleOnDisplayTutorial;
+		//Tutorial.onDisplayTutorial += HandleOnDisplayTutorial;
 	}
 
 	void HandleOnDisplayTutorial (TutoStep tutoStep)
@@ -873,7 +856,7 @@ public class TutoStep_StatusInfo: TutoStep {
 	{
 		base.Init ();
 
-		Tutorial.onDisplayTutorial += HandleOnDisplayTutorial;
+		//Tutorial.onDisplayTutorial += HandleOnDisplayTutorial;
 	}
 
 	void HandleOnDisplayTutorial (TutoStep tutoStep)
@@ -900,7 +883,7 @@ public class TutoStep_Meeting1: TutoStep {
 	{
 		base.Init ();
 
-		StoryFunctions.Instance.getFunction += HandleGetFunction;
+		//StoryFunctions.Instance.getFunction += HandleGetFunction;
 	}
 
 	void HandleGetFunction (FunctionType func, string cellParameters)
@@ -920,7 +903,7 @@ public class TutoStep_Meeting2: TutoStep {
 	{
 		base.Init ();
 
-		Tutorial.onDisplayTutorial += HandleOnDisplayTutorial;
+		//Tutorial.onDisplayTutorial += HandleOnDisplayTutorial;
 	}
 
 	void HandleOnDisplayTutorial (TutoStep tutoStep)
@@ -948,7 +931,7 @@ public class TutoStep_BigMap: TutoStep {
 	{
 		base.Init ();
 
-		DisplayMinimap.onZoom += HandleOnZoom;
+		//DisplayMinimap.onZoom += HandleOnZoom;
 	}
 
 	void HandleOnZoom ()
@@ -969,7 +952,7 @@ public class TutoStep_PowerfullFoe: TutoStep {
 	{
 		base.Init ();
 
-		CombatManager.Instance.onChangeState += HandleOnChangeState;
+		//CombatManager.Instance.onChangeState += HandleOnChangeState;
 	}
 
 	// FROM FIGHT

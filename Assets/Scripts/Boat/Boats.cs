@@ -6,7 +6,7 @@ public class Boats : MonoBehaviour {
 
 	public static Boats Instance;
 
-	public static PlayerBoatInfo playerBoatInfo;
+	public PlayerBoatInfo playerBoatInfo;
 
 	private BoatData boatData;
 
@@ -41,8 +41,6 @@ public class Boats : MonoBehaviour {
 	private float timer = 0f;
 
 	void Awake () {
-
-        playerBoatInfo = null;
 
 		Instance = this;
 	}
@@ -103,9 +101,22 @@ public class Boats : MonoBehaviour {
 
     void HandleOnChunkEvent()
     {
+        SaveBoats();
+
         foreach (var enemyBoat in enemyBoats)
         {
             enemyBoat.Hide();
+        }
+
+        PlaceEnemyBoats();
+
+    }
+
+    void PlaceEnemyBoats()
+    {
+        if (Boats.Instance.playerBoatInfo.coords == SaveManager.Instance.GameData.homeCoords)
+        {
+            return;
         }
 
         currentBoatAmount = 0;
@@ -114,7 +125,7 @@ public class Boats : MonoBehaviour {
         {
             item.HandleChunkEvent();
 
-            if (item.coords == Boats.playerBoatInfo.coords)
+            if (item.coords == Boats.Instance.playerBoatInfo.coords)
             {
                 EnemyBoat enemyBoat = enemyBoats[currentBoatAmount];
 
@@ -126,14 +137,12 @@ public class Boats : MonoBehaviour {
 
                 if (currentBoatAmount == enemyBoats.Length)
                 {
-                    Debug.LogError( "reached max boat amout on screen" );
+                    Debug.LogError("reached max boat amout on screen");
                     break;
                 }
 
             }
         }
-
-        SaveBoats();
     }
 
     void DestroyCurrentShip()

@@ -139,7 +139,50 @@ public class StoryCheck : MonoBehaviour {
 			CheckNewQuest (cellContent);
 		}
 
-	}
+        if (cellContent.Contains("AddToInventory"))
+        {
+            string cellParams = cellContent.Remove(0, "AddToInventory".Length);
+            CheckItem(cellParams);
+        }
+        if (cellContent.Contains("RemoveFromInventory"))
+        {
+            string cellParams = cellContent.Remove(0, "RemoveFromInventory".Length);
+            CheckItem(cellParams);
+        }
+        if (cellContent.Contains("CheckInInventory"))
+        {
+            string cellParams = cellContent.Remove(0, "CheckInInventory".Length);
+            CheckItem(cellParams);
+        }
+
+    }
+
+    void CheckItem(string cellParams)
+    {
+        if(cellParams.Split('/').Length < 2)
+        {
+            DisplayError( "probleme de parsing de catégoriée à : " + cellParams , cellParams );
+            return;
+        }
+        ItemCategory targetCat = LootManager.Instance.getLootCategoryFromString(cellParams.Split('/')[1]);
+
+        Item item = null;
+
+        if (cellParams.Contains("<"))
+        {
+            string itemName = cellParams.Split('<')[1];
+
+            itemName = itemName.Remove(itemName.Length - 6);
+
+            item = System.Array.Find(ItemLoader.Instance.getItems(targetCat), x => x.names[0] == itemName);
+
+            if (item == null)
+            {
+                DisplayError("Item doest not exit : " + itemName + " in", cellParams);
+            }
+
+        }
+    }
 
 	void CheckNewQuest (string cellContent)
 	{
@@ -184,7 +227,7 @@ public class StoryCheck : MonoBehaviour {
 
 		theresAnError = true;
 
-		Debug.Log (storyToCheck.name);
+		Debug.Log (storyToCheck.dataName);
 		Debug.LogError (str);
 		Debug.LogError ("CELL CONTENT : " + content);
 		Debug.LogError ("ROW : " + alphabet [decal] + " / COLL " + index);

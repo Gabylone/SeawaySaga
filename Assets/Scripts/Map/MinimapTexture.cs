@@ -27,17 +27,17 @@ public class MinimapTexture : MonoBehaviour {
 
 	public void UpdateBackgroundImage () {
 
-		Texture2D texture = new Texture2D (MapGenerator.Instance.MapScale, MapGenerator.Instance.MapScale);
+		Texture2D texture = new Texture2D (MapGenerator.Instance.MapScale_X, MapGenerator.Instance.MapScale_Y);
 
 		texture.filterMode = FilterMode.Point;
 		texture.anisoLevel = 0;
 		texture.mipMapBias = 0;
 		texture.wrapMode = TextureWrapMode.Clamp;
 
-		texture.Resize (MapGenerator.Instance.MapScale, MapGenerator.Instance.MapScale);
+		texture.Resize (MapGenerator.Instance.MapScale_X, MapGenerator.Instance.MapScale_Y);
 
-		for (int x = 0; x < MapGenerator.Instance.MapScale; x++) {
-			for (int y = 0; y < MapGenerator.Instance.MapScale; y++) {
+		for (int x = 0; x < MapGenerator.Instance.MapScale_X; x++) {
+			for (int y = 0; y < MapGenerator.Instance.MapScale_Y; y++) {
 
 				Chunk chunk = Chunk.GetChunk (new Coords (x, y));
 
@@ -63,7 +63,7 @@ public class MinimapTexture : MonoBehaviour {
         {
             for (int y = -currentShipRange; y <= currentShipRange; y++)
             {
-                Coords c = Boats.playerBoatInfo.coords + new Coords(x, y);
+                Coords c = Boats.Instance.playerBoatInfo.coords + new Coords(x, y);
                 if (c.OutOfMap())
                     continue;
                 //Debug.Log("eh ?");
@@ -73,7 +73,7 @@ public class MinimapTexture : MonoBehaviour {
 
         texture.Apply ();
 
-		targetImage.sprite = Sprite.Create ( texture, new Rect (0, 0, MapGenerator.Instance.MapScale,  MapGenerator.Instance.MapScale) , Vector2.one * 0.5f );
+		targetImage.sprite = Sprite.Create ( texture, new Rect (0, 0, MapGenerator.Instance.MapScale_X,  MapGenerator.Instance.MapScale_Y) , Vector2.one * 0.5f );
 
 	}
 }

@@ -40,7 +40,7 @@ public class LoadingScreen : MonoBehaviour {
     int dotCount = 0;
 	public void Push (int currentLoad) {
 
-        loadText1.text = "Chargement";
+        loadText1.text = "Loading";
         for (int i = 0; i < dotCount; i++)
         {
             loadText1.text += ".";

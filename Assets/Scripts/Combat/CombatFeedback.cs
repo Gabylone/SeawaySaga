@@ -16,6 +16,8 @@ public class CombatFeedback : MonoBehaviour {
 	public CombatFeedback secondCombatFeedback;
 	private float secondFeedbackDelay = 1.2f;
 
+    public float delay = 1f;
+
 	private bool displaying = false;
 
 	private Vector3 initPos;
@@ -24,11 +26,6 @@ public class CombatFeedback : MonoBehaviour {
 	void Start () {
 		initPos = transform.localPosition;
 		Hide ();
-	}
-
-	// display
-	public void ShowFeedbackInfo(float delay) {
-		Invoke ("ShowFeedbackInfo", delay);
 	}
 	void ShowFeedbackInfo() {
 		
@@ -60,8 +57,6 @@ public class CombatFeedback : MonoBehaviour {
 			return;
 		}
 
-        Debug.Log("display status  : " + status);
-
         text.gameObject.SetActive(false);
 
         // status
@@ -69,8 +64,8 @@ public class CombatFeedback : MonoBehaviour {
         statusImage.gameObject.SetActive(true);
         statusImage.sprite = SkillManager.statusSprites[(int)status];
 
-        ShowFeedbackInfo ();
-	
+        CancelInvoke("ShowFeedbackInfo");
+        Invoke("ShowFeedbackInfo", delay);
 	}
 	#endregion
 
@@ -88,13 +83,13 @@ public class CombatFeedback : MonoBehaviour {
 
         text.text = content;
 
-        Debug.Log("display status content : " + content);
-
         // status
         statusImage.gameObject.SetActive(false);
-        ShowFeedbackInfo ();
 
-	}
+        CancelInvoke("ShowFeedbackInfo");
+        Invoke("ShowFeedbackInfo", delay);
+
+    }
 	#endregion
 
 	// tools

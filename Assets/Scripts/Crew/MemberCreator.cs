@@ -31,13 +31,15 @@ public class MemberCreator : MonoBehaviour {
 
 	public Color initColor;
 
+    public string[] boat_Names;
+    public string[] boat_Adjectives;
+
 	public GameObject[] stepObjs;
 	public GameObject GetStep ( CreationStep step ) {
 		return stepObjs [(int)step];
 	}
 
     public Text jobDescription_Text;
-    private string[] jobDescriptions_Str;
 
 	public Sprite femaleSprite;
 	public Sprite maleSprite;
@@ -64,18 +66,7 @@ public class MemberCreator : MonoBehaviour {
 	void Start () {
 
 		Hide ();
-
-        LoadJobTexts();
 	}
-
-    private void LoadJobTexts()
-    {
-        TextAsset textAsset = Resources.Load("JobDescriptions") as TextAsset;
-        jobDescriptions_Str = textAsset.text.Split('\n');
-    }
-
-    public string[] boatNames;
-	public string[] captainNames;
 
 	void Hide ()
 	{
@@ -146,8 +137,6 @@ public class MemberCreator : MonoBehaviour {
 
     public void Show ()
 	{
-		Transitions.Instance.ActionTransition.FadeIn (0.5f);
-
 		currentStep = CreationStep.CaptainName;
 
         InGameMenu.Instance.canOpen = false;
@@ -158,12 +147,14 @@ public class MemberCreator : MonoBehaviour {
 
 		ShowStep(currentStep);
 
-		int ID = Random.Range ( 0, boatNames.Length );
+        string boat_name = CrewCreator.Instance.boatNames[Random.Range ( 0, CrewCreator.Instance.boatNames.Length )];
+        string boat_adjective = CrewCreator.Instance.boatAdjectives[Random.Range ( 0, CrewCreator.Instance.boatAdjectives.Length )];
+        string boat_fulName = boat_adjective + " " + boat_name;
 
-		Boats.playerBoatInfo.Name = captainNames[ID];
-		boatName.text = captainNames[ID];
+        Boats.Instance.playerBoatInfo.Name = "The " + boat_fulName;
+        boatName.text = "The " + boat_fulName;
 
-		Crews.playerCrew.captain.MemberID.Name = boatNames [ID];
+        Crews.playerCrew.captain.MemberID.Name = "The Captain";
 		captainName.text = Crews.playerCrew.captain.MemberID.Name;
 
         Crews.playerCrew.captain.Icon.transform.SetParent(iconTargetParent);
@@ -224,7 +215,17 @@ public class MemberCreator : MonoBehaviour {
 
 		Tween.Bounce ( boatName.transform , 0.2f , 1.05f);
 
-		Boats.playerBoatInfo.Name = boatName.text;
+        if (boatName.text.StartsWith("The "))
+        {
+
+        }
+        else
+        {
+            boatName.text = "The " + boatName.text;
+        }
+
+		Boats.Instance.playerBoatInfo.Name = boatName.text;
+
 		SoundManager.Instance.PlaySound (SoundManager.Sound.Select_Big);
 	}
 
@@ -246,7 +247,7 @@ public class MemberCreator : MonoBehaviour {
 
     public void UpdateDescriptionText(int i)
     {
-        jobDescription_Text.text = jobDescriptions_Str[i];
+        jobDescription_Text.text = CrewCreator.Instance.jobDescriptions[i];
     }
 
 }

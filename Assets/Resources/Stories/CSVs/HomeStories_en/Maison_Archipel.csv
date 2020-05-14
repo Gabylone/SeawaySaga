@@ -1,42 +1,44 @@
 Nom;Fréquence / 5;Sprite ID;;;
-Maison_Archipel;25;1;;;
+Maison_Archipel;1;1;;;
 [premiere visite];;;[chambre];;
-Narrator : C’est aujourd’hui que CAPITAINE, navigateur aguerri et fin tacticien, décide de s’aventurer dans les vastes océans de NOMTRESOR, pour chercher son trésor.;Node=>retour;;Narrator : CAPITAINE est dans sa chambre d’enfant. Son bureau est à côté de son lit, recouvert de documents diverses sur les mystères de l’océan.;;
-Narrator : Seulement accompagné de sa fidèle galère, NOMBATEAU, et de seulement quelques rations, il est prêt à faire face à ces longs trajets, et a ces eaux remplis de bandits.;;;[choix chambre];;
+Narrator : Today is the day CAPITAINE, smart tactician and experienced sailor, decides to venture on the wide ocean of NOMTRESOR, to find its mysterious treasure.;Node=>retour;;Narrator : CAPITAINE are in their childhood bedroom. Next to their bed, the desk is covered with drawings, books and tales about the ocean.;;
+Narrator : With only their trustworthy NOMBATEAU, and a few food rations, CAPITAINE is ready to face a long and perilous journey in a sea full of bandits.;;;[choix chambre];;
 SetChoices2;;;SetChoices3;;
-Choice : (lever l’ancre);Choice : (faire un tour dans la maison);;Choice : (retourner au salon) (partir);Choice : (dormir jusqu'au lendemain) (dormir);Choice : (bureau) (quete)
-PlayerSpeak : C’est parti !;Fade;;Fade;ChangeTimeOfDay;Narrator : Des écrits parlent des océans environnants:
-Switch=>premiere visite;Node=>salon;;Node=>salon;Node=>salon;Narrator : Il est dit que les mers d’ici sont vastes et hostiles. Les îles sont à des jours et des nuits l’une d’entre elles.
-Leave;;;;;Narrator : Le trésor de NOMTRESOR, dont on entend parler DIRECTIONTOFORMULA d’ici, est hautement recherché.
-;;;;;Narrator : On entend parler toutefois d’un village, havre de paix, au sud-est d’ici.
+Choice : (set sail);Choice : (enter the house);;Choice : (go back to the living room) (leave);Choice : (sleep until NEXTTIME) (sleep);Choice : (desk) (quest)
+PlayerSpeak : Let’s go!;Fade;;Fade;ChangeTimeOfDay;Narrator : The most worn down book talks about the waters surrounding this island :
+Switch=>premiere visite;Node=>salon;;Node=>salon;Node=>salon;Narrator : It says that the seas are vast and hostile. It usually takes days and nights to go from one island to another.
+Leave;;;;;Narrator : The treasure of NOMTRESOR, of which we hear about DIRECTIONTOFORMULA of here, is greatly popular.
+;;;;;Narrator : There are also rumors of a peaceful village, south east from here.
 ;;;;;Node=>choix chambre
 ;;;;;
 ;;;;;
 ;;;;;
 [retour];;;;;
-Narrator :  Revoilà CAPITAINE sur sa petite île natale. Un petit chemin de pierre mène à sa chaumière coquette.;;;;;
-PlayerSpeak : C'est chez moi !;;;;;
+Narrator : CAPITAINE steps back on the small island where they grew up. A rock path leads to their childhood cottage.;;;;;
+PlayerSpeak : Home !;;;;;
 CheckQuest=>salon;;;;;
 [salon];;;;;
+SetBG(House);;;;;
 SetChoices4;;;;;
-Choice : (partir);Choice : (aller dans la chambre);Choice : (aller dans la cuisine);Choice : (aller  dans le jardin);;
+Choice : (leave);Choice : (go into the bedroom);Choice : (go into the kitchen);Choice : (go into the garden);;
 PlayerSpeak : Hop !;Fade;Fade;Fade;;
 Leave;Node=>chambre;Node=>cuisine;Node=>jardin;;
 ;;;;;
 ;;;;;
 [cuisine];;;;;
 SetChoices2;;;;;
-Choice : (retourner salon) (partir);Choice : (regarder garde manger) (loot);;;;
+Choice : (go back to the living room) (leave);Choice : (check the pantry) (loot);;;;
 Fade;LootFood;;;;
 Node=>salon;Node=>cuisine;;;;
 ;;;;;
 [jardin];;;;;
+SetBG(Forest);;;;;
 CheckDay;;;;;
-Narrator : Le jardin est ensoleillé et calme. Quelques oiseaux chantent.;Narrator : La nuit est douce et calme. On entend le hululement d'une chouette.;;;;
+Narrator : The garden is peaceful as always. Over the distant sound of the sea, a few seagulls cry out. Sunlight is gently warming CAPITAINE up.;Narrator : The night is quiet and mild. The only sounds breaking the silence are the surrounding hum of crickets, and the hooting of an owl nearby.;;;;
 Node=>choix jardin;Node=>choix jardin;;;;
 ;;;;;
 [choix jardin];;;;;
 SetChoices2;;;;;
-Choice : (retourner salon)(partir);Choice : (observer le jardin);;;;
+Choice : (go back to the living room)(leave);Choice : (watch the garden);;;;
 Fade;Node=>jardin;;;;
 Node=>salon;;;;;

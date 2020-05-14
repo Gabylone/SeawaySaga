@@ -5,7 +5,6 @@ using System.Collections.Generic;
 
 public class CrewCreator : MonoBehaviour
 {
-
     public static CrewCreator Instance;
 
     private Crews.Side targetSide;
@@ -15,14 +14,6 @@ public class CrewCreator : MonoBehaviour
     private Transform crewParent;
     [SerializeField]
     private GameObject[] memberIconPrefabs;
-
-    public string[] maleNames = new string[51] {
-        "Jean","Eric", "Nathan", "Jacques", "Benoit", "Jeremy", "Jerome", "Bertrand", "Vladimir", "Dimitri", "Jean-Jacques", "Gérard", "Nestor", "Etienne", "Leon", "Henry", "David", "Esteban", "Louis", "Carles", "Victor", "Michel", "Gabriel", "Pierre", "André", "Fred", "Cassius", "César", "Paul", "Martin", "Claude", "Levis", "Alex", "Olivier", "Mustafa", "Nicolas", "Chris", "Oleg", "Emile", "Richard", "Romulus", "Rufus", "Stan", "Charles", "Quincy", "Antoine", "Virgile", "Boromir", "Archibald", "Eddy", "Kenneth"
-    };
-
-    public string[] femaleNames = new string[51] {
-        "Jeanne","Erica", "Nathalie", "Jacquelines", "Barbara", "Ella", "Flo", "Laura", "Natasha", "Irene", "Yvonne", "Gérarde", "Nelly", "Elisa", "Adele", "Henriette", "Alice", "Esteban", "Louise", "Carla", "Victoria", "Michelle", "Gabrielle", "Sarah", "Andréa", "Marion", "Valentine", "Cléopatre", "Pauline", "Martine", "Claudette", "Nina", "Alexandra", "Clementine", "Julia", "Olivia", "Christine", "Rose", "Emilia", "Agathe", "Lily", "Claire", "Yasmine", "Charlotte", "Scarlett", "Marina", "Virginie", "Anaïs", "Tatiana", "Cécile", "Marianne"
-    };
 
     public Sprite[] weaponSprites;
     public Sprite handSprite;
@@ -42,8 +33,17 @@ public class CrewCreator : MonoBehaviour
         Color.gray,
     };
 
+    /// <summary>
+    /// text data
+    /// </summary>
+    public string[] jobDescriptions;
+    public string[] womanNames;
+    public string[] manNames;
+    public string[] boatNames;
+    public string[] boatAdjectives;
+
     void Awake()
-    {
+    {   
         Instance = this;
 
         MemberCreatorButton.lastSelected = null;
@@ -54,6 +54,27 @@ public class CrewCreator : MonoBehaviour
     private void Start()
     {
         UpdateApparenceItems();
+
+        LoadTextData();
+    }
+
+    private void LoadTextData()
+    {
+        TextAsset textAsset = Resources.Load("JobDescriptions") as TextAsset;
+        jobDescriptions = textAsset.text.Split('\n');
+
+        textAsset = Resources.Load("Names/Boat Names") as TextAsset;
+        boatNames = textAsset.text.Split('\n');
+
+        textAsset = Resources.Load("Names/Boat Adjectives") as TextAsset;
+        boatAdjectives = textAsset.text.Split('\n');
+
+        textAsset = Resources.Load("Names/Man Names") as TextAsset;
+        manNames = textAsset.text.Split('\n');
+
+        textAsset = Resources.Load("Names/Woman Names") as TextAsset;
+        womanNames = textAsset.text.Split('\n');
+
     }
 
     public void UpdateApparenceItems()

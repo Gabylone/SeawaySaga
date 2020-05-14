@@ -1,25 +1,69 @@
 <?xml version="1.0"?>
 <Chunk xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <state>UndiscoveredIsland</state>
-  <IslandData>
-    <worldPosition>
-      <x>-2.895906</x>
-      <y>3.1341238</y>
-    </worldPosition>
-    <worldRotation>210.517685</worldRotation>
-    <storyManager>
-      <storyHandlers>
-        <StoryHandler>
-          <row>0</row>
-          <col>0</col>
-          <fallBackLayer>0</fallBackLayer>
-          <storyID>3</storyID>
-          <storyType>Normal</storyType>
-          <contentDecals />
-          <loots />
-          <crews />
-        </StoryHandler>
-      </storyHandlers>
-    </storyManager>
-  </IslandData>
+  <state>DiscoveredIsland</state>
+  <islandDatas>
+    <IslandData>
+      <worldPosition>
+        <x>4.7414093</x>
+        <y>4.522583</y>
+      </worldPosition>
+      <worldRotation>86.61467</worldRotation>
+      <storyManager>
+        <storyHandlers>
+          <StoryHandler>
+            <row>0</row>
+            <col>0</col>
+            <fallBackLayer>0</fallBackLayer>
+            <storyID>3</storyID>
+            <storyType>Normal</storyType>
+            <contentDecals />
+            <loots />
+            <crews />
+          </StoryHandler>
+        </storyHandlers>
+      </storyManager>
+    </IslandData>
+    <IslandData>
+      <worldPosition>
+        <x>-13.2128868</x>
+        <y>-19.4082947</y>
+      </worldPosition>
+      <worldRotation>87.3849945</worldRotation>
+      <storyManager>
+        <storyHandlers>
+          <StoryHandler>
+            <row>0</row>
+            <col>0</col>
+            <fallBackLayer>0</fallBackLayer>
+            <storyID>14</storyID>
+            <storyType>Normal</storyType>
+            <contentDecals />
+            <loots />
+            <crews />
+          </StoryHandler>
+        </storyHandlers>
+      </storyManager>
+    </IslandData>
+    <IslandData>
+      <worldPosition>
+        <x>3.635828</x>
+        <y>6.62060165</y>
+      </worldPosition>
+      <worldRotation>242.980453</worldRotation>
+      <storyManager>
+        <storyHandlers>
+          <StoryHandler>
+            <row>0</row>
+            <col>0</col>
+            <fallBackLayer>0</fallBackLayer>
+            <storyID>14</storyID>
+            <storyType>Normal</storyType>
+            <contentDecals />
+            <loots />
+            <crews />
+          </StoryHandler>
+        </storyHandlers>
+      </storyManager>
+    </IslandData>
+  </islandDatas>
 </Chunk>

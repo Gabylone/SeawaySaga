@@ -19,7 +19,6 @@ public class StoryReader : MonoBehaviour {
 
 	private StoryManager currentStoryManager;
 
-
 	[SerializeField]
 	private AudioClip pressInputButton;
 
@@ -28,17 +27,16 @@ public class StoryReader : MonoBehaviour {
 	}
 
 	void Start () {
-		StoryInput.onPressInput += HandleOnPressInput;
 		StoryFunctions.Instance.getFunction += HandleGetFunction;
 	}
 
-	void HandleOnPressInput ()
-	{
-		NextCell ();
-		UpdateStory ();
-	}
+    public void ContinueStory()
+    {
+        NextCell();
+        UpdateStory();
+    }
 
-	void HandleGetFunction (FunctionType func, string cellParameters)
+    void HandleGetFunction (FunctionType func, string cellParameters)
 	{
 		switch (func) {
 		case FunctionType.ChangeStory:
@@ -132,7 +130,7 @@ public class StoryReader : MonoBehaviour {
 		Node node = story.nodes.Find ( x => x.name == text);
 
 		if ( node == null ) {
-			Debug.LogError ("couldn't find node " + text + " // story : " + story.name);
+			Debug.LogError ("couldn't find node " + text + " // story : " + story.dataName);
             
 			return null;
 		}
@@ -158,6 +156,19 @@ public class StoryReader : MonoBehaviour {
 	}
 
 	public string ReadDecal (int decal) {
+
+        if ( decal >=  CurrentStoryHandler.Story.content.Count)
+        {
+            Debug.LogError( "decal (" + decal + ") out of story content count (" + CurrentStoryHandler.Story.content.Count + ")");
+            return "none";
+        }
+
+        if ( StoryReader.Instance.Col >= CurrentStoryHandler.Story.content[decal].Count)
+        {
+            Debug.LogError( "col (" + StoryReader.Instance.Col + ") out of story content DECAL count (" + CurrentStoryHandler.Story.content[decal].Count + ")");
+            return "none";
+        }
+
 		return CurrentStoryHandler.Story.content
 			[decal]
 			[StoryReader.Instance.Col]; 
@@ -195,7 +206,7 @@ public class StoryReader : MonoBehaviour {
 	public void SetNewStory (Story story, StoryType storyType , Node targetNode , Node fallbackNode) {
 
 		// rechercher l'id de l'histoire désirée
-		int secondStoryID = StoryLoader.Instance.FindIndexByName (story.name,storyType);
+		int secondStoryID = StoryLoader.Instance.FindIndexByName (story.dataName,storyType);
 
 		// rechercher si l'ile comprend déjà l'histoire désirée
 		int targetStoryLayer = CurrentStoryManager.storyHandlers.FindIndex (handler => (handler.storyID == secondStoryID) );
@@ -274,14 +285,9 @@ public class StoryReader : MonoBehaviour {
 			
 			if ( Row >= CurrentStoryHandler.Story.content.Count ) {
 
-				Debug.LogError ("ROW is outside of story << " + CurrentStoryHandler.Story.name + " >> content : ROW : " + Row + " /// STORY CONTENT : " + CurrentStoryHandler.Story.content.Count);
+				Debug.LogError ("ROW is outside of story << " + CurrentStoryHandler.Story.dataName + " >> content : ROW : " + Row + " /// STORY CONTENT : " + CurrentStoryHandler.Story.content.Count);
 
 				return "AAAAH";
-
-				return CurrentStoryHandler.Story.content
-					[0]
-					[0];
-
 			}
 
 			if ( Col >= CurrentStoryHandler.Story.content [Row].Count ) {
@@ -289,10 +295,6 @@ public class StoryReader : MonoBehaviour {
 				Debug.LogError ("INDEX is outside of story content : INDEX : " + Col + " /// COUNT : " + CurrentStoryHandler.Story.content[Row].Count);
 
 				return "AAAAH";
-
-				return CurrentStoryHandler.Story.content
-					[Row]
-					[0]; 
 			}
 
 			return CurrentStoryHandler.Story.content

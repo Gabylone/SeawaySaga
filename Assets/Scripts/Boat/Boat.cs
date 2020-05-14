@@ -67,7 +67,10 @@ public class Boat : MonoBehaviour {
     #region moving
     public virtual void SetTargetPos(Vector3 p)
     {
-        agent.isStopped = false;
+        if (agent.isOnNavMesh)
+        {
+            agent.isStopped = false;
+        }
 
         agent.SetDestination(p);
 
@@ -77,9 +80,14 @@ public class Boat : MonoBehaviour {
     }
 
 	public virtual void EndMovenent() {
+
 		moving = false;
-        agent.isStopped = true;
-	}
+
+        if (agent.isOnNavMesh)
+        {
+            agent.isStopped = true;
+        }
+    }
     #endregion
 
     #region map position 

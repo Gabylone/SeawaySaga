@@ -57,19 +57,21 @@ public class LootManager : MonoBehaviour {
 	}
 
 	void Start () {
-		StoryFunctions.Instance.getFunction += HandleGetFunction;
-	}
 
-	void HandleGetFunction (FunctionType func, string cellParameters)
+		StoryFunctions.Instance.getFunction += HandleGetFunction;
+
+    }
+
+    void HandleGetFunction (FunctionType func, string cellParameters)
 	{
 		switch (func) {
 		case FunctionType.AddToInventory:
 			AddToInventory ();
-			break;
+                break;
 		case FunctionType.RemoveFromInventory:
 			RemoveFromInventory ();
-			break;
-		case FunctionType.CheckInInventory:
+                break;
+            case FunctionType.CheckInInventory:
 			CheckInInventory ();
 			break;
 		}
@@ -169,16 +171,12 @@ public class LootManager : MonoBehaviour {
 		switch (arg) {
 		case "Food":
 			return ItemCategory.Provisions;
-			break;
 		case "Weapons":
 			return ItemCategory.Weapon;
-			break;
 		case "Clothes":
 			return ItemCategory.Clothes;
-			break;
 		case "Misc":
 			return ItemCategory.Misc;
-			break;
 		}
 
 		Debug.LogError ("getLootCategoryFromString : couldn't find category in : " + arg);
@@ -205,10 +203,10 @@ public class LootManager : MonoBehaviour {
 		if (cellParams.Contains ("<")) {
 			string itemName = cellParams.Split ('<') [1];
 			itemName = itemName.Remove (itemName.Length - 6);
-			item = LootManager.Instance.getLoot (Crews.Side.Player).AllItems [(int)targetCat].Find (x => x.name == itemName);
+			item = LootManager.Instance.getLoot (Crews.Side.Player).AllItems [(int)targetCat].Find (x => x.names[0] == itemName);
 		}
 
-        Narrator.Instance.ShowNarrator("Objet perdu : " + item.name);
+        Narrator.Instance.ShowNarrator("You lost the item : " + item.name);
 
         LootManager.Instance.getLoot (Crews.Side.Player).RemoveItem (item);
 
@@ -222,9 +220,12 @@ public class LootManager : MonoBehaviour {
 		Item item = null;
 
 		if (cellParams.Contains ("<")) {
+
 			string itemName = cellParams.Split ('<') [1];
-			itemName = itemName.Remove (itemName.Length - 6);
-			item = System.Array.Find (ItemLoader.Instance.getItems (targetCat), x => x.name == itemName);
+
+            itemName = itemName.Remove(itemName.Length - 6);
+
+            item = System.Array.Find (ItemLoader.Instance.getItems (targetCat), x => x.names[0] == itemName);
 
 			if (item == null) {
 				Debug.LogError ("item : " + itemName + " was not found, returning random");
@@ -253,7 +254,7 @@ public class LootManager : MonoBehaviour {
 			string itemName = cellParams.Split ('<') [1];
 			itemName = itemName.Remove (itemName.Length - 6);
 
-			Item item = LootManager.Instance.getLoot (Crews.Side.Player).AllItems [(int)targetCat].Find (x => x.name == itemName);
+			Item item = LootManager.Instance.getLoot (Crews.Side.Player).AllItems [(int)targetCat].Find (x => x.names[0] == itemName);
 
 			if (item == null) {
 				StoryReader.Instance.SetDecal (1);

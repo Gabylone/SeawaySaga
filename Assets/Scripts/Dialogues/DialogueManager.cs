@@ -47,10 +47,11 @@ public class DialogueManager : MonoBehaviour {
 		InGameMenu.Instance.onOpenMenu += HandleOpenInventory;
 		InGameMenu.Instance.onCloseMenu += HandleCloseInventory;
 
-		StoryInput.onPressInput += HandleOnPressInput;
-	}
+        StoryInput.Instance.onPressInput += HandleOnPressInput;
 
-	bool previousActive = false;
+    }
+
+    bool previousActive = false;
 	void HandleOpenInventory ()
 	{
 		if (bubble_Obj.activeSelf) {
@@ -69,8 +70,12 @@ public class DialogueManager : MonoBehaviour {
 
 	void HandleOnPressInput ()
 	{
-		EndDialogue ();
-	}
+		if ( DisplayingText)
+        {
+            EndDialogue();
+            StoryReader.Instance.ContinueStory();
+        }
+    }
 
 	void HandleGetFunction (FunctionType func, string cellParameters)
 	{
@@ -79,17 +84,17 @@ public class DialogueManager : MonoBehaviour {
 
                 Crews.enemyCrew.captain.Icon.MoveToPoint(Crews.PlacingType.Discussion);
                 Crews.playerCrew.captain.Icon.MoveToPoint(Crews.PlacingType.Discussion);
-
                 SetDialogue(cellParameters.Remove (0, 2), Crews.enemyCrew.captain);
+                StoryInput.Instance.WaitForInput();
                 break;
 
-		case FunctionType.PlayerSpeak:
+            case FunctionType.PlayerSpeak:
 
                 Crews.playerCrew.captain.Icon.MoveToPoint(Crews.PlacingType.Discussion);
-
 			    SetDialogue (cellParameters.Remove (0, 2), Crews.playerCrew.captain);
+                StoryInput.Instance.WaitForInput();
                 break;
-		}
+        }
 	}
 
 	void Update() 

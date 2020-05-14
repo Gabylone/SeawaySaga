@@ -10,14 +10,17 @@ public class Skill_ToastUp : Skill {
 
 		CrewMember member = fighter.TargetFighter.crewMember;
 
-		if (member.MemberID.Male) {
+		/*if (member.MemberID.Male) {
 			string str = "T'as toujours été mon petit préféré, " + member.MemberName;
 			fighter.Speak (str);
 		} else {
 			string str = "T'as toujours été ma petite préférée, " + member.MemberName;
 			fighter.Speak (str);
-		}
-	}
+		}*/
+
+        string str = "You've always been my favorite, " + member.MemberName;
+        fighter.Speak(str);
+    }
 
 
 	public override void ApplyEffect ()

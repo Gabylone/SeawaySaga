@@ -12,7 +12,7 @@ public class Skill_Dynamite : Skill {
 		List<Fighter> fighters = CombatManager.Instance.getCurrentFighters (Crews.otherSide (fighter.crewMember.side));
 		for (int fighterIndex = 0; fighterIndex < fighters.Count; fighterIndex++) {
 
-			fighters[fighterIndex].GetHit (fighter, fighter.crewMember.Attack , 0.8f);
+            fighters[fighterIndex].Hurt(20);
 
 		}
 

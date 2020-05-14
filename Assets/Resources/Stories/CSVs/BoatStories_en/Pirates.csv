@@ -1,12 +1,12 @@
 Nom;Fréquence / 5;Boat Type;;;
 Pirates;16,67;1;;;
 [debut];;;;;
-Narrator : Le NOMBATEAU se fait accosté par un bateau par un bateau miteux et fracassé. Un drapeau rouge domine le mat;;;;;
+Narrator : An old an battered ship flying a red flag is spotted. Before the crew of NOMBATEAU can do anything, a few of its sailors are on your deck!;;;;;
 [arrivée bandits];;;;;[combat]
 NewCrew;;;;;LaunchCombat
-Narrator : Quelques marins s'avancent sur le pont;Node=>bateau vide;OtherSpeak : Alors ? Tu nous as oubliés ?;;;Node=>bateau vide
-OtherSpeak : Oyé !;;Node=>combat;;;
-PlayerSpeak : Ahoi !;;;;;
+Narrator : A few sailors show up on the deck.;Node=>bateau vide;OtherSpeak : Well well, did you forget about us, you scallywags?;;;Node=>bateau vide
+OtherSpeak : Ahoy, friend!;;Node=>combat;;;
+PlayerSpeak : Ahoy!;;;;;
 Node=>payed ?;;;;;
 ;;;;;
 [payed ?];;;;;
@@ -14,35 +14,35 @@ Node=>chantage;Node=>a payé;;;;
 ;;;;;
 ;;;;;
 [chantage];;;;;
-OtherSpeak : C'est simple : le tiers de ton or ou c'est fini !;;;;;
+OtherSpeak : Here is the deal : a third of your gold or you’re done for!;;;;;
 SetChoices3;;;;;
-Choice : Tenez…(trade);;Choice : Plutôt mourir !(attaquer);Choice : Je n'ai pas assez;;
-Switch=>payed ?;;Node=>combat;OtherSpeak : Tanpis Pour vous !;;
-CheckGoldTHIRD;OtherSpeak : Vous vous foutez de moi ?;;Node=>combat;;
-RemoveGoldTHIRD;OtherSpeak : Déglingez les, les gars !;;;;
-OtherSpeak : C'est très bien ça…;Node=>combat;;;;
-OtherSpeak : A la prochaine;;;;;
+Choice : Curse ye, ye old salty kraken, here…(trade);;Choice : I’d sooner die than give yer lot a single shiny coin, ye wretches! (attack);Choice : It’s not much, but it's all we have.;;
+Switch=>payed ?;;Node=>combat;OtherSpeak : That’s fine, we’ll take it... and kill you next!;;
+CheckGoldTHIRD;OtherSpeak : You’re kidding, right?;;Node=>combat;;
+RemoveGoldTHIRD;OtherSpeak : Lads, let’s get that bastard!;;;;
+OtherSpeak : Clever choice, my friend.;Node=>combat;;;;
+OtherSpeak : Until next time!;;;;;
 Leave;;;;;
 ;;;;;
 [a payé];;;;;
-OtherSpeak : Qu'est-ce que tu fais là toi.;;;;;
-OtherSpeak : Tu veux qu'on te prenne plus d'argent ?;;;;;
+OtherSpeak : Well what are you still doing here?;;;;;
+OtherSpeak : You want us to take more of your gold?;;;;;
 SetChoices2;;;;;
-Choice : (partr);Choice : (se battre)(attaquer);;;;
+Choice : (leave);Choice : (fight)(attack);;;;
 Leave;Node=>combat;;;;
 ;;;;;
 ;;;;;
 ;;;;;
 ;;;;;
 [bateau vide];;;;;
-Narrator : Le bateau est vide.;;;;;
+Narrator : The ship is empty.;;;;;
 SetChoices2;;;;;
-Choice : (partir);Choice : (fouiller)(loot);;;;
+Choice : (leave);Choice : (search)(loot);;;;
 DestroyShip;Fade;;;;
 Leave;RandomPercent20;;;;
-;PlayerSpeak : Rien de bien beau…;[fouille];;;
-;Fade;RandomRange3;;;PlayerSpeak : Il n'y a plus rien.
-;Node=>bateau vide;PlayerSpeak : Des armes ! ;PlayerSpeak : De quoi manger.;PlayerSpeak : Des babioles;Fade
+;PlayerSpeak : There’s nothing valuable here.;[fouille];;;
+;Fade;RandomRange3;;;PlayerSpeak : Nothing left here.
+;Node=>bateau vide;PlayerSpeak : Nice, weapons!;PlayerSpeak : Some food, miraculously still edible!;PlayerSpeak : A few baubles...;Fade
 ;;LootWeapons;LootFood;LootMisc;Node=>bateau vide
 ;;Switch=>fouille;Switch=>fouille;Switch=>fouille;
 ;;Fade;Fade;Fade;

@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+﻿    using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
@@ -72,11 +72,10 @@ public class StoryLoader : MonoBehaviour {
 	#region sheet
 	private Story LoadSheet (int index)
 	{
+
 		string[] rows = storyFiles[index].text.Split ('\n');
 
-		int collumnIndex 	= 0;
-
-		Story newStory = new Story ("name");
+		Story newStory = new Story ();
 
 		for (int rowIndex = 1; rowIndex < rows.Length; ++rowIndex ) {
 
@@ -85,16 +84,17 @@ public class StoryLoader : MonoBehaviour {
 			// create story
 			if (rowIndex == 1) 
 			{
-				newStory.name = rowContent [0];
+				newStory.dataName       = rowContent [0];
+				newStory.displayName    = rowContent [0];
 
-				double frequence;
+                double frequence;
 
-                string value = rowContent[1];//.Replace (',', '.');
+                string value = rowContent[1];
 
 				bool canParse = double.TryParse (value ,out frequence);
 
 				if ( canParse== false){ 
-                    Debug.LogError("ne peut pas parse la freq dans : " + newStory.name + " TRY PARSE : ");
+                    Debug.LogError("ne peut pas parse la freq dans : " + newStory.dataName + " TRY PARSE : ");
 					Debug.LogError(value);
                 }
 
@@ -106,14 +106,16 @@ public class StoryLoader : MonoBehaviour {
 
 				minFreq += newStory.freq;
 
-//				Debug.Log ("current freq : " + minFreq);
-//				Debug.Log ("story : " + newStory.name + " FREQUENCE MAX : " + newStory.rangeMax);
-//				Debug.Log ("story : " + newStory.name + " FREQUENCE MIN : " + newStory.rangeMin);
+                //				Debug.Log ("current freq : " + minFreq);
+                //				Debug.Log ("story : " + newStory.name + " FREQUENCE MAX : " + newStory.rangeMax);
+                //				Debug.Log ("story : " + newStory.name + " FREQUENCE MIN : " + newStory.rangeMin);
 
-				bool containsParam = int.TryParse (rowContent [2], out newStory.param);
+                string freq_Str = rowContent[2];
+
+                bool containsParam = int.TryParse (freq_Str, out newStory.param);
 				if (containsParam == false ) {
 					
-					print("sprite id pas parcable : (" + rowContent[2] + ") dans l'histoire " + newStory.name);
+					print("sprite id pas parcable : (" + freq_Str + ") dans l'histoire " + newStory.dataName);
 
 					print (rowContent [0]);
 					print (rowContent [1]);
@@ -132,7 +134,9 @@ public class StoryLoader : MonoBehaviour {
 			}
 			else
 			{
-				foreach (string cellContent in rowContent) {
+                int collumnIndex = 0;
+
+                foreach (string cellContent in rowContent) {
 
 					string txt = cellContent;
 
@@ -145,14 +149,23 @@ public class StoryLoader : MonoBehaviour {
 						newStory.nodes.Add (new Node (markName, collumnIndex, (rowIndex-2)));
 					}
 
-					newStory.content [collumnIndex].Add (txt);
+                    if ( collumnIndex >= newStory.content.Count)
+                    {
+                        /*Debug.Log("loading : " + storyFiles[index].name);
+                        Debug.Log("collumn index : " + collumnIndex);
+                        Debug.Log("txt : " + txt);
+                        Debug.Log( "content l : " + newStory.content.Count );
+                        Debug.Log("row index : " + rowIndex );*/
+                    }
+                    else
+                    {
+                        newStory.content[collumnIndex].Add(txt);
+                    }
 
-					++collumnIndex;
+                    ++collumnIndex;
 
 				}
 			}
-
-			collumnIndex = 0;
 
 		}
 
@@ -221,8 +234,7 @@ public class StoryLoader : MonoBehaviour {
      
 	public int FindIndexByName (string storyName,StoryType storyType)
 	{
-		int storyIndex = getStories (storyType).FindIndex (x => x.name == storyName);
-
+		int storyIndex = getStories (storyType).FindIndex (x => x.dataName == storyName);
 
 		return storyIndex;
 	}

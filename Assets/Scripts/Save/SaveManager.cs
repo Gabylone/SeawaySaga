@@ -13,7 +13,7 @@ public class SaveManager : MonoBehaviour
 
     public float timeBetweenFrames = 0.2f;
 
-	GameData gameData;
+	private GameData gameData;
 
 	public GameData GameData {
 		get {
@@ -51,11 +51,24 @@ public class SaveManager : MonoBehaviour
         if ( NavigationManager.Instance)
         {
             NavigationManager.Instance.EnterNewChunk += HandleChunkEvent;
+            Crews.Instance.onCrewMemberKilled += HandleOnCrewMemberKilled;
+            StoryLauncher.Instance.onPlayStory += HandlePlayStoryEvent;
+            StoryLauncher.Instance.onEndStory += HandleEndStoryEvent;
         }
 
-        CrewMember.onCrewMemberKilled += HandleOnCrewMemberKilled;
+    }
+    
+    void HandlePlayStoryEvent()
+    {
+        SaveCurrentIsland();
+        SaveGameData();
+    }
 
-	}
+    void HandleEndStoryEvent()
+    {
+        SaveCurrentIsland();
+        SaveGameData();
+    }
 
     void HandleOnCrewMemberKilled (CrewMember crewMember)
 	{
@@ -103,6 +116,8 @@ public class SaveManager : MonoBehaviour
 
 		TimeManager.Instance.Load ();
 
+        MapGenerator.Instance.treasureName = gameData.treasureName;
+
 
 	}
 	#endregion
@@ -122,6 +137,8 @@ public class SaveManager : MonoBehaviour
 		gameData.globalID = Member.globalID;
 
 		GameData.playerGold = GoldManager.Instance.goldAmount;
+
+        gameData.treasureName = MapGenerator.Instance.treasureName;
 
 		// karma
 		Karma.Instance.SaveKarma ();
@@ -198,7 +215,7 @@ public class SaveManager : MonoBehaviour
 //	void SaveAllIslandsCoroutine () {
 
 //		LoadingScreen.Instance.StartLoading ("Sauvegarde îles", MapGenerator.Instance.MapScale * MapGenerator.Instance.MapScale);
-		LoadingScreen.Instance.StartLoading ("Sauvegarde îles", MapGenerator.Instance.MapScale * MapGenerator.Instance.IslandsPerCol);
+		LoadingScreen.Instance.StartLoading ("Sauvegarde îles", MapGenerator.Instance.MapScale_X * MapGenerator.Instance.IslandsPerCol);
 
 		yield return new WaitForEndOfFrame ();
 
@@ -210,9 +227,9 @@ public class SaveManager : MonoBehaviour
 
         int currentLoadLimit = 0;
 
-		for ( int y = 0; y < MapGenerator.Instance.MapScale ; ++y ) {
+		for ( int y = 0; y < MapGenerator.Instance.MapScale_Y ; ++y ) {
 
-			for (int x = 0; x < MapGenerator.Instance.MapScale; ++x ) {
+			for (int x = 0; x < MapGenerator.Instance.MapScale_X; ++x ) {
 
 				Coords c = new Coords ( x , y );
 
@@ -355,8 +372,7 @@ public class GameData
 
     public List<Formula>        formulas = new List<Formula>();
 
-	public PlayerBoatInfo 		playerBoatInfo;
-
+    public PlayerBoatInfo       playerBoatInfo;
 	public Coords treasureCoords;
 	public Coords homeCoords;
 
@@ -370,6 +386,8 @@ public class GameData
 
 	public bool 				night = false;
 	public int 					timeOfDay = 0;
+
+    public string               treasureName = "";
 
 
 	public GameData()

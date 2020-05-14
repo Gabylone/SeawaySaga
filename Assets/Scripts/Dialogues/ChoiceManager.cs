@@ -9,6 +9,9 @@ public class ChoiceManager : MonoBehaviour {
 	public Sprite[] feedbackSprites;
 	public Sprite[] bubbleSprites;
     public Color[] bubbleColors;
+
+    public bool visible = false;
+
     public string[] bubblePhrases = new string[8] {
 		"(partir)",
 		"(attaquer)",
@@ -27,45 +30,74 @@ public class ChoiceManager : MonoBehaviour {
 	[SerializeField]
 	private Color[] statColor;
 
-	[Header("Tips")]
+    [Header("Tips")]
 	[SerializeField]
 	private string[] tips;
 
 	[SerializeField]
 	private GameObject choiceGroup;
 
-	void Awake () {
+    private bool activeWhenInventoryOpens = false;
+
+    void Awake () {
 		Instance = this;
 	}
 
-	void Start () {
+    void Start()
+    {
+        Invoke("StartDelay", 0.001f);
+    }
 
-		feedbackSprites = Resources.LoadAll<Sprite> ("Graph/ChoiceBubbleFeedbackSprites");
+    void StartDelay()
+    {
+        string path = MapGenerator.mapParameters.mapName + " Tips";
 
-		StoryFunctions.Instance.getFunction+= HandleGetFunction;
+        TextAsset tipsTextAsset = Resources.Load("Tips/" + path) as TextAsset;
 
-		InGameMenu.Instance.onOpenMenu += HandleOpenInventory;
-		InGameMenu.Instance.onCloseMenu += HandleCloseInventory;
-	}
+        tips = tipsTextAsset.text.Split('\n');
 
-	bool previousActive = false;
+        feedbackSprites = Resources.LoadAll<Sprite>("Graph/ChoiceBubbleFeedbackSprites");
+
+        StoryFunctions.Instance.getFunction += HandleGetFunction;
+
+        InGameMenu.Instance.onOpenMenu += HandleOpenInventory;
+        InGameMenu.Instance.onCloseMenu += HandleCloseInventory;
+    }
+
+    public void Show()
+    {
+        choiceGroup.SetActive(true);
+
+        visible = true;
+    }
+
+    public void Hide()
+    {
+        choiceGroup.SetActive(false);
+
+        visible = false;
+    }
+
 	void HandleOpenInventory ()
 	{
-		if (choiceGroup.activeSelf) {
+		if (visible) {
 
-			choiceGroup.SetActive (false);
 
-			previousActive = true;
+            Hide();
+
+			activeWhenInventoryOpens = true;
 		}
 	}
 
 	void HandleCloseInventory ()
 	{
-		if ( previousActive ) {
 
-			choiceGroup.SetActive (true);
+        if ( activeWhenInventoryOpens ) {
 
-			previousActive = false;	
+
+            Show();
+
+			activeWhenInventoryOpens = false;	
 		}
 	}
 
@@ -77,13 +109,15 @@ public class ChoiceManager : MonoBehaviour {
 			break;
 		case FunctionType.GiveTip:
 			GiveTip ();
-			break;
-		}
+            break;
+        }
 	}
 
 	public void SetChoices (int amount, string[] content) {
+        Show();
 
 		for (int i = 0; i < amount ; ++i ) {
+            choiceButtons[i].id = i;
             choiceButtons[i].Init(content[i]);
 		}
 
@@ -108,6 +142,8 @@ public class ChoiceManager : MonoBehaviour {
 
         /// ici, si tu veux tainter les choix que tu as déjà fais.
         //StoryReader.Instance.CurrentStoryHandler.SaveDecal(-2);
+
+        Hide();
 
 		foreach ( ChoiceButton button in choiceButtons ) {
 			button.gameObject.SetActive (false);
@@ -180,11 +216,13 @@ public class ChoiceManager : MonoBehaviour {
 
 	#region tips
 	public void GiveTip () {
-		DialogueManager.Instance.SetDialogue (tips[Random.Range (0,tips.Length)], Crews.enemyCrew.captain);
-	}
-	#endregion
+        DialogueManager.Instance.SetDialogue(tips[Random.Range(0, tips.Length)], Crews.enemyCrew.captain);
+        StoryInput.Instance.WaitForInput();
 
-	public ChoiceButton[] ChoiceButtons {
+    }
+    #endregion
+
+    public ChoiceButton[] ChoiceButtons {
 		get {
 			return choiceButtons;
 		}

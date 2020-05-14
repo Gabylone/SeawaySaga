@@ -1,28 +1,29 @@
 Nom histoire;Fréquence %;Sprite ID;;;;;;;;;;;
 Quincaillerie;1,69;1;;;;;;;;;;;
-Narrator : The island is flat, green and very small;;;;;;;;;;;;;
+Narrator : It's a small island covered in grassy fields.;;;;;;;;;;;;;
 CheckQuest=>debut;;;;;;;;;;;;;
 [debut];;;;;;;;;;;;;
-Narrator : A pannel on the beach says : « Stuff, things, and miscellaneous items »;;;;;;;;;;;;;
+Narrator : A sign on the beach reads: « Stuff, things & baubles »;;;;;;;;;;;;;
 SetChoices2;;;;;;;;;;;;;
-Choice : (partir);Choice : (follow pannel);;;;;;;;;;;;
+Choice : (leave);Choice : (follow sign);;;;;;;;;;;;
 Leave;Fade;;;;;;;;;;;;
 ;Node=>marchand;;;;;;;;;;;;
 ;;;;;;;;;;;;;
 ;;;;;;;;;;;;;
 ;;;;;;;;;;;;;
 [marchand];;;;;;;;;;;;;
+SetBG(House);;;;;;;;;;;;;
 NewCrew;;;;;;;;;;;;;
-OtherSpeak : Howdy, sailor !;Node=>mort;Node=>combat;;;;;;;;;;;
+OtherSpeak : Howdy, sailor!;Node=>mort;Node=>combat;;;;;;;;;;;
 [choix];;;;;;[choix autre];;;;;;[combat];
-SetChoices4;;;;;;SetChoices3;;;;;;OtherSpeak : ?!?;
-Choice : (partir);Choice : Show me your merchandise (trade);Choice : The treasure of NOMTRESOR ?;;Choice : (autre);;Choice : Give me all you random things ! (attaquer);Choice : Tout va bien pour vous ?(quete);;;Choice : (autre);;LaunchCombat;
-OtherSpeak : See you !;TradeMisc;RandomPercent20;;Node=>choix autre;;Node=>combat;RandomPercent65;;;Node=>choix;;RemoveKarma;
-Leave;Node=>choix;OtherSpeak : Only sailors from the DIRECTIONTOFORMULA are interested;OtherSpeak : Nope, first time I hear about it;;;;OtherSpeak : People rarely cross oceans;NewQuest=>choix;;;;[mort];
-;;Node=>choix;Node=>choix;;;;OtherSpeak : To buy me things I found at the bottom of the ocean;;;;;PlayerSpeak : The vendor’s lying dead on the floor !;
-;;;;;;;OtherSpeak : Never the less, yes;;;;;SetChoices2;
-;;;;;;;Node=>choix;;;;;Choice : (partir);Choice : (search the shop)
+SetChoices4;;;;;;SetChoices4;;;;;;OtherSpeak : You mongrel, I knew it!;
+Choice : (leave);Choice : Show me your wares! (trade);Choice : The treasure of NOMTRESOR?;;Choice : (other);;Choice : Give me everything you have! (attack);Choice : How are things? (quest);;Choice : Tell me about the ocean !;;Choice : (other);LaunchCombat;
+OtherSpeak : See you!;TradeMisc;RandomPercent20;;Node=>choix autre;;Node=>combat;RandomPercent65;;RandomRange2;;Node=>choix;RemoveKarma;
+Leave;Node=>choix;OtherSpeak : Only sailors from the DIRECTIONTOFORMULA are interested;OtherSpeak : Nope, first time I hear about it, sorry.;;;;OtherSpeak : Nowadays people rarely cross the ocean;NewQuest=>choix;GiveTip;OtherSpeak : I’d prefer we talk business only;;[mort];
+;;Node=>choix;Node=>choix;;;;OtherSpeak : to buy things I find at the bottom of it.;;Node=>choix;Node=>choix;;PlayerSpeak : The vendor’s dead on the floor!;
+;;;;;;;OtherSpeak : Nevertheless, it’s alright.;;;;;SetChoices2;
+;;;;;;;Node=>choix;;;;;Choice : (leave);Choice : (search the shop)
 ;;;;;;;;;;;;Leave;LootMisc
-;;;;;;;;;;;;;PlayerSpeak : Just things and stuff
-;;;;;;;;;;;;;PlayerSpeak : I didn’t know what I expected..
+;;;;;;;;;;;;;PlayerSpeak : Just things and stuff...
+;;;;;;;;;;;;;PlayerSpeak : I don’t know what I expected, really.
 ;;;;;;;;;;;;;Leave

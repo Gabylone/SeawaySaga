@@ -40,8 +40,6 @@ public class Map : MonoBehaviour {
     {
         UpdateUI();
 
-        Debug.Log("map name : " + mapParameters.mapName);
-
         max = System.Enum.GetValues(typeof(TutorialStep)).Length;
 
     }
@@ -148,7 +146,7 @@ public class Map : MonoBehaviour {
 
     public void EraseMap()
     {
-        MessageDisplay.Instance.Show("Ecraser sauvegarde ?");
+        MessageDisplay.Instance.Show("Erase game ?");
 
         MessageDisplay.onValidate += ConfirmEraseMap;
     }

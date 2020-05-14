@@ -12,6 +12,8 @@ public class Narrator : MonoBehaviour {
 	[SerializeField] private GameObject narratorObj;
 	[SerializeField] private GameObject narratorButtonObj;
 
+    public bool visible = false;
+
     void Awake () {
 		Instance = this;
 	}
@@ -21,8 +23,7 @@ public class Narrator : MonoBehaviour {
 
 		InGameMenu.Instance.onOpenMenu += HandleOpenInventory;
 		InGameMenu.Instance.onCloseMenu += HandleCloseInventory;
-
-		StoryInput.onPressInput += HandleOnPressInput;
+        StoryInput.Instance.onPressInput += HandleOnPressInput;
 
         HideNarrator();
 
@@ -30,17 +31,20 @@ public class Narrator : MonoBehaviour {
 
 	void HandleGetFunction (FunctionType func, string cellParameters)
 	{
-		switch (func) {
-		case FunctionType.Narrator:
-			ShowNarrator (cellParameters.Remove (0, 2));
-			break;
-		}
-	}
+		if ( func == FunctionType.Narrator)
+        {
+            ShowNarrator(cellParameters.Remove(0, 2));
+            StoryInput.Instance.WaitForInput();
+        }
+    }
 
 	void HandleOnPressInput ()
 	{
+        if (!visible)
+            return;
 		HideNarrator ();
-	}
+        StoryReader.Instance.ContinueStory();
+    }
 
 	bool previousActive = false;
 	void HandleOpenInventory ()
@@ -82,6 +86,8 @@ public class Narrator : MonoBehaviour {
 
         narratorButtonObj.SetActive(true);
 
+        visible = true;
+
         Tween.Bounce (narratorObj.transform , 0.1f , 1.01f);
 
 		narratorObj.SetActive (true);
@@ -98,6 +104,8 @@ public class Narrator : MonoBehaviour {
         //InGameMenu.Instance.ShowMenuButtons();
 
         narratorObj.SetActive (false);
+
+        visible = false;
 	}
 	#endregion
 }

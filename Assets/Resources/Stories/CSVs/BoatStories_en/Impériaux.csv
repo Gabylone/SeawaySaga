@@ -1,33 +1,33 @@
 Nom;Fréquence / 5;Boat Type;;;;;;;;;;;;;;;
 Impériaux;41,67;1;;;;;;;;;;;;;;;
-Narrator : An immense imperial boat berths CAPITAINE. Its guns pointed at NOMBATEAU, a sailor appears on the deck.;;;;;;;;;;;;;;;;;
+Narrator : Sail ho! An immense imperial boat catches up, its weapons threateningly pointed at NOMBATEAU. An officer on the deck hails you.;;;;;;;;;;;;;;;;;
 [apparition capitaine];;;;;;;;;;;;;;;;;
 NewCrew;;;;;;;;;;;;;;;;;
-Node=>check karma;Node=>bateau vide;OtherSpeak : Here comes those rascals again !;;;;;;;;;;;;;;;
+Node=>check karma;Node=>bateau vide;OtherSpeak : It's those rascals again!;;;;;;;;;;;;;;;
 ;;Node=>combat;;;[choix];;;;;;;[combat];;;;;
 [check karma];;;;;SetChoices4;;;;;;;LaunchCombat;;;;;
-CheckKarma;;;;;Choice : Just sailin’ by (partir);Choice : NOMTRESOR ?;;Choice : We’re here to destroy ! (attaquer);Choice : We need HELP (cha);;;RemoveKarma;;;;;
-OtherSpeak : Oh my ! You wouldn’t be CAPITAINE ?;OtherSpeak : What brings you to those seas ?;OtherSpeak : Ahoy sailor !;OtherSpeak : Holy smokes !;;OtherSpeak : Good enough…;RandomRange2;;OtherSpeak : Scoundrels !;CheckStatCHA;;;RemoveKarma;;;;;
-OtherSpeak : One of the most trust worthy captain on the ocean I heard !;Node=>choix;OtherSpeak : You don’t look like a saint, but not like a pirate either.;OtherSpeak : Your head is on all wanter posters of the kingdom !;;OtherSpeak : You can go about;OtherSpeak : You won’t find this here;OtherSpeak : Those are tales. To make kids dream.;Node=>combat;Node=>déjà choix;OtherSpeak : Faut prouver que vous la méritez, notre aide.;;Node=>bateau vide;;;;;
-OtherSpeak : Can i be of any help ?;;OtherSpeak : Anything to declare ?;OtherSpeak : The captain’s gonna want to speak with you…;;Leave;OtherSpeak : Those myths come up DIRECTIONTOFORMULA;Node=>choix;;;Node=>choix;;;;;;;
+CheckKarma;;;;;Choice : Just sailin’ by... G'day to ye! (leave);Choice : Does NOMTRESOR sound familiar?;;Choice : Give 'em no quarter boys! Yaargh! (attack);Choice : We need HELP (cha);;;RemoveKarma;;;;;
+OtherSpeak : Oh my! If it isn’t the infamous CAPITAINE!;OtherSpeak : Tell me, CAPITAINE, what brings you to these parts?;OtherSpeak : Ahoy sailor!;OtherSpeak : Blimey!;;OtherSpeak : Fair enough…;RandomRange2;;OtherSpeak : Scoundrels!;CheckStatCHA;;;RemoveKarma;;;;;
+OtherSpeak : Soldiers, lower the weapons! I heard the stories, you’re one of the most trustworthy captains sailing our ocean.;Node=>choix;OtherSpeak : We've heard good things about you, but not only. Be careful, we'll be keeping an eye on you.;OtherSpeak : Hey I know you! Your face is on all the wanted posters of the kingdom!;;OtherSpeak : You may go;OtherSpeak : It does, but you won’t find anything here.;OtherSpeak : Those are tales. Only kids would believe in them.;Node=>combat;Node=>déjà choix;OtherSpeak : You need to prove you really need help.;;Node=>bateau vide;;;;;
+OtherSpeak : We’ll help you, whatever you need Tell us what you require and the Crown will gladly provide it!;;OtherSpeak : Anything we should know about?;OtherSpeak : The captain’ll know what to do with you…;;Leave;OtherSpeak : Try DIRECTIONTOFORMULA, that's where everybody seems to go.;Node=>choix;;;Node=>choix;;;;;;;
 Node=>déjà choix;;Node=>choix;SetChoices2;;;Node=>choix;;;;;;;;;;;
-;;;Choice : Don’t touch me (attaquer);Choice : OK.;;;;;;;;;;;;;
-;;;OtherSpeak : You’re not in position to give orders;HideOther;;;;;;;;;;;;;
+;;;Choice : Don’t touch me! (attack);Choice : OK.;;;;;;;;;;;;;
+;;;OtherSpeak : Silence, scum, you’re finished!;HideOther;;;;;;;;;;;;;
 ;;;Node=>combat;Fade;;;;;;;;;;;;;
 [déjà choix];;;;Node=>mauvais karma;;;[besoin];;;;;;;;;;
-OtherSpeak : Don’t mind if I do !;OtherSpeak : Let’s not abuse our generosity…;;;;;;Switch=>déjà choix;;;;;[mec1];;[mec2];;[mec3];
-Node=>besoin;Node=>choix;;;;;;OtherSpeak : Anything else ?;;;;;NewCrew1;;NewCrew1;;NewCrew1;
-;;;;;;;SetChoices4;;;;;OtherSpeak : The infamous CAPITAINE ! It would be a pleasure;;OtherSpeak : ‘What up;;OtherSpeak : ‘Pleasure;
-;;;;;;;Choice : We’re lacking sailors ! (membre);Choice : Someting to eat ! (loot);Choice : Weapons !(loot);Choice : I’m good…(partir);;SetChoices2;;SetChoices2;;SetChoices2;
-[bateau vide];;;;;;;OtherSpeak : I may have some available men….;OtherSpeak : Help yourself;OtherSpeak : Help youself;AddKarma;;Choice : Climb up (membre);Choice : Show me another (autre);Choice : Climb up (membre);Choice : Show me another (autre);Choice : Climb up (membre);Choice : Show me another (autre)
-Narrator : The ship is empty;;;;;;;OtherSpeak : Some have been twiddling their thumbs;LootFood;LootWeapons;OtherSpeak : !;;OtherSpeak : With pleasure !;Node=>mec2;OtherSpeak : With pleasure !;Node=>mec3;OtherSpeak : With pleasure !;OtherSpeak : I was the last one
-SetChoices2;;;;;;;HideOther;Node=>choix;Node=>choix;Node=>choix;;OtherSpeak : Partons de suite;;AddMember;;AddMember;OtherSpeak : Let me take you back to my boss
-Choice : Let’s go (partir);Choice : (loot) (loot);;;;;;Fade;;;;;AddMember;;Leave;;Leave;Node=>apparition capitaine
+OtherSpeak : Don’t mind if I do!;OtherSpeak : Don’t push your luck now…;;;;;;Switch=>déjà choix;;;;;[mec1];;[mec2];;[mec3];
+Node=>besoin;Node=>choix;;;;;;OtherSpeak : Anything else?;;;;;NewCrew1;;NewCrew1;;NewCrew1;
+;;;;;;;SetChoices4;;;;;OtherSpeak : That old salt CAPITAINE! It would be my pleasure!;;OtherSpeak : It’s an honor, sir !;;OtherSpeak : Sir, it would be an honor to be part of the crew !;
+;;;;;;;Choice : Wouldn't mind some extra hands if ye can spare 'em. (member);Choice : Any food? (loot);Choice : Weapons! (loot);Choice : We be fine for now. (leave);;SetChoices2;;SetChoices2;;SetChoices2;
+[bateau vide];;;;;;;OtherSpeak : I might have a few available.;OtherSpeak : Of course, help yourself!;OtherSpeak : Take whatever you need!;AddKarma;;Choice : Climb up, mate. (member);Choice : Who else do ye have? (other);Choice : Ye're in, matey. (member);Choice : Anyone else? (other);Choice : Ye’re in, welcome to the NOMBATEAU! (member);Choice : Who else is there? (other)
+Narrator : The ship is empty.;;;;;;;OtherSpeak : Some men have been seen twiddling their thumbs lately.;LootFood;LootWeapons;OtherSpeak : Very well! Safe travels.;;OtherSpeak : Aye aye, captain!;Node=>mec2;OtherSpeak : Aye aye, sir!;Node=>mec3;OtherSpeak : Thank you captain!;OtherSpeak : I was the last one, captain!
+SetChoices2;;;;;;;HideOther;Node=>choix;Node=>choix;Node=>choix;;OtherSpeak : Let’s set sail!;;AddMember;;AddMember;OtherSpeak : Let me take you back to my boss.
+Choice : Let’s go (leave);Choice : (loot) (loot);;;;;;Fade;;;;;AddMember;;Leave;;Leave;Node=>apparition capitaine
 DestroyShip;Fade;;;;;;Node=>mec1;;;;;Leave;;;;;
 Leave;RandomPercent20;;;;;;;;;;;;;;;;
 ;PlayerSpeak : Nothing much…;[fouille];;;;;;;;;;;;;;;
-;Fade;RandomRange3;;;PlayerSpeak : Il n'y a plus rien.;;;;;;;;;;;;
-;Node=>bateau vide;PlayerSpeak : Weapons;PlayerSpeak : Something to eat;PlayerSpeak : Trinkets and such…;Fade;;;;;;;;;;;;
+;Fade;RandomRange3;;;PlayerSpeak : There’s nothin' left...;;;;;;;;;;;;
+;Node=>bateau vide;PlayerSpeak : Weapons, good stuff!;PlayerSpeak : Something to eat.;PlayerSpeak : Trinkets and such…;Fade;;;;;;;;;;;;
 ;;LootWeapons;LootFood;LootMisc;Node=>bateau vide;;;;;;;;;;;;
 ;;Switch=>fouille;Switch=>fouille;Switch=>fouille;;;;;;;;;;;;;
 ;;Fade;Fade;Fade;;;;;;;;;;;;;
@@ -38,15 +38,15 @@ Leave;RandomPercent20;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;
 [mauvais karma];;;;;;;;;;;;;;;;;
-OtherSpeak : There’s BOUNTY gold coins on your head;;;;;;;;;;;;;;;;;
-OtherSpeak : Pay BOUNTY or die;;;;;;;;;;;;;;;;;
+OtherSpeak : There’s BOUNTY gold coins on your head, criminal!;;;;;;;;;;;;;;;;;
+OtherSpeak : Pay BOUNTY or die like the rat you are!;;;;;;;;;;;;;;;;;
 SetChoices3;;;;;;;;;;;;;;;;;
-Choice : Here’s the money… (trade);;Choice : It’s out of the question (attaquer);Choice : (attempt to flee)(dex);;;;;;;;;;;;;;
-PayBounty;;OtherSpeak : Then you’ll die NOMBATEAU;CheckStatDEX;;;;;;;;;;;;;;
-OtherSpeak : Good… Your dept is clear;OtherSpeak : You don’t have enough;Node=>combat;OtherSpeak : !;OtherSpeak : They’re running away :;;;;;;;;;;;;;
-OtherSpeak : Keep sailing then.;OtherSpeak : You’ll need to come with us. Prison awaits.;;HideOther;Node=>combat;;;;;;;;;;;;;
-Leave;OtherSpeak :  Or maybe death;;Fade;;;;;;;;;;;;;;
-;Node=>combat;;Narrator : CAPITAINE is on the beach. Soldiers arrive form afar;;;;;;;;;;;;;;
+Choice : I’ll pay, here’s the money… (trade);;Choice : It’s out of the question! (attack);Choice : (attempt to flee)(dex);;;;;;;;;;;;;;
+PayBounty;;OtherSpeak : Then you’ll die, CAPITAINE;CheckStatDEX;;;;;;;;;;;;;;
+OtherSpeak : Good… Your debt is clear.;OtherSpeak : Poor bastard!;Node=>combat;OtherSpeak : What?!;OtherSpeak : They’re running away!;;;;;;;;;;;;;
+OtherSpeak : Scram now, I don’t want to see your ugly face around here again!;OtherSpeak : Jail would be too good for you, we’ll deal with you now and feed you to the sharks!;;HideOther;Node=>combat;;;;;;;;;;;;;
+Leave;OtherSpeak :  This is what you get, bloody pirate!;;Fade;;;;;;;;;;;;;;
+;Node=>combat;;Narrator : CAPITAINE is on the beach. Soldiers arrive from afar.;;;;;;;;;;;;;;
 ;;;SetChoices1;;;;;;;;;;;;;;
-;;;Choice : (sail away) (partir);;;;;;;;;;;;;;
+;;;Choice : (sail away) (leave);;;;;;;;;;;;;;
 ;;;Leave;;;;;;;;;;;;;;

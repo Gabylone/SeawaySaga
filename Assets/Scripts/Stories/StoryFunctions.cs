@@ -49,6 +49,7 @@ public enum FunctionType {
 	PayBounty,
 	ObserveHorizon,
     EndMap,
+    SetBG,
 
 	// quest
 	NewQuest,
@@ -70,6 +71,8 @@ public class StoryFunctions : MonoBehaviour {
 
 	public static StoryFunctions Instance;
 
+    public bool debug = false;
+
 	string cellParams = "";
 
 	public delegate void GetFunction (FunctionType func, string cellParameters );
@@ -89,7 +92,7 @@ public class StoryFunctions : MonoBehaviour {
 
 		if (content.Length == 0) {
 			
-			string text = "cell is empty on story " + StoryReader.Instance.CurrentStoryHandler.Story.name + "" +
+			string text = "cell is empty on story " + StoryReader.Instance.CurrentStoryHandler.Story.dataName + "" +
 				"\n at row : " + (StoryReader.Instance.Col+2) + "" +
 				"\n and collumn : " + StoryReader.Instance.Row;
 
@@ -103,20 +106,30 @@ public class StoryFunctions : MonoBehaviour {
 		int decal = StoryReader.Instance.CurrentStoryHandler.GetDecal();
 		if ( decal >= 0 ) {
 
+            if (debug)
+            {
+                Debug.Log("switching : decal " + decal);
+            }
+
 			StoryReader.Instance.NextCell ();
 			StoryReader.Instance.SetDecal (decal);
-
 			StoryReader.Instance.UpdateStory ();
 			//
 			return;
 		}
 	
 		if ( content[0] == '[' ) {
-			
+
+            if ( debug)
+            {
+                Debug.Log("node " + content);
+            }
+
 			StoryReader.Instance.NextCell ();
 			StoryReader.Instance.UpdateStory ();
 			return;
 		}
+
 
 		foreach ( FunctionType func in System.Enum.GetValues(typeof(FunctionType)) ) {
 
@@ -124,10 +137,17 @@ public class StoryFunctions : MonoBehaviour {
 
 				cellParams = content.Remove (0, func.ToString().Length);
 
-				if (getFunction != null)
+                if (debug)
+                {
+                    Debug.Log("func : " + func.ToString());
+                }
+
+                if (getFunction != null)
 					getFunction (func,cellParams);
 
-				return;
+               
+
+                return;
 			}
 
 		}

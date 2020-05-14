@@ -23,8 +23,14 @@ public class Quest {
 	public int row = 0;
 	public int col = 0;
 
-	public Coords originCoords;
-	public Coords previousCoords;
+
+    public int originID = 0;
+    public Coords originCoords;
+
+    public int previousID = 0;
+    public Coords previousCoords;
+
+    public int targetID = 0;
 	public Coords targetCoords;
 
 	public Node nodeWhenCompleted;
@@ -58,16 +64,18 @@ public class Quest {
 		StoryReader.Instance.SetNewStory (Story, StoryType.Quest, targetNode, newQuest_FallbackNode);
 
 	}
+
 	public void Init ()
 	{
 		goldValue = level * 20 + Random.Range(1,9);
 
-		level = Random.Range(Crews.playerCrew.captain.Level -1, Crews.playerCrew.captain.Level+2);
+		level = Random.Range(Crews.playerCrew.captain.Level -1, Crews.playerCrew.captain.Level+4);
 		level = Mathf.Clamp (level, 1, 10);
 
 		experience = 15;
 
-		originCoords = Boats.playerBoatInfo.coords;
+        originCoords = Boats.Instance.playerBoatInfo.coords;
+        originID = IslandManager.Instance.currentIsland.id;
 
 		giver = Crews.enemyCrew.captain.MemberID;
 
@@ -76,10 +84,8 @@ public class Quest {
 	}
 
 	public void ReturnToGiver() {
-
 		currentQuest = this;
 		StoryReader.Instance.SetNewStory (Story, StoryType.Quest, Story.GetNode("fin") , newQuest_FallbackNode);
-		//
 	}
 
 	public void Continue ()
@@ -104,12 +110,8 @@ public class Quest {
 	}
 
 	public void SetRandomCoords () {
-
-
-		Coords _targetCoords = Coords.GetClosest (Boats.playerBoatInfo.coords);
+		Coords _targetCoords = Coords.GetClosest (Boats.Instance.playerBoatInfo.coords);
 		SetTargetCoords (_targetCoords);
-
-//		ShowOnMap ();
 	}
 	#endregion
 
@@ -126,7 +128,7 @@ public class Quest {
 
 		if ( parts.Length > 1 ) {
 			nodeWhenCompleted = StoryReader.Instance.GetNodeFromText (parts [1]);
-		}	
+		}
 	}
 	#endregion
 
@@ -138,7 +140,9 @@ public class Quest {
 
 	public delegate void OnSetTargetCoords ( Quest quest );
 	public static OnSetTargetCoords onSetTargetCoords;
+
 	public void SetTargetCoords ( Coords coords ) {
+
 		previousCoords = targetCoords;
 		targetCoords = coords;
 

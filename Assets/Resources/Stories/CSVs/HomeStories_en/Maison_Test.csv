@@ -1,0 +1,9 @@
+Nom;Fréquence / 5;Sprite ID
+Maison_Test;1;1
+[debut];;
+PlayerSpeak : This is the test story;;
+NewCrew;;
+SetChoices2;;
+Choice : Leave;Choice : Take Quest;
+Leave;OtherSpeak : Voilà ta quete;
+;NewQuest=>debut;

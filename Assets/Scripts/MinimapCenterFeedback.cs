@@ -13,7 +13,7 @@ public class MinimapCenterFeedback : MonoBehaviour {
 
         Quest.showQuestOnMap += HandleShowQuestOnMap;
 
-		GetComponent<RectTransform> ().sizeDelta = DisplayMinimap.Instance.minimapChunkScale;
+		GetComponent<RectTransform> ().sizeDelta = Vector2.one * DisplayMinimap.Instance.minimapChunkScale;
 
 		Hide ();
 	}

@@ -16,10 +16,10 @@ public class CrewManager : MonoBehaviour {
 
     public int CurrentMemberCapacity {
 		get {
-			return Boats.playerBoatInfo.crewCapacity;
+			return Boats.Instance.playerBoatInfo.crewCapacity;
 		}
 		set {
-			Boats.playerBoatInfo.crewCapacity = value;
+			Boats.Instance.playerBoatInfo.crewCapacity = value;
 		}
 	}
 

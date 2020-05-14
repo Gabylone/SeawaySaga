@@ -35,8 +35,8 @@ public class BoatInfo {
 
         coords = newCoords;
 
-        coords.x = Mathf.Clamp(newCoords.x, 0, MapGenerator.Instance.MapScale - 1);
-        coords.y = Mathf.Clamp(newCoords.y, 0, MapGenerator.Instance.MapScale - 1);
+        coords.x = Mathf.Clamp(newCoords.x, 0, MapGenerator.Instance.MapScale_X - 1);
+        coords.y = Mathf.Clamp(newCoords.y, 0, MapGenerator.Instance.MapScale_Y - 1);
     }
 
 	public void Move ( Directions dir ) {

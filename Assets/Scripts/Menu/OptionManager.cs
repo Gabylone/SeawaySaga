@@ -67,7 +67,7 @@ public class OptionManager : MonoBehaviour {
 
 		Tween.Bounce (saveButton.transform);
 
-		MessageDisplay.Instance.Show ("Sauvegarder partie ?");
+		MessageDisplay.Instance.Show ("Save game ?");
 		MessageDisplay.onValidate += HandleOnValidate;
 	}
 

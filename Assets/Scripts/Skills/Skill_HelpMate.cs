@@ -8,7 +8,7 @@ public class Skill_HelpMate : Skill {
 	{
 		base.OnSetTarget ();
 
-		string str = "Courage, " + fighter.TargetFighter.crewMember.MemberName + " ! Tu peux le faire, fiston";
+		string str = "Cheer up, " + fighter.TargetFighter.crewMember.MemberName + " ! You can do it, son";
 		fighter.Speak (str);
 
 	}

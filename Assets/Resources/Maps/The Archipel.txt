@@ -1,40 +1,40 @@
-;;;;Indice Vielle Dame;;;;;;;;;;;;;;;Île Déserte;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;Maison_Archipel;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;Bandits;;;;;;;;Taverne;;;;
-;;Epave;;;;;;Ferme;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;Village;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;Ferme;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;Taverne;;;;;;;;;;;;;;Taverne;;;;;;;;;;;;;;;;;;Île Déserte;;;;Verger
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;Manoir;;;;;;;;;;;;;;;;;Epave;;;;;;;;;;;;;;;;;Bois;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;Indice Vielle Dame;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;Epave;;;
-;;;;;;;;;;;;Bois;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;Trésor;;;;;Caserne;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;Naufragé;;;;;;;;;;;;Île Déserte;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;Île Déserte;;;;;;;;;;;Taverne;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;Bois;;;;;;;;;;;;;;;;;;;;;;;Armes;Taverne;Casino;Armurier;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;Village;Forgeron;Epicier;;;;;;;;;
-;;Bandits;;;;;;;;;;;;;;;;;;;;;;;;;;Hangar;Village;Quincaillerie;;;;;;;;Bandits;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;Île Déserte;;;;;;;;;;;;Indice Vielle Dame;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;Taverne;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;Epave;;;;;;;;;;;;;;;;;;;;;;;Epave;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;Île Déserte;;;;;;;;;
-;;;;;;;;;;Bandits;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;Île Déserte;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;Village;;;;;
-;;;;;;;;;;;;;;Bois;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;Manoir;;;;;;;;;
-;;Village;;;;;Ferme;;;;;;;;;;;;;;;Epave;;;;Taverne;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;Bois;;;;;;;;;;;;;;;;;;;;;;;Taverne
+;;;;Indice Vielle Dame,Bois,Bois;;;;;;;;;;;;;;;Île Déserte,Bois,Bois;;;;;;;;;;;;;;;;;Bandits,Bandits,Bandits;;
+;;Village,Village,Village,Taverne;;;;;;;;;Epave,Epave,Epave;;;;;;;;;;;;;;;;;;;;;;;;;Bandits,Bandits,Bandits;Taverne,Armes,Armurier,Village,Village,Forgeron,Epicier,Hangar,Quincaillerie,Casino;
+;;;;;;;;;;;;;;;;;;;;;;;;Île Déserte,Île Déserte,Île Déserte,Île Déserte;Île Déserte,Île Déserte,Île Déserte,Île Déserte;;;;;;;;;;;Bandits,Bandits,Bandits;Bandits,Bandits,Bandits;Bandits,Bandits,Bandits
+;;;;;;;;;;;;;;;Casino,Bandits,Bandits;;Naufragé,Epave;;;;;;;Île Déserte,Île Déserte,Île Déserte,Île Déserte;Île Déserte,Île Déserte,Île Déserte,Île Déserte;;;;;;;;;Naufragé,Epave;;;;
+;;Epave,Epave,Epave;;;;;;Ferme,Ferme,Bois;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;Epave,Epave,Epave;;;;;;;;;;;Epave,Epave,Epave;Naufragé,Naufragé;;;;;;Epave,Epave,Epave;;;;;Ferme,Ferme,Verger;;;
+Île Déserte,Hangar,Île Déserte;;;;;;;;;;;;;;;;;;;;;;;Naufragé,Naufragé;;;;;;;;;;;;;;Ferme,Epicier,Verger,Manoir;
+;;;;;;;Epave,Epave,Epave;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;Taverne,Bois,Bois;;;;;;;;;;;;;;;;;;Île Déserte;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;Manoir,Bois,Bois,Taverne;;;;;Naufragé,Epave;;;;;;;;;;;;;;;;;;;;;;;;;;;;;Bois,Bois,Taverne,Bois;
+;;;;;;;;;;;;;;;Epave,Epave,Epave;;Epave,Epave,Epave;Epave;;;;;;;;;;Indice Vielle Dame;;;;;;;;;;
+;Armes,Caserne,Caserne,Armurier;;;;;;;;;;;;;;;;;;;;;Bois,Bois;;;;;;;;;;;;;;Epave,Epave;;
+;;;;;;;;;;;;Bois,Bois,Taverne;;;;;;;;;;;;;;;;;;;;;;;;;Bois,Bois,Bois,Bois,Bois,Bois,Bois;Bois,Bois
+;Trésor - Normal;;;;;Caserne,Ferme;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;Bois,Bois,Bois,Bois,Bois,Bois,Bois;Bois,Bois,Bois,Bois,Bois,Bois,Bois
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;Casino,Bandits,Bandits;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;Taverne,Île Déserte;;;;
+;;;;;;;;;;;;;;;Maison_Archipel;;;;;;;;Maison_Archipel;;;;;;;;;;;;;;;
+;;;;;;;;;;Naufragé,Epave;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;Bois,Île Déserte;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;Epave,Epave,Epave;;;;;;;;;;;;;;;;;;;;;;;;;
+;;Bandits;;;;;;;;;;;;;Epave,Epave,Epave;;;;;;;;;;;;;;;;;;;;Naufragé,Epave;;;Bandits
+;;;;;;;;;;;;;;;;;;;;;Epave,Epave,Epave;;;;;;;;;;;;;;;;;
+;;;;;;Île Déserte;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;Bois,Bois;;;;;;;;;
+Epave,Epave,Epave;;;;;Taverne;;;;;;;;;;Manoir,Verger,Ferme,Epicier;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;Epave,Epave,Epave;;;;Epave;;;;;;;;;;;;;;;;;;;;;;;Epave;;;
+;;;;Indice Vielle Dame;;;;;;;;;;;;Epave,Epave,Epave;;;;;;;Epave,Epave,Epave;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;Île Déserte;;;;;;;;
+;;;;;;;;;;Bandits;;;;;;;;;;;;;;;;;;;;;;;;;;;Ferme,Epicier,Verger,Manoir;Ferme,Bois,Epicier,Verger
+;;;Epave,Epave,Epave;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;Ferme,Bois,Epicier,Verger;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;Bois,Bois;;;;;;;;;;
+;;;;;;;;;;;;;;;;;Île Déserte;;;;;;;;;;;;;;;Epave,Epave,Epave;;;;;;
+;;;;Epave,Epave,Epave;;;;;;;;;;;;;;;;;Epave,Epave,Epave;;;;;;;;;;;;;;;;;
+Bois,Bois,Bois,Bois;;;;;;;;;;;;;;Bois,Bois;;;;;;;;;;;;;;;;;;;;;;;Quincaillerie,Quincaillerie,Quincaillerie,Quincaillerie;
+;Bois,Bois,Bois,Bois;;Île Déserte,Bois;;;;;;;Epave,Epave,Epave;;;;;;;;;;;;;;;;;;;;Manoir;;;;;;;;
+;;Taverne,Armes,Armurier,Village,Village,Forgeron,Epicier,Hangar,Quincaillerie,Casino;Bois,Bois,Bois,Bois;;;;Ferme;;;;;;;;;;;;;;;Epave;;;;Taverne;;;;;;;;;;;;Village,Taverne,Village
+;;;;Bois,Bois,Bois,Bois;;;;;;;;;;;;Bois,Grotte,Bois;;;;;;;;;;;;;;;;;;;;;;

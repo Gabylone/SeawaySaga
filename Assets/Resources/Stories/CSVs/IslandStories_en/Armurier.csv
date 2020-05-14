@@ -1,26 +1,27 @@
-Nom;Fréquence %;Sprite ID;;;;;;;;;;
-Armurier;1,69;1;;;;;;;;;;
-Narrator : The island is small, flat and green;;;;;;;;;;;;
-CheckQuest=>debut;;;;;;;;;;;;
-[debut];;;;;;;;;;;;
-Narrator : On the beach, a pannel reads : « Metal and leather shop, follow the road »;;;;;;;;;;;;
-SetChoices2;;;;;;;;;;;;
-Choice : (partir);Choice : (follow pannel);;;;;;;;;;;
-Leave;Fade;;;;;;;;;;;
-;Node=>marchand;;;;;;;;;;;
-;;;;;;;;;;;;
-;;;;;;;;;;;;
-[marchand];;;;;;;;;;;;
-NewCrew;;;;;;;;;;;;
-Node=>choix;Node=>mort;Node=>combat;;;;;;;;;;
-;;;;;;;;;;;;
-[choix];;;;;;[choix autre];;;;;[combat];
-SetChoices4;;;;;;SetChoices3;;;;;OtherSpeak : ?!?;
-Choice : (partir);Choice : Show me what you got (trade);Choice : Have you heard about NOMTRESOR ?;;Choice : (autre);;Choice : Hands up ! (attaquer);Choice : How’s business ?(quete);;;Choice : (autre);LaunchCombat;
-OtherSpeak : Bye bye !;TradeClothes;RandomPercent20;;Node=>choix autre;;Node=>combat;RandomPercent65;;;Node=>choix;RemoveKarma;
-Leave;Node=>choix;OtherSpeak : The only people who are interested by this are from DIRECTIONTOFORMULA;OtherSpeak : Nope, never heard about it;;;;OtherSpeak : Very well;NewQuest=>choix;;;[mort];
-;;Node=>choix;Node=>choix;;;;OtherSpeak : Pirates come here to dress for the winter;;;;PlayerSpeak : He’s lying on the floor, dead;
-;;;;;;;Node=>choix;;;;SetChoices2;
-;;;;;;;;;;;Choice : (partir);Choice : (search the shop)
-;;;;;;;;;;;Leave;LootClothes
-;;;;;;;;;;;;Leave
+Nom;Fréquence %;Sprite ID;;;;;;;;;;;
+Armurier;1,69;1;;;;;;;;;;;
+Narrator : The island is small, flat and green.;;;;;;;;;;;;;
+CheckQuest=>debut;;;;;;;;;;;;;
+[debut];;;;;;;;;;;;;
+Narrator : On the beach, a sign reads : « Armory, Metal & Leather shop, follow the road »;;;;;;;;;;;;;
+SetChoices2;;;;;;;;;;;;;
+Choice : (leave);Choice : (follow the sign);;;;;;;;;;;;
+Leave;Fade;;;;;;;;;;;;
+;Node=>marchand;;;;;;;;;;;;
+;;;;;;;;;;;;;
+;;;;;;;;;;;;;
+[marchand];;;;;;;;;;;;;
+SetBG(House);;;;;;;;;;;;;
+NewCrew;;;;;;;;;;;;;
+Node=>choix;Node=>mort;Node=>combat;;;;;;;;;;;
+;;;;;;;;;;;;;
+[choix];;;;;;[choix autre];;;;;;[combat];
+SetChoices4;;;;;;SetChoices4;;;;;;OtherSpeak : ?!?;
+Choice : (leave);Choice : Show me what you got! (trade);Choice : Have you heard about NOMTRESOR?;;Choice : (other);;Choice : Hands up! (attack);Choice : How’s business? (quest);;Choice : Tell me about the ocean !;;Choice : (other);LaunchCombat;
+OtherSpeak : Bye bye !;TradeClothes;RandomPercent20;;Node=>choix autre;;Node=>combat;RandomPercent65;;RandomRange2;;Node=>choix;RemoveKarma;
+Leave;Node=>choix;OtherSpeak : The only people interested in this are going to DIRECTIONTOFORMULA, that's all I know.;OtherSpeak : Nope, never heard about it, sorry!;;;;OtherSpeak : Pretty good actually!;NewQuest=>choix;GiveTip;OtherSpeak : I’d prefer we talk business only;;[mort];
+;;Node=>choix;Node=>choix;;;;OtherSpeak : Pirates come here for winter clothes.;;Node=>choix;Node=>choix;;Narrator : The armorer is laying on the floor, dead.;
+;;;;;;;Node=>choix;;;;;SetChoices2;
+;;;;;;;;;;;;Choice : (leave);Choice : (search the shop)
+;;;;;;;;;;;;Leave;LootClothes
+;;;;;;;;;;;;;Leave

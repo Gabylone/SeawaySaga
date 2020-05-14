@@ -15,7 +15,7 @@ public class Skill_BearTrap : Skill {
 	{
 		base.Trigger (fighter);
 
-		string str = "Essayes de venir un coup pour voir !";
+		string str = "Come if you have the gusts !";
 		fighter.Speak (str);
 	}
 

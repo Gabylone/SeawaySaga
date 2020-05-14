@@ -164,11 +164,11 @@
 //
 //		Texture2D texture = (Texture2D)targetImage.mainTexture;
 //
-//		int shipRange = Boats.Instance.PlayerBoatInfo.ShipRange;
+//		int shipRange = Boats.Instance.Instance.playerBoatInfo.ShipRange;
 //
 //		int mapScale = MapGenerator.Instance.MapScale;
 //
-//		Chunk previousChunk = MapGenerator.Instance.GetChunk(Boats.Instance.PlayerBoatInfo.PreviousCoords);
+//		Chunk previousChunk = MapGenerator.Instance.GetChunk(Boats.Instance.Instance.playerBoatInfo.PreviousCoords);
 //		SetPixel (texture,NavigationManager.PreviousCoords, getChunkColor (previousChunk));
 //
 //		for (int x = -shipRange; x <= shipRange; ++x ) {
@@ -220,8 +220,8 @@
 //		Texture2D texture = (Texture2D)targetImage.mainTexture;
 //
 //		foreach ( OtherBoatInfo boatInfo in Boats.Instance.OtherBoatInfos ) {
-//			if ( boatInfo.CurrentCoords <= NavigationManager.CurrentCoords + Boats.Instance.PlayerBoatInfo.ShipRange
-//				&& boatInfo.CurrentCoords >= NavigationManager.CurrentCoords - Boats.Instance.PlayerBoatInfo.ShipRange ) {
+//			if ( boatInfo.CurrentCoords <= NavigationManager.CurrentCoords + Boats.Instance.Instance.playerBoatInfo.ShipRange
+//				&& boatInfo.CurrentCoords >= NavigationManager.CurrentCoords - Boats.Instance.Instance.playerBoatInfo.ShipRange ) {
 //				SetPixel (texture,boatInfo.CurrentCoords, Color.green);
 //			} else {
 //				SetPixel (texture,boatInfo.PreviousCoords, getChunkColor(MapGenerator.Instance.GetChunk(boatInfo.PreviousCoords) ));

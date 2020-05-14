@@ -32,8 +32,6 @@ public class DisplayTreasure : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         StoryFunctions.Instance.getFunction += HandleOnGetFunction;
-
-        displayPearls.Hide();
 	}
 
     private void HandleOnGetFunction(FunctionType func, string cellParameters)
@@ -123,19 +121,18 @@ public class DisplayTreasure : MonoBehaviour {
 
         if ( MapGenerator.mapParameters.id == 4)
         {
-            MessageDisplay.Instance.Show("Bravo ! Le jeu est fini");
+            MessageDisplay.Instance.Show("Well done ! You finished the game");
         }
         else
         {
             if (CrewCreator.Instance.GetApparenceItem(ApparenceType.map, MapGenerator.mapParameters.id+1).locked)
             {
                 PlayerInfo.Instance.AddApparenceItem(CrewCreator.Instance.GetApparenceItem(ApparenceType.map, MapGenerator.mapParameters.id+1));
-                MessageDisplay.Instance.Show("Bravo, vous avez débloqué la prochaine île");
-
+                MessageDisplay.Instance.Show("You unlocked the next story !");
             }
             else
             {
-                MessageDisplay.Instance.Show("Vous avez DEJA débloqué la prochaine île");
+                MessageDisplay.Instance.Show("The next story is already unlocked");
             }
 
         }

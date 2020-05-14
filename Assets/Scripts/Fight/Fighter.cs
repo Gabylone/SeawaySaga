@@ -469,7 +469,6 @@ public class Fighter : MonoBehaviour {
 		}
 
 		if (CombatManager.Instance.currentFighter == this && CombatManager.Instance.currentFighter.crewMember.side == Crews.Side.Player ) {
-			print ("on peut pas show info parce que c'est le fighter de mainteannt");
 			return;
 		}
 
@@ -577,7 +576,7 @@ public class Fighter : MonoBehaviour {
 
 			RemoveStatus (Status.BearTrapped, 1);
 
-			otherFighter.Hurt (15);
+			otherFighter.Hurt (30);
 		}
 	}
 
@@ -617,7 +616,7 @@ public class Fighter : MonoBehaviour {
 
 		if ( dodgeChange < dodgeSkill ) {
 			animator.SetTrigger("dodge");
-			combatFeedback.Display ("Raté !", Color.red);
+			combatFeedback.Display ("Missed !", Color.red);
 			return true;
 		}
 

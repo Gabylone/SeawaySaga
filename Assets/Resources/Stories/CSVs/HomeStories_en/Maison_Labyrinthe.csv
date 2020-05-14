@@ -1,42 +1,44 @@
 Nom;Fréquence / 5;Sprite ID;;;
-Maison_Labyrinthe;25;1;;;
+Maison_Labyrinthe;1;1;;;
 [premiere visite];;;[chambre];;
-Narrator : A l’est d’ici se trouve le labyrinthe de NOMTRESOR, qui cache, à ce qu’on dit, un immense trésor.;Node=>retour;;Narrator : CAPITAINE est dans sa chambre d’enfant. Son bureau est à côté de son lit, recouvert de documents diverses sur les mystères de l’océan.;;
-Narrator : CAPITAINE, et son bateau, le NOMBATEAU, décide enfin de partir à sa recherche.; ;;[choix chambre];;
+Narrator : East of here is the labyrinth of NOMTRESOR, supposedly hiding a big treasure.;Node=>retour;;Narrator : CAPITAINE are in their childhood bedroom. Next to their bed, the desk is covered with drawings, books and tales about the ocean.;;
+Narrator : Aboard the NOMBATEAU, CAPITAINE sets sail to venture there and grab it for themselves.; ;;[choix chambre];;
 SetChoices2;;;SetChoices3;;
-Choice : (lever l’ancre);Choice : (faire un tour dans la maison);;Choice : (retourner au salon) (partir);Choice : (dormir jusqu'au lendemain) (dormir);Choice : (bureau) (quete)
-PlayerSpeak : C’est parti !;Fade;;Fade;ChangeTimeOfDay;Narrator : Il est dit qu’au centre de l’océan, très loin à l’est d’ici, se trouve une île immense et labyrinthique.
-Switch=>premiere visite;Node=>salon;;Node=>salon;Node=>salon;Narrator : L’île au labyrinthe est entourée de grotte énigmatiques, aux butins précieux et nombreux.
-Leave;;;;;Narrator : Il est dit qu’il vaut mieux bien se préparer dans les villages et îles autour du labyrinthe…
-;;;;;Narrator : ...Avant se s’aventurer dans le labyrinthe et les immenses mers qui l’entoure.
+Choice : (set sail);Choice : (enter the house);;Choice : (go back to the living room) (leave);Choice : (sleep until NEXTTIME) (sleep);Choice : (desk) (quest)
+PlayerSpeak : Let’s got !;Fade;;Fade;ChangeTimeOfDay;Narrator : It says that east from here, the furthest from every shore you can be, you can find a huge, maze-like island.
+Switch=>premiere visite;Node=>salon;;Node=>salon;Node=>salon;Narrator : The island also supposedly is riddled with caves filled with precious loot.
+Leave;;;;;Narrator : Before venturing into the Labyrinth and the wild waters surrounding it…
+;;;;;Narrator : One would do well to explore and prepare as much as they can in the villages and other islands around…
 ;;;;;Node=>choix chambre
 ;;;;;
 ;;;;;
 ;;;;;
 [retour];;;;;
-Narrator :  Revoilà CAPITAINE sur sa petite île natale. Un petit chemin de pierre mène à sa chaumière coquette.;;;;;
-PlayerSpeak : C'est chez moi !;;;;;
+Narrator : CAPITAINE steps back on the small island where they grew up. A rock path leads to their childhood cottage.;;;;;
+PlayerSpeak : Home!;;;;;
 CheckQuest=>salon;;;;;
 [salon];;;;;
+SetBG(House);;;;;
 SetChoices4;;;;;
-Choice : (partir);Choice : (aller dans la chambre);Choice : (aller dans la cuisine);Choice : (aller  dans le jardin);;
-PlayerSpeak : Hop !;Fade;Fade;Fade;;
+Choice : (leave);Choice : (go into the bedroom);Choice : (go into the kitchen);Choice : (go into the garden);;
+PlayerSpeak : Hop!;Fade;Fade;Fade;;
 Leave;Node=>chambre;Node=>cuisine;Node=>jardin;;
 ;;;;;
 ;;;;;
 [cuisine];;;;;
 SetChoices2;;;;;
-Choice : (retourner salon) (partir);Choice : (regarder garde manger) (loot);;;;
+Choice : (go back to the living room) (leave);Choice : (check the pantry) (loot);;;;
 Fade;LootFood;;;;
 Node=>salon;Node=>cuisine;;;;
 ;;;;;
 [jardin];;;;;
+SetBG(Forest);;;;;
 CheckDay;;;;;
-Narrator : Le jardin est ensoleillé et calme. Quelques oiseaux chantent.;Narrator : La nuit est douce et calme. On entend le hululement d'une chouette.;;;;
+Narrator : The garden is peaceful as always. Over the distant sound of the sea, a few seagulls cry out. Sunlight is gently warming CAPITAINE up.;Narrator : The night is quiet and mild. The only sounds breaking the silence are the surrounding hum of crickets, and the hooting of an owl nearby.;;;;
 Node=>choix jardin;Node=>choix jardin;;;;
 ;;;;;
 [choix jardin];;;;;
 SetChoices2;;;;;
-Choice : (retourner salon)(partir);Choice : (observer le jardin);;;;
+Choice : (go back to the living room)(leave);Choice : (watch the garden);;;;
 Fade;Node=>jardin;;;;
 Node=>salon;;;;;

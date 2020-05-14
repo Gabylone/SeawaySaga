@@ -15,6 +15,8 @@ public class DisplayItem_Selected : DisplayItem {
     [SerializeField] private GameObject levelObj;
     [SerializeField] private Text levelText;
 
+    public Image itemImage;
+
     public Vector2 decalToItem;
 
     public override void Start()
@@ -41,6 +43,11 @@ public class DisplayItem_Selected : DisplayItem {
         {
             base.HandledItem = value;
 
+            if ( itemImage != null )
+            {
+                itemImage.enabled = true;
+                itemImage.sprite = LootManager.Instance.getItemSprite(value.category, value.spriteID);
+            }
             /// NAME
             nameText.text = "" + value.name;
 

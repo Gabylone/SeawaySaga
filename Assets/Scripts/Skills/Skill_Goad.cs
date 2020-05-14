@@ -8,7 +8,7 @@ public class Skill_Goad : Skill {
 	{
 		base.OnSetTarget ();
 
-		string str = fighter.TargetFighter.crewMember.MemberName + " a dit que vous étiez moches";
+		string str = "I heard " + fighter.TargetFighter.crewMember.MemberName + " tell everybody you're ugly";
 		fighter.Speak (str);
 
 	}

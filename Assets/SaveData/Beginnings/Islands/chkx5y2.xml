@@ -1,0 +1,105 @@
+<?xml version="1.0"?>
+<Chunk xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <state>VisitedIsland</state>
+  <islandDatas>
+    <IslandData>
+      <worldPosition>
+        <x>-8.266142</x>
+        <y>3.70036316</y>
+      </worldPosition>
+      <worldRotation>97.85396</worldRotation>
+      <storyManager>
+        <storyHandlers>
+          <StoryHandler>
+            <row>0</row>
+            <col>0</col>
+            <fallBackLayer>0</fallBackLayer>
+            <storyID>14</storyID>
+            <storyType>Normal</storyType>
+            <contentDecals>
+              <contentDecal>
+                <row>0</row>
+                <col>2</col>
+                <decal>0</decal>
+              </contentDecal>
+            </contentDecals>
+            <loots />
+            <crews />
+          </StoryHandler>
+        </storyHandlers>
+      </storyManager>
+    </IslandData>
+    <IslandData>
+      <worldPosition>
+        <x>-14.49727</x>
+        <y>-19.5129318</y>
+      </worldPosition>
+      <worldRotation>243.797516</worldRotation>
+      <storyManager>
+        <storyHandlers>
+          <StoryHandler>
+            <row>0</row>
+            <col>0</col>
+            <fallBackLayer>0</fallBackLayer>
+            <storyID>3</storyID>
+            <storyType>Normal</storyType>
+            <contentDecals>
+              <contentDecal>
+                <row>0</row>
+                <col>12</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>0</row>
+                <col>41</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>0</row>
+                <col>65</col>
+                <decal>7</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>0</row>
+                <col>59</col>
+                <decal>6</decal>
+              </contentDecal>
+            </contentDecals>
+            <loots />
+            <crews />
+          </StoryHandler>
+          <StoryHandler>
+            <row>7</row>
+            <col>67</col>
+            <fallBackLayer>0</fallBackLayer>
+            <fallbackNode>
+              <name>milieu foret</name>
+              <row>0</row>
+              <col>5</col>
+            </fallbackNode>
+            <storyID>0</storyID>
+            <storyType>Normal</storyType>
+            <contentDecals />
+            <loots />
+            <crews />
+          </StoryHandler>
+          <StoryHandler>
+            <row>6</row>
+            <col>61</col>
+            <fallBackLayer>0</fallBackLayer>
+            <fallbackNode>
+              <name>milieu foret</name>
+              <row>0</row>
+              <col>5</col>
+            </fallbackNode>
+            <storyID>6</storyID>
+            <storyType>Normal</storyType>
+            <contentDecals />
+            <loots />
+            <crews />
+          </StoryHandler>
+        </storyHandlers>
+      </storyManager>
+    </IslandData>
+  </islandDatas>
+</Chunk>

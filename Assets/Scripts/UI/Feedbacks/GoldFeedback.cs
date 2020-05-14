@@ -25,7 +25,7 @@ public class GoldFeedback : InfoFeedbacks {
 	{
 		if (enoughtGold == false) {
 //			Print ("Pas assez d'or", Color.red);
-			Print ("Pas assez d'or", Color.red);
+			Print ("Not enough gold", Color.red);
 		}
 
 	}

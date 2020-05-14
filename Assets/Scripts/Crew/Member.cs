@@ -97,9 +97,9 @@ public class Member {
 
 		// NAME
 		if (Male) {
-			Name = CrewCreator.Instance.maleNames[Random.Range (0, CrewCreator.Instance.maleNames.Length)];
+			Name = CrewCreator.Instance.manNames[Random.Range (0, CrewCreator.Instance.manNames.Length)];
 		} else {
-			Name = CrewCreator.Instance.femaleNames[Random.Range (0, CrewCreator.Instance.femaleNames.Length)];
+			Name = CrewCreator.Instance.womanNames[Random.Range (0, CrewCreator.Instance.womanNames.Length)];
 		}
 
 		// LEVEL

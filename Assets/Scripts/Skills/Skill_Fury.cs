@@ -10,7 +10,7 @@ public class Skill_Fury: Skill {
 	{
 		base.Trigger (fighter);
 
-		string str = "Ras le bol de ces chienneries !";
+		string str = "You've got me MAD !";
 		fighter.Speak (str);
 	}
 

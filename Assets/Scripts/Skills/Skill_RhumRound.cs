@@ -10,7 +10,8 @@ public class Skill_RhumRound : Skill {
 	{
 		base.Trigger (fighter);
 
-		string str = "Ce soir c'est ma tournée !";
+		string str = "Tonight we feast !";
+
 		fighter.Speak (str);
 	}
 

@@ -26,10 +26,10 @@ public class OtherInventory : MonoBehaviour {
 
 		StoryFunctions.Instance.getFunction += HandleGetFunction;
 		LootUI.useInventory += HandleUseInventory;
-	}
+    }
 
-	// 
-	public void SwitchToPlayer ()
+    // 
+    public void SwitchToPlayer ()
     {
         StartCoroutine(SwitchSideCoroutine());
     }
@@ -165,10 +165,10 @@ public class OtherInventory : MonoBehaviour {
 		Loot loot = LootManager.Instance.GetIslandLoot (2);
 
 		if ( loot.IsEmpty () ) {
-			DialogueManager.Instance.SetDialogue ("Ah désolé, vous m'avez déjà tout pris", Crews.enemyCrew.captain);
 			StoryInput.Instance.WaitForInput ();
+			DialogueManager.Instance.SetDialogue ("Looks like you already bought everything from me !", Crews.enemyCrew.captain);
 			return;
-		}
+        }
 
         LootUI.Instance.currentSide = Crews.Side.Enemy;
 		LootManager.Instance.SetLoot ( Crews.Side.Enemy, loot);
@@ -187,10 +187,10 @@ public class OtherInventory : MonoBehaviour {
 		Loot loot = LootManager.Instance.GetIslandLoot (1);
 
 		if ( loot.IsEmpty () ) {
-			DialogueManager.Instance.SetDialogue ("Il n'y a plus rien", Crews.playerCrew.captain);
+			DialogueManager.Instance.SetDialogue ("There was something but now nothing's left !", Crews.playerCrew.captain);
 			StoryInput.Instance.WaitForInput ();
 			return;
-		}
+        }
 
         LootUI.Instance.currentSide = Crews.Side.Enemy;
         LootManager.Instance.SetLoot ( Crews.Side.Enemy, loot);

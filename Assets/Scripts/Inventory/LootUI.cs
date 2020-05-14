@@ -48,7 +48,7 @@ public class LootUI : MonoBehaviour {
 			
 			selectedItem = value;
 
-			selectedItemDisplay.HandledItem = value;
+            selectedItemDisplay.Show(value);
 
 			UpdateActionButton (value);
 
@@ -120,8 +120,8 @@ public class LootUI : MonoBehaviour {
 
 	void HandleOnTouchRayBlocker ()
 	{
-		if (visible && !OnOtherLoot())
-			Close ();
+		/*if (visible && !OnOtherLoot())
+			Close ();*/
 	}
 
 	public void DeselectCurrentItem(){
@@ -189,8 +189,11 @@ public class LootUI : MonoBehaviour {
             onHideLoot();
         }
 
+
         OtherInventory.Instance.LerpOut();
-        Invoke("Hide", OtherInventory.Instance.lootTransition_Duration);
+
+        Hide();
+        //Invoke("Hide", OtherInventory.Instance.lootTransition_Duration);
     }
 
     public void TakeAll()
@@ -292,6 +295,7 @@ public class LootUI : MonoBehaviour {
 
         if (OnOtherLoot())
         {
+
             StoryReader.Instance.NextCell();
             StoryReader.Instance.UpdateStory();
 

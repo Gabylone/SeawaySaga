@@ -106,13 +106,13 @@ public class DisplaySurroundingHexes : MonoBehaviour {
 
 		hexObj.transform.localPosition = pos;
 
-		Coords worldCoords = Boats.playerBoatInfo.coords + new Coords(c.x,-c.y);
+		Coords worldCoords = Boats.Instance.playerBoatInfo.coords + new Coords(c.x,-c.y);
 
 		hexObj.GetComponent<DisplayHex> ().UdpateHex (worldCoords);
 
 		hexDisplays.Add(hexObj.AddComponent<DisplayHex>());
 
-//		Boats.PlayerBoatInfo.currentCoords
+//		Boats.Instance.playerBoatInfo.currentCoords
 
 		//if (hexObj.GetComponentInChildren<Text> () != null) {
 		//	hexObj.GetComponentInChildren<Text> ().text = "" +

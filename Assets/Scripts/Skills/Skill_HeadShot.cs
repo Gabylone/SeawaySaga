@@ -21,7 +21,7 @@ public class Skill_HeadShot : Skill {
 		base.Trigger (fighter);
 
 		if (onDelay == false) {
-			string str = "Vous allez voir ce que vous allez voir...";
+			string str = "Wait 'till you see what I've got in store for you...";
 			fighter.Speak (str);
 		}
 

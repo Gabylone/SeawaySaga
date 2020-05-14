@@ -8,11 +8,14 @@ public class Crews : MonoBehaviour {
     /// </summary>
 //	public static int maxHunger = 35; // pas assez
 	//public static int maxHunger = 10; // trop
-	public static int maxHunger = 15;
+	public static int maxHunger = 12;
 
     public static Crews Instance;
 
     public float reducedDamage = 50f;
+
+    public delegate void OnCrewMemberKilled(CrewMember crewMember);
+    public OnCrewMemberKilled onCrewMemberKilled;
 
 	public enum Side {
 		Player,
@@ -50,7 +53,6 @@ public class Crews : MonoBehaviour {
 
         // empty things
         CrewMember.SetSelectedMember(null);
-        CrewMember.onCrewMemberKilled = null;
         CrewMember.onWrongLevel = null;
     }
 
@@ -148,10 +150,10 @@ public class Crews : MonoBehaviour {
 
 		crews [0].SetCrew (playerCrew.managedCrew);
 	}
-	#endregion
+    #endregion
 
-	#region crew tools
-	public void CreateNewCrew () {
+    #region crew tools
+    public void CreateNewCrew () {
 
 		StoryReader.Instance.NextCell ();
 
@@ -168,12 +170,14 @@ public class Crews : MonoBehaviour {
 
 			if (storyCrew.hostile) {
 				
-				DialogueManager.Instance.SetDialogueTimed ("Le revoilà !", Crews.enemyCrew.captain);
+				DialogueManager.Instance.SetDialogueTimed ("He's back, on guard !", Crews.enemyCrew.captain);
 				StoryReader.Instance.SetDecal (2);
 			
-			} else {
-				
-				Quest linkedQuest = QuestManager.Instance.currentQuests.Find (x => x.giver.SameAs(Crews.enemyCrew.captain.MemberID));
+			} else if ( !QuestManager.Instance.metPersonOnIsland ) {
+
+                QuestManager.Instance.metPersonOnIsland = true;
+
+                Quest linkedQuest = QuestManager.Instance.currentQuests.Find (x => x.giver.SameAs(Crews.enemyCrew.captain.MemberID));
 				if (linkedQuest != null) {
 					linkedQuest.ReturnToGiver ();
 				}
@@ -186,6 +190,14 @@ public class Crews : MonoBehaviour {
 
 		StoryReader.Instance.Wait (Crews.playerCrew.captain.Icon.moveDuration);
 	}
+
+    public void KillMember (CrewMember crewMember)
+    {
+        if (onCrewMemberKilled != null)
+        {
+            onCrewMemberKilled(crewMember);
+        }
+    }
 
 	public Crew GetCrewFromCurrentCell () {
 
@@ -272,7 +284,7 @@ public class Crews : MonoBehaviour {
 
 		if (Crews.playerCrew.CrewMembers.Count >= Crews.playerCrew.CurrentMemberCapacity) {
 
-			string phrase = "Oh non, le bateau est trop petit";
+			string phrase = "The boat is too small, I can't even put a foot in it";
 			DialogueManager.Instance.SetDialogueTimed (phrase, Crews.enemyCrew.captain);
 
 		} else {
