@@ -28,7 +28,11 @@ public class MemberCreationScrollView : MonoBehaviour
     public Vector2 buttonDecal;
     public float scaleMult = 1f;
 
-    bool showing = false;
+    private bool showing = false;
+
+    public Text categoryName_Text;
+
+    public MemberCreatorButton lastSelected;
 
     private void Start()
     {
@@ -38,6 +42,8 @@ public class MemberCreationScrollView : MonoBehaviour
 
             MemberCreationButton_Apparence butt = inst.GetComponent<MemberCreationButton_Apparence>();
 
+            butt.scrollView = this;
+
             butt.apparenceItem.id = i;
             butt.apparenceItem.apparenceType = apparenceType;
 
@@ -46,13 +52,15 @@ public class MemberCreationScrollView : MonoBehaviour
             
         }
 
-        initScale = rectTransform.sizeDelta;
+        categoryName_Text.text = "" + apparenceType.ToString();
+
+        //initScale = rectTransform.sizeDelta;
 
         //initCellScale = gridLayout.cellSize.x;
-        gridLayout.cellSize = Vector2.one * initCellScale;
+        //gridLayout.cellSize = Vector2.one * initCellScale;
     }
 
-    public void OnPointerDown()
+    /*public void OnPointerDown()
     {
         ShowItems();
     }
@@ -60,15 +68,15 @@ public class MemberCreationScrollView : MonoBehaviour
     public void OnPointerUp()
     {
         HideItems();
-    }
+    }*/
 
     private void Update()
     {
-        if (showing)
+        /*if (showing)
         {
             rectTransform.sizeDelta = Vector2.MoveTowards(rectTransform.sizeDelta, contentFitter.sizeDelta, speed * Time.deltaTime);
             gridLayout.cellSize = Vector2.MoveTowards( gridLayout.cellSize , Vector2.one * targetCellScale , speed * Time.deltaTime );
-        }
+        }*/
     }
 
     void ShowItems()
@@ -78,19 +86,19 @@ public class MemberCreationScrollView : MonoBehaviour
         //HOTween.To(rectTransform, dur, "sizeDelta", contentFitter.sizeDelta);
         //HOTween.To(gridLayout, dur, "cellSize", Vector2.one * targetCellScale);
 
-        foreach (var item in GetComponentsInChildren<MemberCreationButton_Apparence>())
+        /*foreach (var item in GetComponentsInChildren<MemberCreationButton_Apparence>())
         {
             item.GetComponent<Image>().raycastTarget = true;
-        }
+        }*/
 
-        transform.SetAsLastSibling();
+        //transform.SetAsLastSibling();
     }
 
     void HideItems()
     {
         showing = false;
 
-        rectTransform.DOSizeDelta(initScale, dur);
+        /*rectTransform.DOSizeDelta(initScale, dur);
         gridLayout.cellSize = Vector2.one * initCellScale;
 
         if (MemberCreationButton_Apparence.lastSelected != null)
@@ -99,10 +107,9 @@ public class MemberCreationScrollView : MonoBehaviour
             MemberCreationButton_Apparence.lastSelected.transform.SetAsFirstSibling();
         }
 
-
         foreach (var item in GetComponentsInChildren<MemberCreationButton_Apparence>())
         {
             item.GetComponent<Image>().raycastTarget = false;
-        }
+        }*/
     }
 }

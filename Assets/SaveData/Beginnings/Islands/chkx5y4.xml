@@ -1,14 +1,15 @@
 <?xml version="1.0"?>
 <Chunk xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <state>DiscoveredIsland</state>
+  <state>UndiscoveredIsland</state>
   <islandDatas>
     <IslandData>
       <worldPosition>
-        <x>14.319911</x>
-        <y>-16.8107529</y>
+        <x>-18.40303</x>
+        <y>-11.6645908</y>
       </worldPosition>
-      <worldRotation>184.455231</worldRotation>
+      <worldRotation>20.2229977</worldRotation>
       <storyManager>
+        <hasBeenPlayed>false</hasBeenPlayed>
         <storyHandlers>
           <StoryHandler>
             <row>0</row>

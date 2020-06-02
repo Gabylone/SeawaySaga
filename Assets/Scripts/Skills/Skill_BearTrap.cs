@@ -37,18 +37,7 @@ public class Skill_BearTrap : Skill {
 		}
 		bearTrapObj.transform.localScale = Vector3.one;
 
-		foreach (var item in GetComponentsInChildren<SpriteRenderer>()) {
-			item.sortingOrder = fighter.fightSprites.allSprites [0].sortingOrder;
-		}
-
-//		bearTrapObj.transform.position = new Vector3 (target.position.x , fighter.transform.position.y ,0f);
-
 		Tween.Bounce (bearTrapObj.transform);
-
-//		foreach (var bearTrapImage in  bearTrapObj.GetComponentsInChildren<Image>()) {
-//			
-//		}
-
 
 		fighter.onRemoveStatus += bearTrapObj.GetComponent<BearTrap> ().HandleOnRemoveFighterStatus;
 		bearTrapObj.GetComponent<BearTrap> ().fighter = fighter;

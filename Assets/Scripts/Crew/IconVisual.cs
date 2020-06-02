@@ -1,13 +1,16 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
 
 public class IconVisual : MonoBehaviour
 {
+    public List<GameObject> outline_objs = new List<GameObject>();
+
+    public BodyVisual bodyVisual;
 
     public void InitVisual(Member memberID)
     {
-
         // hair
         for (int i = 0; i <= (int)ApparenceType.nose; i++)
         {
@@ -16,7 +19,6 @@ public class IconVisual : MonoBehaviour
             if ( spr == null)
             {
                 images[i].enabled = false;
-
             }
             else
             {
@@ -25,20 +27,19 @@ public class IconVisual : MonoBehaviour
             }
         }
 
-        /*if (memberID.GetCharacterID(ApparenceType.hair) > -1) {
-            HairImage.sprite = CrewCreator.Instance.GetApparenceItem(ApparenceType.hair, memberID.hairSpriteID).GetSprite();
-            HairImage.enabled = true;
-		} else {
-			HairImage.enabled = false;
-		}*/
+        Color c = CrewCreator.Instance.hairColors[memberID.GetCharacterID(ApparenceType.hairColor)];
 
-        images[(int)ApparenceType.hair].color = CrewCreator.Instance.hairColors[memberID.GetCharacterID(ApparenceType.hairColor)];
-        images[(int)ApparenceType.beard].color = CrewCreator.Instance.hairColors[memberID.GetCharacterID(ApparenceType.hairColor)];
-        images[(int)ApparenceType.eyebrows].color = CrewCreator.Instance.hairColors[memberID.GetCharacterID(ApparenceType.hairColor)];
-        
-        //BodyImage.sprite = CrewCreator.Instance.BodySprites[memberID.Male ? 0:1];
+        GetImage(ApparenceType.hair).color      = c;
+        GetImage(ApparenceType.eyebrows).color  = c;
+        GetImage(ApparenceType.beard).color     = c;
+
+        int skinColorID = memberID.GetCharacterID(ApparenceType.skinColor);
+        Color skinColor = CrewCreator.Instance.GetApparenceItem(ApparenceType.skinColor, skinColorID).color;
+        GetImage(ApparenceType.nose).color = skinColor;
 
         UpdateWeaponSprite(memberID);
+
+        bodyVisual.InitVisual(memberID);
 
     }
 
@@ -59,6 +60,11 @@ public class IconVisual : MonoBehaviour
     private Image weaponImage;
 
     public Image[] images;
+
+    public Image GetImage(ApparenceType apparenceType)
+    {
+        return images[(int)apparenceType];
+    }
 
 
 }

@@ -47,110 +47,6 @@ MonoBehaviour:
   memberIconPrefabs:
   - {fileID: 1000013980746724, guid: 0f7ec307f5350c54fad27e869f18be00, type: 3}
   - {fileID: 1942506556775618, guid: 5ae378bbf90b6bf4aa13e94f3a2167cd, type: 3}
-  maleNames:
-  - Jean
-  - Eric
-  - Nathan
-  - Jacques
-  - Benoit
-  - Jeremy
-  - Jerome
-  - Bertrand
-  - Vladimir
-  - Dimitri
-  - Jean-Jacques
-  - "G\xE9rard"
-  - Nestor
-  - Etienne
-  - Leon
-  - Henry
-  - David
-  - Esteban
-  - Louis
-  - Carles
-  - Victor
-  - Michel
-  - Gabriel
-  - Pierre
-  - "Andr\xE9"
-  - Fred
-  - Cassius
-  - "C\xE9sar"
-  - Paul
-  - Martin
-  - Claude
-  - Levis
-  - Alex
-  - Olivier
-  - Mustafa
-  - Nicolas
-  - Chris
-  - Oleg
-  - Emile
-  - Richard
-  - Romulus
-  - Rufus
-  - Stan
-  - Charles
-  - Quincy
-  - Antoine
-  - Virgile
-  - Boromir
-  - Archibald
-  - Eddy
-  - Kenneth
-  femaleNames:
-  - Jeanne
-  - Erica
-  - Nathalie
-  - Jacquelines
-  - Barbara
-  - Ella
-  - Flo
-  - Laura
-  - Natasha
-  - Irene
-  - Yvonne
-  - "G\xE9rarde"
-  - Nelly
-  - Elisa
-  - Adele
-  - Henriette
-  - Alice
-  - Esteban
-  - Louise
-  - Carla
-  - Victoria
-  - Michelle
-  - Gabrielle
-  - Sarah
-  - "Andr\xE9a"
-  - Marion
-  - Valentine
-  - "Cl\xE9opatre"
-  - Pauline
-  - Martine
-  - Claudette
-  - Nina
-  - Alexandra
-  - Clementine
-  - Julia
-  - Olivia
-  - Christine
-  - Rose
-  - Emilia
-  - Agathe
-  - Lily
-  - Claire
-  - Yasmine
-  - Charlotte
-  - Scarlett
-  - Marina
-  - Virginie
-  - "Ana\xEFs"
-  - Tatiana
-  - "C\xE9cile"
-  - Marianne
   weaponSprites:
   - {fileID: 21300002, guid: bc9825b4cceaef34a94089e929ea84ba, type: 3}
   - {fileID: 21300000, guid: bc9825b4cceaef34a94089e929ea84ba, type: 3}
@@ -165,259 +61,997 @@ MonoBehaviour:
   - {r: 0.5, g: 0.5, b: 0.5, a: 1}
   - {r: 0.20784315, g: 0.1254902, b: 0.054901965, a: 1}
   - {r: 0.6901961, g: 0.4901961, b: 0.2392157, a: 1}
+  jobDescriptions: []
+  womanNames: []
+  manNames: []
+  boatNames: []
+  boatAdjectives: []
+  male_BodySets:
+  - sprites:
+    - {fileID: 21300000, guid: 03f148bcd38a86447a93300121a56936, type: 3}
+    - {fileID: 21300000, guid: 72dbd5d97346eb3488aa393f479dd8e6, type: 3}
+    - {fileID: 21300000, guid: f2836a4c570101746aeb7a6b0d0e7ec1, type: 3}
+    - {fileID: 21300000, guid: 039ba9edc724a3545b23eb3ee19efeaf, type: 3}
+    - {fileID: 21300000, guid: 56677583366c4a142a77d505f865aa42, type: 3}
+    - {fileID: 21300000, guid: 2bbc45617c3dfb646922500f1adfc430, type: 3}
+    layerOrder: 00000000010000000200000003000000040000000500000006000000
+  - sprites:
+    - {fileID: 21300000, guid: 0f62182cb85dc014eb1968af1c2d44f8, type: 3}
+    - {fileID: 21300000, guid: aef729afa4c1c43448320adedb79e4ef, type: 3}
+    - {fileID: 0}
+    - {fileID: 21300000, guid: 3534f7311f99b004db0b37b4fa585abb, type: 3}
+    - {fileID: 21300000, guid: 88203e4e535cabc4aa6419b4b885e231, type: 3}
+    - {fileID: 21300000, guid: 02cda4b47e250ed4ba4f1f80c299d920, type: 3}
+    layerOrder: 00000000010000000200000003000000040000000500000006000000
+  - sprites:
+    - {fileID: 21300000, guid: 9f41d7b8918c00143937c3aa79a23b82, type: 3}
+    - {fileID: 21300000, guid: 8354ac244bc02a14498aeaa499ba3a15, type: 3}
+    - {fileID: 21300000, guid: 04cb2b11bb3e73f4ea38aa3c940d87f4, type: 3}
+    - {fileID: 21300000, guid: b8a36f1463919c348a58ef001ef74345, type: 3}
+    - {fileID: 0}
+    - {fileID: 21300000, guid: c566ef5d56147ff4287466ead983552b, type: 3}
+    layerOrder: 00000000010000000200000003000000040000000500000006000000
+  - sprites:
+    - {fileID: 21300000, guid: a050c40fa670cae43b34fb7404d601b4, type: 3}
+    - {fileID: 21300000, guid: 2d6deac61544105489c636508e54b606, type: 3}
+    - {fileID: 21300000, guid: 3d5d5eca92bbf9540a948cb727d5ad29, type: 3}
+    - {fileID: 21300000, guid: 6d5ca456f8748a24e99e806d57cddbe8, type: 3}
+    - {fileID: 21300000, guid: 8d381e779b1a8ee4ebc3cffab1515b19, type: 3}
+    - {fileID: 21300000, guid: 2a03741802ae78e4cb38459431a9bf1d, type: 3}
+    layerOrder: 00000000010000000200000003000000040000000500000006000000
+  female_BodySets:
+  - sprites:
+    - {fileID: 21300000, guid: a4162b4311c1ab04aafa3d26a1cc329f, type: 3}
+    - {fileID: 21300000, guid: b6a6e7b90bb3b8247a6ed9d4b48b4438, type: 3}
+    - {fileID: 0}
+    - {fileID: 21300000, guid: 679533c7e6964ab4a870ae89cf051407, type: 3}
+    - {fileID: 21300000, guid: 0ced8c52fba406d4e9b8f005c1aafbb4, type: 3}
+    - {fileID: 21300000, guid: 6366477a3f16cbb4b9799fa2a64af798, type: 3}
+    layerOrder: 00000000010000000200000003000000040000000500000006000000
+  - sprites:
+    - {fileID: 21300000, guid: df7e0368bc5bf074d89a33184f729474, type: 3}
+    - {fileID: 21300000, guid: 5b2ea9cdeb73aad4d9f0b5496ea8e959, type: 3}
+    - {fileID: 21300000, guid: f2b187f4fec623344b08baf9abc8bc47, type: 3}
+    - {fileID: 21300000, guid: b790978198ac9584ebf1112ced59c32e, type: 3}
+    - {fileID: 21300000, guid: 8255bc7c793f0bc4182ed9538b051374, type: 3}
+    - {fileID: 21300000, guid: 3a1fd268f36dc3745b3cebf492b1a2b0, type: 3}
+    layerOrder: 00000000010000000200000003000000040000000500000006000000
+  - sprites:
+    - {fileID: 21300000, guid: 1627e527fcfafc240a2841b56ca0644c, type: 3}
+    - {fileID: 21300000, guid: d2946e69661526a4aa5c2859683b90bb, type: 3}
+    - {fileID: 21300000, guid: 90a78719892f20a48b94fd81ada6c2da, type: 3}
+    - {fileID: 21300000, guid: 9c5c6d7573161fa4398653057e87fc49, type: 3}
+    - {fileID: 21300000, guid: 4f4c1ac15acd07c4084c2dcb0355f035, type: 3}
+    - {fileID: 21300000, guid: e7a0319f5d617104fa2baf06b7de81c4, type: 3}
+    layerOrder: 00000000010000000300000002000000040000000500000006000000
+  - sprites:
+    - {fileID: 21300000, guid: 605ef46e84d4efb4badfa6833f201c40, type: 3}
+    - {fileID: 21300000, guid: 1c2f6d196101e674eb4c31655083d411, type: 3}
+    - {fileID: 21300000, guid: fdde5bb50863e8349b54ed81ba358132, type: 3}
+    - {fileID: 21300000, guid: a89ea3c87cefc5947a789728832eeb7f, type: 3}
+    - {fileID: 21300000, guid: c25db6477c16a2f489deaaefd7f1edd2, type: 3}
+    - {fileID: 21300000, guid: 7844426f65e59b642aafc312d68fdd7a, type: 3}
+    layerOrder: 00000000010000000200000003000000040000000500000006000000
   apparenceGroups:
   - items:
     - apparenceType: 0
       sprite: {fileID: 0}
+      color: {r: 0, g: 0, b: 0, a: 0}
       locked: 0
       id: 0
       price: 10
     - apparenceType: 0
-      sprite: {fileID: 21300000, guid: a75f796c0c5968043b5f0d424c586bd7, type: 3}
+      sprite: {fileID: 0}
+      color: {r: 0, g: 0, b: 0, a: 0}
       locked: 0
       id: 0
       price: 10
     - apparenceType: 0
-      sprite: {fileID: 21300002, guid: a75f796c0c5968043b5f0d424c586bd7, type: 3}
+      sprite: {fileID: 0}
+      color: {r: 0, g: 0, b: 0, a: 0}
+      locked: 0
+      id: 0
+      price: 10
+    - apparenceType: 0
+      sprite: {fileID: 21300000, guid: 6c7640e7632722b4ea89c7930f8ee5ab, type: 3}
+      color: {r: 0, g: 0, b: 0, a: 0}
+      locked: 0
+      id: 0
+      price: 10
+    - apparenceType: 0
+      sprite: {fileID: 21300000, guid: b85f4914d6edf5643a1e458121284962, type: 3}
+      color: {r: 0, g: 0, b: 0, a: 0}
       locked: 0
       id: 0
       price: 200
     - apparenceType: 0
-      sprite: {fileID: 21300004, guid: a75f796c0c5968043b5f0d424c586bd7, type: 3}
+      sprite: {fileID: 21300000, guid: eadc7b4eb2380ba47932b01c7fe3213f, type: 3}
+      color: {r: 0, g: 0, b: 0, a: 0}
       locked: 0
       id: 0
       price: 300
     - apparenceType: 0
-      sprite: {fileID: 21300006, guid: a75f796c0c5968043b5f0d424c586bd7, type: 3}
+      sprite: {fileID: 21300000, guid: 5916024da7e65b347b3016b33dd40c23, type: 3}
+      color: {r: 0, g: 0, b: 0, a: 0}
       locked: 0
       id: 0
       price: 10
     - apparenceType: 0
-      sprite: {fileID: 21300008, guid: a75f796c0c5968043b5f0d424c586bd7, type: 3}
+      sprite: {fileID: 21300000, guid: 2de5eb7ab8aa5894798263a0a73a5fb6, type: 3}
+      color: {r: 0, g: 0, b: 0, a: 0}
+      locked: 0
+      id: 0
+      price: 10
+    - apparenceType: 0
+      sprite: {fileID: 21300000, guid: 87a6b30d4e032e64397d8524ec95ffca, type: 3}
+      color: {r: 0, g: 0, b: 0, a: 0}
+      locked: 0
+      id: 0
+      price: 10
+    - apparenceType: 0
+      sprite: {fileID: 21300000, guid: 212e872c1cd15ff4383fda0843fc70d0, type: 3}
+      color: {r: 0, g: 0, b: 0, a: 0}
+      locked: 0
+      id: 0
+      price: 10
+    - apparenceType: 0
+      sprite: {fileID: 21300000, guid: cb55283092c62ec4b954e0d866b2f8fc, type: 3}
+      color: {r: 0, g: 0, b: 0, a: 0}
+      locked: 0
+      id: 0
+      price: 10
+    - apparenceType: 0
+      sprite: {fileID: 21300000, guid: b9644cae317f7d6408028b1f66c84e7f, type: 3}
+      color: {r: 0, g: 0, b: 0, a: 0}
+      locked: 0
+      id: 0
+      price: 10
+    - apparenceType: 0
+      sprite: {fileID: 21300000, guid: d1287a2b02157064fb0e1332ba4d7c7f, type: 3}
+      color: {r: 0, g: 0, b: 0, a: 0}
       locked: 0
       id: 0
       price: 10
   - items:
     - apparenceType: 1
-      sprite: {fileID: 21300000, guid: b1e1a91238878be4e9002020eb085783, type: 3}
+      sprite: {fileID: 21300000, guid: 192b6dacf6698ea4bad5f9415832329c, type: 3}
+      color: {r: 0, g: 0, b: 0, a: 0}
       locked: 0
       id: 0
       price: 20
     - apparenceType: 1
-      sprite: {fileID: 21300002, guid: b1e1a91238878be4e9002020eb085783, type: 3}
+      sprite: {fileID: 21300000, guid: 93c2d458872dc02439a7c606d400678d, type: 3}
+      color: {r: 0, g: 0, b: 0, a: 0}
       locked: 0
       id: 0
       price: 50
     - apparenceType: 1
-      sprite: {fileID: 21300004, guid: b1e1a91238878be4e9002020eb085783, type: 3}
+      sprite: {fileID: 21300000, guid: 5b5d79d12379f02418ccba7fed8661e1, type: 3}
+      color: {r: 0, g: 0, b: 0, a: 0}
       locked: 0
       id: 0
       price: 100
     - apparenceType: 1
-      sprite: {fileID: 21300006, guid: b1e1a91238878be4e9002020eb085783, type: 3}
+      sprite: {fileID: 21300000, guid: fc7593e123e45dc48a2511468f801213, type: 3}
+      color: {r: 0, g: 0, b: 0, a: 0}
       locked: 0
       id: 0
       price: 200
     - apparenceType: 1
-      sprite: {fileID: 21300008, guid: b1e1a91238878be4e9002020eb085783, type: 3}
+      sprite: {fileID: 21300000, guid: 8b66498d05475d046a4dc3a550ebe6af, type: 3}
+      color: {r: 0, g: 0, b: 0, a: 0}
+      locked: 0
+      id: 0
+      price: 500
+    - apparenceType: 1
+      sprite: {fileID: 21300000, guid: 093aa89c8ddd5cf4f94ddff984191fb3, type: 3}
+      color: {r: 0, g: 0, b: 0, a: 0}
+      locked: 0
+      id: 0
+      price: 500
+    - apparenceType: 1
+      sprite: {fileID: 21300000, guid: c9d1f0b684bc4d645bc918e64ad6b7b8, type: 3}
+      color: {r: 0, g: 0, b: 0, a: 0}
+      locked: 0
+      id: 0
+      price: 500
+    - apparenceType: 1
+      sprite: {fileID: 21300000, guid: fc324acad0d96df468b7f6750edf1ad2, type: 3}
+      color: {r: 0, g: 0, b: 0, a: 0}
+      locked: 0
+      id: 0
+      price: 500
+    - apparenceType: 1
+      sprite: {fileID: 21300000, guid: 6873be7318262cf40ba52caf9ba5dc15, type: 3}
+      color: {r: 0, g: 0, b: 0, a: 0}
+      locked: 0
+      id: 0
+      price: 500
+    - apparenceType: 1
+      sprite: {fileID: 21300000, guid: 7e4fde517f238cd419c6a1cc84280490, type: 3}
+      color: {r: 0, g: 0, b: 0, a: 0}
       locked: 0
       id: 0
       price: 500
   - items:
     - apparenceType: 2
-      sprite: {fileID: 21300000, guid: 20bb8def5c4a35f4e85a255211a368ad, type: 3}
+      sprite: {fileID: 21300000, guid: a8020e06a52ec0b46a0f7ee0f4d2014e, type: 3}
+      color: {r: 0, g: 0, b: 0, a: 0}
       locked: 0
       id: 0
       price: 10
     - apparenceType: 2
-      sprite: {fileID: 21300002, guid: 20bb8def5c4a35f4e85a255211a368ad, type: 3}
+      sprite: {fileID: 21300000, guid: 1411335472db46e478ad81112872eb91, type: 3}
+      color: {r: 0, g: 0, b: 0, a: 0}
       locked: 0
       id: 0
       price: 10
     - apparenceType: 2
-      sprite: {fileID: 21300004, guid: 20bb8def5c4a35f4e85a255211a368ad, type: 3}
+      sprite: {fileID: 21300000, guid: ae4aa814eb8ed614c9a54f5acafdbd54, type: 3}
+      color: {r: 0, g: 0, b: 0, a: 0}
       locked: 0
       id: 0
       price: 10
     - apparenceType: 2
-      sprite: {fileID: 21300006, guid: 20bb8def5c4a35f4e85a255211a368ad, type: 3}
+      sprite: {fileID: 21300000, guid: 912a1918429e76a44b01c83a68ac7ea0, type: 3}
+      color: {r: 0, g: 0, b: 0, a: 0}
       locked: 0
       id: 0
       price: 10
     - apparenceType: 2
-      sprite: {fileID: 21300008, guid: 20bb8def5c4a35f4e85a255211a368ad, type: 3}
+      sprite: {fileID: 21300000, guid: c3d541c5ac7a65a42b4cbb3e14087384, type: 3}
+      color: {r: 0, g: 0, b: 0, a: 0}
+      locked: 0
+      id: 0
+      price: 10
+    - apparenceType: 2
+      sprite: {fileID: 21300000, guid: 196267d6168ef0f4e99ec13d8d8b361d, type: 3}
+      color: {r: 0, g: 0, b: 0, a: 0}
+      locked: 0
+      id: 0
+      price: 10
+    - apparenceType: 2
+      sprite: {fileID: 21300000, guid: b2e5ad281bddd8247bb208e00f62d650, type: 3}
+      color: {r: 0, g: 0, b: 0, a: 0}
+      locked: 0
+      id: 0
+      price: 10
+    - apparenceType: 2
+      sprite: {fileID: 21300000, guid: 50ab463b7ea919e4db7e0a393b0eda0a, type: 3}
+      color: {r: 0, g: 0, b: 0, a: 0}
+      locked: 0
+      id: 0
+      price: 10
+    - apparenceType: 2
+      sprite: {fileID: 21300000, guid: 584f28a759618f8458b2a6b8bcf452dd, type: 3}
+      color: {r: 0, g: 0, b: 0, a: 0}
+      locked: 0
+      id: 0
+      price: 10
+    - apparenceType: 2
+      sprite: {fileID: 21300000, guid: 6b94e017e07812b47873f439b8b98450, type: 3}
+      color: {r: 0, g: 0, b: 0, a: 0}
       locked: 0
       id: 0
       price: 10
   - items:
+    - apparenceType: 3
+      sprite: {fileID: 21300000, guid: cd20eb13fa7521441b394c31459df974, type: 3}
+      color: {r: 0, g: 0, b: 0, a: 0}
+      locked: 0
+      id: 0
+      price: 10
+    - apparenceType: 3
+      sprite: {fileID: 21300000, guid: 2f566e1b0fcfa6445ba605d93204e807, type: 3}
+      color: {r: 0, g: 0, b: 0, a: 0}
+      locked: 0
+      id: 0
+      price: 10
+    - apparenceType: 3
+      sprite: {fileID: 21300000, guid: df7d8cc572807d648a1a737663f1c8a9, type: 3}
+      color: {r: 0, g: 0, b: 0, a: 0}
+      locked: 0
+      id: 0
+      price: 10
+    - apparenceType: 3
+      sprite: {fileID: 21300000, guid: dd7ee8291625dfe4f855d13cf83c0df9, type: 3}
+      color: {r: 0, g: 0, b: 0, a: 0}
+      locked: 0
+      id: 0
+      price: 10
+    - apparenceType: 3
+      sprite: {fileID: 21300000, guid: e0cc3ebbfa34d7641866b06d7fec8401, type: 3}
+      color: {r: 0, g: 0, b: 0, a: 0}
+      locked: 0
+      id: 0
+      price: 10
+    - apparenceType: 3
+      sprite: {fileID: 21300000, guid: b7779d23d733ded4b91d1acb4daeb180, type: 3}
+      color: {r: 0, g: 0, b: 0, a: 0}
+      locked: 0
+      id: 0
+      price: 10
+    - apparenceType: 3
+      sprite: {fileID: 21300000, guid: 9d7a7cff65aa75f4eb1462649b57cd95, type: 3}
+      color: {r: 0, g: 0, b: 0, a: 0}
+      locked: 0
+      id: 0
+      price: 10
+    - apparenceType: 3
+      sprite: {fileID: 21300000, guid: 737406a7ec0a58c408bd4a306219e097, type: 3}
+      color: {r: 0, g: 0, b: 0, a: 0}
+      locked: 0
+      id: 0
+      price: 10
+    - apparenceType: 3
+      sprite: {fileID: 21300000, guid: 8842b73a522964d48977dfdd50112c0f, type: 3}
+      color: {r: 0, g: 0, b: 0, a: 0}
+      locked: 0
+      id: 0
+      price: 10
+    - apparenceType: 3
+      sprite: {fileID: 21300000, guid: d803f775e1669ae42a98aac007cc7dea, type: 3}
+      color: {r: 0, g: 0, b: 0, a: 0}
+      locked: 0
+      id: 0
+      price: 10
     - apparenceType: 3
       sprite: {fileID: 0}
+      color: {r: 0, g: 0, b: 0, a: 0}
       locked: 0
       id: 0
       price: 10
     - apparenceType: 3
-      sprite: {fileID: 21300000, guid: 9edc55f9a9813c14db8af1c721d57cfb, type: 3}
-      locked: 0
-      id: 0
-      price: 10
-    - apparenceType: 3
-      sprite: {fileID: 21300002, guid: 9edc55f9a9813c14db8af1c721d57cfb, type: 3}
-      locked: 0
-      id: 0
-      price: 10
-    - apparenceType: 3
-      sprite: {fileID: 21300004, guid: 9edc55f9a9813c14db8af1c721d57cfb, type: 3}
-      locked: 0
-      id: 0
-      price: 10
-    - apparenceType: 3
-      sprite: {fileID: 21300006, guid: 9edc55f9a9813c14db8af1c721d57cfb, type: 3}
-      locked: 0
-      id: 0
-      price: 10
-    - apparenceType: 3
-      sprite: {fileID: 21300008, guid: 9edc55f9a9813c14db8af1c721d57cfb, type: 3}
+      sprite: {fileID: 0}
+      color: {r: 0, g: 0, b: 0, a: 0}
       locked: 0
       id: 0
       price: 10
   - items:
     - apparenceType: 4
-      sprite: {fileID: 21300000, guid: 2656cb2a6242d344a8eead0155cfbac8, type: 3}
+      sprite: {fileID: 21300000, guid: 0052ddc4d27e59544b954c1823eca473, type: 3}
+      color: {r: 0, g: 0, b: 0, a: 0}
       locked: 0
       id: 0
       price: 10
     - apparenceType: 4
-      sprite: {fileID: 21300002, guid: 2656cb2a6242d344a8eead0155cfbac8, type: 3}
+      sprite: {fileID: 21300000, guid: cfbfe11cd9cc2c14386b1814e8abc0b0, type: 3}
+      color: {r: 0, g: 0, b: 0, a: 0}
       locked: 0
       id: 0
       price: 10
     - apparenceType: 4
-      sprite: {fileID: 21300004, guid: 2656cb2a6242d344a8eead0155cfbac8, type: 3}
+      sprite: {fileID: 21300000, guid: b91b9017cd56a5740bf0719eee95463d, type: 3}
+      color: {r: 0, g: 0, b: 0, a: 0}
       locked: 0
       id: 0
       price: 10
     - apparenceType: 4
-      sprite: {fileID: 21300006, guid: 2656cb2a6242d344a8eead0155cfbac8, type: 3}
+      sprite: {fileID: 21300000, guid: a1314ed49553f5e4a81f776aa52d29bf, type: 3}
+      color: {r: 0, g: 0, b: 0, a: 0}
       locked: 0
       id: 0
       price: 10
     - apparenceType: 4
-      sprite: {fileID: 21300008, guid: 2656cb2a6242d344a8eead0155cfbac8, type: 3}
+      sprite: {fileID: 21300000, guid: d4f349c14cc8ffd49aa6ddd0e5990a82, type: 3}
+      color: {r: 0, g: 0, b: 0, a: 0}
+      locked: 0
+      id: 0
+      price: 10
+    - apparenceType: 4
+      sprite: {fileID: 21300000, guid: 1eb342b9446812d4796f154509e71ecb, type: 3}
+      color: {r: 0, g: 0, b: 0, a: 0}
+      locked: 0
+      id: 0
+      price: 10
+    - apparenceType: 4
+      sprite: {fileID: 21300000, guid: eba022654cf29e4438bfe6b893e50dff, type: 3}
+      color: {r: 0, g: 0, b: 0, a: 0}
+      locked: 0
+      id: 0
+      price: 10
+    - apparenceType: 4
+      sprite: {fileID: 21300000, guid: b33da80aea2dd834ebe8565a1ebe388d, type: 3}
+      color: {r: 0, g: 0, b: 0, a: 0}
+      locked: 0
+      id: 0
+      price: 10
+    - apparenceType: 4
+      sprite: {fileID: 21300000, guid: efe617f1ba8551246bcc5763bb1638f7, type: 3}
+      color: {r: 0, g: 0, b: 0, a: 0}
+      locked: 0
+      id: 0
+      price: 10
+    - apparenceType: 4
+      sprite: {fileID: 21300000, guid: 1a71ad9343e13134d92f401a0a063bb6, type: 3}
+      color: {r: 0, g: 0, b: 0, a: 0}
       locked: 0
       id: 0
       price: 10
   - items:
     - apparenceType: 5
-      sprite: {fileID: 21300000, guid: de380bfc18d6aa443b2c95b8b1c93daa, type: 3}
+      sprite: {fileID: 21300000, guid: 381e43ef68a80e941958438df515be33, type: 3}
+      color: {r: 0, g: 0, b: 0, a: 0}
       locked: 0
       id: 0
       price: 10
     - apparenceType: 5
-      sprite: {fileID: 21300002, guid: de380bfc18d6aa443b2c95b8b1c93daa, type: 3}
+      sprite: {fileID: 21300000, guid: 48f86078396420748bec55a07aa8760a, type: 3}
+      color: {r: 0, g: 0, b: 0, a: 0}
       locked: 0
       id: 0
       price: 10
     - apparenceType: 5
-      sprite: {fileID: 21300004, guid: de380bfc18d6aa443b2c95b8b1c93daa, type: 3}
+      sprite: {fileID: 21300000, guid: 1e856686e95499d4992babe25dc2bdb6, type: 3}
+      color: {r: 0, g: 0, b: 0, a: 0}
       locked: 0
       id: 0
       price: 10
     - apparenceType: 5
-      sprite: {fileID: 21300006, guid: de380bfc18d6aa443b2c95b8b1c93daa, type: 3}
+      sprite: {fileID: 21300000, guid: a7071ec0e999cab46ae0af026f68a395, type: 3}
+      color: {r: 0, g: 0, b: 0, a: 0}
       locked: 0
       id: 0
       price: 10
     - apparenceType: 5
-      sprite: {fileID: 21300008, guid: de380bfc18d6aa443b2c95b8b1c93daa, type: 3}
+      sprite: {fileID: 21300000, guid: 0f6519b4063e6404d9aaf0bd3299eefd, type: 3}
+      color: {r: 0, g: 0, b: 0, a: 0}
+      locked: 0
+      id: 0
+      price: 10
+    - apparenceType: 5
+      sprite: {fileID: 21300000, guid: 4fe8a696e710e2c4a9be4ed57f08644b, type: 3}
+      color: {r: 0, g: 0, b: 0, a: 0}
+      locked: 0
+      id: 0
+      price: 10
+    - apparenceType: 5
+      sprite: {fileID: 21300000, guid: df19d284c491f874fa1be043e906b70f, type: 3}
+      color: {r: 0, g: 0, b: 0, a: 0}
+      locked: 0
+      id: 0
+      price: 10
+    - apparenceType: 5
+      sprite: {fileID: 21300000, guid: 27e18dd420e390c4faeb7a93d9068fb3, type: 3}
+      color: {r: 0, g: 0, b: 0, a: 0}
+      locked: 0
+      id: 0
+      price: 10
+    - apparenceType: 5
+      sprite: {fileID: 21300000, guid: 09fc35a87278d784187aeb56d2fc5d65, type: 3}
+      color: {r: 0, g: 0, b: 0, a: 0}
+      locked: 0
+      id: 0
+      price: 10
+    - apparenceType: 5
+      sprite: {fileID: 21300000, guid: 6b96276e686324e43a0d1069cf4be42d, type: 3}
+      color: {r: 0, g: 0, b: 0, a: 0}
       locked: 0
       id: 0
       price: 10
   - items:
     - apparenceType: 6
       sprite: {fileID: 21300000, guid: 6e38b3a23ff8bbb4ea8ae922ca3f9637, type: 3}
+      color: {r: 0.86764705, g: 0.483, b: 0.14673442, a: 1}
       locked: 0
       id: 0
       price: 10
     - apparenceType: 6
       sprite: {fileID: 21300000, guid: 6e38b3a23ff8bbb4ea8ae922ca3f9637, type: 3}
+      color: {r: 1, g: 1, b: 1, a: 1}
       locked: 0
       id: 0
       price: 10
     - apparenceType: 6
       sprite: {fileID: 21300000, guid: 6e38b3a23ff8bbb4ea8ae922ca3f9637, type: 3}
+      color: {r: 0.3105268, g: 0.32352942, b: 0.2902249, a: 1}
       locked: 0
       id: 0
       price: 10
     - apparenceType: 6
       sprite: {fileID: 21300000, guid: 6e38b3a23ff8bbb4ea8ae922ca3f9637, type: 3}
+      color: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
       locked: 0
       id: 0
       price: 10
     - apparenceType: 6
       sprite: {fileID: 21300000, guid: 6e38b3a23ff8bbb4ea8ae922ca3f9637, type: 3}
+      color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+      locked: 0
+      id: 0
+      price: 10
+    - apparenceType: 6
+      sprite: {fileID: 21300000, guid: 6e38b3a23ff8bbb4ea8ae922ca3f9637, type: 3}
+      color: {r: 0.20784315, g: 0.1254902, b: 0.054901965, a: 1}
+      locked: 0
+      id: 0
+      price: 10
+    - apparenceType: 6
+      sprite: {fileID: 21300000, guid: 6e38b3a23ff8bbb4ea8ae922ca3f9637, type: 3}
+      color: {r: 0.6901961, g: 0.4901961, b: 0.2392157, a: 1}
       locked: 0
       id: 0
       price: 10
   - items:
     - apparenceType: 7
       sprite: {fileID: 21300000, guid: 608ec5b653dc12947b82741c7f5d0baf, type: 3}
+      color: {r: 0, g: 0, b: 0, a: 0}
       locked: 0
       id: 0
       price: 10
     - apparenceType: 7
       sprite: {fileID: 21300000, guid: 0176b080fb5ef994b99565d1168b9726, type: 3}
+      color: {r: 0, g: 0, b: 0, a: 0}
       locked: 0
       id: 0
       price: 10
     - apparenceType: 7
       sprite: {fileID: 21300000, guid: 27032965e2f4d174cbb966a09a85d289, type: 3}
+      color: {r: 0, g: 0, b: 0, a: 0}
       locked: 0
       id: 0
       price: 10
     - apparenceType: 7
       sprite: {fileID: 21300000, guid: d7201fbeafe85e548a8eccbd7f05fd2d, type: 3}
+      color: {r: 0, g: 0, b: 0, a: 0}
       locked: 0
       id: 0
       price: 50
     - apparenceType: 7
       sprite: {fileID: 21300000, guid: 0adba394aaa8bfa4d9f9d0a8184d386f, type: 3}
+      color: {r: 0, g: 0, b: 0, a: 0}
       locked: 0
       id: 0
       price: 50
   - items:
     - apparenceType: 8
       sprite: {fileID: 21300000, guid: 958177fdca612f84fbe4946d0d148952, type: 3}
+      color: {r: 0, g: 0, b: 0, a: 0}
       locked: 0
       id: 0
       price: 10
     - apparenceType: 8
       sprite: {fileID: 21300000, guid: c8ed01a2ceff63f4180841e70b1f78d0, type: 3}
+      color: {r: 0, g: 0, b: 0, a: 0}
       locked: 0
       id: 0
       price: 10
   - items:
     - apparenceType: 9
       sprite: {fileID: 21300000, guid: e34527dd7ade9a04b999651cb7b9e590, type: 3}
+      color: {r: 0, g: 0, b: 0, a: 0}
       locked: 0
       id: 0
       price: 100
     - apparenceType: 9
       sprite: {fileID: 21300000, guid: e34527dd7ade9a04b999651cb7b9e590, type: 3}
+      color: {r: 0, g: 0, b: 0, a: 0}
       locked: 1
       id: 1
       price: 100
     - apparenceType: 9
       sprite: {fileID: 21300000, guid: e34527dd7ade9a04b999651cb7b9e590, type: 3}
+      color: {r: 0, g: 0, b: 0, a: 0}
       locked: 1
       id: 2
       price: 100
     - apparenceType: 9
       sprite: {fileID: 21300000, guid: e34527dd7ade9a04b999651cb7b9e590, type: 3}
+      color: {r: 0, g: 0, b: 0, a: 0}
       locked: 1
       id: 2
       price: 100
     - apparenceType: 9
       sprite: {fileID: 21300000, guid: e34527dd7ade9a04b999651cb7b9e590, type: 3}
+      color: {r: 0, g: 0, b: 0, a: 0}
       locked: 1
       id: 2
+      price: 100
+  - items:
+    - apparenceType: 10
+      sprite: {fileID: 0}
+      color: {r: 0, g: 0, b: 0, a: 0}
+      locked: 0
+      id: 0
+      price: 100
+    - apparenceType: 10
+      sprite: {fileID: 0}
+      color: {r: 0, g: 0, b: 0, a: 0}
+      locked: 0
+      id: 0
+      price: 100
+    - apparenceType: 10
+      sprite: {fileID: 0}
+      color: {r: 0, g: 0, b: 0, a: 0}
+      locked: 0
+      id: 0
+      price: 100
+    - apparenceType: 10
+      sprite: {fileID: 0}
+      color: {r: 0, g: 0, b: 0, a: 0}
+      locked: 0
+      id: 0
+      price: 100
+  - items:
+    - apparenceType: 11
+      sprite: {fileID: 0}
+      color: {r: 1, g: 0.84705883, b: 0.7529412, a: 1}
+      locked: 0
+      id: 0
+      price: 100
+    - apparenceType: 11
+      sprite: {fileID: 0}
+      color: {r: 0.96862745, g: 0.7529412, b: 0.61960787, a: 1}
+      locked: 0
+      id: 0
+      price: 100
+    - apparenceType: 11
+      sprite: {fileID: 0}
+      color: {r: 0.98039216, g: 0.75686276, b: 0.5764706, a: 1}
+      locked: 0
+      id: 0
+      price: 100
+    - apparenceType: 11
+      sprite: {fileID: 0}
+      color: {r: 0.9098039, g: 0.6117647, b: 0.4117647, a: 1}
+      locked: 0
+      id: 0
+      price: 100
+    - apparenceType: 11
+      sprite: {fileID: 0}
+      color: {r: 0.26666668, g: 0.13725491, b: 0.07058824, a: 1}
+      locked: 0
+      id: 0
+      price: 100
+    - apparenceType: 11
+      sprite: {fileID: 0}
+      color: {r: 0.9490196, g: 0.5803922, b: 0.5058824, a: 1}
+      locked: 0
+      id: 0
+      price: 100
+    - apparenceType: 11
+      sprite: {fileID: 0}
+      color: {r: 0.4117647, g: 0.1882353, b: 0.07450981, a: 1}
+      locked: 0
+      id: 0
+      price: 100
+    - apparenceType: 11
+      sprite: {fileID: 0}
+      color: {r: 0.78039217, g: 0.3764706, b: 0.16470589, a: 1}
+      locked: 0
+      id: 0
+      price: 100
+    - apparenceType: 11
+      sprite: {fileID: 0}
+      color: {r: 0.654902, g: 0.3019608, b: 0.18039216, a: 1}
+      locked: 0
+      id: 0
+      price: 100
+    - apparenceType: 11
+      sprite: {fileID: 0}
+      color: {r: 0.76862746, g: 0.3882353, b: 0.23529412, a: 1}
+      locked: 0
+      id: 0
+      price: 100
+    - apparenceType: 11
+      sprite: {fileID: 0}
+      color: {r: 0.89411765, g: 0.59607846, b: 0.3137255, a: 1}
+      locked: 0
+      id: 0
+      price: 100
+    - apparenceType: 11
+      sprite: {fileID: 0}
+      color: {r: 0.96862745, g: 0.7294118, b: 0.44705883, a: 1}
+      locked: 0
+      id: 0
+      price: 100
+  - items:
+    - apparenceType: 12
+      sprite: {fileID: 0}
+      color: {r: 0.27450982, g: 0.47843137, b: 0.54901963, a: 1}
+      locked: 0
+      id: 0
+      price: 100
+    - apparenceType: 12
+      sprite: {fileID: 0}
+      color: {r: 0.2784314, g: 0.4627451, b: 0.3882353, a: 1}
+      locked: 0
+      id: 0
+      price: 100
+    - apparenceType: 12
+      sprite: {fileID: 0}
+      color: {r: 0.3254902, g: 0.25882354, b: 0.18039216, a: 1}
+      locked: 0
+      id: 0
+      price: 100
+    - apparenceType: 12
+      sprite: {fileID: 0}
+      color: {r: 0.13725491, g: 0.09411765, b: 0.14509805, a: 1}
+      locked: 0
+      id: 0
+      price: 100
+    - apparenceType: 12
+      sprite: {fileID: 0}
+      color: {r: 0.101960786, g: 0.13725491, b: 0.13725491, a: 1}
+      locked: 0
+      id: 0
+      price: 100
+    - apparenceType: 12
+      sprite: {fileID: 0}
+      color: {r: 0.8, g: 0.6039216, b: 0.18039216, a: 1}
+      locked: 0
+      id: 0
+      price: 100
+    - apparenceType: 12
+      sprite: {fileID: 0}
+      color: {r: 0.7176471, g: 0.2901961, b: 0.27450982, a: 1}
+      locked: 0
+      id: 0
+      price: 100
+    - apparenceType: 12
+      sprite: {fileID: 0}
+      color: {r: 0.6901961, g: 0.4901961, b: 0.2392157, a: 1}
+      locked: 0
+      id: 0
+      price: 100
+    - apparenceType: 12
+      sprite: {fileID: 0}
+      color: {r: 0.24705882, g: 0.28235295, b: 0.101960786, a: 1}
+      locked: 0
+      id: 0
+      price: 100
+    - apparenceType: 12
+      sprite: {fileID: 0}
+      color: {r: 0.30588236, g: 0.16862746, b: 0.13725491, a: 1}
+      locked: 0
+      id: 0
+      price: 100
+    - apparenceType: 12
+      sprite: {fileID: 0}
+      color: {r: 0.9098039, g: 0.7921569, b: 0.50980395, a: 1}
+      locked: 0
+      id: 0
+      price: 100
+    - apparenceType: 12
+      sprite: {fileID: 0}
+      color: {r: 0.27058825, g: 0.20392157, b: 0.28627452, a: 1}
+      locked: 0
+      id: 0
+      price: 100
+    - apparenceType: 12
+      sprite: {fileID: 0}
+      color: {r: 0.42352942, g: 0.4392157, b: 0.3372549, a: 1}
+      locked: 0
+      id: 0
+      price: 100
+    - apparenceType: 12
+      sprite: {fileID: 0}
+      color: {r: 0.7176471, g: 0.5764706, b: 0.27450982, a: 1}
+      locked: 0
+      id: 0
+      price: 100
+    - apparenceType: 12
+      sprite: {fileID: 0}
+      color: {r: 0.69411767, g: 0.28235295, b: 0.17254902, a: 1}
+      locked: 0
+      id: 0
+      price: 100
+    - apparenceType: 12
+      sprite: {fileID: 0}
+      color: {r: 0.3254902, g: 0.18039216, b: 0.1882353, a: 1}
+      locked: 0
+      id: 0
+      price: 100
+    - apparenceType: 12
+      sprite: {fileID: 0}
+      color: {r: 0.20392157, g: 0.45882353, b: 0.45882353, a: 1}
+      locked: 0
+      id: 0
+      price: 100
+    - apparenceType: 12
+      sprite: {fileID: 0}
+      color: {r: 0.19215687, g: 0.34509805, b: 0.2, a: 1}
+      locked: 0
+      id: 0
+      price: 100
+    - apparenceType: 12
+      sprite: {fileID: 0}
+      color: {r: 0.6039216, g: 0.19607843, b: 0.1764706, a: 1}
+      locked: 0
+      id: 0
+      price: 100
+  - items:
+    - apparenceType: 13
+      sprite: {fileID: 0}
+      color: {r: 0.27450982, g: 0.47843137, b: 0.54901963, a: 1}
+      locked: 0
+      id: 0
+      price: 100
+    - apparenceType: 13
+      sprite: {fileID: 0}
+      color: {r: 0.2784314, g: 0.4627451, b: 0.3882353, a: 1}
+      locked: 0
+      id: 0
+      price: 100
+    - apparenceType: 13
+      sprite: {fileID: 0}
+      color: {r: 0.3254902, g: 0.25882354, b: 0.18039216, a: 1}
+      locked: 0
+      id: 0
+      price: 100
+    - apparenceType: 13
+      sprite: {fileID: 0}
+      color: {r: 0.13725491, g: 0.09411765, b: 0.14509805, a: 1}
+      locked: 0
+      id: 0
+      price: 100
+    - apparenceType: 13
+      sprite: {fileID: 0}
+      color: {r: 0.101960786, g: 0.13725491, b: 0.13725491, a: 1}
+      locked: 0
+      id: 0
+      price: 100
+    - apparenceType: 13
+      sprite: {fileID: 0}
+      color: {r: 0.8, g: 0.6039216, b: 0.18039216, a: 1}
+      locked: 0
+      id: 0
+      price: 100
+    - apparenceType: 13
+      sprite: {fileID: 0}
+      color: {r: 0.7176471, g: 0.2901961, b: 0.27450982, a: 1}
+      locked: 0
+      id: 0
+      price: 100
+    - apparenceType: 13
+      sprite: {fileID: 0}
+      color: {r: 0.6901961, g: 0.4901961, b: 0.2392157, a: 1}
+      locked: 0
+      id: 0
+      price: 100
+    - apparenceType: 13
+      sprite: {fileID: 0}
+      color: {r: 0.24705882, g: 0.28235295, b: 0.101960786, a: 1}
+      locked: 0
+      id: 0
+      price: 100
+    - apparenceType: 13
+      sprite: {fileID: 0}
+      color: {r: 0.30588236, g: 0.16862746, b: 0.13725491, a: 1}
+      locked: 0
+      id: 0
+      price: 100
+    - apparenceType: 13
+      sprite: {fileID: 0}
+      color: {r: 0.9098039, g: 0.7921569, b: 0.50980395, a: 1}
+      locked: 0
+      id: 0
+      price: 100
+    - apparenceType: 13
+      sprite: {fileID: 0}
+      color: {r: 0.27058825, g: 0.20392157, b: 0.28627452, a: 1}
+      locked: 0
+      id: 0
+      price: 100
+    - apparenceType: 13
+      sprite: {fileID: 0}
+      color: {r: 0.42352942, g: 0.4392157, b: 0.3372549, a: 1}
+      locked: 0
+      id: 0
+      price: 100
+    - apparenceType: 13
+      sprite: {fileID: 0}
+      color: {r: 0.7176471, g: 0.5764706, b: 0.27450982, a: 1}
+      locked: 0
+      id: 0
+      price: 100
+    - apparenceType: 13
+      sprite: {fileID: 0}
+      color: {r: 0.69411767, g: 0.28235295, b: 0.17254902, a: 1}
+      locked: 0
+      id: 0
+      price: 100
+    - apparenceType: 13
+      sprite: {fileID: 0}
+      color: {r: 0.3254902, g: 0.18039216, b: 0.1882353, a: 1}
+      locked: 0
+      id: 0
+      price: 100
+    - apparenceType: 13
+      sprite: {fileID: 0}
+      color: {r: 0.20392157, g: 0.45882353, b: 0.45882353, a: 1}
+      locked: 0
+      id: 0
+      price: 100
+    - apparenceType: 13
+      sprite: {fileID: 0}
+      color: {r: 0.19215687, g: 0.34509805, b: 0.2, a: 1}
+      locked: 0
+      id: 0
+      price: 100
+    - apparenceType: 13
+      sprite: {fileID: 0}
+      color: {r: 0.6039216, g: 0.19607843, b: 0.1764706, a: 1}
+      locked: 0
+      id: 0
+      price: 100
+  - items:
+    - apparenceType: 14
+      sprite: {fileID: 0}
+      color: {r: 0.043137256, g: 0.08235294, b: 0.10980392, a: 1}
+      locked: 0
+      id: 0
+      price: 100
+    - apparenceType: 14
+      sprite: {fileID: 0}
+      color: {r: 0.45490196, g: 0.18039216, b: 0.12156863, a: 1}
+      locked: 0
+      id: 0
+      price: 100
+    - apparenceType: 14
+      sprite: {fileID: 0}
+      color: {r: 0.45882353, g: 0.30980393, b: 0.14901961, a: 1}
+      locked: 0
+      id: 0
+      price: 100
+    - apparenceType: 14
+      sprite: {fileID: 0}
+      color: {r: 0.11764706, g: 0.12941177, b: 0.08235294, a: 1}
+      locked: 0
+      id: 0
+      price: 100
+    - apparenceType: 14
+      sprite: {fileID: 0}
+      color: {r: 0.07450981, g: 0.14117648, b: 0.14509805, a: 1}
+      locked: 0
+      id: 0
+      price: 100
+    - apparenceType: 14
+      sprite: {fileID: 0}
+      color: {r: 0.15294118, g: 0.14117648, b: 0.10980392, a: 1}
+      locked: 0
+      id: 0
+      price: 100
+    - apparenceType: 14
+      sprite: {fileID: 0}
+      color: {r: 0.14117648, g: 0.10980392, b: 0.0627451, a: 1}
+      locked: 0
+      id: 0
+      price: 100
+    - apparenceType: 14
+      sprite: {fileID: 0}
+      color: {r: 0.28235295, g: 0.10980392, b: 0.105882354, a: 1}
+      locked: 0
+      id: 0
+      price: 100
+    - apparenceType: 14
+      sprite: {fileID: 0}
+      color: {r: 0.18431373, g: 0.105882354, b: 0.15294118, a: 1}
+      locked: 0
+      id: 0
+      price: 100
+  - items:
+    - apparenceType: 15
+      sprite: {fileID: 21300000, guid: 9c100360ae520134586c5b808962185f, type: 3}
+      color: {r: 0.043137256, g: 0.08235294, b: 0.10980392, a: 1}
+      locked: 0
+      id: 0
+      price: 100
+    - apparenceType: 15
+      sprite: {fileID: 21300000, guid: f76f11832ee41ec4e85bb25041b7323c, type: 3}
+      color: {r: 0.45490196, g: 0.18039216, b: 0.12156863, a: 1}
+      locked: 0
+      id: 0
+      price: 100
+    - apparenceType: 15
+      sprite: {fileID: 21300000, guid: 5d037eddc1c5f3b4fb365d80753b4c9b, type: 3}
+      color: {r: 0.45882353, g: 0.30980393, b: 0.14901961, a: 1}
+      locked: 0
+      id: 0
+      price: 100
+    - apparenceType: 15
+      sprite: {fileID: 21300000, guid: 7820c39defd14544fa8abcac3b0b26f3, type: 3}
+      color: {r: 0.11764706, g: 0.12941177, b: 0.08235294, a: 1}
+      locked: 0
+      id: 0
       price: 100

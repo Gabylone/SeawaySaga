@@ -24,6 +24,8 @@ public class InGameBackGround : MonoBehaviour {
 
     private bool visible = false;
 
+    public Color darkColor;
+
 	public Image image;
     public Sprite[] sprites;
 
@@ -40,6 +42,9 @@ public class InGameBackGround : MonoBehaviour {
     void Start () {
 
         StoryFunctions.Instance.getFunction += HandleGetFunction;
+
+        CombatManager.Instance.onFightStart += SetDark;
+        CombatManager.Instance.onFightEnd += SetWhite;
 
         Hide();
 	}
@@ -105,6 +110,16 @@ public class InGameBackGround : MonoBehaviour {
         currentType = type;
 
         image.sprite = sprites[(int)type];
+    }
+
+    public void SetDark()
+    {
+        image.DOColor(darkColor, 0.5f);
+    }
+
+    public void SetWhite()
+    {
+        image.DOColor(Color.white, 0.5f);
     }
 
     public void Show()

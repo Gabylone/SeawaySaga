@@ -11,6 +11,7 @@ public class Skill_Attack : Skill {
 
 		fighter.TargetFighter.GetHit (fighter, fighter.crewMember.Attack, 1f);
 
+        Debug.Log("hitting");
 		EndSkill ();
 
 	}

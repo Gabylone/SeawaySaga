@@ -88,20 +88,6 @@ public class Member {
 		id = globalID;
 		globalID++;
 
-		// GENRE
-		if (crewParams.overideGenre) {
-			Male = crewParams.male;
-		} else {
-			Male = Random.value < 0.5f;
-		}
-
-		// NAME
-		if (Male) {
-			Name = CrewCreator.Instance.manNames[Random.Range (0, CrewCreator.Instance.manNames.Length)];
-		} else {
-			Name = CrewCreator.Instance.womanNames[Random.Range (0, CrewCreator.Instance.womanNames.Length)];
-		}
-
 		// LEVEL
 		if (crewParams.level > 0) {
 			Lvl = crewParams.level;
@@ -129,10 +115,14 @@ public class Member {
 			--statAmount;
 		}
 
-
-
         foreach (var item in CrewCreator.Instance.apparenceGroups)
         {
+            List<ApparenceItem> possibleItems = item.items.FindAll(x => x.locked == false);
+            int randomID = possibleItems[Random.Range(0, possibleItems.Count)].id;
+
+            characterIDS.Add(randomID);
+
+            /*
             if (item.items[0].apparenceType == ApparenceType.genre)
             {
                 characterIDS.Add(Male ? 1 : 0);
@@ -144,19 +134,42 @@ public class Member {
 
                 characterIDS.Add(randomID);
             }
-
+            */
 
         }
 
-        if (GetCharacterID(ApparenceType.genre) == 0)
+        // GENRE
+        if (crewParams.overideGenre)
         {
-            SetCharacterID(ApparenceType.hair, 3);
-            SetCharacterID(ApparenceType.beard, 0);
+            if (crewParams.male)
+            {
+                SetCharacterID(ApparenceType.genre, 0);
+            }
+            else
+            {
+                SetCharacterID(ApparenceType.genre, 1);
+            }
+        }
+
+        // NAME
+        if (Male)
+        {
+            Name = CrewCreator.Instance.manNames[Random.Range(0, CrewCreator.Instance.manNames.Length)];
+        }
+        else
+        {
+            Name = CrewCreator.Instance.womanNames[Random.Range(0, CrewCreator.Instance.womanNames.Length)];
         }
     }
 
     // icon index
-    public bool Male = false;
+    public bool Male
+    {
+        get
+        {
+            return GetCharacterID(ApparenceType.genre) == 0;
+        }
+    }
 	public Job job;
 
     public List<int> characterIDS = new List<int>();

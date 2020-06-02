@@ -78,15 +78,7 @@ public class DisplayPurchase : MonoBehaviour {
 
         CrewCreator.Instance.UpdateApparenceItems();
 
-        if (MemberCreatorButton.lastSelected != null)
-        {
-            MemberCreatorButton.lastSelected.UpdateImage();
-
-        }
-        else
-        {
-            targetTransform.GetComponent<Map>().UpdateUI();
-        }
+        targetTransform.GetComponent<Map>().UpdateUI();
 
         Close();
 

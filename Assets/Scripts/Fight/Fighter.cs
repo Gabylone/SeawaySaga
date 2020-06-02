@@ -39,7 +39,7 @@ public class Fighter : MonoBehaviour {
 	private delegate void UpdateState ();
 	private UpdateState updateState;
 
-	public GameObject group;
+	public GameObject ui_Group;
 
 	[Header ("Components")]
 	[SerializeField]
@@ -49,7 +49,8 @@ public class Fighter : MonoBehaviour {
 	public Transform arrowAnchor;
     public StatusGroup statusGroup;
 
-	public Fight_LoadSprites fightSprites;
+    public IconVisual iconVisual;
+    public CanvasGroup canvasGroup;
 
 	[Header ("Move")]
 	public float moveToTargetDuration = 0.79f;
@@ -79,9 +80,6 @@ public class Fighter : MonoBehaviour {
 	}
 
 	[SerializeField]
-	private float hitSpeed = 1f;
-	public BoxCollider2D weaponCollider;
-	[SerializeField]
 	private GameObject impactEffect;
 
 	// get hit
@@ -94,21 +92,10 @@ public class Fighter : MonoBehaviour {
 	[SerializeField]
 	private float blocked_Duration = 0.5f;
 
-
 	[Header("Dodge")]
 	[SerializeField]
 	private float maxDodgeChance = 20;
 
-	[Header ("Guard")]
-	public bool guard_Active = false;
-	[SerializeField]
-	private GameObject guard_Feedback;
-
-	[Header("Bounds")]
-	[SerializeField]
-	private Transform leftAnchor;
-	[SerializeField]
-	private Transform rightAnchor;
 	private Vector3 initPos = Vector3.zero;
 
 	[Header("Sounds")]
@@ -119,9 +106,6 @@ public class Fighter : MonoBehaviour {
 	private Fighter targetFighter;
 	[SerializeField]
 	private float stopDistance = 1f;
-	[SerializeField]
-	private float stopBuffer = 0.2f;
-	private bool hitting = false;
 
 	private bool pickable = false;
 	public delegate void OnSetPickable ( bool b );
@@ -143,10 +127,6 @@ public class Fighter : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-
-//		print ("fightrer start " + transform.parent.name);
-		animator = GetComponentInChildren<Animator> ();
-		weaponCollider.enabled = false;
 
 		transform.parent.GetComponentInChildren<Card> ().Init ();
 
@@ -198,8 +178,8 @@ public class Fighter : MonoBehaviour {
 			statusCount [i] = 0;
 		}
 
-		// member sprites
-		fightSprites.UpdateSprites (crewMember.MemberID);
+        // member sprites
+        iconVisual.InitVisual(crewMember.MemberID);
 
 		// event
 		if ( onReset != null )
@@ -213,12 +193,6 @@ public class Fighter : MonoBehaviour {
 		Tween.Bounce (transform);
 
 		ChangeState (Fighter.states.none);
-
-        /*
-        Vector3 targetPos = CombatManager.Instance.playerFighters_Parent.transform.position;
-        targetPos.x += crewMember.side == Crews.Side.Enemy ? 0.5f : -0.5f;
-
-        transform.DOMove(targetPos, moveBackDuration);*/
 
         if ( HasStatus(Status.PreparingAttack) ) {
 
@@ -290,21 +264,26 @@ public class Fighter : MonoBehaviour {
 	{
 		ChangeState (states.none);
 
-		group.SetActive (false);
+		ui_Group.SetActive (false);
 		gameObject.SetActive (false);
 
 	}
 
-	public void Fade () {
-		
-		ChangeState (states.none);
+    public void Fade()
+    {
 
-		group.SetActive (false);
-		fightSprites.FadeSprites (1);
-	}
+        ChangeState(states.none);
+
+        canvasGroup.DOFade(0f, 0.5f);
+
+        ui_Group.SetActive(false);
+    }
 
 	void Show () {
-		group.SetActive (true);
+
+        canvasGroup.alpha = 1f;
+
+		ui_Group.SetActive (true);
 		gameObject.SetActive (true);
 	}
 
@@ -389,46 +368,35 @@ public class Fighter : MonoBehaviour {
 	#endregion
 
 	#region hit
-	public virtual void hit_Start () {
+	public virtual void triggerSkill_Start () {
 
-		hitting = false;
-
-		weaponCollider.enabled = false;
 	}
 
-	public virtual void hit_Update () {
-
-		if ( hitting ) {
-			transform.Translate (Vector2.right * dir * hitSpeed * Time.deltaTime);
-		}
+	public virtual void triggerSkill_Update () {
 
 	}
 	public virtual void hit_Exit () {
-
-		weaponCollider.enabled = false;
 
 	}
 	#endregion
 
 	#region guard
 	public virtual void guard_Start () {
-		animator.SetBool ( "guard" , true);
-	}
+        //animator.SetBool ( "guard" , true);
+    }
 
-	public virtual void guard_Update () {
+    public virtual void guard_Update () {
 
 	}
 	public virtual void guard_Exit () {
-		animator.SetBool ( "guard" , false);
-	}
-	#endregion
+        //animator.SetBool ( "guard" , false);
+    }
+    #endregion
 
-	#region blocked
-	public virtual void blocked_Start () {
+    #region blocked
+    public virtual void blocked_Start () {
 		
-		animator.SetBool ( "blocked" , true);
-
-		weaponCollider.enabled = false;
+		//animator.SetBool ( "blocked" , true);
 	}
 
 	public virtual void blocked_Update () {
@@ -439,12 +407,12 @@ public class Fighter : MonoBehaviour {
 
 	}
 	public void blocked_Exit () {
-		animator.SetBool ( "blocked" , false);
-	}
-	#endregion
+        //animator.SetBool ( "blocked" , false);
+    }
+    #endregion
 
-	#region dead
-	void dead_Start ()
+    #region dead
+    void dead_Start ()
 	{
 		
 	}
@@ -484,8 +452,6 @@ public class Fighter : MonoBehaviour {
 	#region get hit
 	public virtual void getHit_Start () {
 
-		weaponCollider.enabled = false;
-
 		animator.SetTrigger ("getHit");
 	}
 	public virtual void getHit_Update () {
@@ -506,7 +472,6 @@ public class Fighter : MonoBehaviour {
 
 		animator.SetTrigger("getHit");
 
-		//		impactEffect.transform.position = BodyTransform.position + (Vector3.up*Random.value);
 		impactEffect.transform.position = BodyTransform.position;
 	}
 
@@ -665,8 +630,8 @@ public class Fighter : MonoBehaviour {
 			MoveBack_Start();
 			break;
 		case states.triggerSkill:
-			updateState = hit_Update;
-			hit_Start();
+			updateState = triggerSkill_Update;
+			triggerSkill_Start();
 			break;
 		case states.getHit:
 			updateState = getHit_Update;

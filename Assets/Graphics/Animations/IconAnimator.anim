@@ -4,7 +4,8 @@
 AnimationClip:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_Name: IconAnimator
   serializedVersion: 6
   m_Legacy: 0
@@ -37,7 +38,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: -0.9
+        value: -16.2
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -56,7 +57,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: -5.5
+        value: -8.8
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -126,7 +127,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: -0.9
+        value: -16.2
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -145,7 +146,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: -5.5
+        value: -8.8
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -249,5 +250,4 @@ AnimationClip:
     script: {fileID: 0}
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
-  m_GenerateMotionCurves: 0
   m_Events: []

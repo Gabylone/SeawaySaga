@@ -45,8 +45,15 @@ public class Crew {
 		for (int i = 0; i < crewParams.amount; ++i) {
 			Member id = new Member (crewParams);
 			if (crewParams.overideGenre) {
-				id.Male = crewParams.male;
-			}
+                if (crewParams.male)
+                {
+                    id.SetCharacterID(ApparenceType.genre, 0);
+                }
+                else
+                {
+                    id.SetCharacterID(ApparenceType.genre, 1);
+                }
+            }
 
 			memberIDs.Add (id);
 

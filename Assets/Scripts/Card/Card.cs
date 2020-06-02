@@ -19,22 +19,27 @@ public class Card : MonoBehaviour {
 	[SerializeField]
 	private Image targetFeedbackImage;
 
+    // health
 	[SerializeField]
 	private RectTransform healthBackground;
 	[SerializeField]
 	private RectTransform healthFillDelay;
-	[SerializeField]
-	private RectTransform healthFill;
+    [SerializeField]
+    private RectTransform healthFill;
 
-	[SerializeField]
+    // energy
+    [SerializeField]
+    private RectTransform energyBackground;
+    [SerializeField]
+    private RectTransform energyFillDelay;
+    [SerializeField]
+    private RectTransform energyFill;
+
+    //
+    [SerializeField]
 	private GameObject energyGroup;
 	[SerializeField]
 	private GameObject jobGroup;
-	[SerializeField]
-	private GameObject[] energyPoints;
-
-	[SerializeField]
-	private GameObject heartGroup;
 
 	[SerializeField]
 	private Image levelImage;
@@ -71,7 +76,6 @@ public class Card : MonoBehaviour {
 		HideTargetFeedback ();
 		HideEndTurnFeedback ();
 
-		energyGroup.SetActive (false);
 		jobGroup.SetActive (false);
 
 	}
@@ -101,10 +105,10 @@ public class Card : MonoBehaviour {
 
 	void ShowTargetFeedback(Color color) {
 
-        foreach (var item in linkedFighter.GetComponentsInChildren<SpriteOutline>())
+        foreach (var item in linkedFighter.GetComponentsInChildren<Outline>())
         {
             item.enabled = true;
-            item.color = color;
+            item.effectColor = color;
         }
 
         /*targetFeedbackImage.color = color;
@@ -115,7 +119,7 @@ public class Card : MonoBehaviour {
 
     void HideTargetFeedback () {
 
-        foreach (var item in linkedFighter.GetComponentsInChildren<SpriteOutline>())
+        foreach (var item in linkedFighter.GetComponentsInChildren<Outline>())
         {
             item.enabled = false;
         }
@@ -147,7 +151,6 @@ public class Card : MonoBehaviour {
         endTurnFeedback.DOLocalRotate(Vector3.forward * 89f, endTurnFeedbackDuration).SetEase(Ease.InOutQuad);
 		Tween.Bounce (endTurnFeedback, 1f , 1.5f);
 
-		energyGroup.SetActive (false);
 
 		playingTurn = false;
 
@@ -170,7 +173,6 @@ public class Card : MonoBehaviour {
 
 	void HandleOnShowInfo ()
 	{
-		energyGroup.SetActive (true);
 		jobGroup.SetActive (true);
 
 		CancelInvoke ("HideInfo");
@@ -181,7 +183,6 @@ public class Card : MonoBehaviour {
 
 	public void HideInfo ()
 	{
-		energyGroup.SetActive (false);
 		jobGroup.SetActive (false);
 	}
 
@@ -198,7 +199,6 @@ public class Card : MonoBehaviour {
 
 		ShowTargetFeedback (CombatManager.Instance.selectionColor_Self);
 
-		energyGroup.SetActive (true);
 
 		Tween.Scale (barGroup, 0.2f, 1.15f);
 	}
@@ -246,41 +246,19 @@ public class Card : MonoBehaviour {
 
 	}
 
-	public Color energyColor_Full;
-	public Color energyColor_Empty;
-	int currentEnergy = 0;
-	public Text energyText;
+	
 	void UpdateEnergyBar(CrewMember member) {
 
-		float scaleAmount = 0.8f;
+        float l = (float)member.energy / 10;
+        float width = -energyBackground.rect.width + energyBackground.rect.width * l;
 
-		float dur = 0.5f;
+        Vector2 v = new Vector2(width, 0f);
 
-		int a = 0;
+        float dur = 0.15f;
 
-		energyText.text = "" + member.energy;
-
-//		foreach (var item in energyPoints) {
-//			
-//			if (a < member.energy) {
-//				
-//				item.transform.localScale = Vector3.one * scaleAmount;
-//
-//				HOTween.To ( item.transform , dur , "localScale" , Vector3.one );
-//				HOTween.To ( item.GetComponent<Image>() , dur , "color" , energyColor_Full);
-//
-////				item.SetActive (true);
-//			} else {
-//
-//				HOTween.To ( item.transform , dur , "localScale" , Vector3.one * scaleAmount);
-//				HOTween.To ( item.GetComponent<Image>() , dur , "color" , energyColor_Empty);
-//
-////				item.SetActive (false);
-//			}
-//			++a;
-//		}
-
-//		currentEnergy = member.energy;
+        energyFill.DOSizeDelta(v, dur);
+        energyFillDelay.DOSizeDelta(v, dur * 3f).SetEase(Ease.OutCirc).SetDelay(dur * 3f);
+//		
 	}
 
 	public void ShowCard () {

@@ -42,11 +42,12 @@ public class CrewCreator : MonoBehaviour
     public string[] boatNames;
     public string[] boatAdjectives;
 
+    public BodySet[] male_BodySets;
+    public BodySet[] female_BodySets;
+
     void Awake()
     {   
         Instance = this;
-
-        MemberCreatorButton.lastSelected = null;
     }
 
     public List<ApparenceGroup> apparenceGroups = new List<ApparenceGroup>();
@@ -156,7 +157,27 @@ public class CrewCreator : MonoBehaviour
         }
     }
 
+    [System.Serializable]
+    public class BodySet
+    {
+        public Sprite[] sprites;
+        public BodyVisual.ID[] layerOrder
+            = new BodyVisual.ID[7]
+            {
+                BodyVisual.ID.LeftArm,
+                BodyVisual.ID.Skin,
+                BodyVisual.ID.Shoes,
+                BodyVisual.ID.Pants,
+                BodyVisual.ID.Cloth,
+                BodyVisual.ID.RightArm,
+                BodyVisual.ID.Face
+            };
+    }
+
 }
+
+
+
 public enum ApparenceType
 {
     // apparence
@@ -172,6 +193,15 @@ public enum ApparenceType
     job,
     genre,
     map,
+
+    bodyType,
+    skinColor,
+    topColor,
+    pantColor,
+    shoesColor,
+
+    faceType,
+
 }
 
 [System.Serializable]
@@ -187,6 +217,8 @@ public class ApparenceItem
 
     [SerializeField]
     Sprite sprite;
+
+    public  Color color;
 
     public bool locked = false;
 

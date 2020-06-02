@@ -1,14 +1,15 @@
 <?xml version="1.0"?>
 <Chunk xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <state>VisitedIsland</state>
+  <state>DiscoveredIsland</state>
   <islandDatas>
     <IslandData>
       <worldPosition>
-        <x>6.356096</x>
-        <y>-8.13301849</y>
+        <x>10.5913773</x>
+        <y>-16.62297</y>
       </worldPosition>
-      <worldRotation>216.735687</worldRotation>
+      <worldRotation>2.16091633</worldRotation>
       <storyManager>
+        <hasBeenPlayed>false</hasBeenPlayed>
         <storyHandlers>
           <StoryHandler>
             <row>0</row>
@@ -16,27 +17,9 @@
             <fallBackLayer>0</fallBackLayer>
             <storyID>19</storyID>
             <storyType>Normal</storyType>
-            <contentDecals>
-              <contentDecal>
-                <row>0</row>
-                <col>11</col>
-                <decal>0</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>2</row>
-                <col>64</col>
-                <decal>0</decal>
-              </contentDecal>
-            </contentDecals>
+            <contentDecals />
             <loots />
-            <crews>
-              <Crew>
-                <hostile>false</hostile>
-                <row>0</row>
-                <col>11</col>
-                <MemberIDs />
-              </Crew>
-            </crews>
+            <crews />
           </StoryHandler>
         </storyHandlers>
       </storyManager>

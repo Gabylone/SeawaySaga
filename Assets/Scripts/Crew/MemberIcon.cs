@@ -36,7 +36,7 @@ public class MemberIcon : MonoBehaviour {
 
     public DisplayHunger_Icon hungerIcon;
 
-    IconVisual iconVisual;
+    public IconVisual iconVisual;
 
     private void Awake()
     {
@@ -228,7 +228,6 @@ public class MemberIcon : MonoBehaviour {
 
 	public void InitVisual (Member memberID)
 	{
-        iconVisual = GetComponent<IconVisual>();
 		iconVisual.InitVisual (memberID);
     }
 	#endregion

@@ -1,14 +1,15 @@
 <?xml version="1.0"?>
 <Chunk xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <state>VisitedIsland</state>
+  <state>UndiscoveredIsland</state>
   <islandDatas>
     <IslandData>
       <worldPosition>
-        <x>1.19195175</x>
-        <y>-16.4834023</y>
+        <x>-1.96659279</x>
+        <y>-7.79957</y>
       </worldPosition>
-      <worldRotation>219.850433</worldRotation>
+      <worldRotation>101.074371</worldRotation>
       <storyManager>
+        <hasBeenPlayed>false</hasBeenPlayed>
         <storyHandlers>
           <StoryHandler>
             <row>0</row>
@@ -16,210 +17,9 @@
             <fallBackLayer>0</fallBackLayer>
             <storyID>2</storyID>
             <storyType>Normal</storyType>
-            <contentDecals>
-              <contentDecal>
-                <row>0</row>
-                <col>10</col>
-                <decal>1</decal>
-              </contentDecal>
-            </contentDecals>
+            <contentDecals />
             <loots />
-            <crews>
-              <Crew>
-                <hostile>false</hostile>
-                <row>0</row>
-                <col>5</col>
-                <MemberIDs>
-                  <Member>
-                    <id>9</id>
-                    <Name>Clementine</Name>
-                    <health>100</health>
-                    <maxHealth>100</maxHealth>
-                    <currentHunger>0</currentHunger>
-                    <Lvl>1</Lvl>
-                    <xp>0</xp>
-                    <skillPoints>0</skillPoints>
-                    <specialSkillsIndexes>
-                      <int>16</int>
-                    </specialSkillsIndexes>
-                    <stats>
-                      <int>1</int>
-                      <int>1</int>
-                      <int>1</int>
-                      <int>1</int>
-                    </stats>
-                    <daysOnBoard>0</daysOnBoard>
-                    <equipedWeapon>
-                      <ID>46</ID>
-                      <names>
-                        <string>Poivrière rouillée</string>
-                        <string>Rusty blunderbuss</string>
-                      </names>
-                      <value>8</value>
-                      <price>21</price>
-                      <weight>10</weight>
-                      <level>1</level>
-                      <spriteID>0</spriteID>
-                      <type>0</type>
-                      <category>Weapon</category>
-                    </equipedWeapon>
-                    <equipedCloth>
-                      <ID>156</ID>
-                      <names>
-                        <string>Salopette</string>
-                        <string>Overall</string>
-                      </names>
-                      <value>14</value>
-                      <price>22</price>
-                      <weight>10</weight>
-                      <level>1</level>
-                      <spriteID>0</spriteID>
-                      <type>0</type>
-                      <category>Clothes</category>
-                    </equipedCloth>
-                    <Male>false</Male>
-                    <job>Flibuster</job>
-                    <characterIDS>
-                      <int>0</int>
-                      <int>1</int>
-                      <int>2</int>
-                      <int>3</int>
-                      <int>1</int>
-                      <int>1</int>
-                      <int>4</int>
-                      <int>4</int>
-                      <int>0</int>
-                      <int>0</int>
-                    </characterIDS>
-                  </Member>
-                  <Member>
-                    <id>10</id>
-                    <Name>Flo</Name>
-                    <health>100</health>
-                    <maxHealth>100</maxHealth>
-                    <currentHunger>0</currentHunger>
-                    <Lvl>2</Lvl>
-                    <xp>0</xp>
-                    <skillPoints>0</skillPoints>
-                    <specialSkillsIndexes>
-                      <int>16</int>
-                    </specialSkillsIndexes>
-                    <stats>
-                      <int>1</int>
-                      <int>1</int>
-                      <int>2</int>
-                      <int>1</int>
-                    </stats>
-                    <daysOnBoard>0</daysOnBoard>
-                    <equipedWeapon>
-                      <ID>58</ID>
-                      <names>
-                        <string>Vielle poivrière</string>
-                        <string>Old canon</string>
-                      </names>
-                      <value>20</value>
-                      <price>36</price>
-                      <weight>10</weight>
-                      <level>2</level>
-                      <spriteID>0</spriteID>
-                      <type>0</type>
-                      <category>Weapon</category>
-                    </equipedWeapon>
-                    <equipedCloth>
-                      <ID>160</ID>
-                      <names>
-                        <string>Cuirasse rouillée</string>
-                        <string>Rusty breastplate</string>
-                      </names>
-                      <value>16</value>
-                      <price>29</price>
-                      <weight>10</weight>
-                      <level>2</level>
-                      <spriteID>1</spriteID>
-                      <type>0</type>
-                      <category>Clothes</category>
-                    </equipedCloth>
-                    <Male>false</Male>
-                    <job>Flibuster</job>
-                    <characterIDS>
-                      <int>0</int>
-                      <int>3</int>
-                      <int>1</int>
-                      <int>3</int>
-                      <int>4</int>
-                      <int>0</int>
-                      <int>2</int>
-                      <int>4</int>
-                      <int>0</int>
-                      <int>0</int>
-                    </characterIDS>
-                  </Member>
-                  <Member>
-                    <id>11</id>
-                    <Name>Pierre</Name>
-                    <health>100</health>
-                    <maxHealth>100</maxHealth>
-                    <currentHunger>0</currentHunger>
-                    <Lvl>4</Lvl>
-                    <xp>0</xp>
-                    <skillPoints>0</skillPoints>
-                    <specialSkillsIndexes>
-                      <int>8</int>
-                      <int>9</int>
-                    </specialSkillsIndexes>
-                    <stats>
-                      <int>4</int>
-                      <int>1</int>
-                      <int>1</int>
-                      <int>1</int>
-                    </stats>
-                    <daysOnBoard>0</daysOnBoard>
-                    <equipedWeapon>
-                      <ID>79</ID>
-                      <names>
-                        <string>Epée batarde</string>
-                        <string>Bastard sword</string>
-                      </names>
-                      <value>36</value>
-                      <price>64</price>
-                      <weight>10</weight>
-                      <level>4</level>
-                      <spriteID>1</spriteID>
-                      <type>0</type>
-                      <category>Weapon</category>
-                    </equipedWeapon>
-                    <equipedCloth>
-                      <ID>172</ID>
-                      <names>
-                        <string>Harnais de cuir</string>
-                        <string>Leather harness</string>
-                      </names>
-                      <value>40</value>
-                      <price>70</price>
-                      <weight>10</weight>
-                      <level>4</level>
-                      <spriteID>1</spriteID>
-                      <type>0</type>
-                      <category>Clothes</category>
-                    </equipedCloth>
-                    <Male>true</Male>
-                    <job>Surgeon</job>
-                    <characterIDS>
-                      <int>2</int>
-                      <int>4</int>
-                      <int>1</int>
-                      <int>3</int>
-                      <int>3</int>
-                      <int>3</int>
-                      <int>2</int>
-                      <int>4</int>
-                      <int>1</int>
-                      <int>0</int>
-                    </characterIDS>
-                  </Member>
-                </MemberIDs>
-              </Crew>
-            </crews>
+            <crews />
           </StoryHandler>
         </storyHandlers>
       </storyManager>

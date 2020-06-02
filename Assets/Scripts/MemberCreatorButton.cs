@@ -6,10 +6,6 @@ using UnityEngine.UI;
 
 public class MemberCreatorButton : MonoBehaviour {
 
-    public Image backgroundImage;
-
-    public static MemberCreatorButton lastSelected;
-
     public GameObject lockGroup;
 
     public Text pearlPriceUIText;
@@ -23,6 +19,12 @@ public class MemberCreatorButton : MonoBehaviour {
     public bool selected = false;
 
     public float scaleAmount = 2f;
+
+    public MemberCreationScrollView scrollView;
+
+    public static MemberCreatorButton lastSelected;
+
+    public Outline outline;
 
     public virtual void Start()
     {
@@ -67,20 +69,44 @@ public class MemberCreatorButton : MonoBehaviour {
     public virtual void Deselect()
     {
         selected = false;
-        Tween.Scale(transform, 0.2f, 1f);
+
+        if (outline != null)
+        {
+            outline.enabled = false;
+        }
     }
 
     public virtual void Select()
     {
-        if ( lastSelected != null && lastSelected.apparenceItem.apparenceType == apparenceItem.apparenceType)
+        if ( scrollView == null)
         {
-            lastSelected.Deselect();
+            if (lastSelected != null )
+            {
+                lastSelected.Deselect();
+            }
+
+            lastSelected = this;
+
+        }
+        else
+        {
+            if (scrollView.lastSelected != null)
+            {
+                scrollView.lastSelected.Deselect();
+            }
+
+            scrollView.lastSelected = this;
+
         }
 
-        Tween.Scale(transform, 0.2f, scaleAmount);
+        Tween.Bounce(transform);
 
         selected = true;
-        lastSelected = this;
+
+        if (outline != null)
+        {
+            outline.enabled = true;
+        }
 
     }
     #endregion
@@ -88,15 +114,20 @@ public class MemberCreatorButton : MonoBehaviour {
     #region image
     public virtual void UpdateImage() {
 
-
+        // get member id 
 		Member member = Crews.playerCrew.captain.MemberID;
 
+        // 
         apparenceItem = CrewCreator.Instance.GetApparenceItem(apparenceItem.apparenceType, apparenceItem.id);
 
-        if (apparenceItem.apparenceType == ApparenceType.hairColor)
+        if (apparenceItem.apparenceType == ApparenceType.hairColor ||
+            apparenceItem.apparenceType == ApparenceType.skinColor ||
+                apparenceItem.apparenceType == ApparenceType.topColor ||
+            apparenceItem.apparenceType == ApparenceType.pantColor ||
+            apparenceItem.apparenceType == ApparenceType.shoesColor)
         {
             image.enabled = false;
-            GetComponent<Image>().color = CrewCreator.Instance.hairColors[apparenceItem.id];
+            GetComponent<Image>().color = apparenceItem.color;
         }
         else
         {
@@ -109,11 +140,6 @@ public class MemberCreatorButton : MonoBehaviour {
                 image.sprite = apparenceItem.GetSprite();
                 image.enabled = true;
             }
-        }
-
-        if (apparenceItem.id == Crews.playerCrew.captain.MemberID.GetCharacterID(apparenceItem.apparenceType))
-        {
-            OnPointerUp();
         }
 
         if (apparenceItem.locked)

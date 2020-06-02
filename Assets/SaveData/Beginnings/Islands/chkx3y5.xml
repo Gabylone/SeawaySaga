@@ -1,14 +1,15 @@
 <?xml version="1.0"?>
 <Chunk xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <state>DiscoveredIsland</state>
+  <state>UndiscoveredIsland</state>
   <islandDatas>
     <IslandData>
       <worldPosition>
-        <x>4.7414093</x>
-        <y>4.522583</y>
+        <x>-10.5595684</x>
+        <y>-18.5025215</y>
       </worldPosition>
-      <worldRotation>86.61467</worldRotation>
+      <worldRotation>37.0345268</worldRotation>
       <storyManager>
+        <hasBeenPlayed>false</hasBeenPlayed>
         <storyHandlers>
           <StoryHandler>
             <row>0</row>
@@ -25,11 +26,12 @@
     </IslandData>
     <IslandData>
       <worldPosition>
-        <x>-13.2128868</x>
-        <y>-19.4082947</y>
+        <x>17.0120144</x>
+        <y>-11.2424374</y>
       </worldPosition>
-      <worldRotation>87.3849945</worldRotation>
+      <worldRotation>358.118073</worldRotation>
       <storyManager>
+        <hasBeenPlayed>false</hasBeenPlayed>
         <storyHandlers>
           <StoryHandler>
             <row>0</row>
@@ -46,11 +48,12 @@
     </IslandData>
     <IslandData>
       <worldPosition>
-        <x>3.635828</x>
-        <y>6.62060165</y>
+        <x>13.7466383</x>
+        <y>-4.58320427</y>
       </worldPosition>
-      <worldRotation>242.980453</worldRotation>
+      <worldRotation>178.045746</worldRotation>
       <storyManager>
+        <hasBeenPlayed>false</hasBeenPlayed>
         <storyHandlers>
           <StoryHandler>
             <row>0</row>

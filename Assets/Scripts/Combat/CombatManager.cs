@@ -522,15 +522,6 @@ public class CombatManager : MonoBehaviour {
 
 		initPlayerFighters = playerFighters_Parent.GetComponentsInChildren<Fighter> (true);
 		initEnemyFighters = enemyFighters_Parent.GetComponentsInChildren<Fighter> (true);
-
-		for (int index = 0; index < initPlayerFighters.Length; index++) {
-			initPlayerFighters [index].fightSprites.Init ();
-			initPlayerFighters [index].fightSprites.UpdateOrder (index);
-		}
-		for (int index = 0; index < initEnemyFighters.Length; index++) {
-			initEnemyFighters [index].fightSprites.Init ();
-			initEnemyFighters [index].fightSprites.UpdateOrder (index);
-		}
 	}
 	void SortFighters ()
 	{

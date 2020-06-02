@@ -379,7 +379,7 @@ public class CrewMember {
 	}
 
 	public bool Male {
-		get { return memberID.Male; }
+        get { return memberID.GetCharacterID(ApparenceType.genre) == 0; }
 	}
 	#endregion
 

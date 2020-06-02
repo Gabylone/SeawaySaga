@@ -1,14 +1,15 @@
 <?xml version="1.0"?>
 <Chunk xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <state>VisitedIsland</state>
+  <state>UndiscoveredIsland</state>
   <islandDatas>
     <IslandData>
       <worldPosition>
-        <x>5.97214127</x>
-        <y>17.2105942</y>
+        <x>10.7599163</x>
+        <y>-9.409496</y>
       </worldPosition>
-      <worldRotation>166.771454</worldRotation>
+      <worldRotation>88.83455</worldRotation>
       <storyManager>
+        <hasBeenPlayed>false</hasBeenPlayed>
         <storyHandlers>
           <StoryHandler>
             <row>0</row>
@@ -17,129 +18,8 @@
             <storyID>2</storyID>
             <storyType>Normal</storyType>
             <contentDecals />
-            <loots>
-              <Loot>
-                <row>2</row>
-                <col>18</col>
-                <ids>
-                  <ArrayOfInt />
-                  <ArrayOfInt>
-                    <int>51</int>
-                    <int>40</int>
-                  </ArrayOfInt>
-                  <ArrayOfInt>
-                    <int>160</int>
-                    <int>152</int>
-                  </ArrayOfInt>
-                  <ArrayOfInt>
-                    <int>210</int>
-                    <int>218</int>
-                  </ArrayOfInt>
-                </ids>
-                <weight>45</weight>
-                <AllItems>
-                  <ArrayOfItem />
-                  <ArrayOfItem>
-                    <Item>
-                      <ID>51</ID>
-                      <names>
-                        <string>Poivrière négligée</string>
-                        <string>Sloppy canon</string>
-                      </names>
-                      <value>10</value>
-                      <price>16</price>
-                      <weight>10</weight>
-                      <level>1</level>
-                      <spriteID>0</spriteID>
-                      <type>0</type>
-                      <category>Weapon</category>
-                    </Item>
-                    <Item>
-                      <ID>40</ID>
-                      <names>
-                        <string>Pioche de mineur</string>
-                        <string>Miner pickaxe</string>
-                      </names>
-                      <value>8</value>
-                      <price>16</price>
-                      <weight>10</weight>
-                      <level>1</level>
-                      <spriteID>1</spriteID>
-                      <type>0</type>
-                      <category>Weapon</category>
-                    </Item>
-                  </ArrayOfItem>
-                  <ArrayOfItem>
-                    <Item>
-                      <ID>160</ID>
-                      <names>
-                        <string>Cuirasse rouillée</string>
-                        <string>Rusty breastplate</string>
-                      </names>
-                      <value>16</value>
-                      <price>29</price>
-                      <weight>10</weight>
-                      <level>2</level>
-                      <spriteID>1</spriteID>
-                      <type>0</type>
-                      <category>Clothes</category>
-                    </Item>
-                    <Item>
-                      <ID>152</ID>
-                      <names>
-                        <string>Toge en tissu</string>
-                        <string>Linnen gown</string>
-                      </names>
-                      <value>10</value>
-                      <price>15</price>
-                      <weight>10</weight>
-                      <level>1</level>
-                      <spriteID>0</spriteID>
-                      <type>0</type>
-                      <category>Clothes</category>
-                    </Item>
-                  </ArrayOfItem>
-                  <ArrayOfItem>
-                    <Item>
-                      <ID>210</ID>
-                      <names>
-                        <string>Oreiller</string>
-                        <string>Pillow</string>
-                      </names>
-                      <value>0</value>
-                      <price>3</price>
-                      <weight>2</weight>
-                      <level>0</level>
-                      <spriteID>0</spriteID>
-                      <type>0</type>
-                      <category>Misc</category>
-                    </Item>
-                    <Item>
-                      <ID>218</ID>
-                      <names>
-                        <string>Luth</string>
-                        <string>Lute</string>
-                      </names>
-                      <value>0</value>
-                      <price>6</price>
-                      <weight>3</weight>
-                      <level>0</level>
-                      <spriteID>16</spriteID>
-                      <type>0</type>
-                      <category>Misc</category>
-                    </Item>
-                  </ArrayOfItem>
-                </AllItems>
-              </Loot>
-            </loots>
-            <crews>
-              <Crew>
-                <hostile>true</hostile>
-                <row>0</row>
-                <col>5</col>
-                <MemberIDs />
-              </Crew>
-            </crews>
+            <loots />
+            <crews />
           </StoryHandler>
         </storyHandlers>
       </storyManager>

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <GameData xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <progression>28</progression>
-  <globalID>18</globalID>
+  <progression>0</progression>
+  <globalID>1</globalID>
   <playerCrew>
     <hostile>false</hostile>
     <row>0</row>
@@ -9,423 +9,7 @@
     <MemberIDs>
       <Member>
         <id>0</id>
-        <Name>Gabriel</Name>
-        <health>100</health>
-        <maxHealth>100</maxHealth>
-        <currentHunger>4</currentHunger>
-        <Lvl>3</Lvl>
-        <xp>45</xp>
-        <skillPoints>0</skillPoints>
-        <specialSkillsIndexes>
-          <int>8</int>
-          <int>10</int>
-        </specialSkillsIndexes>
-        <stats>
-          <int>2</int>
-          <int>3</int>
-          <int>1</int>
-          <int>1</int>
-        </stats>
-        <daysOnBoard>17</daysOnBoard>
-        <equipedWeapon>
-          <ID>56</ID>
-          <names>
-            <string>Bâton en fer</string>
-            <string>Iron stick</string>
-          </names>
-          <value>24</value>
-          <price>36</price>
-          <weight>10</weight>
-          <level>2</level>
-          <spriteID>1</spriteID>
-          <type>0</type>
-          <category>Weapon</category>
-        </equipedWeapon>
-        <equipedCloth>
-          <ID>161</ID>
-          <names>
-            <string>Harnais de cuir</string>
-            <string>Leather harness</string>
-          </names>
-          <value>23</value>
-          <price>44</price>
-          <weight>10</weight>
-          <level>2</level>
-          <spriteID>0</spriteID>
-          <type>0</type>
-          <category>Clothes</category>
-        </equipedCloth>
-        <Male>true</Male>
-        <job>Surgeon</job>
-        <characterIDS>
-          <int>2</int>
-          <int>0</int>
-          <int>0</int>
-          <int>4</int>
-          <int>4</int>
-          <int>4</int>
-          <int>3</int>
-          <int>2</int>
-          <int>1</int>
-          <int>0</int>
-        </characterIDS>
-      </Member>
-      <Member>
-        <id>3</id>
-        <Name>Nathalie</Name>
-        <health>100</health>
-        <maxHealth>100</maxHealth>
-        <currentHunger>4</currentHunger>
-        <Lvl>3</Lvl>
-        <xp>45</xp>
-        <skillPoints>2</skillPoints>
-        <specialSkillsIndexes>
-          <int>8</int>
-          <int>9</int>
-        </specialSkillsIndexes>
-        <stats>
-          <int>2</int>
-          <int>1</int>
-          <int>1</int>
-          <int>1</int>
-        </stats>
-        <daysOnBoard>13</daysOnBoard>
-        <equipedWeapon>
-          <ID>61</ID>
-          <names>
-            <string>Pistolet rouillé</string>
-            <string>Rusty canon</string>
-          </names>
-          <value>23</value>
-          <price>42</price>
-          <weight>10</weight>
-          <level>2</level>
-          <spriteID>0</spriteID>
-          <type>0</type>
-          <category>Weapon</category>
-        </equipedWeapon>
-        <equipedCloth>
-          <ID>156</ID>
-          <names>
-            <string>Salopette</string>
-            <string>Overall</string>
-          </names>
-          <value>14</value>
-          <price>22</price>
-          <weight>10</weight>
-          <level>1</level>
-          <spriteID>0</spriteID>
-          <type>0</type>
-          <category>Clothes</category>
-        </equipedCloth>
-        <Male>false</Male>
-        <job>Surgeon</job>
-        <characterIDS>
-          <int>0</int>
-          <int>4</int>
-          <int>3</int>
-          <int>3</int>
-          <int>1</int>
-          <int>4</int>
-          <int>3</int>
-          <int>0</int>
-          <int>0</int>
-          <int>0</int>
-        </characterIDS>
-      </Member>
-    </MemberIDs>
-  </playerCrew>
-  <playerLoot>
-    <row>0</row>
-    <col>0</col>
-    <ids>
-      <ArrayOfInt>
-        <int>11</int>
-        <int>5</int>
-        <int>8</int>
-        <int>15</int>
-        <int>13</int>
-        <int>8</int>
-        <int>1</int>
-      </ArrayOfInt>
-      <ArrayOfInt>
-        <int>77</int>
-      </ArrayOfInt>
-      <ArrayOfInt>
-        <int>172</int>
-      </ArrayOfInt>
-      <ArrayOfInt>
-        <int>205</int>
-        <int>224</int>
-        <int>233</int>
-        <int>236</int>
-      </ArrayOfInt>
-    </ids>
-    <weight>62</weight>
-    <AllItems>
-      <ArrayOfItem>
-        <Item>
-          <ID>11</ID>
-          <names>
-            <string>Maquereau</string>
-            <string>Mackerel</string>
-          </names>
-          <value>45</value>
-          <price>7</price>
-          <weight>4</weight>
-          <level>0</level>
-          <spriteID>1</spriteID>
-          <type>0</type>
-          <category>Provisions</category>
-        </Item>
-        <Item>
-          <ID>5</ID>
-          <names>
-            <string>Morue</string>
-            <string>Smelly codfish</string>
-          </names>
-          <value>37</value>
-          <price>10</price>
-          <weight>4</weight>
-          <level>0</level>
-          <spriteID>1</spriteID>
-          <type>0</type>
-          <category>Provisions</category>
-        </Item>
-        <Item>
-          <ID>8</ID>
-          <names>
-            <string>Saumon</string>
-            <string>Salmon</string>
-          </names>
-          <value>36</value>
-          <price>11</price>
-          <weight>4</weight>
-          <level>0</level>
-          <spriteID>1</spriteID>
-          <type>0</type>
-          <category>Provisions</category>
-        </Item>
-        <Item>
-          <ID>15</ID>
-          <names>
-            <string>Lapin</string>
-            <string>Rabbit</string>
-          </names>
-          <value>55</value>
-          <price>13</price>
-          <weight>5</weight>
-          <level>0</level>
-          <spriteID>2</spriteID>
-          <type>0</type>
-          <category>Provisions</category>
-        </Item>
-        <Item>
-          <ID>13</ID>
-          <names>
-            <string>Colin</string>
-            <string>Hake</string>
-          </names>
-          <value>44</value>
-          <price>9</price>
-          <weight>4</weight>
-          <level>0</level>
-          <spriteID>1</spriteID>
-          <type>0</type>
-          <category>Provisions</category>
-        </Item>
-        <Item>
-          <ID>8</ID>
-          <names>
-            <string>Saumon</string>
-            <string>Salmon</string>
-          </names>
-          <value>36</value>
-          <price>11</price>
-          <weight>4</weight>
-          <level>0</level>
-          <spriteID>1</spriteID>
-          <type>0</type>
-          <category>Provisions</category>
-        </Item>
-        <Item>
-          <ID>1</ID>
-          <names>
-            <string>Sardine</string>
-            <string>Sardine</string>
-          </names>
-          <value>43</value>
-          <price>13</price>
-          <weight>4</weight>
-          <level>0</level>
-          <spriteID>1</spriteID>
-          <type>0</type>
-          <category>Provisions</category>
-        </Item>
-      </ArrayOfItem>
-      <ArrayOfItem>
-        <Item>
-          <ID>77</ID>
-          <names>
-            <string>Claymore</string>
-            <string>Claymore</string>
-          </names>
-          <value>42</value>
-          <price>73</price>
-          <weight>10</weight>
-          <level>4</level>
-          <spriteID>1</spriteID>
-          <type>0</type>
-          <category>Weapon</category>
-        </Item>
-      </ArrayOfItem>
-      <ArrayOfItem>
-        <Item>
-          <ID>172</ID>
-          <names>
-            <string>Harnais de cuir</string>
-            <string>Leather harness</string>
-          </names>
-          <value>40</value>
-          <price>70</price>
-          <weight>10</weight>
-          <level>4</level>
-          <spriteID>1</spriteID>
-          <type>0</type>
-          <category>Clothes</category>
-        </Item>
-      </ArrayOfItem>
-      <ArrayOfItem>
-        <Item>
-          <ID>205</ID>
-          <names>
-            <string>Longue vue</string>
-            <string>Spyglass</string>
-          </names>
-          <value>0</value>
-          <price>3</price>
-          <weight>2</weight>
-          <level>0</level>
-          <spriteID>3</spriteID>
-          <type>0</type>
-          <category>Misc</category>
-        </Item>
-        <Item>
-          <ID>224</ID>
-          <names>
-            <string>Lanterne</string>
-            <string>Lantern</string>
-          </names>
-          <value>0</value>
-          <price>6</price>
-          <weight>3</weight>
-          <level>0</level>
-          <spriteID>15</spriteID>
-          <type>0</type>
-          <category>Misc</category>
-        </Item>
-        <Item>
-          <ID>233</ID>
-          <names>
-            <string>Clé</string>
-            <string>Key</string>
-          </names>
-          <value>0</value>
-          <price>5</price>
-          <weight>3</weight>
-          <level>0</level>
-          <spriteID>12</spriteID>
-          <type>0</type>
-          <category>Misc</category>
-        </Item>
-        <Item>
-          <ID>236</ID>
-          <names>
-            <string>Canne à pêche</string>
-            <string>Fishing Rod</string>
-          </names>
-          <value>0</value>
-          <price>10</price>
-          <weight>5</weight>
-          <level>0</level>
-          <spriteID>17</spriteID>
-          <type>0</type>
-          <category>Misc</category>
-        </Item>
-      </ArrayOfItem>
-    </AllItems>
-  </playerLoot>
-  <playerWeight>0</playerWeight>
-  <playerGold>290</playerGold>
-  <karma>-2</karma>
-  <bounty>50</bounty>
-  <formulas>
-    <Formula>
-      <name>fequ</name>
-      <coords>
-        <x>4</x>
-        <y>5</y>
-      </coords>
-      <verified>false</verified>
-      <found>false</found>
-    </Formula>
-  </formulas>
-  <playerBoatInfo>
-    <Name>The Pretty Dream</Name>
-    <previousCoords>
-      <x>2</x>
-      <y>3</y>
-    </previousCoords>
-    <coords>
-      <x>1</x>
-      <y>2</y>
-    </coords>
-    <currentDirection>SouthWest</currentDirection>
-    <shipRange>1</shipRange>
-    <crewCapacity>2</crewCapacity>
-    <cargoLevel>1</cargoLevel>
-    <level>1</level>
-  </playerBoatInfo>
-  <treasureCoords>
-    <x>7</x>
-    <y>4</y>
-  </treasureCoords>
-  <homeCoords>
-    <x>0</x>
-    <y>4</y>
-  </homeCoords>
-  <currentQuests>
-    <Quest>
-      <questID>0</questID>
-      <goldValue>3</goldValue>
-      <experience>15</experience>
-      <level>1</level>
-      <layer>1</layer>
-      <row>50</row>
-      <col>10</col>
-      <originID>0</originID>
-      <originCoords>
-        <x>0</x>
-        <y>5</y>
-      </originCoords>
-      <previousID>0</previousID>
-      <previousCoords>
-        <x>0</x>
-        <y>0</y>
-      </previousCoords>
-      <targetID>0</targetID>
-      <targetCoords>
-        <x>2</x>
-        <y>3</y>
-      </targetCoords>
-      <newQuest_FallbackNode>
-        <name>choix2</name>
-        <row>4</row>
-        <col>47</col>
-      </newQuest_FallbackNode>
-      <giver>
-        <id>2</id>
-        <Name>Henriette</Name>
+        <Name>The Captain</Name>
         <health>100</health>
         <maxHealth>100</maxHealth>
         <currentHunger>0</currentHunger>
@@ -433,7 +17,7 @@
         <xp>0</xp>
         <skillPoints>0</skillPoints>
         <specialSkillsIndexes>
-          <int>20</int>
+          <int>4</int>
         </specialSkillsIndexes>
         <stats>
           <int>1</int>
@@ -443,13 +27,13 @@
         </stats>
         <daysOnBoard>0</daysOnBoard>
         <equipedWeapon>
-          <ID>42</ID>
+          <ID>39</ID>
           <names>
-            <string>Vielle hachette</string>
-            <string>Old hachet</string>
+            <string>Epée rouillée</string>
+            <string>Rusty sword</string>
           </names>
-          <value>7</value>
-          <price>14</price>
+          <value>14</value>
+          <price>23</price>
           <weight>10</weight>
           <level>1</level>
           <spriteID>1</spriteID>
@@ -470,126 +54,164 @@
           <type>0</type>
           <category>Clothes</category>
         </equipedCloth>
-        <Male>false</Male>
-        <job>Gambler</job>
+        <job>Brute</job>
         <characterIDS>
           <int>0</int>
-          <int>2</int>
-          <int>0</int>
+          <int>5</int>
+          <int>1</int>
+          <int>3</int>
+          <int>4</int>
+          <int>1</int>
+          <int>6</int>
           <int>3</int>
           <int>1</int>
           <int>0</int>
-          <int>0</int>
-          <int>4</int>
-          <int>0</int>
-          <int>0</int>
-        </characterIDS>
-      </giver>
-      <accomplished>false</accomplished>
-    </Quest>
-  </currentQuests>
-  <finishedQuests>
-    <Quest>
-      <questID>2</questID>
-      <goldValue>7</goldValue>
-      <experience>15</experience>
-      <level>1</level>
-      <layer>0</layer>
-      <row>61</row>
-      <col>7</col>
-      <originID>0</originID>
-      <originCoords>
-        <x>0</x>
-        <y>4</y>
-      </originCoords>
-      <previousID>0</previousID>
-      <previousCoords>
-        <x>0</x>
-        <y>0</y>
-      </previousCoords>
-      <targetID>0</targetID>
-      <targetCoords>
-        <x>2</x>
-        <y>1</y>
-      </targetCoords>
-      <newQuest_FallbackNode>
-        <name>choix-père</name>
-        <row>3</row>
-        <col>57</col>
-      </newQuest_FallbackNode>
-      <checkQuest_FallbackNode>
-        <name>milieu foret</name>
-        <row>0</row>
-        <col>5</col>
-      </checkQuest_FallbackNode>
-      <giver>
-        <id>1</id>
-        <Name>Esteban</Name>
-        <health>100</health>
-        <maxHealth>100</maxHealth>
-        <currentHunger>0</currentHunger>
-        <Lvl>1</Lvl>
-        <xp>0</xp>
-        <skillPoints>0</skillPoints>
-        <specialSkillsIndexes>
-          <int>16</int>
-        </specialSkillsIndexes>
-        <stats>
-          <int>1</int>
-          <int>1</int>
-          <int>1</int>
-          <int>1</int>
-        </stats>
-        <daysOnBoard>0</daysOnBoard>
-        <equipedWeapon>
-          <ID>46</ID>
-          <names>
-            <string>Poivrière rouillée</string>
-            <string>Rusty blunderbuss</string>
-          </names>
-          <value>8</value>
-          <price>21</price>
-          <weight>10</weight>
-          <level>1</level>
-          <spriteID>0</spriteID>
-          <type>0</type>
-          <category>Weapon</category>
-        </equipedWeapon>
-        <equipedCloth>
-          <ID>151</ID>
-          <names>
-            <string>Marcel</string>
-            <string>Simple docker</string>
-          </names>
-          <value>9</value>
-          <price>18</price>
-          <weight>10</weight>
-          <level>1</level>
-          <spriteID>0</spriteID>
-          <type>0</type>
-          <category>Clothes</category>
-        </equipedCloth>
-        <Male>true</Male>
-        <job>Flibuster</job>
-        <characterIDS>
-          <int>3</int>
-          <int>4</int>
-          <int>0</int>
-          <int>0</int>
-          <int>1</int>
-          <int>4</int>
           <int>2</int>
+          <int>3</int>
+          <int>8</int>
+          <int>17</int>
           <int>1</int>
-          <int>1</int>
-          <int>0</int>
         </characterIDS>
-      </giver>
-      <accomplished>false</accomplished>
-    </Quest>
-  </finishedQuests>
+      </Member>
+    </MemberIDs>
+  </playerCrew>
+  <playerLoot>
+    <row>0</row>
+    <col>0</col>
+    <ids>
+      <ArrayOfInt>
+        <int>37</int>
+        <int>13</int>
+        <int>26</int>
+        <int>21</int>
+        <int>36</int>
+        <int>7</int>
+      </ArrayOfInt>
+      <ArrayOfInt />
+      <ArrayOfInt />
+      <ArrayOfInt />
+    </ids>
+    <weight>19</weight>
+    <AllItems>
+      <ArrayOfItem>
+        <Item>
+          <ID>37</ID>
+          <names>
+            <string>Abricot</string>
+            <string>Apricot</string>
+          </names>
+          <value>28</value>
+          <price>4</price>
+          <weight>2</weight>
+          <level>0</level>
+          <spriteID>0</spriteID>
+          <type>0</type>
+          <category>Provisions</category>
+        </Item>
+        <Item>
+          <ID>13</ID>
+          <names>
+            <string>Colin</string>
+            <string>Hake</string>
+          </names>
+          <value>44</value>
+          <price>9</price>
+          <weight>4</weight>
+          <level>0</level>
+          <spriteID>1</spriteID>
+          <type>0</type>
+          <category>Provisions</category>
+        </Item>
+        <Item>
+          <ID>26</ID>
+          <names>
+            <string>Châtaigne</string>
+            <string>Chestnut</string>
+          </names>
+          <value>26</value>
+          <price>4</price>
+          <weight>2</weight>
+          <level>0</level>
+          <spriteID>0</spriteID>
+          <type>0</type>
+          <category>Provisions</category>
+        </Item>
+        <Item>
+          <ID>21</ID>
+          <names>
+            <string>Petit jambon</string>
+            <string>Small ham</string>
+          </names>
+          <value>47</value>
+          <price>17</price>
+          <weight>5</weight>
+          <level>0</level>
+          <spriteID>2</spriteID>
+          <type>0</type>
+          <category>Provisions</category>
+        </Item>
+        <Item>
+          <ID>36</ID>
+          <names>
+            <string>Asperges</string>
+            <string>Aspergu</string>
+          </names>
+          <value>35</value>
+          <price>8</price>
+          <weight>2</weight>
+          <level>0</level>
+          <spriteID>0</spriteID>
+          <type>0</type>
+          <category>Provisions</category>
+        </Item>
+        <Item>
+          <ID>7</ID>
+          <names>
+            <string>Crevette</string>
+            <string>Shrimp</string>
+          </names>
+          <value>35</value>
+          <price>10</price>
+          <weight>4</weight>
+          <level>0</level>
+          <spriteID>1</spriteID>
+          <type>0</type>
+          <category>Provisions</category>
+        </Item>
+      </ArrayOfItem>
+      <ArrayOfItem />
+      <ArrayOfItem />
+      <ArrayOfItem />
+    </AllItems>
+  </playerLoot>
+  <playerWeight>0</playerWeight>
+  <playerGold>50</playerGold>
+  <karma>0</karma>
+  <bounty>0</bounty>
+  <formulas>
+    <Formula>
+      <name>ruzi</name>
+      <coords>
+        <x>4</x>
+        <y>5</y>
+      </coords>
+      <verified>false</verified>
+      <found>false</found>
+    </Formula>
+  </formulas>
+  <treasureCoords>
+    <x>7</x>
+    <y>4</y>
+  </treasureCoords>
+  <homeCoords>
+    <x>0</x>
+    <y>4</y>
+  </homeCoords>
+  <currentQuests />
+  <finishedQuests />
   <raining>false</raining>
   <currentRain>0</currentRain>
   <night>false</night>
-  <timeOfDay>10</timeOfDay>
-  <treasureName>The Crying Vessels</treasureName>
+  <timeOfDay>5</timeOfDay>
+  <treasureName>The Pretty Deads</treasureName>
 </GameData>
