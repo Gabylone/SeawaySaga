@@ -141,6 +141,8 @@ public class TimeManager : MonoBehaviour {
             }
         }
 
+        SoundManager.Instance.UpdateAmbiance();
+
         Transitions.Instance.ScreenTransition.FadeOut(0.5f);
 
         StoryReader.Instance.NextCell ();

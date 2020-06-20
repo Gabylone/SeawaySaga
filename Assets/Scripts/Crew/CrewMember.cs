@@ -379,7 +379,7 @@ public class CrewMember {
 	}
 
 	public bool Male {
-        get { return memberID.GetCharacterID(ApparenceType.genre) == 0; }
+        get { return false; }
 	}
 	#endregion
 
@@ -388,8 +388,10 @@ public class CrewMember {
 		get {
 
 			int i = GetStat(Stat.Strenght) * 5;
-			if (GetEquipment (EquipmentPart.Weapon) != null) {
-				if ( GetEquipment(EquipmentPart.Weapon).spriteID == 0 ){
+
+            if (GetEquipment (EquipmentPart.Weapon) != null) {
+
+				if ( GetEquipment(EquipmentPart.Weapon).weaponType == Item.WeaponType.Distance ){
 					i = GetStat (Stat.Dexterity) * 5;
 				}
 				return i + GetEquipment (EquipmentPart.Weapon).value;
@@ -418,6 +420,11 @@ public class CrewMember {
 	public void SetStat (Stat stat, int value) {
 		memberID.stats [(int)stat] = value;
 	}
+
+    public bool HasMeleeWepon()
+    {
+        return GetEquipment(CrewMember.EquipmentPart.Weapon) == null || GetEquipment(CrewMember.EquipmentPart.Weapon).weaponType != Item.WeaponType.Distance;
+    }
 	#endregion
 
 	#region icon
@@ -477,13 +484,10 @@ public class CrewMember {
 		switch (part) {
 		case EquipmentPart.Weapon:
 			return memberID.equipedWeapon;
-			break;
 		case EquipmentPart.Clothes:
 			return memberID.equipedCloth;
-			break;
 		default:
 			return memberID.equipedWeapon;
-			break;
 		}
 	}
 	#endregion

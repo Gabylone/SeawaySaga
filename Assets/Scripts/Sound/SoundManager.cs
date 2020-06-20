@@ -55,14 +55,7 @@ public class SoundManager : MonoBehaviour {
 
 	void HandleGetFunction (FunctionType func, string cellParameters)
 	{
-		switch (func) {
-		case FunctionType.SetWeather:
-		case FunctionType.ChangeTimeOfDay:
-			UpdateAmbiance ();
-			break;
-		default:
-			break;
-		}
+
 	}
 
 	#region time
@@ -70,7 +63,7 @@ public class SoundManager : MonoBehaviour {
 	{
 	}
 
-	void UpdateAmbiance ()
+	public void UpdateAmbiance ()
 	{
 		AudioClip ambiantClip;
 		if (TimeManager.Instance.raining)

@@ -41,6 +41,16 @@ public class MapGenerator : MonoBehaviour {
         }
     }
 
+    public void SetMapScale_X ( int i )
+    {
+        mapParameters.mapScale_X = i;
+    }
+
+    public void SetMapScale_Y(int i)
+    {
+        mapParameters.mapScale_Y = i;
+    }
+
     public int IslandsPerCol
     {
         get
@@ -86,6 +96,23 @@ public class MapGenerator : MonoBehaviour {
 
 	}
 
+    public void UpdateMapScale()
+    {
+        TextAsset textAsset = Resources.Load("Maps/" + mapParameters.mapName) as TextAsset;
+
+        if (textAsset == null)
+        {
+            Debug.LogError("coulnd't find map : " + mapParameters.mapName + " in resources");
+        }
+
+        string[] rows = textAsset.text.Split('\n');
+        string[] firstRowCells = rows[0].Split(';');
+
+        // set map scale
+        SetMapScale_X(firstRowCells.Length);
+        SetMapScale_Y(rows.Length);
+    }
+
     private void GenerateNewMap()
     {
         SaveManager.Instance.GameData.treasureCoords = RandomCoords;
@@ -107,7 +134,7 @@ public class MapGenerator : MonoBehaviour {
     {
         TextAsset textAsset = Resources.Load("Maps/" + mapParameters.mapName) as TextAsset;
 
-        if ( textAsset == null)
+        if (textAsset == null)
         {
             Debug.LogError("coulnd't find map : " + mapParameters.mapName + " in resources");
         }
@@ -115,9 +142,7 @@ public class MapGenerator : MonoBehaviour {
         string[] rows = textAsset.text.Split('\n');
         string[] firstRowCells = rows[0].Split(';');
 
-        // set map scale
-        mapParameters.mapScale_X = firstRowCells.Length;
-        mapParameters.mapScale_Y = rows.Length;
+        UpdateMapScale();
 
         // init chunks
         Chunk.chunks.Clear();
@@ -232,6 +257,8 @@ public class MapGenerator : MonoBehaviour {
     }
 
     public void LoadMap() {
+
+        UpdateMapScale();
 
 		discoveredCoords = SaveTool.Instance.LoadFromCurrentMap ("discovered coords.xml", "DiscoveredCoords") as DiscoveredCoords;
 

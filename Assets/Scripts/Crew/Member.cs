@@ -69,10 +69,10 @@ public class Member {
 		equipedCloth = cloth;
 
 		if (job == Job.Flibuster) {
-			Item anyGun = System.Array.Find(ItemLoader.Instance.getItems(ItemCategory.Weapon), x => x.spriteID == 0 && x.level == Lvl);
+			Item anyGun = System.Array.Find(ItemLoader.Instance.getItems(ItemCategory.Weapon), x => x.weaponType == Item.WeaponType.Distance && x.level == Lvl);
 			equipedWeapon = anyGun;
 		} else if (job == Job.Brute) {
-			Item anySword = System.Array.Find(ItemLoader.Instance.getItems(ItemCategory.Weapon), x => x.spriteID == 1 && x.level == Lvl);
+			Item anySword = System.Array.Find(ItemLoader.Instance.getItems(ItemCategory.Weapon), x => x.weaponType == Item.WeaponType.Stick && x.level == Lvl);
 			equipedWeapon = anySword;
 		} else {
 			Item anyWeapon = ItemLoader.Instance.GetRandomItemOfCertainLevel (ItemCategory.Weapon, Lvl);
@@ -137,22 +137,9 @@ public class Member {
             */
 
         }
-
-        // GENRE
-        if (crewParams.overideGenre)
-        {
-            if (crewParams.male)
-            {
-                SetCharacterID(ApparenceType.genre, 0);
-            }
-            else
-            {
-                SetCharacterID(ApparenceType.genre, 1);
-            }
-        }
-
+        
         // NAME
-        if (Male)
+        if (Random.value < 0.5f)
         {
             Name = CrewCreator.Instance.manNames[Random.Range(0, CrewCreator.Instance.manNames.Length)];
         }
@@ -163,13 +150,6 @@ public class Member {
     }
 
     // icon index
-    public bool Male
-    {
-        get
-        {
-            return GetCharacterID(ApparenceType.genre) == 0;
-        }
-    }
 	public Job job;
 
     public List<int> characterIDS = new List<int>();

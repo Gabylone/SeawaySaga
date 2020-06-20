@@ -301,7 +301,7 @@ public class LootUI : MonoBehaviour {
 
             InGameMenu.Instance.Hide();
 
-            Crews.getCrew(Crews.Side.Player).captain.Icon.MoveToPoint(Crews.PlacingType.Discussion);
+            Crews.getCrew(Crews.Side.Player).captain.Icon.MoveToPoint(Crews.PlacingType.World);
         }
 
         OtherInventory.Instance.type = OtherInventory.Type.None;
@@ -416,6 +416,8 @@ public class LootUI : MonoBehaviour {
 
 		currentPage = 0;
 
+        
+
         ClearSelectedItem();
 
 		UpdateLootUI ();
@@ -458,7 +460,10 @@ public class LootUI : MonoBehaviour {
 			if ( handledLoot.AllItems[buttonIndex].Count == 0 ) {
 
                 categoryButtons[buttonIndex].interactable = false;
-                categoryButtons[buttonIndex].image.color = LootManager.Instance.item_EmptyColor;
+                foreach (var item in categoryButtons[buttonIndex].GetComponentsInChildren<Image>())
+                {
+                    item.color = LootManager.Instance.item_EmptyColor;
+                }
 
                 /*if (currentSide == Crews.Side.Enemy)
                 {
@@ -492,12 +497,18 @@ public class LootUI : MonoBehaviour {
             else
 			{
 				categoryButtons [buttonIndex].interactable = true;
-		        categoryButtons [buttonIndex].image.color = Color.white;
+                foreach (var item in categoryButtons[buttonIndex].GetComponentsInChildren<Image>())
+                {
+                    item.color = Color.white;
+                }
             }
         }
 
 		categoryButtons [(int)currentCat].interactable = false;
-		categoryButtons [(int)currentCat].image.color = Color.white;
+        foreach (var item in categoryButtons[(int)currentCat].GetComponentsInChildren<Image>())
+        {
+            item.color = Color.white;
+        }
 		categoryButtons [(int)currentCat].transform.SetParent (selectedParent);
 	}
 	#endregion

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <GameData xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <progression>0</progression>
-  <globalID>4</globalID>
+  <globalID>1</globalID>
   <playerCrew>
     <hostile>false</hostile>
     <row>0</row>
@@ -17,73 +17,6 @@
         <xp>0</xp>
         <skillPoints>0</skillPoints>
         <specialSkillsIndexes>
-          <int>20</int>
-        </specialSkillsIndexes>
-        <stats>
-          <int>1</int>
-          <int>1</int>
-          <int>1</int>
-          <int>1</int>
-        </stats>
-        <daysOnBoard>0</daysOnBoard>
-        <equipedWeapon>
-          <ID>52</ID>
-          <names>
-            <string>Pistolet négligé</string>
-            <string>Sloppy gun</string>
-          </names>
-          <value>12</value>
-          <price>28</price>
-          <weight>10</weight>
-          <level>1</level>
-          <spriteID>0</spriteID>
-          <type>0</type>
-          <category>Weapon</category>
-        </equipedWeapon>
-        <equipedCloth>
-          <ID>152</ID>
-          <names>
-            <string>Toge en tissu</string>
-            <string>Linnen gown</string>
-          </names>
-          <value>10</value>
-          <price>15</price>
-          <weight>10</weight>
-          <level>1</level>
-          <spriteID>0</spriteID>
-          <type>0</type>
-          <category>Clothes</category>
-        </equipedCloth>
-        <job>Gambler</job>
-        <characterIDS>
-          <int>0</int>
-          <int>2</int>
-          <int>9</int>
-          <int>3</int>
-          <int>5</int>
-          <int>3</int>
-          <int>3</int>
-          <int>0</int>
-          <int>1</int>
-          <int>0</int>
-          <int>2</int>
-          <int>5</int>
-          <int>11</int>
-          <int>4</int>
-          <int>0</int>
-          <int>0</int>
-        </characterIDS>
-      </Member>
-      <Member>
-        <id>1</id>
-        <Name>Valentine</Name>
-        <health>100</health>
-        <maxHealth>100</maxHealth>
-        <currentHunger>0</currentHunger>
-        <Lvl>1</Lvl>
-        <xp>0</xp>
-        <skillPoints>0</skillPoints>
-        <specialSkillsIndexes>
           <int>16</int>
         </specialSkillsIndexes>
         <stats>
@@ -99,146 +32,12 @@
             <string>Poivrière rouillée</string>
             <string>Rusty blunderbuss</string>
           </names>
-          <value>8</value>
-          <price>21</price>
-          <weight>10</weight>
-          <level>1</level>
-          <spriteID>0</spriteID>
-          <type>0</type>
-          <category>Weapon</category>
-        </equipedWeapon>
-        <equipedCloth>
-          <ID>154</ID>
-          <names>
-            <string>Tenue de voyageur</string>
-            <string>Traveller gear</string>
-          </names>
-          <value>13</value>
-          <price>26</price>
-          <weight>10</weight>
-          <level>1</level>
-          <spriteID>0</spriteID>
-          <type>0</type>
-          <category>Clothes</category>
-        </equipedCloth>
-        <job>Flibuster</job>
-        <characterIDS>
-          <int>9</int>
-          <int>7</int>
-          <int>3</int>
-          <int>7</int>
-          <int>8</int>
-          <int>0</int>
-          <int>5</int>
-          <int>2</int>
-          <int>1</int>
-          <int>0</int>
-          <int>2</int>
-          <int>0</int>
-          <int>4</int>
-          <int>18</int>
-          <int>6</int>
-          <int>2</int>
-        </characterIDS>
-      </Member>
-      <Member>
-        <id>2</id>
-        <Name>Archibald</Name>
-        <health>100</health>
-        <maxHealth>100</maxHealth>
-        <currentHunger>0</currentHunger>
-        <Lvl>1</Lvl>
-        <xp>0</xp>
-        <skillPoints>0</skillPoints>
-        <specialSkillsIndexes>
-          <int>16</int>
-        </specialSkillsIndexes>
-        <stats>
-          <int>1</int>
-          <int>1</int>
-          <int>1</int>
-          <int>1</int>
-        </stats>
-        <daysOnBoard>0</daysOnBoard>
-        <equipedWeapon>
-          <ID>46</ID>
-          <names>
-            <string>Poivrière rouillée</string>
-            <string>Rusty blunderbuss</string>
-          </names>
-          <value>8</value>
-          <price>21</price>
-          <weight>10</weight>
-          <level>1</level>
-          <spriteID>0</spriteID>
-          <type>0</type>
-          <category>Weapon</category>
-        </equipedWeapon>
-        <equipedCloth>
-          <ID>151</ID>
-          <names>
-            <string>Marcel</string>
-            <string>Simple docker</string>
-          </names>
-          <value>9</value>
-          <price>18</price>
-          <weight>10</weight>
-          <level>1</level>
-          <spriteID>0</spriteID>
-          <type>0</type>
-          <category>Clothes</category>
-        </equipedCloth>
-        <job>Flibuster</job>
-        <characterIDS>
-          <int>5</int>
-          <int>5</int>
-          <int>1</int>
-          <int>9</int>
-          <int>6</int>
-          <int>4</int>
-          <int>1</int>
-          <int>2</int>
-          <int>0</int>
-          <int>0</int>
-          <int>2</int>
-          <int>0</int>
-          <int>7</int>
-          <int>16</int>
-          <int>1</int>
-          <int>0</int>
-        </characterIDS>
-      </Member>
-      <Member>
-        <id>3</id>
-        <Name>Fred</Name>
-        <health>100</health>
-        <maxHealth>100</maxHealth>
-        <currentHunger>0</currentHunger>
-        <Lvl>1</Lvl>
-        <xp>0</xp>
-        <skillPoints>0</skillPoints>
-        <specialSkillsIndexes>
-          <int>20</int>
-        </specialSkillsIndexes>
-        <stats>
-          <int>1</int>
-          <int>1</int>
-          <int>1</int>
-          <int>1</int>
-        </stats>
-        <daysOnBoard>0</daysOnBoard>
-        <equipedWeapon>
-          <ID>51</ID>
-          <names>
-            <string>Poivrière négligée</string>
-            <string>Sloppy canon</string>
-          </names>
           <value>10</value>
-          <price>16</price>
+          <price>25</price>
           <weight>10</weight>
           <level>1</level>
-          <spriteID>0</spriteID>
-          <type>0</type>
+          <spriteID>6</spriteID>
+          <weaponType>Distance</weaponType>
           <category>Weapon</category>
         </equipedWeapon>
         <equipedCloth>
@@ -247,32 +46,32 @@
             <string>Fourrure</string>
             <string>Fur</string>
           </names>
-          <value>7</value>
-          <price>17</price>
+          <value>12</value>
+          <price>27</price>
           <weight>10</weight>
           <level>1</level>
           <spriteID>1</spriteID>
-          <type>0</type>
+          <weaponType>Distance</weaponType>
           <category>Clothes</category>
         </equipedCloth>
-        <job>Gambler</job>
+        <job>Flibuster</job>
         <characterIDS>
+          <int>6</int>
           <int>5</int>
-          <int>7</int>
-          <int>8</int>
-          <int>10</int>
           <int>9</int>
-          <int>4</int>
-          <int>6</int>
+          <int>7</int>
+          <int>7</int>
+          <int>1</int>
           <int>0</int>
-          <int>0</int>
-          <int>0</int>
-          <int>0</int>
-          <int>6</int>
-          <int>5</int>
-          <int>11</int>
-          <int>8</int>
           <int>2</int>
+          <int>0</int>
+          <int>0</int>
+          <int>3</int>
+          <int>8</int>
+          <int>8</int>
+          <int>7</int>
+          <int>3</int>
+          <int>3</int>
         </characterIDS>
       </Member>
     </MemberIDs>
@@ -282,102 +81,102 @@
     <col>0</col>
     <ids>
       <ArrayOfInt>
-        <int>36</int>
-        <int>4</int>
-        <int>20</int>
-        <int>10</int>
-        <int>29</int>
-        <int>37</int>
+        <int>27</int>
+        <int>1</int>
+        <int>18</int>
+        <int>2</int>
+        <int>19</int>
+        <int>33</int>
       </ArrayOfInt>
       <ArrayOfInt />
       <ArrayOfInt />
       <ArrayOfInt />
     </ids>
-    <weight>19</weight>
+    <weight>22</weight>
     <AllItems>
       <ArrayOfItem>
         <Item>
-          <ID>36</ID>
+          <ID>27</ID>
           <names>
-            <string>Asperges</string>
-            <string>Aspergu</string>
+            <string>Citron</string>
+            <string>Lemon</string>
           </names>
-          <value>35</value>
-          <price>8</price>
+          <value>30</value>
+          <price>7</price>
           <weight>2</weight>
           <level>0</level>
           <spriteID>0</spriteID>
-          <type>0</type>
+          <weaponType>Distance</weaponType>
           <category>Provisions</category>
         </Item>
         <Item>
-          <ID>4</ID>
+          <ID>1</ID>
           <names>
-            <string>Lotte</string>
-            <string>Monkfish</string>
+            <string>Sardine</string>
+            <string>Sardine</string>
           </names>
-          <value>36</value>
-          <price>7</price>
+          <value>35</value>
+          <price>9</price>
           <weight>4</weight>
           <level>0</level>
           <spriteID>1</spriteID>
-          <type>0</type>
+          <weaponType>Distance</weaponType>
           <category>Provisions</category>
         </Item>
         <Item>
-          <ID>20</ID>
+          <ID>18</ID>
           <names>
-            <string>Gros jambon</string>
-            <string>Big ham</string>
+            <string>Porc</string>
+            <string>Pork</string>
           </names>
-          <value>53</value>
-          <price>12</price>
+          <value>47</value>
+          <price>17</price>
           <weight>5</weight>
           <level>0</level>
           <spriteID>2</spriteID>
-          <type>0</type>
+          <weaponType>Distance</weaponType>
           <category>Provisions</category>
         </Item>
         <Item>
-          <ID>10</ID>
+          <ID>2</ID>
           <names>
-            <string>Homard</string>
-            <string>Lobster</string>
+            <string>Thon</string>
+            <string>Tuna</string>
           </names>
-          <value>45</value>
-          <price>7</price>
+          <value>38</value>
+          <price>8</price>
           <weight>4</weight>
           <level>0</level>
           <spriteID>1</spriteID>
-          <type>0</type>
+          <weaponType>Distance</weaponType>
           <category>Provisions</category>
         </Item>
         <Item>
-          <ID>29</ID>
+          <ID>19</ID>
           <names>
-            <string>Maïs</string>
-            <string>Corn</string>
+            <string>Cochon</string>
+            <string>Pig</string>
+          </names>
+          <value>52</value>
+          <price>14</price>
+          <weight>5</weight>
+          <level>0</level>
+          <spriteID>2</spriteID>
+          <weaponType>Distance</weaponType>
+          <category>Provisions</category>
+        </Item>
+        <Item>
+          <ID>33</ID>
+          <names>
+            <string>Orange</string>
+            <string>Orange</string>
           </names>
           <value>30</value>
-          <price>8</price>
+          <price>3</price>
           <weight>2</weight>
           <level>0</level>
           <spriteID>0</spriteID>
-          <type>0</type>
-          <category>Provisions</category>
-        </Item>
-        <Item>
-          <ID>37</ID>
-          <names>
-            <string>Abricot</string>
-            <string>Apricot</string>
-          </names>
-          <value>28</value>
-          <price>4</price>
-          <weight>2</weight>
-          <level>0</level>
-          <spriteID>0</spriteID>
-          <type>0</type>
+          <weaponType>Distance</weaponType>
           <category>Provisions</category>
         </Item>
       </ArrayOfItem>
@@ -405,5 +204,5 @@
   <currentRain>0</currentRain>
   <night>false</night>
   <timeOfDay>5</timeOfDay>
-  <treasureName>The Golden Gobys</treasureName>
+  <treasureName>The Nasty Crabs</treasureName>
 </GameData>

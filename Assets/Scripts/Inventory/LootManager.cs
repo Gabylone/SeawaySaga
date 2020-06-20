@@ -36,9 +36,6 @@ public class LootManager : MonoBehaviour {
 	private Sprite[] foodSprites;
 
 	[SerializeField]
-	private Sprite[] weaponSprites;
-
-	[SerializeField]
 	private Sprite[] clotheSprites;
 
 	[SerializeField]
@@ -271,21 +268,35 @@ public class LootManager : MonoBehaviour {
 	#endregion
 
 	public CategoryContent GetCategoryContent (CategoryContentType catContentType) {
-		switch (catContentType) {
-		case CategoryContentType.Inventory:
-			return inventoryCategoryContent;
-		case CategoryContentType.OtherLoot:
-			return lootCategoryContent_Other;
-		case CategoryContentType.PlayerLoot:
-			return lootCategoryContent_Player;
-		case CategoryContentType.PlayerTrade:
-			return tradeCategoryContent_Player;
-		case CategoryContentType.OtherTrade:
-			return tradeCategoryContent_Other;
-		case CategoryContentType.Combat:
-			return tradeCategoryContent_Combat;
+
+        switch (catContentType) {
+
+            case CategoryContentType.Inventory:
+
+                return inventoryCategoryContent;
+
+            case CategoryContentType.OtherLoot:
+
+                return lootCategoryContent_Other;
+
+            case CategoryContentType.PlayerLoot:
+
+                return lootCategoryContent_Player;
+
+            case CategoryContentType.PlayerTrade:
+
+                return tradeCategoryContent_Player;
+
+            case CategoryContentType.OtherTrade:
+
+                return tradeCategoryContent_Other;
+
+            case CategoryContentType.Combat:
+
+                return tradeCategoryContent_Combat;
+
 		}
-		print ("category content reached zero");
+
 		return defaultCategoryContent;
 	}
 
@@ -298,21 +309,19 @@ public class LootManager : MonoBehaviour {
 				return null;
 			}
 
-			return foodSprites [id];
+                return foodSprites[id];
+
+
 		case ItemCategory.Weapon:
-
-			if (weaponSprites.Length == 0) {
-				return null;
-			}
-
-			return weaponSprites [id];
+                return CrewCreator.Instance.weaponSprites[id];
 		case ItemCategory.Clothes:
 
 			if (clotheSprites.Length == 0) {
 				return null;
 			}
 
-			return clotheSprites [id];
+                return clotheSprites[id];
+
 		case ItemCategory.Misc:
 
 			if (miscSprites.Length == 0) {
@@ -325,14 +334,17 @@ public class LootManager : MonoBehaviour {
 				return miscSprites [0];
 			}
 
-			return miscSprites [id];
+                return miscSprites[id];
+
 		default:
 
 			if (miscSprites.Length == 0) {
-				return null;
+                    return null;
+
 			}
 
-			return miscSprites [id];
+                return miscSprites[id];
+
 		}
 	}
 }

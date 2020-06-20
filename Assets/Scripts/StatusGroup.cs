@@ -29,7 +29,19 @@ public class StatusGroup : MonoBehaviour {
 
 		Reset ();
 
+        Hide();
+
 	}
+
+    public void Show()
+    {
+        group.SetActive(true);
+    }
+
+    public void Hide()
+    {
+        group.SetActive(false);
+    }
 
 	void HandleFightStarting ()
 	{
@@ -42,33 +54,49 @@ public class StatusGroup : MonoBehaviour {
 		}
 	}
 
-	public void HandleOnAddStatus (Fighter.Status status, int count)
-	{
-		if ((int)status >= statusFeedbacks.Length) {
-			print (status.ToString () + " doesct fit in feedbacks ( L : " + statusFeedbacks.Length + ")");
-		}
-
-        //Debug.Log("adding status");
+    public void HandleOnAddStatus(Fighter.Status status, int count)
+    {
+        if ((int)status >= statusFeedbacks.Length)
+        {
+            print(status.ToString() + " doesct fit in feedbacks ( L : " + statusFeedbacks.Length + ")");
+        }
 
         statusFeedbacks[(int)status].Show();
         statusFeedbacks[(int)status].SetStatus(status);
         statusFeedbacks[(int)status].SetMax(count);
         statusFeedbacks[(int)status].SetCount(count);
 
-        statusFeedbacks[(int)status].SetColor (GetStatusColor (status));
+        statusFeedbacks[(int)status].SetColor(GetStatusColor(status));
 
-        statusFeedbacks [(int)status].transform.localScale = Vector3.one;
+        statusFeedbacks[(int)status].transform.localScale = Vector3.one;
 
-		Tween.Bounce (statusFeedbacks [(int)status].transform);
-	}
+        Tween.Bounce(statusFeedbacks[(int)status].transform);
+
+        Show();
+    }
 
 	public void HandleOnRemoveStatus (Fighter.Status status , int count)
 	{
 		statusFeedbacks [(int)status].SetCount (count);
 
 		if (count == 0) {
-			statusFeedbacks [(int)status].Hide ();
+            statusFeedbacks[(int)status].Hide();
 		}
+
+        bool lastStatus = true;
+
+        foreach (var item in statusFeedbacks)
+        {
+            if (item.gameObject.activeSelf)
+            {
+                lastStatus = false;
+            }
+        }
+
+        if (lastStatus)
+        {
+            Hide();
+        }
 	}
 
 	public Color goodEffectColor;

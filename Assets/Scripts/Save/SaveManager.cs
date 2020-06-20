@@ -125,6 +125,8 @@ public class SaveManager : MonoBehaviour
 	#region save game data
 	public void SaveGameData () {
 
+        Debug.Log("saving game data...");
+
 		FormulaManager.Instance.SaveFormulas ();
 
 		Crews.Instance.SavePlayerCrew ();
@@ -165,7 +167,6 @@ public class SaveManager : MonoBehaviour
 	IEnumerator LoadAllIslandCoroutine () {
 //	void LoadAllIslandCoroutine () {
 
-
 		MapGenerator.Instance.LoadMap ();
 
 		string pathToFolder = SaveTool.Instance.GetSaveFolderPath() + "/Islands";
@@ -177,6 +178,8 @@ public class SaveManager : MonoBehaviour
 
 		int l = 0;
 
+        Debug.Log("number of files : " + files.Length);
+
 		foreach (var item in files) {
 
 			string pathToFile = "Islands/"+item.Name;
@@ -185,7 +188,6 @@ public class SaveManager : MonoBehaviour
 			}
 
 			Chunk chunkToLoad = SaveTool.Instance.LoadFromCurrentMap (pathToFile,"Chunk") as Chunk;
-
 
 			Coords chunkCoords = GetCoordsFromFile (item.Name.Remove ( item.Name.Length - 4 ));
 
@@ -208,7 +210,10 @@ public class SaveManager : MonoBehaviour
 	}
 
 	public void SaveAllIslands () {
-				StartCoroutine (SaveAllIslandsCoroutine ());
+
+        Debug.Log("saving all island...");
+
+        StartCoroutine(SaveAllIslandsCoroutine ());
 //		SaveAllIslandsCoroutine ();
 	}
 	IEnumerator SaveAllIslandsCoroutine () {

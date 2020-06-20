@@ -38,7 +38,7 @@ Narrator : A tall rock stands in the middle of it.;;;;;;
 CheckQuest=>choix plage rocher;;;;;;
 [choix plage rocher];;;;;;
 SetChoices3;;;;;;
-Choice : Let’s raise the anchor! (leave); ;Choice : (climb the rock);;;;
+Choice : Let’s raise the anchor! (leave);Choice : We’ll stay until NEXTTIME (sleep);Choice : (climb the rock);;;;
 Leave;ChangeTimeOfDay;RandomRange2;;;;
 ;Choice : (stay until NEXTTIME) (sleep);Fade;Narrator : The rock is too tall for CAPITAINE to just go up, they’ll need to climb.;;;
 ;Node=>choix food;Node=>rocher;SetChoices2;;;

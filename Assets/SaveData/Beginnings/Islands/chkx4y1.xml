@@ -1,15 +1,15 @@
 <?xml version="1.0"?>
 <Chunk xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <state>UndiscoveredIsland</state>
+  <state>VisitedIsland</state>
   <islandDatas>
     <IslandData>
       <worldPosition>
-        <x>-1.96659279</x>
-        <y>-7.79957</y>
+        <x>8.46661</x>
+        <y>-3.09210587</y>
       </worldPosition>
-      <worldRotation>101.074371</worldRotation>
+      <worldRotation>193.991074</worldRotation>
       <storyManager>
-        <hasBeenPlayed>false</hasBeenPlayed>
+        <hasBeenPlayed>true</hasBeenPlayed>
         <storyHandlers>
           <StoryHandler>
             <row>0</row>
@@ -17,9 +17,91 @@
             <fallBackLayer>0</fallBackLayer>
             <storyID>2</storyID>
             <storyType>Normal</storyType>
-            <contentDecals />
+            <contentDecals>
+              <contentDecal>
+                <row>3</row>
+                <col>18</col>
+                <decal>1</decal>
+              </contentDecal>
+            </contentDecals>
             <loots />
-            <crews />
+            <crews>
+              <Crew>
+                <hostile>true</hostile>
+                <row>0</row>
+                <col>5</col>
+                <MemberIDs>
+                  <Member>
+                    <id>28</id>
+                    <Name>Vladimir</Name>
+                    <health>100</health>
+                    <maxHealth>100</maxHealth>
+                    <currentHunger>0</currentHunger>
+                    <Lvl>3</Lvl>
+                    <xp>0</xp>
+                    <skillPoints>0</skillPoints>
+                    <specialSkillsIndexes>
+                      <int>16</int>
+                      <int>17</int>
+                    </specialSkillsIndexes>
+                    <stats>
+                      <int>2</int>
+                      <int>1</int>
+                      <int>1</int>
+                      <int>2</int>
+                    </stats>
+                    <daysOnBoard>0</daysOnBoard>
+                    <equipedWeapon>
+                      <ID>70</ID>
+                      <names>
+                        <string>Vielle poivrière</string>
+                        <string>Old handgun</string>
+                      </names>
+                      <value>26</value>
+                      <price>41</price>
+                      <weight>10</weight>
+                      <level>3</level>
+                      <spriteID>6</spriteID>
+                      <weaponType>Distance</weaponType>
+                      <category>Weapon</category>
+                    </equipedWeapon>
+                    <equipedCloth>
+                      <ID>166</ID>
+                      <names>
+                        <string>Plastron de fer</string>
+                        <string>Iron breastplate</string>
+                      </names>
+                      <value>33</value>
+                      <price>60</price>
+                      <weight>10</weight>
+                      <level>3</level>
+                      <spriteID>2</spriteID>
+                      <weaponType>Distance</weaponType>
+                      <category>Clothes</category>
+                    </equipedCloth>
+                    <job>Flibuster</job>
+                    <characterIDS>
+                      <int>9</int>
+                      <int>1</int>
+                      <int>5</int>
+                      <int>9</int>
+                      <int>7</int>
+                      <int>8</int>
+                      <int>2</int>
+                      <int>2</int>
+                      <int>1</int>
+                      <int>0</int>
+                      <int>0</int>
+                      <int>5</int>
+                      <int>2</int>
+                      <int>1</int>
+                      <int>2</int>
+                      <int>2</int>
+                    </characterIDS>
+                  </Member>
+                </MemberIDs>
+              </Crew>
+            </crews>
           </StoryHandler>
         </storyHandlers>
       </storyManager>

@@ -6,7 +6,6 @@ public class NameGeneration : MonoBehaviour {
 
 	public static NameGeneration Instance;
 
-
 	void Awake () {
 		Instance = this;
 

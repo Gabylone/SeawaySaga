@@ -116,7 +116,7 @@ public class NavigationTrigger : MonoBehaviour {
     void OutOfMapFeedback()
     {
         DialogueManager.Instance.SetDialogueTimed("Nothing to see in this direction", Crews.playerCrew.captain);
-        Crews.playerCrew.captain.Icon.MoveToPoint(Crews.PlacingType.Discussion);
+        Crews.playerCrew.captain.Icon.MoveToPoint(Crews.PlacingType.World);
 
         CancelInvoke("OutOfMapFeedbackDelay");
         Invoke("OutOfMapFeedbackDelay", outOfMapFeedbackDuration);

@@ -28,7 +28,7 @@ public class Skill_Cosh : Skill {
 
 	public override bool MeetsRestrictions (CrewMember member)
 	{
-		return base.MeetsRestrictions (member) && ( member.GetEquipment(CrewMember.EquipmentPart.Weapon) == null || member.GetEquipment(CrewMember.EquipmentPart.Weapon).spriteID == 1);
+		return base.MeetsRestrictions (member) && member.HasMeleeWepon();
 	}
 
 

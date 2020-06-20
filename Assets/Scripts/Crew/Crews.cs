@@ -8,7 +8,7 @@ public class Crews : MonoBehaviour {
     /// </summary>
 //	public static int maxHunger = 35; // pas assez
 	//public static int maxHunger = 10; // trop
-	public static int maxHunger = 12;
+	public static int maxHunger = 5;
 
     public static Crews Instance;
 
@@ -34,7 +34,7 @@ public class Crews : MonoBehaviour {
 		Map,
 		MemberCreation,
 		Inventory,
-		Discussion,
+		World,
 		Hidden,
 
 		None
@@ -76,7 +76,7 @@ public class Crews : MonoBehaviour {
 				CrewMember.GetSelectedMember.Icon.MoveToPoint (Crews.PlacingType.Map);
 			}
 
-			Crews.getCrew (Crews.Side.Player).captain.Icon.MoveToPoint (Crews.PlacingType.Discussion);
+			Crews.getCrew (Crews.Side.Player).captain.Icon.MoveToPoint (Crews.PlacingType.World);
 
 		} else {
 			CrewMember.GetSelectedMember.Icon.MoveToPoint (Crews.PlacingType.Map);
@@ -184,7 +184,7 @@ public class Crews : MonoBehaviour {
 
 			}
 
-			Crews.enemyCrew.captain.Icon.MoveToPoint (Crews.PlacingType.Discussion);
+			Crews.enemyCrew.captain.Icon.MoveToPoint (Crews.PlacingType.World);
 		}
 
 

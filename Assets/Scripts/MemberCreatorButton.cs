@@ -6,8 +6,6 @@ using UnityEngine.UI;
 
 public class MemberCreatorButton : MonoBehaviour {
 
-    public GameObject lockGroup;
-
     public Text pearlPriceUIText;
 
     public ApparenceItem apparenceItem;
@@ -53,10 +51,6 @@ public class MemberCreatorButton : MonoBehaviour {
     public virtual void OnPointerUp()
     {
         initParent = transform.parent;
-
-        //Deselect();
-
-        //transform.SetAsFirstSibling();
 
         if (apparenceItem.locked)
         {
@@ -133,7 +127,15 @@ public class MemberCreatorButton : MonoBehaviour {
         {
             if (apparenceItem.GetSprite() == null)
             {
-                image.enabled = false;
+                if ( apparenceItem.apparenceType == ApparenceType.bodyType)
+                {
+                    image.enabled = false;
+                    GetComponentInChildren<Text>().text = "" + (apparenceItem.id + 1);
+                }
+                else
+                {
+                    image.sprite = CrewCreator.Instance.noImage_Sprite;
+                }
             }
             else
             {
@@ -153,13 +155,13 @@ public class MemberCreatorButton : MonoBehaviour {
     }
     public void ShowLockGroup()
     {
-        lockGroup.SetActive(true);
+        //lockGroup.SetActive(true);
 
         pearlPriceUIText.text = "" + apparenceItem.price;
     }
     public void HideLockGroup()
     {
-        lockGroup.SetActive(false);
+        //lockGroup.SetActive(false);
     }
     #endregion
 

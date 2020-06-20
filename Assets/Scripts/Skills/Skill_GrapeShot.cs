@@ -43,7 +43,7 @@ public class Skill_GrapeShot : Skill {
 		if (member.GetEquipment (CrewMember.EquipmentPart.Weapon) == null)
 			return false;
 
-		return base.MeetsRestrictions (member) && member.GetEquipment(CrewMember.EquipmentPart.Weapon).spriteID == 0;
+		return base.MeetsRestrictions (member) && member.GetEquipment(CrewMember.EquipmentPart.Weapon).weaponType == Item.WeaponType.Distance;
 	}
 
 	public override bool MeetsConditions (CrewMember member)

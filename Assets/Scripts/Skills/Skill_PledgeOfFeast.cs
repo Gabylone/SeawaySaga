@@ -15,14 +15,20 @@ public class Skill_PledgeOfFeast : Skill {
 
 	}
 
-	public override void ApplyEffect ()
-	{
-		base.ApplyEffect ();
+    public override void ApplyEffect()
+    {
+        base.ApplyEffect();
 
-		fighter.TargetFighter.crewMember.AddEnergy (energyAmount);
-		fighter.TargetFighter.ShowInfo ();
+        fighter.TargetFighter.crewMember.AddEnergy(energyAmount);
+        fighter.TargetFighter.card.ShowEnergy();
 
-		EndSkill ();
+        EndSkill();
 
-	}
+        Invoke("ApplyEffectDelay" , 1f);
+    }
+
+    void ApplyEffectDelay()
+    {
+        fighter.TargetFighter.card.HideEnergy();
+    }
 }

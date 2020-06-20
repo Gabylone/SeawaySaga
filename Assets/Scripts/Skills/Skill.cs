@@ -109,6 +109,7 @@ public class Skill : MonoBehaviour {
 	}
 
 	public virtual void OnSetTarget () {
+
 		if ( animationType == SkillManager.AnimationType.CloseAttack && goToTarget) {
 			fighter.onReachTarget += HandleOnReachTarget;
 			fighter.ChangeState (Fighter.states.moveToTarget);

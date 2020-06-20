@@ -72,29 +72,35 @@ public class ItemLoader : MonoBehaviour {
 		string maxLevelTxt = rows [rows.Length - 2].Split (';')[5];
 		int maxLevel = int.Parse (maxLevelTxt);
 
-
 		int currentLevel = 0;
 
 		for ( int i = 1; i < items[(int)currentType].Length+1 ;++i ) {
 
 			string[] cells = rows[i].Split (';');
 
-			Item newItem =
-				new Item (
-				currentID,
-				cells[0],// french name
-				cells[1],// english name
-                cells[2],// description
-				int.Parse(cells[3]),// value
-				int.Parse(cells[4]),// price
-				int.Parse(cells[5]),// weight
-				int.Parse(cells[6]),// level
-				int.Parse(cells[7]),
+            Item newItem = new Item();
 
-				currentType // category
-				);
-			
-			items[(int)currentType][i-1] = newItem;
+            newItem.ID = currentID;
+
+            newItem.names = new string[2];
+
+            newItem.names[0] = cells[0];
+            newItem.names[1] = cells[1];
+
+            newItem.value = int.Parse(cells[3]);
+            newItem.price = int.Parse(cells[4]);
+            newItem.weight = int.Parse(cells[5]);
+            newItem.level = int.Parse(cells[6]);
+
+            newItem.spriteID = int.Parse(cells[7]);
+
+            if (cells.Length > 8 )
+            {
+                newItem.weaponType = (Item.WeaponType)int.Parse(cells[8]);
+            }
+            newItem.category = currentType;
+
+            items[(int)currentType][i-1] = newItem;
 
 			currentID++;
 		}

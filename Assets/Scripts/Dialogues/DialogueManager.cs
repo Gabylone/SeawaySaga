@@ -82,15 +82,15 @@ public class DialogueManager : MonoBehaviour {
 		switch (func) {
 		case FunctionType.OtherSpeak:
 
-                Crews.enemyCrew.captain.Icon.MoveToPoint(Crews.PlacingType.Discussion);
-                Crews.playerCrew.captain.Icon.MoveToPoint(Crews.PlacingType.Discussion);
+                Crews.enemyCrew.captain.Icon.MoveToPoint(Crews.PlacingType.World);
+                Crews.playerCrew.captain.Icon.MoveToPoint(Crews.PlacingType.World);
                 SetDialogue(cellParameters.Remove (0, 2), Crews.enemyCrew.captain);
                 StoryInput.Instance.WaitForInput();
                 break;
 
             case FunctionType.PlayerSpeak:
 
-                Crews.playerCrew.captain.Icon.MoveToPoint(Crews.PlacingType.Discussion);
+                Crews.playerCrew.captain.Icon.MoveToPoint(Crews.PlacingType.World);
 			    SetDialogue (cellParameters.Remove (0, 2), Crews.playerCrew.captain);
                 StoryInput.Instance.WaitForInput();
                 break;

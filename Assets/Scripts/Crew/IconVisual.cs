@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 public class IconVisual : MonoBehaviour
 {
@@ -9,62 +10,152 @@ public class IconVisual : MonoBehaviour
 
     public BodyVisual bodyVisual;
 
-    public void InitVisual(Member memberID)
+    public Image weaponImage;
+    public Image handImage;
+    public Image[] images;
+
+    public float highlightSpeed = 1f;
+
+    private bool tainted = false;
+    private Color targetHighlightColor;
+
+    private Member currentMember;
+
+    float lerp = 0f;
+    public float range = 0.3f;
+
+    private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            Taint(Color.red);
+        }
+
+        if (tainted)
+        {
+            Color c = targetHighlightColor;
+
+            lerp = Mathf.PingPong(Time.time * highlightSpeed, range);
+
+            GetImage(ApparenceType.hair).color = LerpColor(ApparenceType.hair, ApparenceType.hairColor);
+            GetImage(ApparenceType.beard).color = LerpColor(ApparenceType.beard, ApparenceType.hairColor);
+            GetImage(ApparenceType.eyebrows).color = LerpColor(ApparenceType.eyebrows, ApparenceType.hairColor);
+
+            bodyVisual.GetImage(BodyVisual.ID.Top).color = LerpColor(BodyVisual.ID.Top, ApparenceType.topColor);
+            bodyVisual.GetImage(BodyVisual.ID.Pants).color = LerpColor(BodyVisual.ID.Pants, ApparenceType.pantColor);
+            bodyVisual.GetImage(BodyVisual.ID.Shoes).color = LerpColor(BodyVisual.ID.Shoes, ApparenceType.shoesColor);
+
+            GetImage(ApparenceType.nose).color = LerpColor(ApparenceType.nose, ApparenceType.skinColor);
+            bodyVisual.GetImage(BodyVisual.ID.Face).color = LerpColor(BodyVisual.ID.Face, ApparenceType.skinColor);
+            bodyVisual.GetImage(BodyVisual.ID.Skin).color = LerpColor(BodyVisual.ID.Skin, ApparenceType.skinColor);
+            bodyVisual.GetImage(BodyVisual.ID.RightArm).color = LerpColor(BodyVisual.ID.RightArm, ApparenceType.skinColor);
+            bodyVisual.GetImage(BodyVisual.ID.LeftArm).color = LerpColor(BodyVisual.ID.LeftArm, ApparenceType.skinColor);
+
+            weaponImage.color = Color.Lerp(Color.white, targetHighlightColor, lerp);
+            handImage.color = Color.Lerp(GetColor(ApparenceType.skinColor), targetHighlightColor, lerp);
+
+        }
+    }
+    private Color LerpColor(BodyVisual.ID spriteId, ApparenceType colorId)
+    {
+        return Color.Lerp(GetColor(colorId), targetHighlightColor, lerp);
+    }
+    private Color LerpColor(ApparenceType spriteId, ApparenceType colorId)
+    {
+        return Color.Lerp(GetColor(colorId), targetHighlightColor, lerp);
+    }
+
+    public void InitVisual(Member _member)
+    {
+        currentMember = _member;
+
+        InitVisual();
+    }
+
+    public void InitVisual()
+    {
+        if (currentMember == null)
+        { return; }
+
         // hair
         for (int i = 0; i <= (int)ApparenceType.nose; i++)
         {
             ApparenceType type = (ApparenceType)i;
-            Sprite spr = CrewCreator.Instance.GetApparenceItem(type, memberID.GetCharacterID(type)).GetSprite();
-            if ( spr == null)
+            Sprite spr = CrewCreator.Instance.GetApparenceItem(type, currentMember.GetCharacterID(type)).GetSprite();
+            if (spr == null)
             {
                 images[i].enabled = false;
             }
             else
             {
                 images[i].enabled = true;
-                images[i].sprite = CrewCreator.Instance.GetApparenceItem(type, memberID.GetCharacterID(type)).GetSprite();
+                images[i].sprite = CrewCreator.Instance.GetApparenceItem(type, currentMember.GetCharacterID(type)).GetSprite();
             }
         }
 
-        Color c = CrewCreator.Instance.hairColors[memberID.GetCharacterID(ApparenceType.hairColor)];
+        Color c = CrewCreator.Instance.hairColors[currentMember.GetCharacterID(ApparenceType.hairColor)];
 
-        GetImage(ApparenceType.hair).color      = c;
-        GetImage(ApparenceType.eyebrows).color  = c;
-        GetImage(ApparenceType.beard).color     = c;
+        GetImage(ApparenceType.hair).color = c;
+        GetImage(ApparenceType.eyebrows).color = c;
+        GetImage(ApparenceType.beard).color = c;
 
-        int skinColorID = memberID.GetCharacterID(ApparenceType.skinColor);
-        Color skinColor = CrewCreator.Instance.GetApparenceItem(ApparenceType.skinColor, skinColorID).color;
+        Color skinColor = GetColor(ApparenceType.skinColor);
         GetImage(ApparenceType.nose).color = skinColor;
+        handImage.color = skinColor;
 
-        UpdateWeaponSprite(memberID);
+        UpdateWeaponSprite(currentMember);
 
-        bodyVisual.InitVisual(memberID);
+        bodyVisual.InitVisual(currentMember);
 
+    }
+
+    public Color GetColor(ApparenceType apparenceType)
+    {
+        int colorID = currentMember.GetCharacterID(apparenceType);
+        return CrewCreator.Instance.GetApparenceItem(apparenceType, colorID).color;
     }
 
     public void UpdateWeaponSprite(Member member)
     {
-        if (member.equipedWeapon == null)
+        if (CombatManager.Instance != null && !CombatManager.Instance.fighting || member.equipedWeapon == null)
         {
-            weaponImage.sprite = CrewCreator.Instance.handSprite;
+            weaponImage.enabled = false;
+            handImage.enabled = false;
+            return;
         }
-        else
-        {
-            weaponImage.sprite = CrewCreator.Instance.weaponSprites[member.equipedWeapon.spriteID];
-        }
+
+        handImage.sprite = CrewCreator.Instance.handSprites[(int)member.equipedWeapon.weaponType];
+        weaponImage.sprite = CrewCreator.Instance.weaponSprites[member.equipedWeapon.spriteID];
+
+        weaponImage.color = Color.white;
     }
 
-    [Header("BobyParts")]
-    [SerializeField]
-    private Image weaponImage;
+    public void Taint ( Color c)
+    {
+        tainted = true;
 
-    public Image[] images;
+        targetHighlightColor = c;
+    }
+
+    public void ResetTaint()
+    {
+        tainted = false;
+
+        InitVisual();
+    }
 
     public Image GetImage(ApparenceType apparenceType)
     {
         return images[(int)apparenceType];
     }
 
+    public void SetDeadEyes()
+    {
+        GetImage(ApparenceType.eyes).sprite = CrewCreator.Instance.deadEyes_Sprite;
+    }
 
+    public void RemoveDeadEyes()
+    {
+        InitVisual();
+    }
 }

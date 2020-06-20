@@ -11,35 +11,18 @@ public class BodyVisual : MonoBehaviour
         Skin,
         Shoes,
         Pants,
-        Cloth,
+        Top,
         RightArm,
         Face
     }
 
     public Image[] images;
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            InitVisual(null);
-        }
-    }
-
     public void InitVisual( Member memberID)
     {
         int bodyID = memberID.GetCharacterID(ApparenceType.bodyType);
 
-        CrewCreator.BodySet bodySet;
-
-        if ( memberID.Male)
-        {
-            bodySet = CrewCreator.Instance.male_BodySets[(int)bodyID];
-        }
-        else
-        {
-            bodySet = CrewCreator.Instance.female_BodySets[(int)bodyID];
-        }
+        CrewCreator.BodySet bodySet = CrewCreator.Instance.GetBodySet(bodyID);
 
         for (int i = 0; i < bodySet.sprites.Length; i++)
         {
@@ -67,14 +50,13 @@ public class BodyVisual : MonoBehaviour
         GetImage(ID.Face).color = skinColor;
 
         int topColorID = memberID.GetCharacterID(ApparenceType.topColor);
-        GetImage(ID.Cloth).color = CrewCreator.Instance.GetApparenceItem(ApparenceType.topColor, topColorID).color;
+        GetImage(ID.Top).color = CrewCreator.Instance.GetApparenceItem(ApparenceType.topColor, topColorID).color;
 
         int pantsColor = memberID.GetCharacterID(ApparenceType.pantColor);
         GetImage(ID.Pants).color = CrewCreator.Instance.GetApparenceItem(ApparenceType.pantColor, pantsColor).color;
 
         int shoesColorID = memberID.GetCharacterID(ApparenceType.shoesColor);
         GetImage(ID.Shoes).color = CrewCreator.Instance.GetApparenceItem(ApparenceType.shoesColor, shoesColorID).color;
-
 
     }
 

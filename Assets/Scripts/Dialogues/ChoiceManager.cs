@@ -121,7 +121,7 @@ public class ChoiceManager : MonoBehaviour {
             choiceButtons[i].Init(content[i]);
 		}
 
-		Crews.playerCrew.captain.Icon.MoveToPoint (Crews.PlacingType.Discussion);
+		Crews.playerCrew.captain.Icon.MoveToPoint (Crews.PlacingType.World);
 
 	}
 

@@ -61,6 +61,8 @@ public class Fighter : MonoBehaviour {
 		Left
 	}
 
+    public Card card;
+
 	[SerializeField]
 	private Direction direction;
 
@@ -122,13 +124,14 @@ public class Fighter : MonoBehaviour {
 
 			if (onSetPickable != null)
 				onSetPickable (value);
-		}
-	}
+        }
+    }
 
 	// Use this for initialization
 	void Start () {
 
-		transform.parent.GetComponentInChildren<Card> ().Init ();
+        card = transform.parent.GetComponentInChildren<Card>();
+        card.Init ();
 
 		dir = direction == Direction.Left ? 1 : -1;
 
@@ -220,7 +223,7 @@ public class Fighter : MonoBehaviour {
 
 		crewMember.AddEnergy (crewMember.energyPerTurn);
 
-		for (int i = 0; i < crewMember.charges.Length; i++) {
+        for (int i = 0; i < crewMember.charges.Length; i++) {
 			if ( crewMember.charges [i] > 0 )
 				crewMember.charges [i] -= 1;
 		}
@@ -291,6 +294,9 @@ public class Fighter : MonoBehaviour {
 
 			// self
 		ChangeState (states.dead);
+
+        iconVisual.SetDeadEyes();
+
 		animator.SetBool ("dead", true);
 
 		killed = true;
@@ -426,9 +432,9 @@ public class Fighter : MonoBehaviour {
 	}
 	#endregion
 
-	public delegate void OnShowInfo();
-	public OnShowInfo onShowInfo;
-	public void ShowInfo () {
+	public delegate void OnSelect();
+	public OnSelect onSelect;
+	public void Select () {
 
 		if ( Pickable ) {
 			CombatManager.Instance.ChoseTargetMember (this);
@@ -440,8 +446,8 @@ public class Fighter : MonoBehaviour {
 			return;
 		}
 
-		if (onShowInfo != null)
-			onShowInfo ();
+		if (onSelect != null)
+			onSelect ();
 	}
 
 	public void Speak (string txt)
@@ -452,15 +458,19 @@ public class Fighter : MonoBehaviour {
 	#region get hit
 	public virtual void getHit_Start () {
 
+        iconVisual.SetDeadEyes();
 		animator.SetTrigger ("getHit");
 	}
 	public virtual void getHit_Update () {
 
 		if (timeInState > getHit_Duration)
-			ChangeState (states.none);
-	}
+        {
+            ChangeState(states.none);
+        }
+    }
 	public virtual void getHit_Exit () {
-		//
+		
+        iconVisual.RemoveDeadEyes();
 	}
 
 	void HitEffect () {
@@ -516,24 +526,18 @@ public class Fighter : MonoBehaviour {
 			damage = 100;
 		}
 
-		combatFeedback.Display (damage.ToString() , Color.red);
-		crewMember.RemoveHealth (damage);
+        if (crewMember.Health - damage <= 0)
+        {
+            if (otherFighter.crewMember.side == Crews.Side.Player)
+            {
+                int xpPerMember = 25;
 
-		if (onGetHit != null)
-			onGetHit ();
+                otherFighter.crewMember.AddXP(xpPerMember);
+                otherFighter.combatFeedback.Display("" + xpPerMember, Color.white);
+            }
+        }
 
-		if (crewMember.Health <= 0) {
-
-			if (otherFighter.crewMember.side == Crews.Side.Player) {
-				int xpPerMember = 25;
-
-				otherFighter.crewMember.AddXP (xpPerMember);
-				otherFighter.combatFeedback.Display ("" + xpPerMember, Color.white);
-			}
-
-			crewMember.Kill ();
-			Die ();
-		}
+        Hurt(damage);
 	}
 
 	public void CheckContact (Fighter otherFighter) {
@@ -548,18 +552,19 @@ public class Fighter : MonoBehaviour {
 
 	public void Hurt (float amount) {
 
-		combatFeedback.Display ("" + amount , Color.red);
+        combatFeedback.Display(amount.ToString(), Color.red);
+        crewMember.RemoveHealth(amount);
 
-		crewMember.RemoveHealth (amount);
+        if (onGetHit != null)
+            onGetHit();
 
-		if (onGetHit != null)
-			onGetHit ();
+        if (crewMember.Health <= 0)
+        {
+            crewMember.Kill();
+            Die();
+        }
 
-		if (crewMember.Health <= 0) {
-			crewMember.Kill ();
-		}
-
-	}
+    }
 
 	public void Heal (float amount) {
 
@@ -699,7 +704,8 @@ public class Fighter : MonoBehaviour {
 	void CheckStatus () {
 
 		if ( animator.GetBool("uncounscious") ) {
-			animator.SetBool ("uncounscious", false);
+            iconVisual.RemoveDeadEyes();
+            animator.SetBool ("uncounscious", false);
 		}
 
 		if ( HasStatus(Status.Cussed) ) {
@@ -749,6 +755,7 @@ public class Fighter : MonoBehaviour {
 
 		switch (status) {
 		case Status.KnockedOut:
+                iconVisual.SetDeadEyes();
 			animator.SetBool ("uncounscious", true);
 			break;
 		default:

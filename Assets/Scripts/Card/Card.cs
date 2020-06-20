@@ -7,9 +7,6 @@ public class Card : MonoBehaviour {
 
 	public static Card previouslySelectedCard;
 
-		// components
-	private Transform _transform;
-
     [Header("UI Elements")]
     [SerializeField]
     private GameObject cardObject;
@@ -28,6 +25,8 @@ public class Card : MonoBehaviour {
     private RectTransform healthFill;
 
     // energy
+    public GameObject energyGroup;
+
     [SerializeField]
     private RectTransform energyBackground;
     [SerializeField]
@@ -37,8 +36,6 @@ public class Card : MonoBehaviour {
 
     //
     [SerializeField]
-	private GameObject energyGroup;
-	[SerializeField]
 	private GameObject jobGroup;
 
 	[SerializeField]
@@ -56,15 +53,22 @@ public class Card : MonoBehaviour {
 	public Transform endTurnFeedback;
 	float endTurnFeedbackDuration = 0.7f;
 
+    private Outline[] outlines;
+
 //	void Awake () {
 	public void Init() {
 
-		linkedFighter.onReset += HandleOnInit;
+        outlines = GetComponentsInChildren<Outline>();
+
+        HideEnergy();
+
+        /* events */
+        linkedFighter.onReset += HandleOnInit;
 		linkedFighter.onSetAsTarget += HandleOnSetAsTarget;
 		linkedFighter.onSetTurn += HandleOnSetTurn;
 		linkedFighter.onEndTurn += HandleOnEndTurn;
 
-		linkedFighter.onShowInfo += HandleOnShowInfo;
+		linkedFighter.onSelect += HandleOnShowInfo;
 		linkedFighter.onGetHit += HandleOnGetHit;
 
 		linkedFighter.onChangeState += HandleOnChangeState;
@@ -77,6 +81,7 @@ public class Card : MonoBehaviour {
 		HideEndTurnFeedback ();
 
 		jobGroup.SetActive (false);
+
 
 	}
 
@@ -105,27 +110,30 @@ public class Card : MonoBehaviour {
 
 	void ShowTargetFeedback(Color color) {
 
-        foreach (var item in linkedFighter.GetComponentsInChildren<Outline>())
+        linkedFighter.iconVisual.Taint(color);
+
+        foreach (var item in outlines)
         {
             item.enabled = true;
             item.effectColor = color;
         }
 
-        /*targetFeedbackImage.color = color;
-
-		targetFeedbackImage.gameObject.SetActive (true);
-		Tween.Bounce (targetFeedbackImage.transform);*/
+        /*foreach (var item in linkedFighter.GetComponentsInChildren<Outline>())
+        {
+            item.enabled = true;
+            item.effectColor = color;
+        }*/
     }
 
     void HideTargetFeedback () {
 
-        foreach (var item in linkedFighter.GetComponentsInChildren<Outline>())
+
+        linkedFighter.iconVisual.ResetTaint();
+
+        foreach (var item in outlines)
         {
             item.enabled = false;
         }
-
-        /*targetFeedbackImage.GetComponent<Animator>().SetBool("bouncing", false);
-        targetFeedbackImage.gameObject.SetActive(false);*/
 
     }
 
@@ -133,30 +141,11 @@ public class Card : MonoBehaviour {
 	{
 		if (currState == Fighter.states.triggerSkill) {
 			UpdateEnergyBar (linkedFighter.crewMember);
-
-			Tween.Bounce (energyGroup.transform);
 		}
 	}
 
 
-	void HandleOnEndTurn ()
-	{
-		Tween.Scale (barGroup, 0.2f, 1f);
-
-		HideTargetFeedback ();
-
-		endTurnFeedback.gameObject.SetActive (true);
-
-		endTurnFeedback.localEulerAngles = Vector3.zero;
-        endTurnFeedback.DOLocalRotate(Vector3.forward * 89f, endTurnFeedbackDuration).SetEase(Ease.InOutQuad);
-		Tween.Bounce (endTurnFeedback, 1f , 1.5f);
-
-
-		playingTurn = false;
-
-		Invoke ("HideEndTurnFeedback", endTurnFeedbackDuration);
-	}
-
+	
 	void HideEndTurnFeedback () {
 		endTurnFeedback.gameObject.SetActive (false);
 	}
@@ -177,8 +166,6 @@ public class Card : MonoBehaviour {
 
 		CancelInvoke ("HideInfo");
 		Invoke ("HideInfo",2f);
-
-		Tween.Bounce (transform);
 	}
 
 	public void HideInfo ()
@@ -191,19 +178,46 @@ public class Card : MonoBehaviour {
 		UpdateMember ();
 	}
 
-	void HandleOnSetTurn ()
+    #region set turn
+    void HandleOnSetTurn ()
 	{
 		playingTurn = true;
 
-		UpdateMember ();
+        ShowEnergy();
+
+        UpdateMember();
 
 		ShowTargetFeedback (CombatManager.Instance.selectionColor_Self);
-
-
-		Tween.Scale (barGroup, 0.2f, 1.15f);
 	}
 
-	void HandleUseInventory (InventoryActionType actionType)
+    public void ShowEnergy()
+    {
+        energyGroup.SetActive(true);
+    }
+
+    public void HideEnergy()
+    {
+        energyGroup.SetActive(false);
+    }
+
+    void HandleOnEndTurn()
+    {
+        HideTargetFeedback();
+
+        endTurnFeedback.gameObject.SetActive(true);
+
+        endTurnFeedback.localEulerAngles = Vector3.zero;
+        endTurnFeedback.DOLocalRotate(Vector3.forward * 89f, endTurnFeedbackDuration).SetEase(Ease.InOutQuad);
+
+        HideEnergy();
+
+        playingTurn = false;
+
+        Invoke("HideEndTurnFeedback", endTurnFeedbackDuration);
+    }
+    #endregion
+
+    void HandleUseInventory (InventoryActionType actionType)
 	{
 		UpdateMember (CrewMember.GetSelectedMember);
 	}
@@ -242,7 +256,6 @@ public class Card : MonoBehaviour {
 
 		UpdateEnergyBar (member);
 
-		Tween.Bounce (transform);
 
 	}
 

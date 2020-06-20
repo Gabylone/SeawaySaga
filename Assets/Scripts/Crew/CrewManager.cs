@@ -11,8 +11,11 @@ public class CrewManager : MonoBehaviour {
 	List<CrewMember> crewMembers = new List<CrewMember> ();
 
 	[SerializeField] private Crews.Side side;
-	[SerializeField] private Transform[] crewAnchors;
-    public Transform[] mapAnchors;
+
+    [SerializeField] private Transform[] crewAnchors;
+
+    public Transform[] inventoryAnchors;
+    public Transform[] worldAnchord;
 
     public int CurrentMemberCapacity {
 		get {

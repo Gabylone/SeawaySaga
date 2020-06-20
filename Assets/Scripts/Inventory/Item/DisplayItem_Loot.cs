@@ -27,9 +27,6 @@ public class DisplayItem_Loot : DisplayItem {
     public override void Start()
     {
         base.Start();
-
-        itemImage.transform.rotation = Quaternion.Euler (new Vector3 (0, 0, Random.Range (-30, 30)));
-
 	}
 
     public void EquipmentSelect()

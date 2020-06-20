@@ -158,10 +158,12 @@ public class MemberCreator : MonoBehaviour {
 		captainName.text = Crews.playerCrew.captain.MemberID.Name;
 
         Crews.playerCrew.captain.Icon.transform.SetParent(iconTargetParent);
+        Crews.playerCrew.captain.Icon.transform.localScale = Vector3.one;
 
-	}
 
-	public void Confirm () {
+    }
+
+    public void Confirm () {
 
 		if ( currentStep == CreationStep.Job ) {
 

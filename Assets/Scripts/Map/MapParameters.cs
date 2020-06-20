@@ -19,9 +19,4 @@ public class MapParameters
 
     public int mapScale_X = 100;
     public int mapScale_Y = 100;
-
-    public void SetScale ( int value)
-    {
-        mapScale_X = value;
-    }
 }

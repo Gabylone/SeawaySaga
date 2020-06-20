@@ -56,10 +56,12 @@ public class DisplayStoryItem : MonoBehaviour {
     {
         canvasGroup.alpha = 0f;
 
+        canvasGroup.DOKill();
         canvasGroup.DOFade(1f, 0.2f);
 
         group.SetActive(true);
 
+        CancelInvoke("ShowDelay");
         Invoke("ShowDelay" , 0.2f);
     }
 
@@ -74,6 +76,7 @@ public class DisplayStoryItem : MonoBehaviour {
 
         canvasGroup.DOFade(0f, 0.2f);
 
+        CancelInvoke("HideDelay");
         Invoke("HideDelay", 0.2f);
     }
 

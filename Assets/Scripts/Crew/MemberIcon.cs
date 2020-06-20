@@ -128,12 +128,12 @@ public class MemberIcon : MonoBehaviour {
             //PlayerIcons.Instance.GetImage(index).color = Color.white;
 
             if (index < 0) {
-				Debug.LogError ("index : " + index + " mapanchors :" + Crews.getCrew (member.side).mapAnchors.Length);
+				Debug.LogError ("index : " + index + " mapanchors :" + Crews.getCrew (member.side).inventoryAnchors.Length);
 				Debug.LogError ("membre à probleme  "+ member.MemberName);
 				Debug.LogError ("current membre  "+ CrewMember.GetSelectedMember.MemberName);
 			}
 
-			targetPos = Crews.getCrew (member.side).mapAnchors [member.GetIndex].position;
+			targetPos = Crews.getCrew (member.side).inventoryAnchors [member.GetIndex].position;
 		}
         else
         {
@@ -181,7 +181,7 @@ public class MemberIcon : MonoBehaviour {
 
                 break;
 
-            case Crews.PlacingType.Discussion:
+            case Crews.PlacingType.World:
 
                 ShowBody();
 
@@ -197,11 +197,13 @@ public class MemberIcon : MonoBehaviour {
                 break;
 
 		}
-	}
-	#endregion
 
-	#region body
-	public void HideBody () {
+
+    }
+    #endregion
+
+    #region body
+    public void HideBody () {
 		
 		bodyGroup.SetActive (false);
 		animator.SetBool ("enabled", false);

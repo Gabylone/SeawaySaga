@@ -112,10 +112,10 @@ public class SkillManager : MonoBehaviour {
 	}
 
 	public static Skill GetDefaultAttackSkill (CrewMember member) {
-		if ( member.GetEquipment(CrewMember.EquipmentPart.Weapon) == null || member.GetEquipment (CrewMember.EquipmentPart.Weapon).spriteID == 0)
-			return getSkill (Skill.Type.DistanceAttack);
-		else
-			return getSkill (Skill.Type.CloseAttack);
+		if ( member.HasMeleeWepon() )
+			return getSkill(Skill.Type.CloseAttack);
+        else
+            return getSkill (Skill.Type.DistanceAttack);
 	}
 
 	public static Skill RandomSkill ( CrewMember member ) {

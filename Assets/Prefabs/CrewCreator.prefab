@@ -48,9 +48,19 @@ MonoBehaviour:
   - {fileID: 1000013980746724, guid: 0f7ec307f5350c54fad27e869f18be00, type: 3}
   - {fileID: 1942506556775618, guid: 5ae378bbf90b6bf4aa13e94f3a2167cd, type: 3}
   weaponSprites:
-  - {fileID: 21300002, guid: bc9825b4cceaef34a94089e929ea84ba, type: 3}
-  - {fileID: 21300000, guid: bc9825b4cceaef34a94089e929ea84ba, type: 3}
-  handSprite: {fileID: 21300000, guid: 274ee49d71690df40bcd661e954e87ec, type: 3}
+  - {fileID: 21300000, guid: fc780ba577dd2bd449e3115dd2db8dfe, type: 3}
+  - {fileID: 21300000, guid: 09c397f43f4fc71449da63d92f0303fb, type: 3}
+  - {fileID: 21300000, guid: dad50e202f10dd0408388c9513639c3c, type: 3}
+  - {fileID: 21300000, guid: b064a19c551fa0c4db21c0f0e7167720, type: 3}
+  - {fileID: 21300000, guid: 8c67cbb1e8640514baf3369d90235465, type: 3}
+  - {fileID: 21300000, guid: 1819ef917e26a60499cd4dfe75dba8b3, type: 3}
+  - {fileID: 21300000, guid: 54f2fcc2581124342a2efb2f1eecff8a, type: 3}
+  - {fileID: 21300000, guid: fe46c4e6d9039a94081fd8f15d5d5a5c, type: 3}
+  handSprites:
+  - {fileID: 21300000, guid: 201d96cef03d43c4fa2911dd13c89c81, type: 3}
+  - {fileID: 21300000, guid: d3596f56b0eef3c4c8dbdc7ced0f8bda, type: 3}
+  - {fileID: 21300000, guid: e67e5e021ad45aa4792a771134d84ad8, type: 3}
+  - {fileID: 21300000, guid: d3596f56b0eef3c4c8dbdc7ced0f8bda, type: 3}
   darkHair: {r: 0.20588237, g: 0.12421018, b: 0.052984435, a: 1}
   beige: {r: 0.9450981, g: 0.8117648, b: 0.7137255, a: 1}
   hairColors:
@@ -66,7 +76,9 @@ MonoBehaviour:
   manNames: []
   boatNames: []
   boatAdjectives: []
-  male_BodySets:
+  noImage_Sprite: {fileID: 21300000, guid: df1ba04acacf92043ae9fd0b98bc6861, type: 3}
+  deadEyes_Sprite: {fileID: 21300000, guid: 8f629e44ae50e824ebdc2b4c360d7846, type: 3}
+  bodySets:
   - sprites:
     - {fileID: 21300000, guid: 03f148bcd38a86447a93300121a56936, type: 3}
     - {fileID: 21300000, guid: 72dbd5d97346eb3488aa393f479dd8e6, type: 3}
@@ -98,8 +110,7 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 6d5ca456f8748a24e99e806d57cddbe8, type: 3}
     - {fileID: 21300000, guid: 8d381e779b1a8ee4ebc3cffab1515b19, type: 3}
     - {fileID: 21300000, guid: 2a03741802ae78e4cb38459431a9bf1d, type: 3}
-    layerOrder: 00000000010000000200000003000000040000000500000006000000
-  female_BodySets:
+    layerOrder: 00000000020000000300000001000000040000000500000006000000
   - sprites:
     - {fileID: 21300000, guid: a4162b4311c1ab04aafa3d26a1cc329f, type: 3}
     - {fileID: 21300000, guid: b6a6e7b90bb3b8247a6ed9d4b48b4438, type: 3}
@@ -131,21 +142,9 @@ MonoBehaviour:
     - {fileID: 21300000, guid: a89ea3c87cefc5947a789728832eeb7f, type: 3}
     - {fileID: 21300000, guid: c25db6477c16a2f489deaaefd7f1edd2, type: 3}
     - {fileID: 21300000, guid: 7844426f65e59b642aafc312d68fdd7a, type: 3}
-    layerOrder: 00000000010000000200000003000000040000000500000006000000
+    layerOrder: 00000000010000000300000002000000040000000500000006000000
   apparenceGroups:
   - items:
-    - apparenceType: 0
-      sprite: {fileID: 0}
-      color: {r: 0, g: 0, b: 0, a: 0}
-      locked: 0
-      id: 0
-      price: 10
-    - apparenceType: 0
-      sprite: {fileID: 0}
-      color: {r: 0, g: 0, b: 0, a: 0}
-      locked: 0
-      id: 0
-      price: 10
     - apparenceType: 0
       sprite: {fileID: 0}
       color: {r: 0, g: 0, b: 0, a: 0}
@@ -336,6 +335,12 @@ MonoBehaviour:
       price: 10
   - items:
     - apparenceType: 3
+      sprite: {fileID: 0}
+      color: {r: 0, g: 0, b: 0, a: 0}
+      locked: 0
+      id: 0
+      price: 10
+    - apparenceType: 3
       sprite: {fileID: 21300000, guid: cd20eb13fa7521441b394c31459df974, type: 3}
       color: {r: 0, g: 0, b: 0, a: 0}
       locked: 0
@@ -391,18 +396,6 @@ MonoBehaviour:
       price: 10
     - apparenceType: 3
       sprite: {fileID: 21300000, guid: d803f775e1669ae42a98aac007cc7dea, type: 3}
-      color: {r: 0, g: 0, b: 0, a: 0}
-      locked: 0
-      id: 0
-      price: 10
-    - apparenceType: 3
-      sprite: {fileID: 0}
-      color: {r: 0, g: 0, b: 0, a: 0}
-      locked: 0
-      id: 0
-      price: 10
-    - apparenceType: 3
-      sprite: {fileID: 0}
       color: {r: 0, g: 0, b: 0, a: 0}
       locked: 0
       id: 0
@@ -648,6 +641,30 @@ MonoBehaviour:
       id: 2
       price: 100
   - items:
+    - apparenceType: 10
+      sprite: {fileID: 0}
+      color: {r: 0, g: 0, b: 0, a: 0}
+      locked: 0
+      id: 0
+      price: 100
+    - apparenceType: 10
+      sprite: {fileID: 0}
+      color: {r: 0, g: 0, b: 0, a: 0}
+      locked: 0
+      id: 0
+      price: 100
+    - apparenceType: 10
+      sprite: {fileID: 0}
+      color: {r: 0, g: 0, b: 0, a: 0}
+      locked: 0
+      id: 0
+      price: 100
+    - apparenceType: 10
+      sprite: {fileID: 0}
+      color: {r: 0, g: 0, b: 0, a: 0}
+      locked: 0
+      id: 0
+      price: 100
     - apparenceType: 10
       sprite: {fileID: 0}
       color: {r: 0, g: 0, b: 0, a: 0}

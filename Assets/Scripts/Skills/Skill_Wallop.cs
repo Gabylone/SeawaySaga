@@ -24,16 +24,11 @@ public class Skill_Wallop : Skill {
 
 	public override bool MeetsRestrictions (CrewMember member)
 	{
-		if (member.GetEquipment (CrewMember.EquipmentPart.Weapon) == null)
-			return false;
-
-		return base.MeetsRestrictions (member) && member.GetEquipment(CrewMember.EquipmentPart.Weapon).spriteID == 1;
+        return base.MeetsRestrictions(member) && member.HasMeleeWepon();
 	}
-
 
 	public override bool MeetsConditions (CrewMember member)
 	{
-
 		bool moreThanOneMember = CombatManager.Instance.getCurrentFighters (Crews.otherSide (member.side)).Count > 1;
 
 		return moreThanOneMember && base.MeetsConditions (member);

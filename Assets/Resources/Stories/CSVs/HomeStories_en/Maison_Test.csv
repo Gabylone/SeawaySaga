@@ -4,7 +4,7 @@ Maison_Test;1;1
 PlayerSpeak : This is the test story;;
 NewCrew;;
 SetChoices3;;
-Choice : Leave;Choice : Take Quest;Choice : (fight)
-Leave;OtherSpeak : Voilà ta quete;LaunchCombat
-;NewQuest=>debut;PlayerSpeak : Fini !
-;;Leave
+Choice : Leave;Choice : loot stuff;Choice : (fight)
+Leave;PlayerSpeak : Des ammes ?;LaunchCombat
+;LootWeapons;PlayerSpeak : Fini !
+;NewQuest=>debut;Leave

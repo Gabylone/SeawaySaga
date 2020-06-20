@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.EventSystems;
 
 public class CrewCreator : MonoBehaviour
 {
@@ -16,7 +17,7 @@ public class CrewCreator : MonoBehaviour
     private GameObject[] memberIconPrefabs;
 
     public Sprite[] weaponSprites;
-    public Sprite handSprite;
+    public Sprite[] handSprites;
 
     [Header("Colors")]
     [SerializeField]
@@ -42,8 +43,11 @@ public class CrewCreator : MonoBehaviour
     public string[] boatNames;
     public string[] boatAdjectives;
 
-    public BodySet[] male_BodySets;
-    public BodySet[] female_BodySets;
+    public Sprite noImage_Sprite;
+
+    public Sprite deadEyes_Sprite;
+
+    public BodySet[] bodySets;
 
     void Awake()
     {   
@@ -59,23 +63,46 @@ public class CrewCreator : MonoBehaviour
         LoadTextData();
     }
 
+    public BodySet GetBodySet (int id)
+    {
+        return bodySets[id];
+    }
+
     private void LoadTextData()
     {
         TextAsset textAsset = Resources.Load("JobDescriptions") as TextAsset;
         jobDescriptions = textAsset.text.Split('\n');
 
-        textAsset = Resources.Load("Names/Boat Names") as TextAsset;
+        // boat names
+        textAsset = Resources.Load("Names/Boat ") as TextAsset;
         boatNames = textAsset.text.Split('\n');
+        boatNames = Clean(boatNames);
 
+        // boat adjectives
         textAsset = Resources.Load("Names/Boat Adjectives") as TextAsset;
         boatAdjectives = textAsset.text.Split('\n');
+        boatAdjectives = Clean(boatAdjectives);
 
+        // man names
         textAsset = Resources.Load("Names/Man Names") as TextAsset;
         manNames = textAsset.text.Split('\n');
+        manNames = Clean(manNames);
 
+        // woman names
         textAsset = Resources.Load("Names/Woman Names") as TextAsset;
         womanNames = textAsset.text.Split('\n');
+        womanNames = Clean(womanNames);
+    }
 
+    public string[] Clean( string[] strings)
+    {
+        for (int i = 0; i < strings.Length; i++)
+        {
+            strings[i] = strings[i].TrimEnd('\n');
+            strings[i] = strings[i].TrimStart('\n');
+        }
+
+        return strings;
     }
 
     public void UpdateApparenceItems()
@@ -168,7 +195,7 @@ public class CrewCreator : MonoBehaviour
                 BodyVisual.ID.Skin,
                 BodyVisual.ID.Shoes,
                 BodyVisual.ID.Pants,
-                BodyVisual.ID.Cloth,
+                BodyVisual.ID.Top,
                 BodyVisual.ID.RightArm,
                 BodyVisual.ID.Face
             };

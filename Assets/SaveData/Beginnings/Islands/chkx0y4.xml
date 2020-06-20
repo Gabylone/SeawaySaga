@@ -1,15 +1,15 @@
 <?xml version="1.0"?>
 <Chunk xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <state>DiscoveredIsland</state>
+  <state>VisitedIsland</state>
   <islandDatas>
     <IslandData>
       <worldPosition>
-        <x>18.91336</x>
-        <y>-8.442957</y>
+        <x>7.89854</x>
+        <y>-9.2714</y>
       </worldPosition>
-      <worldRotation>324.229065</worldRotation>
+      <worldRotation>359.871674</worldRotation>
       <storyManager>
-        <hasBeenPlayed>false</hasBeenPlayed>
+        <hasBeenPlayed>true</hasBeenPlayed>
         <storyHandlers>
           <StoryHandler>
             <row>0</row>
@@ -17,6 +17,130 @@
             <fallBackLayer>0</fallBackLayer>
             <storyID>1</storyID>
             <storyType>Home</storyType>
+            <contentDecals>
+              <contentDecal>
+                <row>2</row>
+                <col>21</col>
+                <decal>0</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>7</row>
+                <col>19</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>6</row>
+                <col>60</col>
+                <decal>1</decal>
+              </contentDecal>
+            </contentDecals>
+            <loots>
+              <Loot>
+                <row>1</row>
+                <col>29</col>
+                <ids>
+                  <ArrayOfInt />
+                  <ArrayOfInt />
+                  <ArrayOfInt />
+                  <ArrayOfInt />
+                </ids>
+                <weight>0</weight>
+                <AllItems>
+                  <ArrayOfItem />
+                  <ArrayOfItem />
+                  <ArrayOfItem />
+                  <ArrayOfItem />
+                </AllItems>
+              </Loot>
+            </loots>
+            <crews>
+              <Crew>
+                <hostile>false</hostile>
+                <row>3</row>
+                <col>53</col>
+                <MemberIDs>
+                  <Member>
+                    <id>1</id>
+                    <Name>Pierre</Name>
+                    <health>100</health>
+                    <maxHealth>100</maxHealth>
+                    <currentHunger>0</currentHunger>
+                    <Lvl>1</Lvl>
+                    <xp>0</xp>
+                    <skillPoints>0</skillPoints>
+                    <specialSkillsIndexes>
+                      <int>8</int>
+                    </specialSkillsIndexes>
+                    <stats>
+                      <int>1</int>
+                      <int>1</int>
+                      <int>1</int>
+                      <int>1</int>
+                    </stats>
+                    <daysOnBoard>0</daysOnBoard>
+                    <equipedWeapon>
+                      <ID>50</ID>
+                      <names>
+                        <string>Pistolet à silex</string>
+                        <string>Flint pistol</string>
+                      </names>
+                      <value>14</value>
+                      <price>21</price>
+                      <weight>10</weight>
+                      <level>1</level>
+                      <spriteID>6</spriteID>
+                      <weaponType>Distance</weaponType>
+                      <category>Weapon</category>
+                    </equipedWeapon>
+                    <equipedCloth>
+                      <ID>155</ID>
+                      <names>
+                        <string>Fourrure</string>
+                        <string>Fur</string>
+                      </names>
+                      <value>12</value>
+                      <price>27</price>
+                      <weight>10</weight>
+                      <level>1</level>
+                      <spriteID>1</spriteID>
+                      <weaponType>Distance</weaponType>
+                      <category>Clothes</category>
+                    </equipedCloth>
+                    <job>Surgeon</job>
+                    <characterIDS>
+                      <int>9</int>
+                      <int>3</int>
+                      <int>1</int>
+                      <int>8</int>
+                      <int>5</int>
+                      <int>5</int>
+                      <int>1</int>
+                      <int>1</int>
+                      <int>0</int>
+                      <int>0</int>
+                      <int>1</int>
+                      <int>9</int>
+                      <int>1</int>
+                      <int>9</int>
+                      <int>7</int>
+                      <int>2</int>
+                    </characterIDS>
+                  </Member>
+                </MemberIDs>
+              </Crew>
+            </crews>
+          </StoryHandler>
+          <StoryHandler>
+            <row>7</row>
+            <col>61</col>
+            <fallBackLayer>0</fallBackLayer>
+            <fallbackNode>
+              <name>choix-père</name>
+              <row>3</row>
+              <col>57</col>
+            </fallbackNode>
+            <storyID>2</storyID>
+            <storyType>Quest</storyType>
             <contentDecals />
             <loots />
             <crews />
