@@ -18,12 +18,10 @@ public class MessageDisplay : MonoBehaviour {
     public CanvasGroup canvasGroup;
 
 	public delegate void OnValidate ();
-	public static OnValidate onValidate;
+	public OnValidate onValidate;
 
 	void Awake () {
 		Instance = this;
-
-        onValidate = null;
 	}
 
     private void Start()

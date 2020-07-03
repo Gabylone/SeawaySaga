@@ -8,7 +8,7 @@ public class Crews : MonoBehaviour {
     /// </summary>
 //	public static int maxHunger = 35; // pas assez
 	//public static int maxHunger = 10; // trop
-	public static int maxHunger = 5;
+	public static int maxHunger = 6;
 
     public static Crews Instance;
 
@@ -31,7 +31,7 @@ public class Crews : MonoBehaviour {
 
 	public enum PlacingType {
 
-		Map,
+		Portraits,
 		MemberCreation,
 		Inventory,
 		World,
@@ -72,14 +72,11 @@ public class Crews : MonoBehaviour {
 	{
 		if (StoryLauncher.Instance.PlayingStory) {
 
-			if (CrewMember.GetSelectedMember != Crews.playerCrew.captain) {
-				CrewMember.GetSelectedMember.Icon.MoveToPoint (Crews.PlacingType.Map);
-			}
-
-			Crews.getCrew (Crews.Side.Player).captain.Icon.MoveToPoint (Crews.PlacingType.World);
+			//Crews.getCrew (Crews.Side.Player).captain.Icon.MoveToPoint (Crews.PlacingType.World);
+            Crews.getCrew (Crews.Side.Player).UpdateCrew (Crews.PlacingType.World);
 
 		} else {
-			CrewMember.GetSelectedMember.Icon.MoveToPoint (Crews.PlacingType.Map);
+			CrewMember.GetSelectedMember.Icon.MoveToPoint (Crews.PlacingType.Portraits);
 		}
 	}
 
@@ -184,7 +181,8 @@ public class Crews : MonoBehaviour {
 
 			}
 
-			Crews.enemyCrew.captain.Icon.MoveToPoint (Crews.PlacingType.World);
+			//Crews.enemyCrew.captain.Icon.MoveToPoint (Crews.PlacingType.World);
+            Crews.enemyCrew.UpdateCrew(Crews.PlacingType.World);
 		}
 
 
@@ -296,7 +294,7 @@ public class Crews : MonoBehaviour {
 			Crews.playerCrew.AddMember (newMember);
 			Crews.enemyCrew.RemoveMember (targetMember);
 
-			newMember.Icon.MoveToPoint (Crews.PlacingType.Map);
+			newMember.Icon.MoveToPoint (Crews.PlacingType.Portraits);
 
 		}
 

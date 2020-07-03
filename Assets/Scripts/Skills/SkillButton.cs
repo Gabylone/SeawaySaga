@@ -25,8 +25,6 @@ public class SkillButton : MonoBehaviour {
 	#region description
 	public void ShowDescription ()
 	{
-		Tween.Bounce (transform);
-
 		descriptionGroup.SetActive (true);
 
  		uiText_SkillName.text = skill.skillName;

@@ -21,16 +21,7 @@ public class Transitions : MonoBehaviour {
 		if ( StoryFunctions.Instance )
 		StoryFunctions.Instance.getFunction += HandleGetFunction;
 
-		if (CombatManager.Instance) {
-			CombatManager.Instance.onFightEnd += HandleFightEnding;
-		}
 
-	}
-
-	void HandleFightEnding ()
-	{
-		// non parce que du coup quand ils s'enfuient ça reste noir
-//		actionTransition.Fade = true;
 	}
 
 	void HandleGetFunction (FunctionType func, string cellParameters)

@@ -17,7 +17,7 @@
         <xp>0</xp>
         <skillPoints>0</skillPoints>
         <specialSkillsIndexes>
-          <int>16</int>
+          <int>12</int>
         </specialSkillsIndexes>
         <stats>
           <int>1</int>
@@ -27,51 +27,51 @@
         </stats>
         <daysOnBoard>0</daysOnBoard>
         <equipedWeapon>
-          <ID>46</ID>
+          <ID>39</ID>
           <names>
-            <string>Poivrière rouillée</string>
-            <string>Rusty blunderbuss</string>
+            <string>Epée rouillée</string>
+            <string>Rock on a stick</string>
           </names>
           <value>10</value>
-          <price>25</price>
+          <price>15</price>
           <weight>10</weight>
           <level>1</level>
-          <spriteID>6</spriteID>
-          <weaponType>Distance</weaponType>
+          <spriteID>0</spriteID>
+          <weaponType>Stick</weaponType>
           <category>Weapon</category>
         </equipedWeapon>
         <equipedCloth>
-          <ID>155</ID>
+          <ID>153</ID>
           <names>
-            <string>Fourrure</string>
-            <string>Fur</string>
+            <string>Habit de paysan</string>
+            <string>Farmer clothing</string>
           </names>
           <value>12</value>
-          <price>27</price>
+          <price>26</price>
           <weight>10</weight>
           <level>1</level>
-          <spriteID>1</spriteID>
+          <spriteID>0</spriteID>
           <weaponType>Distance</weaponType>
           <category>Clothes</category>
         </equipedCloth>
-        <job>Flibuster</job>
+        <job>Cook</job>
         <characterIDS>
-          <int>6</int>
-          <int>5</int>
+          <int>10</int>
+          <int>8</int>
+          <int>7</int>
           <int>9</int>
-          <int>7</int>
-          <int>7</int>
+          <int>1</int>
+          <int>9</int>
+          <int>6</int>
+          <int>0</int>
           <int>1</int>
           <int>0</int>
+          <int>3</int>
+          <int>6</int>
+          <int>8</int>
+          <int>17</int>
+          <int>4</int>
           <int>2</int>
-          <int>0</int>
-          <int>0</int>
-          <int>3</int>
-          <int>8</int>
-          <int>8</int>
-          <int>7</int>
-          <int>3</int>
-          <int>3</int>
         </characterIDS>
       </Member>
     </MemberIDs>
@@ -81,45 +81,31 @@
     <col>0</col>
     <ids>
       <ArrayOfInt>
-        <int>27</int>
-        <int>1</int>
+        <int>32</int>
         <int>18</int>
-        <int>2</int>
-        <int>19</int>
-        <int>33</int>
+        <int>35</int>
+        <int>25</int>
+        <int>20</int>
+        <int>21</int>
       </ArrayOfInt>
       <ArrayOfInt />
       <ArrayOfInt />
       <ArrayOfInt />
     </ids>
-    <weight>22</weight>
+    <weight>21</weight>
     <AllItems>
       <ArrayOfItem>
         <Item>
-          <ID>27</ID>
+          <ID>32</ID>
           <names>
-            <string>Citron</string>
-            <string>Lemon</string>
+            <string>Clémentine</string>
+            <string>Clementine</string>
           </names>
-          <value>30</value>
-          <price>7</price>
+          <value>26</value>
+          <price>5</price>
           <weight>2</weight>
           <level>0</level>
           <spriteID>0</spriteID>
-          <weaponType>Distance</weaponType>
-          <category>Provisions</category>
-        </Item>
-        <Item>
-          <ID>1</ID>
-          <names>
-            <string>Sardine</string>
-            <string>Sardine</string>
-          </names>
-          <value>35</value>
-          <price>9</price>
-          <weight>4</weight>
-          <level>0</level>
-          <spriteID>1</spriteID>
           <weaponType>Distance</weaponType>
           <category>Provisions</category>
         </Item>
@@ -138,27 +124,41 @@
           <category>Provisions</category>
         </Item>
         <Item>
-          <ID>2</ID>
+          <ID>35</ID>
           <names>
-            <string>Thon</string>
-            <string>Tuna</string>
+            <string>Pomme</string>
+            <string>Apple</string>
           </names>
-          <value>38</value>
-          <price>8</price>
-          <weight>4</weight>
+          <value>33</value>
+          <price>7</price>
+          <weight>2</weight>
           <level>0</level>
-          <spriteID>1</spriteID>
+          <spriteID>0</spriteID>
           <weaponType>Distance</weaponType>
           <category>Provisions</category>
         </Item>
         <Item>
-          <ID>19</ID>
+          <ID>25</ID>
           <names>
-            <string>Cochon</string>
-            <string>Pig</string>
+            <string>Chou de Bruxelles</string>
+            <string>Brussel sprout</string>
           </names>
-          <value>52</value>
-          <price>14</price>
+          <value>30</value>
+          <price>2</price>
+          <weight>2</weight>
+          <level>0</level>
+          <spriteID>0</spriteID>
+          <weaponType>Distance</weaponType>
+          <category>Provisions</category>
+        </Item>
+        <Item>
+          <ID>20</ID>
+          <names>
+            <string>Gros jambon</string>
+            <string>Big ham</string>
+          </names>
+          <value>51</value>
+          <price>15</price>
           <weight>5</weight>
           <level>0</level>
           <spriteID>2</spriteID>
@@ -166,16 +166,16 @@
           <category>Provisions</category>
         </Item>
         <Item>
-          <ID>33</ID>
+          <ID>21</ID>
           <names>
-            <string>Orange</string>
-            <string>Orange</string>
+            <string>Petit jambon</string>
+            <string>Small ham</string>
           </names>
-          <value>30</value>
-          <price>3</price>
-          <weight>2</weight>
+          <value>46</value>
+          <price>18</price>
+          <weight>5</weight>
           <level>0</level>
-          <spriteID>0</spriteID>
+          <spriteID>2</spriteID>
           <weaponType>Distance</weaponType>
           <category>Provisions</category>
         </Item>
@@ -195,7 +195,7 @@
     <y>0</y>
   </treasureCoords>
   <homeCoords>
-    <x>0</x>
+    <x>4</x>
     <y>3</y>
   </homeCoords>
   <currentQuests />
@@ -204,5 +204,5 @@
   <currentRain>0</currentRain>
   <night>false</night>
   <timeOfDay>5</timeOfDay>
-  <treasureName>The Nasty Crabs</treasureName>
+  <treasureName>The Yellow Salmons</treasureName>
 </GameData>

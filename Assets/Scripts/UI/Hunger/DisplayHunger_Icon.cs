@@ -93,7 +93,7 @@ public class DisplayHunger_Icon : DisplayHunger {
         displayFood_Obj.SetActive(true);
 
         displayFood_Image.sprite = displayFood_FoodSprite;
-        displayFood_Text.text = "- " +i;
+        displayFood_Text.text = "" + (Crews.maxHunger-linkedIcon.member.CurrentHunger) + "/" + Crews.maxHunger;
 
         CancelInvoke("HideFoodFeedback");
         Invoke("HideFoodFeedback", displayFood_Delay + 1f);

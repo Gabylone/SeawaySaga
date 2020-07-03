@@ -75,8 +75,11 @@ public class CrewManager : MonoBehaviour {
 	#region crew placement
 	public void UpdateCrew ( Crews.PlacingType placingType ) {
 
-		foreach ( CrewMember member in crewMembers ) {
-			member.Icon.MoveToPoint (placingType);
+        for (int i = 0; i < crewMembers.Count; i++)
+        {
+            CrewMember crewMember = crewMembers[i];
+            crewMember.Icon.indexInList = i;
+			crewMember.Icon.MoveToPoint (placingType);
 		}
 	}
 	public float PlacingDuration {
@@ -87,7 +90,6 @@ public class CrewManager : MonoBehaviour {
 			placingDuration = value;
 		}
 	}
-
 
 	public Transform[] CrewAnchors {
 		get {
@@ -113,10 +115,12 @@ public class CrewManager : MonoBehaviour {
 			onChangeCrewMembers ();
 		}
 	}
+
     public void RemoveMember(int i)
     {
         RemoveMember(CrewMembers[i]);
     }
+
     public void RemoveMember ( CrewMember member ) {
 
 		if ( member.Icon != null )
@@ -124,15 +128,6 @@ public class CrewManager : MonoBehaviour {
 
 		managedCrew.Remove (member.MemberID);
 		crewMembers.Remove (member);
-
-		if ( side == Crews.Side.Player) {
-
-			if (CrewMembers.Count == 0) {
-				GameManager.Instance.GameOver (1f);
-				return;
-			}
-
-		}
 
 		if (onChangeCrewMembers != null) {
 			onChangeCrewMembers ();
@@ -179,7 +174,7 @@ public class CrewManager : MonoBehaviour {
 
 		managedCrew = crew;
 
-        UpdateCrew(Crews.PlacingType.Map);
+        UpdateCrew(Crews.PlacingType.Portraits);
 	}
 	#endregion
 }

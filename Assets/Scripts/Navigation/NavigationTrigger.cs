@@ -95,36 +95,12 @@ public class NavigationTrigger : MonoBehaviour {
         Transitions.Instance.ScreenTransition.FadeOut(0.5f);
         NavigationManager.Instance.ChangeChunk(direction);
     }
-    //
-    void Select ()
-	{
-        CancelInvoke("OutOfMapFeedbackDelay");
-
-        selected = true;
-
-        _boxCollider.enabled = true;
-
-    }
 
     void Deselect()
     {
         selected = false;
 
         //_boxCollider.enabled = false;
-    }
-
-    void OutOfMapFeedback()
-    {
-        DialogueManager.Instance.SetDialogueTimed("Nothing to see in this direction", Crews.playerCrew.captain);
-        Crews.playerCrew.captain.Icon.MoveToPoint(Crews.PlacingType.World);
-
-        CancelInvoke("OutOfMapFeedbackDelay");
-        Invoke("OutOfMapFeedbackDelay", outOfMapFeedbackDuration);
-    }
-
-    void OutOfMapFeedbackDelay()
-    {
-        Crews.playerCrew.captain.Icon.MoveToPoint(Crews.PlacingType.Map);
     }
 
 }

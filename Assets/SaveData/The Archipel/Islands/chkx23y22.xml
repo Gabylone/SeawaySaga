@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<Chunk xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <state>VisitedIsland</state>
+  <islandDatas>
+    <IslandData>
+      <worldPosition>
+        <x>19.3537369</x>
+        <y>-4.224369</y>
+      </worldPosition>
+      <worldRotation>35.44039</worldRotation>
+      <storyManager>
+        <hasBeenPlayed>true</hasBeenPlayed>
+        <storyHandlers>
+          <StoryHandler>
+            <row>0</row>
+            <col>0</col>
+            <fallBackLayer>0</fallBackLayer>
+            <storyID>0</storyID>
+            <storyType>Home</storyType>
+            <contentDecals />
+            <loots />
+            <crews />
+          </StoryHandler>
+        </storyHandlers>
+      </storyManager>
+    </IslandData>
+  </islandDatas>
+</Chunk>

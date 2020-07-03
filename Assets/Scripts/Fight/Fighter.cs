@@ -46,7 +46,9 @@ public class Fighter : MonoBehaviour {
 	private Transform bodyTransform;
 	public Animator animator;
 	public CrewMember crewMember;
-	public Transform arrowAnchor;
+
+    public Transform dialogueAnchor;
+
     public StatusGroup statusGroup;
 
     public IconVisual iconVisual;
@@ -432,9 +434,9 @@ public class Fighter : MonoBehaviour {
 	}
 	#endregion
 
-	public delegate void OnSelect();
-	public OnSelect onSelect;
 	public void Select () {
+
+        Debug.Log("Selecting Fighter");
 
 		if ( Pickable ) {
 			CombatManager.Instance.ChoseTargetMember (this);
@@ -446,13 +448,12 @@ public class Fighter : MonoBehaviour {
 			return;
 		}
 
-		if (onSelect != null)
-			onSelect ();
+        card.HandleOnShowInfo();
 	}
 
 	public void Speak (string txt)
 	{
-		DialogueManager.Instance.SetDialogueTimed (txt, arrowAnchor);
+		DialogueManager.Instance.SetDialogueTimed (txt, dialogueAnchor);
 	}
 
 	#region get hit

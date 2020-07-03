@@ -7,6 +7,8 @@ public class Card : MonoBehaviour {
 
 	public static Card previouslySelectedCard;
 
+    private Transform _transform;
+
     [Header("UI Elements")]
     [SerializeField]
     private GameObject cardObject;
@@ -68,7 +70,6 @@ public class Card : MonoBehaviour {
 		linkedFighter.onSetTurn += HandleOnSetTurn;
 		linkedFighter.onEndTurn += HandleOnEndTurn;
 
-		linkedFighter.onSelect += HandleOnShowInfo;
 		linkedFighter.onGetHit += HandleOnGetHit;
 
 		linkedFighter.onChangeState += HandleOnChangeState;
@@ -81,11 +82,9 @@ public class Card : MonoBehaviour {
 		HideEndTurnFeedback ();
 
 		jobGroup.SetActive (false);
-
-
 	}
 
-	void HandleOnSetPickable (bool pickable)
+    void HandleOnSetPickable (bool pickable)
 	{
 		if (pickable) {
 
@@ -117,12 +116,6 @@ public class Card : MonoBehaviour {
             item.enabled = true;
             item.effectColor = color;
         }
-
-        /*foreach (var item in linkedFighter.GetComponentsInChildren<Outline>())
-        {
-            item.enabled = true;
-            item.effectColor = color;
-        }*/
     }
 
     void HideTargetFeedback () {
@@ -144,8 +137,6 @@ public class Card : MonoBehaviour {
 		}
 	}
 
-
-	
 	void HideEndTurnFeedback () {
 		endTurnFeedback.gameObject.SetActive (false);
 	}
@@ -160,7 +151,7 @@ public class Card : MonoBehaviour {
 		UpdateMember ();
 	}
 
-	void HandleOnShowInfo ()
+	public void HandleOnShowInfo ()
 	{
 		jobGroup.SetActive (true);
 
@@ -233,6 +224,7 @@ public class Card : MonoBehaviour {
 		if( member.side == Crews.Side.Enemy ) {
 			
 			levelImage.color = member.GetLevelColor ();
+            levelText.color = member.GetLevelColor();
 		}
 
 		// HEALTH

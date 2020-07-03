@@ -85,8 +85,8 @@ public class DisplayMinimap : MonoBehaviour {
 		// quest feedback
 		Quest.onSetTargetCoords += HandleOnSetTargetCoords;
 
-		QuestManager.onFinishQuest += HandleOnFinishQuest;
-		QuestManager.onGiveUpQuest += HandleOnGiveUpQuest;
+		QuestManager.Instance.onFinishQuest += HandleOnFinishQuest;
+		QuestManager.Instance.onGiveUpQuest += HandleOnGiveUpQuest;
 
         StoryLauncher.Instance.onPlayStory += HandlePlayStoryEvent;
 
@@ -168,9 +168,16 @@ public class DisplayMinimap : MonoBehaviour {
 	void HandleOnGiveUpQuest (Quest quest)
 	{
         MinimapChunk targetMinimapChunk = GetMinimapChunk(quest.targetCoords, quest.targetID);
+
         if ( targetMinimapChunk != null)
         {
+            Debug.Log("hide target feedback quest on mini map chunck");
             targetMinimapChunk.HideQuestFeedback();
+        }
+        else
+        {
+            Debug.LogError("ERROR : not found : hide target feedback quest on mini map chunck");
+
         }
     }
 
@@ -179,7 +186,12 @@ public class DisplayMinimap : MonoBehaviour {
         MinimapChunk targetMinimapChunk = GetMinimapChunk(quest.targetCoords, quest.targetID);
         if (targetMinimapChunk != null)
         {
+            Debug.Log("hide target feedback quest on mini map chunck");
             targetMinimapChunk.ShowQuestFeedback();
+        }
+        else
+        {
+            Debug.LogError("ERROR : not found : hide target feedback quest on mini map chunck");
         }
     }
 

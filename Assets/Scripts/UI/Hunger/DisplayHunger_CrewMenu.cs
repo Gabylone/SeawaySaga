@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class DisplayHunger_CrewMenu : DisplayHunger {
 
+    public Text uiText;
+
 	// Use this for initialization
 	public override void Start ()
 	{
@@ -28,7 +30,14 @@ public class DisplayHunger_CrewMenu : DisplayHunger {
 		}
 	}
 
-	void OnDestroy () {
+    public override void UpdateHungerIcon(CrewMember member)
+    {
+        base.UpdateHungerIcon(member);
+
+        uiText.text = "" + (Crews.maxHunger-member.CurrentHunger) + "/" + Crews.maxHunger;
+    }
+
+    void OnDestroy () {
 		LootUI.useInventory -= HandleUseInventory;
 	}
 }

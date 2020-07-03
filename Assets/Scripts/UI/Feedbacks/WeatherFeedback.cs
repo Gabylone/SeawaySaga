@@ -11,8 +11,8 @@ public class WeatherFeedback : InfoFeedbacks {
 
 		TimeManager.onSetTimeOfDay += HandleOnSetTimeOfDay;
 		TimeManager.onSetRain += HandleOnSetRain;
-		QuestManager.onFinishQuest += HandleOnFinishQuest;
-		CrewMember.onWrongLevel += HandleOnWrongLevel;
+		QuestManager.Instance.onFinishQuest += HandleOnFinishQuest;
+        CrewMember.onWrongLevel += HandleOnWrongLevel;
 	}
 
 	void HandleOnSetRain ()

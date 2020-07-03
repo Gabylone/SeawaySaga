@@ -11,8 +11,8 @@ public class CrewCreator : MonoBehaviour
     private Crews.Side targetSide;
 
     [Header("General")]
-    [SerializeField]
-    private Transform crewParent;
+    public Transform crewParent_Player;
+    public Transform crewParent_Enemy;
     [SerializeField]
     private GameObject[] memberIconPrefabs;
 
@@ -74,7 +74,7 @@ public class CrewCreator : MonoBehaviour
         jobDescriptions = textAsset.text.Split('\n');
 
         // boat names
-        textAsset = Resources.Load("Names/Boat ") as TextAsset;
+        textAsset = Resources.Load("Names/Boat Names") as TextAsset;
         boatNames = textAsset.text.Split('\n');
         boatNames = Clean(boatNames);
 
@@ -98,8 +98,8 @@ public class CrewCreator : MonoBehaviour
     {
         for (int i = 0; i < strings.Length; i++)
         {
-            strings[i] = strings[i].TrimEnd('\n');
-            strings[i] = strings[i].TrimStart('\n');
+            strings[i] = strings[i].TrimEnd('\r','\n');
+            strings[i] = strings[i].TrimStart('\r','\n');
         }
 
         return strings;
@@ -160,7 +160,15 @@ public class CrewCreator : MonoBehaviour
         MemberIcon icon = iconObj.GetComponent<MemberIcon>();
 
         // set object transform
-        iconObj.transform.SetParent(crewParent);
+        if (targetSide == Crews.Side.Player)
+        {
+            iconObj.transform.SetParent(crewParent_Player);
+        }
+        else
+        {
+            iconObj.transform.SetParent(crewParent_Enemy);
+        }
+
         iconObj.transform.localScale = Vector3.one;
         iconObj.transform.position = Crews.getCrew(targetSide).CrewAnchors[(int)Crews.PlacingType.Hidden].position;
 
@@ -217,7 +225,7 @@ public enum ApparenceType
     hairColor,
 
     //jobs
-    job,
+    job, // TOTALEMENT OBSOLEE EN FAIT
     genre,
     map,
 

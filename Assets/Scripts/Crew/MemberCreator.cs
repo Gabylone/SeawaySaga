@@ -157,6 +157,7 @@ public class MemberCreator : MonoBehaviour {
         Crews.playerCrew.captain.MemberID.Name = "The Captain";
 		captainName.text = Crews.playerCrew.captain.MemberID.Name;
 
+        iconInitParent = CrewCreator.Instance.crewParent_Player;
         Crews.playerCrew.captain.Icon.transform.SetParent(iconTargetParent);
         Crews.playerCrew.captain.Icon.transform.localScale = Vector3.one;
 
@@ -189,12 +190,15 @@ public class MemberCreator : MonoBehaviour {
         Transitions.Instance.ScreenTransition.FadeIn(tweenDuration);
 
         Invoke("EndMemberCreationDelay", tweenDuration);
+
+        // c'est de la merde mais c'est pas grave
+        CharacterMenuButton.Instance.UpdateUI();
     }
 
     void EndMemberCreationDelay()
     {
         Crews.playerCrew.captain.Icon.transform.SetParent(iconInitParent);
-        Crews.playerCrew.captain.Icon.MoveToPoint(Crews.PlacingType.Map);
+        Crews.playerCrew.captain.Icon.MoveToPoint(Crews.PlacingType.Portraits);
 
         Invoke("EndMemberCreationDelay2", tweenDuration);
     }

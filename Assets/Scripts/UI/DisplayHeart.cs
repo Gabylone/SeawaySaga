@@ -32,8 +32,6 @@ public class DisplayHeart : MonoBehaviour {
 
         Vector2 v = new Vector2(width, fillImage.rectTransform.sizeDelta.y);
         fillImage.rectTransform.sizeDelta = v;
-
-        Tween.Bounce (transform, 0.2f, 1.05f);
 	}
 
 	void HandleUseInventory (InventoryActionType actionType)

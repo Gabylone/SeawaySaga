@@ -4,11 +4,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+using DG.Tweening;
+
 public class PlayerIcons : MonoBehaviour {
 
     public static PlayerIcons Instance;
 
-	public Image[] images;
+    public Image[] images;
+
+    public CanvasGroup canvasGroup;
+
+    public float fadeDuration = 0.5f;
 
     private void Awake()
     {
@@ -26,6 +32,18 @@ public class PlayerIcons : MonoBehaviour {
         HandleOnChangeCrewMembers();
 	}
 
+    public void FadeIn()
+    {
+        canvasGroup.alpha = 0f;
+        canvasGroup.DOFade(1f, fadeDuration);
+
+    }
+
+    public void FadeOut()
+    {
+        canvasGroup.DOFade(0f, fadeDuration);
+    }
+
     public Image GetImage ( int id)
     {
         return images[id];
@@ -33,6 +51,8 @@ public class PlayerIcons : MonoBehaviour {
 
     private void HandleOnCloseInventory()
     {
+        FadeOut(); 
+
         foreach (var item in images)
         {
             item.color = Color.white;
@@ -46,6 +66,8 @@ public class PlayerIcons : MonoBehaviour {
 
     void HandleOpenInventoryDelay()
     {
+        FadeIn();
+
         foreach (var item in images)
         {
             item.color = Color.grey;

@@ -13,24 +13,41 @@ public class MenuButtons : MonoBehaviour {
 	public float timeBetweenDisplay_Hide = 0.03f;
 	public RectTransform rectTransform;
 
+    public CanvasGroup canvasGroup;
+
 	public bool opened = false;
 
 	void Start () {
         Show();
 
         CombatManager.Instance.onFightStart += Hide;
-        CombatManager.Instance.onFightEnd += Show;
+        //CombatManager.Instance.onFightEnd += Show;
     }
 
-	public void Hide ()
-	{
-		group.SetActive (false);
-		opened = false;
-	}
+    public void Hide()
+    {
+        opened = false;
+
+        canvasGroup.DOFade(0f, tweenDuration);
+
+        CancelInvoke("HideDelay");
+        Invoke("HideDelay" , tweenDuration);
+    }
+
+    void HideDelay()
+    {
+        group.SetActive(false);
+    }
 
 	public void Show ()
 	{
 		opened = true;
 		group.SetActive (true);
+
+        canvasGroup.alpha = 0f;
+        canvasGroup.DOFade(1f, tweenDuration);
+
+        CancelInvoke("HideDelay");
+
     }
 }

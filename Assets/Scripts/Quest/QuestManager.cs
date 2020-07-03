@@ -27,8 +27,6 @@ public class QuestManager : MonoBehaviour {
         Quest.currentQuest = null;
         Quest.showQuestOnMap = null;
 
-        onFinishQuest = null;
-        onGiveUpQuest = null;
         onNewQuest = null;
 
 
@@ -225,7 +223,7 @@ public class QuestManager : MonoBehaviour {
 	}
 
 	public delegate void OnFinishQuest (Quest quest);
-	public static OnFinishQuest onFinishQuest;
+	public OnFinishQuest onFinishQuest;
 	void FinishQuest ()
 	{
 		Quest quest = Quest.currentQuest;
@@ -254,7 +252,7 @@ public class QuestManager : MonoBehaviour {
 	}
 
 	public delegate void OnGiveUpQuest ( Quest quest );
-	public static OnGiveUpQuest onGiveUpQuest;
+	public OnGiveUpQuest onGiveUpQuest;
 	public void GiveUpQuest (Quest quest) {
 		
 		currentQuests.Remove (quest);

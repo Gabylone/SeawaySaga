@@ -17,9 +17,9 @@ public class QuestFeedback : MonoBehaviour {
 	void Start () {
 		
 		QuestManager.Instance.onNewQuest += HandleNewQuestEvent;
-		QuestManager.onFinishQuest += HandleOnFinishQuest;
-		QuestManager.onGiveUpQuest += HandleOnGiveUpQuest;
-		StoryFunctions.Instance.getFunction += HandleGetFunction;
+		QuestManager.Instance.onFinishQuest += HandleOnFinishQuest;
+		QuestManager.Instance.onGiveUpQuest += HandleOnGiveUpQuest;
+        StoryFunctions.Instance.getFunction += HandleGetFunction;
 
 		NameGeneration.onDiscoverFormula += HandleOnDiscoverFormula;
 	}

@@ -139,7 +139,8 @@ public class StoryLauncher : MonoBehaviour {
         playingStory = false;
 
         // place captain
-        Crews.playerCrew.captain.Icon.MoveToPoint(Crews.PlacingType.Map);
+        //Crews.playerCrew.captain.Icon.MoveToPoint(Crews.PlacingType.Portraits);
+        Crews.playerCrew.UpdateCrew(Crews.PlacingType.Portraits);
 
         InGameBackGround.Instance.Hide();
 

@@ -5,8 +5,6 @@ using DG.Tweening;
 
 public class MemberIcon : MonoBehaviour {
 
-	public int index = 0;
-
 		// components
 	[Header ("Components")]
 	public GameObject group;
@@ -20,6 +18,8 @@ public class MemberIcon : MonoBehaviour {
 	public bool overable = true;
 
 	public float moveDuration = 1f;
+
+    public int indexInList = 0;
 
 	public float bodyScale = 1f;
 
@@ -70,8 +70,6 @@ public class MemberIcon : MonoBehaviour {
             default:
                 break;
         }
-
-
     }
 
     public void SetMember (CrewMember member) {
@@ -83,7 +81,6 @@ public class MemberIcon : MonoBehaviour {
 		HideBody ();
 
 		InitVisual (member.MemberID);
-
 	}
 
     #region overing
@@ -121,32 +118,21 @@ public class MemberIcon : MonoBehaviour {
 
 		Vector3 targetPos = Crews.getCrew(member.side).CrewAnchors [(int)targetPlacingType].position;
 
-        int index = member.GetIndex;
-
-        if (currentPlacingType == Crews.PlacingType.Map) {
-
-            //PlayerIcons.Instance.GetImage(index).color = Color.white;
-
-            if (index < 0) {
-				Debug.LogError ("index : " + index + " mapanchors :" + Crews.getCrew (member.side).inventoryAnchors.Length);
-				Debug.LogError ("membre à probleme  "+ member.MemberName);
-				Debug.LogError ("current membre  "+ CrewMember.GetSelectedMember.MemberName);
-			}
-
+        if (currentPlacingType == Crews.PlacingType.Portraits) {
 			targetPos = Crews.getCrew (member.side).inventoryAnchors [member.GetIndex].position;
 		}
-        else
+        else if (currentPlacingType == Crews.PlacingType.World)
         {
-            //PlayerIcons.Instance.GetImage(index).color = Color.clear;
+            int index = indexInList;
+            transform.SetParent(Crews.getCrew(member.side).worldAnchord[index]);
+            targetPos = Crews.getCrew(member.side).worldAnchord[index].position;
         }
-
-        //Debug.Log ("Moving To : " + Crews.getCrew(member.side).CrewAnchors [(int)targetPlacingType].name);
 
         rectTransform.DOMove(targetPos, moveDuration);
 
 		switch (currentPlacingType) {
 
-            case Crews.PlacingType.Map:
+            case Crews.PlacingType.Portraits:
 
                 HideBody();
 
@@ -197,8 +183,6 @@ public class MemberIcon : MonoBehaviour {
                 break;
 
 		}
-
-
     }
     #endregion
 

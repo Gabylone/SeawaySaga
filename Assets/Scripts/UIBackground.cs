@@ -66,7 +66,7 @@ public class UIBackground : MonoBehaviour {
 
     void HandleFightEndingDelay () {
 
-        Crews.playerCrew.UpdateCrew (Crews.PlacingType.Map);
+        //Crews.playerCrew.UpdateCrew (Crews.PlacingType.Portraits);
 	}
 
 	void ShowBackGround ()

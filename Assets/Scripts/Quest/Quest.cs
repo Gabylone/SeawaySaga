@@ -90,7 +90,6 @@ public class Quest {
 
 	public void Continue ()
 	{
-
 		string nodeText = StoryFunctions.Instance.CellParams;
 
 		nodeText = nodeText.Remove (0, 2);

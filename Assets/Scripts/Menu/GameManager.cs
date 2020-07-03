@@ -16,29 +16,17 @@ public class GameManager : MonoBehaviour {
 
     public static Language language = Language._en;
 
-    [SerializeField]
-	private GameObject overallObj;
-
-	public GameObject textObj;
-
-	public Image image;
-
 	public bool loadOnStart = false;
 	public bool saveOnStart = false;
 	public bool hideMemberCreation = false;
-
-	public float fadeDuration = 1f;
 
 	void Start () {
 
         Instance = this;
 
 		InitializeGame ();
-//		StartCoroutine( InitializeGame () );
-
 	}
 
-//	IEnumerator InitializeGame () {
 	public void InitializeGame () {
 
 		ItemLoader.Instance.Init ();
@@ -88,37 +76,13 @@ public class GameManager : MonoBehaviour {
 
 	}
 
-	public void Restart () {
+	public void BackToMenu () {
 		SceneManager.LoadScene ("Menu");
-	}
-
-	public void GameOver (float delay) {
-		Invoke ("GameOver", delay);
-	}
-
-	void GameOver () {
-
-		overallObj.SetActive (true);
-
-		image.color = Color.clear;
-        image.DOColor(Color.black, fadeDuration);
-
-		textObj.SetActive (false);
-
-		SaveTool.Instance.DeleteGameData ();
-
-		Invoke ("GameOverDelay",fadeDuration);
-	}
-
-	void GameOverDelay () {
-		textObj.SetActive (true);
-		Tween.Bounce ( textObj.transform );
 	}
 
     public void QuitGame()
     {
         Transitions.Instance.ScreenTransition.FadeIn(1);
-
         Invoke("QuitGameDelay" , 1f);
     }
 

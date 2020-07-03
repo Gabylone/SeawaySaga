@@ -134,7 +134,7 @@ public class DisplayQuest : MonoBehaviour {
 
     public void GiveUp()
     {
-        MessageDisplay.onValidate += HandleOnValidate;
+        MessageDisplay.Instance.onValidate += HandleOnValidate;
 
         MessageDisplay.Instance.Show("Abandon quest ?");
     }

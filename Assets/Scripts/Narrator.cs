@@ -12,6 +12,8 @@ public class Narrator : MonoBehaviour {
 	[SerializeField] private GameObject narratorObj;
 	[SerializeField] private GameObject narratorButtonObj;
 
+   
+
     public bool visible = false;
 
     void Awake () {

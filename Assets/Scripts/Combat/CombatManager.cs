@@ -13,6 +13,9 @@ public class CombatManager : MonoBehaviour {
     public Color selectionColor_Allies;
     public Color selectionColor_Self;
 
+    public delegate void OnChangeState(States currState, States prevState);
+    public OnChangeState onChangeState;
+
     // stsatesyes ?
     public enum States {
 		
@@ -36,6 +39,7 @@ public class CombatManager : MonoBehaviour {
 	private UpdateState updateState;
 	private float timeInState = 0f;
 
+    private FightOutcome currentFightOutCome = FightOutcome.None;
 
 	/// <summary>
 	/// The fighters
@@ -81,9 +85,11 @@ public class CombatManager : MonoBehaviour {
 	public delegate void FightEnding ();
 	public FightEnding onFightEnd;
 
-    public bool debugDeath = false;
+    public Skill currentSkill;
 
-	void Awake () {
+    public bool debugKill = false;
+
+    void Awake () {
 		Instance = this;
 	}
 
@@ -107,9 +113,7 @@ public class CombatManager : MonoBehaviour {
 		}
 	}
 
-	public bool debugKill = false;
-
-    // Update is called once per frame
+    #region Combat Start
     void Update()
     {
         if (updateState != null)
@@ -117,25 +121,18 @@ public class CombatManager : MonoBehaviour {
             updateState();
             timeInState += Time.deltaTime;
         }
-
-        if (debugDeath)
-        {
-            debugKill = true;
-        }
-
-        /*if (Input.GetKeyDown(KeyCode.A))
-        {
-            PlayerInfo.Instance.AddPearl( 100 );
-        }*/
     }
 
-        #region Combat Start
-        private void CombatStart_Start () {
+    private void CombatStart_Start () {
 
 		foreach (CrewMember member in Crews.enemyCrew.CrewMembers)
-			member.Icon.overable = true;
+        {
+            member.Icon.overable = true;
+        }
 
-		SortFighters ();
+        currentFightOutCome = FightOutcome.None;
+
+        SortFighters ();
 		ShowFighters ();
 
 		onFightStart ();
@@ -161,41 +158,29 @@ public class CombatManager : MonoBehaviour {
 
 	private void StartTurn_Update () {
 
-//		if (timeInState > 1f) {
-//
-//			States state = currentMember.side == Crews.Side.Player ? States.PlayerActionChoice : States.EnemyActionChoice;
-//
-//			ChangeState (state);
-//
-//		}
-
 	}
 
 	private void StartTurn_Exit () {}
 
 	public void NextTurn () {
 
-		OutCome fightOutCome = GetFightOutCome ();
-		if (fightOutCome != OutCome.None) {
+		if (currentFightOutCome != FightOutcome.None) {
 			return;
 		}
 
 		NextMember ();
 
-		if ( currentFighter.killed ) {
-			//
-			//print ("combattant mort");
+		if ( currentFighter.killed )
+        {
 			NextTurn ();
 			return;
 		}
 
-		if ( currentFighter.escaped ) {
-            //
-            //print ("combattant enfuit");
+		if ( currentFighter.escaped )
+        {
             NextTurn();
 			return;
 		}
-
 
 		Invoke ("StartNewTurn" , 1f);
 
@@ -207,57 +192,30 @@ public class CombatManager : MonoBehaviour {
 		//
 	}
 
-	public enum OutCome
+	public enum FightOutcome
 	{
-		PlayerCrewKilled,
+        None,
+
+        PlayerCrewKilled,
 		PlayerCrewEscaped,
 		EnemyCrewKilled,
 
-		None
 	}
 
-	OutCome GetFightOutCome ()
-	{
-
-		if (currEnemyFighters.Count == 0)
-			return OutCome.EnemyCrewKilled;
-
-		if (currPlayerFighters.Count == 0) {
-
-			if (Crews.playerCrew.CrewMembers.Count == 0)
-				return OutCome.PlayerCrewKilled;
-
-			return OutCome.PlayerCrewEscaped;
-		}
-
-//		Fighter enemyFighterAlive = currEnemyFighters.Find (x => x.killed == false);
-//		if (enemyFighterAlive == null)
-//			return OutCome.EnemyCrewKilled;
-//
-//		Fighter playerFighterAlive = currPlayerFighters.Find (x => x.killed == false);
-//		if (playerFighterAlive == null) {
-//			
-//			Fighter escapedFighter = currPlayerFighters.Find (x => x.escaped == true);
-//			if (escapedFighter != null)
-//				return OutCome.PlayerCrewEscaped;
-//
-//			return OutCome.PlayerCrewKilled;
-//		}
-
-		return OutCome.None;
-	}
-	void NoMorePlayersDelay() {
+	
+	void NoMorePlayersDelay()
+    {
 		
 	
 	}
-	void NoMoreEnnemiesDelay() {
+	void NoMoreEnnemiesDelay()
+    {
 		
 
 	}
 	#endregion
 
 	#region member choice
-	public Skill currentSkill;
 	public void GoToTargetSelection ( Crews.Side side , Skill skill ) {
 
 		currentSkill = skill;
@@ -272,6 +230,8 @@ public class CombatManager : MonoBehaviour {
 	public void ChoseTargetMember (Fighter fighter) {
 
 		fighter.SetAsTarget ();
+
+        Debug.Log("CHOSE TARGET MEMBER");
 
 		ChangeState (States.PlayerAction);
 	}
@@ -360,14 +320,19 @@ public class CombatManager : MonoBehaviour {
 
 
     }
-    private void PlayerMemberChoice_Update () {}
-	private void PlayerMemberChoice_Exit () {
+    private void PlayerMemberChoice_Update ()
+    {
+
+    }
+	private void PlayerMemberChoice_Exit ()
+    {
 		DisablePickable ();
         SkillDescription.Instance.Hide();
 		cancelPlayerMemberChoiceButton.SetActive (false);
 
     }
-	public void CancelPlayerMemberChoice () {
+	public void CancelPlayerMemberChoice ()
+    {
 		ChangeState (States.PlayerActionChoice);
 	}
 	#endregion
@@ -376,8 +341,12 @@ public class CombatManager : MonoBehaviour {
 	private void PlayerAction_Start () {
 
 	}
-	private void PlayerAction_Update () {}
-	private void PlayerAction_Exit () {}
+	private void PlayerAction_Update () {
+
+    }
+	private void PlayerAction_Exit () {
+
+    }
 	#endregion
 
 	#region Enemy Action Choice
@@ -391,17 +360,18 @@ public class CombatManager : MonoBehaviour {
 	private void EnemyActionChoice_Exit () {}
 	#endregion
 
-
 	#region Enemy Member Choice 
-	private void EnemyMemberChoice_Start () {
-
-		if ( currentSkill.preferedTarget != null ) {
+	private void EnemyMemberChoice_Start ()
+    {
+		if ( currentSkill.preferedTarget != null )
+        {
 			currentSkill.preferedTarget.SetAsTarget ();
 			currentSkill.preferedTarget = null;
 			return;
 		}
 
-		if (currentSkill.targetType == Skill.TargetType.Self) {
+		if (currentSkill.targetType == Skill.TargetType.Self)
+        {
 
 			// attention au pledge of feast.
 			List<Fighter> targetFighters = currEnemyFighters;
@@ -413,9 +383,12 @@ public class CombatManager : MonoBehaviour {
 
 			targetFighters [randomIndex].SetAsTarget ();
 
-		} else {
+		}
+        else
+        {
 
 			Fighter weakestFighter = currPlayerFighters [0];
+
 			foreach (var item in currPlayerFighters) {
 
 				if (item.HasStatus (Fighter.Status.Provoking)) {
@@ -457,32 +430,7 @@ public class CombatManager : MonoBehaviour {
 	#endregion
 
 	#region loot & xp
-	public void ReceiveGold () {
-
-		int po = crewValue * Random.Range (10, 15);
-
-//		currPlayerFighters [0].combatFeedback.Display (po + "or" ,Color.yellow);
-
-		GoldManager.Instance.AddGold (po);
-
-	}
-
-	public void ReceiveXp() {
-
-		foreach (var item in currPlayerFighters) {
-
-			int xpPerMember = 40;
-
-			item.combatFeedback.Display ("" + xpPerMember,Color.white);
-
-			item.crewMember.AddXP (xpPerMember);
-		}
-
-	}
-
 	void ShowLoot () {
-
-        Invoke("ReceiveGold", 0.8f);
 
         LootUI.Instance.OpenMemberLoot(Crews.playerCrew.captain);
         OtherInventory.Instance.StartLooting ();
@@ -490,15 +438,152 @@ public class CombatManager : MonoBehaviour {
 	#endregion 
 
 	#region fight end
-	public void Escape () {
+    private void DisplayEndFightMessage()
+    {
+        Debug.Log("display end fith message");
+        switch (currentFightOutCome)
+        {
+		case FightOutcome.PlayerCrewKilled:
+        Debug.Log("player crew killed");
+                HandleDefeat();
+                break;
+		case FightOutcome.PlayerCrewEscaped:
+        Debug.Log("player crew escaped");
+                HandleEscape();
+                break;
+		case FightOutcome.EnemyCrewKilled:
+        Debug.Log("enemy crew killed");
+                HandleVictory();
+                break;
+            case FightOutcome.None:
+        Debug.Log("none");
+			break;
+            default:
+			break;
+		}
 
-		StoryLauncher.Instance.EndStory ();
+        /*
+         * switch (currentFightOutCome)
+        {
+		case FightOutcome.PlayerCrewKilled:
+        HideFight();
+			break;
+		case FightOutcome.PlayerCrewEscaped:
+			Escape ();
+			Invoke ("ExitFight", 1f);
+			break;
+		case FightOutcome.EnemyCrewKilled:
+			ReceiveXp ();
+			Invoke ("ExitFight", 1f);
+			Invoke ("ShowLoot", 1.5f);
+			break;
+		case FightOutcome.None:
+			break;
+		default:
+			break;
+		}
+        */
+    }
 
-		SoundManager.Instance.PlaySound (escapeSound);
+    #region escape
+    private void HandleEscape()
+    {
+        string str = "Cowardly, CAPITAINE and his crew escape from the fight. They better not come back until they match the strenght of their foes";
+        if (Crews.playerCrew.CrewMembers.Count == 1)
+        {
+            str = "Cowardly, CAPITAINE escapes from the fight. He better not come back until he matches the strenght of his foes";
+        }
 
-	}
+        DisplayCombatResults.Instance.Display("ESCAPE !", str);
+        DisplayCombatResults.Instance.onConfirm += HandleOnConfirm_Escape;
+    }
+    private void HandleOnConfirm_Escape()
+    {
+        
 
-	public void ExitFight () {
+        DisplayCombatResults.Instance.Hide();
+
+        Invoke("Escape", 1f);
+        Invoke("HideFight", 1f);
+    }
+    void Escape()
+    {
+        StoryLauncher.Instance.EndStory();
+        SoundManager.Instance.PlaySound(escapeSound);
+    }
+    #endregion
+
+    #region defeat
+    private void HandleDefeat()
+    {
+        int goldReceived = crewValue * Random.Range(10, 15);
+        GoldManager.Instance.AddGold(goldReceived);
+
+        string str = "CAPITAINE didn't manage too bring his crew to victory. Maybe in an another life, he'll find wealth and reknown.";
+        if (Crews.playerCrew.CrewMembers.Count == 1)
+        {
+            str = "CAPITAINE didn't manage too emerge victorious from the fight. Maybe in an another life, he'll find wealth and reknown.";
+        }
+
+        DisplayCombatResults.Instance.Display("DEFEAT !", str);
+        DisplayCombatResults.Instance.onConfirm += HandleOnConfirm_Defeat;
+    }
+    private void HandleOnConfirm_Defeat()
+    {
+        DisplayCombatResults.Instance.Hide();
+
+        Transitions.Instance.ScreenTransition.FadeIn(1f);
+
+        Invoke("HandleOnConfirm_DefeatDelay", 1f);
+    }
+    private void HandleOnConfirm_DefeatDelay()
+    {
+        GameManager.Instance.BackToMenu();
+    }
+    #endregion
+
+    #region victory
+    private void HandleVictory()
+    {
+        // xp 
+        int xpPerMember = 40;
+        foreach (var item in currPlayerFighters)
+        {
+            item.combatFeedback.Display("" + xpPerMember, Color.white);
+            item.crewMember.AddXP(xpPerMember);
+        }
+
+        // gold
+        int goldReceived = crewValue * Random.Range(10, 15);
+        GoldManager.Instance.AddGold(goldReceived);
+
+        string str = "CAPITAINE and his crew sucessfly defeated their foes. Loot, gold and experience await them";
+
+        if ( Crews.playerCrew.CrewMembers.Count == 1)
+        {
+            str = "CAPITAINE sucessfly defeated his foes. Loot, gold and experience await him";
+        }
+
+        str = NameGeneration.CheckForKeyWords(str);
+
+        DisplayCombatResults.Instance.Display("VICTORY !", str);
+
+        DisplayCombatResults.Instance.DisplayResults(goldReceived, xpPerMember);
+        DisplayCombatResults.Instance.onConfirm += HandleOnConfirm_Victory;
+    }
+
+    private void HandleOnConfirm_Victory()
+    {
+        DisplayCombatResults.Instance.Hide();
+
+        Invoke("HideFight" , 0.5f);
+
+        Invoke("ShowLoot", 1f);
+
+    }
+    #endregion
+
+    public void HideFight () {
 
         fighting = false;
 
@@ -508,9 +593,6 @@ public class CombatManager : MonoBehaviour {
 		HideFighters (Crews.Side.Enemy);
 
 		onFightEnd ();
-
-
-
 	}
 	#endregion
 
@@ -565,41 +647,54 @@ public class CombatManager : MonoBehaviour {
 		foreach (Fighter f in fighters)
 			f.Hide ();
 	}
-	public void DeleteFighter (Fighter fighter) {
+    public void DeleteFighter(Fighter fighter)
+    {
 
-//		fighters.Remove (fighter);
-		if ( fighter.crewMember.side == Crews.Side.Player)
-			currPlayerFighters.Remove (fighter);
-		else
-			currEnemyFighters.Remove (fighter);
+        if (fighter.crewMember.side == Crews.Side.Player)
+        {
+            currPlayerFighters.Remove(fighter);
+        }
+        else
+        {
+            currEnemyFighters.Remove(fighter);
+        }
 
-		switch (GetFightOutCome()) {
-		case OutCome.PlayerCrewKilled:
-			ExitFight ();
-			break;
-		case OutCome.PlayerCrewEscaped:
-			Escape ();
-			Invoke ("ExitFight", 1f);
-			break;
-		case OutCome.EnemyCrewKilled:
-			ReceiveXp ();
-			Invoke ("ExitFight", 1f);
-			Invoke ("ShowLoot", 1.5f);
-			break;
-		case OutCome.None:
-			break;
-		default:
-			break;
-		}
+        DetermineFightOutcome();
 
-	}
-	#endregion
+        if (currentFightOutCome != FightOutcome.None)
+        {
+            Invoke("DisplayEndFightMessage", 1f);
+        }
+    }
+    private void DetermineFightOutcome()
+    {
+        if (currEnemyFighters.Count == 0)   
+        {
+            currentFightOutCome = FightOutcome.EnemyCrewKilled;
+            return;
+        }
 
-	#region StateMachine
-	public delegate void OnChangeState (States currState , States prevState);
-	public OnChangeState onChangeState;
-	public void ChangeState ( States newState ) {
+        if (currPlayerFighters.Count == 0)
+        {
 
+            if (Crews.playerCrew.CrewMembers.Count == 0)
+            {
+                currentFightOutCome = FightOutcome.PlayerCrewKilled;
+                return;
+            }
+
+            currentFightOutCome = FightOutcome.PlayerCrewEscaped;
+            return;
+        }
+
+        currentFightOutCome = FightOutcome.None;
+    }
+    #endregion
+
+    #region StateMachine
+    public void ChangeState ( States newState ) {
+
+        Debug.Log("changing state to : " + newState);
 
 		previousState = currentState;
 		currentState = newState;

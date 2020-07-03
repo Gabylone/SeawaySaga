@@ -39,13 +39,7 @@ public class MainMenuManager : MonoBehaviour {
         mapsGroup.SetActive(false);
         MenuObj.SetActive(false);
 
-		/*if (SaveTool.Instance.FileExists ("game data")) {
-			loadButton.SetActive (true);
-			KeepOnLoad.displayTuto = false;
-		} else {
-			loadButton.SetActive (false);
-			KeepOnLoad.displayTuto = true;
-		}*/
+
 	}
 
 	public void NewGameButton () {
@@ -58,17 +52,6 @@ public class MainMenuManager : MonoBehaviour {
         CancelInvoke("HideMapsDelay");
 
         MenuObj.SetActive(false);
-
-        /*if (SaveTool.Instance.FileExists ("game data")) {
-
-			MessageDisplay.onValidate += HandleOnValidate;
-			MessageDisplay.Instance.Show ("Ecraser sauvegarde ?");
-
-		} else {
-			
-			HandleOnValidate ();
-
-		}*/
     }
 
     public void HideMaps ()

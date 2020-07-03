@@ -77,8 +77,6 @@ public class CombatFeedback : MonoBehaviour {
 			return;
 		}
 
-        Debug.Log("displaying : " + content);
-
         // ui text
         text.gameObject.SetActive(true);
         text.color = color;

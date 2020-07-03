@@ -1,15 +1,15 @@
 <?xml version="1.0"?>
 <Chunk xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <state>UndiscoveredIsland</state>
+  <state>VisitedIsland</state>
   <islandDatas>
     <IslandData>
       <worldPosition>
-        <x>11.1408949</x>
-        <y>8.202429</y>
+        <x>-12.9408455</x>
+        <y>18.6769447</y>
       </worldPosition>
-      <worldRotation>60.8374367</worldRotation>
+      <worldRotation>43.12863</worldRotation>
       <storyManager>
-        <hasBeenPlayed>false</hasBeenPlayed>
+        <hasBeenPlayed>true</hasBeenPlayed>
         <storyHandlers>
           <StoryHandler>
             <row>0</row>
@@ -17,7 +17,8 @@
             <fallBackLayer>0</fallBackLayer>
             <storyID>1</storyID>
             <storyType>Treasure</storyType>
-            <contentDecals />
+            <contentDecals>
+            </contentDecals>
             <loots />
             <crews />
           </StoryHandler>

@@ -26,8 +26,8 @@ Choice : (don’t get involved)(leave);Choice : Hey! You’ll return the stole
 HideOther;OtherSpeak : Ahahah, we seem to have a hero there fellas, how pathetic!;;;PlayerSpeak : Huzzah!;CheckStatDEX;;CheckStatCHA;
 Leave;Node=>combat bandits;;;Node=>combat bandits;PlayerSpeak : Bye!;OtherSpeak : Where do you think you’re going?;PlayerSpeak : Leave now, before I change my mind.;OtherSpeak : Don’t make me laugh!
 ;;;;;HideOther;Node=>combat bandits;OtherSpeak : We better not risk it lads, let’s go...;Node=>combat bandits
-;;;;;Leave;;HideOther;
-[combat bandits];;;;;;;Leave;
+;;;;;Leave;;Fade;
+[combat bandits];;;;;;;Node=>cargaison;
 LaunchCombat;;;;;;;;
 [cargaison];;;;;;;;
 RandomRange4;;;;;;;;

@@ -17,8 +17,6 @@ public class StatButton : MonoBehaviour {
 		button = GetComponent<Button> ();
 		text = GetComponentInChildren<Text> ();
 
-        onClickStatButton += UpdateDisplay;
-
         InGameMenu.Instance.onDisplayCrewMember += HandleOnCardUpdate;
 		SkillButton_Inventory.onUnlockSkill += UpdateDisplay;
 
@@ -50,7 +48,7 @@ public class StatButton : MonoBehaviour {
 		if (member == null)
 			return;
 
-		if (member.SkillPoints > 0 && member.GetStat(stat) < 7) {
+		if (member.SkillPoints > 0 && member.GetStat(stat) < 6) {
 			Enable ();
 		} else {
 			Disable ();
@@ -70,5 +68,8 @@ public class StatButton : MonoBehaviour {
 
 		if (onClickStatButton!=null)
 			onClickStatButton ();
-	}
+
+        UpdateDisplay();
+
+    }
 }

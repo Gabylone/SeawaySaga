@@ -155,13 +155,7 @@ public class Skill : MonoBehaviour {
 			fighter.TargetFighter.CheckContact (fighter);
 
 			Invoke ("InvokeMoveBack",1f);
-		}/*
-        quand on faisait ça il bougeaint meme quand il devait restart sur place
-
-        else
-        {
-            InvokeMoveBack();
-        }*/
+		}
 	}
 
 	void InvokeMoveBack()  {
@@ -183,14 +177,15 @@ public class Skill : MonoBehaviour {
 
 	void EndSkillDelay () {
 
+        Debug.Log("end skill delay");
+
 		if (fighter.crewMember.side == Crews.Side.Player) {
 
 			if ( fighter.crewMember.CanUseSkills() == false ) {
-				fighter.EndTurn ();
+                fighter.EndTurn();
 				CombatManager.Instance.NextTurn ();
 				return;
 			}
-
 
 			CombatManager.Instance.ChangeState (CombatManager.States.PlayerActionChoice);
 

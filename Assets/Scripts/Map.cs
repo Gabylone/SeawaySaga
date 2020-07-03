@@ -148,7 +148,7 @@ public class Map : MonoBehaviour {
     {
         MessageDisplay.Instance.Show("Erase game ?");
 
-        MessageDisplay.onValidate += ConfirmEraseMap;
+        MessageDisplay.Instance.onValidate += ConfirmEraseMap;
     }
 
 

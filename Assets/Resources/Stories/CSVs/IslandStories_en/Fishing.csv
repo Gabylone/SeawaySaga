@@ -1,11 +1,11 @@
 Nom;Fréquence %;Sprite ID;;;;;;;;;
 Peche;0;1;;;;;;;;;
 [debut];;;;;;;;;;;
-PlayerSpeak : I can spot some movement down here. This must be a good fishing spot!;;;;;[fish];;;;;[fail fish];
-SetChoices2;;;;;CheckInInventory<Canne à pêche>/Misc;;;;;RandomPercent25;
-Choice : (leave);Choice : (fish);;;;CheckStatSTR;;;PlayerSpeak : I don’t have a fishing rod...;;PlayerSpeak : The fish got away...;PlayerSpeak : Oh no, the fish got away!
-Leave;Node=>fish;;;;Fade;Node=>fail fish;;Leave;;PlayerSpeak : and my fishing rod broke!;Leave
-;;;;;PlayerSpeak : Good catch!;;;;;Leave;
+SetBG(Boat);;;;;[fish];;;;;[fail fish];
+PlayerSpeak : I can spot some movement down here. This must be a good fishing spot!;;;;;CheckInInventory<Canne à pêche>/Misc;;;;;RandomPercent25;
+SetChoices2;;;;;CheckStatSTR;;;PlayerSpeak : I don’t have a fishing rod...;;PlayerSpeak : The fish got away...;PlayerSpeak : Oh no, the fish got away!
+Choice : (leave);Choice : (fish);;;;Fade;Node=>fail fish;;Leave;;PlayerSpeak : and my fishing rod broke!;Leave
+Leave;Node=>fish;;;;PlayerSpeak : Good catch!;;;;;Leave;
 ;;;;;RandomRange3;;;;;;
 ;;;;;AddToInventory<Maquereau>/Food;AddToInventory<Hareng>/Food;AddToInventory<Sardine>/Food;;;;
 ;;;;;Leave;Leave;Leave;;;;

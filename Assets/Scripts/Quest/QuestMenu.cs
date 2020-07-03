@@ -46,7 +46,7 @@ public class QuestMenu : MonoBehaviour {
 
 	void Start () {
 		
-		QuestManager.onGiveUpQuest += HandleOnGiveUpQuest;
+		QuestManager.Instance.onGiveUpQuest += HandleOnGiveUpQuest;
 //		CrewInventory.Instance.closeInventory += HandleCloseInventory;
 
 		RayBlocker.onTouchRayBlocker += HandleOnTouchRayBlocker;

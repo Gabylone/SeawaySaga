@@ -10,8 +10,6 @@ public class SkillButton_Inventory : SkillButton {
 
     public Animator padlockAnimator;
 
-    private bool selected = false;
-
     public delegate void OnUnlockSkill();
     public static OnUnlockSkill onUnlockSkill;
 
@@ -46,7 +44,6 @@ public class SkillButton_Inventory : SkillButton {
 
 		} else {
 			padlockAnimator.SetTrigger ("giggle");
-			Tween.Bounce (padlockObj.transform);
 		}
 
 	}
@@ -55,7 +52,6 @@ public class SkillButton_Inventory : SkillButton {
 
 		button.interactable = false;
 
-		Tween.Bounce ( padlockObj.transform );
 		Invoke ("HidePadlock", Tween.defaultDuration);
 
 	}

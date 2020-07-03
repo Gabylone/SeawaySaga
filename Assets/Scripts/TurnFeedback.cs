@@ -32,7 +32,7 @@ public class TurnFeedback : MonoBehaviour {
 
 	void Update () {
 		if (lerping) {
-			rectTransform.position = Vector3.Lerp (initPos, CombatManager.Instance.currentFighter.arrowAnchor.position, timer / duration);
+			rectTransform.position = Vector3.Lerp (initPos, CombatManager.Instance.currentFighter.dialogueAnchor.position, timer / duration);
 
 			timer += Time.deltaTime;
 

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
+[System.Serializable]
 public class Member {
 
 	public static int globalID = 0;
@@ -41,6 +42,7 @@ public class Member {
 	public void SetJob ( Job _job ) {
 		
 		this.job = _job;
+
 
 		specialSkillsIndexes.Clear();
 
@@ -103,9 +105,7 @@ public class Member {
 
         // JOB & SKILLS
         List<int> possibleIDs = new List<int>();
-        List<ApparenceItem> appItems = CrewCreator.Instance.apparenceGroups[(int)ApparenceType.job].items.FindAll( x => !x.locked );
-
-        SetJob((Job)appItems[Random.Range(0, appItems.Count)].id);
+        SetJob((Job)Random.Range(0, 5));
 
 		// STATS
 		int statAmount = Lvl - 1;

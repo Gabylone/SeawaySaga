@@ -52,7 +52,7 @@ Leave;Fade;Fade;Fade;;Node=>debut salon;Node=>cuisine;;;;;;
 ;;;;;;;;;;;;
 ;;;;;;;;;;;;
 [debut salon];;;;;;;;;;;;
-SetBG(Tavern);;;;;;;;;;;;
+SetBG(Tavern);Node=>vielle dame;;;;;;;;;;;
 RandomRange3;;;Node=>check bandits;;;;;;;;;
 Node=>salon vide;Node=>salon guet apens;Node=>vielle dame;[check bandits];;;;;;;;;
 ;;;Node=>salon guet apens;Node=>vielle dame;;;;;;;;

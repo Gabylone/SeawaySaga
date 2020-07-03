@@ -35,14 +35,6 @@ public class BoatUpgradeManager : MonoBehaviour {
 	[SerializeField]
 	private GameObject menuObj;
 
-	[Header("Crew")]
-	[SerializeField]
-	private GameObject[] crewIcons;
-    public GameObject[] crewIconCloseButtons;
-    public Text crewPriceText;
-
-    public Button upgradeCrewButton;
-
     [Header("Sounds")]
     [SerializeField] private AudioClip upgradeSound;
 
@@ -182,54 +174,9 @@ public class BoatUpgradeManager : MonoBehaviour {
 
         boatUpgradeButtons[0].UpdateUI( Boats.Instance.playerBoatInfo.shipRange );
         boatUpgradeButtons[1].UpdateUI( Boats.Instance.playerBoatInfo.cargoLevel);
-
-        UpgradeCrewButton();
+        boatUpgradeButtons[2].UpdateUI( Boats.Instance.playerBoatInfo.crewCapacity);
 	}
 
-    private void UpgradeCrewButton()
-    {
-        // starts at one to leave captain alone
-        for (int i = 1; i < crewIcons.Length; ++i)
-        {
-            if (i < Crews.playerCrew.CrewMembers.Count)
-            {
-                crewIcons[i].GetComponentInChildren<Image>().color = Color.white;
-                crewIconCloseButtons[i].SetActive(true);
-            }
-            else if (i < Crews.playerCrew.CurrentMemberCapacity)
-            {
-                crewIcons[i].GetComponentInChildren<Image>().color = Color.gray;
-                crewIconCloseButtons[i].SetActive(false);
-            }
-            else
-            {
-                crewIcons[i].GetComponentInChildren<Image>().color = Color.black;
-                crewIconCloseButtons[i].SetActive(false);
-            }
-        }
-
-
-        if (trading)
-        {
-
-            upgradeCrewButton.gameObject.SetActive(true);
-
-            if (Crews.playerCrew.CurrentMemberCapacity == crewIcons.Length)
-            {
-                upgradeCrewButton.interactable = false;
-                crewPriceText.text = "MAX";
-            }
-            else
-            {
-                upgradeCrewButton.interactable = true;
-                crewPriceText.text = "" + GetPrice(UpgradeType.Crew);
-            }
-        }
-        else
-        {
-            upgradeCrewButton.gameObject.SetActive(false);
-        }
-    }
 
     public void StartTrading()
     {
@@ -262,7 +209,7 @@ public class BoatUpgradeManager : MonoBehaviour {
         memberToRemove = i;
 
         MessageDisplay.Instance.Show("Abandon " + Crews.playerCrew.CrewMembers[i].MemberName + " ?");
-        MessageDisplay.onValidate += ConfirmRemoveMember;
+        MessageDisplay.Instance.onValidate += ConfirmRemoveMember;
     }
 
     public void ConfirmRemoveMember()

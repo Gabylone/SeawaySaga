@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class CharacterMenuButton : MonoBehaviour {
 
+    public static CharacterMenuButton Instance;
+
 	public Image jobImage;
 
 	public Text jobText;
@@ -14,23 +16,25 @@ public class CharacterMenuButton : MonoBehaviour {
 
 	public GameObject group;
 
+    private void Awake()
+    {
+        Instance = this;
+    }
+
     void Start()
     {
-
         InGameMenu.Instance.onOpenMenu += HandleOpenInventory;
         SkillMenu.Instance.onHideSkillMenu += UpdateUI;
 
         UpdateUI();
-
     }
-
 
 	void HandleOpenInventory ()
 	{
 		UpdateUI ();
 	}
 
-	void UpdateUI ()
+	public void UpdateUI ()
 	{
 		if (CrewMember.GetSelectedMember == null)
 			return;

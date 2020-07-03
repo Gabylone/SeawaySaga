@@ -209,35 +209,37 @@ public class CrewMember {
         // return
         SetSelectedMember(this);
 
-        if (previousMember != null)
+        Crews.playerCrew.UpdateCrew(Crews.PlacingType.Portraits);
+
+        /*if (previousMember != null)
         {
             if (StoryLauncher.Instance.PlayingStory && OtherInventory.Instance.type == OtherInventory.Type.None)
             {
                 if (GetSelectedMember != Crews.playerCrew.captain)
                 {
-                    Crews.getCrew(Crews.Side.Player).captain.Icon.MoveToPoint(Crews.PlacingType.Map);
+                    Crews.getCrew(Crews.Side.Player).captain.Icon.MoveToPoint(Crews.PlacingType.Portraits);
 
                     if (previousMember != Crews.playerCrew.captain)
                     {
-                        previousMember.Icon.MoveToPoint(Crews.PlacingType.Map);
+                        previousMember.Icon.MoveToPoint(Crews.PlacingType.Portraits);
                     }
                 }
                 else
                 {
                     if (previousMember != Crews.playerCrew.captain)
                     {
-                        previousMember.Icon.MoveToPoint(Crews.PlacingType.Map);
+                        previousMember.Icon.MoveToPoint(Crews.PlacingType.Portraits);
                     }
                 }
 
             }
             else
             {
-                previousMember.Icon.MoveToPoint(Crews.PlacingType.Map);
+                previousMember.Icon.MoveToPoint(Crews.PlacingType.Portraits);
 
             }
 
-        }
+        }*/
 
         Icon.MoveToPoint(Crews.PlacingType.Inventory);
 

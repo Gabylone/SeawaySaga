@@ -32,6 +32,8 @@ public class DisplayTreasure : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         StoryFunctions.Instance.getFunction += HandleOnGetFunction;
+
+        group.SetActive(false);
 	}
 
     private void HandleOnGetFunction(FunctionType func, string cellParameters)
@@ -45,12 +47,11 @@ public class DisplayTreasure : MonoBehaviour {
     private void ShowTreasure()
     {
         group.SetActive(true);
-
     }
 
     public void OpenChest()
     {
-        if (KeepOnLoad.Instance != null && KeepOnLoad.Instance.mapName != "")
+        /*if (KeepOnLoad.Instance != null && KeepOnLoad.Instance.mapName != "")
         {
             pearlAmount = KeepOnLoad.Instance.price;
         }
@@ -65,7 +66,22 @@ public class DisplayTreasure : MonoBehaviour {
 
         displayPearls.Show();
 
-        Invoke("ShowPearls", showPearlsDelay );
+        Invoke("ShowPearls", showPearlsDelay );*/
+
+        animator.SetTrigger("open");
+
+        CancelInvoke("CloseTreasure");
+        Invoke("CloseTreasure", 1f);
+    }
+
+    void CloseTreasure()
+    {
+        animator.SetTrigger("close");
+
+        CancelInvoke("ShowMessage");
+        Invoke("ShowMessage", 1f);
+
+        animator.transform.DOMove( animator.transform.position - Vector3.up * 15f , 1f );
     }
 
     void ShowPearls()
@@ -117,17 +133,23 @@ public class DisplayTreasure : MonoBehaviour {
         yield return new WaitForSeconds(pearlDuration);
 
         // add next map / or / finish game
-        MessageDisplay.onValidate += EndGame;
+        ShowMessage();
 
-        if ( MapGenerator.mapParameters.id == 4)
+    }
+
+    void ShowMessage()
+    {
+        MessageDisplay.Instance.onValidate += EndGame;
+
+        if (MapGenerator.mapParameters.id == 4)
         {
             MessageDisplay.Instance.Show("Well done ! You finished the game");
         }
         else
         {
-            if (CrewCreator.Instance.GetApparenceItem(ApparenceType.map, MapGenerator.mapParameters.id+1).locked)
+            if (CrewCreator.Instance.GetApparenceItem(ApparenceType.map, MapGenerator.mapParameters.id + 1).locked)
             {
-                PlayerInfo.Instance.AddApparenceItem(CrewCreator.Instance.GetApparenceItem(ApparenceType.map, MapGenerator.mapParameters.id+1));
+                PlayerInfo.Instance.AddApparenceItem(CrewCreator.Instance.GetApparenceItem(ApparenceType.map, MapGenerator.mapParameters.id + 1));
                 MessageDisplay.Instance.Show("You unlocked the next story !");
             }
             else
@@ -138,7 +160,6 @@ public class DisplayTreasure : MonoBehaviour {
         }
 
         PlayerInfo.Instance.Save();
-
     }
 
     void EndGame()

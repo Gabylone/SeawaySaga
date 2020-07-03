@@ -10,25 +10,20 @@ public class CrewMemberEquipment : MonoBehaviour {
 	public RectTransform rectTransform;
 
 	public GameObject group;
-
+    
 	// Use this for initialization
 	void Start () {
 
 //		rectTransform = GetComponent<RectTransform> ();
 
-		HideAll ();
+		/*HideAll ();
 
 		LootUI.onShowLoot += HandleOnShowLoot;
-		LootUI.onHideLoot += HandleOnHideLoot;
+		LootUI.onHideLoot += HandleOnHideLoot;*/
 	}
 
-	void HandleOnHideLoot ()
-	{
-		CrewMember.GetSelectedMember.Icon.MoveToPoint (Crews.PlacingType.Inventory);
-		StartCoroutine (HandleOnHideLootCoroutine ());
-	}
-
-	void HideAll ()
+    #region show
+    void HideAll ()
 	{
 
 		group.SetActive (false);
@@ -61,7 +56,18 @@ public class CrewMemberEquipment : MonoBehaviour {
 		yield return new WaitForEndOfFrame ();
 	}
 
-	IEnumerator HandleOnHideLootCoroutine ()
+    #endregion
+
+    #region hide 
+    void HandleOnHideLoot()
+    {
+        //CrewMember.GetSelectedMember.Icon.MoveToPoint(Crews.PlacingType.Inventory);
+
+
+        StartCoroutine(HandleOnHideLootCoroutine());
+    }
+
+    IEnumerator HandleOnHideLootCoroutine ()
 	{
 		for (int i = 0; i < buttonObjs.Length; i++) {
 
@@ -83,4 +89,5 @@ public class CrewMemberEquipment : MonoBehaviour {
 		HideAll ();
 		yield return new WaitForEndOfFrame ();
 	}
+    #endregion
 }

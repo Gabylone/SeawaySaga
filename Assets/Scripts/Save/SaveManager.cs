@@ -125,8 +125,6 @@ public class SaveManager : MonoBehaviour
 	#region save game data
 	public void SaveGameData () {
 
-        Debug.Log("saving game data...");
-
 		FormulaManager.Instance.SaveFormulas ();
 
 		Crews.Instance.SavePlayerCrew ();
