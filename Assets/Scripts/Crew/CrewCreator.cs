@@ -259,7 +259,7 @@ public class ApparenceItem
 
     public int id = 0;
 
-    public int price = 10;
+    public bool finished = false;
 
     public void Init (int i)
     {

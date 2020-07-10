@@ -47,25 +47,28 @@ public class DisplayMinimap : MonoBehaviour {
 	/// zoom
 	/// </summary>
 	public float zoomDuration = 0.8f;
+    bool unzooming = false;
 
-	public RectTransform zoomParent;
+    public RectTransform zoomParent;
     public float initPosY = 0f;
     public float initPosX = 0f;
 	public float initScaleY = 0f;
 	public float initScaleX = 0f;
 
     public GameObject zoomBackground;
+    public bool zoomed = false;
+    ///
 
 	public Image outlineImage;
 
 	public GameObject mapCloseButton;
 
+    public RectTransform viewport_RectTransofrm;
+
     public List<MinimapChunk> minimapChunks = new List<MinimapChunk>();
 
 	void Awake () {
 		Instance = this;
-
-        onZoom = null;
 	}
 
 	// Use this for initialization
@@ -101,7 +104,6 @@ public class DisplayMinimap : MonoBehaviour {
 
 		ClampScrollView ();
 	}
-
     public void Init () {
 		InitMap ();
 	}
@@ -534,8 +536,6 @@ public class DisplayMinimap : MonoBehaviour {
 	}
 
 	#region zoom / unzoom
-	public delegate void OnZoom ();
-	public static OnZoom onZoom;
 	public void Zoom ()
 	{
 		Transitions.Instance.ScreenTransition.FadeIn (zoomDuration/2f);
@@ -558,28 +558,20 @@ public class DisplayMinimap : MonoBehaviour {
 		rectTransform.offsetMin = scale;
 		rectTransform.offsetMax = scale;
 
-//		HOTween.To (outlineImage, zoomDuration /2f , "color" , Color.clear );
-		outlineImage.gameObject.SetActive(false);
-
-        //zoomBackground.SetActive(true);
-
+        outlineImage.gameObject.SetActive(false);
 
         rayBlockerImage.gameObject.SetActive(true);
 		rayBlockerImage.color = Color.black;
 
 		viewPortMask.enabled = false;
-//		viewPortRectTransform.
-//		HOTween.To (rayBlockerImage, zoomDuration, "color", c, false , EaseType.Linear , zoomDuration);
 
 		Transitions.Instance.ScreenTransition.FadeOut (zoomDuration/2f);
 
 		ClampScrollView ();
 
-		if (onZoom != null)
-			onZoom ();
+        zoomed = true;
 	}
 
-	bool unzooming = false;
 
 	public void UnZoom ()
 	{
@@ -591,7 +583,6 @@ public class DisplayMinimap : MonoBehaviour {
 		Transitions.Instance.ScreenTransition.FadeIn (zoomDuration/2f);
 
 		unzooming = true;
-
 
 		Invoke ("HideCloseButton",0.2f);
 		Invoke ("UnZoomDelay", zoomDuration/2f);
@@ -610,14 +601,14 @@ public class DisplayMinimap : MonoBehaviour {
 
         rectTransform.anchoredPosition = Vector2.zero;
 
-        //zoomBackground.SetActive(false);
-
         viewPortMask.enabled = true;
 
 		ClampScrollView ();
 
 		outlineImage.gameObject.SetActive(true);
 		Transitions.Instance.ScreenTransition.FadeOut (zoomDuration/2f);
+
+        zoomed = false;
 	}
 
 	void ShowCloseButton ()

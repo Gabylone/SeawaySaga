@@ -26,16 +26,6 @@ public class SaveManager : MonoBehaviour
 	}
 
 	void Start () {
-		
-        /*if ( Directory.Exists(SaveTool.Instance.GetSaveFolderPath("PlayerInfo")))
-        {
-            Debug.Log("save file exists");
-
-        }
-        else
-        {
-            Debug.Log("save file does not exist");
-        }*/
 
         if ( SaveTool.Instance.FileExists ("PlayerInfo" , "player info"))
         {
@@ -118,12 +108,15 @@ public class SaveManager : MonoBehaviour
 
         MapGenerator.Instance.treasureName = gameData.treasureName;
 
+        PinManager.Instance.LoadPins();
 
 	}
 	#endregion
 
 	#region save game data
 	public void SaveGameData () {
+
+        Debug.Log("saving...");
 
 		FormulaManager.Instance.SaveFormulas ();
 
@@ -139,6 +132,8 @@ public class SaveManager : MonoBehaviour
 		GameData.playerGold = GoldManager.Instance.goldAmount;
 
         gameData.treasureName = MapGenerator.Instance.treasureName;
+
+        gameData.pins = PinManager.Instance.pins;
 
 		// karma
 		Karma.Instance.SaveKarma ();
@@ -157,13 +152,10 @@ public class SaveManager : MonoBehaviour
 	/// </summary>
 	#region Load island data
 	public void LoadAllIslands () {
-
-//		LoadAllIslandCoroutine ();
 		StartCoroutine(LoadAllIslandCoroutine ());
 	}
 
 	IEnumerator LoadAllIslandCoroutine () {
-//	void LoadAllIslandCoroutine () {
 
 		MapGenerator.Instance.LoadMap ();
 
@@ -175,8 +167,6 @@ public class SaveManager : MonoBehaviour
 		LoadingScreen.Instance.StartLoading ("Chargement îles", (int)((float)files.Length/2f));
 
 		int l = 0;
-
-        Debug.Log("number of files : " + files.Length);
 
 		foreach (var item in files) {
 
@@ -208,17 +198,12 @@ public class SaveManager : MonoBehaviour
 	}
 
 	public void SaveAllIslands () {
-
-        Debug.Log("saving all island...");
-
         StartCoroutine(SaveAllIslandsCoroutine ());
-//		SaveAllIslandsCoroutine ();
 	}
-	IEnumerator SaveAllIslandsCoroutine () {
-//	void SaveAllIslandsCoroutine () {
 
-//		LoadingScreen.Instance.StartLoading ("Sauvegarde îles", MapGenerator.Instance.MapScale * MapGenerator.Instance.MapScale);
-		LoadingScreen.Instance.StartLoading ("Sauvegarde îles", MapGenerator.Instance.MapScale_X * MapGenerator.Instance.IslandsPerCol);
+	IEnumerator SaveAllIslandsCoroutine () {
+
+        LoadingScreen.Instance.StartLoading ("Sauvegarde îles", MapGenerator.Instance.MapScale_X * MapGenerator.Instance.IslandsPerCol);
 
 		yield return new WaitForEndOfFrame ();
 
@@ -254,7 +239,6 @@ public class SaveManager : MonoBehaviour
 
                 if( currentLoadLimit == loadLimit)
                 {
-                    //yield return new WaitForEndOfFrame();
                     yield return new WaitForSeconds(timeBetweenFrames);
                     LoadingScreen.Instance.Push (l);
                     currentLoadLimit = 0;
@@ -281,9 +265,12 @@ public class SaveManager : MonoBehaviour
         PlayerBoat.Instance.SetTargetPos(islandPos);
         CamBehavior.Instance.RefreshCamOnPlayer();
 	}
-	public void SaveCurrentIsland () {
-		//
-	}
+
+    public void SaveCurrentIsland()
+    {
+        //
+    }
+
 	public Coords GetCoordsFromFile ( string str ) {
 
 		string s = str.Remove (0, 4);
@@ -392,6 +379,7 @@ public class GameData
 
     public string               treasureName = "";
 
+    public List<Pin>            pins = new List<Pin>();
 
 	public GameData()
 	{

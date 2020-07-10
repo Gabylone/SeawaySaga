@@ -149,6 +149,7 @@ public class DisplayTreasure : MonoBehaviour {
         {
             if (CrewCreator.Instance.GetApparenceItem(ApparenceType.map, MapGenerator.mapParameters.id + 1).locked)
             {
+                CrewCreator.Instance.GetApparenceItem(ApparenceType.map, MapGenerator.mapParameters.id + 1).finished = true;
                 PlayerInfo.Instance.AddApparenceItem(CrewCreator.Instance.GetApparenceItem(ApparenceType.map, MapGenerator.mapParameters.id + 1));
                 MessageDisplay.Instance.Show("You unlocked the next story !");
             }

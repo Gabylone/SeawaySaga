@@ -12,12 +12,12 @@
         <Name>The Captain</Name>
         <health>100</health>
         <maxHealth>100</maxHealth>
-        <currentHunger>1</currentHunger>
+        <currentHunger>4</currentHunger>
         <Lvl>1</Lvl>
         <xp>0</xp>
         <skillPoints>0</skillPoints>
         <specialSkillsIndexes>
-          <int>12</int>
+          <int>8</int>
         </specialSkillsIndexes>
         <stats>
           <int>1</int>
@@ -25,53 +25,53 @@
           <int>1</int>
           <int>1</int>
         </stats>
-        <daysOnBoard>1</daysOnBoard>
+        <daysOnBoard>4</daysOnBoard>
         <equipedWeapon>
-          <ID>41</ID>
+          <ID>52</ID>
           <names>
-            <string>Dague cassée</string>
-            <string>Large branch</string>
+            <string>Pistolet négligé</string>
+            <string>Sloppy gun</string>
           </names>
-          <value>13</value>
+          <value>8</value>
           <price>20</price>
           <weight>10</weight>
           <level>1</level>
-          <spriteID>1</spriteID>
-          <weaponType>Stick</weaponType>
+          <spriteID>6</spriteID>
+          <weaponType>Distance</weaponType>
           <category>Weapon</category>
         </equipedWeapon>
         <equipedCloth>
-          <ID>155</ID>
+          <ID>153</ID>
           <names>
-            <string>Fourrure</string>
-            <string>Fur</string>
+            <string>Habit de paysan</string>
+            <string>Farmer clothing</string>
           </names>
           <value>12</value>
-          <price>27</price>
+          <price>26</price>
           <weight>10</weight>
           <level>1</level>
-          <spriteID>1</spriteID>
+          <spriteID>0</spriteID>
           <weaponType>Distance</weaponType>
           <category>Clothes</category>
         </equipedCloth>
-        <job>Cook</job>
+        <job>Surgeon</job>
         <characterIDS>
+          <int>3</int>
+          <int>8</int>
+          <int>3</int>
+          <int>7</int>
+          <int>2</int>
+          <int>6</int>
+          <int>4</int>
+          <int>1</int>
+          <int>1</int>
+          <int>1</int>
           <int>7</int>
           <int>1</int>
-          <int>4</int>
-          <int>2</int>
-          <int>1</int>
-          <int>5</int>
-          <int>0</int>
-          <int>2</int>
-          <int>1</int>
-          <int>0</int>
-          <int>1</int>
-          <int>5</int>
-          <int>13</int>
-          <int>13</int>
-          <int>2</int>
-          <int>0</int>
+          <int>6</int>
+          <int>18</int>
+          <int>6</int>
+          <int>3</int>
         </characterIDS>
       </Member>
     </MemberIDs>
@@ -81,64 +81,20 @@
     <col>0</col>
     <ids>
       <ArrayOfInt>
-        <int>22</int>
-        <int>22</int>
-        <int>34</int>
         <int>13</int>
-        <int>36</int>
-        <int>5</int>
-        <int>11</int>
-        <int>38</int>
+        <int>15</int>
+        <int>3</int>
+        <int>25</int>
+        <int>20</int>
+        <int>25</int>
       </ArrayOfInt>
       <ArrayOfInt />
       <ArrayOfInt />
       <ArrayOfInt />
     </ids>
-    <weight>28</weight>
+    <weight>22</weight>
     <AllItems>
       <ArrayOfItem>
-        <Item>
-          <ID>22</ID>
-          <names>
-            <string>Rumsteak</string>
-            <string>Rumsteak</string>
-          </names>
-          <value>48</value>
-          <price>13</price>
-          <weight>5</weight>
-          <level>0</level>
-          <spriteID>2</spriteID>
-          <weaponType>Distance</weaponType>
-          <category>Provisions</category>
-        </Item>
-        <Item>
-          <ID>22</ID>
-          <names>
-            <string>Rumsteak</string>
-            <string>Rumsteak</string>
-          </names>
-          <value>48</value>
-          <price>13</price>
-          <weight>5</weight>
-          <level>0</level>
-          <spriteID>2</spriteID>
-          <weaponType>Distance</weaponType>
-          <category>Provisions</category>
-        </Item>
-        <Item>
-          <ID>34</ID>
-          <names>
-            <string>Champignon</string>
-            <string>Mushshroom</string>
-          </names>
-          <value>32</value>
-          <price>4</price>
-          <weight>2</weight>
-          <level>0</level>
-          <spriteID>0</spriteID>
-          <weaponType>Distance</weaponType>
-          <category>Provisions</category>
-        </Item>
         <Item>
           <ID>13</ID>
           <names>
@@ -154,13 +110,41 @@
           <category>Provisions</category>
         </Item>
         <Item>
-          <ID>36</ID>
+          <ID>15</ID>
           <names>
-            <string>Asperges</string>
-            <string>Aspergu</string>
+            <string>Lapin</string>
+            <string>Rabbit</string>
           </names>
-          <value>31</value>
-          <price>8</price>
+          <value>50</value>
+          <price>16</price>
+          <weight>5</weight>
+          <level>0</level>
+          <spriteID>2</spriteID>
+          <weaponType>Distance</weaponType>
+          <category>Provisions</category>
+        </Item>
+        <Item>
+          <ID>3</ID>
+          <names>
+            <string>Palourde</string>
+            <string>Clam</string>
+          </names>
+          <value>38</value>
+          <price>7</price>
+          <weight>4</weight>
+          <level>0</level>
+          <spriteID>1</spriteID>
+          <weaponType>Distance</weaponType>
+          <category>Provisions</category>
+        </Item>
+        <Item>
+          <ID>25</ID>
+          <names>
+            <string>Chou de Bruxelles</string>
+            <string>Brussel sprout</string>
+          </names>
+          <value>30</value>
+          <price>2</price>
           <weight>2</weight>
           <level>0</level>
           <spriteID>0</spriteID>
@@ -168,41 +152,27 @@
           <category>Provisions</category>
         </Item>
         <Item>
-          <ID>5</ID>
+          <ID>20</ID>
           <names>
-            <string>Morue</string>
-            <string>Smelly codfish</string>
+            <string>Gros jambon</string>
+            <string>Big ham</string>
           </names>
-          <value>38</value>
-          <price>11</price>
-          <weight>4</weight>
+          <value>51</value>
+          <price>15</price>
+          <weight>5</weight>
           <level>0</level>
-          <spriteID>1</spriteID>
+          <spriteID>2</spriteID>
           <weaponType>Distance</weaponType>
           <category>Provisions</category>
         </Item>
         <Item>
-          <ID>11</ID>
+          <ID>25</ID>
           <names>
-            <string>Maquereau</string>
-            <string>Mackerel</string>
+            <string>Chou de Bruxelles</string>
+            <string>Brussel sprout</string>
           </names>
-          <value>37</value>
-          <price>9</price>
-          <weight>4</weight>
-          <level>0</level>
-          <spriteID>1</spriteID>
-          <weaponType>Distance</weaponType>
-          <category>Provisions</category>
-        </Item>
-        <Item>
-          <ID>38</ID>
-          <names>
-            <string>Tarte aux pommes</string>
-            <string>Applepie</string>
-          </names>
-          <value>100</value>
-          <price>3</price>
+          <value>30</value>
+          <price>2</price>
           <weight>2</weight>
           <level>0</level>
           <spriteID>0</spriteID>
@@ -221,7 +191,7 @@
   <bounty>0</bounty>
   <formulas>
     <Formula>
-      <name>bylaxi</name>
+      <name>wagihi</name>
       <coords>
         <x>4</x>
         <y>40</y>
@@ -230,7 +200,7 @@
       <found>false</found>
     </Formula>
     <Formula>
-      <name>wyquja</name>
+      <name>redu</name>
       <coords>
         <x>28</x>
         <y>28</y>
@@ -239,7 +209,7 @@
       <found>false</found>
     </Formula>
     <Formula>
-      <name>xesi</name>
+      <name>rodu</name>
       <coords>
         <x>4</x>
         <y>11</y>
@@ -249,7 +219,7 @@
     </Formula>
   </formulas>
   <playerBoatInfo>
-    <Name>The Filthy Shrimp</Name>
+    <Name>The Mad Dead</Name>
     <previousCoords>
       <x>23</x>
       <y>22</y>
@@ -277,6 +247,203 @@
   <raining>false</raining>
   <currentRain>0</currentRain>
   <night>false</night>
-  <timeOfDay>6</timeOfDay>
-  <treasureName>The Strong Swords</treasureName>
+  <timeOfDay>11</timeOfDay>
+  <treasureName>The Filthy Gulls</treasureName>
+  <pins>
+    <Pin>
+      <content>Super ?</content>
+      <x>182.070236</x>
+      <y>285.726044</y>
+    </Pin>
+    <Pin>
+      <content>Pas Très super</content>
+      <x>668.561951</x>
+      <y>292.1872</y>
+    </Pin>
+    <Pin>
+      <content />
+      <x>116.524956</x>
+      <y>73.22627</y>
+    </Pin>
+    <Pin>
+      <content />
+      <x>618.310547</x>
+      <y>96.19922</y>
+    </Pin>
+    <Pin>
+      <content />
+      <x>743.5749</x>
+      <y>185.219391</y>
+    </Pin>
+    <Pin>
+      <content>Non</content>
+      <x>58.2624779</x>
+      <y>322.339172</y>
+    </Pin>
+    <Pin>
+      <content />
+      <x>375.792969</x>
+      <y>157.939011</y>
+    </Pin>
+    <Pin>
+      <content />
+      <x>250.646957</x>
+      <y>255.083176</y>
+    </Pin>
+    <Pin>
+      <content />
+      <x>785.2126</x>
+      <y>201.109055</y>
+    </Pin>
+    <Pin>
+      <content />
+      <x>739.3715</x>
+      <y>201.848434</y>
+    </Pin>
+    <Pin>
+      <content />
+      <x>192.975967</x>
+      <y>127.171906</y>
+    </Pin>
+    <Pin>
+      <content />
+      <x>339.371521</x>
+      <y>218.853989</y>
+    </Pin>
+    <Pin>
+      <content />
+      <x>438.299438</x>
+      <y>847.8712</y>
+    </Pin>
+    <Pin>
+      <content />
+      <x>1183.6969</x>
+      <y>1258.60461</y>
+    </Pin>
+    <Pin>
+      <content />
+      <x>1291.83</x>
+      <y>554.4902</y>
+    </Pin>
+    <Pin>
+      <content />
+      <x>1084.21448</x>
+      <y>275.778168</y>
+    </Pin>
+    <Pin>
+      <content />
+      <x>47.57856</x>
+      <y>249.373886</y>
+    </Pin>
+    <Pin>
+      <content />
+      <x>106.691315</x>
+      <y>79.21288</y>
+    </Pin>
+    <Pin>
+      <content />
+      <x>630.0555</x>
+      <y>1282.07507</y>
+    </Pin>
+    <Pin>
+      <content />
+      <x>640.1479</x>
+      <y>1026.83362</y>
+    </Pin>
+    <Pin>
+      <content />
+      <x>1221.183</x>
+      <y>853.738831</y>
+    </Pin>
+    <Pin>
+      <content />
+      <x>291.238434</x>
+      <y>334.454376</y>
+    </Pin>
+    <Pin>
+      <content />
+      <x>602.661743</x>
+      <y>1020.966</y>
+    </Pin>
+    <Pin>
+      <content />
+      <x>594.0111</x>
+      <y>665.975</y>
+    </Pin>
+    <Pin>
+      <content />
+      <x>595.4529</x>
+      <y>806.797852</y>
+    </Pin>
+    <Pin>
+      <content />
+      <x>596.894653</x>
+      <y>900.6798</y>
+    </Pin>
+    <Pin>
+      <content />
+      <x>614.1959</x>
+      <y>1120.71558</y>
+    </Pin>
+    <Pin>
+      <content />
+      <x>1170.721</x>
+      <y>1370.08948</y>
+    </Pin>
+    <Pin>
+      <content />
+      <x>1270.20337</x>
+      <y>1067.907</y>
+    </Pin>
+    <Pin>
+      <content />
+      <x>1264.43628</x>
+      <y>630.7692</y>
+    </Pin>
+    <Pin>
+      <content />
+      <x>1177.92981</x>
+      <y>369.6601</y>
+    </Pin>
+    <Pin>
+      <content />
+      <x>1010.6839</x>
+      <y>313.917725</y>
+    </Pin>
+    <Pin>
+      <content />
+      <x>187.576141</x>
+      <y>205.386047</y>
+    </Pin>
+    <Pin>
+      <content />
+      <x>611.2031</x>
+      <y>295.997528</y>
+    </Pin>
+    <Pin>
+      <content />
+      <x>649.1399</x>
+      <y>124.8425</y>
+    </Pin>
+    <Pin>
+      <content />
+      <x>82.19629</x>
+      <y>65.10603</y>
+    </Pin>
+    <Pin>
+      <content />
+      <x>158.069778</x>
+      <y>153.032745</y>
+    </Pin>
+    <Pin>
+      <content />
+      <x>276.79776</x>
+      <y>275.19046</y>
+    </Pin>
+    <Pin>
+      <content>Gabriel</content>
+      <x>211.462234</x>
+      <y>276.532867</y>
+    </Pin>
+  </pins>
 </GameData>

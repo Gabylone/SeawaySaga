@@ -12,12 +12,12 @@
         <Name>The Captain</Name>
         <health>100</health>
         <maxHealth>100</maxHealth>
-        <currentHunger>0</currentHunger>
+        <currentHunger>1</currentHunger>
         <Lvl>1</Lvl>
         <xp>0</xp>
         <skillPoints>0</skillPoints>
         <specialSkillsIndexes>
-          <int>12</int>
+          <int>20</int>
         </specialSkillsIndexes>
         <stats>
           <int>1</int>
@@ -25,53 +25,53 @@
           <int>1</int>
           <int>1</int>
         </stats>
-        <daysOnBoard>0</daysOnBoard>
+        <daysOnBoard>1</daysOnBoard>
         <equipedWeapon>
-          <ID>39</ID>
+          <ID>43</ID>
           <names>
-            <string>Epée rouillée</string>
-            <string>Rock on a stick</string>
+            <string>Bâton solide</string>
+            <string>Solid stick</string>
           </names>
-          <value>10</value>
-          <price>15</price>
+          <value>12</value>
+          <price>19</price>
           <weight>10</weight>
           <level>1</level>
-          <spriteID>0</spriteID>
+          <spriteID>1</spriteID>
           <weaponType>Stick</weaponType>
           <category>Weapon</category>
         </equipedWeapon>
         <equipedCloth>
-          <ID>153</ID>
+          <ID>152</ID>
           <names>
-            <string>Habit de paysan</string>
-            <string>Farmer clothing</string>
+            <string>Toge en tissu</string>
+            <string>Linnen gown</string>
           </names>
-          <value>12</value>
-          <price>26</price>
+          <value>13</value>
+          <price>20</price>
           <weight>10</weight>
           <level>1</level>
           <spriteID>0</spriteID>
           <weaponType>Distance</weaponType>
           <category>Clothes</category>
         </equipedCloth>
-        <job>Cook</job>
+        <job>Gambler</job>
         <characterIDS>
-          <int>10</int>
           <int>8</int>
-          <int>7</int>
-          <int>9</int>
-          <int>1</int>
-          <int>9</int>
-          <int>6</int>
           <int>0</int>
           <int>1</int>
-          <int>0</int>
-          <int>3</int>
-          <int>6</int>
-          <int>8</int>
-          <int>17</int>
+          <int>5</int>
           <int>4</int>
+          <int>6</int>
+          <int>4</int>
+          <int>4</int>
+          <int>0</int>
+          <int>0</int>
           <int>2</int>
+          <int>1</int>
+          <int>4</int>
+          <int>12</int>
+          <int>0</int>
+          <int>1</int>
         </characterIDS>
       </Member>
     </MemberIDs>
@@ -81,42 +81,30 @@
     <col>0</col>
     <ids>
       <ArrayOfInt>
-        <int>32</int>
-        <int>18</int>
-        <int>35</int>
-        <int>25</int>
-        <int>20</int>
-        <int>21</int>
+        <int>17</int>
+        <int>0</int>
+        <int>26</int>
+        <int>34</int>
+        <int>22</int>
+        <int>16</int>
+        <int>36</int>
+        <int>28</int>
       </ArrayOfInt>
       <ArrayOfInt />
       <ArrayOfInt />
       <ArrayOfInt />
     </ids>
-    <weight>21</weight>
+    <weight>27</weight>
     <AllItems>
       <ArrayOfItem>
         <Item>
-          <ID>32</ID>
+          <ID>17</ID>
           <names>
-            <string>Clémentine</string>
-            <string>Clementine</string>
+            <string>Boeuf</string>
+            <string>Beef</string>
           </names>
-          <value>26</value>
-          <price>5</price>
-          <weight>2</weight>
-          <level>0</level>
-          <spriteID>0</spriteID>
-          <weaponType>Distance</weaponType>
-          <category>Provisions</category>
-        </Item>
-        <Item>
-          <ID>18</ID>
-          <names>
-            <string>Porc</string>
-            <string>Pork</string>
-          </names>
-          <value>47</value>
-          <price>17</price>
+          <value>53</value>
+          <price>16</price>
           <weight>5</weight>
           <level>0</level>
           <spriteID>2</spriteID>
@@ -124,12 +112,26 @@
           <category>Provisions</category>
         </Item>
         <Item>
-          <ID>35</ID>
+          <ID>0</ID>
           <names>
-            <string>Pomme</string>
-            <string>Apple</string>
+            <string>Hareng</string>
+            <string>Herring</string>
           </names>
-          <value>33</value>
+          <value>41</value>
+          <price>13</price>
+          <weight>4</weight>
+          <level>0</level>
+          <spriteID>1</spriteID>
+          <weaponType>Distance</weaponType>
+          <category>Provisions</category>
+        </Item>
+        <Item>
+          <ID>26</ID>
+          <names>
+            <string>Châtaigne</string>
+            <string>Chestnut</string>
+          </names>
+          <value>26</value>
           <price>7</price>
           <weight>2</weight>
           <level>0</level>
@@ -138,13 +140,13 @@
           <category>Provisions</category>
         </Item>
         <Item>
-          <ID>25</ID>
+          <ID>34</ID>
           <names>
-            <string>Chou de Bruxelles</string>
-            <string>Brussel sprout</string>
+            <string>Champignon</string>
+            <string>Mushshroom</string>
           </names>
-          <value>30</value>
-          <price>2</price>
+          <value>32</value>
+          <price>4</price>
           <weight>2</weight>
           <level>0</level>
           <spriteID>0</spriteID>
@@ -152,12 +154,26 @@
           <category>Provisions</category>
         </Item>
         <Item>
-          <ID>20</ID>
+          <ID>22</ID>
           <names>
-            <string>Gros jambon</string>
-            <string>Big ham</string>
+            <string>Rumsteak</string>
+            <string>Rumsteak</string>
           </names>
-          <value>51</value>
+          <value>48</value>
+          <price>13</price>
+          <weight>5</weight>
+          <level>0</level>
+          <spriteID>2</spriteID>
+          <weaponType>Distance</weaponType>
+          <category>Provisions</category>
+        </Item>
+        <Item>
+          <ID>16</ID>
+          <names>
+            <string>Poulet</string>
+            <string>Chicken</string>
+          </names>
+          <value>53</value>
           <price>15</price>
           <weight>5</weight>
           <level>0</level>
@@ -166,16 +182,30 @@
           <category>Provisions</category>
         </Item>
         <Item>
-          <ID>21</ID>
+          <ID>36</ID>
           <names>
-            <string>Petit jambon</string>
-            <string>Small ham</string>
+            <string>Asperges</string>
+            <string>Aspergu</string>
           </names>
-          <value>46</value>
-          <price>18</price>
-          <weight>5</weight>
+          <value>31</value>
+          <price>8</price>
+          <weight>2</weight>
           <level>0</level>
-          <spriteID>2</spriteID>
+          <spriteID>0</spriteID>
+          <weaponType>Distance</weaponType>
+          <category>Provisions</category>
+        </Item>
+        <Item>
+          <ID>28</ID>
+          <names>
+            <string>Poire</string>
+            <string>Peer</string>
+          </names>
+          <value>26</value>
+          <price>8</price>
+          <weight>2</weight>
+          <level>0</level>
+          <spriteID>0</spriteID>
           <weaponType>Distance</weaponType>
           <category>Provisions</category>
         </Item>
@@ -190,6 +220,22 @@
   <karma>0</karma>
   <bounty>0</bounty>
   <formulas />
+  <playerBoatInfo>
+    <Name>The Drunken Compass</Name>
+    <previousCoords>
+      <x>4</x>
+      <y>3</y>
+    </previousCoords>
+    <coords>
+      <x>4</x>
+      <y>3</y>
+    </coords>
+    <currentDirection>None</currentDirection>
+    <shipRange>1</shipRange>
+    <crewCapacity>2</crewCapacity>
+    <cargoLevel>1</cargoLevel>
+    <level>1</level>
+  </playerBoatInfo>
   <treasureCoords>
     <x>0</x>
     <y>0</y>
@@ -203,6 +249,7 @@
   <raining>false</raining>
   <currentRain>0</currentRain>
   <night>false</night>
-  <timeOfDay>5</timeOfDay>
-  <treasureName>The Yellow Salmons</treasureName>
+  <timeOfDay>6</timeOfDay>
+  <treasureName>The Bloody Winds</treasureName>
+  <pins />
 </GameData>

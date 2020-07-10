@@ -156,8 +156,6 @@ public class MemberCreatorButton : MonoBehaviour {
     public void ShowLockGroup()
     {
         //lockGroup.SetActive(true);
-
-        pearlPriceUIText.text = "" + apparenceItem.price;
     }
     public void HideLockGroup()
     {

@@ -43,7 +43,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27fd12329c7544f45aa45c72e9bcd64c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  crewParent: {fileID: 0}
+  crewParent_Player: {fileID: 0}
+  crewParent_Enemy: {fileID: 0}
   memberIconPrefabs:
   - {fileID: 1000013980746724, guid: 0f7ec307f5350c54fad27e869f18be00, type: 3}
   - {fileID: 1942506556775618, guid: 5ae378bbf90b6bf4aa13e94f3a2167cd, type: 3}
@@ -632,13 +633,7 @@ MonoBehaviour:
       sprite: {fileID: 21300000, guid: e34527dd7ade9a04b999651cb7b9e590, type: 3}
       color: {r: 0, g: 0, b: 0, a: 0}
       locked: 1
-      id: 2
-      price: 100
-    - apparenceType: 9
-      sprite: {fileID: 21300000, guid: e34527dd7ade9a04b999651cb7b9e590, type: 3}
-      color: {r: 0, g: 0, b: 0, a: 0}
-      locked: 1
-      id: 2
+      id: 3
       price: 100
   - items:
     - apparenceType: 10

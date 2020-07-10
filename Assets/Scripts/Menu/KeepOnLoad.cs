@@ -20,7 +20,6 @@ public class KeepOnLoad : MonoBehaviour {
 
     public Map map;
     public string mapName = "";
-    public int price = 666;
 
     public static int pearls = 0;
 }

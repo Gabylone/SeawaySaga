@@ -15,6 +15,8 @@ public class Displayable : MonoBehaviour
 
     public CanvasGroup canvasGroup;
 
+    private RectTransform rectTransform;
+
     public virtual void Start()
     {
         if (visible)
@@ -29,6 +31,7 @@ public class Displayable : MonoBehaviour
 
     public void Show()
     {
+        visible = true;
         canvasGroup.alpha = 0f;
         canvasGroup.DOFade(1f, fadeDuration);
 
@@ -39,6 +42,7 @@ public class Displayable : MonoBehaviour
 
     public void Hide()
     {
+        visible = false;
         canvasGroup.DOFade(0f, fadeDuration);
 
         CancelInvoke("HideDelay");
@@ -48,5 +52,15 @@ public class Displayable : MonoBehaviour
     public virtual void HideDelay()
     {
         group.SetActive(false);
+    }
+
+    public RectTransform GetRectTransform()
+    {
+        if ( rectTransform == null)
+        {
+            rectTransform = GetComponent<RectTransform>();
+        }
+
+        return rectTransform;
     }
 }

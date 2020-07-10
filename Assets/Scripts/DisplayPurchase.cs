@@ -44,19 +44,6 @@ public class DisplayPurchase : MonoBehaviour {
 
         Tween.Bounce(group.transform);
 
-        pearlPrice_Text.text = "" + apparenceItem.price;
-
-        if ( apparenceItem.price > PlayerInfo.Instance.pearlAmount)
-        {
-            purchaseButton.interactable = false;
-            purchaseButton.GetComponentInChildren<Text>().color = new Color(1, 1, 1, 0.3f);
-        }
-        else
-        {
-            purchaseButton.GetComponentInChildren<Text>().color = Color.white;
-            purchaseButton.interactable = true;
-        }
-
     }
 
     void Show()
@@ -71,9 +58,8 @@ public class DisplayPurchase : MonoBehaviour {
 
     public void Buy()
     {
-        PlayerInfo.Instance.RemovePearl(apparenceItem.price);
-
         apparenceItem.locked = false;
+
         PlayerInfo.Instance.AddApparenceItem(apparenceItem);
 
         CrewCreator.Instance.UpdateApparenceItems();

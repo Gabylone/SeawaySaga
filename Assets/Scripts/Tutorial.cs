@@ -938,7 +938,6 @@ public class TutoStep_BigMap: TutoStep {
 	{
 		Display ();
 		WaitForConfirm ();
-		DisplayMinimap.onZoom -= HandleOnZoom;
 	}
 
 }

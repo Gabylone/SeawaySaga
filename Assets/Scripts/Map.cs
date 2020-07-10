@@ -31,6 +31,8 @@ public class Map : MonoBehaviour {
 
     public GameObject newGameGroup;
 
+    public GameObject finishedGroup;
+
     private bool load = false;
 
     public ApparenceItem apparenceItem;
@@ -41,7 +43,6 @@ public class Map : MonoBehaviour {
         UpdateUI();
 
         max = System.Enum.GetValues(typeof(TutorialStep)).Length;
-
     }
 
     public void UpdateUI()
@@ -55,8 +56,16 @@ public class Map : MonoBehaviour {
             padlockGroup.SetActive(true);
             mapImage.color = Color.black;
             newGameGroup.SetActive(false);
-
-            //pearls_UiText.text = "" + apparenceItem.price;
+        }
+        else if (apparenceItem.finished)
+        {
+            finishedGroup.SetActive(true);
+            padlockGroup.SetActive(false);
+            mapImage.color = Color.white;
+            newGameGroup.SetActive(false);
+            load = false;
+            iconVisualGroup.SetActive(false);
+            return;
         }
         else
         {
@@ -88,7 +97,6 @@ public class Map : MonoBehaviour {
         else
         {
             load = false;
-
             iconVisualGroup.SetActive(false);
 
             newGameGroup.SetActive(!apparenceItem.locked);
@@ -108,6 +116,11 @@ public class Map : MonoBehaviour {
 
     public void LaunchMap()
     {
+        if (apparenceItem.finished)
+        {
+            return;
+        }
+
         Tween.Bounce(transform);
 
         if (apparenceItem.locked)
@@ -129,7 +142,6 @@ public class Map : MonoBehaviour {
             KeepOnLoad.dataToLoad = -1;
         }
 
-        KeepOnLoad.Instance.price = 100;
         KeepOnLoad.Instance.mapName = mapParameters.mapName;
 
 
@@ -150,7 +162,6 @@ public class Map : MonoBehaviour {
 
         MessageDisplay.Instance.onValidate += ConfirmEraseMap;
     }
-
 
     void ConfirmEraseMap()
     {
