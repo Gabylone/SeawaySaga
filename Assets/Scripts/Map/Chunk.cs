@@ -58,6 +58,21 @@ public class Chunk
         return islandDatas[id];
     }
 
+    public int IslandCount
+    {
+        get
+        {
+            if (islandDatas != null)
+            {
+                return islandDatas.Length;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+    }
+
 	public static Chunk currentChunk {
 		get {
 			return chunks[Boats.Instance.playerBoatInfo.coords];

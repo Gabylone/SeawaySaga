@@ -6,66 +6,70 @@ using DG.Tweening;
 
 public class DisplayMinimap : MonoBehaviour {
 
-	RectTransform rectTransform;
-
 	public static DisplayMinimap Instance;
 
-	// minimap chunks
-	public GameObject minimapChunkPrefab;
-	public GameObject minimapChunkParent;
-    public GameObject enemyIconParent;
+    private RectTransform rectTransform;
 
+    // minimap chunks
+    [Header("Minimap Chunks")]
+    public GameObject minimapChunkPrefab;
+	public GameObject minimapChunkParent;
     public float minimapChunkDecal = 3f;
+    public float minimapChunkScale;
+    public List<MinimapChunk> minimapChunks = new List<MinimapChunk>();
+
+    [Header("Enemy Boat Icons")]
+    public GameObject enemyIconParent;
+    public GameObject enemyBoatIconPrefab;
+    public Vector2 enemyBoatIconDecal;
+    public List<MinimapBoat> minimapBoatIcons = new List<MinimapBoat>();
+
+    [Header("Player Boat Icons")]
+    // boat feedback
+    public RectTransform playerBoat_World_RectTransform;
+    public RectTransform playerBoat_Local_RectTransform;
+    public float centerTweenDuration = 0.5f;
 
     // minimap
+    [Header("Components")]
     public RectTransform overallRectTranfsorm;
 	public RectTransform scrollViewRectTransform;
 	public Mask viewPortMask;
 
-	// boat feedback
-	public RectTransform boatRectTransform;
-    public float centerTweenDuration = 0.5f;
-
-    public Color[] boatColords;
-
-    public int childIndex = 0;
     public Transform previousParent;
     public Transform targetParent;
-
-	public float minimapChunkScale;
-
-	public GameObject enemyBoatIconPrefab;
-	public Vector2 enemyBoatIconDecal;
-    public List<MinimapBoat> minimapBoatIcons = new List<MinimapBoat>();
 
 	public Image rayBlockerImage;
 
 	public float hiddenPos = 0f;
 	public float hideDuration = 0.3f;
 
-	/// <summary>
-	/// zoom
-	/// </summary>
-	public float zoomDuration = 0.8f;
-    bool unzooming = false;
+    [Header("Zoom")]
+    public float zoom_Speed = 1f;
+    public float zoom_Max = 5f;
+    public float zoom_Min = 1f;
+    public float zoom_MouseScrollDelta = 0f;
 
-    public RectTransform zoomParent;
+	[Header("Full Display")]
+    public float fullDisplay_Duration = 0.8f;
+    private bool fullDisplay_Exiting = false;
+
+    public RectTransform fullDisplay_Parent;
     public float initPosY = 0f;
     public float initPosX = 0f;
 	public float initScaleY = 0f;
 	public float initScaleX = 0f;
 
-    public GameObject zoomBackground;
-    public bool zoomed = false;
+    public float rangeX = 10f;
+    public float rangeY = 10f;
+
+    public bool fullyDisplayed = false;
     ///
 
 	public Image outlineImage;
 
 	public GameObject mapCloseButton;
 
-    public RectTransform viewport_RectTransofrm;
-
-    public List<MinimapChunk> minimapChunks = new List<MinimapChunk>();
 
 	void Awake () {
 		Instance = this;
@@ -96,7 +100,6 @@ public class DisplayMinimap : MonoBehaviour {
 		initScaleX = rectTransform.sizeDelta.x;
         initScaleY = rectTransform.sizeDelta.y;
 
-        childIndex = transform.GetSiblingIndex();
         previousParent = transform.parent;
 
 		Show ();
@@ -104,6 +107,50 @@ public class DisplayMinimap : MonoBehaviour {
 
 		ClampScrollView ();
 	}
+
+    private void Update()
+    {
+        UpdatePlayerBoatIcon();
+
+        UpdateZoom();
+
+    }
+
+    void UpdateZoom()
+    {
+        zoom_MouseScrollDelta = Input.mouseScrollDelta.y;
+
+        if (Input.mouseScrollDelta.y >= 0.1f)
+        {
+            if (overallRectTranfsorm.localScale.x <= zoom_Max)
+            {
+                overallRectTranfsorm.localScale += Vector3.one * zoom_Speed * Time.deltaTime;
+            }
+        }
+        else if (Input.mouseScrollDelta.y <= -0.1f)
+        {
+            if ( overallRectTranfsorm.localScale.x >= zoom_Min)
+            {
+                overallRectTranfsorm.localScale -= Vector3.one * zoom_Speed * Time.deltaTime;
+            }
+        }
+    }
+
+    void UpdatePlayerBoatIcon()
+    {
+        float x = rangeX * PlayerBoat.Instance.GetTransform.position.x / NavigationManager.Instance.maxX;
+        float y = rangeY * PlayerBoat.Instance.GetTransform.position.z / NavigationManager.Instance.maxY;
+
+        Vector2 pos = new Vector2(x, y);
+
+        playerBoat_Local_RectTransform.anchoredPosition = pos;
+
+        Vector3 dir = PlayerBoat.Instance.GetTransform.forward;
+        dir = new Vector3(dir.x, dir.z, 0f);
+
+        playerBoat_Local_RectTransform.up = dir;
+    }
+
     public void Init () {
 		InitMap ();
 	}
@@ -124,7 +171,6 @@ public class DisplayMinimap : MonoBehaviour {
 	}
 
     #region update minimap chunks
-
     public MinimapChunk GetCurrentMinimapChunk()
     {
         int id = 0;
@@ -137,9 +183,9 @@ public class DisplayMinimap : MonoBehaviour {
         return GetMinimapChunk(Coords.current, id);
     }
 
-    public MinimapChunk GetMinimapChunk ( Coords coords , int islandID)
+    public MinimapChunk GetMinimapChunk ( Coords coords , int targetIslandID)
     {
-        MinimapChunk minimapChunk = minimapChunks.Find( x => x.coords == coords );
+        MinimapChunk minimapChunk = minimapChunks.Find( x => x.coords == coords && x.islandID == targetIslandID);
 
         if ( minimapChunk == null)
         {
@@ -232,13 +278,16 @@ public class DisplayMinimap : MonoBehaviour {
 
 			for (int y = 0; y < MapGenerator.Instance.MapScale_Y; y++) {
 
-				Coords chunk = new Coords (x, y);
+                Coords coords = new Coords (x, y);
 
-				if (Chunk.GetChunk (chunk).state == ChunkState.DiscoveredIsland
-					|| Chunk.GetChunk (chunk).state == ChunkState.VisitedIsland
-                    || Chunk.GetChunk(chunk).state == ChunkState.UndiscoveredIsland) {
+                Chunk chunk = Chunk.GetChunk(coords);
 
-					PlaceMapChunk (chunk);
+
+                if (chunk.state == ChunkState.DiscoveredIsland
+					|| chunk.state == ChunkState.VisitedIsland
+                    || chunk.state == ChunkState.UndiscoveredIsland) {
+
+					PlaceMapChunks (coords);
 
 				}
 			}
@@ -323,13 +372,13 @@ public class DisplayMinimap : MonoBehaviour {
                         MapGenerator.Instance.discoveredCoords.coords.Add(c);
                         break;
                     case ChunkState.UndiscoveredIsland:
+
                         chunk.state = ChunkState.DiscoveredIsland;
                         chunk.Save(c);
 
-                        MinimapChunk minimapChunk = GetMinimapChunk(c,0);
-
-                        if (minimapChunk != null)
+                        for (int i = 0; i < chunk.IslandCount; i++)
                         {
+                            MinimapChunk minimapChunk = GetMinimapChunk(c, i);
                             minimapChunk.SetDiscovered();
                         }
 
@@ -352,7 +401,7 @@ public class DisplayMinimap : MonoBehaviour {
 	#endregion
 
 	#region map chunk
-	void PlaceMapChunk(Coords c) {
+	void PlaceMapChunks(Coords coords) {
 
         /*if ( minimapChunks.ContainsKey(c))
         {
@@ -360,30 +409,43 @@ public class DisplayMinimap : MonoBehaviour {
             return;
         }*/
 
-        GameObject minimapChunk_Obj = Instantiate(minimapChunkPrefab, minimapChunkParent.transform);
+        int islandID = 0;
 
-        // SCALE
-        minimapChunk_Obj.transform.localScale = Vector3.one;
+        Chunk chunk = Chunk.GetChunk(coords);
 
-        // POS
-        float x = (minimapChunkScale / 2) + (c.x * overallRectTranfsorm.rect.width / MapGenerator.Instance.MapScale_X);
-        float y = (minimapChunkScale / 2) + (c.y * overallRectTranfsorm.rect.height / MapGenerator.Instance.MapScale_Y);
-        Vector2 pos = new Vector2(x, y);
+        foreach (var islandData in chunk.islandDatas)
+        {
+            GameObject minimapChunk_Obj = Instantiate(minimapChunkPrefab, minimapChunkParent.transform);
 
-        minimapChunk_Obj.GetComponent<RectTransform>().anchoredPosition = pos;
+            MinimapChunk minimapChunk = minimapChunk_Obj.GetComponent<MinimapChunk>();
 
-        MinimapChunk minimapChunk = minimapChunk_Obj.GetComponent<MinimapChunk>();
+            // SCALE
+            minimapChunk.rectTransform.localScale = Vector3.one;
 
-        minimapChunk.InitChunk(c);
+            // POS
+            float x = (minimapChunkScale / 2) + (coords.x * overallRectTranfsorm.rect.width / MapGenerator.Instance.MapScale_X);
+            float y = (minimapChunkScale / 2) + (coords.y * overallRectTranfsorm.rect.height / MapGenerator.Instance.MapScale_Y);
 
-        minimapChunks.Add(minimapChunk);
+            float decalX = rangeX * islandData.worldPosition.x / NavigationManager.Instance.maxX;
+            float decalY = rangeY * islandData.worldPosition.y / NavigationManager.Instance.maxY;
+
+            Vector2 pos = new Vector2(x + decalX, y + decalY);
+
+            minimapChunk.rectTransform.anchoredPosition = pos;
+
+            minimapChunk.InitChunk(coords, islandID);
+
+            minimapChunks.Add(minimapChunk);
+
+            ++islandID;
+        }
 
     }
 	#endregion
 
 	#region boatIcons
 	void InitBoatIcons() {
-		boatRectTransform.sizeDelta = Vector2.one * minimapChunkScale;
+		playerBoat_World_RectTransform.sizeDelta = Vector2.one * minimapChunkScale;
 	}
 	public Vector2 getPosFromCoords (Coords coords) {
 
@@ -393,22 +455,8 @@ public class DisplayMinimap : MonoBehaviour {
 	void MovePlayerIcon () {
 
 		Vector2 boatPos = getPosFromCoords (Boats.Instance.playerBoatInfo.coords);
-
-        if (Chunk.currentChunk.HasIslands())
-        {
-            boatPos.y += enemyBoatIconDecal.y;
-        }
-
-        if (Boats.Instance.currentBoatAmount > 0)
-        {
-            boatPos.x += enemyBoatIconDecal.x;
-        }
-
-        boatRectTransform.DOAnchorPos(boatPos, centerTweenDuration - 0.2f).SetDelay(0.2f);
-
-		Tween.Bounce (boatRectTransform.transform);
-
-
+        playerBoat_World_RectTransform.DOAnchorPos(boatPos, centerTweenDuration - 0.2f).SetDelay(0.2f);
+		Tween.Bounce (playerBoat_World_RectTransform.transform);
     }
 
     private Vector2 GetIconPos(Coords c)
@@ -535,17 +583,17 @@ public class DisplayMinimap : MonoBehaviour {
 		scrollViewRectTransform.gameObject.SetActive (false);
 	}
 
-	#region zoom / unzoom
-	public void Zoom ()
+	#region full display
+	public void FullDisplay ()
 	{
-		Transitions.Instance.ScreenTransition.FadeIn (zoomDuration/2f);
+		Transitions.Instance.ScreenTransition.FadeIn (fullDisplay_Duration/2f);
 
         CancelInvoke("ShowCloseButton");
-        CancelInvoke("ZoomDelay");
-        Invoke ("ShowCloseButton",zoomDuration);
-		Invoke ("ZoomDelay",zoomDuration/2f);
+        CancelInvoke("FullDisplayDelay");
+        Invoke ("ShowCloseButton",fullDisplay_Duration);
+		Invoke ("FullDisplayDelay", fullDisplay_Duration/2f);
 	}
-	void ZoomDelay () {
+	void FullDisplayDelay () {
 
         transform.SetParent(targetParent);
         transform.SetAsFirstSibling();
@@ -565,29 +613,28 @@ public class DisplayMinimap : MonoBehaviour {
 
 		viewPortMask.enabled = false;
 
-		Transitions.Instance.ScreenTransition.FadeOut (zoomDuration/2f);
+		Transitions.Instance.ScreenTransition.FadeOut (fullDisplay_Duration/2f);
 
 		ClampScrollView ();
 
-        zoomed = true;
+        fullyDisplayed = true;
 	}
 
-
-	public void UnZoom ()
+	public void ExitFullDisplay ()
 	{
-		if (unzooming)
+		if (fullDisplay_Exiting)
 			return;
 
 		Tween.Bounce (mapCloseButton.transform, 0.2f , 1.1f);
 
-		Transitions.Instance.ScreenTransition.FadeIn (zoomDuration/2f);
+		Transitions.Instance.ScreenTransition.FadeIn (fullDisplay_Duration/2f);
 
-		unzooming = true;
+		fullDisplay_Exiting = true;
 
 		Invoke ("HideCloseButton",0.2f);
-		Invoke ("UnZoomDelay", zoomDuration/2f);
+		Invoke ("ExitFullDisplayDelay", fullDisplay_Duration/2f);
 	}
-	void UnZoomDelay () {
+	void ExitFullDisplayDelay() {
 
         transform.SetParent(previousParent);
         transform.SetAsLastSibling();
@@ -606,9 +653,9 @@ public class DisplayMinimap : MonoBehaviour {
 		ClampScrollView ();
 
 		outlineImage.gameObject.SetActive(true);
-		Transitions.Instance.ScreenTransition.FadeOut (zoomDuration/2f);
+		Transitions.Instance.ScreenTransition.FadeOut (fullDisplay_Duration/2f);
 
-        zoomed = false;
+        fullyDisplayed = false;
 	}
 
 	void ShowCloseButton ()
@@ -618,7 +665,7 @@ public class DisplayMinimap : MonoBehaviour {
 	}
 	void HideCloseButton ()
 	{
-		unzooming = false;
+		fullDisplay_Exiting = false;
 		mapCloseButton.SetActive (false);
 	}
 	void FadeOut ()

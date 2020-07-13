@@ -4,10 +4,10 @@
   <islandDatas>
     <IslandData>
       <worldPosition>
-        <x>-13.5422134</x>
-        <y>-2.487648</y>
+        <x>16.3913956</x>
+        <y>-17.0731277</y>
       </worldPosition>
-      <worldRotation>226.229355</worldRotation>
+      <worldRotation>46.7897835</worldRotation>
       <storyManager>
         <hasBeenPlayed>false</hasBeenPlayed>
         <storyHandlers>
@@ -17,6 +17,28 @@
             <fallBackLayer>0</fallBackLayer>
             <storyID>4</storyID>
             <storyType>Home</storyType>
+            <contentDecals />
+            <loots />
+            <crews />
+          </StoryHandler>
+        </storyHandlers>
+      </storyManager>
+    </IslandData>
+    <IslandData>
+      <worldPosition>
+        <x>1.97985458</x>
+        <y>15.7541952</y>
+      </worldPosition>
+      <worldRotation>312.315216</worldRotation>
+      <storyManager>
+        <hasBeenPlayed>false</hasBeenPlayed>
+        <storyHandlers>
+          <StoryHandler>
+            <row>0</row>
+            <col>0</col>
+            <fallBackLayer>0</fallBackLayer>
+            <storyID>25</storyID>
+            <storyType>Normal</storyType>
             <contentDecals />
             <loots />
             <crews />

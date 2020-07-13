@@ -2,6 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 
+using DG.Tweening;
+
 public class PinManager : Singleton<PinManager>
 {
     public GameObject prefab;
@@ -38,12 +40,15 @@ public class PinManager : Singleton<PinManager>
             newDisplayPin.displayPinInfo.Hide();
 
             newDisplayPin.GetRectTransform().SetParent(secondParent);
+            newDisplayPin.GetRectTransform().localScale = Vector3.one;
+
+
         }
     }
 
     public void PlacePin()
     {
-        if (!DisplayMinimap.Instance.zoomed)
+        if (!DisplayMinimap.Instance.fullyDisplayed)
         {
             return;
         }
@@ -75,6 +80,8 @@ public class PinManager : Singleton<PinManager>
 
         newDisplayPin.GetRectTransform().SetParent(secondParent);
 
+        newDisplayPin.GetRectTransform().DOMove(newDisplayPin.GetRectTransform().position + Vector3.up * 0.25f, 0.3f);
+        newDisplayPin.GetRectTransform().DOMove(newDisplayPin.GetRectTransform().position, 0.1f).SetDelay(0.3f);
 
     }
 

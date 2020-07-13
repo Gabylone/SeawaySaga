@@ -8,6 +8,8 @@ public class IslandManager : MonoBehaviour
 
     public Island[] islands;
 
+    public Sprite[] icons;
+
     public Island currentIsland;
 
     private void Awake()
@@ -23,5 +25,10 @@ public class IslandManager : MonoBehaviour
         {
             islands[i].id = i;
         }
+    }
+
+    public Sprite GetIcon(int i)
+    {
+        return icons[i];
     }
 }

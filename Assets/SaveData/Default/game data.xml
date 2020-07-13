@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <GameData xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <progression>0</progression>
+  <progression>1</progression>
   <globalID>1</globalID>
   <playerCrew>
     <hostile>false</hostile>
@@ -27,27 +27,27 @@
         </stats>
         <daysOnBoard>1</daysOnBoard>
         <equipedWeapon>
-          <ID>43</ID>
+          <ID>40</ID>
           <names>
-            <string>Bâton solide</string>
-            <string>Solid stick</string>
+            <string>Pioche de mineur</string>
+            <string>Makeshift Bludgeon</string>
           </names>
-          <value>12</value>
-          <price>19</price>
+          <value>8</value>
+          <price>21</price>
           <weight>10</weight>
           <level>1</level>
-          <spriteID>1</spriteID>
+          <spriteID>0</spriteID>
           <weaponType>Stick</weaponType>
           <category>Weapon</category>
         </equipedWeapon>
         <equipedCloth>
-          <ID>152</ID>
+          <ID>154</ID>
           <names>
-            <string>Toge en tissu</string>
-            <string>Linnen gown</string>
+            <string>Tenue de voyageur</string>
+            <string>Traveller gear</string>
           </names>
           <value>13</value>
-          <price>20</price>
+          <price>26</price>
           <weight>10</weight>
           <level>1</level>
           <spriteID>0</spriteID>
@@ -56,21 +56,21 @@
         </equipedCloth>
         <job>Gambler</job>
         <characterIDS>
+          <int>10</int>
+          <int>1</int>
+          <int>0</int>
+          <int>7</int>
+          <int>0</int>
+          <int>7</int>
+          <int>0</int>
+          <int>4</int>
+          <int>0</int>
+          <int>0</int>
+          <int>7</int>
           <int>8</int>
-          <int>0</int>
           <int>1</int>
-          <int>5</int>
-          <int>4</int>
-          <int>6</int>
-          <int>4</int>
-          <int>4</int>
-          <int>0</int>
-          <int>0</int>
           <int>2</int>
-          <int>1</int>
-          <int>4</int>
-          <int>12</int>
-          <int>0</int>
+          <int>2</int>
           <int>1</int>
         </characterIDS>
       </Member>
@@ -81,27 +81,41 @@
     <col>0</col>
     <ids>
       <ArrayOfInt>
-        <int>17</int>
-        <int>0</int>
-        <int>26</int>
-        <int>34</int>
-        <int>22</int>
+        <int>29</int>
+        <int>14</int>
+        <int>1</int>
+        <int>31</int>
         <int>16</int>
-        <int>36</int>
-        <int>28</int>
+        <int>9</int>
+        <int>38</int>
+        <int>11</int>
       </ArrayOfInt>
       <ArrayOfInt />
       <ArrayOfInt />
       <ArrayOfInt />
     </ids>
-    <weight>27</weight>
+    <weight>28</weight>
     <AllItems>
       <ArrayOfItem>
         <Item>
-          <ID>17</ID>
+          <ID>29</ID>
           <names>
-            <string>Boeuf</string>
-            <string>Beef</string>
+            <string>Maïs</string>
+            <string>Corn</string>
+          </names>
+          <value>35</value>
+          <price>6</price>
+          <weight>2</weight>
+          <level>0</level>
+          <spriteID>0</spriteID>
+          <weaponType>Distance</weaponType>
+          <category>Provisions</category>
+        </Item>
+        <Item>
+          <ID>14</ID>
+          <names>
+            <string>Lardon</string>
+            <string>Lard</string>
           </names>
           <value>53</value>
           <price>16</price>
@@ -112,13 +126,13 @@
           <category>Provisions</category>
         </Item>
         <Item>
-          <ID>0</ID>
+          <ID>1</ID>
           <names>
-            <string>Hareng</string>
-            <string>Herring</string>
+            <string>Sardine</string>
+            <string>Sardine</string>
           </names>
-          <value>41</value>
-          <price>13</price>
+          <value>35</value>
+          <price>9</price>
           <weight>4</weight>
           <level>0</level>
           <spriteID>1</spriteID>
@@ -126,44 +140,16 @@
           <category>Provisions</category>
         </Item>
         <Item>
-          <ID>26</ID>
+          <ID>31</ID>
           <names>
-            <string>Châtaigne</string>
-            <string>Chestnut</string>
+            <string>Ananas</string>
+            <string>Pinapple</string>
           </names>
           <value>26</value>
-          <price>7</price>
+          <price>6</price>
           <weight>2</weight>
           <level>0</level>
           <spriteID>0</spriteID>
-          <weaponType>Distance</weaponType>
-          <category>Provisions</category>
-        </Item>
-        <Item>
-          <ID>34</ID>
-          <names>
-            <string>Champignon</string>
-            <string>Mushshroom</string>
-          </names>
-          <value>32</value>
-          <price>4</price>
-          <weight>2</weight>
-          <level>0</level>
-          <spriteID>0</spriteID>
-          <weaponType>Distance</weaponType>
-          <category>Provisions</category>
-        </Item>
-        <Item>
-          <ID>22</ID>
-          <names>
-            <string>Rumsteak</string>
-            <string>Rumsteak</string>
-          </names>
-          <value>48</value>
-          <price>13</price>
-          <weight>5</weight>
-          <level>0</level>
-          <spriteID>2</spriteID>
           <weaponType>Distance</weaponType>
           <category>Provisions</category>
         </Item>
@@ -182,13 +168,27 @@
           <category>Provisions</category>
         </Item>
         <Item>
-          <ID>36</ID>
+          <ID>9</ID>
           <names>
-            <string>Asperges</string>
-            <string>Aspergu</string>
+            <string>Cabillaud</string>
+            <string>Hude codfish</string>
           </names>
-          <value>31</value>
-          <price>8</price>
+          <value>37</value>
+          <price>9</price>
+          <weight>4</weight>
+          <level>0</level>
+          <spriteID>1</spriteID>
+          <weaponType>Distance</weaponType>
+          <category>Provisions</category>
+        </Item>
+        <Item>
+          <ID>38</ID>
+          <names>
+            <string>Tarte aux pommes</string>
+            <string>Applepie</string>
+          </names>
+          <value>100</value>
+          <price>3</price>
           <weight>2</weight>
           <level>0</level>
           <spriteID>0</spriteID>
@@ -196,16 +196,16 @@
           <category>Provisions</category>
         </Item>
         <Item>
-          <ID>28</ID>
+          <ID>11</ID>
           <names>
-            <string>Poire</string>
-            <string>Peer</string>
+            <string>Maquereau</string>
+            <string>Mackerel</string>
           </names>
-          <value>26</value>
-          <price>8</price>
-          <weight>2</weight>
+          <value>37</value>
+          <price>9</price>
+          <weight>4</weight>
           <level>0</level>
-          <spriteID>0</spriteID>
+          <spriteID>1</spriteID>
           <weaponType>Distance</weaponType>
           <category>Provisions</category>
         </Item>
@@ -221,7 +221,7 @@
   <bounty>0</bounty>
   <formulas />
   <playerBoatInfo>
-    <Name>The Drunken Compass</Name>
+    <Name>The Golden Clam</Name>
     <previousCoords>
       <x>4</x>
       <y>3</y>
@@ -250,6 +250,6 @@
   <currentRain>0</currentRain>
   <night>false</night>
   <timeOfDay>6</timeOfDay>
-  <treasureName>The Bloody Winds</treasureName>
+  <treasureName>The Deadly Anchors</treasureName>
   <pins />
 </GameData>

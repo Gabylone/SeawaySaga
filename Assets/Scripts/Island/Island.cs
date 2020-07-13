@@ -1,12 +1,9 @@
-﻿using UnityEngine;
+﻿ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using System.Linq;
 
 public class Island : RandomPlacable {
-
-	public static Sprite[] sprites;
-	public static Sprite[] minimapSprites;
 
     public GameObject[] islandMeshes;
 
@@ -51,9 +48,6 @@ public class Island : RandomPlacable {
 
     void Init () {
 
-		sprites = Resources.LoadAll<Sprite> ("Graph/IslandSprites");
-		minimapSprites = Resources.LoadAll<Sprite> ("Graph/IslandMinimapSprites");
-
 		Swipe.onSwipe += HandleOnSwipe;
 
 		WorldTouch.onPointerExit += HandleOnTouchWorld;
@@ -77,7 +71,6 @@ public class Island : RandomPlacable {
         base.HandleOnEnterNewChunk();
 
         UpdatePositionOnScreen (Boats.Instance.playerBoatInfo.coords);
-
 	}
 
 	void DeactivateCollider ()
@@ -87,6 +80,7 @@ public class Island : RandomPlacable {
             item.DeactivateCollider();
         }
 	}
+
 	void ActivateCollider () {
         foreach (var item in islandTriggers)
         {

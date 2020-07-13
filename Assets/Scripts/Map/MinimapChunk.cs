@@ -10,7 +10,11 @@ public class MinimapChunk : MonoBehaviour {
 
 	public Coords coords;
 
+    public int islandID = 0;
+
 	public GameObject islandGroup;
+
+    public RectTransform rectTransform;
 
 	public Image image;
 
@@ -18,17 +22,18 @@ public class MinimapChunk : MonoBehaviour {
 
     public Text uiText_IslandCount;
 
-	public void InitChunk (Coords worldCoords)
+	public void InitChunk (Coords worldCoords,int islandID)
 	{
 		Chunk chunk = Chunk.GetChunk (worldCoords);
 
-		IslandData islandData = chunk.GetIslandData(0);
+		IslandData islandData = chunk.GetIslandData(islandID);
 
-		image.sprite = Island.minimapSprites[islandData.storyManager.storyHandlers [0].Story.param];
+        image.sprite = IslandManager.Instance.GetIcon(islandData.storyManager.storyHandlers[0].Story.param);
+        image.SetNativeSize();
 
-        //uiText_IslandCount.text = "";
+        coords = worldCoords;
 
-		coords = worldCoords;
+        this.islandID = islandID;
 
         switch (chunk.state)
         {
@@ -68,15 +73,12 @@ public class MinimapChunk : MonoBehaviour {
 
     public void SetVisited ()
     {
-        //uiText_IslandCount.text = "" + Chunk.GetChunk(coords).islandDatas.Length;
-
         gameObject.SetActive(true);
 		image.color = Color.white;
     }
 
 	public void SetDiscovered ()
     {
-        //uiText_IslandCount.text = "";
         gameObject.SetActive(true);
         image.color = new Color( 0.5f,0.5f,0.5f );
 	}

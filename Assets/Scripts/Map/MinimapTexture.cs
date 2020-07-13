@@ -19,12 +19,6 @@ public class MinimapTexture : MonoBehaviour {
         Instance = this;
     }
 
-    // Use this for initialization
-    /*void Start () {
-		NavigationManager.Instance.EnterNewChunk += UpdateBackgroundImage;
-		//UpdateBackgroundImage ();
-	}*/
-
 	public void UpdateBackgroundImage () {
 
 		Texture2D texture = new Texture2D (MapGenerator.Instance.MapScale_X, MapGenerator.Instance.MapScale_Y);
