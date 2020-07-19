@@ -54,6 +54,8 @@ public class Fighter : MonoBehaviour {
     public IconVisual iconVisual;
     public CanvasGroup canvasGroup;
 
+    private Transform GetTransform;
+
 	[Header ("Move")]
 	public float moveToTargetDuration = 0.79f;
 	public float moveBackDuration = 0.79f;
@@ -82,17 +84,17 @@ public class Fighter : MonoBehaviour {
 			return hit_TimeToEnableCollider;
 		}
 	}
-
-	[SerializeField]
-	private GameObject impactEffect;
-
 	// get hit
 	[Header ("Get Hit")]
-	[SerializeField]
-	private float getHit_Duration = 0.3f;
+	public float getHit_Duration = 0.3f;
+    public float getHit_ScaleDuration = 0.2f;
+    public float getHit_ScaleAmount = 1.2f;
 
-	// blocked
-	[Header ("Blocked")]
+    public delegate void OnGetHit();
+    public OnGetHit onGetHit;
+
+    // blocked
+    [Header ("Blocked")]
 	[SerializeField]
 	private float blocked_Duration = 0.5f;
 
@@ -132,12 +134,14 @@ public class Fighter : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-        card = transform.parent.GetComponentInChildren<Card>();
+        GetTransform = GetComponent<Transform>();
+
+        card = GetTransform.parent.GetComponentInChildren<Card>();
         card.Init ();
 
 		dir = direction == Direction.Left ? 1 : -1;
 
-		initPos = transform.position;
+		initPos = GetTransform.position;
 
 		Hide ();
 
@@ -172,7 +176,7 @@ public class Fighter : MonoBehaviour {
 		animator.SetBool("dead",false);
 
 		// animation
-		transform.position = initPos;
+		GetTransform.position = initPos;
 
 		// energy & status
 		crewMember.energy = 0;
@@ -195,7 +199,7 @@ public class Fighter : MonoBehaviour {
 	public OnSetTurn onSetTurn;
 	public void SetTurn () {
 
-		Tween.Bounce (transform);
+		Tween.Bounce (GetTransform);
 
 		ChangeState (Fighter.states.none);
 
@@ -259,7 +263,7 @@ public class Fighter : MonoBehaviour {
 		CombatManager.Instance.currentFighter.TargetFighter = this;
 //		targetFighter = CombatManager.Instance.currentFighter;
 
-		Tween.Bounce (transform);
+		Tween.Bounce (GetTransform);
 
 		if (onSetAsTarget != null)
 			onSetAsTarget ();
@@ -328,9 +332,9 @@ public class Fighter : MonoBehaviour {
 
         Vector3 dir = new Vector3 ( TargetFighter.crewMember.side == Crews.Side.Enemy ? -1 : 1 , 0 , 0 ); 
 
-		Vector3 targetPos = TargetFighter.transform.position + dir * stopDistance;
+		Vector3 targetPos = TargetFighter.GetTransform.position + dir * stopDistance;
 
-        transform.DOMove(targetPos, moveToTargetDuration);
+        GetTransform.DOMove(targetPos, moveToTargetDuration);
 
 	}
 	public virtual void MoveToTarget_Update () {
@@ -359,7 +363,7 @@ public class Fighter : MonoBehaviour {
 
 		animator.SetBool ("move", true);
 
-        transform.DOMove(initPos, moveBackDuration);
+        GetTransform.DOMove(initPos, moveBackDuration);
 
 	}
 
@@ -440,7 +444,7 @@ public class Fighter : MonoBehaviour {
 
 		if ( Pickable ) {
 			CombatManager.Instance.ChoseTargetMember (this);
-			Tween.Bounce (transform);
+			Tween.Bounce (GetTransform);
 			return;
 		}
 
@@ -471,20 +475,19 @@ public class Fighter : MonoBehaviour {
     }
 	public virtual void getHit_Exit () {
 		
-        iconVisual.RemoveDeadEyes();
+        //iconVisual.RemoveDeadEyes();
 	}
 
-	void HitEffect () {
-		
-		SoundManager.Instance.PlaySound (hitSound);
+    void HitEffect()
+    {
 
-		impactEffect.SetActive (false);
-		impactEffect.SetActive (true);
+        SoundManager.Instance.PlaySound(hitSound);
+        animator.SetTrigger("getHit");
 
-		animator.SetTrigger("getHit");
+        iconVisual.TaintOnce(Color.red);
 
-		impactEffect.transform.position = BodyTransform.position;
-	}
+        Tween.Bounce(GetTransform, getHit_ScaleDuration , getHit_ScaleAmount);
+    }
 
 	float GetDamage (Fighter otherFighter, float attack, float mult)
 	{
@@ -511,8 +514,6 @@ public class Fighter : MonoBehaviour {
 		return damage;
 	}
 
-	public delegate void OnGetHit ();
-	public OnGetHit onGetHit;
 	public void GetHit (Fighter otherFighter, float attack, float mult) {
 
 		if (SucceedDodge() == true) {

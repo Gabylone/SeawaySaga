@@ -11,7 +11,6 @@ public class Skill : MonoBehaviour {
 	public string description = "";
 	public int energyCost = 5;
 	public float animationDelay = 0.6f;
-//	public int currentCharge = 0;
 	public int initCharge = 0;
 
 	public bool playAnim = true;
@@ -23,6 +22,8 @@ public class Skill : MonoBehaviour {
 	public TargetType targetType;
 	public int priority = 0;
 
+    public float timeToMoveBack = 1f;
+
 	public Job linkedJob;
 
 	public enum TargetType {
@@ -32,20 +33,12 @@ public class Skill : MonoBehaviour {
 
 	public Type type;
 
-//	public Skill ( Skill refSkill ) {
-//		skilthis = this  
-//	}
-//
-//	public Skill () {
-//		//
-//	}
-//	public Skill ( Skill skill ) {
-//		this = skill;
-//	}
-//
 	void UseEnergy () {
-		fighter.crewMember.energy -= energyCost;
-		Skill skill = CombatManager.Instance.currentFighter.crewMember.GetSkill (type);
+
+        fighter.crewMember.energy -= energyCost;
+
+        Skill skill = CombatManager.Instance.currentFighter.crewMember.GetSkill(type);
+
 		if (skill != null) {
 			fighter.crewMember.charges [GetSkillIndex(fighter.crewMember)] = initCharge;
 		}
@@ -54,6 +47,9 @@ public class Skill : MonoBehaviour {
 	public virtual void Trigger (Fighter fighter) {
 
 		this.fighter = fighter;
+
+        fighter.iconVisual.bodyVisual.onApplyEffect = null;
+        fighter.iconVisual.bodyVisual.onApplyEffect += HandleOnApplyEffect;
 
 		if (hasTarget) {
 			SetTarget ();
@@ -130,31 +126,26 @@ public class Skill : MonoBehaviour {
 
 		fighter.ChangeState (Fighter.states.triggerSkill);
 
-		TriggerAnimation ();
-
-		Invoke ("ApplyEffect", animationDelay);
+		StartAnimation ();
 	}
 
-	public void TriggerAnimation () {
+	public virtual void StartAnimation () {
 
 		if (!playAnim)
 			return;
-
-		fighter.animator.SetInteger("hitType",(int)animationType);
-		fighter.animator.SetTrigger ( "hit" );
 		//
 	}
 
 	/// <summary>
 	/// Triggers the skill.
 	/// </summary>
-	public virtual void ApplyEffect ()
+	public virtual void HandleOnApplyEffect ()
 	{
 		if (goToTarget) {
 
 			fighter.TargetFighter.CheckContact (fighter);
 
-			Invoke ("InvokeMoveBack",1f);
+			Invoke ("InvokeMoveBack",timeToMoveBack);
 		}
 	}
 
@@ -172,12 +163,9 @@ public class Skill : MonoBehaviour {
 		} else {
 			EndSkillDelay ();
 		}
-
 	}
 
 	void EndSkillDelay () {
-
-        Debug.Log("end skill delay");
 
 		if (fighter.crewMember.side == Crews.Side.Player) {
 
@@ -192,23 +180,6 @@ public class Skill : MonoBehaviour {
 		} else {
 			CombatManager.Instance.ChangeState (CombatManager.States.EnemyActionChoice);
 		}
-//		foreach (var item in fighter.crewMember.DefaultSkills) {
-//			
-//		}
-
-//		if ( SkillManager.CanUseSkill (fighter.crewMember.energy) ) {
-//
-//
-//
-//		} else {
-//
-//			if (fighter.crewMember.side == Crews.Side.Player) {
-//				fighter.EndTurn ();
-//				CombatManager.Instance.NextTurn ();
-//				print ("Skipping Turn : No more energy");
-//			}
-//
-//		}
 
 	}
 
@@ -231,7 +202,6 @@ public class Skill : MonoBehaviour {
 			return  false;
 		}
 
-		// assez d'énergie
 		return true;
 	}
 
@@ -243,15 +213,11 @@ public class Skill : MonoBehaviour {
 			skillIndex = member.SpecialSkills.FindIndex (x => x.type == type) + 3;
 		}
 
-//		print (name + " index is : " + skillIndex);
-
-
 		if (skillIndex < 0) {
 			Debug.LogError ("pas trouvé l'index de " + skillName);
 		}
 
 		return skillIndex;
-
 	}
 
 	// ENUM //

@@ -25,7 +25,6 @@ public class QuestManager : MonoBehaviour {
 
         Quest.onSetTargetCoords = null;
         Quest.currentQuest = null;
-        Quest.showQuestOnMap = null;
 
         onNewQuest = null;
 
@@ -75,8 +74,7 @@ public class QuestManager : MonoBehaviour {
 			SendPlayerBackToGiver ();
 			break;
 		case FunctionType.ShowQuestOnMap:
-			Story_ShowQuestOnMap ();
-            StoryInput.Instance.WaitForInput();
+                Quest.currentQuest.ShowOnMap();
                 break;
             case FunctionType.FinishQuest:
 			FinishQuest ();
@@ -272,20 +270,6 @@ public class QuestManager : MonoBehaviour {
 	}
 
 	#region map stuff
-	public void Story_ShowQuestOnMap () {
-
-        StoryReader.Instance.NextCell();
-        StoryReader.Instance.Wait(1);
-
-        showingQuestOnMap = true;
-		Quest.currentQuest.ShowOnMap ();
-    }
-
-    public void HideQuestOnMap()
-    {
-        showingQuestOnMap = false;
-    }
-
 	public void SendPlayerBackToGiver () {
 		Debug.LogError ("SEND PLAYER BACK TO GIVER DOESNT EXIST ANYMORE");
 	}

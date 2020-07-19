@@ -11,6 +11,7 @@ public class DisplayItem_Selected : DisplayItem {
     [SerializeField] private Text paramText;
     [SerializeField] private Text priceText;
     [SerializeField] private Text weightText;
+    [SerializeField] private Text descriptionText;
 
     [SerializeField] private GameObject levelObj;
     [SerializeField] private Text levelText;
@@ -50,6 +51,9 @@ public class DisplayItem_Selected : DisplayItem {
             }
             /// NAME
             nameText.text = "" + value.name;
+
+            /// DESCRIPTION
+            descriptionText.text = "" + value.description;
 
             /// VALUE
             paramText.text = "" + value.value;

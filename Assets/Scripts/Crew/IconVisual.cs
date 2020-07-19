@@ -18,24 +18,33 @@ public class IconVisual : MonoBehaviour
 
     private bool tainted = false;
     private Color targetHighlightColor;
+    private bool loopTaint = false;
+
+    public float taintOnceDuration = 0.5f;
 
     private Member currentMember;
 
     float lerp = 0f;
     public float range = 0.3f;
 
+
+    float timer = 0f;
+
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            Taint(Color.red);
-        }
-
         if (tainted)
         {
             Color c = targetHighlightColor;
 
-            lerp = Mathf.PingPong(Time.time * highlightSpeed, range);
+            if (loopTaint)
+            {
+                lerp = Mathf.PingPong(Time.time * highlightSpeed, range);
+            }
+            else
+            {
+                lerp = Mathf.Lerp(1f, 0f, timer / taintOnceDuration);
+                timer += Time.deltaTime;
+            }
 
             GetImage(ApparenceType.hair).color = LerpColor(ApparenceType.hair, ApparenceType.hairColor);
             GetImage(ApparenceType.beard).color = LerpColor(ApparenceType.beard, ApparenceType.hairColor);
@@ -130,9 +139,22 @@ public class IconVisual : MonoBehaviour
         weaponImage.color = Color.white;
     }
 
-    public void Taint ( Color c)
+    public void TaintLoop ( Color c)
     {
         tainted = true;
+
+        loopTaint = true;
+
+        targetHighlightColor = c;
+    }
+
+    public void TaintOnce(Color c)
+    {
+        tainted = true;
+
+        timer = 0f;
+
+        loopTaint = false;
 
         targetHighlightColor = c;
     }

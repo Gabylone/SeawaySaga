@@ -10,45 +10,34 @@ public class MapGenerator : MonoBehaviour {
     public static MapParameters mapParameters;
     public MapParameters defaultMapParameters;
 
-    string textFile_STR = "";
-
-    public int test_row = 0;
-    public int test_col = 0;
+    private string textFile_STR = "";
 
     public Dictionary<Coords, string> islandNames = new Dictionary<Coords, string>();
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            Debug.Log( GetCellLoc(test_row,test_col ));
-        }
-    }
-
-    public int MapScale_X
+    public int GetMapHorizontalScale
     {
         get
         {
-            return mapParameters.mapScale_X;
+            return mapParameters.MapScale_X;
         }
     }
 
-    public int MapScale_Y
+    public int GetMapVerticalScale
     {
         get
         {
-            return mapParameters.mapScale_Y;
+            return mapParameters.MapScale_Y;
         }
     }
 
     public void SetMapScale_X ( int i )
     {
-        mapParameters.mapScale_X = i;
+        mapParameters.SetMapScale_X(i);
     }
 
     public void SetMapScale_Y(int i)
     {
-        mapParameters.mapScale_Y = i;
+        mapParameters.SetMapScale_Y(i);
     }
 
     public int IslandsPerCol
@@ -113,18 +102,6 @@ public class MapGenerator : MonoBehaviour {
         SetMapScale_Y(rows.Length);
     }
 
-    private void GenerateNewMap()
-    {
-        SaveManager.Instance.GameData.treasureCoords = RandomCoords;
-        CreateIsland(SaveManager.Instance.GameData.treasureCoords, StoryType.Treasure);
-
-        CreateHomeIsland();
-
-        FormulaManager.Instance.CreateNewClues();
-
-        StartCoroutine(CreateNormalIslands());
-    }
-
     private void LoadMapFromFile()
     {
         StartCoroutine(LoadMapFromFileCoroutine());
@@ -147,16 +124,16 @@ public class MapGenerator : MonoBehaviour {
         // init chunks
         Chunk.chunks.Clear();
 
-        for (int x = 0; x < MapScale_X; x++)
+        for (int x = 0; x < GetMapHorizontalScale; x++)
         {
-            for (int y = 0; y < MapScale_Y; y++)
+            for (int y = 0; y < GetMapVerticalScale; y++)
             {
                 Coords c = new Coords(x, y);
                 Chunk.chunks.Add(c, new Chunk());
             }
         }
 
-        LoadingScreen.Instance.StartLoading("Chargement îles", MapScale_X * MapScale_Y);
+        LoadingScreen.Instance.StartLoading("Chargement îles", GetMapHorizontalScale * GetMapVerticalScale);
 
         for (int rowIndex = 0; rowIndex < rows.Length; rowIndex++)
         {
@@ -183,9 +160,9 @@ public class MapGenerator : MonoBehaviour {
                         {
                             StoryType storyType = (StoryType)storyTypeIndex;
 
-                            int storyID = StoryLoader.Instance.FindIndexByName(storyName, storyType);
+                            int storyIndex = StoryLoader.Instance.FindIndexByName(storyName, storyType);
 
-                            if (storyID < 0)
+                            if (storyIndex < 0)
                             {
                                 
                             }
@@ -211,8 +188,8 @@ public class MapGenerator : MonoBehaviour {
                                         break;
                                 }
 
-                                CreateIsland(c, storyType);
-                                Chunk.GetChunk(c).GetIslandData(storyAmount).storyManager.InitHandler(storyType, storyID);
+                                CreateIsland(c, storyType, storyAmount , storyIndex);
+                                
                             }
 
                             
@@ -264,9 +241,9 @@ public class MapGenerator : MonoBehaviour {
 
 		Chunk.chunks.Clear ();
 
-		for (int x = 0; x < MapScale_X; x++) {
+		for (int x = 0; x < GetMapHorizontalScale; x++) {
 
-            for (int y = 0; y < MapScale_Y; y++)
+            for (int y = 0; y < GetMapVerticalScale; y++)
             {
                 Coords c = new Coords(x, y);
 
@@ -282,119 +259,17 @@ public class MapGenerator : MonoBehaviour {
 		}
 	}
 
-	public void InitChunks() {
-		
-		Chunk.chunks.Clear ();
-
-		for (int x = 0; x < MapScale_X; x++) {
-			for (int y = 0; y < MapScale_Y; y++) {
-
-				Coords c = new Coords (x, y);
-				Chunk.chunks.Add (c, new Chunk ());
-			}
-		}
-	}
-
-    public void CreateIsland( Coords c , StoryType type )
+    public void CreateIsland( Coords c , StoryType type , int storyAmount , int storyIndex )
     {
         Chunk.GetChunk(c).AddIslandData(new IslandData(type));
-
-    }
-
-	void CreateHomeIsland () {
-
-        Coords targetCoords = RandomCoords;
-
-        while (targetCoords == SaveManager.Instance.GameData.treasureCoords)
-        {
-            Debug.Log("home island is same position as other, rolling coords pos again");
-            targetCoords = RandomCoords;
-        }
-
-        SaveManager.Instance.GameData.homeCoords = targetCoords;
-        CreateIsland(SaveManager.Instance.GameData.homeCoords, StoryType.Home);
-	}
-	IEnumerator CreateNormalIslands () {
-//	void CreateNormalIslands () {
-
-
-		int max = (int)((float)(IslandsPerCol * MapScale_X));
-		LoadingScreen.Instance.StartLoading ("Création îles",max );
-
-		int l = 0;
-		int a = 0;
-
-		for ( int y = 0; y < MapScale_Y ; ++y ) {
-
-			for (int i = 0; i < IslandsPerCol; ++i ) {
-
-				int x = Random.Range ( 0, MapScale_X );
-
-				Coords c = new Coords ( x , y );
-
-				Chunk targetChunk = Chunk.GetChunk (c);
-
-				if (targetChunk.state == ChunkState.UndiscoveredSea) {
-                    CreateIsland(c, StoryType.Normal);
-				}
-
-				++l;
-				++a;
-				if ( l > islandCreation_LoadLimit ) {
-					l = 0;
-					//yield return new WaitForEndOfFrame ();
-				}
-				LoadingScreen.Instance.Push (a);
-//				yield return new WaitForEndOfFrame ();
-			}
-
-		}
-
-		yield return new WaitForEndOfFrame ();
-
-        //CreateTextFile();
-
-		if (GameManager.Instance.saveOnStart)
-			SaveManager.Instance.SaveAllIslands ();
-		else
-			LoadingScreen.Instance.End ();
-
-	}
-
-    private void CreateTextFile()
-    {
-        for (int y = 0; y < MapScale_Y; y++)
-        {
-            for (int x = 0; x < MapScale_X; x++)
-            {
-                Coords c = new Coords(x, y);
-
-                for (int i = 0; i < Chunk.GetChunk(c).islandDatas.Length; i++)
-                {
-                    textFile_STR += Chunk.GetChunk(c).GetIslandData(i).storyManager.storyHandlers[0].Story.dataName;
-                    if ( i < Chunk.GetChunk(c).islandDatas.Length - 1)
-                    {
-                        textFile_STR += ",";
-                    }
-                }
-
-                textFile_STR += ";";
-            }
-
-            textFile_STR += "\n";
-        }
-        
-
-        System.IO.File.WriteAllText( Application.dataPath + "/Resources/Maps/" + mapParameters.mapName + ".txt", textFile_STR);
-
-        Debug.Log(textFile_STR);
+        Chunk.GetChunk(c).GetIslandData(storyAmount).storyManager.InitHandler(type, storyIndex);
     }
     #endregion
 
     #region tools
     public Coords RandomCoords{
 		get {
-			return new Coords (Random.Range ( 0, MapScale_X ),Random.Range ( 0, MapScale_Y ));
+			return new Coords (Random.Range ( 0, GetMapHorizontalScale ),Random.Range ( 0, GetMapVerticalScale ));
 		}
 	}
 	#endregion

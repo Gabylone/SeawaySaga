@@ -8,9 +8,13 @@ public class DisplayHeart : MonoBehaviour {
 
 	public RectTransform backGround;
 	public Image fillImage;
+	public Image fillImage_Fast;
 
-	// Use this for initialization
-	void Start () {
+    public float tweenDuration = 0.75f;
+    public float tweenDuration_Fast = 0.4f;
+
+    // Use this for initialization
+    void Start () {
 
 		InGameMenu.Instance.onOpenMenu += HandleOpenInventory;
 		LootUI.useInventory += HandleUseInventory;
@@ -31,8 +35,12 @@ public class DisplayHeart : MonoBehaviour {
         float width = -backGround.rect.width + backGround.rect.width * l;
 
         Vector2 v = new Vector2(width, fillImage.rectTransform.sizeDelta.y);
-        fillImage.rectTransform.sizeDelta = v;
-	}
+
+        //fillImage.rectTransform.sizeDelta = v;
+
+        fillImage.rectTransform.DOSizeDelta(v, tweenDuration_Fast);
+        fillImage_Fast.rectTransform.DOSizeDelta(v, tweenDuration).SetDelay(tweenDuration_Fast);
+    }
 
 	void HandleUseInventory (InventoryActionType actionType)
 	{

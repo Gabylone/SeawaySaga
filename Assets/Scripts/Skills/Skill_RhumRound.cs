@@ -15,10 +15,10 @@ public class Skill_RhumRound : Skill {
 		fighter.Speak (str);
 	}
 
-	public override void ApplyEffect ()
+	public override void HandleOnApplyEffect ()
 	{
 
-		base.ApplyEffect ();
+		base.HandleOnApplyEffect ();
 
 		foreach (var targetFighter in CombatManager.Instance.getCurrentFighters (fighter.crewMember.side) ) {
 

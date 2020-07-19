@@ -4,14 +4,22 @@ using UnityEngine;
 
 public class Skill_Attack : Skill {
 
-	public override void ApplyEffect ()
-	{
+    public int hitTypes = 2;
 
-		base.ApplyEffect ();
+	public override void HandleOnApplyEffect ()
+	{
+		base.HandleOnApplyEffect ();
 
 		fighter.TargetFighter.GetHit (fighter, fighter.crewMember.Attack, 1f);
 		EndSkill ();
-
 	}
+
+    public override void StartAnimation()
+    {
+        base.StartAnimation();
+
+        fighter.animator.SetInteger("hitType", (int)Random.Range(0, hitTypes) );
+        fighter.animator.SetTrigger("hit");
+    }
 
 }

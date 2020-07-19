@@ -33,6 +33,7 @@ public class DisplayMinimap : MonoBehaviour {
     // minimap
     [Header("Components")]
     public RectTransform overallRectTranfsorm;
+    public ScrollRect scrollRect;
 	public RectTransform scrollViewRectTransform;
 	public Mask viewPortMask;
 
@@ -46,9 +47,11 @@ public class DisplayMinimap : MonoBehaviour {
 
     [Header("Zoom")]
     public float zoom_Speed = 1f;
+    public float zoom_LerpSpeed = 1f;
     public float zoom_Max = 5f;
     public float zoom_Min = 1f;
-    public float zoom_MouseScrollDelta = 0f;
+    public float zoom_NormalScale = 2.7f;
+    public float targetScale = 2.7f;
 
 	[Header("Full Display")]
     public float fullDisplay_Duration = 0.8f;
@@ -66,12 +69,17 @@ public class DisplayMinimap : MonoBehaviour {
     public bool fullyDisplayed = false;
     ///
 
+    private bool continueStoryOnClose = false;
+
 	public Image outlineImage;
 
 	public GameObject mapCloseButton;
 
+    public float decal_X = 0f;
+    public float decal_Y = 0f;
 
-	void Awake () {
+
+    void Awake () {
 		Instance = this;
 	}
 
@@ -81,8 +89,6 @@ public class DisplayMinimap : MonoBehaviour {
 		rectTransform = GetComponent<RectTransform> ();
 
 		// subscribe
-		NavigationManager.Instance.EnterNewChunk += HandleChunkEvent;
-		Quest.showQuestOnMap += HandleShowQuestOnMap;
 
 		CombatManager.Instance.onFightStart += FadeOut;
 		CombatManager.Instance.onFightEnd += FadeIn;
@@ -102,36 +108,59 @@ public class DisplayMinimap : MonoBehaviour {
 
         previousParent = transform.parent;
 
+        targetScale = zoom_NormalScale;
+
 		Show ();
 		HideCloseButton ();
-
-		ClampScrollView ();
 	}
 
     private void Update()
     {
         UpdatePlayerBoatIcon();
-
         UpdateZoom();
+        if (fullyDisplayed)
+        {
+            UpdateZoomControl();
+        }
 
+        /*CenterOnBoat();
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            Crews.maxHunger = 20000;
+        }*/
     }
 
     void UpdateZoom()
     {
-        zoom_MouseScrollDelta = Input.mouseScrollDelta.y;
+
+        if (overallRectTranfsorm.localScale.x >= targetScale + 0.1f)
+        {
+            overallRectTranfsorm.localScale = Vector3.Lerp(overallRectTranfsorm.localScale, Vector3.one * targetScale, zoom_LerpSpeed * Time.deltaTime);
+            CenterOnBoat_Quick();
+
+        }
+        else if (overallRectTranfsorm.localScale.x <= targetScale - 0.1f)
+        {
+            overallRectTranfsorm.localScale = Vector3.Lerp(overallRectTranfsorm.localScale, Vector3.one * targetScale, zoom_LerpSpeed * Time.deltaTime);
+            CenterOnBoat_Quick();
+        }
+    }
+
+    void UpdateZoomControl()
+    {
 
         if (Input.mouseScrollDelta.y >= 0.1f)
         {
-            if (overallRectTranfsorm.localScale.x <= zoom_Max)
+            if (targetScale <= zoom_Max)
             {
-                overallRectTranfsorm.localScale += Vector3.one * zoom_Speed * Time.deltaTime;
+                targetScale += zoom_Speed * Time.deltaTime;
             }
         }
         else if (Input.mouseScrollDelta.y <= -0.1f)
         {
-            if ( overallRectTranfsorm.localScale.x >= zoom_Min)
+            if (targetScale >= zoom_Min)
             {
-                overallRectTranfsorm.localScale -= Vector3.one * zoom_Speed * Time.deltaTime;
+                targetScale -= zoom_Speed * Time.deltaTime;
             }
         }
     }
@@ -159,16 +188,38 @@ public class DisplayMinimap : MonoBehaviour {
 	{
 		if (func == FunctionType.ObserveHorizon) {
 
-			UpdateRange (4);
-
-			StoryReader.Instance.NextCell ();
-
-			StoryReader.Instance.UpdateStory ();
-
-			Tween.Bounce (minimapChunkParent.transform);
+            StartCoroutine(ObserveHorizonCoroutine());
 
 		}
 	}
+
+    IEnumerator ObserveHorizonCoroutine()
+    {
+        FullDisplay();
+
+        // wait for map to open
+        yield return new WaitForSeconds(fullDisplay_Duration);
+
+        mapCloseButton.SetActive(false);
+
+        yield return new WaitForSeconds(0.3f);
+
+        targetScale = 1f;
+
+        // pause
+        yield return new WaitForSeconds(1);
+
+        CenterOnBoat();
+        UpdateRange(5);
+
+        // wait for map to center
+        yield return new WaitForSeconds(0.5f);
+
+        continueStoryOnClose = true;
+
+        mapCloseButton.SetActive(true);
+
+    }
 
     #region update minimap chunks
     public MinimapChunk GetCurrentMinimapChunk()
@@ -198,19 +249,11 @@ public class DisplayMinimap : MonoBehaviour {
 	void HandleOnSetTargetCoords (Quest quest)
 	{
 		if (quest.targetCoords == quest.originCoords) {
-            MinimapChunk originMinimapChunk = GetMinimapChunk(quest.originCoords, quest.originID);
 
-            if (originMinimapChunk != null)
-            {
-                originMinimapChunk.HideQuestFeedback();
-            }
+            quest.GetOriginChunk().HideQuestFeedback();
         }
 
-        MinimapChunk targetMinimapChunk = GetMinimapChunk(quest.targetCoords, quest.targetID);
-        if ( targetMinimapChunk != null)
-        {
-            targetMinimapChunk.ShowQuestFeedback();
-        }
+        quest.GetTargetChunk().ShowQuestFeedback();
     }
      
 	void HandleOnGiveUpQuest (Quest quest)
@@ -257,26 +300,64 @@ public class DisplayMinimap : MonoBehaviour {
         }
     }
 
-	void HandleChunkEvent ()
+	public void HandleChunkEvent ()
 	{
 		UpdateRange (GetCurrentShipRange);
-
-		CenterOnBoat ();
 
         MovePlayerIcon();
 
         UpdateOtherBoatsMinimapIcon();
 
-	}
+        //CenterOnBoat();
+
+        CancelInvoke("CenterOnBoat");
+        Invoke("CenterOnBoat" , centerTweenDuration);
+    }
     #endregion
+
+    #region quest
+    public void ShowQuest(Quest quest)
+    {
+        StartCoroutine(ShowQuestCoroutine(quest));
         
+    }
+
+    IEnumerator ShowQuestCoroutine(Quest quest)
+    {
+        FullDisplay();
+
+
+        // wait for map to open
+        yield return new WaitForSeconds(fullDisplay_Duration);
+
+        mapCloseButton.SetActive(false);
+
+        // pause
+        yield return new WaitForSeconds(0.3f);
+
+        CenterOnMap_Tween(quest.GetTargetChunk().rectTransform);
+
+        // wait for map to center
+        yield return new WaitForSeconds(centerTweenDuration);
+
+        MinimapCenterFeedback.Instance.CenterOnMap(quest.targetCoords);
+
+        yield return new WaitForSeconds(centerTweenDuration);
+
+        mapCloseButton.SetActive(true);
+
+        continueStoryOnClose = true;
+
+    }
+    #endregion
+
     void InitMap ()
 	{
-        overallRectTranfsorm.sizeDelta = new Vector2(minimapChunkScale * MapGenerator.Instance.MapScale_X, minimapChunkScale * MapGenerator.Instance.MapScale_Y);
+        overallRectTranfsorm.sizeDelta = new Vector2(minimapChunkScale * MapGenerator.Instance.GetMapHorizontalScale, minimapChunkScale * MapGenerator.Instance.GetMapVerticalScale);
 
-		for (int x = 0; x < MapGenerator.Instance.MapScale_X; x++) {
+		for (int x = 0; x < MapGenerator.Instance.GetMapHorizontalScale; x++) {
 
-			for (int y = 0; y < MapGenerator.Instance.MapScale_Y; y++) {
+			for (int y = 0; y < MapGenerator.Instance.GetMapVerticalScale; y++) {
 
                 Coords coords = new Coords (x, y);
 
@@ -295,60 +376,41 @@ public class DisplayMinimap : MonoBehaviour {
 
 	}
 
-	// QUEST
-	#region quest
-	void HandleShowQuestOnMap (Quest quest)
-	{
-        CenterMap(quest.targetCoords);
-    }
-    #endregion
-
     #region center
-    public float decal_X = 0f;
-    public float decal_Y = 0f;
-
     void CenterOnBoat() {
-		CenterMap (Boats.Instance.playerBoatInfo.coords);
+        Debug.Log("centering on boat");
+		CenterOnMap_Tween (playerBoat_World_RectTransform);
 	}
-	void ClampScrollView() {
 
-		Coords coords = Boats.Instance.playerBoatInfo.coords;
+    public void CenterOnBoat_Quick()
+    {
+        Canvas.ForceUpdateCanvases();
 
-		float x = overallRectTranfsorm.rect.width * (float)coords.x / MapGenerator.Instance.MapScale_X;
+        Vector2 p =
+            (Vector2)scrollRect.transform.InverseTransformPoint(overallRectTranfsorm.position)
+            - (Vector2)scrollRect.transform.InverseTransformPoint(playerBoat_World_RectTransform.position);
 
-        x -= scrollViewRectTransform.rect.width / 2f - (minimapChunkScale / 2f);
+        p = p + scrollViewRectTransform.rect.size / 2f;
 
-        x += decal_X;
+        overallRectTranfsorm.anchoredPosition = p; 
+    }
 
-		x = Mathf.Clamp (x,0, (overallRectTranfsorm.rect.width - scrollViewRectTransform.rect.width));
-
-		float y = overallRectTranfsorm.rect.height * (float)coords.y / MapGenerator.Instance.MapScale_Y;
-
-        y -= scrollViewRectTransform.rect.height / 2f  - (minimapChunkScale/2f);
-
-        y += decal_Y;
-
-		y = Mathf.Clamp (y,0, overallRectTranfsorm.rect.height - scrollViewRectTransform.rect.height);
-
-		Vector2 targetPos = new Vector2(-x,-y);
-		overallRectTranfsorm.anchoredPosition = targetPos;
-	}
-	public void CenterMap (Coords coords)
+	public void CenterOnMap_Tween (RectTransform target)
 	{
-		int buffer = 5;
+        /*float x = (float)coords.x / MapGenerator.Instance.GetMapHorizontalScale;
+        float y = (float)coords.y / MapGenerator.Instance.GetMapVerticalScale;*/
 
-		float x = overallRectTranfsorm.rect.width * (float)coords.x / MapGenerator.Instance.MapScale_X;
-		x -= scrollViewRectTransform.rect.width / 2f - (minimapChunkScale/2f);
-		x = Mathf.Clamp (x,0-buffer, (overallRectTranfsorm.rect.width - scrollViewRectTransform.rect.width) +buffer);
+        Canvas.ForceUpdateCanvases();
 
-		float y = overallRectTranfsorm.rect.height * (float)coords.y / MapGenerator.Instance.MapScale_Y;
-		y -= scrollViewRectTransform.rect.height / 2f  - (minimapChunkScale/2f);
-		y = Mathf.Clamp (y,0-buffer, overallRectTranfsorm.rect.height - scrollViewRectTransform.rect.height + buffer);
+        Vector2 p =
+            (Vector2)scrollRect.transform.InverseTransformPoint(overallRectTranfsorm.position)
+            - (Vector2)scrollRect.transform.InverseTransformPoint(target.position);
 
-		Vector2 targetPos = new Vector2(-x,-y);
+        p = p + scrollViewRectTransform.rect.size / 2f;
 
-        overallRectTranfsorm.DOAnchorPos(targetPos, centerTweenDuration);
-	}
+        //overallRectTranfsorm.anchoredPosition = p; 
+        overallRectTranfsorm.DOAnchorPos(p, centerTweenDuration);
+    }
 	#endregion
 
 	#region map range
@@ -423,8 +485,8 @@ public class DisplayMinimap : MonoBehaviour {
             minimapChunk.rectTransform.localScale = Vector3.one;
 
             // POS
-            float x = (minimapChunkScale / 2) + (coords.x * overallRectTranfsorm.rect.width / MapGenerator.Instance.MapScale_X);
-            float y = (minimapChunkScale / 2) + (coords.y * overallRectTranfsorm.rect.height / MapGenerator.Instance.MapScale_Y);
+            float x = (minimapChunkScale / 2) + (coords.x * overallRectTranfsorm.rect.width / MapGenerator.Instance.GetMapHorizontalScale);
+            float y = (minimapChunkScale / 2) + (coords.y * overallRectTranfsorm.rect.height / MapGenerator.Instance.GetMapVerticalScale);
 
             float decalX = rangeX * islandData.worldPosition.x / NavigationManager.Instance.maxX;
             float decalY = rangeY * islandData.worldPosition.y / NavigationManager.Instance.maxY;
@@ -563,9 +625,6 @@ public class DisplayMinimap : MonoBehaviour {
             }
 
             targetMinimapBoat.gameObject.SetActive(true);
-
-
-
         }
         else
         {
@@ -593,37 +652,39 @@ public class DisplayMinimap : MonoBehaviour {
         Invoke ("ShowCloseButton",fullDisplay_Duration);
 		Invoke ("FullDisplayDelay", fullDisplay_Duration/2f);
 	}
-	void FullDisplayDelay () {
-
+    void FullDisplayDelay()
+    {
         transform.SetParent(targetParent);
         transform.SetAsFirstSibling();
 
-		Vector2 scale = new Vector2(0f,0f);
+        Vector2 scale = new Vector2(0f, 0f);
 
-        rectTransform.anchorMin = new Vector2 ( 0,0 );
-        rectTransform.anchorMax = new Vector2 ( 1,1 );
+        rectTransform.anchorMin = new Vector2(0, 0);
+        rectTransform.anchorMax = new Vector2(1, 1);
 
-		rectTransform.offsetMin = scale;
-		rectTransform.offsetMax = scale;
+        rectTransform.offsetMin = scale;
+        rectTransform.offsetMax = scale;
 
         outlineImage.gameObject.SetActive(false);
 
         rayBlockerImage.gameObject.SetActive(true);
-		rayBlockerImage.color = Color.black;
+        rayBlockerImage.color = Color.black;
 
-		viewPortMask.enabled = false;
+        viewPortMask.enabled = false;
 
-		Transitions.Instance.ScreenTransition.FadeOut (fullDisplay_Duration/2f);
-
-		ClampScrollView ();
+        Transitions.Instance.ScreenTransition.FadeOut(fullDisplay_Duration / 2f);
 
         fullyDisplayed = true;
-	}
+
+        CenterOnBoat_Quick();
+    }
 
 	public void ExitFullDisplay ()
 	{
 		if (fullDisplay_Exiting)
 			return;
+
+        targetScale = zoom_NormalScale;
 
 		Tween.Bounce (mapCloseButton.transform, 0.2f , 1.1f);
 
@@ -650,13 +711,27 @@ public class DisplayMinimap : MonoBehaviour {
 
         viewPortMask.enabled = true;
 
-		ClampScrollView ();
+        CenterOnBoat_Quick();
 
-		outlineImage.gameObject.SetActive(true);
+        outlineImage.gameObject.SetActive(true);
 		Transitions.Instance.ScreenTransition.FadeOut (fullDisplay_Duration/2f);
 
         fullyDisplayed = false;
+
+        if (continueStoryOnClose)
+        {
+            CancelInvoke("ContinueStory");
+            Invoke("ContinueStory", 0.3f);
+        }
 	}
+
+    void ContinueStory()
+    {
+        StoryReader.Instance.NextCell();
+        StoryReader.Instance.UpdateStory();
+
+        continueStoryOnClose = false;
+    }
 
 	void ShowCloseButton ()
 	{

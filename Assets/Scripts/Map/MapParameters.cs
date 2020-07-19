@@ -17,6 +17,32 @@ public class MapParameters
 
     public int islandPerCol = 0;
 
-    public int mapScale_X = 100;
-    public int mapScale_Y = 100;
+    private int mapScale_X = 100;
+    private int mapScale_Y = 100;
+
+    public int MapScale_X
+    {
+        get
+        {
+            return mapScale_X;
+        }
+    }
+
+    public int MapScale_Y
+    {
+        get
+        {
+            return mapScale_Y;
+        }
+    }
+
+    public void SetMapScale_X (int x)
+    {
+        mapScale_X = x;
+    }
+
+    public void SetMapScale_Y (int y)
+    {
+        mapScale_Y = y;
+    }
 }

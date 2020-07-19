@@ -43,8 +43,19 @@ public class CrewMember {
 	public Crews.Side side;
 	private Member memberID;
 
-	// HUNGER
-	public int hungerDamage = 10;
+    // HUNGER
+    public float minHungerDamage = 5;
+    public float maxHungerDamage = 15;
+    public int hungerDamage
+    {
+        get
+        {
+            float l = (float)GetStat(Stat.Constitution) / 6;
+
+            float damage = Mathf.Lerp(maxHungerDamage, minHungerDamage , l);
+            return (int)damage;
+        }
+    }
 
 	// JOB
 	public Job job {

@@ -23,9 +23,9 @@ public class Skill_ToastUp : Skill {
     }
 
 
-	public override void ApplyEffect ()
+	public override void HandleOnApplyEffect ()
 	{
-		base.ApplyEffect ();
+		base.HandleOnApplyEffect ();
 
 		if ( fighter.TargetFighter.HasStatus(Fighter.Status.Cussed) ) {
 			fighter.TargetFighter.RemoveStatus (Fighter.Status.Cussed,3);

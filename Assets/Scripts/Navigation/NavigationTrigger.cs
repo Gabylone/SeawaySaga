@@ -40,7 +40,7 @@ public class NavigationTrigger : MonoBehaviour {
 	{
         Coords targetCoords = Boats.Instance.playerBoatInfo.coords + NavigationManager.Instance.getNewCoords(direction);
 
-        if (targetCoords.x < 0 || targetCoords.x > MapGenerator.Instance.MapScale_X - 1 || targetCoords.y < 0 || targetCoords.y > MapGenerator.Instance.MapScale_Y - 1)
+        if (targetCoords.x < 0 || targetCoords.x > MapGenerator.Instance.GetMapHorizontalScale - 1 || targetCoords.y < 0 || targetCoords.y > MapGenerator.Instance.GetMapVerticalScale - 1)
         {
             gameObject.SetActive(false);
         }

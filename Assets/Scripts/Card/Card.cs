@@ -109,7 +109,7 @@ public class Card : MonoBehaviour {
 
 	void ShowTargetFeedback(Color color) {
 
-        linkedFighter.iconVisual.Taint(color);
+        linkedFighter.iconVisual.TaintLoop(color);
 
         foreach (var item in outlines)
         {

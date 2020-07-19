@@ -87,6 +87,8 @@ public class ItemLoader : MonoBehaviour {
             newItem.names[0] = cells[0];
             newItem.names[1] = cells[1];
 
+            newItem.description = cells[2];
+
             newItem.value = int.Parse(cells[3]);
             newItem.price = int.Parse(cells[4]);
             newItem.weight = int.Parse(cells[5]);

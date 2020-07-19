@@ -1,15 +1,15 @@
 <?xml version="1.0"?>
 <Chunk xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <state>UndiscoveredIsland</state>
+  <state>VisitedIsland</state>
   <islandDatas>
     <IslandData>
       <worldPosition>
-        <x>-6.5159874</x>
-        <y>-10.354496</y>
+        <x>13.5891294</x>
+        <y>5.55465651</y>
       </worldPosition>
-      <worldRotation>294.903717</worldRotation>
+      <worldRotation>227.6438</worldRotation>
       <storyManager>
-        <hasBeenPlayed>false</hasBeenPlayed>
+        <hasBeenPlayed>true</hasBeenPlayed>
         <storyHandlers>
           <StoryHandler>
             <row>0</row>
@@ -17,6 +17,238 @@
             <fallBackLayer>0</fallBackLayer>
             <storyID>3</storyID>
             <storyType>Normal</storyType>
+            <contentDecals>
+              <contentDecal>
+                <row>0</row>
+                <col>12</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>0</row>
+                <col>41</col>
+                <decal>0</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>0</row>
+                <col>59</col>
+                <decal>7</decal>
+              </contentDecal>
+            </contentDecals>
+            <loots />
+            <crews />
+          </StoryHandler>
+          <StoryHandler>
+            <row>7</row>
+            <col>61</col>
+            <fallBackLayer>0</fallBackLayer>
+            <fallbackNode>
+              <name>milieu foret</name>
+              <row>0</row>
+              <col>5</col>
+            </fallbackNode>
+            <storyID>0</storyID>
+            <storyType>Normal</storyType>
+            <contentDecals>
+              <contentDecal>
+                <row>2</row>
+                <col>18</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>7</row>
+                <col>18</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>9</row>
+                <col>18</col>
+                <decal>1</decal>
+              </contentDecal>
+            </contentDecals>
+            <loots>
+              <Loot>
+                <row>1</row>
+                <col>18</col>
+                <ids>
+                  <ArrayOfInt />
+                  <ArrayOfInt>
+                    <int>46</int>
+                    <int>39</int>
+                    <int>41</int>
+                    <int>45</int>
+                    <int>61</int>
+                  </ArrayOfInt>
+                  <ArrayOfInt />
+                  <ArrayOfInt />
+                </ids>
+                <weight>50</weight>
+                <AllItems>
+                  <ArrayOfItem />
+                  <ArrayOfItem>
+                    <Item>
+                      <ID>46</ID>
+                      <names>
+                        <string>Poivrière rouillée</string>
+                        <string>Rusty blunderbuss</string>
+                      </names>
+                      <value>10</value>
+                      <price>25</price>
+                      <weight>10</weight>
+                      <level>1</level>
+                      <spriteID>6</spriteID>
+                      <weaponType>Distance</weaponType>
+                      <category>Weapon</category>
+                    </Item>
+                    <Item>
+                      <ID>39</ID>
+                      <names>
+                        <string>Epée rouillée</string>
+                        <string>Rock on a stick</string>
+                      </names>
+                      <value>10</value>
+                      <price>15</price>
+                      <weight>10</weight>
+                      <level>1</level>
+                      <spriteID>0</spriteID>
+                      <weaponType>Stick</weaponType>
+                      <category>Weapon</category>
+                    </Item>
+                    <Item>
+                      <ID>41</ID>
+                      <names>
+                        <string>Dague cassée</string>
+                        <string>Large branch</string>
+                      </names>
+                      <value>13</value>
+                      <price>20</price>
+                      <weight>10</weight>
+                      <level>1</level>
+                      <spriteID>1</spriteID>
+                      <weaponType>Stick</weaponType>
+                      <category>Weapon</category>
+                    </Item>
+                    <Item>
+                      <ID>45</ID>
+                      <names>
+                        <string>Matraque en bois</string>
+                        <string>Wooden club</string>
+                      </names>
+                      <value>10</value>
+                      <price>21</price>
+                      <weight>10</weight>
+                      <level>1</level>
+                      <spriteID>0</spriteID>
+                      <weaponType>Stick</weaponType>
+                      <category>Weapon</category>
+                    </Item>
+                    <Item>
+                      <ID>61</ID>
+                      <names>
+                        <string>Pistolet rouillé</string>
+                        <string>Rusty canon</string>
+                      </names>
+                      <value>16</value>
+                      <price>26</price>
+                      <weight>10</weight>
+                      <level>2</level>
+                      <spriteID>7</spriteID>
+                      <weaponType>Distance</weaponType>
+                      <category>Weapon</category>
+                    </Item>
+                  </ArrayOfItem>
+                  <ArrayOfItem />
+                  <ArrayOfItem />
+                </AllItems>
+              </Loot>
+            </loots>
+            <crews>
+              <Crew>
+                <hostile>false</hostile>
+                <row>0</row>
+                <col>14</col>
+                <MemberIDs>
+                  <Member>
+                    <id>1</id>
+                    <Name>Bertrand</Name>
+                    <health>100</health>
+                    <maxHealth>100</maxHealth>
+                    <currentHunger>0</currentHunger>
+                    <Lvl>1</Lvl>
+                    <xp>0</xp>
+                    <skillPoints>0</skillPoints>
+                    <specialSkillsIndexes>
+                      <int>8</int>
+                    </specialSkillsIndexes>
+                    <stats>
+                      <int>1</int>
+                      <int>1</int>
+                      <int>1</int>
+                      <int>1</int>
+                    </stats>
+                    <daysOnBoard>0</daysOnBoard>
+                    <equipedWeapon>
+                      <ID>47</ID>
+                      <names>
+                        <string>Pistolet rouillé</string>
+                        <string>Rusty pistol</string>
+                      </names>
+                      <value>7</value>
+                      <price>16</price>
+                      <weight>10</weight>
+                      <level>1</level>
+                      <spriteID>7</spriteID>
+                      <weaponType>Distance</weaponType>
+                      <category>Weapon</category>
+                    </equipedWeapon>
+                    <equipedCloth>
+                      <ID>154</ID>
+                      <names>
+                        <string>Tenue de voyageur</string>
+                        <string>Traveller gear</string>
+                      </names>
+                      <value>13</value>
+                      <price>26</price>
+                      <weight>10</weight>
+                      <level>1</level>
+                      <spriteID>0</spriteID>
+                      <weaponType>Distance</weaponType>
+                      <category>Clothes</category>
+                    </equipedCloth>
+                    <job>Surgeon</job>
+                    <characterIDS>
+                      <int>2</int>
+                      <int>3</int>
+                      <int>9</int>
+                      <int>6</int>
+                      <int>2</int>
+                      <int>0</int>
+                      <int>3</int>
+                      <int>4</int>
+                      <int>1</int>
+                      <int>0</int>
+                      <int>5</int>
+                      <int>4</int>
+                      <int>14</int>
+                      <int>8</int>
+                      <int>4</int>
+                      <int>2</int>
+                    </characterIDS>
+                  </Member>
+                </MemberIDs>
+              </Crew>
+            </crews>
+          </StoryHandler>
+          <StoryHandler>
+            <row>8</row>
+            <col>19</col>
+            <fallBackLayer>1</fallBackLayer>
+            <fallbackNode>
+              <name>choix</name>
+              <row>0</row>
+              <col>15</col>
+            </fallbackNode>
+            <storyID>0</storyID>
+            <storyType>Quest</storyType>
             <contentDecals />
             <loots />
             <crews />
@@ -26,10 +258,10 @@
     </IslandData>
     <IslandData>
       <worldPosition>
-        <x>-18.07145</x>
-        <y>-1.92753983</y>
+        <x>8.60137</x>
+        <y>-16.6185</y>
       </worldPosition>
-      <worldRotation>136.073456</worldRotation>
+      <worldRotation>23.4710026</worldRotation>
       <storyManager>
         <hasBeenPlayed>false</hasBeenPlayed>
         <storyHandlers>

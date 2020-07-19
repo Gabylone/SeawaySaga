@@ -13,10 +13,10 @@ public class Skill_Cuss : Skill {
 
 	}
 
-	public override void ApplyEffect ()
+	public override void HandleOnApplyEffect ()
 	{
 
-		base.ApplyEffect ();
+		base.HandleOnApplyEffect ();
 
 		if ( fighter.TargetFighter.HasStatus(Fighter.Status.Toasted) ) {
 			fighter.TargetFighter.RemoveStatus (Fighter.Status.Toasted,3);

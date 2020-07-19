@@ -5,6 +5,8 @@ using System.Collections.Generic;
 [System.Serializable]
 public class Story {
 
+    public int id = 0;
+
 	public int param = 0;
 
 	public float rangeMin = 0f;
@@ -12,6 +14,7 @@ public class Story {
 
 	public string 	dataName 			= "";
 	public string 	displayName 		= "";
+
     public float 	freq 			= 0f;
 
 	public List<List<string>> content 	= new List<List<string>>();

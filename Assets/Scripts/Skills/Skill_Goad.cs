@@ -13,10 +13,10 @@ public class Skill_Goad : Skill {
 
 	}
 
-	public override void ApplyEffect ()
+	public override void HandleOnApplyEffect ()
 	{
 
-		base.ApplyEffect ();
+		base.HandleOnApplyEffect ();
 
 		fighter.TargetFighter.AddStatus (Fighter.Status.Provoking,3);
 

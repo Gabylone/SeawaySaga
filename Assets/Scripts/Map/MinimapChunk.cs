@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
-public class MinimapChunk : MonoBehaviour {
+public class MinimapChunk : MonoBehaviour, IPointerClickHandler{
 
 	public delegate void OnTouchMinimapChunk (Chunk chunk, Transform tr);
 	public static OnTouchMinimapChunk onTouchMinimapChunk;
@@ -127,5 +128,10 @@ public class MinimapChunk : MonoBehaviour {
 
         IslandInfo.Instance.DisplayIslandInfo(str);
         IslandInfo.Instance.ShowAtTransform(islandGroup.transform);
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        TouchMinimapChunk();
     }
 }

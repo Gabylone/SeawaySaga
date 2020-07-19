@@ -6,6 +6,6 @@ using UnityEngine;
 public class Pin
 {
     public string content;
-    public float x = 0;
-    public float y = 0;
+    public float save_X = 0;
+    public float save_Y = 0;
 }

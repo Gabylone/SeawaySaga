@@ -21,17 +21,17 @@ public class MinimapTexture : MonoBehaviour {
 
 	public void UpdateBackgroundImage () {
 
-		Texture2D texture = new Texture2D (MapGenerator.Instance.MapScale_X, MapGenerator.Instance.MapScale_Y);
+		Texture2D texture = new Texture2D (MapGenerator.Instance.GetMapHorizontalScale, MapGenerator.Instance.GetMapVerticalScale);
 
 		texture.filterMode = FilterMode.Point;
 		texture.anisoLevel = 0;
 		texture.mipMapBias = 0;
 		texture.wrapMode = TextureWrapMode.Clamp;
 
-		texture.Resize (MapGenerator.Instance.MapScale_X, MapGenerator.Instance.MapScale_Y);
+		texture.Resize (MapGenerator.Instance.GetMapHorizontalScale, MapGenerator.Instance.GetMapVerticalScale);
 
-		for (int x = 0; x < MapGenerator.Instance.MapScale_X; x++) {
-			for (int y = 0; y < MapGenerator.Instance.MapScale_Y; y++) {
+		for (int x = 0; x < MapGenerator.Instance.GetMapHorizontalScale; x++) {
+			for (int y = 0; y < MapGenerator.Instance.GetMapVerticalScale; y++) {
 
 				Chunk chunk = Chunk.GetChunk (new Coords (x, y));
 
@@ -67,7 +67,7 @@ public class MinimapTexture : MonoBehaviour {
 
         texture.Apply ();
 
-		targetImage.sprite = Sprite.Create ( texture, new Rect (0, 0, MapGenerator.Instance.MapScale_X,  MapGenerator.Instance.MapScale_Y) , Vector2.one * 0.5f );
+		targetImage.sprite = Sprite.Create ( texture, new Rect (0, 0, MapGenerator.Instance.GetMapHorizontalScale,  MapGenerator.Instance.GetMapVerticalScale) , Vector2.one * 0.5f );
 
 	}
 }

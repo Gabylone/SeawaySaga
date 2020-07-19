@@ -83,17 +83,17 @@ public class InGameMenu : MonoBehaviour {
 		switch (foodItem.spriteID) {
 		// légume
 		case 0:
-			hunger = (int) ((float)Crews.maxHunger/3f);
+            hunger = 4;
 			health = 25;
 			break;
 		// poisson
 		case 1:
-			hunger = (int) ((float)Crews.maxHunger/2f);
+            hunger = 6;
 			health = 50;
 			break;
 		// viande
 		case 2:
-			hunger = (int) ((float)Crews.maxHunger/1.5f);
+            hunger = 8;
 			health = 75;
 			break;
 		default:
@@ -101,13 +101,19 @@ public class InGameMenu : MonoBehaviour {
 		}
 
         // les membres perde la faim seulement lorsque la barre de vie est pleine //
-        /*if (CrewMember.GetSelectedMember.Health >= CrewMember.GetSelectedMember.MemberID.maxHealth - 15) {
+        /*if (CrewMember.GetSelectedMember.Health >= CrewMember.GetSelectedMember.MemberID.maxHealth - 10) {
 			CrewMember.GetSelectedMember.CurrentHunger -= hunger;
 		}*/
 
-        // les membres prennent la vie en meme temps qu'ils perde la faim //
         CrewMember.GetSelectedMember.CurrentHunger -= hunger;
-        CrewMember.GetSelectedMember.AddHealth (health);
+
+        // les membres prennent la vie en meme temps qu'ils perde la faim //
+        //CrewMember.GetSelectedMember.AddHealth(health);
+
+        if ( CrewMember.GetSelectedMember.CurrentHunger <= 0)
+        {
+            CrewMember.GetSelectedMember.AddHealth(health);
+        }
 
         if (OtherInventory.Instance.type == OtherInventory.Type.None)
 			LootManager.Instance.PlayerLoot.RemoveItem (LootUI.Instance.SelectedItem);

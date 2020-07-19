@@ -64,8 +64,14 @@ public class StoryLoader : MonoBehaviour {
 
 		GetFiles (path);
 
-		for (int i = 0; i < storyFiles.Length; ++i )
-			storyList.Add(LoadSheet (i));
+		for (int i = 0; i < storyFiles.Length; ++i)
+        {
+            Story newStory = LoadSheet(i);
+            newStory.id = i;
+
+            storyList.Add(newStory);
+        }
+			
 	}
  	#endregion
 
@@ -74,6 +80,7 @@ public class StoryLoader : MonoBehaviour {
 	{
 
 		string[] rows = storyFiles[index].text.Split ('\n');
+
 
 		Story newStory = new Story ();
 
@@ -85,7 +92,7 @@ public class StoryLoader : MonoBehaviour {
 			if (rowIndex == 1) 
 			{
 				newStory.dataName       = rowContent [0];
-				newStory.displayName    = rowContent [0];
+                newStory.displayName = rowContent[3];
 
                 double frequence;
 

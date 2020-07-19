@@ -8,9 +8,9 @@ public class Skill_GrapeShot : Skill {
 
 	
 
-	public override void ApplyEffect ()
+	public override void HandleOnApplyEffect ()
 	{
-		base.ApplyEffect ();
+		base.HandleOnApplyEffect ();
 
 		StartCoroutine (SkillCoroutine ());
 
@@ -25,7 +25,7 @@ public class Skill_GrapeShot : Skill {
 
 			targetFighter.GetHit (fighter, fighter.crewMember.Attack , 0.4f);
 
-			TriggerAnimation ();
+			StartAnimation ();
 
 			yield return new WaitForSeconds ( animationDelay );
 

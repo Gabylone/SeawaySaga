@@ -6,9 +6,9 @@ public class Skill_Cosh : Skill {
 
 	public float knockedOutChance = 0.3f;
 
-	public override void ApplyEffect ()
+	public override void HandleOnApplyEffect ()
 	{
-		base.ApplyEffect ();
+		base.HandleOnApplyEffect ();
 
 
 		fighter.TargetFighter.AddStatus (Fighter.Status.KnockedOut);

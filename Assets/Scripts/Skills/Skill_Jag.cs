@@ -17,10 +17,10 @@ public class Skill_Jag : Skill {
         fighter.Speak(str);
     }
 
-	public override void ApplyEffect ()
+	public override void HandleOnApplyEffect ()
 	{
 
-		base.ApplyEffect ();
+		base.HandleOnApplyEffect ();
 
 		fighter.TargetFighter.AddStatus (Fighter.Status.Jagged, 3);
 		fighter.TargetFighter.RemoveStatus (Fighter.Status.Poisonned, 3);

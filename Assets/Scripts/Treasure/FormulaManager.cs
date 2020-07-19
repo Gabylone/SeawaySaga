@@ -92,7 +92,7 @@ public class FormulaManager : MonoBehaviour {
             newFormula.coords = targetCoords;
 
             //Chunk.GetChunk (newFormula.coords).InitIslandData (new IslandData (StoryType.Clue));
-            MapGenerator.Instance.CreateIsland(newFormula.coords, StoryType.Clue);
+            //MapGenerator.Instance.CreateIsland(newFormula.coords, StoryType.Clue);
 
 			formulas.Add(newFormula);
 

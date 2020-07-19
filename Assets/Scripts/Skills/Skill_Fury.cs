@@ -14,10 +14,10 @@ public class Skill_Fury: Skill {
 		fighter.Speak (str);
 	}
 
-	public override void ApplyEffect ()
+	public override void HandleOnApplyEffect ()
 	{
 
-		base.ApplyEffect ();
+		base.HandleOnApplyEffect ();
 
 		fighter.AddStatus (Fighter.Status.Enraged, 3);
 

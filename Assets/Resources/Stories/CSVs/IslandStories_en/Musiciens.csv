@@ -1,5 +1,5 @@
-Nom;Fréquence %;Sprite ID;;;;;;;;;;;;;;;;;
-Musiciens;0;1;;;;;;;;;;;;;;;;;
+Nom;Fréquence %;Sprite ID;Display Name;;;;;;;;;;;;;;;;
+Musiciens;0;1;Musicians;;;;;;;;;;;;;;;;
 [debut];;;;;;;;;;;;;;;;;;;
 NewCrew;;;;;[retour];;;;;;[trompette];;[guitare];;[luth];;[accordéon];;[flute]
 Narrator : The musicians are akwardly standing there. They seem down.;Node=>retour;;;;Node=>instruments;Narrator : The whole room is dancing to the music. The tavern’s got its musical spirit back!;;;;;OtherSpeak : Tell me you found a trumpet!;Node=>guitare;OtherSpeak : So did you find a guitar?;Node=>luth;OtherSpeak : You’ve got a lute for us right?;Node=>accordéon;OtherSpeak : I hope you have found an accordion!;Node=>flute;OtherSpeak : The flute, do you have it now?

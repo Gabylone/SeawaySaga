@@ -1,11 +1,11 @@
-Nom;Fréquence / 5;Sprite ID;
-Maison_Test;1;4;
+Nom;Fréquence / 5;Sprite ID;Display Name
+Maison_Test;1;4;Captain’s House
 [debut];;;
 PlayerSpeak : This is the test story;;;
-SetChoices4;;;
-Choice : Leave;Choice : loot stuff;Choice : (fight 1);Choice : (fight 2)
-Leave;PlayerSpeak : Des ammes ?;NewCrew1;NewCrew1
-;LootWeapons;OtherSpeak : Bug de merde;OtherSpeak : Bug de merde 2
-;NewQuest=>debut;LaunchCombat;LaunchCombat
-;;PlayerSpeak : Fini !;PlayerSpeak : Fini !
-;;Node=>debut;Node=>debut
+NewCrew1;;;
+SetChoices2;;;
+Choice : Leave;Choice : (fight);;
+Leave;PlayerSpeak : je te battre;;
+;OtherSpeak : oh non;;
+;LaunchCombat;;
+;Leave;;

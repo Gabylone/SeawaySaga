@@ -18,6 +18,9 @@ public class BodyVisual : MonoBehaviour
 
     public Image[] images;
 
+    public delegate void OnApplyEffect();
+    public OnApplyEffect onApplyEffect;
+
     public void InitVisual( Member memberID)
     {
         int bodyID = memberID.GetCharacterID(ApparenceType.bodyType);
@@ -58,6 +61,14 @@ public class BodyVisual : MonoBehaviour
         int shoesColorID = memberID.GetCharacterID(ApparenceType.shoesColor);
         GetImage(ID.Shoes).color = CrewCreator.Instance.GetApparenceItem(ApparenceType.shoesColor, shoesColorID).color;
 
+    }
+
+    public void ApplyEffect()
+    {
+        if ( onApplyEffect != null)
+        {
+            onApplyEffect();
+        }
     }
 
     void RandomizeColors()

@@ -19,12 +19,12 @@ public class Skill_BearTrap : Skill {
 		fighter.Speak (str);
 	}
 
-	public override void ApplyEffect ()
+	public override void HandleOnApplyEffect ()
 	{
 		if (fighter.HasStatus (Fighter.Status.BearTrapped))
 			return;
 
-		base.ApplyEffect ();
+		base.HandleOnApplyEffect ();
 
 		fighter.AddStatus (Fighter.Status.BearTrapped);
 

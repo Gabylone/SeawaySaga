@@ -8,9 +8,9 @@ public class Skill_Robbery : Skill {
 
 	public int minimumGoldToSteal = 15;
 
-	public override void ApplyEffect ()
+	public override void HandleOnApplyEffect ()
 	{
-		base.ApplyEffect ();
+		base.HandleOnApplyEffect ();
 
 		if ( fighter.crewMember.side == Crews.Side.Enemy ) {
 

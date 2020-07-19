@@ -6,9 +6,9 @@ public class Skill_Flee : Skill {
 
 	public int healthToFlee = 30;
 
-	public override void ApplyEffect ()
+	public override void HandleOnApplyEffect ()
 	{
-		base.ApplyEffect ();
+		base.HandleOnApplyEffect ();
 
 		DiceManager.Instance.onEndThrow += HandleOnEndThrow;
 

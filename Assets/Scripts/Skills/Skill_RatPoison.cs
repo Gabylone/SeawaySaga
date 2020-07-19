@@ -6,9 +6,9 @@ public class Skill_RatPoison : Skill {
 
 	
 
-	public override void ApplyEffect ()
+	public override void HandleOnApplyEffect ()
 	{
-		base.ApplyEffect ();
+		base.HandleOnApplyEffect ();
 
 		fighter.TargetFighter.AddStatus (Fighter.Status.Poisonned, 3);
 

@@ -1,5 +1,5 @@
-Nom;Fréquence %;Sprite ID;;;;;;;;;
-Peche;0;1;;;;;;;;;
+Nom;Fréquence %;Sprite ID;Display Name;;;;;;;;
+Peche;0;1;Fishing;;;;;;;;
 [debut];;;;;;;;;;;
 SetBG(Boat);;;;;[fish];;;;;[fail fish];
 PlayerSpeak : I can spot some movement down here. This must be a good fishing spot!;;;;;CheckInInventory<Canne à pêche>/Misc;;;;;RandomPercent25;

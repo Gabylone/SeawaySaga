@@ -71,9 +71,12 @@ public class NavigationManager : MonoBehaviour {
 
         chunksTravelled++;
 
-		if (EnterNewChunk != null) {
-			EnterNewChunk ();
+        if (EnterNewChunk != null)
+        {
+            EnterNewChunk();
         }
+
+        DisplayMinimap.Instance.HandleChunkEvent();
 
     }
 	#endregion
@@ -282,7 +285,7 @@ public struct Coords {
 
 	public bool OutOfMap ()
 	{
-		return x < 0 || x >= MapGenerator.Instance.MapScale_X || y < 0 || y >= MapGenerator.Instance.MapScale_Y;
+		return x < 0 || x >= MapGenerator.Instance.GetMapHorizontalScale || y < 0 || y >= MapGenerator.Instance.GetMapVerticalScale;
 	}
 
 	// overrides
@@ -402,7 +405,7 @@ public struct Coords {
 		
 		int radius = 1;
 
-		while ( radius < MapGenerator.Instance.MapScale_X && radius < MapGenerator.Instance.MapScale_Y) {
+		while ( radius < MapGenerator.Instance.GetMapHorizontalScale && radius < MapGenerator.Instance.GetMapVerticalScale) {
 
 			for (int x = -radius; x < radius; x++) {
 				for (int y = -radius; y < radius; y++) {
@@ -412,7 +415,7 @@ public struct Coords {
 
 					Coords coords = new Coords (originCoords.x + x, originCoords.y + y);
 
-					if (coords.x >= MapGenerator.Instance.MapScale_X|| coords.y >= MapGenerator.Instance.MapScale_Y|| coords <= 0) {
+					if (coords.x >= MapGenerator.Instance.GetMapHorizontalScale|| coords.y >= MapGenerator.Instance.GetMapVerticalScale|| coords <= 0) {
 						continue;
 					}
 

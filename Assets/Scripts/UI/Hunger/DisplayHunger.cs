@@ -7,15 +7,20 @@ using DG.Tweening;
 
 public class DisplayHunger : MonoBehaviour {
 
-	public GameObject hungerGroup;
-	public Image fillImage;
-	float maxFillAmountScale = 1f;
+    public GameObject hungerGroup;
+
+    public Image fillImage;
+    public Image fillImage_Fast;
+
+	public float maxFillAmountScale = 1f;
 	public Image backGroundImage;
 
+    public float tweenDuration = 0.7f;
+    public float fastTweenDuration = 0.35f;
     public bool tween = true;
 
     public virtual void Start () {
-		maxFillAmountScale = fillImage.rectTransform.rect.height;
+		
 	}
 
 	public virtual void ShowHunger () {
@@ -35,14 +40,8 @@ public class DisplayHunger : MonoBehaviour {
 		float fillAmount = 1f - ((float)member.CurrentHunger / (float)Crews.maxHunger);
 		Vector2 v = new Vector2 (fillImage.rectTransform.rect.width, (fillAmount * maxFillAmountScale));
 
-        if ( tween )
-        {
-            fillImage.rectTransform.DOSizeDelta(v, 0.5f);
-        }
-        else
-        {
-            fillImage.rectTransform.sizeDelta = v;
-        }
+        fillImage_Fast.rectTransform.DOSizeDelta(v,fastTweenDuration);
+        fillImage.rectTransform.DOSizeDelta(v,tweenDuration).SetDelay(fastTweenDuration);
 
         Tween.Bounce (transform, 0.2f, 1.1f);
 

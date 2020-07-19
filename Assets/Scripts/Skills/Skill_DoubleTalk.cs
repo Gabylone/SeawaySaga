@@ -6,9 +6,9 @@ public class Skill_DoubleTalk : Skill {
 
 	public int healthToFlee = 60;
 
-	public override void ApplyEffect ()
+	public override void HandleOnApplyEffect ()
 	{
-		base.ApplyEffect ();
+		base.HandleOnApplyEffect ();
 
 		DiceManager.Instance.onEndThrow += HandleOnEndThrow;
 

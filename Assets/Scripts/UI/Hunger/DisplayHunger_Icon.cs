@@ -13,7 +13,9 @@ public class DisplayHunger_Icon : DisplayHunger {
 
     public GameObject heartGroup;
     public RectTransform healthBackground;
+
 	public Image heartImage;
+    public Image heartImage_Fast;
 
     public float hungerToShowLife = 25f;
 
@@ -48,8 +50,11 @@ public class DisplayHunger_Icon : DisplayHunger {
 
     void ShowFoodFeedback()
     {
+        UpdateHungerIcon(linkedIcon.member);
+
         if (linkedIcon.member.CurrentHunger >= Crews.maxHunger)
         {
+
             DisplayHealthAmount(linkedIcon.member.hungerDamage);
         }
         else
@@ -93,7 +98,7 @@ public class DisplayHunger_Icon : DisplayHunger {
         displayFood_Obj.SetActive(true);
 
         displayFood_Image.sprite = displayFood_FoodSprite;
-        displayFood_Text.text = "" + (Crews.maxHunger-linkedIcon.member.CurrentHunger) + "/" + Crews.maxHunger;
+        displayFood_Text.text = "" + (Crews.maxHunger-linkedIcon.member.CurrentHunger);
 
         CancelInvoke("HideFoodFeedback");
         Invoke("HideFoodFeedback", displayFood_Delay + 1f);
@@ -121,12 +126,14 @@ public class DisplayHunger_Icon : DisplayHunger {
         float width = -healthBackground.rect.width + healthBackground.rect.width * l;
 
         Vector2 v = new Vector2(width, heartImage.rectTransform.sizeDelta.y);
-        heartImage.rectTransform.sizeDelta = v;
 
+        heartImage_Fast.rectTransform.sizeDelta = heartImage.rectTransform.sizeDelta;
+        heartImage.rectTransform.DOSizeDelta(v, fastTweenDuration);
+        heartImage_Fast.rectTransform.DOSizeDelta(v, tweenDuration).SetDelay(fastTweenDuration);
     }
-	#endregion
+    #endregion
 
-	void HandleEndStoryEvent ()
+    void HandleEndStoryEvent ()
 	{
         ShowHeart();
 		UpdateHungerIcon (linkedIcon.member);
@@ -158,11 +165,12 @@ public class DisplayHunger_Icon : DisplayHunger {
 
 	void HandleOnAddHunger ()
 	{
-		UpdateHungerIcon (linkedIcon.member);
+		
         HideFoodFeedback();
 
         if ( NavigationManager.Instance.chunksTravelled > 1)
         {
+            
             CancelInvoke("ShowFoodFeedback");
             Invoke("ShowFoodFeedback", displayFood_Delay);
         }

@@ -27,10 +27,10 @@ public class Skill_Leap: Skill {
 
 	}
 
-	public override void ApplyEffect ()
+	public override void HandleOnApplyEffect ()
 	{
 
-		base.ApplyEffect ();
+		base.HandleOnApplyEffect ();
 
 		if (onDelay) {
 

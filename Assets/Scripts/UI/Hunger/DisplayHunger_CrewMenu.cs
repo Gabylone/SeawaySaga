@@ -34,7 +34,17 @@ public class DisplayHunger_CrewMenu : DisplayHunger {
     {
         base.UpdateHungerIcon(member);
 
-        uiText.text = "" + (Crews.maxHunger-member.CurrentHunger) + "/" + Crews.maxHunger;
+        int i = (Crews.maxHunger - member.CurrentHunger);
+
+        if ( i == 1)
+        {
+            uiText.text = "" + (Crews.maxHunger - member.CurrentHunger) + " day";
+        }
+        else
+        {
+            uiText.text = "" + (Crews.maxHunger - member.CurrentHunger) + " days";
+        }
+
     }
 
     void OnDestroy () {

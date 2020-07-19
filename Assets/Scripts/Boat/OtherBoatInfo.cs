@@ -61,7 +61,7 @@ public class OtherBoatInfo : BoatInfo {
 	{
 		Coords newCoords = coords + NavigationManager.Instance.getNewCoords (currentDirection);
 
-		if (newCoords.x >= MapGenerator.Instance.MapScale_X - 1) {
+		if (newCoords.x >= MapGenerator.Instance.GetMapHorizontalScale - 1) {
 
 			newCoords.x = coords.x;
 			SwitchDirection ();
@@ -71,7 +71,7 @@ public class OtherBoatInfo : BoatInfo {
 			newCoords.x = coords.x;
 			SwitchDirection ();
 			//
-		} else if (newCoords.y>= MapGenerator.Instance.MapScale_Y - 1) {
+		} else if (newCoords.y>= MapGenerator.Instance.GetMapVerticalScale - 1) {
 
 			newCoords.y = coords.y;
 			SwitchDirection ();

@@ -6,9 +6,9 @@ public class Skill_Parry : Skill {
 
 	
 
-	public override void ApplyEffect ()
+	public override void HandleOnApplyEffect ()
 	{
-		base.ApplyEffect ();
+		base.HandleOnApplyEffect ();
 
 //		fighter.AddStatus (Fighter.Status.Parrying);
 

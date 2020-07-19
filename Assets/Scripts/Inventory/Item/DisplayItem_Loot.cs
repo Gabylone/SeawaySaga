@@ -33,7 +33,10 @@ public class DisplayItem_Loot : DisplayItem {
     {
         Select();
 
-        LootUI.Instance.actionGroup.HideAll();
+        if (LootUI.Instance.currentSide == Crews.Side.Enemy)
+        {
+            LootUI.Instance.actionGroup.HideAll();
+        }
     }
 
     public void Select () {

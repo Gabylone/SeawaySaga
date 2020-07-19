@@ -22,6 +22,8 @@ public class Item {
 	public int 		level 		= 0;
 	public int		spriteID 	= 0;
 
+    public string description;
+
     public enum WeaponType
     {
         Distance,

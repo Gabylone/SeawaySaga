@@ -10,6 +10,8 @@ public class Typhon : RandomPlacable
 
     public float endDelay = 1f;
 
+    public int damage = 15;
+
     public override void Start()
     {
         base.Start();
@@ -41,8 +43,8 @@ public class Typhon : RandomPlacable
     {
         foreach (var crewMember in Crews.playerCrew.CrewMembers)
         {
-            crewMember.RemoveHealth(15);
-            crewMember.Icon.hungerIcon.DisplayHealthAmount(15);
+            crewMember.RemoveHealth(damage);
+            crewMember.Icon.hungerIcon.DisplayHealthAmount(damage);
 
             if (crewMember.Health <= 0)
             {

@@ -1,5 +1,5 @@
-Nom;Fréquence %;Sprite ID;;;;;;;;;;;;;;;
-Casino;3,39;1;;;;;;;;;;;;;;;[cest daccord]
+Nom;Fréquence %;Sprite ID;Display Name;;;;;;;;;;;;;;
+Casino;3,39;1;Casino;;;;;;;;;;;;;;[cest daccord]
 Narrator : The island is immense. CAPITAINE can't see anything, but faintly hears music from behinds the sand dunes near the beach.;;;;;;;;;;;;;;;;;OtherSpeak : Oh it’s you!
 [debut];;;;;;;;;;;;;;;;;OtherSpeak : Welcome!
 SetChoices2;;;;;;;;;;;;;[jeu de carte];;;;Node=>entrée casino

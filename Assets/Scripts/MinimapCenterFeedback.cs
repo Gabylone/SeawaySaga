@@ -4,37 +4,44 @@ using UnityEngine;
 
 public class MinimapCenterFeedback : MonoBehaviour {
 
+    public static MinimapCenterFeedback Instance;
+
 	public GameObject group;
 
-	public float displayDuration = 1f;
+    public float displayDuration = 1f;
 
-	// Use this for initialization
-	void Start () {
+    RectTransform rectTransform;
 
-        Quest.showQuestOnMap += HandleShowQuestOnMap;
+    private void Awake()
+    {
+        Instance = this;
+    }
 
-		GetComponent<RectTransform> ().sizeDelta = Vector2.one * DisplayMinimap.Instance.minimapChunkScale;
+    // Use this for initialization
+    void Start () {
+        
+
+        rectTransform = GetComponent<RectTransform>();
 
 		Hide ();
 	}
 
 	void HandleShowQuestOnMap (Quest quest)
 	{
-		HandleOnCenterMap (quest.targetCoords);
+		
 	}
 
-	void HandleOnCenterMap (Coords coords)
+	public void CenterOnMap (Coords coords)
 	{
-		GetComponent<RectTransform> ().anchoredPosition = DisplayMinimap.Instance.getPosFromCoords (coords);
+		rectTransform.anchoredPosition = DisplayMinimap.Instance.getPosFromCoords (coords);
 
 		Tween.Bounce ( transform );
 
-		CancelInvoke ("Hide");
-
 		Show ();
 
+		CancelInvoke ("Hide");
 		Invoke ("Hide",displayDuration);
-	}
+    }
 
 	void Show () {
 		group.SetActive (true);

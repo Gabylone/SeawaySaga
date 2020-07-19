@@ -21,6 +21,7 @@ public class Tween : MonoBehaviour {
         t.DOScale(targetScale * amount, dur/2f).SetEase(Ease.OutBounce);
         t.DOScale(targetScale, dur / 2f).SetDelay(dur / 2f);
 	}
+
 	public static void Bounce (Transform t, float dur , float amount) {
         t.DOScale(Vector3.one * amount, dur / 2f).SetEase(Ease.OutBounce);
         t.DOScale(Vector3.one, dur / 2f).SetDelay(dur / 2f);

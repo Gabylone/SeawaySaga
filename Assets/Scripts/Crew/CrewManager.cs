@@ -67,13 +67,20 @@ public class CrewManager : MonoBehaviour {
 
 	void AddToStates ()
 	{
-		for (int i = 0; i < CrewMembers.Count; i++) {
-			CrewMembers [i].AddHunger ();
-		}
+        CancelInvoke("AddToStatesDelay");
+        Invoke("AddToStatesDelay" , 1f);
 	}
 
-	#region crew placement
-	public void UpdateCrew ( Crews.PlacingType placingType ) {
+    void AddToStatesDelay()
+    {
+        for (int i = 0; i < CrewMembers.Count; i++)
+        {
+            CrewMembers[i].AddHunger();
+        }
+    }
+
+    #region crew placement
+    public void UpdateCrew ( Crews.PlacingType placingType ) {
 
         for (int i = 0; i < crewMembers.Count; i++)
         {

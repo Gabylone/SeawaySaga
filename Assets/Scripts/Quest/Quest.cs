@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 
+using System.Collections;
+
 [System.Serializable]
 public class Quest {
 
@@ -23,7 +25,6 @@ public class Quest {
 	public int row = 0;
 	public int col = 0;
 
-
     public int originID = 0;
     public Coords originCoords;
 
@@ -41,10 +42,10 @@ public class Quest {
 
 	public bool accomplished = false;
 
-	public delegate void ShowQuestOnMap (Quest quest);
-	public static ShowQuestOnMap showQuestOnMap;
+    public delegate void OnSetTargetCoords(Quest quest);
+    public static OnSetTargetCoords onSetTargetCoords;
 
-	public Quest () {
+    public Quest () {
 		//
 	}
 	public void StartStory () 
@@ -104,9 +105,8 @@ public class Quest {
 	#region map & coords
 	public void ShowOnMap ()
 	{
-		if (showQuestOnMap != null)
-			showQuestOnMap (this);
-	}
+        DisplayMinimap.Instance.ShowQuest(this);
+    }
 
 	public void SetRandomCoords () {
 		Coords _targetCoords = Coords.GetClosest (Boats.Instance.playerBoatInfo.coords);
@@ -137,10 +137,17 @@ public class Quest {
 		}
 	}
 
-	public delegate void OnSetTargetCoords ( Quest quest );
-	public static OnSetTargetCoords onSetTargetCoords;
+    public MinimapChunk GetOriginChunk()
+    {
+        return DisplayMinimap.Instance.GetMinimapChunk(originCoords, originID);
+    }
 
-	public void SetTargetCoords ( Coords coords ) {
+    public MinimapChunk GetTargetChunk()
+    {
+        return DisplayMinimap.Instance.GetMinimapChunk(targetCoords, targetID);
+    }
+
+    public void SetTargetCoords ( Coords coords ) {
 
 		previousCoords = targetCoords;
 		targetCoords = coords;

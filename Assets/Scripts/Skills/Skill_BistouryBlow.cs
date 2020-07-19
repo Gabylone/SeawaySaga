@@ -25,9 +25,9 @@ public class Skill_BistouryBlow : Skill {
         fighter.Speak(str);
     }
 
-	public override void ApplyEffect ()
+	public override void HandleOnApplyEffect ()
 	{
-		base.ApplyEffect ();
+		base.HandleOnApplyEffect ();
 
 		fighter.TargetFighter.Heal (healAmount);
 

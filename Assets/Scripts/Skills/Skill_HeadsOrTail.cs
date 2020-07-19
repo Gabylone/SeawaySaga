@@ -35,9 +35,9 @@ public class Skill_HeadsOrTail : Skill {
 		coin.GetComponent<Coin> ().heads = heads;
 	}
 
-	public override void ApplyEffect ()
+	public override void HandleOnApplyEffect ()
 	{
-		base.ApplyEffect ();
+		base.HandleOnApplyEffect ();
 
 		if (heads) {
 			fighter.combatFeedback.Display ("Bam !",Color.green);

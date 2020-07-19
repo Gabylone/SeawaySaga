@@ -203,7 +203,7 @@ public class SaveManager : MonoBehaviour
 
 	IEnumerator SaveAllIslandsCoroutine () {
 
-        LoadingScreen.Instance.StartLoading ("Sauvegarde îles", MapGenerator.Instance.MapScale_X * MapGenerator.Instance.IslandsPerCol);
+        LoadingScreen.Instance.StartLoading ("Sauvegarde îles", MapGenerator.Instance.GetMapHorizontalScale * MapGenerator.Instance.IslandsPerCol);
 
 		yield return new WaitForEndOfFrame ();
 
@@ -215,9 +215,9 @@ public class SaveManager : MonoBehaviour
 
         int currentLoadLimit = 0;
 
-		for ( int y = 0; y < MapGenerator.Instance.MapScale_Y ; ++y ) {
+		for ( int y = 0; y < MapGenerator.Instance.GetMapVerticalScale ; ++y ) {
 
-			for (int x = 0; x < MapGenerator.Instance.MapScale_X; ++x ) {
+			for (int x = 0; x < MapGenerator.Instance.GetMapHorizontalScale; ++x ) {
 
 				Coords c = new Coords ( x , y );
 

@@ -6,10 +6,10 @@ public class Skill_Wallop : Skill {
 
 	
 
-	public override void ApplyEffect ()
+	public override void HandleOnApplyEffect ()
 	{
 
-		base.ApplyEffect ();
+		base.HandleOnApplyEffect ();
 
 		List<Fighter> fighters = CombatManager.Instance.getCurrentFighters (Crews.otherSide (fighter.crewMember.side));
 		for (int fighterIndex = 0; fighterIndex < fighters.Count; fighterIndex++) {

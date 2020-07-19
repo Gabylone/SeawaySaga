@@ -4,13 +4,20 @@ using UnityEngine;
 
 public class Skill_DistanceAttack : Skill {
 
-	public override void ApplyEffect ()
+	public override void HandleOnApplyEffect ()
 	{
-		base.ApplyEffect ();
+		base.HandleOnApplyEffect ();
 
 		fighter.TargetFighter.GetHit (fighter, fighter.crewMember.Attack, 1f);
 
 		EndSkill ();
 
 	}
+
+    public override void StartAnimation()
+    {
+        base.StartAnimation();
+
+        fighter.animator.SetTrigger("shoot");
+    }
 }

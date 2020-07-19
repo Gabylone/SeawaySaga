@@ -15,9 +15,9 @@ public class Skill_PledgeOfFeast : Skill {
 
 	}
 
-    public override void ApplyEffect()
+    public override void HandleOnApplyEffect()
     {
-        base.ApplyEffect();
+        base.HandleOnApplyEffect();
 
         fighter.TargetFighter.crewMember.AddEnergy(energyAmount);
         fighter.TargetFighter.card.ShowEnergy();

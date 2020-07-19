@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Skill_SkipTurn: Skill {
 
-	public override void ApplyEffect ()
+	public override void HandleOnApplyEffect ()
 	{
-		base.ApplyEffect ();
+		base.HandleOnApplyEffect ();
 
 //		EndSkill ();
 		fighter.EndTurn();

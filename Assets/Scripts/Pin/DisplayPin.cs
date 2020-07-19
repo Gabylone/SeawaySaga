@@ -39,6 +39,8 @@ public class DisplayPin : Displayable
 
     public void ShowInfo()
     {
+        PinManager.Instance.SetDisplayedPin(this);
+
         displayPinInfo.Show();
     }
 

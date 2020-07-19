@@ -13,9 +13,9 @@ public class Skill_HelpMate : Skill {
 
 	}
 
-	public override void ApplyEffect ()
+	public override void HandleOnApplyEffect ()
 	{
-		base.ApplyEffect ();
+		base.HandleOnApplyEffect ();
 
 		fighter.TargetFighter.AddStatus (Fighter.Status.Protected, 2);
 
