@@ -4,50 +4,40 @@ using UnityEngine;
 
 public class Skill_Flee : Skill {
 
-	public int healthToFlee = 30;
+    public float escapeDelay = 1f;
 
 	public override void HandleOnApplyEffect ()
 	{
 		base.HandleOnApplyEffect ();
+
+        Debug.Log("apply effect ");
 
 		DiceManager.Instance.onEndThrow += HandleOnEndThrow;
 
 		DiceManager.Instance.ThrowDice (DiceTypes.DEX, fighter.crewMember.GetStat(Stat.Dexterity));
 
 	}
-	void HandleOnEndThrow ()
-	{
 
+    public override void StartAnimation()
+    {
+        base.StartAnimation();
+
+        fighter.animator.SetTrigger("throw dice");
+    }
+
+    void HandleOnEndThrow ()
+	{
 		if ( DiceManager.Instance.HighestResult == 6 ) {
 
-			fighter.escaped = true;
-			fighter.EndTurn ();
-
-			string str = "See you, sucker !";
-			fighter.Speak (str);
-
-			fighter.Fade ();
-			fighter.combatFeedback.Display("o", Color.green);
-
-			CombatManager.Instance.DeleteFighter (fighter);
-			CombatManager.Instance.NextTurn ();
+            Escape();
 
 		} else if ( DiceManager.Instance.HighestResult == 1 ) {
 
-
-			fighter.combatFeedback.Display("Fled !", Color.magenta);
-			fighter.AddStatus (Fighter.Status.KnockedOut);
-
-			fighter.crewMember.energy = 0;
-
-			EndSkill ();
-
+            CriticalFailure();
 
 		} else {
 
-			fighter.combatFeedback.Display("Miss !",Color.red);
-
-			EndSkill ();
+            Failure();
 
 		}
 
@@ -55,7 +45,45 @@ public class Skill_Flee : Skill {
 
 	}
 
-	public override bool MeetsConditions (CrewMember member)
+    void Escape()
+    {
+        fighter.escaped = true;
+        
+        string str = "See you, sucker !";
+        fighter.Speak(str);
+
+        fighter.Fade();
+
+        Invoke("EscapeDelay", escapeDelay);
+    }
+
+    void EscapeDelay()
+    {
+        fighter.EndTurn();
+
+        CombatManager.Instance.DeleteFighter(fighter);
+        CombatManager.Instance.NextTurn();
+    }
+
+    void CriticalFailure()
+    {
+        fighter.combatFeedback.Display("Knocked Out !", Color.magenta);
+        fighter.AddStatus(Fighter.Status.KnockedOut);
+
+        fighter.crewMember.energy = 0;
+
+        Invoke("EndSkill", escapeDelay);
+    }
+
+    void Failure()
+    {
+        fighter.combatFeedback.Display("Miss !", Color.red);
+
+        Invoke("EndSkill" , escapeDelay);
+    }
+
+
+    public override bool MeetsConditions (CrewMember member)
 	{
 		return false;
 

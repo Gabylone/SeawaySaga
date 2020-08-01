@@ -47,6 +47,7 @@ public class Crews : MonoBehaviour {
 	public int startMemberAmount = 1;
 	[Range(1,10)]
 	public int startLevel = 1;
+    public Job startJob;
 
 	void Awake () {
 		Instance = this;
@@ -129,6 +130,7 @@ public class Crews : MonoBehaviour {
 		SaveManager.Instance.GameData.playerCrew = playerCrew.managedCrew;
 	}
 	public void RandomizePlayerCrew () {
+
 		CrewParams crewParams = new CrewParams ();
 		crewParams.amount = startMemberAmount;
 		crewParams.overideGenre = false;

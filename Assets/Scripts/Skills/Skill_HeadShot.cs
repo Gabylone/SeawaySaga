@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class Skill_HeadShot : Skill {
 
-	bool onDelay = false;
+	private Fighter delayFighter;
+
+    bool onDelay = false;
 
 	public int healthToAttack = 30;
 
@@ -36,7 +38,6 @@ public class Skill_HeadShot : Skill {
 
 			onDelay = false;
 			hasTarget = false;
-			playAnim = false;
 
 			fighter.TargetFighter.GetHit (fighter, fighter.crewMember.Attack , 2.2f);
 
@@ -46,8 +47,6 @@ public class Skill_HeadShot : Skill {
 			//
 
 		} else {
-
-
 
 			fighter.AddStatus (Fighter.Status.PreparingAttack);
 
@@ -59,7 +58,6 @@ public class Skill_HeadShot : Skill {
 
 	}
 
-	Fighter delayFighter;
 	void HandleOnSkillDelay (Fighter _delayFighter)
 	{
 //		Invoke ("TriggerDelay",0.1f);
@@ -68,7 +66,6 @@ public class Skill_HeadShot : Skill {
 
 		onDelay = true;
 		hasTarget = true;
-		playAnim = true;
 
 		Trigger (delayFighter);
 	}

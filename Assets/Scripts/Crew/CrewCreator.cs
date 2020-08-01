@@ -45,7 +45,22 @@ public class CrewCreator : MonoBehaviour
 
     public Sprite noImage_Sprite;
 
+    [Header("Knocked Out")]
     public Sprite deadEyes_Sprite;
+    [Header("Mad")]
+    public Sprite madEyes_Sprite;
+    public Sprite madEyebrows_Sprite;
+    public Sprite madMouth_Sprite;
+
+    [Header("Happy")]
+    public Sprite happyEyes_Sprite;
+    public Sprite happyEyebrows_Sprite;
+    public Sprite happyMouth_Sprite;
+
+    [Header("Sad")]
+    public Sprite sadEyes_Sprite;
+    public Sprite sadEyebrows_Sprite;
+    public Sprite sadMouth_Sprite;
 
     public BodySet[] bodySets;
 
@@ -196,16 +211,16 @@ public class CrewCreator : MonoBehaviour
     public class BodySet
     {
         public Sprite[] sprites;
-        public BodyVisual.ID[] layerOrder
-            = new BodyVisual.ID[7]
+        public BodyVisual.BodyID[] layerOrder
+            = new BodyVisual.BodyID[7]
             {
-                BodyVisual.ID.LeftArm,
-                BodyVisual.ID.Skin,
-                BodyVisual.ID.Shoes,
-                BodyVisual.ID.Pants,
-                BodyVisual.ID.Top,
-                BodyVisual.ID.RightArm,
-                BodyVisual.ID.Face
+                BodyVisual.BodyID.LeftArm,
+                BodyVisual.BodyID.Skin,
+                BodyVisual.BodyID.Shoes,
+                BodyVisual.BodyID.Pants,
+                BodyVisual.BodyID.Top,
+                BodyVisual.BodyID.RightArm,
+                BodyVisual.BodyID.Face
             };
     }
 

@@ -6,72 +6,56 @@ using System;
 
 public class IconVisual : MonoBehaviour
 {
-    public List<GameObject> outline_objs = new List<GameObject>();
-
     public BodyVisual bodyVisual;
-
-    public Image weaponImage;
-    public Image handImage;
-    public Image[] images;
-
-    public float highlightSpeed = 1f;
-
-    private bool tainted = false;
-    private Color targetHighlightColor;
-    private bool loopTaint = false;
-
-    public float taintOnceDuration = 0.5f;
 
     private Member currentMember;
 
-    float lerp = 0f;
+    /// <summary>
+    ///  images
+    /// </summary>
+    public Image weaponImage;
+    public Image handImage;
+
+    public GameObject[] bodyParts;
+
+    public Image[] images;
+
+    /// <summary>
+    ///  taint
+    /// </summary>
+    public float highlightSpeed = 1f;
+    private bool tainted = false;
+    private Color targetHighlightColor;
+    private bool loopTaint = false;
+    public float taintOnceDuration = 0.5f;
+
+    public GameObject poisonPuddle_Obj;
+    public GameObject food_Obj;
+    public Transform rhumBottle_Transform;
+
+    /// <summary>
+    /// override skin color
+    /// </summary>
+    public bool overrideSkinColor_Active = false;
+    public Color overrideSkinColor_Color;
+
+    // face effects
+    private bool knockedOut = false;
+    private bool mad = false;
+    public bool happy = false;
+    public bool sad = false;
+
+    private float lerp = 0f;
     public float range = 0.3f;
 
-
-    float timer = 0f;
+    private float timer = 0f;
 
     private void Update()
     {
         if (tainted)
         {
-            Color c = targetHighlightColor;
-
-            if (loopTaint)
-            {
-                lerp = Mathf.PingPong(Time.time * highlightSpeed, range);
-            }
-            else
-            {
-                lerp = Mathf.Lerp(1f, 0f, timer / taintOnceDuration);
-                timer += Time.deltaTime;
-            }
-
-            GetImage(ApparenceType.hair).color = LerpColor(ApparenceType.hair, ApparenceType.hairColor);
-            GetImage(ApparenceType.beard).color = LerpColor(ApparenceType.beard, ApparenceType.hairColor);
-            GetImage(ApparenceType.eyebrows).color = LerpColor(ApparenceType.eyebrows, ApparenceType.hairColor);
-
-            bodyVisual.GetImage(BodyVisual.ID.Top).color = LerpColor(BodyVisual.ID.Top, ApparenceType.topColor);
-            bodyVisual.GetImage(BodyVisual.ID.Pants).color = LerpColor(BodyVisual.ID.Pants, ApparenceType.pantColor);
-            bodyVisual.GetImage(BodyVisual.ID.Shoes).color = LerpColor(BodyVisual.ID.Shoes, ApparenceType.shoesColor);
-
-            GetImage(ApparenceType.nose).color = LerpColor(ApparenceType.nose, ApparenceType.skinColor);
-            bodyVisual.GetImage(BodyVisual.ID.Face).color = LerpColor(BodyVisual.ID.Face, ApparenceType.skinColor);
-            bodyVisual.GetImage(BodyVisual.ID.Skin).color = LerpColor(BodyVisual.ID.Skin, ApparenceType.skinColor);
-            bodyVisual.GetImage(BodyVisual.ID.RightArm).color = LerpColor(BodyVisual.ID.RightArm, ApparenceType.skinColor);
-            bodyVisual.GetImage(BodyVisual.ID.LeftArm).color = LerpColor(BodyVisual.ID.LeftArm, ApparenceType.skinColor);
-
-            weaponImage.color = Color.Lerp(Color.white, targetHighlightColor, lerp);
-            handImage.color = Color.Lerp(GetColor(ApparenceType.skinColor), targetHighlightColor, lerp);
-
+            UpdateTaint();
         }
-    }
-    private Color LerpColor(BodyVisual.ID spriteId, ApparenceType colorId)
-    {
-        return Color.Lerp(GetColor(colorId), targetHighlightColor, lerp);
-    }
-    private Color LerpColor(ApparenceType spriteId, ApparenceType colorId)
-    {
-        return Color.Lerp(GetColor(colorId), targetHighlightColor, lerp);
     }
 
     public void InitVisual(Member _member)
@@ -86,60 +70,101 @@ public class IconVisual : MonoBehaviour
         if (currentMember == null)
         { return; }
 
-        // hair
-        for (int i = 0; i <= (int)ApparenceType.nose; i++)
-        {
-            ApparenceType type = (ApparenceType)i;
-            Sprite spr = CrewCreator.Instance.GetApparenceItem(type, currentMember.GetCharacterID(type)).GetSprite();
-            if (spr == null)
-            {
-                images[i].enabled = false;
-            }
-            else
-            {
-                images[i].enabled = true;
-                images[i].sprite = CrewCreator.Instance.GetApparenceItem(type, currentMember.GetCharacterID(type)).GetSprite();
-            }
-        }
+        // hair types...
+        SetSprite(ApparenceType.hair);
+        SetSprite(ApparenceType.beard);
+        SetSprite(ApparenceType.eyebrows);
 
-        Color c = CrewCreator.Instance.hairColors[currentMember.GetCharacterID(ApparenceType.hairColor)];
-
+        // hait types color
+        Color c = GetColor(ApparenceType.hairColor);
         GetImage(ApparenceType.hair).color = c;
         GetImage(ApparenceType.eyebrows).color = c;
         GetImage(ApparenceType.beard).color = c;
 
+        SetSprite(ApparenceType.eyes);
+
+        // skin
+        SetSprite(ApparenceType.mouth);
+        SetSprite(ApparenceType.nose);
+
+        // skin color
         Color skinColor = GetColor(ApparenceType.skinColor);
         GetImage(ApparenceType.nose).color = skinColor;
         handImage.color = skinColor;
 
+        // expressions
+        if ( knockedOut)
+        {
+            GetImage(ApparenceType.eyes).sprite = CrewCreator.Instance.deadEyes_Sprite;
+        }
+
+        if (sad)
+        {
+            GetImage(ApparenceType.eyes).sprite = CrewCreator.Instance.sadEyes_Sprite;
+            GetImage(ApparenceType.eyebrows).sprite = CrewCreator.Instance.sadEyebrows_Sprite;
+            GetImage(ApparenceType.mouth).sprite = CrewCreator.Instance.sadMouth_Sprite;
+        }
+
+        if (happy)
+        {
+            GetImage(ApparenceType.eyes).sprite = CrewCreator.Instance.happyEyes_Sprite;
+            GetImage(ApparenceType.eyebrows).sprite = CrewCreator.Instance.happyEyes_Sprite;
+            GetImage(ApparenceType.mouth).sprite = CrewCreator.Instance.happyMouth_Sprite;
+        }
+
+        if (mad)
+        {
+            GetImage(ApparenceType.eyes).sprite = CrewCreator.Instance.madEyes_Sprite;
+            GetImage(ApparenceType.eyebrows).sprite = CrewCreator.Instance.madEyebrows_Sprite;
+            GetImage(ApparenceType.mouth).sprite = CrewCreator.Instance.madMouth_Sprite;
+        }
+
+        // weapons
         UpdateWeaponSprite(currentMember);
 
         bodyVisual.InitVisual(currentMember);
 
     }
 
-    public Color GetColor(ApparenceType apparenceType)
+    #region taint
+    private void UpdateTaint()
     {
-        int colorID = currentMember.GetCharacterID(apparenceType);
-        return CrewCreator.Instance.GetApparenceItem(apparenceType, colorID).color;
-    }
+        Color c = targetHighlightColor;
 
-    public void UpdateWeaponSprite(Member member)
-    {
-        if (CombatManager.Instance != null && !CombatManager.Instance.fighting || member.equipedWeapon == null)
+        if (loopTaint)
         {
-            weaponImage.enabled = false;
-            handImage.enabled = false;
-            return;
+            lerp = Mathf.PingPong(Time.time * highlightSpeed, range);
+        }
+        else
+        {
+            lerp = Mathf.Lerp(1f, 0f, timer / taintOnceDuration);
+            timer += Time.deltaTime;
         }
 
-        handImage.sprite = CrewCreator.Instance.handSprites[(int)member.equipedWeapon.weaponType];
-        weaponImage.sprite = CrewCreator.Instance.weaponSprites[member.equipedWeapon.spriteID];
+        // hair etc...
+        GetImage(ApparenceType.hair).color = LerpColor(ApparenceType.hair, ApparenceType.hairColor);
+        GetImage(ApparenceType.beard).color = LerpColor(ApparenceType.beard, ApparenceType.hairColor);
+        GetImage(ApparenceType.eyebrows).color = LerpColor(ApparenceType.eyebrows, ApparenceType.hairColor);
 
-        weaponImage.color = Color.white;
+        // clothes
+        bodyVisual.GetImage(BodyVisual.BodyID.Top).color = LerpColor(BodyVisual.BodyID.Top, ApparenceType.topColor);
+        bodyVisual.GetImage(BodyVisual.BodyID.Pants).color = LerpColor(BodyVisual.BodyID.Pants, ApparenceType.pantColor);
+        bodyVisual.GetImage(BodyVisual.BodyID.Shoes).color = LerpColor(BodyVisual.BodyID.Shoes, ApparenceType.shoesColor);
+
+        // skin
+        GetImage(ApparenceType.nose).color = LerpColor(ApparenceType.nose, ApparenceType.skinColor);
+        bodyVisual.GetImage(BodyVisual.BodyID.Face).color = LerpColor(BodyVisual.BodyID.Face, ApparenceType.skinColor);
+        bodyVisual.GetImage(BodyVisual.BodyID.Skin).color = LerpColor(BodyVisual.BodyID.Skin, ApparenceType.skinColor);
+        bodyVisual.GetImage(BodyVisual.BodyID.RightArm).color = LerpColor(BodyVisual.BodyID.RightArm, ApparenceType.skinColor);
+        bodyVisual.GetImage(BodyVisual.BodyID.LeftArm).color = LerpColor(BodyVisual.BodyID.LeftArm, ApparenceType.skinColor);
+        handImage.color = Color.Lerp(GetColor(ApparenceType.skinColor), targetHighlightColor, lerp);
+
+        // weapon
+        weaponImage.color = Color.Lerp(Color.white, targetHighlightColor, lerp);
     }
 
-    public void TaintLoop ( Color c)
+
+    public void TaintLoop(Color c)
     {
         tainted = true;
 
@@ -166,18 +191,149 @@ public class IconVisual : MonoBehaviour
         InitVisual();
     }
 
-    public Image GetImage(ApparenceType apparenceType)
+    private Color LerpColor(BodyVisual.BodyID spriteId, ApparenceType colorId)
     {
-        return images[(int)apparenceType];
+        return Color.Lerp(GetColor(colorId), targetHighlightColor, lerp);
+    }
+    private Color LerpColor(ApparenceType spriteId, ApparenceType colorId)
+    {
+        return Color.Lerp(GetColor(colorId), targetHighlightColor, lerp);
+    }
+    #endregion
+
+    #region skin color
+    public void OverrideSkinColor ( Color color)
+    {
+        overrideSkinColor_Active = true;
+        overrideSkinColor_Color = color;
+
+        InitVisual();
     }
 
+    public void ResetSkinColor()
+    {
+        overrideSkinColor_Active = false;
+    }
+    #endregion
+
+    void SetSprite(ApparenceType apparenceType)
+    {
+        Sprite spr = CrewCreator.Instance.GetApparenceItem(apparenceType, currentMember.GetCharacterID(apparenceType)).GetSprite();
+        if (spr == null)
+        {
+            GetImage(apparenceType).enabled = false;
+        }
+        else
+        {
+            GetImage(apparenceType).enabled = true;
+            GetImage(apparenceType).sprite = CrewCreator.Instance.GetApparenceItem(apparenceType, currentMember.GetCharacterID(apparenceType)).GetSprite();
+        }
+    }
+
+    public Color GetColor(ApparenceType apparenceType)
+    {
+        if (overrideSkinColor_Active && apparenceType == ApparenceType.skinColor)
+        {
+            return overrideSkinColor_Color;
+        }
+
+        int colorID = currentMember.GetCharacterID(apparenceType);
+        return CrewCreator.Instance.GetApparenceItem(apparenceType, colorID).color;
+    }
+
+    #region weapons
+    public void UpdateWeaponSprite(Member member)
+    {
+        if (CombatManager.Instance != null && !CombatManager.Instance.fighting || member.equipedWeapon == null)
+        {
+            weaponImage.enabled = false;
+            handImage.enabled = false;
+            return;
+        }
+
+        handImage.sprite = CrewCreator.Instance.handSprites[(int)member.equipedWeapon.weaponType];
+        weaponImage.sprite = CrewCreator.Instance.weaponSprites[member.equipedWeapon.spriteID];
+
+        weaponImage.color = Color.white;
+    }
+    #endregion
+
+    #region expressions
+    /// <summary>
+    /// mad
+    /// </summary>
+    public void SetMadFace()
+    {
+        mad = true;
+
+        InitVisual();
+    }
+    public void RemoveMadFace()
+    {
+        mad = false;
+
+        InitVisual();
+    }
+
+    /// <summary>
+    /// knocked out
+    /// </summary>
     public void SetDeadEyes()
     {
-        GetImage(ApparenceType.eyes).sprite = CrewCreator.Instance.deadEyes_Sprite;
+        knockedOut = true;
+        InitVisual();
     }
 
     public void RemoveDeadEyes()
     {
+        knockedOut = false;
         InitVisual();
+    }
+
+    /// <summary>
+    ///  happy
+    /// </summary>
+    public void SetHappyFace()
+    {
+        happy = true;
+        InitVisual();
+    }
+
+    public void RemoveHappyFace()
+    {
+        happy = false;
+        InitVisual();
+    }
+
+    /// <summary>
+    /// sad
+    /// </summary>
+    public void SetSadFace()
+    {
+        sad = true;
+        InitVisual();
+    }
+
+    public void RemoveSadFace()
+    {
+        sad = false;
+        InitVisual();
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public void ResetFaceExpressions()
+    {
+        RemoveDeadEyes();
+        RemoveMadFace();
+        RemoveHappyFace();
+        RemoveSadFace();
+    }
+    #endregion
+
+    public Image GetImage(ApparenceType apparenceType)
+    {
+        return images[(int)apparenceType];
     }
 }

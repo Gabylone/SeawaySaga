@@ -26,6 +26,8 @@ public class Dice : MonoBehaviour {
 	[SerializeField] private float maxForce = 700f;
 	[SerializeField] private float maxTorque = 200f;
 
+    private Transform _transform;
+
 	private float timer = 0f;
 
 	private int throwDirection = 1;
@@ -39,8 +41,13 @@ public class Dice : MonoBehaviour {
 
     SpriteRenderer[] rends;
 
-	// Use this for initialization
-	public void Init () {
+    private void Start()
+    {
+        _transform = GetComponent<Transform>();
+    }
+
+    // Use this for initialization
+    public void Init () {
 		settleDuration = DiceManager.Instance.settlingDuration;
 
         rends = GetComponentsInChildren<SpriteRenderer>();
@@ -98,7 +105,7 @@ public class Dice : MonoBehaviour {
 
         Color c = rends[0].color;
 
-        c.a = 0.6f;
+        c.a = 0f;
 
 		foreach (SpriteRenderer rend in rends) {
             rend.DOColor(c, settleDuration);
@@ -200,7 +207,10 @@ public class Dice : MonoBehaviour {
 		}
 	}
 	public void Fade () {
-		
-	}
-	#endregion
+        foreach (SpriteRenderer rend in rends)
+        {
+            rend.DOFade(0f, settleDuration);
+        }
+    }
+    #endregion
 }

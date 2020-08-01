@@ -17,7 +17,7 @@ public class SkillButton_Combat : SkillButton {
 
 	public float timeToShowDescriptionFeedback = 0.2f;
 
-	bool canTriggerSkill = true;
+	private bool canTriggerSkill = true;
 
 	public override void Start ()
 	{
@@ -58,12 +58,14 @@ public class SkillButton_Combat : SkillButton {
 
 		// ENERGY
 		if (skill.MeetsRestrictions (fighter.crewMember) == false) {
+            Debug.Log("disabled : restrictions");
 			Disable ();
 		}
 
 		if ( skill.energyCost > fighter.crewMember.energy ) {
+            Debug.Log("disabled : energy");
 			Disable ();
-		}
+        }
 
 		// CHARGE
 		int charge = fighter.crewMember.charges[skill.GetSkillIndex(fighter.crewMember)];

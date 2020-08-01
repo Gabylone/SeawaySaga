@@ -22,6 +22,7 @@ public class Fighter : MonoBehaviour {
 		blocked
 
 	}
+
 	private states currentState = states.moveToTarget;
 
 	public states CurrentState {
@@ -54,7 +55,7 @@ public class Fighter : MonoBehaviour {
     public IconVisual iconVisual;
     public CanvasGroup canvasGroup;
 
-    private Transform GetTransform;
+    public Transform GetTransform;
 
 	[Header ("Move")]
 	public float moveToTargetDuration = 0.79f;
@@ -147,17 +148,17 @@ public class Fighter : MonoBehaviour {
 
 	}
 
+    // Update is called once per frame
+    void FixedUpdate()
+    {
 
-	// Update is called once per frame
-	void FixedUpdate () {
+        if (updateState != null)
+            updateState();
 
-		if ( updateState != null )
-			updateState ();
-
-		timeInState += Time.deltaTime;
+        timeInState += Time.deltaTime;
 
 
-	}
+    }
 
 	#region initalization
 	public delegate void OnInit ();
@@ -173,8 +174,6 @@ public class Fighter : MonoBehaviour {
 		killed = false;
 		escaped = false;
 
-		animator.SetBool("dead",false);
-
 		// animation
 		GetTransform.position = initPos;
 
@@ -187,8 +186,15 @@ public class Fighter : MonoBehaviour {
 			statusCount [i] = 0;
 		}
 
-        // member sprites
+        // reset animations
+        animator.SetBool("dead", false);
+        animator.SetBool("preparingToLeap", false);
+
+        // reset visuals
         iconVisual.InitVisual(crewMember.MemberID);
+        iconVisual.RemoveDeadEyes();
+        iconVisual.ResetSkinColor();
+        iconVisual.RemoveMadFace();
 
 		// event
 		if ( onReset != null )
@@ -330,8 +336,31 @@ public class Fighter : MonoBehaviour {
 
 		animator.SetBool ("move", true);
 
-        Vector3 dir = new Vector3 ( TargetFighter.crewMember.side == Crews.Side.Enemy ? -1 : 1 , 0 , 0 ); 
+        Vector3 dir;
 
+        if (crewMember.side == TargetFighter.crewMember.side)
+        {
+            if (TargetFighter.crewMember.side == Crews.Side.Enemy)
+            {
+                dir = new Vector3(1f, 0f, 0f);
+            }
+            else
+            {
+                dir = new Vector3(-1f, 0f, 0f);
+            }
+        }
+        else
+        {
+            if (TargetFighter.crewMember.side == Crews.Side.Enemy)
+            {
+                dir = new Vector3(-1f, 0f, 0f);
+            }
+            else
+            {
+                dir = new Vector3(1f, 0f, 0f);
+            }
+        }
+        
 		Vector3 targetPos = TargetFighter.GetTransform.position + dir * stopDistance;
 
         GetTransform.DOMove(targetPos, moveToTargetDuration);
@@ -440,8 +469,6 @@ public class Fighter : MonoBehaviour {
 
 	public void Select () {
 
-        Debug.Log("Selecting Fighter");
-
 		if ( Pickable ) {
 			CombatManager.Instance.ChoseTargetMember (this);
 			Tween.Bounce (GetTransform);
@@ -463,8 +490,6 @@ public class Fighter : MonoBehaviour {
 	#region get hit
 	public virtual void getHit_Start () {
 
-        iconVisual.SetDeadEyes();
-		animator.SetTrigger ("getHit");
 	}
 	public virtual void getHit_Update () {
 
@@ -520,8 +545,6 @@ public class Fighter : MonoBehaviour {
 			return;
 		}
 
-		HitEffect ();
-
 		float damage = GetDamage (otherFighter, attack,mult);
 
 		if ( CombatManager.Instance.debugKill ) {
@@ -542,17 +565,9 @@ public class Fighter : MonoBehaviour {
         Hurt(damage);
 	}
 
-	public void CheckContact (Fighter otherFighter) {
-		if (HasStatus (Status.BearTrapped)) {
-
-			RemoveStatus (Status.BearTrapped, 1);
-
-			otherFighter.Hurt (30);
-		}
-	}
-
-
 	public void Hurt (float amount) {
+
+        HitEffect();
 
         combatFeedback.Display(amount.ToString(), Color.red);
         crewMember.RemoveHealth(amount);
@@ -570,9 +585,13 @@ public class Fighter : MonoBehaviour {
 
 	public void Heal (float amount) {
 
-		crewMember.AddHealth (amount);
+        Tween.Bounce(GetTransform, getHit_ScaleDuration, getHit_ScaleAmount);
 
-		combatFeedback.Display ("" + amount , Color.green);
+        crewMember.AddHealth (amount);
+
+        iconVisual.TaintOnce(Color.green);
+
+        combatFeedback.Display ("" + amount , Color.green);
 
 		if (onGetHit != null)
 			onGetHit ();
@@ -704,12 +723,6 @@ public class Fighter : MonoBehaviour {
 	public OnSkillDelay onSkillDelay;
 
 	void CheckStatus () {
-
-		if ( animator.GetBool("uncounscious") ) {
-            iconVisual.RemoveDeadEyes();
-            animator.SetBool ("uncounscious", false);
-		}
-
 		if ( HasStatus(Status.Cussed) ) {
 			RemoveStatus (Status.Cussed);
 		}
@@ -724,6 +737,7 @@ public class Fighter : MonoBehaviour {
 
 		if ( HasStatus(Status.Poisonned) ) {
 			RemoveStatus (Status.Poisonned);
+            combatFeedback.Display("POISON !", Color.red);
 			Hurt (10);
 		}
 
@@ -736,16 +750,16 @@ public class Fighter : MonoBehaviour {
 			RemoveStatus (Status.Enraged);
 		}
 
-//		if ( HasStatus(Status.PreparingAttack) ) {
-//
-//			if (onSkillDelay != null) {
-//				onSkillDelay (this);
-//			}
-//
-//			RemoveStatus (Status.PreparingAttack);
-//			//
-//		}
 	}
+
+    public void AttachItemToHand (Transform _transform)
+    {
+        _transform.SetParent(iconVisual.bodyVisual.itemAnchor);
+        _transform.localPosition = Vector3.zero;
+        _transform.up = iconVisual.bodyVisual.itemAnchor.up;
+        _transform.gameObject.SetActive(true);
+        Tween.Bounce(_transform);
+    }
 
 	public delegate void OnAddStatus (Status status, int count);
 	public OnAddStatus onAddStatus;
@@ -756,11 +770,26 @@ public class Fighter : MonoBehaviour {
 	public void AddStatus (Status status, int count) {
 
 		switch (status) {
-		case Status.KnockedOut:
+            case Status.Toasted:
+                iconVisual.SetHappyFace();
+                break;
+            case Status.Protected:
+                iconVisual.SetHappyFace();
+                break;
+            case Status.Poisonned:
+                iconVisual.poisonPuddle_Obj.gameObject.SetActive(true);
+                Tween.Bounce(iconVisual.poisonPuddle_Obj.transform);
+                Color poisonedColor = Color.Lerp(iconVisual.GetColor(ApparenceType.skinColor), Color.green , 0.3f);
+                iconVisual.OverrideSkinColor(poisonedColor);
+                break;
+            case Status.KnockedOut:
                 iconVisual.SetDeadEyes();
-			animator.SetBool ("uncounscious", true);
+			    animator.SetBool ("uncounscious", true);
 			break;
-		default:
+            case Status.Enraged:
+                iconVisual.OverrideSkinColor(Color.red);
+                break;
+            default:
 			break;
 		}
 
@@ -789,12 +818,39 @@ public class Fighter : MonoBehaviour {
             return;
         }
 
-		statusCount[(int)status] -= valueToRemove;
+        statusCount[(int)status] -= valueToRemove;
 		statusCount [(int)status] = Mathf.Clamp (statusCount [(int)status], 0, 10);
 
         statusGroup.HandleOnRemoveStatus(status, statusCount[(int)status]);
 
-		if (onRemoveStatus != null)
+        if ( statusCount[(int)status] == 0 ){
+            switch (status)
+            {
+                case Status.Toasted:
+                    iconVisual.RemoveHappyFace();
+                    break;
+                case Status.Protected:
+                    iconVisual.RemoveHappyFace();
+                    break;
+                case Status.Poisonned:
+                    iconVisual.poisonPuddle_Obj.SetActive(false);
+                    iconVisual.ResetSkinColor();
+                    break;
+                case Status.KnockedOut:
+                    iconVisual.RemoveDeadEyes();
+                    animator.SetBool("uncounscious", false);
+                    break;
+                case Status.Enraged:
+                    iconVisual.ResetSkinColor();
+                    iconVisual.RemoveMadFace();
+                    break;
+                default:
+                    break;
+            }
+        }
+        
+
+        if (onRemoveStatus != null)
 			onRemoveStatus ( status, statusCount[(int)status] );
 	}
 

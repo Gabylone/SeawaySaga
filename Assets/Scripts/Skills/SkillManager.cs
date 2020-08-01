@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class SkillManager : MonoBehaviour {
 
+    public static SkillManager Instance;
+
 	public static Skill[] skills;
 
 	public static Sprite[] skillSprites;
@@ -20,8 +22,12 @@ public class SkillManager : MonoBehaviour {
 
 	public TextAsset skillData;
 
+    public Skill currentSkill;
+
     private void Awake()
     {
+        Instance = this;
+
         SkillButton_Inventory.onUnlockSkill = null;
         StatusFeedback.onTouchStatusFeedback = null;
     }

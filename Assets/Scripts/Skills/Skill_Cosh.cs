@@ -26,7 +26,14 @@ public class Skill_Cosh : Skill {
 
 	}
 
-	public override bool MeetsRestrictions (CrewMember member)
+    public override void StartAnimation()
+    {
+        base.StartAnimation();
+
+        fighter.animator.SetTrigger("knock out");
+    }
+
+    public override bool MeetsRestrictions (CrewMember member)
 	{
 		return base.MeetsRestrictions (member) && member.HasMeleeWepon();
 	}

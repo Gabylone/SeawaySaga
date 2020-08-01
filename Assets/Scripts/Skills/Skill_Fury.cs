@@ -14,22 +14,32 @@ public class Skill_Fury: Skill {
 		fighter.Speak (str);
 	}
 
-	public override void HandleOnApplyEffect ()
+    public override void StartAnimation()
+    {
+        base.StartAnimation();
+
+        fighter.animator.SetTrigger("fury");
+    }
+
+    public override void HandleOnApplyEffect ()
 	{
 
 		base.HandleOnApplyEffect ();
 
 		fighter.AddStatus (Fighter.Status.Enraged, 3);
-
 		fighter.onRemoveStatus += HandleOnRemoveStatus;
-
 		fighter.crewMember.energyPerTurn += energyPerTurnAdded;
 
 		EndSkill ();
 
 	}
 
-	void HandleOnRemoveStatus (Fighter.Status status, int count)
+    public override void EndSkill()
+    {
+        base.EndSkill();
+    }
+
+    void HandleOnRemoveStatus (Fighter.Status status, int count)
 	{
 		if ( status == Fighter.Status.Enraged && count == 0 ) {
 //			fighter.onRemoveStatus -= 

@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class Skill_Leap: Skill {
 
-	bool onDelay = false;
+	bool secondPart = false;
 
-	public int healthToAttack = 30;
+	private Fighter delayFighter;
+
 	public override void InvokeSkill ()
 	{
-		if (onDelay) {
-			print ("lui donne de l'energie");
+		if (secondPart) {
 			fighter.crewMember.energy += energyCost;
 		}
+
 		base.InvokeSkill ();
 	}
 
@@ -20,56 +21,79 @@ public class Skill_Leap: Skill {
 	{
 		base.Trigger (fighter);
 
-		if (onDelay == false) {
-			string str = "You wait and see... I'm gonna smash your brains out";
-            fighter.Speak (str);
-		}
+        if (!secondPart)
+        {
+            string str = "You wait and see... I'm gonna smash your brains out";
+            fighter.Speak(str);
+
+            fighter.AddStatus(Fighter.Status.PreparingAttack);
+
+            fighter.onSkillDelay += HandleOnSkillDelay;
+
+            EndSkill();
+        }
 
 	}
 
-	public override void HandleOnApplyEffect ()
-	{
+    public override void StartAnimation()
+    {
+        base.StartAnimation();
 
+        if ( secondPart)
+        {
+            fighter.animator.SetTrigger("leap");
+        }
+        else
+        {
+            fighter.animator.SetBool("preparingToLeap", true);
+            fighter.iconVisual.SetMadFace();
+        }
+    }
+
+    public override void HandleOnApplyEffect ()
+	{
 		base.HandleOnApplyEffect ();
 
-		if (onDelay) {
+		if (secondPart) {
 
-			onDelay = false;
+            fighter.animator.SetBool("preparingToLeap", false);
+
+            secondPart = false;
 			hasTarget = false;
 			goToTarget = false;
-			playAnim = false;
 
-			fighter.TargetFighter.GetHit (fighter, fighter.crewMember.Attack , 2.2f);
+            fighter.iconVisual.RemoveMadFace();
+
+            fighter.TargetFighter.GetHit (fighter, fighter.crewMember.Attack , 2.2f);
 
 			EndSkill ();
 			//
 
-		} else {
-
-			fighter.AddStatus (Fighter.Status.PreparingAttack);
-
-			fighter.onSkillDelay += HandleOnSkillDelay;
-
-			EndSkill ();
-
 		}
 
 	}
-	Fighter delayFighter;
+
 	void HandleOnSkillDelay (Fighter _delayFighter)
 	{
 		this.delayFighter = _delayFighter;
+
 		delayFighter.combatFeedback.Display (Fighter.Status.PreparingAttack, Color.white);
 
-		onDelay = true;
+		secondPart = true;
 		hasTarget = true;
 		goToTarget = true;
-		playAnim = true;
 
 		Trigger (delayFighter);
 	}
 
-	public override bool MeetsRestrictions (CrewMember member)
+    public override void EndSkill()
+    {
+        base.EndSkill();
+
+
+    }
+
+    public override bool MeetsRestrictions (CrewMember member)
 	{
         return base.MeetsRestrictions(member) && member.HasMeleeWepon();
 	}

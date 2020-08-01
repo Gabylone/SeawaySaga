@@ -10,11 +10,7 @@ public class Skill : MonoBehaviour {
 	public string skillName = "";
 	public string description = "";
 	public int energyCost = 5;
-	public float animationDelay = 0.6f;
 	public int initCharge = 0;
-
-	public bool playAnim = true;
-	public SkillManager.AnimationType animationType;
 
 	public bool hasTarget = false;
 	public bool goToTarget = true;
@@ -23,6 +19,8 @@ public class Skill : MonoBehaviour {
 	public int priority = 0;
 
     public float timeToMoveBack = 1f;
+
+    public bool triggerOnAnim = false;
 
 	public Job linkedJob;
 
@@ -33,23 +31,28 @@ public class Skill : MonoBehaviour {
 
 	public Type type;
 
-	void UseEnergy () {
+    public virtual void Start()
+    {
+        
+    }
 
-        fighter.crewMember.energy -= energyCost;
+    // first step of the skill / when it is pressed / chosen
+    #region step 1
+    public virtual void Trigger (Fighter fighter) {
 
-        Skill skill = CombatManager.Instance.currentFighter.crewMember.GetSkill(type);
-
-		if (skill != null) {
-			fighter.crewMember.charges [GetSkillIndex(fighter.crewMember)] = initCharge;
-		}
-	}
-
-	public virtual void Trigger (Fighter fighter) {
+        SkillManager.Instance.currentSkill = this;
 
 		this.fighter = fighter;
 
-        fighter.iconVisual.bodyVisual.onApplyEffect = null;
-        fighter.iconVisual.bodyVisual.onApplyEffect += HandleOnApplyEffect;
+        if (triggerOnAnim)
+        {
+            fighter.iconVisual.bodyVisual.onApplyEffect = null;
+            fighter.iconVisual.bodyVisual.onApplyEffect += HandleOnApplyEffect;
+        }
+        else
+        {
+            Invoke("HandleOnApplyEffect", 0.5f);
+        }
 
 		if (hasTarget) {
 			SetTarget ();
@@ -58,69 +61,77 @@ public class Skill : MonoBehaviour {
 		}
 
 	}
+    #endregion
 
-	/// <summary>
-	/// no target
-	/// </summary>
-	void SkipTarget (){
+    #region select target
+    /// <summary>
+    /// no target
+    /// </summary>
+    void SkipTarget()
+    {
+        if (CombatManager.Instance.currentFighter.crewMember.side == Crews.Side.Enemy)
+        {
+            CombatManager.Instance.ChangeState(CombatManager.States.EnemyAction);
+        }
+        else
+        {
+            CombatManager.Instance.ChangeState(CombatManager.States.PlayerAction);
+        }
 
-		if (CombatManager.Instance.currentFighter.crewMember.side == Crews.Side.Enemy) { 
-			CombatManager.Instance.ChangeState (CombatManager.States.EnemyAction);
-		} else {
-			CombatManager.Instance.ChangeState (CombatManager.States.PlayerAction);
-		}
+        InvokeSkill();
+    }
 
-		InvokeSkill ();
-	}
+    /// <summary>
+    /// has target
+    /// </summary>
+    void SetTarget()
+    {
+        if (CombatManager.Instance.currentFighter.crewMember.side == Crews.Side.Enemy)
+        {
+            CombatManager.Instance.GoToTargetSelection(Crews.Side.Enemy, this);
+        }
+        else
+        {
+            CombatManager.Instance.GoToTargetSelection(Crews.Side.Player, this);
+        }
 
-	/// <summary>
-	/// target
-	/// </summary>
-	void SetTarget ()
-	{
-		if (CombatManager.Instance.currentFighter.crewMember.side == Crews.Side.Enemy) { 
+        CombatManager.Instance.onChangeState += HandleOnChangeState;
+    }
 
-			CombatManager.Instance.GoToTargetSelection (Crews.Side.Enemy, this);
+    void HandleOnChangeState(CombatManager.States currState, CombatManager.States prevState)
+    {
+        CombatManager.Instance.onChangeState -= HandleOnChangeState;
 
-		} else {
-			
-			CombatManager.Instance.GoToTargetSelection (Crews.Side.Player, this);
+        if (currState == CombatManager.States.PlayerAction || currState == CombatManager.States.EnemyAction)
+        {
+            OnSetTarget();
+        }
+    }
 
-		}
+    public virtual void OnSetTarget()
+    {
+        //if ( animationType == SkillManager.AnimationType.CloseAttack && goToTarget) {
+        if (goToTarget)
+        {
+            fighter.onReachTarget += HandleOnReachTarget;
+            fighter.ChangeState(Fighter.states.moveToTarget);
+        }
+        else
+        {
+            InvokeSkill();
+        }
+    }
 
-		CombatManager.Instance.onChangeState += HandleOnChangeState;
-	}
+    public virtual void HandleOnReachTarget()
+    {
+        fighter.onReachTarget -= HandleOnReachTarget;
+        InvokeSkill();
+    }
+    #endregion
 
-
-
-	void HandleOnChangeState (CombatManager.States currState, CombatManager.States prevState)
-	{
-		CombatManager.Instance.onChangeState -= HandleOnChangeState;
-
-		if ( currState == CombatManager.States.PlayerAction || currState == CombatManager.States.EnemyAction ) {
-
-			OnSetTarget ();
-
-		}
-	}
-
-	public virtual void OnSetTarget () {
-
-		if ( animationType == SkillManager.AnimationType.CloseAttack && goToTarget) {
-			fighter.onReachTarget += HandleOnReachTarget;
-			fighter.ChangeState (Fighter.states.moveToTarget);
-		} else {
-			InvokeSkill ();
-		}
-	}
-
-	void HandleOnReachTarget ()
-	{
-		fighter.onReachTarget -= HandleOnReachTarget;
-		InvokeSkill ();
-	}
-
-	public virtual void InvokeSkill () {
+    #region step 2
+    // start of animation
+    public virtual void InvokeSkill () {
 
 		UseEnergy ();
 
@@ -128,35 +139,60 @@ public class Skill : MonoBehaviour {
 
 		StartAnimation ();
 	}
+    #endregion
 
-	public virtual void StartAnimation () {
+    #region animations
+    public virtual void StartAnimation()
+    {
 
-		if (!playAnim)
-			return;
-		//
-	}
+    }
+    public virtual void AnimationEvent_1()
+    {
 
-	/// <summary>
-	/// Triggers the skill.
-	/// </summary>
-	public virtual void HandleOnApplyEffect ()
+    }
+    public virtual void AnimationEvent_2()
+    {
+
+    }
+    #endregion
+
+    /// <summary>
+    /// Triggers the skill.
+    /// </summary>
+    #region effects
+    public virtual void HandleOnApplyEffect ()
 	{
 		if (goToTarget) {
-
-			fighter.TargetFighter.CheckContact (fighter);
-
-			Invoke ("InvokeMoveBack",timeToMoveBack);
-		}
+            Invoke("InvokeMoveBack", timeToMoveBack);
+        }
 	}
+    #endregion
 
-	void InvokeMoveBack()  {
-		fighter.ChangeState (Fighter.states.moveBack);
-	}
 
-	/// <summary>
-	/// end skill
-	/// </summary>
-	public virtual void EndSkill () {
+    #region come back
+    void InvokeMoveBack()  {
+
+        if (fighter.TargetFighter != null && fighter.TargetFighter.HasStatus(Fighter.Status.BearTrapped))
+        {
+            fighter.TargetFighter.RemoveStatus(Fighter.Status.BearTrapped, 1);
+            fighter.combatFeedback.Display("TRAP !", Color.red);
+
+            fighter.Hurt(30);
+
+            Invoke("InvokeMoveBack", timeToMoveBack);
+
+            return;
+        }
+
+        fighter.ChangeState(Fighter.states.moveBack);
+    }
+    #endregion
+
+    /// <summary>
+    /// end skill
+    /// </summary>
+    #region end skill
+    public virtual void EndSkill () {
 
 		if (goToTarget) {
 			Invoke ("EndSkillDelay",fighter.moveBackDuration + 1f);
@@ -182,8 +218,24 @@ public class Skill : MonoBehaviour {
 		}
 
 	}
+    #endregion
 
-	public virtual bool MeetsRestrictions ( CrewMember member ) {
+    #region energys
+    void UseEnergy()
+    {
+
+        fighter.crewMember.energy -= energyCost;
+
+        Skill skill = CombatManager.Instance.currentFighter.crewMember.GetSkill(type);
+
+        if (skill != null)
+        {
+            fighter.crewMember.charges[GetSkillIndex(fighter.crewMember)] = initCharge;
+        }
+    }
+    #endregion
+
+    public virtual bool MeetsRestrictions ( CrewMember member ) {
 
 		if ( canTargetSelf == false && targetType == TargetType.Self ) {
 			return Crews.enemyCrew.CrewMembers.Count > 1;
@@ -191,8 +243,9 @@ public class Skill : MonoBehaviour {
 
 		return true;
 	}
+    
 
-	public virtual bool MeetsConditions (CrewMember member) {
+    public virtual bool MeetsConditions (CrewMember member) {
 
 		if (member.energy < energyCost ) {
 			return false;
@@ -257,7 +310,7 @@ public class Skill : MonoBehaviour {
 		HeadsOrTails,
 		Robbery,
 		Cuss,
-		DoubleTalk,
+		DoubleTalk, 
 
 	}
 }

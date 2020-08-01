@@ -4,10 +4,18 @@ using UnityEngine;
 
 public class Skill_Jag : Skill {
 
-//	public float healthAdded = 
 	public float healthNeeded = 50;
 
-	public override void OnSetTarget ()
+    public Transform needle_Transform;
+
+    public override void Start()
+    {
+        base.Start();
+
+        needle_Transform.gameObject.SetActive(false);
+    }
+
+    public override void OnSetTarget ()
 	{
 		base.OnSetTarget ();
 
@@ -17,18 +25,41 @@ public class Skill_Jag : Skill {
         fighter.Speak(str);
     }
 
-	public override void HandleOnApplyEffect ()
-	{
+    public override void StartAnimation()
+    {
+        base.StartAnimation();
 
+        fighter.animator.SetTrigger("throw");
+    }
+
+    public override void AnimationEvent_1()
+    {
+        base.AnimationEvent_1();
+
+        fighter.AttachItemToHand(needle_Transform);
+    }
+
+    public override void AnimationEvent_2()
+    {
+        base.AnimationEvent_2();
+
+        HandleOnApplyEffect();
+    }
+
+    public override void HandleOnApplyEffect ()
+	{
 		base.HandleOnApplyEffect ();
 
-		fighter.TargetFighter.AddStatus (Fighter.Status.Jagged, 3);
+        Tween.Bounce(fighter.TargetFighter.GetTransform, 0.3f, 1.25f);
+
+        fighter.TargetFighter.AddStatus (Fighter.Status.Jagged, 3);
 		fighter.TargetFighter.RemoveStatus (Fighter.Status.Poisonned, 3);
 
-		EndSkill ();
+        needle_Transform.gameObject.SetActive(false);
 
+        EndSkill ();
 	}
-
+     
 	public override bool MeetsConditions (CrewMember member)
 	{
 		bool hasTarget = false;

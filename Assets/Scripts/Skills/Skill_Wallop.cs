@@ -22,7 +22,14 @@ public class Skill_Wallop : Skill {
 
 	}
 
-	public override bool MeetsRestrictions (CrewMember member)
+    public override void StartAnimation()
+    {
+        base.StartAnimation();
+
+        fighter.animator.SetTrigger("wallop");
+    }
+
+    public override bool MeetsRestrictions (CrewMember member)
 	{
         return base.MeetsRestrictions(member) && member.HasMeleeWepon();
 	}

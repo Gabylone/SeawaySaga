@@ -6,29 +6,81 @@ public class Skill_PledgeOfFeast : Skill {
 
 	public int energyAmount = 10;
 
-	public override void OnSetTarget ()
-	{
-		base.OnSetTarget ();
+    public float triggerAnimDelay = 1f;
 
-		string str = "Tonight, " + fighter.TargetFighter.crewMember.MemberName + ", I'm opening a new bottle for you !";
-		fighter.Speak (str);
+    public float applyEffectDelay = 1f;
 
-	}
+    public float showFoodDelay = 1f;
 
-    public override void HandleOnApplyEffect()
+    public override void StartAnimation()
     {
-        base.HandleOnApplyEffect();
+        base.StartAnimation();
 
-        fighter.TargetFighter.crewMember.AddEnergy(energyAmount);
-        fighter.TargetFighter.card.ShowEnergy();
+        StartCoroutine(EatCoroutine());
+    }
+
+    IEnumerator EatCoroutine()
+    {
+        // cook speaks
+        fighter.animator.SetTrigger("combat speak");
+        string str = "Come on, lads! Let's grab a bite and smash them !";
+        fighter.Speak(str);
+
+        yield return new WaitForSeconds(showFoodDelay);
+
+        // all waiting too catch
+        foreach (var item in CombatManager.Instance.getCurrentFighters(fighter.crewMember.side))
+        {
+            if (item != fighter)
+            {
+                item.animator.SetBool("waitingToCatch", true);
+            }
+        }
+
+        yield return new WaitForSeconds(showFoodDelay);
+
+        // food appears
+        foreach (var item in CombatManager.Instance.getCurrentFighters(fighter.crewMember.side))
+        {
+            if (item != fighter)
+            {
+                item.animator.SetTrigger("catch");
+                item.animator.SetBool("waitingToCatch", false);
+                item.AttachItemToHand(item.iconVisual.food_Obj.transform);
+            }
+        }
+
+        yield return new WaitForSeconds(triggerAnimDelay);
+
+        foreach (var item in CombatManager.Instance.getCurrentFighters(fighter.crewMember.side))
+        {
+            if (item != fighter)
+            {
+                item.animator.SetTrigger("drink");
+            }
+        }
+
+        yield return new WaitForSeconds(applyEffectDelay);
+
+        foreach (var item in CombatManager.Instance.getCurrentFighters(fighter.crewMember.side))
+        {
+            if (item != fighter)
+            {
+                item.crewMember.AddEnergy(energyAmount);
+                item.card.ShowEnergy();
+                item.combatFeedback.Display("ENERGY!", Color.green);
+                item.card.UpdateEnergyBar(item.crewMember);
+            }
+        }
 
         EndSkill();
 
-        Invoke("ApplyEffectDelay" , 1f);
-    }
+        yield return new WaitForSeconds(2.5f);
 
-    void ApplyEffectDelay()
-    {
-        fighter.TargetFighter.card.HideEnergy();
+        foreach (var item in CombatManager.Instance.getCurrentFighters(fighter.crewMember.side))
+        {
+            item.card.HideEnergy();
+            item.iconVisual.food_Obj.SetActive(false);
+        }
     }
 }

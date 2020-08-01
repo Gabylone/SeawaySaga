@@ -219,9 +219,6 @@ public class DiceManager : MonoBehaviour {
 
         highestDie.SettleUp ();
 		Throwing = false;
-
-		if (onEndThrow != null)
-			onEndThrow ();
 	}
 	private void ShowingHighest_Update () {
 		
@@ -231,8 +228,22 @@ public class DiceManager : MonoBehaviour {
 		}
 	}
 	private void ShowingHighest_Exit () {
-		ResetDice ();
+
+        foreach (var item in dices)
+        {
+            item.Fade();
+        }
+
+        Invoke("ResetDice" , 1f);
+
+        EndThrow();
 	}
+
+    void EndThrow()
+    {
+        if (onEndThrow != null)
+            onEndThrow();
+    }
 	#endregion
 
 	#region paint dice

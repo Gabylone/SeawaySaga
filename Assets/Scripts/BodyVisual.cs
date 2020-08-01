@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class BodyVisual : MonoBehaviour
 {
-    public enum ID
+    public enum BodyID
     {
         LeftArm,
         Skin,
@@ -17,6 +17,11 @@ public class BodyVisual : MonoBehaviour
     }
 
     public Image[] images;
+    public IconVisual IconVisual;
+
+    public Transform faceGroup;
+
+    public Transform itemAnchor;
 
     public delegate void OnApplyEffect();
     public OnApplyEffect onApplyEffect;
@@ -29,7 +34,7 @@ public class BodyVisual : MonoBehaviour
 
         for (int i = 0; i < bodySet.sprites.Length; i++)
         {
-            ID id = (ID)i;
+            BodyID id = (BodyID)i;
 
             if (bodySet.sprites[i] != null)
             {
@@ -45,22 +50,20 @@ public class BodyVisual : MonoBehaviour
             GetImage(id).rectTransform.SetSiblingIndex(index);
         }
 
-        int skinColorID = memberID.GetCharacterID(ApparenceType.skinColor);
-        Color skinColor = CrewCreator.Instance.GetApparenceItem(ApparenceType.skinColor, skinColorID).color;
-        GetImage(ID.Skin).color = skinColor;
-        GetImage(ID.LeftArm).color = skinColor;
-        GetImage(ID.RightArm).color = skinColor;
-        GetImage(ID.Face).color = skinColor;
+        int faceIndex = faceGroup.GetSiblingIndex() - 1;
+        faceGroup.SetSiblingIndex(faceIndex);
 
-        int topColorID = memberID.GetCharacterID(ApparenceType.topColor);
-        GetImage(ID.Top).color = CrewCreator.Instance.GetApparenceItem(ApparenceType.topColor, topColorID).color;
+        // skin color
+        Color skinColor = IconVisual.GetColor(ApparenceType.skinColor);
+        GetImage(BodyID.Skin).color = skinColor;
+        GetImage(BodyID.LeftArm).color = skinColor;
+        GetImage(BodyID.RightArm).color = skinColor;
+        GetImage(BodyID.Face).color = skinColor;
 
-        int pantsColor = memberID.GetCharacterID(ApparenceType.pantColor);
-        GetImage(ID.Pants).color = CrewCreator.Instance.GetApparenceItem(ApparenceType.pantColor, pantsColor).color;
-
-        int shoesColorID = memberID.GetCharacterID(ApparenceType.shoesColor);
-        GetImage(ID.Shoes).color = CrewCreator.Instance.GetApparenceItem(ApparenceType.shoesColor, shoesColorID).color;
-
+        // clothe color
+        GetImage(BodyID.Top).color = IconVisual.GetColor(ApparenceType.topColor);
+        GetImage(BodyID.Pants).color = IconVisual.GetColor(ApparenceType.pantColor);
+        GetImage(BodyID.Shoes).color = IconVisual.GetColor(ApparenceType.shoesColor);
     }
 
     public void ApplyEffect()
@@ -71,12 +74,23 @@ public class BodyVisual : MonoBehaviour
         }
     }
 
-    void RandomizeColors()
+    public void AnimationEvent_1()
     {
-
+        if ( GetComponentInParent<Fighter>() == SkillManager.Instance.currentSkill.fighter)
+        {
+            SkillManager.Instance.currentSkill.AnimationEvent_1();
+        }
     }
 
-    public Image GetImage (ID id)
+    public void AnimationEvent_2()
+    {
+        if (GetComponentInParent<Fighter>() == SkillManager.Instance.currentSkill.fighter)
+        {
+            SkillManager.Instance.currentSkill.AnimationEvent_2();
+        }
+    }
+
+    public Image GetImage (BodyID id)
     {
         return images[(int)id];
     }

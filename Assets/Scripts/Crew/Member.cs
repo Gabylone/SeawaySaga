@@ -105,7 +105,15 @@ public class Member {
 
         // JOB & SKILLS
         List<int> possibleIDs = new List<int>();
-        SetJob((Job)Random.Range(0, 5));
+
+        if ( Crews.Instance.startJob != Job.None)
+        {
+            SetJob(Crews.Instance.startJob);
+        }
+        else
+        {
+            SetJob((Job)Random.Range(0, 5));
+        }
 
 		// STATS
 		int statAmount = Lvl - 1;
@@ -120,22 +128,15 @@ public class Member {
             List<ApparenceItem> possibleItems = item.items.FindAll(x => x.locked == false);
             int randomID = possibleItems[Random.Range(0, possibleItems.Count)].id;
 
+            if ( item.items[0].apparenceType == ApparenceType.job)
+            {
+                if ( Crews.Instance.startJob != Job.None)
+                {
+                    randomID = (int)Crews.Instance.startJob;
+                }
+            }
+
             characterIDS.Add(randomID);
-
-            /*
-            if (item.items[0].apparenceType == ApparenceType.genre)
-            {
-                characterIDS.Add(Male ? 1 : 0);
-            }
-            else
-            {
-                List<ApparenceItem> possibleItems = item.items.FindAll(x => x.locked == false);
-                int randomID = possibleItems[Random.Range(0, possibleItems.Count)].id;
-
-                characterIDS.Add(randomID);
-            }
-            */
-
         }
         
         // NAME

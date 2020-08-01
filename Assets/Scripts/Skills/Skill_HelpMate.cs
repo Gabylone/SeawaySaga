@@ -4,16 +4,35 @@ using UnityEngine;
 
 public class Skill_HelpMate : Skill {
 
-	public override void OnSetTarget ()
+    public float applyEffectDelay = 0.5f;
+    public float targetFighterAnimationDelay = 1.5f;
+
+    public override void StartAnimation()
+    {
+        base.StartAnimation();
+
+        fighter.animator.SetTrigger("combat speak");
+
+        Invoke("TargetFighterAnimation" , targetFighterAnimationDelay);
+
+    }
+
+    public override void OnSetTarget ()
 	{
 		base.OnSetTarget ();
 
 		string str = "Cheer up, " + fighter.TargetFighter.crewMember.MemberName + " ! You can do it, son";
 		fighter.Speak (str);
+    }
 
-	}
+    void TargetFighterAnimation()
+    {
+        fighter.TargetFighter.animator.SetTrigger("puffed");
 
-	public override void HandleOnApplyEffect ()
+        Invoke("HandleOnApplyEffect", applyEffectDelay);
+    }
+
+    public override void HandleOnApplyEffect ()
 	{
 		base.HandleOnApplyEffect ();
 

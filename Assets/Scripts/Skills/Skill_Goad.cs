@@ -4,12 +4,35 @@ using UnityEngine;
 
 public class Skill_Goad : Skill {
 
-	public override void OnSetTarget ()
+    public float applyEffectDelay = 0.5f;
+
+    public override void StartAnimation()
+    {
+        base.StartAnimation();
+
+        fighter.animator.SetTrigger("combat speak");
+
+        Invoke("HandleOnApplyEffect", applyEffectDelay);
+
+    }
+
+    public override void OnSetTarget ()
 	{
 		base.OnSetTarget ();
 
-		string str = "I heard " + fighter.TargetFighter.crewMember.MemberName + " tell everybody you're ugly";
-		fighter.Speak (str);
+        string str;
+
+        if ( fighter.TargetFighter == fighter)
+        {
+            str = "You're nothing but a scoundrel ! Come'n get me if you're not a wuss";
+        }
+        else
+        {
+            str = "I heard " + fighter.TargetFighter.crewMember.MemberName + " says you're nothing but pirate scum !";
+        }
+
+
+        fighter.Speak (str);
 
 	}
 

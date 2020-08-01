@@ -8,8 +8,6 @@ public class MemberIcon : MonoBehaviour {
 		// components
 	[Header ("Components")]
 	public GameObject group;
-	public GameObject faceGroup;
-	public GameObject bodyGroup;
 
 	public Animator animator;
 
@@ -188,8 +186,12 @@ public class MemberIcon : MonoBehaviour {
 
     #region body
     public void HideBody () {
-		
-		bodyGroup.SetActive (false);
+
+        foreach (var item in iconVisual.bodyParts)
+        {
+            item.SetActive(false);
+        }
+
 		animator.SetBool ("enabled", false);
 
 		Vector3 targetScale = Vector3.one * initScale;
@@ -200,9 +202,13 @@ public class MemberIcon : MonoBehaviour {
 
 	}
 	public void ShowBody () {
-		
-		bodyGroup.SetActive (true);
-		animator.SetBool ("enabled", true);
+
+        foreach (var item in iconVisual.bodyParts)
+        {
+            item.SetActive(true);
+        }
+
+        animator.SetBool ("enabled", true);
 
         Vector3 targetScale = Vector3.one * bodyScale;
         if (member.side == Crews.Side.Player)

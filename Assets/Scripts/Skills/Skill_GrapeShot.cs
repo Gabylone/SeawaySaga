@@ -6,7 +6,7 @@ public class Skill_GrapeShot : Skill {
 	
 	public int attackCount = 4;
 
-	
+    public float timesBetweenShots = 0.2f;
 
 	public override void HandleOnApplyEffect ()
 	{
@@ -27,7 +27,7 @@ public class Skill_GrapeShot : Skill {
 
 			StartAnimation ();
 
-			yield return new WaitForSeconds ( animationDelay );
+			yield return new WaitForSeconds ( timesBetweenShots );
 
 
 		}

@@ -103,7 +103,19 @@ public class CombatManager : MonoBehaviour {
         StoryFunctions.Instance.getFunction += HandleGetFunction;
 	}
 
-	void HandleGetFunction (FunctionType func, string cellParameters)
+
+    void Update()
+    {
+
+        if (updateState != null)
+        {
+            updateState();
+            timeInState += Time.deltaTime;
+        }
+    }
+
+
+    void HandleGetFunction (FunctionType func, string cellParameters)
 	{
 		switch (func) {
 		case FunctionType.LaunchCombat:
@@ -114,15 +126,6 @@ public class CombatManager : MonoBehaviour {
 	}
 
     #region Combat Start
-    void Update()
-    {
-        if (updateState != null)
-        {
-            updateState();
-            timeInState += Time.deltaTime;
-        }
-    }
-
     private void CombatStart_Start () {
 
 		foreach (CrewMember member in Crews.enemyCrew.CrewMembers)
@@ -230,8 +233,6 @@ public class CombatManager : MonoBehaviour {
 	public void ChoseTargetMember (Fighter fighter) {
 
 		fighter.SetAsTarget ();
-
-        Debug.Log("CHOSE TARGET MEMBER");
 
 		ChangeState (States.PlayerAction);
 	}
@@ -693,8 +694,6 @@ public class CombatManager : MonoBehaviour {
 
     #region StateMachine
     public void ChangeState ( States newState ) {
-
-        Debug.Log("changing state to : " + newState);
 
 		previousState = currentState;
 		currentState = newState;

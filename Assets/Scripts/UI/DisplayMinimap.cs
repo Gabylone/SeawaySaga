@@ -378,7 +378,6 @@ public class DisplayMinimap : MonoBehaviour {
 
     #region center
     void CenterOnBoat() {
-        Debug.Log("centering on boat");
 		CenterOnMap_Tween (playerBoat_World_RectTransform);
 	}
 
