@@ -10,8 +10,8 @@ public class LoadingScreen : MonoBehaviour {
 	public RectTransform backGround;
 	public RectTransform fillRectTransform;
 
-	int max;
-	float w = 0;
+	private int max;
+	private float w = 0;
 
 	public static LoadingScreen Instance;
 

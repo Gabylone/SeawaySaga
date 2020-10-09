@@ -10,7 +10,10 @@ public class Skill_Fury: Skill {
 	{
 		base.Trigger (fighter);
 
-		string str = "You've got me MAD !";
+        SoundManager.Instance.PlayLoop("dice_wait");
+        SoundManager.Instance.PlayRandomSound("voice_mad");
+
+        string str = "You've got me MAD !";
 		fighter.Speak (str);
 	}
 
@@ -26,7 +29,13 @@ public class Skill_Fury: Skill {
 
 		base.HandleOnApplyEffect ();
 
-		fighter.AddStatus (Fighter.Status.Enraged, 3);
+        SoundManager.Instance.StopLoop("dice_wait");
+
+        SoundManager.Instance.PlaySound("Tribal 01");
+        SoundManager.Instance.PlaySound("Fury");
+        SoundManager.Instance.PlaySound("Fury 2");
+
+        fighter.AddStatus (Fighter.Status.Enraged, 3);
 		fighter.onRemoveStatus += HandleOnRemoveStatus;
 		fighter.crewMember.energyPerTurn += energyPerTurnAdded;
 

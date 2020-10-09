@@ -50,11 +50,12 @@ public class StoryLauncher : MonoBehaviour {
 		}
 	}
 
-	#region propeties
-	public void PlayStory ( StoryManager storyManager , StoryLauncher.StorySource source) {
+    #region propeties
+    public void PlayStory(StoryManager storyManager, StoryLauncher.StorySource source)
+    {
 
-		if (playingStory)
-			return;
+        if (playingStory)
+            return;
 
         CurrentStorySource = source;
 
@@ -70,6 +71,8 @@ public class StoryLauncher : MonoBehaviour {
         Invoke("DisplayBackground", 1f);
 
         playingStory = true;
+
+        SoundManager.Instance.UpdateAmbianceSound();
     }
 
     void DisplayBackground()
@@ -134,6 +137,9 @@ public class StoryLauncher : MonoBehaviour {
 
     void EndStoryDelay()
     {
+
+        SoundManager.Instance.PlaySound("leave port");
+
         Transitions.Instance.ScreenTransition.FadeOut(0.5f);
 
         playingStory = false;
@@ -144,8 +150,12 @@ public class StoryLauncher : MonoBehaviour {
 
         InGameBackGround.Instance.Hide();
 
+
         if (onEndStory != null)
             onEndStory();
+
+        SoundManager.Instance.UpdateAmbianceSound();
+
 
     }
 

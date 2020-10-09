@@ -147,12 +147,7 @@ public class MemberCreator : MonoBehaviour {
 
 		ShowStep(currentStep);
 
-        string boat_name = CrewCreator.Instance.boatNames[Random.Range ( 0, CrewCreator.Instance.boatNames.Length )];
-        string boat_adjective = CrewCreator.Instance.boatAdjectives[Random.Range ( 0, CrewCreator.Instance.boatAdjectives.Length )];
-        string boat_fulName = boat_adjective + " " + boat_name;
-
-        Boats.Instance.playerBoatInfo.Name = "The " + boat_fulName;
-        boatName.text = "The " + boat_fulName;
+        SetRandomBoatName();
 
         Crews.playerCrew.captain.MemberID.Name = "The Captain";
 		captainName.text = Crews.playerCrew.captain.MemberID.Name;
@@ -160,7 +155,18 @@ public class MemberCreator : MonoBehaviour {
         iconInitParent = CrewCreator.Instance.crewParent_Player;
         Crews.playerCrew.captain.Icon.transform.SetParent(iconTargetParent);
         Crews.playerCrew.captain.Icon.transform.localScale = Vector3.one;
+    }
 
+    public void SetRandomBoatName()
+    {
+        string boat_name = CrewCreator.Instance.boatNames[Random.Range(0, CrewCreator.Instance.boatNames.Length)];
+        string boat_adjective = CrewCreator.Instance.boatAdjectives[Random.Range(0, CrewCreator.Instance.boatAdjectives.Length)];
+        string boat_fulName = "The " + boat_adjective + " " + boat_name;
+
+        Boats.Instance.playerBoatInfo.Name = boat_fulName;
+        boatName.text = boat_fulName;
+
+        SoundManager.Instance.PlayRandomSound("click_med");
 
     }
 
@@ -170,15 +176,18 @@ public class MemberCreator : MonoBehaviour {
 
 			EndMemberCreation ();
 
-		} else {
+            SoundManager.Instance.PlaySound("Confirm_Big");
+            SoundManager.Instance.PlaySound("button_heavy 01");
+
+        } else {
 
             NextStep();
 
-		}
+            SoundManager.Instance.PlayRandomSound("Swipe");
+            SoundManager.Instance.PlaySound("click_med 01");
+        }
 
-		SoundManager.Instance.PlaySound (SoundManager.Sound.Select_Big);
-
-	}
+    }
 
     void EndMemberCreation () {
 
@@ -232,24 +241,27 @@ public class MemberCreator : MonoBehaviour {
 
 		Boats.Instance.playerBoatInfo.Name = boatName.text;
 
-		SoundManager.Instance.PlaySound (SoundManager.Sound.Select_Big);
-	}
+            SoundManager.Instance.PlaySound("click_med 03");
+    }
 
 	public void ChangeCaptainName () {
 
 		Tween.Bounce ( captainName.transform , 0.2f , 1.05f);
 
 		Crews.playerCrew.captain.MemberID.Name = captainName.text;
-		SoundManager.Instance.PlaySound (SoundManager.Sound.Select_Big);
-	}
 
-	public void ChangeApparence ( ApparenceType apparence , int id) {
+            SoundManager.Instance.PlaySound("click_med 03");
 
-		SoundManager.Instance.PlaySound (SoundManager.Sound.Select_Small);
+    }
+
+    public void ChangeApparence ( ApparenceType apparence , int id) {
+
 
         Crews.playerCrew.captain.Icon.InitVisual (Crews.playerCrew.captain.MemberID);
 
-	}
+            SoundManager.Instance.PlaySound("click_med 01");
+
+    }
 
     public void UpdateDescriptionText(int i)
     {

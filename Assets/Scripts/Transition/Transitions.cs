@@ -8,7 +8,9 @@ public class Transitions : MonoBehaviour {
 	[SerializeField]
 	private Transition screenTransition;
 
-	public float defaultTransition = 0.3f;
+    public Transition actionTransition;
+
+    public float defaultTransition = 0.3f;
 
 	void Awake () {
 		Instance = this;
@@ -17,10 +19,10 @@ public class Transitions : MonoBehaviour {
 	void Start () {
 
         screenTransition.FadeOut( defaultTransition );
+        actionTransition.FadeOut(defaultTransition);
 
 		if ( StoryFunctions.Instance )
 		StoryFunctions.Instance.getFunction += HandleGetFunction;
-
 
 	}
 

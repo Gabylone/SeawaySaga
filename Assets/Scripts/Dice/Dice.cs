@@ -28,6 +28,19 @@ public class Dice : MonoBehaviour {
 
     private Transform _transform;
 
+    private Transform GetTransform
+    {
+        get
+        {
+            if (_transform == null)
+            {
+                _transform = GetComponent<Transform>();
+            }
+
+            return _transform;
+        }
+    }
+
 	private float timer = 0f;
 
 	private int throwDirection = 1;
@@ -39,18 +52,14 @@ public class Dice : MonoBehaviour {
 
 	public int targetResult = 1;
 
-    SpriteRenderer[] rends;
-
-    private void Start()
-    {
-        _transform = GetComponent<Transform>();
-    }
+    MeshRenderer[] rends;
 
     // Use this for initialization
     public void Init () {
+
 		settleDuration = DiceManager.Instance.settlingDuration;
 
-        rends = GetComponentsInChildren<SpriteRenderer>();
+        rends = GetComponentsInChildren<MeshRenderer>();
 	}
 
 	void LateUpdate () {
@@ -59,7 +68,7 @@ public class Dice : MonoBehaviour {
 			float y = Random.Range (0f,360f);
 			float z = Random.Range (0f,360f);
 
-			transform.rotation = Quaternion.Euler ( new Vector3(x,y,z) );
+			GetTransform.rotation = Quaternion.Euler ( new Vector3(x,y,z) );
 		}
 	}
 
@@ -67,12 +76,12 @@ public class Dice : MonoBehaviour {
 
 		// POS
 		throwDirection = DiceManager.Instance.ThrowDirection;
-		Vector3 pos = anchor.transform.position;
+		Vector3 pos = anchor.position;
 		pos.x *= throwDirection;
-		transform.position = pos;
+		GetTransform.position = pos;
 
 		// SCALE
-		transform.localScale = Vector3.one;
+		GetTransform.localScale = Vector3.one;
 
 	}
 
@@ -90,8 +99,8 @@ public class Dice : MonoBehaviour {
 		Vector3 dir = Vector3.right;
         //GetComponent<Rigidbody> ().AddForce ( dir * throwDirection *  Random.Range (minForce , maxForce) );
 
-        Vector3 p = transform.position + dir * Random.Range(minForce, maxForce);
-        transform.DOMove(p, DiceManager.Instance.throwDuration);
+        Vector3 p = GetTransform.position + dir * Random.Range(minForce, maxForce);
+        GetTransform.DOMove(p, DiceManager.Instance.throwDuration);
 
 	}
 
@@ -100,23 +109,23 @@ public class Dice : MonoBehaviour {
 
 	public void SettleDown () {
 
-        transform.DOKill();
-        transform.DOScale(Vector3.one * 0.8f, settleDuration);
+        GetTransform.DOKill();
+        GetTransform.DOScale(Vector3.one * 0.8f, settleDuration);
 
-        Color c = rends[0].color;
+        Color c = rends[0].material.color;
 
         c.a = 0f;
 
-		foreach (SpriteRenderer rend in rends) {
-            rend.DOColor(c, settleDuration);
+		foreach (MeshRenderer rend in rends) {
+            rend.material.DOColor(c, settleDuration);
 		}
 
 	}
 
 	public void SettleUp() {
 
-        transform.DOKill();
-        transform.DOScale(Vector3.one * 1.2f, settleDuration);
+        GetTransform.DOKill();
+        GetTransform.DOScale(Vector3.one * 1.2f, settleDuration);
         
         //Tween.Bounce (transform);
 
@@ -175,22 +184,22 @@ public class Dice : MonoBehaviour {
 
 		switch(i) {
 		case 1:
-			transform.up = Vector3.up;
+			GetTransform.up = Vector3.up;
 			break;
 		case 2:
-			transform.right = Vector3.up;
+                GetTransform.right = Vector3.up;
 			break;
 		case 3:
-			transform.forward = Vector3.up;
+                GetTransform.forward = Vector3.up;
 			break;
 		case 4:
-			transform.forward= -Vector3.up;
+                GetTransform.forward= -Vector3.up;
 			break;
 		case 5:
-			transform.right = -Vector3.up;
+                GetTransform.right = -Vector3.up;
 			break;
 		case 6:
-			transform.up = -Vector3.up;
+                GetTransform.up = -Vector3.up;
 			break;
 		}
 	}
@@ -207,9 +216,9 @@ public class Dice : MonoBehaviour {
 		}
 	}
 	public void Fade () {
-        foreach (SpriteRenderer rend in rends)
+        foreach (var rend in rends)
         {
-            rend.DOFade(0f, settleDuration);
+            rend.material.DOFade(0f, settleDuration);
         }
     }
     #endregion

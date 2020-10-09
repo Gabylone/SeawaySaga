@@ -11,6 +11,8 @@ public class LoadingScene : MonoBehaviour
     public RectTransform rectTransform_Background;
     public RectTransform rectTransform_Fill;
 
+    public bool activateAtStart = true;
+
     void Start()
     {
         Transitions.Instance.ScreenTransition.FadeOut(1f);
@@ -32,7 +34,7 @@ public class LoadingScene : MonoBehaviour
         AsyncOperation asyncOperation = SceneManager.LoadSceneAsync("Main");
 
         //Don't let the Scene activate until you allow it to
-        asyncOperation.allowSceneActivation = false;
+        asyncOperation.allowSceneActivation = activateAtStart;
 
         //When the load is still in progress, output the Text and progress bar
         while (!asyncOperation.isDone)

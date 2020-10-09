@@ -71,9 +71,8 @@ public class PinManager : Singleton<PinManager>
         DisplayPin newDisplayPin = go.GetComponent<DisplayPin>();
 
         Pin newPin = new Pin();
-        
 
-        Debug.Log("x : " + x);
+        SoundManager.Instance.PlayRandomSound("click_light");
 
         // 
         pins.Add(newPin);

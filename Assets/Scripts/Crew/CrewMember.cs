@@ -172,7 +172,6 @@ public class CrewMember {
 	public OnLevelUp onLevelUp;
     public void LevelUp()
     {
-
         ++Level;
 
         CurrentXp = CurrentXp - xpToLevelUp;
@@ -183,6 +182,8 @@ public class CrewMember {
         {
             CurrentXp = 0;
         }
+
+        DisplayCrewMemberLevelUp.Instance.Display(this);
 
         if (onLevelUp != null)
         {

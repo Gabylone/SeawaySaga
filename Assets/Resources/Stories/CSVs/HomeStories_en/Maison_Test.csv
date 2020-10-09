@@ -1,11 +1,23 @@
 Nom;Fréquence / 5;Sprite ID;Display Name
 Maison_Test;1;4;Captain’s House
 [debut];;;
-PlayerSpeak : This is the test story;;;
+PlayerSpeak : Aaah…;;;
 NewCrew1;;;
-SetChoices2;;;
-Choice : Leave;Choice : (fight);;
-Leave;PlayerSpeak : je te battre;;
-;OtherSpeak : oh non;;
-;LaunchCombat;;
-;Leave;;
+[choix];;;
+SetChoices4;;;
+Choice : Leave;Choice : (indice);Choice : (autre indice);Choice : (tips)
+Leave;GiveClue;GiveClue;Node=>tips
+;Node=>choix;Node=>choix;
+;;;
+[tips];;;
+SetChoices3;;;
+Choice : back (leave);Choice : (tip);Choice : (tip);
+Node=>choix;GiveTip;GiveTip;
+;Node=>tips;Node=>tips;
+;;;
+;;;
+Choice : (fight);;;
+PlayerSpeak : je te battre;;;
+OtherSpeak : oh non;;;
+LaunchCombat;;;
+Leave;;;

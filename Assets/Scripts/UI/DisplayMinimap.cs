@@ -646,6 +646,10 @@ public class DisplayMinimap : MonoBehaviour {
 	{
 		Transitions.Instance.ScreenTransition.FadeIn (fullDisplay_Duration/2f);
 
+        SoundManager.Instance.PlaySound("click_light 01");
+        SoundManager.Instance.PlayRandomSound("Book");
+        SoundManager.Instance.PlayRandomSound("Page");
+
         CancelInvoke("ShowCloseButton");
         CancelInvoke("FullDisplayDelay");
         Invoke ("ShowCloseButton",fullDisplay_Duration);
@@ -653,6 +657,9 @@ public class DisplayMinimap : MonoBehaviour {
 	}
     void FullDisplayDelay()
     {
+        SoundManager.Instance.PlayRandomSound("Book");
+        SoundManager.Instance.PlayRandomSound("Page");
+
         transform.SetParent(targetParent);
         transform.SetAsFirstSibling();
 

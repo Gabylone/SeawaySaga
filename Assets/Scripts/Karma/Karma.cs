@@ -118,15 +118,21 @@ public class Karma : MonoBehaviour {
 		
 		CurrentKarma += i;
 
-		if (onChangeKarma != null)
+        SoundManager.Instance.PlaySound("Magic Chimes 05");
+        SoundManager.Instance.PlaySound("Lose Karma");
+
+        if (onChangeKarma != null)
 			onChangeKarma (previousKarma, currentKarma);
 		//
 	}
 	public void RemoveKarma (int i) {
-		
-		CurrentKarma -= i;
 
-		bounty += (bountyStep*i);
+        CurrentKarma -= i;
+
+        SoundManager.Instance.PlaySound("Magic Chimes 04");
+        SoundManager.Instance.PlaySound("ui_jauge_up");
+
+        bounty += (bountyStep*i);
 
 		if (onChangeKarma != null)
 			onChangeKarma (previousKarma, currentKarma);
@@ -142,7 +148,7 @@ public class Karma : MonoBehaviour {
 
 	public void RemoveKarma_Story () {
 
-		RemoveKarma (2);
+		RemoveKarma (1);
 
         StoryReader.Instance.NextCell();
         StoryReader.Instance.Wait(1f);
@@ -152,7 +158,10 @@ public class Karma : MonoBehaviour {
 
 		StoryReader.Instance.NextCell ();
 
-		if ( GoldManager.Instance.CheckGold (bounty) ) {
+        SoundManager.Instance.PlayRandomSound("Coins");
+        SoundManager.Instance.PlayRandomSound("Coins");
+
+        if ( GoldManager.Instance.CheckGold (bounty) ) {
 
 			CurrentKarma = -2;
 

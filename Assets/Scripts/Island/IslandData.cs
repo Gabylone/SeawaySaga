@@ -8,6 +8,8 @@ public class IslandData {
 	public Vector2 worldPosition;
     public float worldRotation = 0f;
 
+    public bool containsFormula = false;
+
 	public StoryManager storyManager;
 
 	public IslandData ()

@@ -128,6 +128,8 @@ public class MinimapChunk : MonoBehaviour, IPointerClickHandler{
 
         IslandInfo.Instance.DisplayIslandInfo(str);
         IslandInfo.Instance.ShowAtTransform(islandGroup.transform);
+
+        SoundManager.Instance.PlaySound("button_tap_light 05");
     }
 
     public void OnPointerClick(PointerEventData eventData)

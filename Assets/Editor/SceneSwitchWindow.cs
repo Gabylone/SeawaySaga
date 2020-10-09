@@ -57,6 +57,11 @@ public class SceneSwitchWindow : EditorWindow
             }
         }
 
+        if (GUILayout.Button("Load Sounds", new GUIStyle(GUI.skin.GetStyle("Button")) { alignment = TextAnchor.MiddleLeft }))
+        {
+            GameObject.FindObjectOfType<SoundManager>().LoadSounds();
+        }
+
         EditorGUILayout.EndScrollView();
         EditorGUILayout.EndVertical();
     }

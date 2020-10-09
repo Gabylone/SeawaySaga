@@ -62,6 +62,9 @@ public class CrewCreator : MonoBehaviour
     public Sprite sadEyebrows_Sprite;
     public Sprite sadMouth_Sprite;
 
+    [Header("Aiming")]
+    public Sprite aimingEyes_Sprite;
+
     public BodySet[] bodySets;
 
     void Awake()

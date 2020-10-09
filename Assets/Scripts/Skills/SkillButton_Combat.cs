@@ -58,12 +58,10 @@ public class SkillButton_Combat : SkillButton {
 
 		// ENERGY
 		if (skill.MeetsRestrictions (fighter.crewMember) == false) {
-            Debug.Log("disabled : restrictions");
 			Disable ();
 		}
 
 		if ( skill.energyCost > fighter.crewMember.energy ) {
-            Debug.Log("disabled : energy");
 			Disable ();
         }
 
@@ -95,5 +93,7 @@ public class SkillButton_Combat : SkillButton {
 		int charge = member.charges[skill.GetSkillIndex(member)];
 		UpdateCharge (charge);
 
-	}
+        SoundManager.Instance.PlaySound("click_med 02");
+
+    }
 }

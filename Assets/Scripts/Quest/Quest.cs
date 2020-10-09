@@ -13,7 +13,7 @@ public class Quest {
 		Finished
 	}
 
-	public int questID = 0;
+	public int storyID = 0;
 
 	public int goldValue = 0;
 
@@ -58,9 +58,18 @@ public class Quest {
 		GetNewQuestnode ();
 		currentQuest = this;
 
-		questID = StoryLoader.Instance.getStoryIndexFromPercentage (StoryType.Quest);
+		if ( QuestManager.Instance.launchClueQuest )
+        {
+            storyID = StoryLoader.Instance.Quests.Find(x => x.dataName == "Clue Quest").id;
+            QuestManager.Instance.launchClueQuest = false;
+            Debug.Log("la quête de l'indice devrait se lancer là");
+        }
+        else
+        {
+            storyID = StoryLoader.Instance.getStoryIndexFromPercentage(StoryType.Quest);
+        }
 
-		Node targetNode = Story.GetNode ("debut");
+        Node targetNode = Story.GetNode ("debut");
 
 		StoryReader.Instance.SetNewStory (Story, StoryType.Quest, targetNode, newQuest_FallbackNode);
 
@@ -126,14 +135,14 @@ public class Quest {
 		newQuest_FallbackNode = StoryReader.Instance.GetNodeFromText ( parts[0] );
 
 		if ( parts.Length > 1 ) {
-			nodeWhenCompleted = StoryReader.Instance.GetNodeFromText (parts [1]);
+            nodeWhenCompleted = StoryReader.Instance.GetNodeFromText(parts[1]);
 		}
 	}
 	#endregion
 
 	public Story Story {
 		get {
-			return StoryLoader.Instance.Quests [questID];
+			return StoryLoader.Instance.Quests [storyID];
 		}
 	}
 

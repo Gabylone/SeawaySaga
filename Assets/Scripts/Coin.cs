@@ -5,10 +5,12 @@ using DG.Tweening;
 
 public class Coin : MonoBehaviour {
 
+    public GameObject group;
+
 	public float tweenDuration = 1f;
 	public float rotationSpeed = 90f;
 
-	private Transform mTransform;
+	public Transform _transform;
 
 	public float decalUp = 1f;
 
@@ -18,14 +20,31 @@ public class Coin : MonoBehaviour {
 
 	public bool heads = false;
 
-	// Use this for initialization
-	void Start () {
-		mTransform = GetComponent<Transform> ();
+    private void Start()
+    {
+        _transform = GetComponent<Transform>();
 
-		initPos = mTransform.localPosition;
+        HideDelay();
+    }
 
-        mTransform.DOLocalMove(initPos + Vector3.up * decalUp, tweenDuration / 2f);
-        mTransform.DOLocalMove(initPos, tweenDuration / 2f).SetDelay(tweenDuration/2f);
+    // Use this for initialization
+    public void Flip () {
+
+        Show();
+
+        SoundManager.Instance.PlayLoop("dice_wait");
+
+        SoundManager.Instance.PlayRandomSound("click_ligh");
+        SoundManager.Instance.PlayRandomSound("coin");
+
+        _transform.rotation = Quaternion.identity;
+
+        rot = true;
+
+		initPos = _transform.localPosition;
+
+        _transform.DOLocalMove(initPos + Vector3.up * decalUp, tweenDuration / 2f);
+        _transform.DOLocalMove(initPos, tweenDuration / 2f).SetDelay(tweenDuration/2f);
 
 		Invoke ("Stop", tweenDuration);
 	}
@@ -33,7 +52,7 @@ public class Coin : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if ( rot )
-			mTransform.Rotate (Vector3.right * rotationSpeed * Time.deltaTime);
+			_transform.Rotate (Vector3.right * rotationSpeed * Time.deltaTime);
 	}
 
 	void Stop () {
@@ -43,14 +62,45 @@ public class Coin : MonoBehaviour {
 	}
 
 	void StopDelay () {
-		Tween.Bounce (mTransform);
+		Tween.Bounce (_transform);
 
 		if (!heads) {
-            mTransform.forward = -Vector3.forward;
+            SoundManager.Instance.PlaySound("ui_deny");
+            _transform.forward = -Vector3.forward;
 		} else {
-            mTransform.forward = Vector3.forward;
+            SoundManager.Instance.PlaySound("ui_correct");
+            _transform.forward = Vector3.forward;
 		}
 
-		Destroy (gameObject, 2f);
-	}
+        Invoke("Hide" , 2f);
+
+        SoundManager.Instance.StopLoop("dice_wait");
+
+        SoundManager.Instance.PlayRandomSound("Blunt");
+        SoundManager.Instance.PlaySound("Dice Settle");
+
+        SoundManager.Instance.PlayRandomSound("Coins");
+
+    }
+
+    void Show()
+    {
+        group.SetActive(true);
+
+        _transform.localScale = Vector3.zero;
+        _transform.DOScale(1f, 0.2f);
+    }
+
+    void Hide()
+    {
+        _transform.DOScale(0f, 0.2f);
+
+        Invoke("HideDelay", 0.2f);
+    }
+
+    void HideDelay()
+    {
+        group.SetActive(false);
+
+    }
 }

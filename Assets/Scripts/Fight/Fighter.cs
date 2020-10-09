@@ -105,14 +105,9 @@ public class Fighter : MonoBehaviour {
 
 	private Vector3 initPos = Vector3.zero;
 
-	[Header("Sounds")]
-	[SerializeField] private AudioClip hitSound;
-	[SerializeField] private AudioClip hurtSound;
-
 	[Header ("Target")]
 	private Fighter targetFighter;
-	[SerializeField]
-	private float stopDistance = 1f;
+	public float stopDistance = 1f;
 
 	private bool pickable = false;
 	public delegate void OnSetPickable ( bool b );
@@ -227,6 +222,10 @@ public class Fighter : MonoBehaviour {
 
 			EndTurn ();
 			CombatManager.Instance.NextTurn ();
+
+            SoundManager.Instance.PlaySound("Wake Up");
+            SoundManager.Instance.PlaySound("Tribal 01");
+
 			return;
 			//
 		}
@@ -246,9 +245,11 @@ public class Fighter : MonoBehaviour {
 			onSetTurn (); 
 		}
 
-	}
+        SoundManager.Instance.PlaySound("New Turn");
 
-	public delegate void OnEndTurn ();
+    }
+
+    public delegate void OnEndTurn ();
 	public OnEndTurn onEndTurn;
 	public void EndTurn ()
 	{
@@ -304,6 +305,8 @@ public class Fighter : MonoBehaviour {
 
 	public virtual void Die () {
 
+        SoundManager.Instance.PlaySound("Death");
+
 			// self
 		ChangeState (states.dead);
 
@@ -336,6 +339,14 @@ public class Fighter : MonoBehaviour {
 
 		animator.SetBool ("move", true);
 
+        Vector3 targetPos = TargetFighter.GetTransform.position + GetTargetDirection() * stopDistance;
+
+        GetTransform.DOMove(targetPos, moveToTargetDuration);
+
+	}
+
+    public Vector3 GetTargetDirection()
+    {
         Vector3 dir;
 
         if (crewMember.side == TargetFighter.crewMember.side)
@@ -357,15 +368,13 @@ public class Fighter : MonoBehaviour {
             }
             else
             {
-                dir = new Vector3(1f, 0f, 0f);
+                dir = new Vector3(1, 0f, 0f);
             }
         }
-        
-		Vector3 targetPos = TargetFighter.GetTransform.position + dir * stopDistance;
 
-        GetTransform.DOMove(targetPos, moveToTargetDuration);
+        return dir;
+    }
 
-	}
 	public virtual void MoveToTarget_Update () {
 		
 		if (timeInState > moveToTargetDuration ) {
@@ -472,6 +481,8 @@ public class Fighter : MonoBehaviour {
 		if ( Pickable ) {
 			CombatManager.Instance.ChoseTargetMember (this);
 			Tween.Bounce (GetTransform);
+
+            SoundManager.Instance.PlaySound( "button_heavy 01" );
 			return;
 		}
 
@@ -505,11 +516,12 @@ public class Fighter : MonoBehaviour {
 
     void HitEffect()
     {
-
-        SoundManager.Instance.PlaySound(hitSound);
         animator.SetTrigger("getHit");
 
         iconVisual.TaintOnce(Color.red);
+
+        iconVisual.hitEffect_Obj.SetActive(true);
+        iconVisual.hitEffect_Transform.position = GetTransform.position - Vector3.up * 3f + (Vector3)Random.insideUnitCircle * 1f;
 
         Tween.Bounce(GetTransform, getHit_ScaleDuration , getHit_ScaleAmount);
     }
@@ -572,6 +584,8 @@ public class Fighter : MonoBehaviour {
         combatFeedback.Display(amount.ToString(), Color.red);
         crewMember.RemoveHealth(amount);
 
+        SoundManager.Instance.PlayRandomSound("Blunt");
+
         if (onGetHit != null)
             onGetHit();
 
@@ -585,9 +599,15 @@ public class Fighter : MonoBehaviour {
 
 	public void Heal (float amount) {
 
+        SoundManager.Instance.PlayRandomSound("Magic");
+        SoundManager.Instance.PlayRandomSound("Alchemy");
+        SoundManager.Instance.PlayRandomSound("Potion");
+
         Tween.Bounce(GetTransform, getHit_ScaleDuration, getHit_ScaleAmount);
 
         crewMember.AddHealth (amount);
+
+        iconVisual.healEffect_Obj.SetActive(true);
 
         iconVisual.TaintOnce(Color.green);
 
@@ -606,18 +626,27 @@ public class Fighter : MonoBehaviour {
 		dodgeSkill *= maxDodgeChance;
 
 		if ( dodgeChange < dodgeSkill ) {
-			animator.SetTrigger("dodge");
-			combatFeedback.Display ("Missed !", Color.red);
-			return true;
+            Dodge();
+            return true;
 		}
 
 		return false;
 
 	}
-	#endregion
 
-	#region getters
-	public Transform BodyTransform {
+    void Dodge()
+    {
+        animator.SetTrigger("dodge");
+        combatFeedback.Display("Missed !", Color.red);
+
+        SoundManager.Instance.PlayRandomSound("Whoosh");
+        SoundManager.Instance.PlaySound("Dodge");
+
+    }
+    #endregion
+
+    #region getters
+    public Transform BodyTransform {
 		get {
 			return bodyTransform;
 		}
@@ -737,6 +766,7 @@ public class Fighter : MonoBehaviour {
 
 		if ( HasStatus(Status.Poisonned) ) {
 			RemoveStatus (Status.Poisonned);
+            iconVisual.poisonEffect_Obj.SetActive(true);
             combatFeedback.Display("POISON !", Color.red);
 			Hurt (10);
 		}
@@ -754,6 +784,8 @@ public class Fighter : MonoBehaviour {
 
     public void AttachItemToHand (Transform _transform)
     {
+        SoundManager.Instance.PlayRandomSound("Bag");
+
         _transform.SetParent(iconVisual.bodyVisual.itemAnchor);
         _transform.localPosition = Vector3.zero;
         _transform.up = iconVisual.bodyVisual.itemAnchor.up;
@@ -772,6 +804,9 @@ public class Fighter : MonoBehaviour {
 		switch (status) {
             case Status.Toasted:
                 iconVisual.SetHappyFace();
+                break;
+            case Status.Cussed:
+                iconVisual.SetSadFace();
                 break;
             case Status.Protected:
                 iconVisual.SetHappyFace();
@@ -828,6 +863,9 @@ public class Fighter : MonoBehaviour {
             {
                 case Status.Toasted:
                     iconVisual.RemoveHappyFace();
+                    break;
+                case Status.Cussed:
+                    iconVisual.RemoveSadFace();
                     break;
                 case Status.Protected:
                     iconVisual.RemoveHappyFace();

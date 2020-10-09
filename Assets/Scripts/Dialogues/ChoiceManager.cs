@@ -30,10 +30,6 @@ public class ChoiceManager : MonoBehaviour {
 	[SerializeField]
 	private Color[] statColor;
 
-    [Header("Tips")]
-	[SerializeField]
-	private string[] tips;
-
 	[SerializeField]
 	private GameObject choiceGroup;
 
@@ -50,12 +46,6 @@ public class ChoiceManager : MonoBehaviour {
 
     void StartDelay()
     {
-        string path = MapGenerator.mapParameters.mapName + " Tips";
-
-        TextAsset tipsTextAsset = Resources.Load("Tips/" + path) as TextAsset;
-
-        tips = tipsTextAsset.text.Split('\n');
-
         feedbackSprites = Resources.LoadAll<Sprite>("Graph/ChoiceBubbleFeedbackSprites");
 
         StoryFunctions.Instance.getFunction += HandleGetFunction;
@@ -107,9 +97,6 @@ public class ChoiceManager : MonoBehaviour {
 		case FunctionType.SetChoices:
 			GetChoices ();
 			break;
-		case FunctionType.GiveTip:
-			GiveTip ();
-            break;
         }
 	}
 
@@ -139,7 +126,9 @@ public class ChoiceManager : MonoBehaviour {
 
 	public void Choose (int i) {
 
-		StoryReader.Instance.SetDecal (i);
+        SoundManager.Instance.PlayRandomSound("click_med");
+
+        StoryReader.Instance.SetDecal (i);
 
         /// ici, si tu veux tainter les choix que tu as déjà fais.
         //StoryReader.Instance.CurrentStoryHandler.SaveDecal(-2);
@@ -214,14 +203,6 @@ public class ChoiceManager : MonoBehaviour {
 		SetChoices (amount, choices);
 	}
 	#endregion
-
-	#region tips
-	public void GiveTip () {
-        DialogueManager.Instance.SetDialogue(tips[Random.Range(0, tips.Length)], Crews.enemyCrew.captain);
-        StoryInput.Instance.WaitForInput();
-
-    }
-    #endregion
 
     public ChoiceButton[] ChoiceButtons {
 		get {

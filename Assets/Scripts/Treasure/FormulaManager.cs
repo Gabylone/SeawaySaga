@@ -7,14 +7,6 @@ public class FormulaManager : MonoBehaviour {
 
 	public static FormulaManager Instance;
 
-	public int NumberOfCluesBeforeTreasure
-    {
-        get
-        {
-            return MapGenerator.mapParameters.numberOfCluesBeforeTreasure;
-        }
-    }
-
     public List<Formula> formulas = new List<Formula>();
 
 	[SerializeField]
@@ -23,30 +15,34 @@ public class FormulaManager : MonoBehaviour {
 	[SerializeField]
 	private InputField inputField;
 
-	void Awake () {
+    private bool previousActive = false;
+
+    void Awake () {
 		Instance = this;
 	}
 
 	void Start () {
 		StoryFunctions.Instance.getFunction += HandleGetFunction;
 
-
 		InGameMenu.Instance.onOpenMenu += HandleOpenInventory;
 		InGameMenu.Instance.onCloseMenu += HandleCloseInventory;
-
 	}
 
 	void HandleGetFunction (FunctionType func, string cellParameters)
 	{
 		switch (func) {
 		case FunctionType.CheckClues:
+                Debug.Log("check clues");
 			StartFormulaCheck ();
 			break;
-		}
+        case FunctionType.CheckIfFormulaIsland:
+                Debug.Log("checking if clue island");
+                CheckIfFormulaIsland();
+            break;
+        }
 	}
 
 	#region inv
-	bool previousActive = false;
 	void HandleOpenInventory ()
 	{
 		if (formulaGroup.activeSelf) {
@@ -72,40 +68,26 @@ public class FormulaManager : MonoBehaviour {
 
 	}
 
-	public void CreateNewClues () {
-
-		for (int i = 0; i < NumberOfCluesBeforeTreasure; ++i) {
-
-			Formula newFormula = new Formula ();
-			newFormula.name = NameGeneration.Instance.randomWord;
-
-            Coords targetCoords = MapGenerator.Instance.RandomCoords;
-
-            while (targetCoords == SaveManager.Instance.GameData.treasureCoords
-                || targetCoords == SaveManager.Instance.GameData.homeCoords
-                || formulas.Find(x=>x.coords == targetCoords) != null )
-            {
-                Debug.Log("clue island is same position as other, rolling coords pos again");
-                targetCoords = MapGenerator.Instance.RandomCoords;
-            }
-
-            newFormula.coords = targetCoords;
-
-            //Chunk.GetChunk (newFormula.coords).InitIslandData (new IslandData (StoryType.Clue));
-            //MapGenerator.Instance.CreateIsland(newFormula.coords, StoryType.Clue);
-
-			formulas.Add(newFormula);
-
-		}
-	}
-
 	#region formula check
 	void StartFormulaCheck () {
 		formulaGroup.SetActive (true);
 		StoryReader.Instance.NextCell ();
 	}
 
-	public void CheckFormula () {
+    void CheckIfFormulaIsland()
+    {
+        StoryReader.Instance.NextCell();
+
+        if (Chunk.currentChunk.IsFormulaIsland())
+        {
+            StoryReader.Instance.SetDecal(1);
+        }
+
+        StoryReader.Instance.UpdateStory();
+    }
+
+
+    public void CheckFormula () {
 
 		string stringToCheck = inputField.text.ToLower();
 		inputField.text = "";

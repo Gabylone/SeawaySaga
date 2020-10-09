@@ -19,6 +19,8 @@ public class QuestManager : MonoBehaviour {
 
     public bool showingQuestOnMap = false;
 
+    public bool launchClueQuest = false;
+
 	void Awake () {
 
 		Instance = this;
@@ -27,8 +29,6 @@ public class QuestManager : MonoBehaviour {
         Quest.currentQuest = null;
 
         onNewQuest = null;
-
-
     }
 
     void Start () {
@@ -67,7 +67,10 @@ public class QuestManager : MonoBehaviour {
 		case FunctionType.NewQuest:
 			HandleNewQuest ();
 			break;
-		case FunctionType.CheckQuest:
+            case FunctionType.NewClueQuest:
+                HandleClueNewQuest();
+                break;
+            case FunctionType.CheckQuest:
 			ContinueQuest ();
 			break;
 		case FunctionType.SendPlayerBackToGiver:
@@ -119,8 +122,6 @@ public class QuestManager : MonoBehaviour {
 
 		Quest.currentQuest.accomplished = true;
 
-
-
 		Quest.currentQuest.SetTargetCoords (Quest.currentQuest.originCoords);
 
 		Quest.currentQuest.ShowOnMap ();
@@ -129,10 +130,16 @@ public class QuestManager : MonoBehaviour {
 		StoryReader.Instance.UpdateStory ();
 
 	}
-	#endregion
+    #endregion
 
-	#region new quest
-	void HandleNewQuest () {
+    #region new quest
+    void HandleClueNewQuest()
+    {
+        launchClueQuest = true;
+
+        HandleNewQuest();
+    }
+    void HandleNewQuest () {
 
 		// CHECK FINISHED QUESTS
 		Quest quest = Coords_CheckForFinishedQuest;
@@ -141,9 +148,10 @@ public class QuestManager : MonoBehaviour {
 			HandleCompletedQuest (quest);
 			return;
 		}
+        
 
-		// CHECK CURRENT QUESTS
-		quest = CheckForQuest_OriginCoords;
+        // CHECK CURRENT QUESTS
+        quest = CheckForQuest_OriginCoords;
 
 		if (quest != null) {
 			quest.ReturnToGiver ();

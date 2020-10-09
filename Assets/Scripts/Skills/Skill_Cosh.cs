@@ -5,21 +5,38 @@ using UnityEngine;
 public class Skill_Cosh : Skill {
 
 	public float knockedOutChance = 0.3f;
+    public float secondSoundDelay = 0.5f;
 
-	public override void HandleOnApplyEffect ()
+    public override void AnimationEvent_1()
+    {
+        base.AnimationEvent_1();
+
+        SoundManager.Instance.PlayRandomSound("Whoosh");
+        SoundManager.Instance.PlayRandomSound("Swipe");
+    }
+
+    public override void AnimationEvent_2()
+    {
+        base.AnimationEvent_2();
+
+        SoundManager.Instance.PlayRandomSound("Whoosh");
+        SoundManager.Instance.PlayRandomSound("Swipe");
+    }
+
+    public override void HandleOnApplyEffect ()
 	{
 		base.HandleOnApplyEffect ();
 
-
 		fighter.TargetFighter.AddStatus (Fighter.Status.KnockedOut);
+        //
+        SoundManager.Instance.PlayRandomSound("Blunt");
+        SoundManager.Instance.PlayRandomSound("Punch");
+        SoundManager.Instance.PlayRandomSound("slash");
 
-//		if ( Random.value < knockedOutChance) {
-//			fighter.TargetFighter.AddStatus (Fighter.Status.KnockedOut);
-//		} else {
-//			fighter.combatFeedback.Display ( "Raté !" );
-//		}
-//
-		fighter.TargetFighter.GetHit (fighter, fighter.crewMember.Attack, 1f);
+        SoundManager.Instance.PlaySound("knockout");
+
+
+        fighter.TargetFighter.GetHit (fighter, fighter.crewMember.Attack, 1f);
 
 
 		EndSkill ();
@@ -31,6 +48,15 @@ public class Skill_Cosh : Skill {
         base.StartAnimation();
 
         fighter.animator.SetTrigger("knock out");
+
+        SoundManager.Instance.PlayRandomSound("Whoosh");
+
+        Invoke("StartAnimationDelay", secondSoundDelay);
+    }
+
+    void StartAnimationDelay()
+    {
+        SoundManager.Instance.PlayRandomSound("Whoosh");
     }
 
     public override bool MeetsRestrictions (CrewMember member)

@@ -85,6 +85,10 @@ public class NavigationTrigger : MonoBehaviour {
     {
         if (other.tag == "Player")
         {
+            SoundManager.Instance.PlaySound("change chunk");
+            SoundManager.Instance.PlayRandomSound("ting");
+            SoundManager.Instance.PlaySound("Magic Chimes 05");
+
             Transitions.Instance.ScreenTransition.FadeIn(0.5f);
             Invoke("ChangeChunk", 0.5f);
         }
@@ -92,6 +96,8 @@ public class NavigationTrigger : MonoBehaviour {
 
     void ChangeChunk()
     {
+        SoundManager.Instance.PlayRandomSound("Swipe");
+
         Transitions.Instance.ScreenTransition.FadeOut(0.5f);
         NavigationManager.Instance.ChangeChunk(direction);
     }

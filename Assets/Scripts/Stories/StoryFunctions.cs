@@ -23,7 +23,8 @@ public enum FunctionType {
 	PlayerSpeak,
 	OtherSpeak,
 	GiveTip,
-	CheckGold,
+	GiveClue,
+    CheckGold,
 	RemoveGold,
 	AddGold,
 	AddToInventory,
@@ -36,6 +37,7 @@ public enum FunctionType {
 	CheckClues,
 	SetWeather,
 	ChangeTimeOfDay,
+    GoToNextDay,
 	CheckDay,
 	Node,
 	Switch,
@@ -53,7 +55,9 @@ public enum FunctionType {
 
 	// quest
 	NewQuest,
+    NewClueQuest,
 	CheckQuest,
+    CheckIfFormulaIsland,
 	SendPlayerBackToGiver,
 	FinishQuest,
 	ShowQuestOnMap,
@@ -103,7 +107,7 @@ public class StoryFunctions : MonoBehaviour {
 		}
 
 //		// GET DECAL
-		int decal = StoryReader.Instance.CurrentStoryHandler.GetDecal();
+		/*int decal = StoryReader.Instance.CurrentStoryHandler.GetDecal();
 		if ( decal >= 0 ) {
 
             if (debug)
@@ -116,7 +120,7 @@ public class StoryFunctions : MonoBehaviour {
 			StoryReader.Instance.UpdateStory ();
 			//
 			return;
-		}
+		}*/
 	
 		if ( content[0] == '[' ) {
 

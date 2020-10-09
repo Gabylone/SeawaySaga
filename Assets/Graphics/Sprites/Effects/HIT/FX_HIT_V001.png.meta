@@ -1,0 +1,550 @@
+fileFormatVersion: 2
+guid: d34f75c09186de340b44da4cebd1faee
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -825825092474876445
+    second: FX_HIT_V001_0
+  - first:
+      213: -1469546772097909723
+    second: FX_HIT_V001_1
+  - first:
+      213: 4504304957160805693
+    second: FX_HIT_V001_2
+  - first:
+      213: 6643806398475197578
+    second: FX_HIT_V001_3
+  - first:
+      213: 6630157231697917149
+    second: FX_HIT_V001_4
+  - first:
+      213: 7452096325865487984
+    second: FX_HIT_V001_5
+  - first:
+      213: 3368257501274151946
+    second: FX_HIT_V001_6
+  - first:
+      213: -1461718350006403463
+    second: FX_HIT_V001_7
+  - first:
+      213: -2673537565680683158
+    second: FX_HIT_V001_8
+  - first:
+      213: -953187009456967877
+    second: FX_HIT_V001_9
+  - first:
+      213: -8276211676473558257
+    second: FX_HIT_V001_10
+  - first:
+      213: 6655017244051957004
+    second: FX_HIT_V001_11
+  - first:
+      213: -1119965196027447475
+    second: FX_HIT_V001_12
+  - first:
+      213: 1358322591655322638
+    second: FX_HIT_V001_13
+  - first:
+      213: 8209382618645797822
+    second: FX_HIT_V001_14
+  - first:
+      213: -3258187353351078000
+    second: FX_HIT_V001_15
+  - first:
+      213: -4303985061067036989
+    second: FX_HIT_V001_16
+  - first:
+      213: 2844515749188395816
+    second: FX_HIT_V001_17
+  - first:
+      213: -3968986778489832379
+    second: FX_HIT_V001_18
+  - first:
+      213: 7114239295849867434
+    second: FX_HIT_V001_19
+  - first:
+      213: 8122900886121009560
+    second: FX_HIT_V001_20
+  - first:
+      213: 9037848423336334840
+    second: FX_HIT_V001_21
+  - first:
+      213: -6611311786357976799
+    second: FX_HIT_V001_22
+  - first:
+      213: 7935636609311590822
+    second: FX_HIT_V001_23
+  - first:
+      213: 5778537726271650013
+    second: FX_HIT_V001_24
+  - first:
+      213: -3608026529037717777
+    second: FX_HIT_V001_25
+  - first:
+      213: 584423701964606494
+    second: FX_HIT_V001_26
+  - first:
+      213: 4739113288308549514
+    second: FX_HIT_V001_27
+  - first:
+      213: 4932508870537926917
+    second: FX_HIT_V001_28
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: -1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: FX_HIT_V001_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 532.8
+        width: 133.2
+        height: 133.2
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ed4e6c24741a84f0800000000000000
+      internalID: -825825092474876445
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX_HIT_V001_1
+      rect:
+        serializedVersion: 2
+        x: 133
+        y: 532.8
+        width: 133.2
+        height: 133.2
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 52c384c2ffe1b9be0800000000000000
+      internalID: -1469546772097909723
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX_HIT_V001_2
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 532.8
+        width: 133.2
+        height: 133.2
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d35d9936e71828e30800000000000000
+      internalID: 4504304957160805693
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX_HIT_V001_3
+      rect:
+        serializedVersion: 2
+        x: 399
+        y: 532.8
+        width: 133.2
+        height: 133.2
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a8cd49118ba833c50800000000000000
+      internalID: 6643806398475197578
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX_HIT_V001_4
+      rect:
+        serializedVersion: 2
+        x: 532
+        y: 532.8
+        width: 133.2
+        height: 133.2
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd47758cfdc030c50800000000000000
+      internalID: 6630157231697917149
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX_HIT_V001_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 399.8
+        width: 133.2
+        height: 133.2
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 07eb43f102a2b6760800000000000000
+      internalID: 7452096325865487984
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX_HIT_V001_6
+      rect:
+        serializedVersion: 2
+        x: 133
+        y: 399.8
+        width: 133.2
+        height: 133.2
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a0c9d730a547ebe20800000000000000
+      internalID: 3368257501274151946
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX_HIT_V001_7
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 399.8
+        width: 133.2
+        height: 133.2
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 97eb23ab7eee6bbe0800000000000000
+      internalID: -1461718350006403463
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX_HIT_V001_8
+      rect:
+        serializedVersion: 2
+        x: 399
+        y: 399.8
+        width: 133.2
+        height: 133.2
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a67b0ffbfbfa5ead0800000000000000
+      internalID: -2673537565680683158
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX_HIT_V001_9
+      rect:
+        serializedVersion: 2
+        x: 532
+        y: 399.8
+        width: 133.2
+        height: 133.2
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b3fecc0177995c2f0800000000000000
+      internalID: -953187009456967877
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX_HIT_V001_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 266.8
+        width: 133.2
+        height: 133.2
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f0b7ad9545df42d80800000000000000
+      internalID: -8276211676473558257
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX_HIT_V001_11
+      rect:
+        serializedVersion: 2
+        x: 133
+        y: 266.8
+        width: 133.2
+        height: 133.2
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c05e0d57cee5b5c50800000000000000
+      internalID: 6655017244051957004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX_HIT_V001_12
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 266.8
+        width: 133.2
+        height: 133.2
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d47bbf986951570f0800000000000000
+      internalID: -1119965196027447475
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX_HIT_V001_13
+      rect:
+        serializedVersion: 2
+        x: 399
+        y: 266.8
+        width: 133.2
+        height: 133.2
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e04e00e433bb9d210800000000000000
+      internalID: 1358322591655322638
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX_HIT_V001_14
+      rect:
+        serializedVersion: 2
+        x: 532
+        y: 266.8
+        width: 133.2
+        height: 133.2
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ebb16a91ff59de170800000000000000
+      internalID: 8209382618645797822
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX_HIT_V001_15
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 133.8
+        width: 133.2
+        height: 133.2
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 09fb6df5dd798c2d0800000000000000
+      internalID: -3258187353351078000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -25,6 +25,11 @@ public class Skill_BistouryBlow : Skill {
 
     public float timetoTriggerCatchAnim = 0.2f;
 
+    private bool lerping = false;
+    private float timer = 0f;
+    private Vector3 prevPos = Vector3.zero;
+    private Vector3 targetPos = Vector3.zero;
+
     public override void Start()
     {
         base.Start();
@@ -36,6 +41,13 @@ public class Skill_BistouryBlow : Skill {
         if (throwing)
         {
             pills_Transform.Rotate( Vector3.forward * rotateSpeed * Time.deltaTime );
+        }
+
+        if (lerping)
+        {
+            pills_Transform.position = Vector3.Lerp(prevPos, targetPos, timer / throwDuration);
+
+            timer += Time.deltaTime;
         }
     }
 
@@ -81,6 +93,7 @@ public class Skill_BistouryBlow : Skill {
 
     IEnumerator DrinkCoroutine()
     {
+        SoundManager.Instance.PlayRandomSound("Whoosh");
 
         pills_Transform.SetParent(fighter.BodyTransform);
 
@@ -91,14 +104,24 @@ public class Skill_BistouryBlow : Skill {
         throwing = true;
 
         pills_Transform.DOMove(midPoint, throwDuration);
-        pills_Transform.DOMove(targetTransform.position, throwDuration).SetDelay(throwDuration);
 
-        yield return new WaitForSeconds(timetoTriggerCatchAnim);
 
+        yield return new WaitForSeconds(throwDuration);
+
+        SoundManager.Instance.PlayRandomSound("Swipe");
+
+        timer = 0f;
+        lerping = true;
+        prevPos = pills_Transform.position;
+        targetPos = targetTransform.position;
+
+        yield return new WaitForSeconds(throwDuration);
+
+        lerping = false;
+
+        SoundManager.Instance.PlayRandomSound("Potion");
         fighter.TargetFighter.animator.SetTrigger("catch");
         fighter.TargetFighter.animator.SetBool("waitingToCatch", false);
-
-        yield return new WaitForSeconds(throwDuration * 2f);
 
         throwing = false;
 
@@ -109,6 +132,9 @@ public class Skill_BistouryBlow : Skill {
         yield return new WaitForSeconds(timeToDrink);
 
         fighter.TargetFighter.animator.SetTrigger("drink");
+
+        SoundManager.Instance.PlayRandomSound("Potion");
+        SoundManager.Instance.PlayRandomSound("Drink");
 
         yield return new WaitForSeconds(timeToApplyEffect);
 

@@ -223,6 +223,8 @@ public class EnemyBoat : Boat {
 
         SetSpeed(0);
 
+        SoundManager.Instance.PlayLoop("enter port");
+
 		StoryLauncher.Instance.PlayStory (boatInfo.storyManager, StoryLauncher.StorySource.boat);
 	}
 
@@ -232,6 +234,8 @@ public class EnemyBoat : Boat {
 
         reachedPlayer = false;
         followPlayer = false;
+
+        SoundManager.Instance.PlayLoop("leave port");
 
         ExitScreen();
         SetSpeed(leavingSpeed);
@@ -252,6 +256,8 @@ public class EnemyBoat : Boat {
         Tween.Bounce(transform);
 
         PlayerBoat.Instance.SetTargetPos(transform.position);
+
+        SoundManager.Instance.PlayRandomSound("button_big");
     }
     #endregion
 

@@ -32,6 +32,11 @@ public class DisplayCrewMemberLevelUp : Displayable
     {
         Show();
 
+        SoundManager.Instance.PlaySound("Big Tap");
+        SoundManager.Instance.PlaySound("Mystick Tap");
+        SoundManager.Instance.PlayRandomSound("Magic Chimes");
+        SoundManager.Instance.PlayRandomSound("Tribal");
+
         crewMembersToDisplay.Add(crewMember);
 
         DisplayLastCrewMember();

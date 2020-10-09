@@ -21,6 +21,9 @@ public class Skill_PledgeOfFeast : Skill {
 
     IEnumerator EatCoroutine()
     {
+        SoundManager.Instance.PlayRandomSound("Whoosh");
+        SoundManager.Instance.PlayRandomSound("Swipe");
+
         // cook speaks
         fighter.animator.SetTrigger("combat speak");
         string str = "Come on, lads! Let's grab a bite and smash them !";
@@ -37,6 +40,9 @@ public class Skill_PledgeOfFeast : Skill {
             }
         }
 
+        SoundManager.Instance.PlayRandomSound("Whoosh");
+
+
         yield return new WaitForSeconds(showFoodDelay);
 
         // food appears
@@ -44,13 +50,21 @@ public class Skill_PledgeOfFeast : Skill {
         {
             if (item != fighter)
             {
+                SoundManager.Instance.PlayRandomSound("Whoosh");
+                SoundManager.Instance.PlayRandomSound("Swipe");
+
                 item.animator.SetTrigger("catch");
                 item.animator.SetBool("waitingToCatch", false);
                 item.AttachItemToHand(item.iconVisual.food_Obj.transform);
+
+                yield return new WaitForSeconds(0.3f);
             }
         }
 
         yield return new WaitForSeconds(triggerAnimDelay);
+
+        SoundManager.Instance.PlayRandomSound("Whoosh");
+        SoundManager.Instance.PlayRandomSound("Swipe");
 
         foreach (var item in CombatManager.Instance.getCurrentFighters(fighter.crewMember.side))
         {
@@ -58,9 +72,15 @@ public class Skill_PledgeOfFeast : Skill {
             {
                 item.animator.SetTrigger("drink");
             }
+
         }
 
-        yield return new WaitForSeconds(applyEffectDelay);
+        yield return new WaitForSeconds(applyEffectDelay/3f);
+        SoundManager.Instance.PlayRandomSound("Food Eat");
+        yield return new WaitForSeconds(applyEffectDelay/3f);
+        SoundManager.Instance.PlayRandomSound("Food Eat");
+        yield return new WaitForSeconds(applyEffectDelay/3f);
+        SoundManager.Instance.PlayRandomSound("Food Eat");
 
         foreach (var item in CombatManager.Instance.getCurrentFighters(fighter.crewMember.side))
         {
@@ -70,8 +90,15 @@ public class Skill_PledgeOfFeast : Skill {
                 item.card.ShowEnergy();
                 item.combatFeedback.Display("ENERGY!", Color.green);
                 item.card.UpdateEnergyBar(item.crewMember);
+
+                yield return new WaitForSeconds(0.3f);
+
+
             }
         }
+
+        SoundManager.Instance.PlayRandomSound("Tribal");
+
 
         EndSkill();
 

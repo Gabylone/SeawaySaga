@@ -19,6 +19,11 @@ public class Skill_ToastUp : Skill {
     public float timeToApplyEffect = 1f;
     public float timetoTriggerCatchAnim = 0.2f;
 
+    private bool lerping = false;
+    private float timer = 0f;
+    private Vector3 prevPos = Vector3.zero;
+    private Vector3 targetPos = Vector3.zero;
+
     public override void Start()
     {
         base.Start();
@@ -31,6 +36,13 @@ public class Skill_ToastUp : Skill {
         if (throwing)
         {
             rumBottle_Transform.Rotate(Vector3.forward * rotateSpeed * Time.deltaTime);
+        }
+
+        if (lerping)
+        {
+            rumBottle_Transform.position = Vector3.Lerp(prevPos, targetPos, timer / throwDuration);
+
+            timer += Time.deltaTime;
         }
     }
 
@@ -62,6 +74,9 @@ public class Skill_ToastUp : Skill {
 
         fighter.AttachItemToHand(rumBottle_Transform);
 
+        SoundManager.Instance.PlayRandomSound("Potion");
+        SoundManager.Instance.PlayRandomSound("Alchemy");
+
         Tween.Bounce(rumBottle_Transform);
     }
 
@@ -81,17 +96,32 @@ public class Skill_ToastUp : Skill {
 
         Vector2 midPoint = (Vector2)targetTransform.position + Vector2.up * upDecal;
 
+        SoundManager.Instance.PlayRandomSound("Swipe");
+        SoundManager.Instance.PlayRandomSound("Whoosh");
+
         throwing = true;
 
         rumBottle_Transform.DOMove(midPoint, throwDuration);
-        rumBottle_Transform.DOMove(targetTransform.position, throwDuration).SetDelay(throwDuration);
 
-        yield return new WaitForSeconds(timetoTriggerCatchAnim);
+        yield return new WaitForSeconds(throwDuration);
+
+        timer = 0f;
+        lerping = true;
+        prevPos = rumBottle_Transform.position;
+        targetPos = targetTransform.position;
+
+        SoundManager.Instance.PlayRandomSound("Swipe");
+
+        yield return new WaitForSeconds(throwDuration);
+
+        lerping = false;
+
+        SoundManager.Instance.PlayRandomSound("Whoosh");
+        SoundManager.Instance.PlayRandomSound("Potion");
+        SoundManager.Instance.PlayRandomSound("Alchemy");
 
         fighter.TargetFighter.animator.SetTrigger("catch");
         fighter.TargetFighter.animator.SetBool("waitingToCatch", false);
-
-        yield return new WaitForSeconds(throwDuration * 2f);
 
         throwing = false;
 
@@ -102,6 +132,9 @@ public class Skill_ToastUp : Skill {
         yield return new WaitForSeconds(timeToDrink);
 
         fighter.TargetFighter.animator.SetTrigger("drink");
+
+        SoundManager.Instance.PlayRandomSound("Whoosh");
+
 
         yield return new WaitForSeconds(timeToApplyEffect);
 
@@ -122,7 +155,12 @@ public class Skill_ToastUp : Skill {
 			fighter.TargetFighter.RemoveStatus (Fighter.Status.Cussed,3);
 		}
 
-		fighter.TargetFighter.AddStatus (Fighter.Status.Toasted);
+        SoundManager.Instance.PlayRandomSound("Drink");
+        SoundManager.Instance.PlayRandomSound("Potion");
+        SoundManager.Instance.PlayRandomSound("Alchemy");
+
+
+        fighter.TargetFighter.AddStatus (Fighter.Status.Toasted);
 
 		EndSkill ();
 

@@ -36,24 +36,19 @@ public class RandomManager : MonoBehaviour {
 	#region random
 	void RandomPercent (string cellParams) {
 
-		float chance = float.Parse ( cellParams );
+		int decal = StoryReader.Instance.CurrentStoryHandler.GetDecal();
 
-		float value = Random.value * 100;
+		if (decal == -1) {
+            float chance = float.Parse(cellParams);
+            float value = Random.value * 100;
+            int randomDecal = value < chance ? 0 : 1;
+            decal = randomDecal;
 
-		int randomDecal = value < chance ? 0 : 1;
+            StoryReader.Instance.CurrentStoryHandler.SaveDecal(decal);
 
+        }
 
-		int decal = 0;
-
-		if (StoryReader.Instance.CurrentStoryHandler.GetDecal() > -1) {
-			decal = StoryReader.Instance.CurrentStoryHandler.GetDecal();
-		} else {
-			decal = randomDecal;
-		}
-
-		StoryReader.Instance.CurrentStoryHandler.SaveDecal (decal);
-
-		StoryReader.Instance.NextCell ();
+        StoryReader.Instance.NextCell ();
 		StoryReader.Instance.SetDecal (decal);
 
 		StoryReader.Instance.UpdateStory ();
@@ -62,13 +57,18 @@ public class RandomManager : MonoBehaviour {
 
 	void RandomRange (string cellParams) {
 
-		int range = int.Parse (cellParams);
-		int randomDecal = Random.Range (0, range);
+        int decal = StoryReader.Instance.CurrentStoryHandler.GetDecal();
 
-		StoryReader.Instance.CurrentStoryHandler.SaveDecal (randomDecal);
+        if (decal == -1)
+        {
+            int range = int.Parse(cellParams);
+            decal = Random.Range(0, range);
 
-		StoryReader.Instance.NextCell ();
-		StoryReader.Instance.SetDecal (randomDecal);
+            StoryReader.Instance.CurrentStoryHandler.SaveDecal(decal);
+        }
+
+        StoryReader.Instance.NextCell ();
+		StoryReader.Instance.SetDecal (decal);
 
 		StoryReader.Instance.UpdateStory ();
 	}

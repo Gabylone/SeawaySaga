@@ -46,6 +46,8 @@ public class DisplayItem_Loot : DisplayItem {
 			return;
 		}
 
+        SoundManager.Instance.PlayRandomSound("Bag");
+
         // select
 		if (selectedDisplayItem != null) {
 			selectedDisplayItem.Deselect ();
@@ -53,8 +55,6 @@ public class DisplayItem_Loot : DisplayItem {
 
         selectedDisplayItem = this;
         selected = true;
-
-		SoundManager.Instance.PlaySound (SoundManager.Sound.Select_Small);
 
 		LootUI.Instance.SelectedItem = HandledItem;
 		LootUI.Instance.selectedItemDisplay.transform.position = (Vector2)transform.position + LootUI.Instance.selectedItemDisplay.decalToItem;
@@ -72,8 +72,6 @@ public class DisplayItem_Loot : DisplayItem {
 		selected = false;
 
 		LootUI.Instance.ClearSelectedItem();
-
-		SoundManager.Instance.PlaySound (SoundManager.Sound.Select_Small);
 
 		UpdateColor ();
 

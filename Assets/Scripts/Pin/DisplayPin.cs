@@ -23,10 +23,14 @@ public class DisplayPin : Displayable
 
         if (displayPinInfo.visible)
         {
+            SoundManager.Instance.PlaySound("button_big 01");
+
             HideInfo();
         }
         else
         {
+            SoundManager.Instance.PlaySound("button_big 02");
+
             ShowInfo();
         }
         
@@ -39,6 +43,7 @@ public class DisplayPin : Displayable
 
     public void ShowInfo()
     {
+
         PinManager.Instance.SetDisplayedPin(this);
 
         displayPinInfo.Show();

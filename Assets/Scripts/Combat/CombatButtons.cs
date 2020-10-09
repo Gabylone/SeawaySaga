@@ -3,22 +3,39 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+using DG.Tweening;
+
 public class CombatButtons : MonoBehaviour {
 
 	SkillButton[] defaultSkillButtons;
-	SkillButton[] skillButtons;
+    SkillButton[] skillButtons;
+
+    Vector2 initPos;
+
+    public Vector2 decal;
+
+    private CanvasGroup canvasGroup;
+
+    private RectTransform rectTransform;
 
 	public Button openSkillButton;
 	public Image jobImage;
+
+    public float tweenDuration = 0.5f;
 
     public GameObject group;
 
 	public GameObject defaultGroup;
 	public GameObject skillGroup;
+
+    bool faded = false;
     
-    // Use this for initialization
 	void Start () {
-		
+
+        rectTransform = GetComponent<RectTransform>();
+        initPos = rectTransform.position;
+        canvasGroup = GetComponent<CanvasGroup>();
+
 		CombatManager.Instance.onChangeState += HandleOnChangeState;
 
         CombatManager.Instance.onFightStart+= Show;
@@ -29,7 +46,40 @@ public class CombatButtons : MonoBehaviour {
 
         HideButtons();
 
+        FadeOut();
+
 	}
+
+    public void FadeIn()
+    {
+        if ( !faded)
+        {
+            return;
+        }
+
+        faded = false;
+
+        canvasGroup.alpha = 0f;
+        canvasGroup.DOFade(1f, tweenDuration);
+
+        rectTransform.position = initPos - decal;
+        rectTransform.DOMove(initPos, tweenDuration);
+    }
+
+    public void FadeOut()
+    {
+        if (faded)
+        {
+            return;
+        }
+
+        faded = true;
+
+        rectTransform.position = initPos;
+        rectTransform.DOMove(initPos - decal, tweenDuration);
+
+        canvasGroup.DOFade(0f, tweenDuration);
+    }
 
     void Show()
     {
@@ -52,9 +102,14 @@ public class CombatButtons : MonoBehaviour {
 		if ( currState == CombatManager.States.PlayerActionChoice ) {
 
 			OpenDefaultButtons ();
+            FadeIn();
 		}
+        else
+        {
+            FadeOut();
+        }
 
-	}
+    }
 
     void HideButtons()
     {
@@ -63,6 +118,8 @@ public class CombatButtons : MonoBehaviour {
     }
 
 	public void OpenSkills () {
+
+            SoundManager.Instance.PlaySound("click_med 03");
 
         defaultGroup.SetActive(false);
         skillGroup.SetActive(true);
@@ -76,7 +133,10 @@ public class CombatButtons : MonoBehaviour {
 	}
 
 	public void CloseSkills () {
-		skillGroup.SetActive (false);
+
+            SoundManager.Instance.PlaySound("click_med 03");
+
+        skillGroup.SetActive (false);
 
 		OpenDefaultButtons ();
 

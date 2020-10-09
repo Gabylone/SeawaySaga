@@ -6,37 +6,34 @@ public class Skill_GrapeShot : Skill {
 	
 	public int attackCount = 4;
 
-    public float timesBetweenShots = 0.2f;
+    int currentCount = 0;
 
 	public override void HandleOnApplyEffect ()
 	{
 		base.HandleOnApplyEffect ();
 
-		StartCoroutine (SkillCoroutine ());
+        Fighter targetFighter = CombatManager.Instance.getCurrentFighters(Crews.otherSide(fighter.crewMember.side))
+                [Random.Range(0, CombatManager.Instance.getCurrentFighters(Crews.otherSide(fighter.crewMember.side)).Count)];
+        targetFighter.GetHit(fighter, fighter.crewMember.Attack, 0.4f);
 
-	}
+        ++currentCount;
 
-	IEnumerator SkillCoroutine () {
-
-		for (int count = 0; count < attackCount; count++) {
-
-			Fighter targetFighter = CombatManager.Instance.getCurrentFighters (Crews.otherSide (fighter.crewMember.side))
-				[Random.Range (0, CombatManager.Instance.getCurrentFighters (Crews.otherSide (fighter.crewMember.side)).Count)];
-
-			targetFighter.GetHit (fighter, fighter.crewMember.Attack , 0.4f);
-
-			StartAnimation ();
-
-			yield return new WaitForSeconds ( timesBetweenShots );
+        if ( currentCount == attackCount)
+        {
+            EndSkill();
+        }
 
 
-		}
+    }
 
-		yield return new WaitForEndOfFrame ();
+    public override void StartAnimation()
+    {
+        base.StartAnimation();
 
-		EndSkill ();
+        currentCount = 0;
 
-	}
+        fighter.animator.SetTrigger("grapeShot");
+    }
 
 	public override bool MeetsRestrictions (CrewMember member)
 	{

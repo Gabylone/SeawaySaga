@@ -12,6 +12,10 @@ public class Skill_Goad : Skill {
 
         fighter.animator.SetTrigger("combat speak");
 
+        SoundManager.Instance.PlayRandomSound("Whoosh");
+        SoundManager.Instance.PlayRandomSound("Swipe");
+        SoundManager.Instance.PlayRandomSound("voice_mad");
+
         Invoke("HandleOnApplyEffect", applyEffectDelay);
 
     }
@@ -43,7 +47,9 @@ public class Skill_Goad : Skill {
 
 		fighter.TargetFighter.AddStatus (Fighter.Status.Provoking,3);
 
-		EndSkill ();
+        SoundManager.Instance.PlayRandomSound("Goad");
+
+        EndSkill();
 
 	}
 

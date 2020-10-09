@@ -32,6 +32,9 @@ public class QuestButton : MonoBehaviour {
 
 		Tween.Bounce ( transform );
 
+        SoundManager.Instance.PlaySound("Quest");
+        SoundManager.Instance.PlayRandomSound("click_med");
+
         if ( mainQuest)
         {
             DisplayQuest.Instance.DisplayMainQuest();
@@ -40,6 +43,7 @@ public class QuestButton : MonoBehaviour {
         {
             DisplayQuest.Instance.Display(QuestManager.Instance.currentQuests[id]);
         }
+
 
     }
 

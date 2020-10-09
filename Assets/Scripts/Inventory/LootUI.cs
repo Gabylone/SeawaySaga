@@ -164,6 +164,8 @@ public class LootUI : MonoBehaviour {
 
         UpdateLootUI();
 
+        SoundManager.Instance.PlaySound("Open Chest");
+
         if (onShowLoot != null)
 			onShowLoot ();
 
@@ -177,6 +179,8 @@ public class LootUI : MonoBehaviour {
     {
         InGameMenu.Instance.Hide();
         DisplayCrew.Instance.Hide();
+
+        SoundManager.Instance.PlaySound("Close Chest");
 
         visible = false;
 
@@ -457,6 +461,8 @@ public class LootUI : MonoBehaviour {
 	#region action button
 	public void InventoryAction ( InventoryActionType inventoryActionType ) {
 
+        SoundManager.Instance.PlayRandomSound("button_tap_light");
+
 		if (useInventory != null)
 			useInventory (inventoryActionType);
 		else
@@ -495,12 +501,17 @@ public class LootUI : MonoBehaviour {
     {
         currentPage++;
         UpdateLootUI();
+
+        SoundManager.Instance.PlaySound("paper tap 01");
     }
 
     public void PreviousPage()
     {
         --currentPage;
         UpdateLootUI();
+
+        SoundManager.Instance.PlaySound("paper tap 02");
+
     }
 
     public void OpenMemberLoot()

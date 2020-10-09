@@ -46,9 +46,12 @@ public class SkillButton_Inventory : SkillButton {
 			padlockAnimator.SetTrigger ("giggle");
 		}
 
-	}
+        SoundManager.Instance.PlaySound("click_med 01");
 
-	void Unlock () {
+
+    }
+
+    void Unlock () {
 
 		button.interactable = false;
 

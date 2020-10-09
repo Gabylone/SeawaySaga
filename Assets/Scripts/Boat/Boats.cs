@@ -157,8 +157,6 @@ public class Boats : MonoBehaviour {
 
         StoryReader.Instance.NextCell();
         StoryReader.Instance.UpdateStory();
-
-        Debug.Log("destroying ship : boat manager");
     }
 	#endregion
 

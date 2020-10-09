@@ -1,60 +1,62 @@
-Nom;Fréquence %;Sprite ID;Display Name;;;;;;;;;;
-Devin;1,69;1;Seer;;;;;;;;;;
-Narrator : The island isn’t larger than a few galleys.;;;;;;;;;;;;;
-CheckQuest=>debut;;;;;;;;;;;;;
-[debut];;;;;;;;;;;;;
-Narrator : CAPITAINE is in front of big tent. Above the entrance is a rough sign shaped like a question mark.;Narrator : CAPITAINE is in front of big tent. Above the entrance is a rough sign shaped like a question mark.;;;;;;;;;;;;
-SetChoices2;;;;;;;;;;;;;
-Choice : (leave);Choice : (enter);;;;;;;;;;;;
-Leave;Fade;;;;;;;;;;;;
-;Node=>marchand;;;;;;;;;;;;
-;;;;;;;;;;;;;
-;;;;;;;;;;;;;
-;;;;;;;;;;;;;
-[marchand];;;;;;;;;;;;;
-SetBG(House);;;;;;;;;;;;;
-NewCrew;;;;;;;;;;;;;
-OtherSpeak : Eheheheh... Hello...;Node=>mort;Node=>combat;;;;;;;;;;;
-[choix];;;;;[choix autre];;;;;;[combat];;
-SetChoices4;;;;;SetChoices3;;;;;;OtherSpeak : What? No, stop it!;;
-Choice : (leave);Choice : Do you know where the treasure of NOMTRESOR lays?;Choice : Teach me something useful. (trade);Choice : (other);;Choice : This is a hold up! (attack);Choice : How's life as a seer? (quest);;;Choice : (other);;LaunchCombat;;
-OtherSpeak : Come back soon...;Node=>trésor;Node=>aide;Node=>choix autre;;Node=>combat;RandomPercent65;;;Node=>choix;;RemoveKarma;;
-Leave;;;;;;OtherSpeak : Well…;NewQuest=>choix;;;;[mort];;
-;;;;;;OtherSpeak : I had to do something with the powers I was blessed with...;;;;;PlayerSpeak : All dead!;;
-;;;;;;Node=>choix;;;;;SetChoices2;;
-;;;;;;;;;;;Choice : (leave);Choice : (search the place);
-;;;;;;;;;;;Leave;RandomRange2;
-;;;;;;;;;;;;Narrator : The place is filled with letters and books.;Narrator : The place is filled with old maps, manuscripts and compasses. So much for psychic powers...
-;;;;;;;;;;;;Narrator : Here lived nothing more than a filthy crook.;Narrator : Some mention the NOMTRESOR and lead DIRECTIONTOFORMULA from here.
-;;;;;;;;;;;;Leave;Leave
-;;;;;;;;;;;;;
-;;;;;;;;;;;;;
-;;;;;;;;;;;;;
-;;;;;;;;;;;;;
-;;;;;;;;;;;;;
-[trésor];;;;;;;;;;;;;
-OtherSpeak : Obviously, I know everything, eheheheh...;;;;;;;;;;;;;
-OtherSpeak : But I'm not telling you anything for less than 15 gold coins...;;;;;;;;;;;;;
-SetChoices2;;;;;;;;;;;;;
-Choice : No thanks…;Choice : There you go! (trade);;;;;;;;;;;;
-Node=>choix;CheckGold15;;;;;;;;;;;;
-;RemoveGold15;OtherSpeak : You need more money, kiddo! Eheheh...;;;;;;;;;;;
-;OtherSpeak : Someone knows something DIRECTIONTOFORMULA...;Node=>choix;;;;;;;;;;;
-;Node=>choix;;;;;;;;;;;;
-;;;;;;;;;;;;;
-;;;;;;;;;;;;;
-;;;;;;;;;;;;;
-;;;;;;;;;;;;;
-[aide];;;;;;;;;;;;;
-OtherSpeak : That will be 3 gold coins per imparted wisdom!;;;;;;;;;;;;;
-SetChoices2;;;;;;;;;;;;;
-Choice : Neh…;Choice : There you are! (trade);;;;;;;;;;;;
-Node=>choix;[tip];;;;;;;;;;;;
-;CheckGold3;;;;;;;;;;;;
-;RemoveGold3;;OtherSpeak : You don’t have 3 measly coins? ;;;;;;;;;;
-;GiveTip;;OtherSpeak : Shame...;;;;;;;;;;
-;OtherSpeak : Do you want more?;;Node=>choix;;;;;;;;;;
-;SetChoices2;;;;;;;;;;;;
-;Choice : That will be all for today.;Choice : Yes please! (trade);;;;;;;;;;;
-;Node=>choix;OtherSpeak : Hear this one :;;;;;;;;;;;
-;;Node=>tip;;;;;;;;;;;
+Nom;Fréquence %;Sprite ID;Display Name;;;;;;;;;;;;
+Devin;1,69;1;Seer;;;;;;;;;;;;
+Narrator : The island isn’t larger than a few galleys.;;;;;;;;;;;;;;;
+CheckQuest=>debut;;;;;;;;;;;;;;;
+[debut];;;;;;;;;;;;;;;
+Narrator : CAPITAINE is in front of big tent. Above the entrance is a rough sign shaped like a question mark.;Narrator : CAPITAINE is in front of big tent. Above the entrance is a rough sign shaped like a question mark.;;;;;;;;;;;;;;
+SetChoices2;;;;;;;;;;;;;;;
+Choice : (leave);Choice : (enter);;;;;;;;;;;;;;
+Leave;Fade;;;;;;;;;;;;;;
+;Node=>marchand;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;
+[marchand];;;;;;;;;;;;;;;
+SetBG(House);;;;;;;;;;;;;;;
+NewCrew;;;;;;;;;;;;;;;
+OtherSpeak : Eheheheh... Hello...;Node=>mort;Node=>combat;;;;;;;;;;;;;
+[choix];;;;;[choix autre];;;;;;[combat];;;;
+SetChoices4;;;;;SetChoices3;;;;;;OtherSpeak : What? No, stop it!;;;;
+Choice : (leave);Choice : Do you know where the treasure of NOMTRESOR lays?;Choice : Teach me something useful. (trade);Choice : (other);;Choice : This is a hold up! (attack);Choice : How's life as a seer? (quest);;;Choice : (other);;LaunchCombat;;;;
+OtherSpeak : Come back soon...;Node=>trésor;Node=>aide;Node=>choix autre;;Node=>combat;RandomPercent65;;;Node=>choix;;RemoveKarma;;;;
+Leave;;;;;;OtherSpeak : Well…;NewQuest=>choix;;;;[mort];;;;
+;;;;;;OtherSpeak : I had to do something with the powers I was blessed with...;;;;;PlayerSpeak : All dead!;;;;
+;;;;;;Node=>choix;;;;;Narrator : The old shack is now empty, a bunch of random papers are laying around, and an irridescent globe sits on the prophet’s table.;;;;
+;;;;;;;;;;;[choix mort];;;;
+;;;;;;;;;;;SetChoices3;;;;
+;;;;;;;;;;;Choice : (leave);Choice : (search the papers);;Choice : (touch the irridescent globe);
+;;;;;;;;;;;Leave;RandomRange2;;CheckIfFormulaIsland;
+;;;;;;;;;;;;Narrator : The place is filled with letters and books.;Narrator : The place is filled with old maps, manuscripts and compasses. So much for psychic powers...;Narrator : CAPITAINE lays a hand on the glass sphere…;Narrator : CAPITAINE lays a hand on the glass sphere…
+;;;;;;;;;;;;Narrator : Here lived nothing more than a filthy crook.;Narrator : Some mention the NOMTRESOR and lead DIRECTIONTOFORMULA from here.;Narrator : …;Narrator : The absolute second his finger lays a hand on the globe, CAPITAINE is taken by terrible epileptic spasms !
+;;;;;;;;;;;;Leave;Leave;Narrator : After now 5 minutes, nothing happens.;Narrator : Images of wealth, power, palaces and luxury come to his mind clear as a full moon.
+;;;;;;;;;;;;;;Node=>mort;Narrator : But craziest of all, a wonderful image of a wooden treasure, covered in velvet rugs and gold, appears to him.
+;;;;;;;;;;;;;;;Narrator : It’s NOMTRESOR, that’s no gamble, but before his vision ends, a heavenly voice echoes down his whole body and speaks a strange word.
+;;;;;;;;;;;;;;;Narrator : « FORMULA »
+[trésor];;;;[clue];;;;;;;;;;;Narrator : CAPITAINE gets his head together and sobers up.
+CheckIfFormulaIsland;;;;OtherSpeak : You stumbled into the right person you see.;;;;;;;;;;;PlayerSpeak : What does it all mean ?
+OtherSpeak : Obviously, I know everything, eheheheh...;Node=>clue;;;OtherSpeak : I’m deeply connected to the magic that surrounds NOMTRESOR;;;;;;;;;;;Node=>choix mort
+OtherSpeak : But I'm not telling you anything for less than 100 gold coins...;;;;OtherSpeak : And I can try to connect to the outer dimension to get a glimpse of the truth.;;;;;;;;;;;
+SetChoices2;;;;OtherSpeak : That will come at a price though… ;;;;;;;;;;;
+Choice : No thanks…;Choice : There you go! (trade);;;OtherSpeak : 200 gold and you’re set for the big truth.;;;;;;;;;;;
+Node=>choix;CheckGold100;;;Choice : Here you go…  (200 gold) (trade);;;;;;;;;;;
+;RemoveGold100;OtherSpeak : You need more money, kiddo! Eheheh...;;CheckGold200;;;;;;;;;;;
+;Narrator : Concentrating, the fortune teller touches a pearly globe, with wavering lights and colours dancing in it…;Node=>choix;;RemoveGold200;OtherSpeak : I’m sorry my child, but I don’t communicate with the outer world for free.;;;;;;;;;;
+;Narrator : After a few very boring minutes, the fortune teller regains consciousness.;;;OtherSpeak : Very well… Very well…;OtherSpeak : You’ll have to come back fully handed.;;;;;;;;;;
+;OtherSpeak : Someone knows something DIRECTIONTOFORMULA...;;;Narrator : The oracle puts his hands on an iridescent glass globe. His eyes turn red and he starts wording nonsense idioms.;Node=>choix;;;;;;;;;;
+;Node=>choix;;;Narrator : After a few seconds, and a growing madness, the wise prophet shoots out a very clear and disctinct word :;;;;;;;;;;;
+;;;;Narrator : « FORMULA »;;;;;;;;;;;
+[aide];;;;Narrator : Exhausted, the soothsayer falls back in his chair…;;;;;;;;;;;
+OtherSpeak : That will be 3 gold coins per imparted wisdom!;;;;OtherSpeak : What happened ?!;;;;;;;;;;;
+SetChoices2;;;;PlayerSpeak : I have my answer, old prophet, thank you.;;;;;;;;;;;
+Choice : Neh…;Choice : There you are! (trade);;;Node=>choix;;;;;;;;;;;
+Node=>choix;[tip];;;;;;;;;;;;;;
+;CheckGold5;;;;;;;;;;;;;;
+;RemoveGold5;OtherSpeak : You don’t have 3 measly coins? ;;;;;;;;;;;;;
+;Narrator : Concentrating, the fortune teller touches a pearly globe, with wavering lights and colours dancing in it…;OtherSpeak : Shame...;;;;;;;;;;;;;
+;Narrator : After a few very boring minutes, the fortune teller regains consciousness.;Node=>choix;;;;;;;;;;;;;
+;GiveTip;;;;;;;;;;;;;;
+;OtherSpeak : Do you want more?;;;;;;;;;;;;;;
+;SetChoices2;;;;;;;;;;;;;;
+;Choice : That will be all for today.;Choice : Yes please! (trade);;;;;;;;;;;;;
+;Node=>choix;OtherSpeak : Hear this one :;;;;;;;;;;;;;
+;;Node=>tip;;;;;;;;;;;;;

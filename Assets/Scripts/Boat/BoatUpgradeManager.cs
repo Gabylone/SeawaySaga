@@ -158,13 +158,13 @@ public class BoatUpgradeManager : MonoBehaviour {
 
 		++currentLevel;
 
-		UpdateInfo ();
+        SoundManager.Instance.PlayRandomSound("Anvil");
+        SoundManager.Instance.PlayRandomSound("Workshop");
+
+        UpdateInfo ();
 
 		if (onUpgradeBoat != null)
 			onUpgradeBoat (upgradeType);
-
-        SoundManager.Instance.PlaySound(upgradeSound);
-
     }
 
 
@@ -180,6 +180,8 @@ public class BoatUpgradeManager : MonoBehaviour {
 
     public void StartTrading()
     {
+        SoundManager.Instance.PlayRandomSound("Workshop");
+
         trading = true;
 
         Show();

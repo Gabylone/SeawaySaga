@@ -110,6 +110,8 @@ public class InGameBackGround : MonoBehaviour {
         currentType = type;
 
         image.sprite = sprites[(int)type];
+
+        SoundManager.Instance.UpdateAmbianceSound();
     }
 
     public void SetDark()

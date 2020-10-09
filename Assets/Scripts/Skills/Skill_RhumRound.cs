@@ -25,6 +25,9 @@ public class Skill_RhumRound : Skill {
 
         string str = "CHEERS !";
         fighter.Speak(str);
+        SoundManager.Instance.PlayRandomSound("Potion");
+
+        SoundManager.Instance.PlaySound("Tribal 01");
 
         Invoke("StartAnimationDelay" , timeToGetRhumOut);
     }
@@ -45,6 +48,8 @@ public class Skill_RhumRound : Skill {
         {
             item.AttachItemToHand(item.iconVisual.rhumBottle_Transform);
         }
+
+        SoundManager.Instance.PlayRandomSound("Potion");
     }
 
     public override void AnimationEvent_2()
@@ -53,10 +58,15 @@ public class Skill_RhumRound : Skill {
 
         Invoke("Drink", timeToDrink);
 
+        SoundManager.Instance.PlayRandomSound("Swipe");
+
+
     }
 
     void Drink()
     {
+        SoundManager.Instance.PlayRandomSound("Whoosh");
+
         foreach (var item in CombatManager.Instance.getCurrentFighters(fighter.crewMember.side))
         {
             item.animator.SetTrigger("drink");
@@ -68,6 +78,10 @@ public class Skill_RhumRound : Skill {
     public override void HandleOnApplyEffect()
     {
         base.HandleOnApplyEffect();
+
+        SoundManager.Instance.PlayRandomSound("Potion");
+        SoundManager.Instance.PlayRandomSound("Alchemy");
+        SoundManager.Instance.PlayRandomSound("Cook");
 
         foreach (var targetFighter in CombatManager.Instance.getCurrentFighters(fighter.crewMember.side))
         {

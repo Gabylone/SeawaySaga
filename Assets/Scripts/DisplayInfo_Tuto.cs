@@ -45,7 +45,9 @@ public class DisplayInfo_Tuto : DisplayInfo {
 
 	void HandleOnDisplayTutorial (TutoStep tutoStep)
 	{
-		Display (tutoStep.title, NameGeneration.CheckForKeyWords(tutoStep.description));
+        SoundManager.Instance.PlayRandomSound("ting");
+
+        Display(tutoStep.title, NameGeneration.CheckForKeyWords(tutoStep.description));
 
 		Move (tutoStep.corner);
 
@@ -54,6 +56,8 @@ public class DisplayInfo_Tuto : DisplayInfo {
 	public override void Confirm ()
 	{
 		base.Confirm ();
+
+        SoundManager.Instance.PlayRandomSound("click_med");
 
         StoryInput.Instance.Unlock();
 

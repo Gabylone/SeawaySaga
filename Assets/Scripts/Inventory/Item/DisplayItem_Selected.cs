@@ -143,6 +143,8 @@ public class DisplayItem_Selected : DisplayItem {
         base.Show(item);
 
         group.SetActive(true);
+
+        SoundManager.Instance.PlayRandomSound("paper tap");
     }
 
     public override void Hide()

@@ -32,6 +32,8 @@ public class Flag : MonoBehaviour {
 
     public Sprite[] sprites;
 
+    bool placingFlag = false;
+
     void Awake () {
 		Instance = this;
 	}
@@ -53,10 +55,20 @@ public class Flag : MonoBehaviour {
         // NEW 
         if (WorldTouch.Instance.touching)
         {
+            if ( !placingFlag)
+            {
+                SoundManager.Instance.PlaySound("click_med 04");
+                placingFlag = true;
+            }
+
             if (!visible)
                 Show();
 
             UpdateFlagPos();
+        }
+        else
+        {
+            placingFlag = false;
         }
     }
 

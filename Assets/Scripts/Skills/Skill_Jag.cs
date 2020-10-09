@@ -37,6 +37,8 @@ public class Skill_Jag : Skill {
         base.AnimationEvent_1();
 
         fighter.AttachItemToHand(needle_Transform);
+
+        SoundManager.Instance.PlayRandomSound("Alchemy");
     }
 
     public override void AnimationEvent_2()
@@ -44,6 +46,7 @@ public class Skill_Jag : Skill {
         base.AnimationEvent_2();
 
         HandleOnApplyEffect();
+
     }
 
     public override void HandleOnApplyEffect ()
@@ -54,6 +57,10 @@ public class Skill_Jag : Skill {
 
         fighter.TargetFighter.AddStatus (Fighter.Status.Jagged, 3);
 		fighter.TargetFighter.RemoveStatus (Fighter.Status.Poisonned, 3);
+
+        SoundManager.Instance.PlayRandomSound("Cook");
+        SoundManager.Instance.PlayRandomSound("Potion");
+        SoundManager.Instance.PlayRandomSound("Blunt");
 
         needle_Transform.gameObject.SetActive(false);
 

@@ -47,8 +47,6 @@ public class UIBackground : MonoBehaviour {
             case CombatManager.States.EnemyAction:
                 HideBackground();
                 break;
-
-
             case CombatManager.States.PlayerActionChoice:
                 MoveBackGround();
                 break;

@@ -73,6 +73,9 @@ public class QuestMenu : MonoBehaviour {
 
         InGameMenu.Instance.Open();
 
+        SoundManager.Instance.PlayRandomSound("Book");
+        SoundManager.Instance.PlayRandomSound("Page");
+
         menuGroup.SetActive (true);
 
 		//displayFormulas.ShowFormulas ();
@@ -97,12 +100,12 @@ public class QuestMenu : MonoBehaviour {
 
         InGameMenu.Instance.Hide();
 
+        SoundManager.Instance.PlayRandomSound("Book");
+        SoundManager.Instance.PlayRandomSound("Page");
+
         opened = false;
 
 		HideMenu();
-
-        
-
     }
 
     void DisplayQuestAmount () {

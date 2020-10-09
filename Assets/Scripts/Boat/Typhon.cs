@@ -30,6 +30,11 @@ public class Typhon : RandomPlacable
     {
         base.Trigger();
 
+        // sound
+        SoundManager.Instance.PlayRandomSound("Sword");
+        SoundManager.Instance.PlayRandomSound("Blunt");
+        SoundManager.Instance.PlaySound("Fury");
+
         PlayerBoat.Instance.EndMovenent();
         PlayerBoat.Instance.GetTransform.DOMove(transform.position, delay);
         PlayerBoat.Instance.animator.SetTrigger( "Typhon" );

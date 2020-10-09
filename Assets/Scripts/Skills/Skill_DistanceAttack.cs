@@ -10,6 +10,8 @@ public class Skill_DistanceAttack : Skill {
 
 		fighter.TargetFighter.GetHit (fighter, fighter.crewMember.Attack, 1f);
 
+        SoundManager.Instance.PlayRandomSound("shoot");
+
 		EndSkill ();
 
 	}

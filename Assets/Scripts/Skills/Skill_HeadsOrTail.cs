@@ -4,46 +4,103 @@ using UnityEngine;
 
 public class Skill_HeadsOrTail : Skill {
 
-	public GameObject coinPrefab;
+	private bool heads = false;
 
-	bool heads = false;
+    public Coin coin;
 
-	public override void OnSetTarget ()
-	{
-//		base.OnSetTarget ();
+    private bool flipped = false;
 
-		CreateCoin ();
+    public float delay = 1.2f;
 
-		Invoke ("OnSetTargetDelay",1.2f);
-	}
+    bool firstPart = false;
 
-	void OnSetTargetDelay () {
-		base.OnSetTarget ();
-	}
+    public override void Trigger(Fighter fighter)
+    {
+        base.Trigger(fighter);
 
-	void CreateCoin ()
-	{
-		GameObject coin = Instantiate (coinPrefab, fighter.transform.parent) as GameObject;
+        firstPart = true;
+    }
 
-		Vector3 p = fighter.BodyTransform.transform.position;
+    public override void OnSetTarget()
+    {
+        string str = "Heads or tail ?!";
+        fighter.Speak(str);
 
-		p.z = -2f;
-		coin.transform.position = p;
+        fighter.animator.SetTrigger("throw");
 
-		heads = Random.value < 0.5f;
+        SoundManager.Instance.PlayRandomSound("Whoosh");
 
-		coin.GetComponent<Coin> ().heads = heads;
-	}
+        Invoke("OnSetTargetDelay" , delay);
+    }
+
+    void OnSetTargetDelay()
+    {
+        base.OnSetTarget();
+
+        firstPart = false;
+
+        SoundManager.Instance.PlayRandomSound("Swipe");
+
+    }
+
+    public override void StartAnimation()
+    {
+        base.StartAnimation();
+
+        SoundManager.Instance.PlayRandomSound("Whoosh");
+
+        fighter.animator.SetTrigger("hit");
+    }
+
+    #region animation event
+    public override void AnimationEvent_1()
+    {
+        base.AnimationEvent_1();
+
+        if (firstPart)
+        {
+            SoundManager.Instance.PlayRandomSound("Bag");
+        }
+    }
+
+    public override void AnimationEvent_2()
+    {
+        base.AnimationEvent_2();
+
+        if (firstPart)
+        {
+            Vector3 p = fighter.BodyTransform.transform.position;
+            p.z -= 2f;
+            coin._transform.position = p;
+
+            heads = Random.value < 0.5f;
+
+            coin.heads = heads;
+
+            coin.Flip();
+        }
+    }
+    #endregion
 
 	public override void HandleOnApplyEffect ()
 	{
 		base.HandleOnApplyEffect ();
 
-		if (heads) {
+        SoundManager.Instance.PlayRandomSound("slash");
+        SoundManager.Instance.PlayRandomSound("Sword");
+
+
+        if (heads) {
+
+            SoundManager.Instance.PlaySound("ui_correct");
+
 			fighter.combatFeedback.Display ("Bam !",Color.green);
 			fighter.TargetFighter.GetHit (fighter, fighter.crewMember.Attack , 2f);
 		} else {
-			fighter.combatFeedback.Display ("MIss !", Color.red);
+
+            SoundManager.Instance.PlaySound("ui_deny");
+
+            fighter.combatFeedback.Display ("MIss !", Color.red);
 		}
 
 		EndSkill ();

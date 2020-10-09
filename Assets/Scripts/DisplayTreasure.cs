@@ -47,6 +47,12 @@ public class DisplayTreasure : MonoBehaviour {
     private void ShowTreasure()
     {
         group.SetActive(true);
+
+        SoundManager.Instance.PlayRandomSound("Magic Chimes");
+        SoundManager.Instance.PlayRandomSound("Magic Chimes");
+        SoundManager.Instance.PlayRandomSound("Tribal");
+        SoundManager.Instance.PlaySound("Big Tap");
+        SoundManager.Instance.PlaySound("Mystick Tap");
     }
 
     public void OpenChest()
@@ -72,6 +78,12 @@ public class DisplayTreasure : MonoBehaviour {
 
         CancelInvoke("CloseTreasure");
         Invoke("CloseTreasure", 1f);
+
+        SoundManager.Instance.PlayRandomSound("Magic Chimes");
+        SoundManager.Instance.PlayRandomSound("Magic Chimes");
+        SoundManager.Instance.PlaySound("Big Tap");
+        SoundManager.Instance.PlaySound("Mystick Tap");
+        SoundManager.Instance.PlaySound("Open Chest");
     }
 
     void CloseTreasure()
@@ -80,6 +92,8 @@ public class DisplayTreasure : MonoBehaviour {
 
         CancelInvoke("ShowMessage");
         Invoke("ShowMessage", 1f);
+
+        SoundManager.Instance.PlaySound("Close Chest");
 
         animator.transform.DOMove( animator.transform.position - Vector3.up * 15f , 1f );
     }

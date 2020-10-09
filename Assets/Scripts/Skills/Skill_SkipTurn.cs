@@ -15,9 +15,12 @@ public class Skill_SkipTurn: Skill {
 	{
 		base.HandleOnApplyEffect ();
 
-		//EndSkill ();
+        //EndSkill ();
 
-		fighter.EndTurn();
+        SoundManager.Instance.PlayRandomSound("Whoosh");
+        SoundManager.Instance.PlaySound("End Turn");
+
+        fighter.EndTurn();
 		CombatManager.Instance.NextTurn ();
 	}
 

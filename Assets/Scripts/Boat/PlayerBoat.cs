@@ -30,9 +30,15 @@ public class PlayerBoat : Boat {
 
     public override void SetTargetPos(Vector3 p)
     {
+        if (!moving)
+        {
+            SoundManager.Instance.PlaySound("click_med 05");
+        }
+
         base.SetTargetPos(p);
 
         Flag.Instance.SetPos(p);
+        
     }
 
     void HandleChunkEvent ()
@@ -52,6 +58,11 @@ public class PlayerBoat : Boat {
     public override void EndMovenent ()
 	{
 		base.EndMovenent ();
+
+        if (moving)
+        {
+            SoundManager.Instance.PlaySound("click_light 03");
+        }
 
         Tween.Bounce(transform);
 

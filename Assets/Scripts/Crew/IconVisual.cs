@@ -30,8 +30,13 @@ public class IconVisual : MonoBehaviour
     public float taintOnceDuration = 0.5f;
 
     public GameObject poisonPuddle_Obj;
+    public GameObject poisonEffect_Obj;
+    public GameObject healEffect_Obj;
+    public GameObject hitEffect_Obj;
+    public Transform hitEffect_Transform;
     public GameObject food_Obj;
     public Transform rhumBottle_Transform;
+    public Transform bearTrap_Transform;
 
     /// <summary>
     /// override skin color
@@ -40,6 +45,7 @@ public class IconVisual : MonoBehaviour
     public Color overrideSkinColor_Color;
 
     // face effects
+    public bool aiming = false;
     private bool knockedOut = false;
     private bool mad = false;
     public bool happy = false;
@@ -117,6 +123,11 @@ public class IconVisual : MonoBehaviour
             GetImage(ApparenceType.eyes).sprite = CrewCreator.Instance.madEyes_Sprite;
             GetImage(ApparenceType.eyebrows).sprite = CrewCreator.Instance.madEyebrows_Sprite;
             GetImage(ApparenceType.mouth).sprite = CrewCreator.Instance.madMouth_Sprite;
+        }
+
+        if (aiming)
+        {
+            GetImage(ApparenceType.eyes).sprite = CrewCreator.Instance.aimingEyes_Sprite;
         }
 
         // weapons
@@ -213,6 +224,8 @@ public class IconVisual : MonoBehaviour
     public void ResetSkinColor()
     {
         overrideSkinColor_Active = false;
+
+        InitVisual();
     }
     #endregion
 
@@ -252,8 +265,8 @@ public class IconVisual : MonoBehaviour
         }
 
         handImage.sprite = CrewCreator.Instance.handSprites[(int)member.equipedWeapon.weaponType];
-        weaponImage.sprite = CrewCreator.Instance.weaponSprites[member.equipedWeapon.spriteID];
 
+        weaponImage.sprite = CrewCreator.Instance.weaponSprites[member.equipedWeapon.spriteID];
         weaponImage.color = Color.white;
     }
     #endregion
@@ -268,6 +281,7 @@ public class IconVisual : MonoBehaviour
 
         InitVisual();
     }
+
     public void RemoveMadFace()
     {
         mad = false;
@@ -287,6 +301,21 @@ public class IconVisual : MonoBehaviour
     public void RemoveDeadEyes()
     {
         knockedOut = false;
+        InitVisual();
+    }
+
+    /// <summary>
+    /// aiming
+    /// </summary>
+    public void SetAimingEyes()
+    {
+        aiming = true;
+        InitVisual();
+    }
+
+    public void RemoveAimingEyes()
+    {
+        aiming = false;
         InitVisual();
     }
 
@@ -325,10 +354,13 @@ public class IconVisual : MonoBehaviour
     /// </summary>
     public void ResetFaceExpressions()
     {
-        RemoveDeadEyes();
-        RemoveMadFace();
-        RemoveHappyFace();
-        RemoveSadFace();
+        knockedOut = false;
+        aiming = false;
+        sad = false;
+        happy = false;
+        mad = false;
+
+        InitVisual();
     }
     #endregion
 

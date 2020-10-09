@@ -13,8 +13,6 @@ public class MapParameters
 
     public int endFightLevel = 10;
 
-    public int numberOfCluesBeforeTreasure = 3;
-
     public int islandPerCol = 0;
 
     private int mapScale_X = 100;

@@ -4,11 +4,32 @@ using UnityEngine;
 
 public class Skill_Cuss : Skill {
 
-	public override void OnSetTarget ()
+    public float applyEffectDelay = 0.5f;
+
+    public override void StartAnimation()
+    {
+        base.StartAnimation();
+
+        fighter.animator.SetTrigger("combat speak");
+
+        Invoke("StartAnimationDelay", 0.15f);
+        Invoke("HandleOnApplyEffect", applyEffectDelay);
+
+    }
+
+    void StartAnimationDelay()
+    {
+        SoundManager.Instance.PlayRandomSound("Whoosh");
+
+    }
+
+    public override void OnSetTarget ()
 	{
 		base.OnSetTarget ();
 
-		string str = "What's that smell ? Is this YOU ?!";
+        SoundManager.Instance.PlayRandomSound("voice_mad");
+
+        string str = "What's that smell ? Is this YOU ?!";
 		fighter.Speak (str);
 
 	}
@@ -22,7 +43,9 @@ public class Skill_Cuss : Skill {
 			fighter.TargetFighter.RemoveStatus (Fighter.Status.Toasted,3);
 		}
 
-		fighter.TargetFighter.AddStatus (Fighter.Status.Cussed,3);
+        SoundManager.Instance.PlayRandomSound("voice_sad");
+
+        fighter.TargetFighter.AddStatus (Fighter.Status.Cussed,3);
 
 		EndSkill ();
 

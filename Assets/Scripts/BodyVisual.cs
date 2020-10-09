@@ -26,7 +26,7 @@ public class BodyVisual : MonoBehaviour
     public delegate void OnApplyEffect();
     public OnApplyEffect onApplyEffect;
 
-    public void InitVisual( Member memberID)
+    public void InitVisual(Member memberID)
     {
         int bodyID = memberID.GetCharacterID(ApparenceType.bodyType);
 
@@ -68,7 +68,7 @@ public class BodyVisual : MonoBehaviour
 
     public void ApplyEffect()
     {
-        if ( onApplyEffect != null)
+        if (onApplyEffect != null)
         {
             onApplyEffect();
         }
@@ -76,7 +76,7 @@ public class BodyVisual : MonoBehaviour
 
     public void AnimationEvent_1()
     {
-        if ( GetComponentInParent<Fighter>() == SkillManager.Instance.currentSkill.fighter)
+        if (GetComponentInParent<Fighter>() == SkillManager.Instance.currentSkill.fighter)
         {
             SkillManager.Instance.currentSkill.AnimationEvent_1();
         }
@@ -90,8 +90,19 @@ public class BodyVisual : MonoBehaviour
         }
     }
 
-    public Image GetImage (BodyID id)
+    public Image GetImage(BodyID id)
     {
         return images[(int)id];
     }
+
+    #region sounds
+    public void PlayStepSound_1()
+    {
+        SoundManager.Instance.PlaySound("button_tap_light 02");
+    }
+    public void PlayStepSound_2()
+    {
+        SoundManager.Instance.PlaySound("button_tap_light 03");
+    }
+    #endregion
 }

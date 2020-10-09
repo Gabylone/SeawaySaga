@@ -6,15 +6,16 @@ public class Skill_HeadShot : Skill {
 
 	private Fighter delayFighter;
 
-    bool onDelay = false;
+    bool secondPart = false;
 
 	public int healthToAttack = 30;
 
 	public override void InvokeSkill ()
 	{
-		if (onDelay) {
+		if (secondPart) {  
 			fighter.crewMember.energy += energyCost;
 		}
+
 		base.InvokeSkill ();
 	}
 
@@ -22,22 +23,54 @@ public class Skill_HeadShot : Skill {
 	{
 		base.Trigger (fighter);
 
-		if (onDelay == false) {
-			string str = "Wait 'till you see what I've got in store for you...";
+		if (!secondPart)
+        {
+            SoundManager.Instance.PlayRandomSound("voice_mad");
+            SoundManager.Instance.PlayRandomSound("Tribal");
+
+            string str = "Don't you move, I'm gonna shoot you right between the eyes";
+
 			fighter.Speak (str);
-		}
 
-	}
+            fighter.AddStatus(Fighter.Status.PreparingAttack);
 
-	public override void HandleOnApplyEffect ()
+            fighter.onSkillDelay += HandleOnSkillDelay;
+
+            EndSkill();
+        }
+
+    }
+
+    public override void StartAnimation()
+    {
+        base.StartAnimation();
+
+        if (secondPart)
+        {
+            fighter.animator.SetTrigger("headShot");
+        }
+        else
+        {
+            fighter.animator.SetBool("aiming", true);
+            fighter.iconVisual.SetAimingEyes();
+        }
+    }
+
+    public override void HandleOnApplyEffect ()
 	{
-
 		base.HandleOnApplyEffect ();
 
-		if (onDelay) {
+		if (secondPart) {
 
-			onDelay = false;
+            fighter.animator.SetBool("aiming", false);
+
+            SoundManager.Instance.PlaySound("shoot");
+
+            secondPart = false;
 			hasTarget = false;
+            goToTarget = false;
+
+            fighter.iconVisual.RemoveAimingEyes();
 
 			fighter.TargetFighter.GetHit (fighter, fighter.crewMember.Attack , 2.2f);
 
@@ -46,37 +79,21 @@ public class Skill_HeadShot : Skill {
 			EndSkill ();
 			//
 
-		} else {
-
-			fighter.AddStatus (Fighter.Status.PreparingAttack);
-
-			fighter.onSkillDelay += HandleOnSkillDelay;
-
-			EndSkill ();
-
 		}
 
 	}
 
 	void HandleOnSkillDelay (Fighter _delayFighter)
 	{
-//		Invoke ("TriggerDelay",0.1f);
 		this.delayFighter = _delayFighter;
+
 		delayFighter.combatFeedback.Display (Fighter.Status.PreparingAttack, Color.white);
 
-		onDelay = true;
+		secondPart = true;
 		hasTarget = true;
 
 		Trigger (delayFighter);
 	}
-
-//	void TriggerDelay () {
-//		onDelay = true;
-//		hasTarget = true;
-//		playAnim = true;
-//
-//		Trigger (delayFighter);
-//	}
 
 	public override bool MeetsRestrictions (CrewMember member)
 	{

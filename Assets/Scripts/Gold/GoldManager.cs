@@ -139,18 +139,15 @@ public class GoldManager : MonoBehaviour {
 			goldImage.color = Color.red;
 			goldText.color = Color.red;
 
+            SoundManager.Instance.PlaySound("ui_deny");
+
             Invoke("HideFeedback", feedbackBounceDuration);
-            //
-            SoundManager.Instance.PlaySound (noGoldSound);
 			return false;
 		}
 
 
 		goldImage.color = Color.white;
 		goldText.color = Color.black;
-
-
-        SoundManager.Instance.PlaySound(buySound);
 
         return true;
 	}
@@ -177,7 +174,10 @@ public class GoldManager : MonoBehaviour {
 
 		RemoveGold(amount);
 
-		StoryReader.Instance.NextCell ();
+        SoundManager.Instance.PlayRandomSound("Coins");
+        SoundManager.Instance.PlayRandomSound("Coins");
+
+        StoryReader.Instance.NextCell ();
 		StoryReader.Instance.Wait ( 0.3f );
 
 		DisplayFeedback ();
@@ -193,7 +193,12 @@ public class GoldManager : MonoBehaviour {
 			amount = int.Parse (StoryFunctions.Instance.CellParams);
 		}
 
-		AddGold (amount);
+        SoundManager.Instance.PlayRandomSound("Bag");
+        SoundManager.Instance.PlaySound("coin");
+        SoundManager.Instance.PlayRandomSound("Coins");
+        SoundManager.Instance.PlayRandomSound("Coins");
+
+        AddGold (amount);
 
 		StoryReader.Instance.NextCell ();
 		StoryReader.Instance.Wait (0.3f);

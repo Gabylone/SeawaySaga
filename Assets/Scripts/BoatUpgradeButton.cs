@@ -51,6 +51,8 @@ public class BoatUpgradeButton : MonoBehaviour {
     {
         Tween.Bounce(transform);
         BoatUpgradeManager.Instance.Upgrade(upgradeType);
+
+        SoundManager.Instance.PlayRandomSound("button_tap_light");
     }
 
 }

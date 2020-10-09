@@ -31,6 +31,8 @@ public class Island : RandomPlacable {
 
     private IslandTrigger[] islandTriggers;
 
+    public IslandData islandData;
+
     public bool targeted = false;
 
     #region mono
@@ -48,16 +50,9 @@ public class Island : RandomPlacable {
 
     void Init () {
 
-		Swipe.onSwipe += HandleOnSwipe;
-
 		WorldTouch.onPointerExit += HandleOnTouchWorld;
 
 		UpdatePositionOnScreen (Boats.Instance.playerBoatInfo.coords);
-	}
-
-	void HandleOnSwipe (Directions direction)
-	{
-        DeactivateCollider();
 	}
 
 	void HandleOnTouchWorld ()
@@ -91,6 +86,9 @@ public class Island : RandomPlacable {
 
 	#region story
 	public void Enter () {
+
+        SoundManager.Instance.PlaySound("enter port");
+
         IslandManager.Instance.currentIsland = this;
         StoryLauncher.Instance.PlayStory(Chunk.currentChunk.GetIslandData(id).storyManager, StoryLauncher.StorySource.island);
 	}
@@ -103,7 +101,7 @@ public class Island : RandomPlacable {
 
 		if (chunk.HasIslands() && chunk.islandDatas.Length > id) {
 
-            IslandData islandData = chunk.GetIslandData(id);
+            islandData = chunk.GetIslandData(id);
 
             gameObject.SetActive ( true );
 
@@ -142,6 +140,8 @@ public class Island : RandomPlacable {
         }
 
         ActivateCollider();
+
+        SoundManager.Instance.PlayRandomSound("button_heavy");
 
         targeted = true;
     }

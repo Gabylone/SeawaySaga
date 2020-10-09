@@ -75,9 +75,6 @@ public class CombatManager : MonoBehaviour {
 	[SerializeField]
 	private CategoryContent categoryFightContent;
 
-	[Header("Sounds")]
-	[SerializeField] private AudioClip escapeSound;
-
 	// EVENTS
 	public delegate void FightStarting ();
 	public FightStarting onFightStart;
@@ -497,11 +494,11 @@ public class CombatManager : MonoBehaviour {
 
         DisplayCombatResults.Instance.Display("ESCAPE !", str);
         DisplayCombatResults.Instance.onConfirm += HandleOnConfirm_Escape;
+
+        SoundManager.Instance.PlayRandomSound("swipe");
     }
     private void HandleOnConfirm_Escape()
     {
-        
-
         DisplayCombatResults.Instance.Hide();
 
         Invoke("Escape", 1f);
@@ -510,7 +507,6 @@ public class CombatManager : MonoBehaviour {
     void Escape()
     {
         StoryLauncher.Instance.EndStory();
-        SoundManager.Instance.PlaySound(escapeSound);
     }
     #endregion
 
@@ -528,6 +524,10 @@ public class CombatManager : MonoBehaviour {
 
         DisplayCombatResults.Instance.Display("DEFEAT !", str);
         DisplayCombatResults.Instance.onConfirm += HandleOnConfirm_Defeat;
+
+        SoundManager.Instance.PlaySound("Defeat");
+        SoundManager.Instance.PlayRandomSound("ui_deny");
+        SoundManager.Instance.PlaySound("ui_deny");
     }
     private void HandleOnConfirm_Defeat()
     {
@@ -661,7 +661,7 @@ public class CombatManager : MonoBehaviour {
         }
 
         DetermineFightOutcome();
-
+        Debug.Log("fighting outcome : " + currentFightOutCome);
         if (currentFightOutCome != FightOutcome.None)
         {
             Invoke("DisplayEndFightMessage", 1f);

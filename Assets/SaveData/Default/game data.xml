@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <GameData xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <progression>0</progression>
-  <globalID>2</globalID>
+  <globalID>1</globalID>
   <playerCrew>
     <hostile>false</hostile>
     <row>0</row>
@@ -13,142 +13,67 @@
         <health>100</health>
         <maxHealth>100</maxHealth>
         <currentHunger>1</currentHunger>
-        <Lvl>10</Lvl>
+        <Lvl>1</Lvl>
         <xp>0</xp>
         <skillPoints>0</skillPoints>
         <specialSkillsIndexes>
-          <int>12</int>
-          <int>13</int>
-          <int>14</int>
-          <int>15</int>
+          <int>8</int>
         </specialSkillsIndexes>
         <stats>
-          <int>3</int>
-          <int>3</int>
-          <int>4</int>
-          <int>3</int>
+          <int>1</int>
+          <int>1</int>
+          <int>1</int>
+          <int>1</int>
         </stats>
         <daysOnBoard>1</daysOnBoard>
         <equipedWeapon>
-          <ID>150</ID>
+          <ID>46</ID>
           <names>
-            <string>Pistolet du roi pirate</string>
-            <string>Rifle of the pirate king</string>
+            <string>Poivrière rouillée</string>
+            <string>Rusty blunderbuss</string>
           </names>
-          <value>104</value>
-          <price>156</price>
+          <value>8</value>
+          <price>18</price>
           <weight>8</weight>
-          <level>10</level>
-          <spriteID>7</spriteID>
-          <description>C'est un pistolet du roi pirate</description>
+          <level>1</level>
+          <spriteID>6</spriteID>
+          <description>C'est un poivrière rouillée</description>
           <weaponType>Distance</weaponType>
           <category>Weapon</category>
         </equipedWeapon>
         <equipedCloth>
-          <ID>201</ID>
+          <ID>152</ID>
           <names>
-            <string>Armure du roi pirate</string>
-            <string>The armor of the Pirate King</string>
+            <string>Toge en tissu</string>
+            <string>Linnen gown</string>
           </names>
-          <value>99</value>
-          <price>159</price>
+          <value>9</value>
+          <price>19</price>
           <weight>8</weight>
-          <level>10</level>
-          <spriteID>2</spriteID>
-          <description>C'est un armure du roi pirate</description>
+          <level>1</level>
+          <spriteID>0</spriteID>
+          <description>C'est un toge en tissu</description>
           <weaponType>Distance</weaponType>
           <category>Clothes</category>
         </equipedCloth>
-        <job>Cook</job>
+        <job>Surgeon</job>
         <characterIDS>
+          <int>5</int>
+          <int>8</int>
+          <int>8</int>
           <int>8</int>
           <int>5</int>
-          <int>1</int>
-          <int>4</int>
-          <int>9</int>
-          <int>0</int>
           <int>6</int>
-          <int>2</int>
-          <int>0</int>
-          <int>0</int>
-          <int>7</int>
-          <int>2</int>
-          <int>16</int>
-          <int>17</int>
-          <int>2</int>
-          <int>2</int>
-        </characterIDS>
-      </Member>
-      <Member>
-        <id>1</id>
-        <Name>Jeanne</Name>
-        <health>100</health>
-        <maxHealth>100</maxHealth>
-        <currentHunger>1</currentHunger>
-        <Lvl>10</Lvl>
-        <xp>0</xp>
-        <skillPoints>0</skillPoints>
-        <specialSkillsIndexes>
-          <int>12</int>
-          <int>13</int>
-          <int>14</int>
+          <int>6</int>
+          <int>1</int>
+          <int>1</int>
+          <int>1</int>
+          <int>5</int>
+          <int>6</int>
           <int>15</int>
-        </specialSkillsIndexes>
-        <stats>
-          <int>3</int>
-          <int>4</int>
-          <int>3</int>
-          <int>3</int>
-        </stats>
-        <daysOnBoard>1</daysOnBoard>
-        <equipedWeapon>
-          <ID>149</ID>
-          <names>
-            <string>Epée du roi pirate</string>
-            <string>Sword of the Pirate King</string>
-          </names>
-          <value>97</value>
-          <price>154</price>
-          <weight>8</weight>
-          <level>10</level>
-          <spriteID>3</spriteID>
-          <description>C'est un epée du roi pirate</description>
-          <weaponType>Stick</weaponType>
-          <category>Weapon</category>
-        </equipedWeapon>
-        <equipedCloth>
-          <ID>201</ID>
-          <names>
-            <string>Armure du roi pirate</string>
-            <string>The armor of the Pirate King</string>
-          </names>
-          <value>99</value>
-          <price>159</price>
-          <weight>8</weight>
-          <level>10</level>
-          <spriteID>2</spriteID>
-          <description>C'est un armure du roi pirate</description>
-          <weaponType>Distance</weaponType>
-          <category>Clothes</category>
-        </equipedCloth>
-        <job>Cook</job>
-        <characterIDS>
-          <int>8</int>
-          <int>2</int>
-          <int>2</int>
-          <int>5</int>
-          <int>6</int>
-          <int>3</int>
-          <int>5</int>
-          <int>2</int>
           <int>0</int>
-          <int>1</int>
-          <int>6</int>
-          <int>3</int>
-          <int>5</int>
           <int>2</int>
-          <int>0</int>
-          <int>0</int>
+          <int>2</int>
         </characterIDS>
       </Member>
     </MemberIDs>
@@ -158,12 +83,12 @@
     <col>0</col>
     <ids>
       <ArrayOfInt>
-        <int>18</int>
-        <int>20</int>
-        <int>29</int>
-        <int>22</int>
-        <int>2</int>
-        <int>27</int>
+        <int>17</int>
+        <int>33</int>
+        <int>38</int>
+        <int>36</int>
+        <int>7</int>
+        <int>14</int>
       </ArrayOfInt>
       <ArrayOfInt />
       <ArrayOfInt />
@@ -173,10 +98,10 @@
     <AllItems>
       <ArrayOfItem>
         <Item>
-          <ID>18</ID>
+          <ID>17</ID>
           <names>
-            <string>Porc</string>
-            <string>Pork</string>
+            <string>Boeuf</string>
+            <string>Beef</string>
           </names>
           <value>8</value>
           <price>15</price>
@@ -188,25 +113,25 @@
           <category>Provisions</category>
         </Item>
         <Item>
-          <ID>20</ID>
+          <ID>33</ID>
           <names>
-            <string>Gros jambon</string>
-            <string>Big ham</string>
+            <string>Orange</string>
+            <string>Orange</string>
           </names>
-          <value>8</value>
-          <price>16</price>
+          <value>4</value>
+          <price>5</price>
           <weight>2</weight>
           <level>0</level>
-          <spriteID>2</spriteID>
-          <description>Greatly heals the crew member only when he’s not hungry</description>
+          <spriteID>0</spriteID>
+          <description>Heals the crew member a little bit only when he’s not hungry</description>
           <weaponType>Distance</weaponType>
           <category>Provisions</category>
         </Item>
         <Item>
-          <ID>29</ID>
+          <ID>38</ID>
           <names>
-            <string>Maïs</string>
-            <string>Corn</string>
+            <string>Tarte aux pommes</string>
+            <string>Applepie</string>
           </names>
           <value>4</value>
           <price>2</price>
@@ -218,28 +143,28 @@
           <category>Provisions</category>
         </Item>
         <Item>
-          <ID>22</ID>
+          <ID>36</ID>
           <names>
-            <string>Rumsteak</string>
-            <string>Rumsteak</string>
+            <string>Asperges</string>
+            <string>Aspergu</string>
           </names>
-          <value>8</value>
-          <price>17</price>
+          <value>4</value>
+          <price>2</price>
           <weight>2</weight>
           <level>0</level>
-          <spriteID>2</spriteID>
-          <description>Greatly heals the crew member only when he’s not hungry</description>
+          <spriteID>0</spriteID>
+          <description>Heals the crew member a little bit only when he’s not hungry</description>
           <weaponType>Distance</weaponType>
           <category>Provisions</category>
         </Item>
         <Item>
-          <ID>2</ID>
+          <ID>7</ID>
           <names>
-            <string>Thon</string>
-            <string>Tuna</string>
+            <string>Crevette</string>
+            <string>Shrimp</string>
           </names>
           <value>6</value>
-          <price>8</price>
+          <price>11</price>
           <weight>2</weight>
           <level>0</level>
           <spriteID>1</spriteID>
@@ -248,17 +173,17 @@
           <category>Provisions</category>
         </Item>
         <Item>
-          <ID>27</ID>
+          <ID>14</ID>
           <names>
-            <string>Citron</string>
-            <string>Lemon</string>
+            <string>Lardon</string>
+            <string>Lard</string>
           </names>
-          <value>4</value>
-          <price>8</price>
+          <value>8</value>
+          <price>12</price>
           <weight>2</weight>
           <level>0</level>
-          <spriteID>0</spriteID>
-          <description>Heals the crew member a little bit only when he’s not hungry</description>
+          <spriteID>2</spriteID>
+          <description>Greatly heals the crew member only when he’s not hungry</description>
           <weaponType>Distance</weaponType>
           <category>Provisions</category>
         </Item>
@@ -272,16 +197,107 @@
   <playerGold>50</playerGold>
   <karma>0</karma>
   <bounty>0</bounty>
-  <formulas />
+  <formulas>
+    <Formula>
+      <name>reso</name>
+      <coords>
+        <x>0</x>
+        <y>10</y>
+      </coords>
+      <verified>false</verified>
+      <found>false</found>
+    </Formula>
+    <Formula>
+      <name>gexoro</name>
+      <coords>
+        <x>0</x>
+        <y>9</y>
+      </coords>
+      <verified>false</verified>
+      <found>false</found>
+    </Formula>
+    <Formula>
+      <name>sywaxe</name>
+      <coords>
+        <x>0</x>
+        <y>8</y>
+      </coords>
+      <verified>false</verified>
+      <found>false</found>
+    </Formula>
+    <Formula>
+      <name>rocy</name>
+      <coords>
+        <x>0</x>
+        <y>7</y>
+      </coords>
+      <verified>false</verified>
+      <found>false</found>
+    </Formula>
+    <Formula>
+      <name>jodo</name>
+      <coords>
+        <x>0</x>
+        <y>6</y>
+      </coords>
+      <verified>false</verified>
+      <found>false</found>
+    </Formula>
+    <Formula>
+      <name>bymy</name>
+      <coords>
+        <x>0</x>
+        <y>5</y>
+      </coords>
+      <verified>false</verified>
+      <found>false</found>
+    </Formula>
+    <Formula>
+      <name>biqomi</name>
+      <coords>
+        <x>0</x>
+        <y>4</y>
+      </coords>
+      <verified>false</verified>
+      <found>false</found>
+    </Formula>
+    <Formula>
+      <name>tavu</name>
+      <coords>
+        <x>0</x>
+        <y>3</y>
+      </coords>
+      <verified>false</verified>
+      <found>false</found>
+    </Formula>
+    <Formula>
+      <name>dyluhy</name>
+      <coords>
+        <x>0</x>
+        <y>2</y>
+      </coords>
+      <verified>false</verified>
+      <found>false</found>
+    </Formula>
+    <Formula>
+      <name>mypeka</name>
+      <coords>
+        <x>0</x>
+        <y>1</y>
+      </coords>
+      <verified>false</verified>
+      <found>false</found>
+    </Formula>
+  </formulas>
   <playerBoatInfo>
-    <Name>The Blue Barnacle</Name>
+    <Name>The Brave Salmon</Name>
     <previousCoords>
-      <x>13</x>
-      <y>13</y>
+      <x>1</x>
+      <y>10</y>
     </previousCoords>
     <coords>
-      <x>13</x>
-      <y>13</y>
+      <x>1</x>
+      <y>10</y>
     </coords>
     <currentDirection>None</currentDirection>
     <shipRange>1</shipRange>
@@ -290,12 +306,12 @@
     <level>1</level>
   </playerBoatInfo>
   <treasureCoords>
-    <x>6</x>
-    <y>7</y>
+    <x>1</x>
+    <y>1</y>
   </treasureCoords>
   <homeCoords>
-    <x>13</x>
-    <y>13</y>
+    <x>1</x>
+    <y>10</y>
   </homeCoords>
   <currentQuests />
   <finishedQuests />
@@ -303,6 +319,6 @@
   <currentRain>0</currentRain>
   <night>false</night>
   <timeOfDay>6</timeOfDay>
-  <treasureName>The Cerulean Skulls</treasureName>
+  <treasureName>The Dead Lobsters</treasureName>
   <pins />
 </GameData>

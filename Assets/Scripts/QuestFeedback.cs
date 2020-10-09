@@ -27,39 +27,89 @@ public class QuestFeedback : MonoBehaviour {
 	void HandleGetFunction (FunctionType func, string cellParameters)
 	{
 		if ( func == FunctionType.AccomplishQuest ) {
-			Display ("Quest " + Quest.currentQuest.Story.displayName + " is completed !");
+            AccomplishQuest();
 		}
 	}
 
-	void HandleOnGiveUpQuest (Quest quest)
-	{
-		Display ("Quest " + quest.Story.displayName + " abandoned !");
-	}
+    void AccomplishQuest()
+    {
+        Display("Quest " + Quest.currentQuest.Story.displayName + " is completed !");
 
-	void HandleOnFinishQuest (Quest quest)
+        SoundManager.Instance.PlayRandomSound("Magic Chimes");
+        SoundManager.Instance.PlayRandomSound("Magic Chimes");
+        SoundManager.Instance.PlaySound("Boost 02");
+        SoundManager.Instance.PlaySound("Tribal 01");
+
+        SoundManager.Instance.PlaySound("ui_correct");
+    }
+
+    void HandleOnGiveUpQuest(Quest quest)
+    {
+        Display("Quest " + quest.Story.displayName + " abandoned !");
+
+
+        SoundManager.Instance.PlaySound("Tribal 03");
+        SoundManager.Instance.PlaySound("ui_deny");
+
+
+    }
+
+    void HandleOnFinishQuest (Quest quest)
 	{
 		Display ("Quest " + quest.Story.displayName + " finished !");
-	}
 
-	void HandleOnDiscoverFormula (Formula Formula)
+        SoundManager.Instance.PlayRandomSound("Magic Chimes");
+        SoundManager.Instance.PlayRandomSound("Magic Chimes");
+        SoundManager.Instance.PlaySound("Boost 02");
+        SoundManager.Instance.PlaySound("Tribal 01");
+
+    }
+
+    void HandleOnDiscoverFormula (Formula Formula)
 	{
 		Display ("New Clue !");
-	}
 
-	void HandleNewQuestEvent ()
+        SoundManager.Instance.PlaySound("Mystick Tap");
+        SoundManager.Instance.PlayRandomSound("Magic Chimes");
+        SoundManager.Instance.PlayRandomSound("Magic Chimes");
+
+    }
+
+    void HandleNewQuestEvent ()
 	{
 		if (QuestManager.Instance.currentQuests.Count == QuestManager.Instance.maxQuestAmount) {
-			Display ("Max quests amount reached");
+            HandleOnMaxQuest();
 		} else {
-			Display ("New Quest !");
+            HandleOnNewQuest();
 		}
 	}
+
+    void HandleOnNewQuest()
+    {
+        Display("New Quest !");
+
+        SoundManager.Instance.PlayRandomSound("Magic Chimes");
+        SoundManager.Instance.PlayRandomSound("Magic Chimes");
+        SoundManager.Instance.PlaySound("Boost 02");
+        SoundManager.Instance.PlaySound("Tribal 01");
+
+        SoundManager.Instance.PlaySound("ui_jauge_up");
+    }
+
+    void HandleOnMaxQuest()
+    {
+        Display("Max quests amount reached");
+
+        SoundManager.Instance.PlaySound("ui_deny");
+    }
 
 	void Display ( string str ) {
 		
 		Show ();
 
-		Tween.Bounce (transform);
+        SoundManager.Instance.PlayRandomSound("Writing");
+
+        Tween.Bounce (transform);
 
 		uiText.text = str;
 

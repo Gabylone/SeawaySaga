@@ -4,12 +4,31 @@ using UnityEngine;
 
 public class Skill_Wallop : Skill {
 
-	
+    public float secondSoundDelay = 0.2f;
 
-	public override void HandleOnApplyEffect ()
+    public override void AnimationEvent_1()
+    {
+        base.AnimationEvent_1();
+
+        SoundManager.Instance.PlayRandomSound("Whoosh");
+        SoundManager.Instance.PlayRandomSound("Swipe");
+    }
+
+    public override void AnimationEvent_2()
+    {
+        base.AnimationEvent_2();
+
+        SoundManager.Instance.PlayRandomSound("Whoosh");
+        SoundManager.Instance.PlayRandomSound("Swipe");
+    }
+
+    public override void HandleOnApplyEffect ()
 	{
 
 		base.HandleOnApplyEffect ();
+
+        SoundManager.Instance.PlayRandomSound("slash");
+        SoundManager.Instance.PlayRandomSound("Blunt");
 
 		List<Fighter> fighters = CombatManager.Instance.getCurrentFighters (Crews.otherSide (fighter.crewMember.side));
 		for (int fighterIndex = 0; fighterIndex < fighters.Count; fighterIndex++) {
@@ -27,6 +46,16 @@ public class Skill_Wallop : Skill {
         base.StartAnimation();
 
         fighter.animator.SetTrigger("wallop");
+
+        SoundManager.Instance.PlayRandomSound("Swipe");
+        SoundManager.Instance.PlayRandomSound("Whoosh");
+
+    }
+
+    void StartAnimationDelay()
+    {
+        SoundManager.Instance.PlayRandomSound("Swipe");
+        SoundManager.Instance.PlayRandomSound("Whoosh");
     }
 
     public override bool MeetsRestrictions (CrewMember member)

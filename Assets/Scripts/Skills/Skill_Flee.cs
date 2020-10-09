@@ -10,8 +10,6 @@ public class Skill_Flee : Skill {
 	{
 		base.HandleOnApplyEffect ();
 
-        Debug.Log("apply effect ");
-
 		DiceManager.Instance.onEndThrow += HandleOnEndThrow;
 
 		DiceManager.Instance.ThrowDice (DiceTypes.DEX, fighter.crewMember.GetStat(Stat.Dexterity));
@@ -29,13 +27,19 @@ public class Skill_Flee : Skill {
 	{
 		if ( DiceManager.Instance.HighestResult == 6 ) {
 
+            SoundManager.Instance.PlaySound("ui_correct");
+
             Escape();
 
 		} else if ( DiceManager.Instance.HighestResult == 1 ) {
 
+            SoundManager.Instance.PlaySound("ui_wrong");
+
             CriticalFailure();
 
 		} else {
+
+            SoundManager.Instance.PlaySound("ui_deny");
 
             Failure();
 
@@ -47,11 +51,12 @@ public class Skill_Flee : Skill {
 
     void Escape()
     {
+        fighter.combatFeedback.Display("Fled !", Color.green);
+
         fighter.escaped = true;
         
         string str = "See you, sucker !";
         fighter.Speak(str);
-
         fighter.Fade();
 
         Invoke("EscapeDelay", escapeDelay);

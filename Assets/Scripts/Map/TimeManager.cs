@@ -33,7 +33,12 @@ public class TimeManager : MonoBehaviour {
     public DayState dayState = DayState.Day;
 	public bool raining = false;
 
-	public enum DayState {
+    public delegate void OnSetRain();
+    public static OnSetRain onSetRain;
+    public delegate void OnSetTimeOfDay(DayState dayState);
+    public static OnSetTimeOfDay onSetTimeOfDay;
+
+    public enum DayState {
 		Day,
 		Night,
 	}
@@ -118,9 +123,20 @@ public class TimeManager : MonoBehaviour {
 		} else {
 			StartCoroutine (GoToWeather(DayState.Day));
 		}
-	}
 
-	IEnumerator GoToWeather ( DayState targetWeather ) {
+        SoundManager.Instance.PlaySound("Mystick Tap");
+    }
+    IEnumerator GoToNextDay()
+    {
+        if ( dayState == DayState.Day)
+        {
+            yield return StartCoroutine(GoToWeather(DayState.Night));
+        }
+
+        yield return StartCoroutine(GoToWeather(DayState.Day));
+    }
+
+    IEnumerator GoToWeather ( DayState targetWeather ) {
 
         Transitions.Instance.ScreenTransition.FadeIn(0.5f);
 
@@ -140,8 +156,6 @@ public class TimeManager : MonoBehaviour {
                 break;
             }
         }
-
-        SoundManager.Instance.UpdateAmbiance();
 
         Transitions.Instance.ScreenTransition.FadeOut(0.5f);
 
@@ -179,6 +193,7 @@ public class TimeManager : MonoBehaviour {
 
 		if (onNextHour != null)
 			onNextHour ();
+
 
 	}
 
@@ -240,11 +255,7 @@ public class TimeManager : MonoBehaviour {
 			onSetTimeOfDay (DayState.Day);
 
 	}
-
-	public delegate void OnSetRain ();
-	public static OnSetRain onSetRain;
-	public delegate void OnSetTimeOfDay(DayState dayState);
-	public static OnSetTimeOfDay onSetTimeOfDay;
+    
 	void SetRain () {
 		
 		raining = true;
@@ -273,7 +284,6 @@ public class TimeManager : MonoBehaviour {
 		SaveManager.Instance.GameData.night = dayState == DayState.Night;
 
 		SaveManager.Instance.GameData.timeOfDay = timeOfDay;
-
 		SaveManager.Instance.GameData.currentRain = currentRain;
 	}
 
@@ -316,6 +326,8 @@ public class TimeManager : MonoBehaviour {
             rainImage.gameObject.SetActive(false);
             rainMask_Group.SetActive(false);
         }
+
+        SoundManager.Instance.UpdateAmbianceSound();
     }
 	#endregion
 }

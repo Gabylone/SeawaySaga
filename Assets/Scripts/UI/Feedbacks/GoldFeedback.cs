@@ -14,6 +14,8 @@ public class GoldFeedback : InfoFeedbacks {
 
 	void HandleOnChangeGold (int value)
 	{
+        SoundManager.Instance.PlayRandomSound("Coins");
+
 		if (value > 0) {
 			Print (value.ToString(), Color.yellow);
 		} else {

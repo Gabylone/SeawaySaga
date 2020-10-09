@@ -139,6 +139,14 @@ public class DiceManager : MonoBehaviour {
 
 	public void ThrowDice (DiceTypes type, int diceAmount) {
 
+        Transitions.Instance.actionTransition.FadeIn(0.5f);
+
+        SoundManager.Instance.PlayRandomSound("Whoosh");
+        SoundManager.Instance.PlayRandomSound("Dice Multiple");
+        SoundManager.Instance.PlayRandomSound("Dice Multiple");
+
+        SoundManager.Instance.PlayLoop("dice_wait");
+
 		ResetDice ();
 
 		Throwing = true;
@@ -168,13 +176,18 @@ public class DiceManager : MonoBehaviour {
 		}
 	}
 	private void Throwing_Exit () {
-		
 
-	}
-	#endregion
+        SoundManager.Instance.StopLoop("dice_wait");
 
-	#region settling
-	private void Settling_Start () {
+
+    }
+    #endregion
+
+    #region settling
+    private void Settling_Start () {
+
+        SoundManager.Instance.PlaySound("Dice Settle");
+
 		for (int diceIndex = 0; diceIndex < currentThrow.diceAmount; diceIndex++) {
 			dices[diceIndex].TurnToDirection (dices[diceIndex].result);
 		}
@@ -185,6 +198,7 @@ public class DiceManager : MonoBehaviour {
 	}
 	private void Settling_Exit () {
 	
+        Transitions.Instance.actionTransition.FadeOut(0.5f);
 	}
 	#endregion
 
@@ -193,7 +207,10 @@ public class DiceManager : MonoBehaviour {
 	public OnEndThrow onEndThrow;
 	private void ShowingHighest_Start () {
 
-		Dice highestDie = dices [0];
+        SoundManager.Instance.PlayRandomSound("Tribal");
+        SoundManager.Instance.PlayRandomSound("ting");
+
+        Dice highestDie = dices [0];
 
 		highestResult = 0;
 
@@ -374,6 +391,8 @@ public class DiceManager : MonoBehaviour {
 
 	IEnumerator CheckStat_Coroutine () {
 
+        Crews.playerCrew.captain.memberIcon.animator.SetTrigger("throw dice");
+
 		ThrowDirection = 1;
 
 		string cellParams = StoryFunctions.Instance.CellParams;
@@ -403,6 +422,7 @@ public class DiceManager : MonoBehaviour {
 
 		int decal = HighestResult == 6 ? 0 : 1;
 
+        // story
 		StoryReader.Instance.CurrentStoryHandler.SaveDecal (decal);
 
 		StoryReader.Instance.NextCell ();

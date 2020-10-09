@@ -4,11 +4,19 @@ using UnityEngine;
 
 public class Skill_Leap: Skill {
 
-	bool secondPart = false;
+    private Fighter delayFighter;
 
-	private Fighter delayFighter;
+    bool secondPart = false;
 
-	public override void InvokeSkill ()
+    public override void OnSetTarget()
+    {
+        base.OnSetTarget();
+
+        SoundManager.Instance.PlayRandomSound("Swipe");
+
+    }
+
+    public override void InvokeSkill ()
 	{
 		if (secondPart) {
 			fighter.crewMember.energy += energyCost;
@@ -24,6 +32,10 @@ public class Skill_Leap: Skill {
         if (!secondPart)
         {
             string str = "You wait and see... I'm gonna smash your brains out";
+
+            SoundManager.Instance.PlaySound("Tribal 01");
+            SoundManager.Instance.PlayRandomSound("voice_mad");
+
             fighter.Speak(str);
 
             fighter.AddStatus(Fighter.Status.PreparingAttack);
@@ -42,11 +54,15 @@ public class Skill_Leap: Skill {
         if ( secondPart)
         {
             fighter.animator.SetTrigger("leap");
+
+            SoundManager.Instance.PlayRandomSound("Swipe");
         }
         else
         {
             fighter.animator.SetBool("preparingToLeap", true);
             fighter.iconVisual.SetMadFace();
+
+
         }
     }
 
@@ -57,6 +73,10 @@ public class Skill_Leap: Skill {
 		if (secondPart) {
 
             fighter.animator.SetBool("preparingToLeap", false);
+
+            SoundManager.Instance.PlayRandomSound("Sword");
+            SoundManager.Instance.PlayRandomSound("Blunt");
+            SoundManager.Instance.PlayRandomSound("Punch");
 
             secondPart = false;
 			hasTarget = false;
@@ -85,13 +105,6 @@ public class Skill_Leap: Skill {
 
 		Trigger (delayFighter);
 	}
-
-    public override void EndSkill()
-    {
-        base.EndSkill();
-
-
-    }
 
     public override bool MeetsRestrictions (CrewMember member)
 	{

@@ -12,8 +12,6 @@ public class Narrator : MonoBehaviour {
 	[SerializeField] private GameObject narratorObj;
 	[SerializeField] private GameObject narratorButtonObj;
 
-   
-
     public bool visible = false;
 
     void Awake () {
@@ -86,6 +84,9 @@ public class Narrator : MonoBehaviour {
         //Crews.playerCrew.captain.Icon.MoveToPoint(Crews.PlacingType.Hidden);
         //Crews.enemyCrew.captain.Icon.MoveToPoint(Crews.PlacingType.Hidden);
 
+        SoundManager.Instance.PlayRandomSound("Book");
+        SoundManager.Instance.PlayRandomSound("Page");
+
         narratorButtonObj.SetActive(true);
 
         visible = true;
@@ -102,6 +103,9 @@ public class Narrator : MonoBehaviour {
         }
 	}
 	public void HideNarrator () {
+
+        SoundManager.Instance.PlayRandomSound("Book");
+        SoundManager.Instance.PlayRandomSound("Page");
 
         //InGameMenu.Instance.ShowMenuButtons();
 

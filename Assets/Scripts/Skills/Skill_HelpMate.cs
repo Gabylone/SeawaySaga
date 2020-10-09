@@ -13,6 +13,9 @@ public class Skill_HelpMate : Skill {
 
         fighter.animator.SetTrigger("combat speak");
 
+        SoundManager.Instance.PlayRandomSound("Whoosh");
+        SoundManager.Instance.PlayRandomSound("Swipe");
+
         Invoke("TargetFighterAnimation" , targetFighterAnimationDelay);
 
     }
@@ -29,6 +32,10 @@ public class Skill_HelpMate : Skill {
     {
         fighter.TargetFighter.animator.SetTrigger("puffed");
 
+        SoundManager.Instance.PlayRandomSound("Swipe");
+        SoundManager.Instance.PlayRandomSound("Whoosh");
+
+
         Invoke("HandleOnApplyEffect", applyEffectDelay);
     }
 
@@ -38,7 +45,11 @@ public class Skill_HelpMate : Skill {
 
 		fighter.TargetFighter.AddStatus (Fighter.Status.Protected, 2);
 
-		EndSkill ();
+        SoundManager.Instance.PlaySound("Boost");
+        SoundManager.Instance.PlaySound("Fury");
+        SoundManager.Instance.PlaySound("Tribal 01");
+
+        EndSkill();
 
 	}
 

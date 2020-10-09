@@ -72,6 +72,7 @@ public class DialogueManager : MonoBehaviour {
 	{
 		if ( DisplayingText)
         {
+            SoundManager.Instance.PlayRandomSound("click_med");
             EndDialogue();
             StoryReader.Instance.ContinueStory();
         }
@@ -113,7 +114,6 @@ public class DialogueManager : MonoBehaviour {
 	}
 
 	#region set dialogue
-	// TIMED
 	public void SetDialogueTimed (string phrase, Transform _target) {
 
         timed = true;

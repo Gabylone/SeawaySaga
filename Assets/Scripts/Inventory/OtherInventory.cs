@@ -32,12 +32,17 @@ public class OtherInventory : MonoBehaviour {
     public void SwitchToPlayer ()
     {
         StartCoroutine(SwitchSideCoroutine());
+
+        SoundManager.Instance.PlaySound("Whoosh 08");
     }
 
     //
     public void SwitchToOther()
     {
         StartCoroutine(SwitchSideCoroutine());
+
+        SoundManager.Instance.PlaySound("Whoosh 09");
+
     }
 
     public void LerpIn()
@@ -170,6 +175,10 @@ public class OtherInventory : MonoBehaviour {
 			return;
         }
 
+        SoundManager.Instance.PlayRandomSound("Coins");
+        SoundManager.Instance.PlaySound("Trade");
+        SoundManager.Instance.PlayRandomSound("Bag");
+
         LootUI.Instance.currentSide = Crews.Side.Enemy;
 		LootManager.Instance.SetLoot ( Crews.Side.Enemy, loot);
 
@@ -191,6 +200,9 @@ public class OtherInventory : MonoBehaviour {
 			StoryInput.Instance.WaitForInput ();
 			return;
         }
+
+        SoundManager.Instance.PlayRandomSound("Bag");
+        SoundManager.Instance.PlayRandomSound("button_big");
 
         LootUI.Instance.currentSide = Crews.Side.Enemy;
         LootManager.Instance.SetLoot ( Crews.Side.Enemy, loot);
@@ -218,6 +230,10 @@ public class OtherInventory : MonoBehaviour {
 
 		LootManager.Instance.PlayerLoot.AddItem (LootUI.Instance.SelectedItem);
 		LootManager.Instance.OtherLoot.RemoveItem (LootUI.Instance.SelectedItem);
+
+        SoundManager.Instance.PlayRandomSound("Bag");
+        SoundManager.Instance.PlayRandomSound("Coins");
+        SoundManager.Instance.PlayRandomSound("Coins");
 
 	}
 
@@ -248,14 +264,22 @@ public class OtherInventory : MonoBehaviour {
 		
 		CrewMember.GetSelectedMember.SetEquipment (item);
 
-	}
+        SoundManager.Instance.PlayRandomSound("Foley Armor");
+        SoundManager.Instance.PlayRandomSound("Bag");
+        SoundManager.Instance.PlayRandomSound("Coins");
+        SoundManager.Instance.PlayRandomSound("Coins");
 
-	public void PickUp ( Item item ) {
+    }
+
+    public void PickUp ( Item item ) {
 		
 		if (!WeightManager.Instance.CheckWeight (item.weight))
 			return;
 
-		LootManager.Instance.PlayerLoot.AddItem (item);
+        SoundManager.Instance.PlayRandomSound("Foley Armor");
+        SoundManager.Instance.PlayRandomSound("Bag");
+
+        LootManager.Instance.PlayerLoot.AddItem (item);
 		LootManager.Instance.OtherLoot.RemoveItem (item);
 	}
 }

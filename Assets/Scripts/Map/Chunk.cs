@@ -18,7 +18,7 @@ public class Chunk
 {
 	public static Dictionary<Coords,Chunk> chunks = new Dictionary<Coords, Chunk>();
 
-	public ChunkState state;
+    public ChunkState state;
 
     // c'est ici que tout se passe
     public IslandData[] islandDatas = new IslandData[0];
@@ -51,6 +51,13 @@ public class Chunk
     public bool HasIslands()
     {
         return islandDatas != null && islandDatas.Length > 0;
+    }
+    
+    public bool IsFormulaIsland()
+    {
+        bool firstLayer = StoryReader.Instance.currentStoryLayer == 0;
+
+        return firstLayer && IslandManager.Instance.currentIsland.islandData.containsFormula;
     }
 
     public IslandData GetIslandData(int id)

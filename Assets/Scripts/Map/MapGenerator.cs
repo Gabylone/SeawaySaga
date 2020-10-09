@@ -149,11 +149,35 @@ public class MapGenerator : MonoBehaviour {
 
                     string[] storyNames = cells[colIndex].Split(',');
 
+                    bool formulaIsland = false;
+
                     for (int storyAmount = 0; storyAmount < storyNames.Length; storyAmount++)
                     {
                         bool foundStory = false;
 
                         string storyName = storyNames[storyAmount];
+                        storyName = storyName.TrimEnd('\r', '\n', '\t');
+
+                        if (storyName.Contains("/"))
+                        {
+                            // it's a clue island
+                            storyName = storyName.Split('/')[0];
+
+                            // create new clue
+                            Formula newFormula = new Formula();
+                            newFormula.name = NameGeneration.Instance.randomWord;
+                            newFormula.coords = c;
+                            FormulaManager.Instance.formulas.Add(newFormula);
+
+
+                            formulaIsland = true;
+                        }
+                        else
+                        {
+                            formulaIsland = false;
+
+                        }
+
                         storyName = storyName.TrimEnd('\r', '\n', '\t');
 
                         for (int storyTypeIndex = 0; storyTypeIndex < 4; storyTypeIndex++)
@@ -179,25 +203,21 @@ public class MapGenerator : MonoBehaviour {
                                         SaveManager.Instance.GameData.homeCoords = c;
                                         break;
                                     case StoryType.Clue:
-                                        Formula newFormula = new Formula();
-                                        newFormula.name = NameGeneration.Instance.randomWord;
-                                        newFormula.coords = c;
-                                        FormulaManager.Instance.formulas.Add(newFormula);
+                                        //
                                         break;
                                     default:
                                         break;
                                 }
 
-                                CreateIsland(c, storyType, storyAmount , storyIndex);
-                                
-                            }
+                                CreateIsland(c, storyType, storyAmount, storyIndex, formulaIsland);
 
+                            }
                             
                         }
 
                         if (!foundStory)
                         {
-                            Debug.LogError("couldn't find story : " + storyName + " at " + GetCellLoc(rowIndex,colIndex));
+                            Debug.LogError("couldn't find story : " + storyName + " (" + storyName.Length + ") at " + GetCellLoc(rowIndex,colIndex));
                         }
 
                     }
@@ -259,10 +279,16 @@ public class MapGenerator : MonoBehaviour {
 		}
 	}
 
-    public void CreateIsland( Coords c , StoryType type , int storyAmount , int storyIndex )
+    public void CreateIsland(Coords c, StoryType type, int storyAmount, int storyIndex, bool containsFormula)
     {
-        Chunk.GetChunk(c).AddIslandData(new IslandData(type));
-        Chunk.GetChunk(c).GetIslandData(storyAmount).storyManager.InitHandler(type, storyIndex);
+        IslandData newIslandData = new IslandData(type);
+
+        newIslandData.containsFormula = containsFormula;
+
+        newIslandData.storyManager.InitHandler(type, storyIndex);
+
+        Chunk.GetChunk(c).AddIslandData(newIslandData);
+
     }
     #endregion
 

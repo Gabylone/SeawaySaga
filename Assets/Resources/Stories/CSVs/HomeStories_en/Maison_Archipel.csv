@@ -3,7 +3,7 @@ Petite Maison;1;1;Captain’s House;;
 [premiere visite];;;[chambre];;
 Narrator : Today is the day CAPITAINE, smart tactician and experienced sailor, decides to venture on the wide ocean of NOMTRESOR, to find its mysterious treasure.;Node=>retour;;Narrator : CAPITAINE are in their childhood bedroom. Next to their bed, the desk is covered with drawings, books and tales about the ocean.;;
 Narrator : With only their trustworthy NOMBATEAU, and a few food rations, CAPITAINE is ready to face a long and perilous journey in a sea full of bandits.;;;[choix chambre];;
-SetChoices2;;;SetChoices3;;
+SetChoices3;;;SetChoices3;;
 Choice : (set sail);Choice : (enter the house);;Choice : (go back to the living room) (leave);Choice : (sleep until NEXTTIME) (sleep);Choice : (desk) (quest)
 PlayerSpeak : Let’s go!;Fade;;Fade;ChangeTimeOfDay;Narrator : The most worn down book talks about the waters surrounding this island :
 Switch=>premiere visite;Node=>salon;;Node=>salon;Node=>salon;Narrator : It says that the seas are vast and hostile. It usually takes days and nights to go from one island to another.

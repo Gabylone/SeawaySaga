@@ -66,9 +66,9 @@ public class WeightManager : MonoBehaviour {
             weightImage.color = Color.red;
             currentWeightText.color = Color.red;
 
+            SoundManager.Instance.PlaySound("ui_deny");
+
             Invoke("HideFeedback", feedbackBounceDuration);
-            //
-            SoundManager.Instance.PlaySound ( noRoomSound );
 			return false;
         }
 

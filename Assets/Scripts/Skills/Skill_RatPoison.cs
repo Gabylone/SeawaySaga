@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -33,6 +33,9 @@ public class Skill_RatPoison : Skill {
         base.AnimationEvent_1();
 
         fighter.AttachItemToHand(poisonBottle_Transform);
+
+        SoundManager.Instance.PlayRandomSound("Potion");
+
     }
 
     public override void AnimationEvent_2()
@@ -46,16 +49,26 @@ public class Skill_RatPoison : Skill {
     {
         poisonBottle_Transform.SetParent(fighter.BodyTransform);
 
+        SoundManager.Instance.PlayRandomSound("Whoosh");
+
         Transform targetTransform = fighter.TargetFighter.GetTransform;
 
-        Vector2 midPoint = (Vector2)targetTransform.position + Vector2.up * upDecal;
+        Vector3 midPoint = poisonBottle_Transform.position + (targetTransform.position - poisonBottle_Transform.position)/2f;
+        midPoint.y += upDecal;
 
         throwing = true;
 
-        poisonBottle_Transform.DOMove(midPoint, throwDuration);
-        poisonBottle_Transform.DOMove(targetTransform.position, throwDuration).SetDelay(throwDuration);
+        poisonBottle_Transform.DOMoveX(midPoint.x, throwDuration).SetEase(Ease.OutQuad);
+        poisonBottle_Transform.DOMoveY(midPoint.y, throwDuration).SetEase(Ease.InQuad);
 
-        yield return new WaitForSeconds(throwDuration * 2f);
+        yield return new WaitForSeconds(throwDuration);
+
+        SoundManager.Instance.PlayRandomSound("Swipe");
+
+        poisonBottle_Transform.DOMoveX(targetTransform.position.x, throwDuration).SetEase(Ease.OutQuad);
+        poisonBottle_Transform.DOMoveY(targetTransform.position.y, throwDuration).SetEase(Ease.InQuad);
+
+        yield return new WaitForSeconds(throwDuration);
 
         throwing = false;
 
@@ -72,7 +85,12 @@ public class Skill_RatPoison : Skill {
 
 		fighter.TargetFighter.AddStatus (Fighter.Status.Poisonned, 3);
 
-		EndSkill ();
+        SoundManager.Instance.PlayRandomSound("Alchemy");
+        SoundManager.Instance.PlayRandomSound("Potion");
+        SoundManager.Instance.PlaySound("Glass");
+
+
+        EndSkill ();
 
     }
 

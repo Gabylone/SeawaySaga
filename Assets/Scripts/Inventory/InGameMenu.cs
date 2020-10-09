@@ -105,6 +105,8 @@ public class InGameMenu : MonoBehaviour {
 			CrewMember.GetSelectedMember.CurrentHunger -= hunger;
 		}*/
 
+        SoundManager.Instance.PlayRandomSound("Food Eat");
+
         CrewMember.GetSelectedMember.CurrentHunger -= hunger;
 
         // les membres prennent la vie en meme temps qu'ils perde la faim //
@@ -126,9 +128,13 @@ public class InGameMenu : MonoBehaviour {
 	{
 		Item item = LootUI.Instance.SelectedItem;
 
-		if ( CrewMember.GetSelectedMember.CheckLevel (item.level) == false ) {
-			return;
-		}
+        if (CrewMember.GetSelectedMember.CheckLevel(item.level) == false)
+        {
+            return;
+        }
+
+        SoundManager.Instance.PlayRandomSound("Foley Armour");
+        SoundManager.Instance.PlayRandomSound("Anvil");
 
 		if (CrewMember.GetSelectedMember.GetEquipment(item.EquipmentPart) != null)
 			LootManager.Instance.PlayerLoot.AddItem (CrewMember.GetSelectedMember.GetEquipment(item.EquipmentPart) );
@@ -147,6 +153,8 @@ public class InGameMenu : MonoBehaviour {
 
     private void UnequipItem()
     {
+        SoundManager.Instance.PlayRandomSound("Foley Armour");
+
         LootManager.Instance.getLoot(Crews.Side.Player).AddItem(LootUI.Instance.SelectedItem);
 
         CrewMember.GetSelectedMember.RemoveEquipment(LootUI.Instance.SelectedItem.EquipmentPart);
@@ -157,10 +165,15 @@ public class InGameMenu : MonoBehaviour {
 
     public void ThrowItem () {
 
+        SoundManager.Instance.PlayRandomSound("Whoosh");
+
 		LootManager.Instance.PlayerLoot.RemoveItem (LootUI.Instance.SelectedItem);
 	}
 
 	public void SellItem () {
+
+        SoundManager.Instance.PlayRandomSound("Coins");
+        SoundManager.Instance.PlayRandomSound("coin");
 
 		int price = 1 + (int)(LootUI.Instance.SelectedItem.price / 3f);
 
@@ -186,7 +199,10 @@ public class InGameMenu : MonoBehaviour {
             // set bool
         opened = true;
 
-	}
+        SoundManager.Instance.PlaySound("button_tap_light 01");
+        SoundManager.Instance.PlaySound("Whoosh 01");
+
+    }
 	public void Hide () {
 
         ShowMenuButtons();
@@ -197,11 +213,14 @@ public class InGameMenu : MonoBehaviour {
             // set bool
         opened = false;
 
-    }
-	#endregion
+        SoundManager.Instance.PlaySound("button_tap_light 01");
+        SoundManager.Instance.PlaySound("Whoosh 07");
 
-	#region menu buttons
-	public void ShowMenuButtons () {
+    }
+    #endregion
+
+    #region menu buttons
+    public void ShowMenuButtons () {
 		menuButtons.Show ();
 	}
 	public void HideMenuButtons () {

@@ -114,12 +114,18 @@ public class Skill : MonoBehaviour {
         if (goToTarget)
         {
             fighter.onReachTarget += HandleOnReachTarget;
-            fighter.ChangeState(Fighter.states.moveToTarget);
+
+            TriggerFighterMoveToTarget();
         }
         else
         {
             InvokeSkill();
         }
+    }
+
+    public virtual void TriggerFighterMoveToTarget()
+    {
+        fighter.ChangeState(Fighter.states.moveToTarget);
     }
 
     public virtual void HandleOnReachTarget()
@@ -175,14 +181,19 @@ public class Skill : MonoBehaviour {
         if (fighter.TargetFighter != null && fighter.TargetFighter.HasStatus(Fighter.Status.BearTrapped))
         {
             fighter.TargetFighter.RemoveStatus(Fighter.Status.BearTrapped, 1);
-            fighter.combatFeedback.Display("TRAP !", Color.red);
+            fighter.combatFeedback.Display("TRAPPED !", Color.red);
+
+            fighter.TargetFighter.iconVisual.bearTrap_Transform.GetComponent<Animator>().SetBool("opened", false);
+
+            SoundManager.Instance.PlaySound("beartrap_close");
 
             fighter.Hurt(30);
 
             Invoke("InvokeMoveBack", timeToMoveBack);
-
             return;
         }
+
+        fighter.TargetFighter.iconVisual.bearTrap_Transform.gameObject.SetActive(false);
 
         fighter.ChangeState(Fighter.states.moveBack);
     }

@@ -1,164 +1,306 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
+using System.IO;
+using UnityEditor;
 
-public class SoundManager : MonoBehaviour {
+public class SoundManager : MonoBehaviour
+{
+    public static SoundManager Instance;
 
-	public enum Sound {
-		Select_Small,
-		Select_Big,
-	}
+    private bool enableSound = true;
 
-	public static SoundManager Instance;
+    // load
+    public string path = "Assets/Sounds";
 
-	[SerializeField]
-	private AudioSource soundSource;
+    // audio source
+    public int sourceIndex = 0;
+    public Transform sourceParent;
+    public AudioSource[] fxSources;
 
-	[SerializeField]
-	private AudioSource ambianceSource;
+    // audio source
+    public int loopSourceIndex = 0;
+    public Transform loopSourceParent;
+    public AudioSource[] loopFxSources;
 
-	[SerializeField]
-	private AudioClip[] clips;
+    // ambiance source
+    public AudioSource ambiantSource;
+    public AudioSource rainSource;
 
-	bool enableSound = true;
+    public List<Sound> sounds = new List<Sound>();
 
-	[Header("Inventory sounds")]
-	[SerializeField] private AudioClip eatSound;
-	[SerializeField] private AudioClip equipSound;
-	[SerializeField] private AudioClip sellSound;
-	[SerializeField] private AudioClip lootSound;
+    void Awake()
+    {
+        Instance = this;
+    }
 
-	[Header ("Time sounds")]
-	[SerializeField] private AudioClip rainSound;
-	[SerializeField] private AudioClip daySound;
-	[SerializeField] private AudioClip nightSound;
+    void Start()
+    {
+        EnableSound = true;
 
-	[Header("Sound menu")]
-	[SerializeField]
-	private Image soundImage;
-	[SerializeField]
-	private Sprite sprite_SoundOn;
+        fxSources = sourceParent.GetComponentsInChildren<AudioSource>();
+        loopFxSources = loopSourceParent.GetComponentsInChildren<AudioSource>();
 
-	[SerializeField]
-	private Sprite sprite_SoundOff;
-	void Start () {
-		
-		EnableSound = true;
+        UpdateAmbianceSound();
+    }
 
-		LootUI.useInventory += HandleUsePlayerInventory;
-		NavigationManager.Instance.EnterNewChunk += HandleChunkEvent;
+    #region play functions
+    public void PlayLoop(string soundName)
+    {
+        Sound sound = sounds.Find(x => x.name == soundName);
 
-		StoryFunctions.Instance.getFunction += HandleGetFunction;
+        if (sound == null)
+        {
+            Debug.LogError("no sound named : " + soundName);
+            return;
+        }
 
-		UpdateAmbiance ();
-	}
+        loopFxSources[loopSourceIndex].clip = sound.clip;
+        loopFxSources[loopSourceIndex].Play();
 
-	void HandleGetFunction (FunctionType func, string cellParameters)
-	{
+        ++loopSourceIndex;
 
-	}
+        if (loopSourceIndex == loopFxSources.Length)
+        {
+            loopSourceIndex = 0;
+        }
+    }
 
-	#region time
-	void HandleChunkEvent ()
-	{
-	}
+    public void StopLoop(string soundName)
+    {
+        foreach (var item in loopFxSources)
+        {
+            if (item.isPlaying && item.clip.name == soundName)
+            {
+                item.Stop();
+                return;
+            }
+        }
 
-	public void UpdateAmbiance ()
-	{
-		AudioClip ambiantClip;
-		if (TimeManager.Instance.raining)
-			ambiantClip = rainSound;
-		else if (TimeManager.Instance.dayState == TimeManager.DayState.Night)
-			ambiantClip = nightSound;
-		else
-			ambiantClip = daySound;
+        Debug.LogError("coudln't find loop sound named : " + soundName);
+    }
+    public void PlayRandomSound(string soundName)
+    {
+        List<Sound> tmp_Sounds = sounds.FindAll(x => x.name.StartsWith(soundName));
 
-		PlayAmbiance (ambiantClip);
-	}
-	#endregion
+        if (tmp_Sounds.Count == 0)
+        {
+            Debug.LogError("no random sound named : " + soundName);
+            return;
+        }
 
-	#region inventory
-	void HandleUsePlayerInventory (InventoryActionType actionType)
-	{
-		switch (actionType) {
-		case InventoryActionType.Eat:
-			PlaySound (eatSound);
-			break;
-		case InventoryActionType.Equip:
-		case InventoryActionType.PurchaseAndEquip:
-		case InventoryActionType.Unequip:
-			PlaySound (equipSound);
-			break;
-		case InventoryActionType.Throw:
-			PlaySound (equipSound);
-			break;
-		case InventoryActionType.Sell:
-			PlaySound (sellSound);
-			break;
-		case InventoryActionType.Buy:
-			PlaySound (lootSound);
-			break;
-		case InventoryActionType.PickUp:
-			PlaySound (lootSound);
-			break;
-		default:
-			throw new System.ArgumentOutOfRangeException ();
-		}
-	}
-	#endregion
+        Sound sound = tmp_Sounds[Random.Range(0, tmp_Sounds.Count)];
+        PlaySound(sound);
 
-	void Awake () {
-		Instance = this;
-	}
+    }
+    public void PlaySound(string soundName)
+    {
+        Sound sound = sounds.Find(x => x.name == soundName);
 
-	public void PlayRandomSound (AudioClip[] clips) {
-		PlaySound (clips [Random.Range (0, clips.Length)]);
-	}
+        if (sound == null)
+        {
+            Debug.LogError("no sound named : " + soundName);
+            return;
+        }
 
-	public void PlaySound ( Sound sound ) {
-		PlaySound (clips [(int)sound]);
-	}
+        PlaySound(sound);
+    }
+    private void PlaySound (Sound sound)
+    {
+        fxSources[sourceIndex].clip = sound.clip;
+        fxSources[sourceIndex].Play();
 
-	public void PlaySound ( AudioClip clip ) {
+        ++sourceIndex;
 
-		if ( clip == null ) {
-			Debug.LogError ("unassigned clip");
-			return;
-		}
+        if (sourceIndex == fxSources.Length)
+        {
+            sourceIndex = 0;
+        }
+    }
+    #endregion
 
-		soundSource.clip = clip;
-		soundSource.Play ();
-	}
+    #region ambiance
+    public void PlayAmbiance(string ambianceName)
+    {
+        Sound sound = sounds.Find(x => x.name == ambianceName);
 
-	public void PlayAmbiance ( AudioClip clip ) {
-		ambianceSource.clip = clip;
-		ambianceSource.Play ();
-	}
+        if (sound == null)
+        {
+            Debug.LogError("no sound named : " + ambianceName);
+            return;
+        }
 
-	public AudioSource AmbianceSource {
-		get {
-			return ambianceSource;
-		}
-	}
+        if (ambiantSource.clip != null && ambiantSource.clip.name == ambianceName)
+        {
+            return;
+        }
 
-	public void SwitchEnableSound () {
-		EnableSound = !EnableSound;
-	}
+        ambiantSource.clip = sound.clip;
+        ambiantSource.Play();
+    }
+    public void PlayRain()
+    {
+        rainSource.Play();
+    }
+    public void StopRain()
+    {
 
-	public bool EnableSound {
-		get {
-			return enableSound;
-		}
-		set {
-			enableSound = value;
+    }
+    #endregion
 
-			soundSource.enabled = value;
-			ambianceSource.enabled = value;
-			if (value) {
-				ambianceSource.Play ();
-			}
+    #region load
+    public void LoadSounds()
+    {
+        sounds.Clear();
 
-			soundImage.sprite = value ? sprite_SoundOn : sprite_SoundOff;
-		}
-	}
+        string path = Application.dataPath + "/Sounds";
+
+        string[] fileTypes = new string[3] { "mp3", "ogg", "wav" };
+
+        foreach (var fileType in fileTypes)
+        {
+            string[] audioClip_Paths = Directory.GetFiles(path, "*." + fileType, SearchOption.AllDirectories);
+
+            foreach (string audioClip_Path in audioClip_Paths)
+            {
+                string assetPath = "Assets" + audioClip_Path.Replace(Application.dataPath, "").Replace('\\', '/');
+                AudioClip audioClip = (AudioClip)AssetDatabase.LoadAssetAtPath(assetPath, typeof(AudioClip));
+
+                Sound newSound = new Sound();
+                newSound.name = audioClip.name;
+                newSound.clip = audioClip;
+                sounds.Add(newSound);
+            }
+        }
+
+        Debug.Log("Loaded " + sounds.Count + " sounds");
+    }
+    #endregion
+
+    public void SwitchEnableSound()
+    {
+        EnableSound = !EnableSound;
+    }
+
+    public bool EnableSound
+    {
+        get
+        {
+            return enableSound;
+        }
+        set
+        {
+            enableSound = value;
+        }
+    }
+
+    #region ambiance
+    public void UpdateAmbianceSound()
+    {
+        if (StoryLauncher.Instance.PlayingStory)
+        {
+            UpdateLandAmbianceSound();
+        }
+        else
+        {
+            UpdateSeaAmbianceSound();
+        }
+
+        
+    }
+
+    void UpdateSeaAmbianceSound()
+    {
+        rainSource.Stop();
+        if ( TimeManager.Instance.raining)
+        {
+            PlayAmbiance("ambiance_sea_rain");
+        }
+        else if ( TimeManager.Instance.dayState == TimeManager.DayState.Day)
+        {
+            PlayAmbiance("ambiance_beach_day");
+        }
+        else
+        {
+            PlayAmbiance("ambiance_beach_night");
+        }
+    }
+
+    void UpdateLandAmbianceSound()
+    {
+        switch (InGameBackGround.Instance.currentType)
+        {
+            case InGameBackGround.Type.Island:
+                if (TimeManager.Instance.dayState == TimeManager.DayState.Night)
+                {
+                    SoundManager.Instance.PlayAmbiance("ambiance_beach_night");
+                }
+                else
+                {
+                    SoundManager.Instance.PlayAmbiance("ambiance_beach_day");
+                }
+                break;
+            case InGameBackGround.Type.House:
+                SoundManager.Instance.PlayAmbiance("ambiance_house");
+                break;
+            case InGameBackGround.Type.Tavern:
+                if (TimeManager.Instance.dayState == TimeManager.DayState.Night)
+                {
+                    SoundManager.Instance.PlayAmbiance("ambiance_tavern_night");
+
+                }
+                else
+                {
+                    SoundManager.Instance.PlayAmbiance("ambiance_tavern_day");
+
+                }
+                break;
+            case InGameBackGround.Type.Cave:
+                SoundManager.Instance.PlayAmbiance("ambiance_cave");
+                break;
+            case InGameBackGround.Type.Forest:
+                if (TimeManager.Instance.dayState == TimeManager.DayState.Night)
+                {
+                    SoundManager.Instance.PlayAmbiance("ambiance_forest_night");
+                }
+                else
+                {
+                    SoundManager.Instance.PlayAmbiance("ambiance_forest_day");
+                }
+                break;
+            case InGameBackGround.Type.Village:
+                if (TimeManager.Instance.dayState == TimeManager.DayState.Night)
+                {
+                    SoundManager.Instance.PlayAmbiance("ambiance_village_night");
+
+                }
+                else
+                {
+                    SoundManager.Instance.PlayAmbiance("ambiance_village_day");
+
+                }
+                break;
+            case InGameBackGround.Type.Boat:
+                // same sea ambiance
+                break;
+        }
+
+        if (TimeManager.Instance.raining)
+        {
+            rainSource.Play();
+        }
+        else
+        {
+            rainSource.Stop();
+        }
+    }
+    #endregion
+}
+
+[System.Serializable]
+public class Sound
+{
+    public string name;
+    public AudioClip clip;
 }

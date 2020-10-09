@@ -91,7 +91,8 @@ public class StoryLoader : MonoBehaviour {
 			// create story
 			if (rowIndex == 1) 
 			{
-				newStory.dataName       = rowContent [0];
+
+				newStory.dataName       = rowContent [0].TrimEnd('\r', '\n', '\t');
                 newStory.displayName = rowContent[3];
 
                 double frequence;
@@ -241,7 +242,7 @@ public class StoryLoader : MonoBehaviour {
      
 	public int FindIndexByName (string storyName,StoryType storyType)
 	{
-		int storyIndex = getStories (storyType).FindIndex (x => x.dataName == storyName);
+        int storyIndex = getStories(storyType).FindIndex(x => x.dataName == storyName);
 
 		return storyIndex;
 	}
