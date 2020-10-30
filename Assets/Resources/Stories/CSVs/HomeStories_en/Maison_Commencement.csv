@@ -7,7 +7,7 @@ SetChoices2;;;SetChoices3;;;;;;;;;
 Choice : (set sail);Choice : (enter the house);;Choice : (go back to the living room) (leave);Choice : (sleep until NEXTTIME) (sleep);Choice : (desk) (quest);;;;;;;
 PlayerSpeak : Huzzah, let’s go!;Fade;;Fade;ChangeTimeOfDay;Narrator : The most worn down book talks about the waters surrounding this island :;;;;;;;
 Switch=>premiere visite;Node=>salon;;Node=>salon;Node=>salon;Narrator : It says that the seas here are calm and not very dangerous to navigate.;;;;;;;
-Leave;;;;;Narrator : There are legends of a small local treasure called NOMTRESOR, which is supposedly DIRECTIONTOFORMULA from here.;;;;;;;
+Leave;;;;;Narrator : There are legends of a small local treasure called NOMTRESOR. Few have taken interest in it, but it may be a good start to gain unnegligible wealth and renown.;;;;;;;
 ;;;;;Narrator : It's a perfect first quest for an inexperienced but eager adventurer like CAPITAINE!;;;;;;;
 ;;;;;Node=>choix chambre;;;;;;;
 ;;;;;;;;;;;;
@@ -40,7 +40,7 @@ Node=>salon;Node=>cuisine;;Choice : (go back to the living room)(leave);Choice�
 ;;;Choice : Nevermind! (leave);Choice : Ye know where NOMTRESOR is?;;Choice : Do ye have any advice?;;;;;;
 ;;;HideOther;RandomRange2;;GiveTip;;;;;;
 ;;;Fade;OtherSpeak : These stories you were obsessed with when you were young?;OtherSpeak : I was hoping by now you would have stopped all this nonsense, my child.;Node=>choix-mère;;;;;;
-;;;Node=>salon;OtherSpeak : They all take place DIRECTIONTOFORMULA, don't they?;Node=>choix-mère;;;;;;;
+;;;Node=>salon;TellClue;Node=>choix-mère;;;;;;;
 ;;;;Node=>choix-mère;;;;;;;;
 ;;;;;;;;;;;;
 ;;;;;;;;;;;;

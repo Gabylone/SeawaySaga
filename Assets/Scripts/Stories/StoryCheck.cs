@@ -174,7 +174,7 @@ public class StoryCheck : MonoBehaviour {
 
             itemName = itemName.Remove(itemName.Length - 6);
 
-            item = System.Array.Find(ItemLoader.Instance.getItems(targetCat), x => x.names[0] == itemName);
+            item = ItemLoader.Instance.GetItem(targetCat,itemName);
 
             if (item == null)
             {
@@ -208,7 +208,7 @@ public class StoryCheck : MonoBehaviour {
 		string[] nodes = cellContent.Remove (0, cellContent.IndexOf ('[') + 1).TrimEnd (']').Split ('/');
 
 		if ( LinkedToNode (nodes[1]) == false ) {
-			DisplayError ("the fallback node text : " + nodes[1] + " has no link",cellContent);
+			DisplayError ("CHANGE STORY : The RETURN NODE : " + nodes[1] + " has no link in origin story",cellContent);
 		}
 
 		Story secondStory = StoryLoader.Instance.FindByName (storyName,StoryType.Normal);
@@ -218,7 +218,7 @@ public class StoryCheck : MonoBehaviour {
 		}
 
 		if ( LinkedToNode (nodes[0],secondStory) == false ) {
-			DisplayError ("the target node has no link",cellContent);
+			DisplayError ("CHANGE STORY : the TARGET NODE " + nodes[0] + " has no link to the target story",cellContent);
 		}
 	}
 
@@ -232,6 +232,13 @@ public class StoryCheck : MonoBehaviour {
 		Debug.LogError ("CELL CONTENT : " + content);
 		Debug.LogError ("ROW : " + alphabet [decal] + " / COLL " + index);
 	}
+
+    public static string GetCellName(int decal, int col)
+    {
+        string alphabet = "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz";
+
+        return ""+  alphabet[decal] + col;
+    }
 
 	private bool LinkedToNode ( string nodeName ) {
 		return LinkedToNode (nodeName, storyToCheck);

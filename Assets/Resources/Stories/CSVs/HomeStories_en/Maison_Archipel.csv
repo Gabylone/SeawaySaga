@@ -7,8 +7,8 @@ SetChoices3;;;SetChoices3;;
 Choice : (set sail);Choice : (enter the house);;Choice : (go back to the living room) (leave);Choice : (sleep until NEXTTIME) (sleep);Choice : (desk) (quest)
 PlayerSpeak : Let’s go!;Fade;;Fade;ChangeTimeOfDay;Narrator : The most worn down book talks about the waters surrounding this island :
 Switch=>premiere visite;Node=>salon;;Node=>salon;Node=>salon;Narrator : It says that the seas are vast and hostile. It usually takes days and nights to go from one island to another.
-Leave;;;;;Narrator : The treasure of NOMTRESOR, of which we hear about DIRECTIONTOFORMULA of here, is greatly popular.
-;;;;;Narrator : There are also rumors of a peaceful village, south east from here.
+Leave;;;;;Narrator : The tale of NOMTRESOR, a myth of a forgotten treasure, is greatly popular in those seas.
+;;;;;Narrator : It is also known that in all the corners of the ocean, big villages and towns help adventurers gain enough equipment and gold to travel the deadly, vast distances.
 ;;;;;Node=>choix chambre
 ;;;;;
 ;;;;;

@@ -39,13 +39,13 @@ public class KarmaFeedback : InfoFeedbacks {
                 KarmaFeedback.Instance.Print("Paragon Captain", bestColor);
                 break;
             case Karma.KarmaStep.Good:
-                KarmaFeedback.Instance.Print("Righteous Sailor" + Karma.Instance.CurrentKarma + " / " + Karma.Instance.maxKarma, goodColor);
+                KarmaFeedback.Instance.Print("Righteous Sailor " + Karma.Instance.CurrentKarma + " / " + Karma.Instance.maxKarma, goodColor);
                 break;
             case Karma.KarmaStep.Neutral:
                 KarmaFeedback.Instance.Print("Impartial Seaman", neutralColor );
                 break;
             case Karma.KarmaStep.Bad:
-                KarmaFeedback.Instance.Print("Sly Marauder" + -Karma.Instance.CurrentKarma + " / " + Karma.Instance.maxKarma, badColor);
+                KarmaFeedback.Instance.Print("Sly Marauder " + -Karma.Instance.CurrentKarma + " / " + Karma.Instance.maxKarma, badColor);
                 break;
             case Karma.KarmaStep.Worst:
                 KarmaFeedback.Instance.Print("Wanted Pirate", worstColor);

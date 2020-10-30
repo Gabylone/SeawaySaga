@@ -11,29 +11,30 @@ public class DisplayLevelUp : MonoBehaviour {
 	[SerializeField]
 	private Text statText;
 
-	int memberID = 0;
+    MemberIcon memberIcon;
 
 	// Use this for initialization
 	void Start () {
 
-		Hide ();
+        memberIcon = GetComponentInParent<MemberIcon>();
 
-		memberID = GetComponentInParent<MemberIcon> ().member.MemberID.id;
+        Invoke("StartDelay", 0.001f);
 
-		InitEvents ();
+        InitEvents();
 
 	}
 
-	void HandleOnShowCharacterStats ()
-	{
-		if (CrewMember.GetSelectedMember.SkillPoints > 0
-		    &&
-		    GetComponentInParent<MemberIcon> ().member.MemberID.id == CrewMember.GetSelectedMember.MemberID.id) {
-
-			Show ();
-
-		}
-	}
+    void StartDelay()
+    {
+        if (memberIcon.member.SkillPoints > 0)
+        {
+            Show();
+        }
+        else
+        {
+            Hide();
+        }
+    }
 
 	void HandleOnUnlockSkill ()
 	{
@@ -45,7 +46,6 @@ public class DisplayLevelUp : MonoBehaviour {
 	void HandleOnLevelUp (CrewMember member)
 	{
 		Show ();
-
 	}
 
 	void HandleOnLevelUpStat (CrewMember member)
@@ -77,8 +77,6 @@ public class DisplayLevelUp : MonoBehaviour {
 		GetComponentInParent<MemberIcon> ().member.onLevelUp 		+= HandleOnLevelUp;
 		GetComponentInParent<MemberIcon> ().member.onLevelUpStat 	+= HandleOnLevelUpStat;
 		SkillButton_Inventory.onUnlockSkill 						+= HandleOnUnlockSkill;
-		SkillMenu.Instance.onShowSkillMenu 							+= HandleOnShowCharacterStats;
-		SkillMenu.Instance.onHideSkillMenu							+= Hide;
 	}
 
 	void OnDestroy ()

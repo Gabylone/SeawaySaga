@@ -1,5 +1,5 @@
 Nom;Fréquence %;Sprite ID;Display Name;;;
-Taverne;8,47;0;Tavern;;;
+Île Déserte;16,95;0;Desert Island;;;
 [debut];;;;;;
 SetBG(Island);;;;;;
 RandomPercent65;;;;;;
@@ -50,7 +50,7 @@ PlayerSpeak : Wow!;;;;Node=>rocher;PlayerSpeak : Ouch!;PlayerSpeak : Ouch!
 PlayerSpeak : The view is incredibly beautiful from up here.;;;;;RemoveHealth10;Fade
 [choix rocher];;;;;Fade;Node=>choix plage rocher
 SetChoices3;;;;;Switch=>mal;
-Choice : Let’s go back down.;Choice : (look towards horizon);Choice : (observe with spyglass);;;Node=>choix plage rocher;
+Choice : Let’s go back down.;Choice : (look towards horizon);Choice : (observe with spyglass) (loot);;;Node=>choix plage rocher;
 Fade;PlayerSpeak : We can’t see much...;CheckInInventory<Longue vue>/Misc;;;;
 Node=>debut;Node=>choix rocher;Fade;PlayerSpeak : I don’t have any spyglass...;;;
 ;;ObserveHorizon;Node=>choix rocher;;;

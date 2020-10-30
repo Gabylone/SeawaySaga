@@ -1,15 +1,25 @@
 <?xml version="1.0"?>
 <Chunk xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <state>VisitedIsland</state>
+  <state>UndiscoveredIsland</state>
+  <coords>
+    <x>0</x>
+    <y>1</y>
+  </coords>
   <islandDatas>
     <IslandData>
       <worldPosition>
-        <x>18.49179</x>
-        <y>1.24357986</y>
+        <x>7.866416</x>
+        <y>-12.0603371</y>
       </worldPosition>
-      <worldRotation>65.30278</worldRotation>
+      <worldRotation>64.50524</worldRotation>
+      <index>0</index>
+      <coords>
+        <x>0</x>
+        <y>1</y>
+      </coords>
+      <containsFormula>false</containsFormula>
       <storyManager>
-        <hasBeenPlayed>true</hasBeenPlayed>
+        <hasBeenPlayed>false</hasBeenPlayed>
         <storyHandlers>
           <StoryHandler>
             <row>0</row>
@@ -18,159 +28,8 @@
             <storyID>2</storyID>
             <storyType>Normal</storyType>
             <contentDecals />
-            <loots>
-              <Loot>
-                <row>2</row>
-                <col>18</col>
-                <ids>
-                  <ArrayOfInt />
-                  <ArrayOfInt>
-                    <int>53</int>
-                    <int>43</int>
-                    <int>52</int>
-                  </ArrayOfInt>
-                  <ArrayOfInt>
-                    <int>155</int>
-                    <int>157</int>
-                    <int>151</int>
-                  </ArrayOfInt>
-                  <ArrayOfInt>
-                    <int>213</int>
-                    <int>231</int>
-                  </ArrayOfInt>
-                </ids>
-                <weight>67</weight>
-                <AllItems>
-                  <ArrayOfItem />
-                  <ArrayOfItem>
-                    <Item>
-                      <ID>53</ID>
-                      <names>
-                        <string>Epée rouillée</string>
-                        <string>Rusty sword</string>
-                      </names>
-                      <value>22</value>
-                      <price>42</price>
-                      <weight>10</weight>
-                      <level>2</level>
-                      <spriteID>2</spriteID>
-                      <weaponType>Stick</weaponType>
-                      <category>Weapon</category>
-                    </Item>
-                    <Item>
-                      <ID>43</ID>
-                      <names>
-                        <string>Bâton solide</string>
-                        <string>Solid stick</string>
-                      </names>
-                      <value>12</value>
-                      <price>19</price>
-                      <weight>10</weight>
-                      <level>1</level>
-                      <spriteID>1</spriteID>
-                      <weaponType>Stick</weaponType>
-                      <category>Weapon</category>
-                    </Item>
-                    <Item>
-                      <ID>52</ID>
-                      <names>
-                        <string>Pistolet négligé</string>
-                        <string>Sloppy gun</string>
-                      </names>
-                      <value>8</value>
-                      <price>20</price>
-                      <weight>10</weight>
-                      <level>1</level>
-                      <spriteID>6</spriteID>
-                      <weaponType>Distance</weaponType>
-                      <category>Weapon</category>
-                    </Item>
-                  </ArrayOfItem>
-                  <ArrayOfItem>
-                    <Item>
-                      <ID>155</ID>
-                      <names>
-                        <string>Fourrure</string>
-                        <string>Fur</string>
-                      </names>
-                      <value>12</value>
-                      <price>27</price>
-                      <weight>10</weight>
-                      <level>1</level>
-                      <spriteID>1</spriteID>
-                      <weaponType>Distance</weaponType>
-                      <category>Clothes</category>
-                    </Item>
-                    <Item>
-                      <ID>157</ID>
-                      <names>
-                        <string>Chemise de maille</string>
-                        <string>Thick shirt</string>
-                      </names>
-                      <value>23</value>
-                      <price>39</price>
-                      <weight>10</weight>
-                      <level>2</level>
-                      <spriteID>1</spriteID>
-                      <weaponType>Distance</weaponType>
-                      <category>Clothes</category>
-                    </Item>
-                    <Item>
-                      <ID>151</ID>
-                      <names>
-                        <string>Marcel</string>
-                        <string>Simple docker</string>
-                      </names>
-                      <value>14</value>
-                      <price>28</price>
-                      <weight>10</weight>
-                      <level>1</level>
-                      <spriteID>0</spriteID>
-                      <weaponType>Distance</weaponType>
-                      <category>Clothes</category>
-                    </Item>
-                  </ArrayOfItem>
-                  <ArrayOfItem>
-                    <Item>
-                      <ID>213</ID>
-                      <names>
-                        <string>Poupée vaudou</string>
-                        <string>Voodoo Doll</string>
-                      </names>
-                      <value>0</value>
-                      <price>3</price>
-                      <weight>2</weight>
-                      <level>0</level>
-                      <spriteID>6</spriteID>
-                      <weaponType>Distance</weaponType>
-                      <category>Misc</category>
-                    </Item>
-                    <Item>
-                      <ID>231</ID>
-                      <names>
-                        <string>Accordéon</string>
-                        <string>Accordion</string>
-                      </names>
-                      <value>0</value>
-                      <price>10</price>
-                      <weight>5</weight>
-                      <level>0</level>
-                      <spriteID>1</spriteID>
-                      <weaponType>Distance</weaponType>
-                      <category>Misc</category>
-                    </Item>
-                  </ArrayOfItem>
-                </AllItems>
-              </Loot>
-            </loots>
-            <crews>
-              <Crew>
-                <hostile>true</hostile>
-                <row>0</row>
-                <col>5</col>
-                <MemberIDs />
-              </Crew>
-            </crews>
+            <loots />
+            <crews />
           </StoryHandler>
         </storyHandlers>
       </storyManager>

@@ -19,8 +19,6 @@ public class MinimapCenterFeedback : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        
-
         rectTransform = GetComponent<RectTransform>();
 
 		Hide ();
@@ -31,9 +29,9 @@ public class MinimapCenterFeedback : MonoBehaviour {
 		
 	}
 
-	public void CenterOnMap (Coords coords)
+	public void CenterOnMap (Vector2 pos)
 	{
-		rectTransform.anchoredPosition = DisplayMinimap.Instance.getPosFromCoords (coords);
+		rectTransform.anchoredPosition = pos;
 
 		Tween.Bounce ( transform );
 
@@ -46,7 +44,7 @@ public class MinimapCenterFeedback : MonoBehaviour {
 	void Show () {
 		group.SetActive (true);
 	}
-
+     
 	void Hide () {
 		group.SetActive (false);
 	}

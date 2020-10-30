@@ -57,6 +57,9 @@ public class InGameBackGround : MonoBehaviour {
 
             backgroundName = backgroundName.Remove(backgroundName.Length - 1);
 
+            Crews.playerCrew.UpdateCrew(Crews.PlacingType.Hidden);
+            Crews.enemyCrew.UpdateCrew(Crews.PlacingType.Hidden);
+
             Type backgroundType = Type.Island;
 
             bool paramIsValid = Enum.TryParse(backgroundName, out backgroundType);
@@ -72,7 +75,6 @@ public class InGameBackGround : MonoBehaviour {
 
                 Transitions.Instance.FadeScreen();
 
-                StoryReader.Instance.NextCell();
                 StoryReader.Instance.Wait(Transitions.Instance.defaultTransition + 0.5f);
 
                 Invoke("SetSpriteDelay", Transitions.Instance.defaultTransition);
@@ -110,6 +112,39 @@ public class InGameBackGround : MonoBehaviour {
         currentType = type;
 
         image.sprite = sprites[(int)type];
+
+        switch (type)
+        {
+            case Type.Island:
+            case Type.Forest:
+            case Type.Village:
+            case Type.Boat:
+                if (TimeManager.Instance.raining)
+                {
+                    TimeManager.Instance.ShowRain();
+                }
+
+                if (TimeManager.Instance.dayState == TimeManager.DayState.Night)
+                {
+                    TimeManager.Instance.ShowNight();
+                }
+                break;
+            case Type.House:
+            case Type.Tavern:
+            case Type.Cave:
+                if (TimeManager.Instance.raining)
+                {
+                    TimeManager.Instance.HideRain();
+                }
+
+                if (TimeManager.Instance.dayState == TimeManager.DayState.Night)
+                {
+                    TimeManager.Instance.HideNight();
+                }
+                break;
+            default:
+                break;
+        }
 
         SoundManager.Instance.UpdateAmbianceSound();
     }

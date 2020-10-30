@@ -54,13 +54,16 @@ public class Displayable : MonoBehaviour
         group.SetActive(false);
     }
 
-    public RectTransform GetRectTransform()
+    public RectTransform GetRectTransform
     {
-        if ( rectTransform == null)
+        get
         {
-            rectTransform = GetComponent<RectTransform>();
-        }
+            if (rectTransform == null)
+            {
+                rectTransform = GetComponent<RectTransform>();
+            }
 
-        return rectTransform;
+            return rectTransform;
+        }
     }
 }

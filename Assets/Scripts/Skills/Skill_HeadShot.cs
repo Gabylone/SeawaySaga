@@ -32,8 +32,8 @@ public class Skill_HeadShot : Skill {
 
 			fighter.Speak (str);
 
+            // delayed stuff
             fighter.AddStatus(Fighter.Status.PreparingAttack);
-
             fighter.onSkillDelay += HandleOnSkillDelay;
 
             EndSkill();
@@ -95,7 +95,8 @@ public class Skill_HeadShot : Skill {
 		Trigger (delayFighter);
 	}
 
-	public override bool MeetsRestrictions (CrewMember member)
+
+    public override bool MeetsRestrictions (CrewMember member)
 	{
 		if (member.GetEquipment (CrewMember.EquipmentPart.Weapon) == null)
 			return false;
@@ -109,4 +110,5 @@ public class Skill_HeadShot : Skill {
 
 		return meetsChances && base.MeetsConditions (member);
 	}
+
 }

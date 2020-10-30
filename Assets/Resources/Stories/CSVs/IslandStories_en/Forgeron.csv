@@ -1,5 +1,5 @@
 Nom;Fréquence %;Sprite ID;Display Name;;;;
-Hangar;5,08;1;Carpenter;;;;
+Forgeron;3,39;1;Smith;;;;
 [debut];;;;;;;
 Narrator : The crew lowers a plank to disembark directly on a grass field. Behind a few rolling hills, a small cottage can be seen in the distance. It's quite noticeable thanks to the thick column of smoke rising from it's chimney.;;;;;;;
 CheckQuest=>choix debut;;;;;;;
@@ -38,10 +38,10 @@ Node=>partir;RandomPercent8;OtherSpeak : With great pleasure! Here's what I hav
 OtherSpeak : Hey, it's you again!;Node=>discussion forgeron;;;;;;
 OtherSpeak : Did you find something for my wife?;;;;;;;
 CheckInInventory<Boucles d'oreille>/Misc;;;;;;;
-SetChoices2;;SetChoices2;;;;;
-Choice : Yes, here are some pretty earrings. (loot);Choice : Sorry, I haven't found anything.;Choice : Yeah, here you are! (loot);Choice : Sorry, I haven't found anything.;;;;
-RemoveFromInventory<Boucles d'oreille>/Misc;OtherSpeak : Erh... She’s gonna be sour for days...;OtherSpeak : Wait… You don’t have anything. You think that's funny?;OtherSpeak : Erh... She’s gonna be sour for days...;;;;
-OtherSpeak : Those are perfect!;Node=>discussion forgeron;Node=>discussion forgeron;Node=>discussion forgeron;;;;
+SetChoices2;;SetChoices1;;;;;
+Choice : Yes, here are some pretty earrings. (loot);Choice : Sorry, I haven't found anything.;Choice : Sorry, I haven't found anything.;;;;;
+RemoveFromInventory<Boucles d'oreille>/Misc;OtherSpeak : Erh... She’s gonna be sour for days...;OtherSpeak : Erh... She’s gonna be sour for days...;;;;;
+OtherSpeak : Those are perfect!;Node=>discussion forgeron;Node=>discussion forgeron;;;;;
 OtherSpeak : She's going to be so thrilled!;;;;;;;
 Switch=>bijoux;;;;;;;
 OtherSpeak : As we agreed, have a look at what I have in store.;;;;;;;
@@ -100,5 +100,8 @@ Narrator : The corpse of the blacksmith's wife lies in the middle of the homely
 SetChoices3;;;;;;;
 Choice : (leave);Choice : (search kitchen) (loot);;Choice : (search office) (loot);;;;
 Fade;RandomRange2;PlayerSpeak : Yummy!;RandomRange2;;;;
-Node=>forgeron mort;PlayerSpeak : Looks like they ate everything.;LootFood;PlayerSpeak : Just a few letters and scribblings... some sketches, too...;PlayerSpeak : There’s an old map, leading towards DIRECTIONTOFORMULA.;;;
-;Node=>fouiller;Node=>fouiller;Node=>fouiller;Node=>fouiller;;;
+Node=>forgeron mort;PlayerSpeak : Looks like they ate everything.;LootFood;PlayerSpeak : Just a few letters and scribblings... some sketches, too...;PlayerSpeak : There’s an old map, scribbled with notes.;;;
+;Node=>fouiller;Node=>fouiller;Node=>fouiller;PlayerSpeak : Somelook like piece of dialogues, recollections of interviews.;;;
+;;;;PlayerSpeak : The only intelligible words make out the following :;;;
+;;;;TellClueNarrator;;;
+;;;;Node=>fouiller;;;

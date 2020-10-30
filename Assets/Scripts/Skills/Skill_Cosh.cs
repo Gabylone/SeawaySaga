@@ -27,13 +27,7 @@ public class Skill_Cosh : Skill {
 	{
 		base.HandleOnApplyEffect ();
 
-		fighter.TargetFighter.AddStatus (Fighter.Status.KnockedOut);
-        //
-        SoundManager.Instance.PlayRandomSound("Blunt");
-        SoundManager.Instance.PlayRandomSound("Punch");
-        SoundManager.Instance.PlayRandomSound("slash");
-
-        SoundManager.Instance.PlaySound("knockout");
+        fighter.TargetFighter.KnockOut();
 
 
         fighter.TargetFighter.GetHit (fighter, fighter.crewMember.Attack, 1f);

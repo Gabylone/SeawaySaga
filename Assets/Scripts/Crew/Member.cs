@@ -97,7 +97,7 @@ public class Member {
 
 			Lvl = Random.Range (Crews.playerCrew.captain.Level - 3, Crews.playerCrew.captain.Level + 3);
 			if ( StoryReader.Instance.CurrentStoryHandler.storyType == StoryType.Quest ) {
-				Lvl = QuestManager.Instance.Coords_CheckForTargetQuest.level;
+				Lvl = Quest.currentQuest.level;
 			}
 		}
 

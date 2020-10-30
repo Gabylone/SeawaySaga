@@ -33,7 +33,7 @@ public class DisplayInfo_Tuto : DisplayInfo {
 
     void HandleOnHideTutorial ()
 	{
-		Fade ();
+        Hide();
 	}
 
 	void HandleOnWaitForConfirm ()

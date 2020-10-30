@@ -7,15 +7,9 @@ public class Item {
 
 	public int ID = 0;
 
-    public string name
-    {
-        get
-        {
-            return names[(int)GameManager.language];
-        }
-    }
+    public string englishName;
+    public string frenchName;
 
-    public string[] names;
 	public int 		value 		= 0;
 	public int 		price 		= 0;
 	public int 		weight 		= 0;

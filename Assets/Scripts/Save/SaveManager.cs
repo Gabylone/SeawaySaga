@@ -359,6 +359,7 @@ public class GameData
 	public int 					bounty = 0;
 
     public List<Formula>        formulas = new List<Formula>();
+    public List<int> clueIndexesFound = new List<int>();
 
     public PlayerBoatInfo       playerBoatInfo;
 	public Coords treasureCoords;

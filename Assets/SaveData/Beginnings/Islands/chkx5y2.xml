@@ -1,15 +1,25 @@
 <?xml version="1.0"?>
 <Chunk xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <state>VisitedIsland</state>
+  <state>UndiscoveredIsland</state>
+  <coords>
+    <x>5</x>
+    <y>2</y>
+  </coords>
   <islandDatas>
     <IslandData>
       <worldPosition>
-        <x>-16.42501</x>
-        <y>-16.49289</y>
+        <x>7.60948133</x>
+        <y>8.707413</y>
       </worldPosition>
-      <worldRotation>356.735077</worldRotation>
+      <worldRotation>102.616745</worldRotation>
+      <index>0</index>
+      <coords>
+        <x>5</x>
+        <y>2</y>
+      </coords>
+      <containsFormula>false</containsFormula>
       <storyManager>
-        <hasBeenPlayed>true</hasBeenPlayed>
+        <hasBeenPlayed>false</hasBeenPlayed>
         <storyHandlers>
           <StoryHandler>
             <row>0</row>
@@ -17,23 +27,7 @@
             <fallBackLayer>0</fallBackLayer>
             <storyID>14</storyID>
             <storyType>Normal</storyType>
-            <contentDecals>
-              <contentDecal>
-                <row>0</row>
-                <col>2</col>
-                <decal>1</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>1</row>
-                <col>3</col>
-                <decal>1</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>2</row>
-                <col>39</col>
-                <decal>0</decal>
-              </contentDecal>
-            </contentDecals>
+            <contentDecals />
             <loots />
             <crews />
           </StoryHandler>
@@ -42,12 +36,18 @@
     </IslandData>
     <IslandData>
       <worldPosition>
-        <x>-17.7386513</x>
-        <y>14.6841049</y>
+        <x>0.747005463</x>
+        <y>15.26392</y>
       </worldPosition>
-      <worldRotation>230.335358</worldRotation>
+      <worldRotation>194.916489</worldRotation>
+      <index>1</index>
+      <coords>
+        <x>5</x>
+        <y>2</y>
+      </coords>
+      <containsFormula>false</containsFormula>
       <storyManager>
-        <hasBeenPlayed>true</hasBeenPlayed>
+        <hasBeenPlayed>false</hasBeenPlayed>
         <storyHandlers>
           <StoryHandler>
             <row>0</row>
@@ -55,417 +55,9 @@
             <fallBackLayer>0</fallBackLayer>
             <storyID>3</storyID>
             <storyType>Normal</storyType>
-            <contentDecals>
-              <contentDecal>
-                <row>0</row>
-                <col>12</col>
-                <decal>1</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>0</row>
-                <col>41</col>
-                <decal>0</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>0</row>
-                <col>59</col>
-                <decal>7</decal>
-              </contentDecal>
-            </contentDecals>
+            <contentDecals />
             <loots />
             <crews />
-          </StoryHandler>
-          <StoryHandler>
-            <row>7</row>
-            <col>61</col>
-            <fallBackLayer>0</fallBackLayer>
-            <fallbackNode>
-              <name>milieu foret</name>
-              <row>0</row>
-              <col>5</col>
-            </fallbackNode>
-            <storyID>0</storyID>
-            <storyType>Normal</storyType>
-            <contentDecals>
-              <contentDecal>
-                <row>7</row>
-                <col>18</col>
-                <decal>0</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>2</row>
-                <col>18</col>
-                <decal>1</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>9</row>
-                <col>18</col>
-                <decal>0</decal>
-              </contentDecal>
-            </contentDecals>
-            <loots>
-              <Loot>
-                <row>1</row>
-                <col>18</col>
-                <ids>
-                  <ArrayOfInt />
-                  <ArrayOfInt>
-                    <int>104</int>
-                    <int>84</int>
-                    <int>90</int>
-                    <int>75</int>
-                    <int>69</int>
-                    <int>102</int>
-                    <int>85</int>
-                    <int>82</int>
-                    <int>79</int>
-                    <int>83</int>
-                    <int>93</int>
-                  </ArrayOfInt>
-                  <ArrayOfInt>
-                    <int>176</int>
-                    <int>168</int>
-                  </ArrayOfInt>
-                  <ArrayOfInt />
-                </ids>
-                <weight>130</weight>
-                <AllItems>
-                  <ArrayOfItem />
-                  <ArrayOfItem>
-                    <Item>
-                      <ID>104</ID>
-                      <names>
-                        <string>Glaive en or</string>
-                        <string>Curved blade</string>
-                      </names>
-                      <value>58</value>
-                      <price>93</price>
-                      <weight>10</weight>
-                      <level>6</level>
-                      <spriteID>3</spriteID>
-                      <weaponType>Stick</weaponType>
-                      <category>Weapon</category>
-                    </Item>
-                    <Item>
-                      <ID>84</ID>
-                      <names>
-                        <string>Poivrière de vagabond</string>
-                        <string>Travelling canon</string>
-                      </names>
-                      <value>37</value>
-                      <price>62</price>
-                      <weight>10</weight>
-                      <level>4</level>
-                      <spriteID>7</spriteID>
-                      <weaponType>Distance</weaponType>
-                      <category>Weapon</category>
-                    </Item>
-                    <Item>
-                      <ID>90</ID>
-                      <names>
-                        <string>Marteau de guerre</string>
-                        <string>Iron mace</string>
-                      </names>
-                      <value>48</value>
-                      <price>81</price>
-                      <weight>10</weight>
-                      <level>5</level>
-                      <spriteID>5</spriteID>
-                      <weaponType>Stick</weaponType>
-                      <category>Weapon</category>
-                    </Item>
-                    <Item>
-                      <ID>75</ID>
-                      <names>
-                        <string>Pistolet à silex</string>
-                        <string>Flint bazook</string>
-                      </names>
-                      <value>31</value>
-                      <price>52</price>
-                      <weight>10</weight>
-                      <level>3</level>
-                      <spriteID>7</spriteID>
-                      <weaponType>Distance</weaponType>
-                      <category>Weapon</category>
-                    </Item>
-                    <Item>
-                      <ID>83</ID>
-                      <names>
-                        <string>Pistolet de voyage</string>
-                        <string>Travelling pistol</string>
-                      </names>
-                      <value>44</value>
-                      <price>67</price>
-                      <weight>10</weight>
-                      <level>4</level>
-                      <spriteID>6</spriteID>
-                      <weaponType>Distance</weaponType>
-                      <category>Weapon</category>
-                    </Item>
-                    <Item>
-                      <ID>69</ID>
-                      <names>
-                        <string>Lance courte</string>
-                        <string>Good Club</string>
-                      </names>
-                      <value>31</value>
-                      <price>48</price>
-                      <weight>10</weight>
-                      <level>3</level>
-                      <spriteID>4</spriteID>
-                      <weaponType>Stick</weaponType>
-                      <category>Weapon</category>
-                    </Item>
-                    <Item>
-                      <ID>102</ID>
-                      <names>
-                        <string>Epée batarde</string>
-                        <string>Iron Bludgeon</string>
-                      </names>
-                      <value>63</value>
-                      <price>98</price>
-                      <weight>10</weight>
-                      <level>6</level>
-                      <spriteID>4</spriteID>
-                      <weaponType>Stick</weaponType>
-                      <category>Weapon</category>
-                    </Item>
-                    <Item>
-                      <ID>85</ID>
-                      <names>
-                        <string>Pistolet de bord</string>
-                        <string>Deck canon</string>
-                      </names>
-                      <value>37</value>
-                      <price>60</price>
-                      <weight>10</weight>
-                      <level>4</level>
-                      <spriteID>6</spriteID>
-                      <weaponType>Distance</weaponType>
-                      <category>Weapon</category>
-                    </Item>
-                    <Item>
-                      <ID>82</ID>
-                      <names>
-                        <string>Grande serpe</string>
-                        <string>Fine Lame</string>
-                      </names>
-                      <value>44</value>
-                      <price>71</price>
-                      <weight>10</weight>
-                      <level>4</level>
-                      <spriteID>3</spriteID>
-                      <weaponType>Stick</weaponType>
-                      <category>Weapon</category>
-                    </Item>
-                    <Item>
-                      <ID>79</ID>
-                      <names>
-                        <string>Epée batarde</string>
-                        <string>Spiked Staff</string>
-                      </names>
-                      <value>44</value>
-                      <price>74</price>
-                      <weight>10</weight>
-                      <level>4</level>
-                      <spriteID>4</spriteID>
-                      <weaponType>Stick</weaponType>
-                      <category>Weapon</category>
-                    </Item>
-                    <Item>
-                      <ID>93</ID>
-                      <names>
-                        <string>Coutelas</string>
-                        <string>Cutlass</string>
-                      </names>
-                      <value>54</value>
-                      <price>89</price>
-                      <weight>10</weight>
-                      <level>5</level>
-                      <spriteID>3</spriteID>
-                      <weaponType>Stick</weaponType>
-                      <category>Weapon</category>
-                    </Item>
-                  </ArrayOfItem>
-                  <ArrayOfItem>
-                    <Item>
-                      <ID>176</ID>
-                      <names>
-                        <string>Habit de bandit</string>
-                        <string>Bandit clothes</string>
-                      </names>
-                      <value>50</value>
-                      <price>75</price>
-                      <weight>10</weight>
-                      <level>5</level>
-                      <spriteID>0</spriteID>
-                      <weaponType>Distance</weaponType>
-                      <category>Clothes</category>
-                    </Item>
-                    <Item>
-                      <ID>168</ID>
-                      <names>
-                        <string>Chemise de mailles</string>
-                        <string>Chain mail</string>
-                      </names>
-                      <value>41</value>
-                      <price>70</price>
-                      <weight>10</weight>
-                      <level>4</level>
-                      <spriteID>1</spriteID>
-                      <weaponType>Distance</weaponType>
-                      <category>Clothes</category>
-                    </Item>
-                  </ArrayOfItem>
-                  <ArrayOfItem />
-                </AllItems>
-              </Loot>
-            </loots>
-            <crews>
-              <Crew>
-                <hostile>true</hostile>
-                <row>0</row>
-                <col>14</col>
-                <MemberIDs>
-                  <Member>
-                    <id>17</id>
-                    <Name>Jacquelines</Name>
-                    <health>46</health>
-                    <maxHealth>100</maxHealth>
-                    <currentHunger>0</currentHunger>
-                    <Lvl>3</Lvl>
-                    <xp>0</xp>
-                    <skillPoints>0</skillPoints>
-                    <specialSkillsIndexes>
-                      <int>4</int>
-                      <int>5</int>
-                    </specialSkillsIndexes>
-                    <stats>
-                      <int>2</int>
-                      <int>1</int>
-                      <int>1</int>
-                      <int>2</int>
-                    </stats>
-                    <daysOnBoard>0</daysOnBoard>
-                    <equipedWeapon>
-                      <ID>63</ID>
-                      <names>
-                        <string>Grande épée en acier</string>
-                        <string>Big steel sword</string>
-                      </names>
-                      <value>33</value>
-                      <price>51</price>
-                      <weight>10</weight>
-                      <level>3</level>
-                      <spriteID>2</spriteID>
-                      <weaponType>Stick</weaponType>
-                      <category>Weapon</category>
-                    </equipedWeapon>
-                    <equipedCloth>
-                      <ID>166</ID>
-                      <names>
-                        <string>Plastron de fer</string>
-                        <string>Iron breastplate</string>
-                      </names>
-                      <value>33</value>
-                      <price>60</price>
-                      <weight>10</weight>
-                      <level>3</level>
-                      <spriteID>2</spriteID>
-                      <weaponType>Distance</weaponType>
-                      <category>Clothes</category>
-                    </equipedCloth>
-                    <job>Brute</job>
-                    <characterIDS>
-                      <int>6</int>
-                      <int>1</int>
-                      <int>4</int>
-                      <int>0</int>
-                      <int>1</int>
-                      <int>3</int>
-                      <int>3</int>
-                      <int>3</int>
-                      <int>1</int>
-                      <int>0</int>
-                      <int>3</int>
-                      <int>11</int>
-                      <int>4</int>
-                      <int>18</int>
-                      <int>5</int>
-                      <int>1</int>
-                    </characterIDS>
-                  </Member>
-                  <Member>
-                    <id>18</id>
-                    <Name>Eric</Name>
-                    <health>90</health>
-                    <maxHealth>100</maxHealth>
-                    <currentHunger>0</currentHunger>
-                    <Lvl>3</Lvl>
-                    <xp>0</xp>
-                    <skillPoints>0</skillPoints>
-                    <specialSkillsIndexes>
-                      <int>12</int>
-                      <int>13</int>
-                    </specialSkillsIndexes>
-                    <stats>
-                      <int>1</int>
-                      <int>2</int>
-                      <int>1</int>
-                      <int>2</int>
-                    </stats>
-                    <daysOnBoard>0</daysOnBoard>
-                    <equipedWeapon>
-                      <ID>66</ID>
-                      <names>
-                        <string>Massue de pierre</string>
-                        <string>Long iron sword</string>
-                      </names>
-                      <value>31</value>
-                      <price>50</price>
-                      <weight>10</weight>
-                      <level>3</level>
-                      <spriteID>3</spriteID>
-                      <weaponType>Stick</weaponType>
-                      <category>Weapon</category>
-                    </equipedWeapon>
-                    <equipedCloth>
-                      <ID>165</ID>
-                      <names>
-                        <string>Habit de bandit</string>
-                        <string>Bandit clothes</string>
-                      </names>
-                      <value>33</value>
-                      <price>51</price>
-                      <weight>10</weight>
-                      <level>3</level>
-                      <spriteID>0</spriteID>
-                      <weaponType>Distance</weaponType>
-                      <category>Clothes</category>
-                    </equipedCloth>
-                    <job>Cook</job>
-                    <characterIDS>
-                      <int>1</int>
-                      <int>8</int>
-                      <int>1</int>
-                      <int>7</int>
-                      <int>7</int>
-                      <int>0</int>
-                      <int>5</int>
-                      <int>4</int>
-                      <int>0</int>
-                      <int>0</int>
-                      <int>3</int>
-                      <int>6</int>
-                      <int>7</int>
-                      <int>7</int>
-                      <int>2</int>
-                      <int>1</int>
-                    </characterIDS>
-                  </Member>
-                </MemberIDs>
-              </Crew>
-            </crews>
           </StoryHandler>
         </storyHandlers>
       </storyManager>

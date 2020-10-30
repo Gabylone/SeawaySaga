@@ -82,10 +82,8 @@ public class ItemLoader : MonoBehaviour {
 
             newItem.ID = currentID;
 
-            newItem.names = new string[2];
-
-            newItem.names[0] = cells[0];
-            newItem.names[1] = cells[1];
+            newItem.frenchName = cells[0];
+            newItem.englishName = cells[1];
 
             newItem.description = cells[2];
 
@@ -166,6 +164,21 @@ public class ItemLoader : MonoBehaviour {
 	public Item[] getItems ( ItemCategory itemType ) {
 		return items[(int)itemType];
 	}
+
+    public Item GetItem(ItemCategory category, string itemName)
+    {
+        foreach (var item in items[(int)category])
+        {
+            if ( item.frenchName == itemName)
+            {
+                return item;
+            }
+        }
+
+        Debug.LogError("Could't find item named : " + itemName + " in category " +  category);
+
+        return items[(int)category][0];
+    }
 
 	public Item GetItem ( int itemID ) {
 

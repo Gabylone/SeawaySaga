@@ -25,6 +25,9 @@ public class DisplayTreasure : MonoBehaviour {
 
     public float halfWayDecal = 1f;
 
+    bool opened = false;
+    public bool canInteract = false;
+
     public Transform pearlDestination;
 
     public DisplayPearls displayPearls;
@@ -53,109 +56,66 @@ public class DisplayTreasure : MonoBehaviour {
         SoundManager.Instance.PlayRandomSound("Tribal");
         SoundManager.Instance.PlaySound("Big Tap");
         SoundManager.Instance.PlaySound("Mystick Tap");
+
+        Invoke("ShowTreasureDelay", 1f);
+    }
+
+    void ShowTreasureDelay()
+    {
+        canInteract = true;
+    }
+
+    public void OnPointerClick()
+    {
+        if (!canInteract)
+        {
+            return;
+        }
+
+        OpenChest();
+
+        if (opened)
+        {
+
+        }
+        else
+        {
+
+        }
     }
 
     public void OpenChest()
     {
-        /*if (KeepOnLoad.Instance != null && KeepOnLoad.Instance.mapName != "")
-        {
-            pearlAmount = KeepOnLoad.Instance.price;
-        }
-        else
-        {
-            pearlAmount = 100;
-        }
+        canInteract = false;
 
         animator.SetTrigger("open");
-
-        displayPearls.transform.SetParent(this.transform);
-
-        displayPearls.Show();
-
-        Invoke("ShowPearls", showPearlsDelay );*/
-
-        animator.SetTrigger("open");
-
-        CancelInvoke("CloseTreasure");
-        Invoke("CloseTreasure", 1f);
 
         SoundManager.Instance.PlayRandomSound("Magic Chimes");
         SoundManager.Instance.PlayRandomSound("Magic Chimes");
         SoundManager.Instance.PlaySound("Big Tap");
         SoundManager.Instance.PlaySound("Mystick Tap");
         SoundManager.Instance.PlaySound("Open Chest");
-    }
-
-    void CloseTreasure()
-    {
-        animator.SetTrigger("close");
 
         CancelInvoke("ShowMessage");
         Invoke("ShowMessage", 1f);
+    }
+
+    public void CloseTreasure()
+    {
+        animator.SetTrigger("close");
 
         SoundManager.Instance.PlaySound("Close Chest");
 
         animator.transform.DOMove( animator.transform.position - Vector3.up * 15f , 1f );
-    }
 
-    void ShowPearls()
-    {
-        StartCoroutine(ShowPearlsCoroutine());
-    }
-
-    IEnumerator ShowPearlsCoroutine()
-    {
-        int a = pearlAmount;
-        int r = 20;
-
-        while (a > 0)
-        {
-
-            for (int i = 0; i < r; i++)
-            {
-                GameObject pearl = Instantiate(pearlPrefab, pearlAppearAnchor) as GameObject;
-
-                Vector3 p = new Vector3(Random.Range(-rangeX, rangeX), 0f, Random.Range(-rangeY, rangeY));
-
-                pearl.GetComponent<RectTransform>().localPosition = p;
-
-                Vector3 halfway = ( p + (pearlDestination.position - p) / 2f ) + Random.insideUnitSphere * halfWayDecal;
-
-                pearl.transform.DOMove(halfway, pearlDuration);
-                pearl.transform.DOMove(pearlDestination.position, pearlDuration).SetDelay(pearlDuration);
-                yield return new WaitForEndOfFrame();
-
-                PlayerInfo.Instance.AddPearl(r);
-
-
-            }
-
-            yield return new WaitForSeconds(pearlDuration);
-
-
-            a -= r;
-        }
-
-        yield return new WaitForSeconds(showPearlsDelay);
-
-        animator.SetTrigger("close");
-
-        yield return new WaitForSeconds(showPearlsDelay);
-
-        displayPearls.Hide();
-
-        yield return new WaitForSeconds(pearlDuration);
-
-        // add next map / or / finish game
-        ShowMessage();
-
+        Invoke("EndGame", 1f);
     }
 
     void ShowMessage()
     {
-        MessageDisplay.Instance.onValidate += EndGame;
+        MessageDisplay.Instance.onValidate += CloseTreasure;
 
-        if (MapGenerator.mapParameters.id == 4)
+        if (MapGenerator.mapParameters.id == 3)
         {
             MessageDisplay.Instance.Show("Well done ! You finished the game");
         }
@@ -163,7 +123,7 @@ public class DisplayTreasure : MonoBehaviour {
         {
             if (CrewCreator.Instance.GetApparenceItem(ApparenceType.map, MapGenerator.mapParameters.id + 1).locked)
             {
-                CrewCreator.Instance.GetApparenceItem(ApparenceType.map, MapGenerator.mapParameters.id + 1).finished = true;
+                CrewCreator.Instance.GetApparenceItem(ApparenceType.map, MapGenerator.mapParameters.id).finished = true;
                 PlayerInfo.Instance.AddApparenceItem(CrewCreator.Instance.GetApparenceItem(ApparenceType.map, MapGenerator.mapParameters.id + 1));
                 MessageDisplay.Instance.Show("You unlocked the next story !");
             }

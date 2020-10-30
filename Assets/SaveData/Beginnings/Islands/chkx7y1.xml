@@ -1,15 +1,25 @@
 <?xml version="1.0"?>
 <Chunk xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <state>VisitedIsland</state>
+  <state>UndiscoveredIsland</state>
+  <coords>
+    <x>7</x>
+    <y>1</y>
+  </coords>
   <islandDatas>
     <IslandData>
       <worldPosition>
-        <x>-8.675964</x>
-        <y>19.1454735</y>
+        <x>-0.8380394</x>
+        <y>6.58124447</y>
       </worldPosition>
-      <worldRotation>321.972382</worldRotation>
+      <worldRotation>203.290558</worldRotation>
+      <index>0</index>
+      <coords>
+        <x>7</x>
+        <y>1</y>
+      </coords>
+      <containsFormula>false</containsFormula>
       <storyManager>
-        <hasBeenPlayed>true</hasBeenPlayed>
+        <hasBeenPlayed>false</hasBeenPlayed>
         <storyHandlers>
           <StoryHandler>
             <row>0</row>
@@ -17,233 +27,6 @@
             <fallBackLayer>0</fallBackLayer>
             <storyID>3</storyID>
             <storyType>Normal</storyType>
-            <contentDecals>
-              <contentDecal>
-                <row>0</row>
-                <col>12</col>
-                <decal>0</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>3</row>
-                <col>21</col>
-                <decal>0</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>0</row>
-                <col>41</col>
-                <decal>0</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>0</row>
-                <col>59</col>
-                <decal>3</decal>
-              </contentDecal>
-            </contentDecals>
-            <loots />
-            <crews />
-          </StoryHandler>
-          <StoryHandler>
-            <row>3</row>
-            <col>61</col>
-            <fallBackLayer>0</fallBackLayer>
-            <fallbackNode>
-              <name>milieu foret</name>
-              <row>0</row>
-              <col>5</col>
-            </fallbackNode>
-            <storyID>13</storyID>
-            <storyType>Normal</storyType>
-            <contentDecals>
-              <contentDecal>
-                <row>13</row>
-                <col>14</col>
-                <decal>0</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>9</row>
-                <col>14</col>
-                <decal>0</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>11</row>
-                <col>14</col>
-                <decal>1</decal>
-              </contentDecal>
-            </contentDecals>
-            <loots />
-            <crews>
-              <Crew>
-                <hostile>false</hostile>
-                <row>1</row>
-                <col>9</col>
-                <MemberIDs>
-                  <Member>
-                    <id>23</id>
-                    <Name>Gérard</Name>
-                    <health>100</health>
-                    <maxHealth>100</maxHealth>
-                    <currentHunger>0</currentHunger>
-                    <Lvl>5</Lvl>
-                    <xp>0</xp>
-                    <skillPoints>0</skillPoints>
-                    <specialSkillsIndexes>
-                      <int>16</int>
-                      <int>17</int>
-                      <int>18</int>
-                    </specialSkillsIndexes>
-                    <stats>
-                      <int>1</int>
-                      <int>3</int>
-                      <int>2</int>
-                      <int>2</int>
-                    </stats>
-                    <daysOnBoard>0</daysOnBoard>
-                    <equipedWeapon>
-                      <ID>95</ID>
-                      <names>
-                        <string>Pistolet de voyage</string>
-                        <string>Steel gun</string>
-                      </names>
-                      <value>54</value>
-                      <price>88</price>
-                      <weight>10</weight>
-                      <level>5</level>
-                      <spriteID>6</spriteID>
-                      <weaponType>Distance</weaponType>
-                      <category>Weapon</category>
-                    </equipedWeapon>
-                    <equipedCloth>
-                      <ID>174</ID>
-                      <names>
-                        <string>Plastron de cuir</string>
-                        <string>Leather breastplate</string>
-                      </names>
-                      <value>51</value>
-                      <price>83</price>
-                      <weight>10</weight>
-                      <level>5</level>
-                      <spriteID>1</spriteID>
-                      <weaponType>Distance</weaponType>
-                      <category>Clothes</category>
-                    </equipedCloth>
-                    <job>Flibuster</job>
-                    <characterIDS>
-                      <int>7</int>
-                      <int>2</int>
-                      <int>9</int>
-                      <int>4</int>
-                      <int>4</int>
-                      <int>3</int>
-                      <int>3</int>
-                      <int>2</int>
-                      <int>1</int>
-                      <int>0</int>
-                      <int>1</int>
-                      <int>7</int>
-                      <int>3</int>
-                      <int>11</int>
-                      <int>6</int>
-                      <int>3</int>
-                    </characterIDS>
-                  </Member>
-                  <Member>
-                    <id>24</id>
-                    <Name>Michel</Name>
-                    <health>100</health>
-                    <maxHealth>100</maxHealth>
-                    <currentHunger>0</currentHunger>
-                    <Lvl>3</Lvl>
-                    <xp>0</xp>
-                    <skillPoints>0</skillPoints>
-                    <specialSkillsIndexes>
-                      <int>8</int>
-                      <int>9</int>
-                    </specialSkillsIndexes>
-                    <stats>
-                      <int>2</int>
-                      <int>1</int>
-                      <int>2</int>
-                      <int>1</int>
-                    </stats>
-                    <daysOnBoard>0</daysOnBoard>
-                    <equipedWeapon>
-                      <ID>74</ID>
-                      <names>
-                        <string>Pistolet à percussion</string>
-                        <string>Bolt gun</string>
-                      </names>
-                      <value>27</value>
-                      <price>42</price>
-                      <weight>10</weight>
-                      <level>3</level>
-                      <spriteID>6</spriteID>
-                      <weaponType>Distance</weaponType>
-                      <category>Weapon</category>
-                    </equipedWeapon>
-                    <equipedCloth>
-                      <ID>167</ID>
-                      <names>
-                        <string>Cotte de mailles</string>
-                        <string>Coat of mail</string>
-                      </names>
-                      <value>27</value>
-                      <price>47</price>
-                      <weight>10</weight>
-                      <level>3</level>
-                      <spriteID>2</spriteID>
-                      <weaponType>Distance</weaponType>
-                      <category>Clothes</category>
-                    </equipedCloth>
-                    <job>Surgeon</job>
-                    <characterIDS>
-                      <int>0</int>
-                      <int>2</int>
-                      <int>6</int>
-                      <int>2</int>
-                      <int>8</int>
-                      <int>8</int>
-                      <int>2</int>
-                      <int>4</int>
-                      <int>0</int>
-                      <int>0</int>
-                      <int>1</int>
-                      <int>4</int>
-                      <int>3</int>
-                      <int>10</int>
-                      <int>6</int>
-                      <int>2</int>
-                    </characterIDS>
-                  </Member>
-                </MemberIDs>
-              </Crew>
-            </crews>
-          </StoryHandler>
-          <StoryHandler>
-            <row>12</row>
-            <col>15</col>
-            <fallBackLayer>1</fallBackLayer>
-            <fallbackNode>
-              <name>discussion</name>
-              <row>8</row>
-              <col>11</col>
-            </fallbackNode>
-            <storyID>0</storyID>
-            <storyType>Quest</storyType>
-            <contentDecals />
-            <loots />
-            <crews />
-          </StoryHandler>
-          <StoryHandler>
-            <row>1</row>
-            <col>9</col>
-            <fallBackLayer>1</fallBackLayer>
-            <fallbackNode>
-              <name>discussion</name>
-              <row>8</row>
-              <col>11</col>
-            </fallbackNode>
-            <storyID>0</storyID>
-            <storyType>Quest</storyType>
             <contentDecals />
             <loots />
             <crews />
@@ -253,12 +36,18 @@
     </IslandData>
     <IslandData>
       <worldPosition>
-        <x>16.0956764</x>
-        <y>-15.7984886</y>
+        <x>11.4285374</x>
+        <y>-16.9905815</y>
       </worldPosition>
-      <worldRotation>134.194839</worldRotation>
+      <worldRotation>183.848068</worldRotation>
+      <index>1</index>
+      <coords>
+        <x>7</x>
+        <y>1</y>
+      </coords>
+      <containsFormula>false</containsFormula>
       <storyManager>
-        <hasBeenPlayed>true</hasBeenPlayed>
+        <hasBeenPlayed>false</hasBeenPlayed>
         <storyHandlers>
           <StoryHandler>
             <row>0</row>
@@ -266,23 +55,7 @@
             <fallBackLayer>0</fallBackLayer>
             <storyID>14</storyID>
             <storyType>Normal</storyType>
-            <contentDecals>
-              <contentDecal>
-                <row>0</row>
-                <col>2</col>
-                <decal>1</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>1</row>
-                <col>3</col>
-                <decal>1</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>2</row>
-                <col>39</col>
-                <decal>0</decal>
-              </contentDecal>
-            </contentDecals>
+            <contentDecals />
             <loots />
             <crews />
           </StoryHandler>
@@ -291,12 +64,18 @@
     </IslandData>
     <IslandData>
       <worldPosition>
-        <x>-1.19515228</x>
-        <y>-19.5853119</y>
+        <x>-0.3647251</x>
+        <y>-16.3530922</y>
       </worldPosition>
-      <worldRotation>157.106613</worldRotation>
+      <worldRotation>340.4438</worldRotation>
+      <index>2</index>
+      <coords>
+        <x>7</x>
+        <y>1</y>
+      </coords>
+      <containsFormula>false</containsFormula>
       <storyManager>
-        <hasBeenPlayed>true</hasBeenPlayed>
+        <hasBeenPlayed>false</hasBeenPlayed>
         <storyHandlers>
           <StoryHandler>
             <row>0</row>
@@ -304,42 +83,8 @@
             <fallBackLayer>0</fallBackLayer>
             <storyID>14</storyID>
             <storyType>Normal</storyType>
-            <contentDecals>
-              <contentDecal>
-                <row>0</row>
-                <col>2</col>
-                <decal>1</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>1</row>
-                <col>3</col>
-                <decal>0</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>2</row>
-                <col>23</col>
-                <decal>0</decal>
-              </contentDecal>
-            </contentDecals>
-            <loots>
-              <Loot>
-                <row>2</row>
-                <col>25</col>
-                <ids>
-                  <ArrayOfInt />
-                  <ArrayOfInt />
-                  <ArrayOfInt />
-                  <ArrayOfInt />
-                </ids>
-                <weight>0</weight>
-                <AllItems>
-                  <ArrayOfItem />
-                  <ArrayOfItem />
-                  <ArrayOfItem />
-                  <ArrayOfItem />
-                </AllItems>
-              </Loot>
-            </loots>
+            <contentDecals />
+            <loots />
             <crews />
           </StoryHandler>
         </storyHandlers>

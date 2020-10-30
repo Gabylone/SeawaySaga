@@ -21,7 +21,9 @@ public class MemberCreator : MonoBehaviour {
 	public CreationStep currentStep;
 
 	public GameObject confirmButtonObj;
-    public GameObject previousButtonObj;
+    //public GameObject previousButtonObj;
+
+    public MemberCreation_NextStepArrow nextStepArrow;
 
     public Transform iconTargetParent;
     public Transform iconInitParent;
@@ -84,8 +86,7 @@ public class MemberCreator : MonoBehaviour {
     
 	public void ShowStep ( CreationStep step ) {
 
-		confirmButtonObj.SetActive (false);
-        previousButtonObj.SetActive(false);
+        //previousButtonObj.SetActive(false);
 
         // TWEEN NEXT STEP
         GetStep(step).SetActive (true);
@@ -101,14 +102,14 @@ public class MemberCreator : MonoBehaviour {
 
         if ( currentStep == 0)
         {
-            previousButtonObj.SetActive(false);
+            //previousButtonObj.SetActive(false);
         }
         else
         {
             //previousButtonObj.SetActive(true);
         }
 
-        confirmButtonObj.SetActive (true);
+        nextStepArrow.Show();
 	}
 
     private void NextStep()
@@ -193,15 +194,11 @@ public class MemberCreator : MonoBehaviour {
 
         HideStep(CreationStep.Appearance);
 
-		confirmButtonObj.SetActive (false);
-		previousButtonObj.SetActive (false);
+		//previousButtonObj.SetActive (false);
 
         Transitions.Instance.ScreenTransition.FadeIn(tweenDuration);
 
         Invoke("EndMemberCreationDelay", tweenDuration);
-
-        // c'est de la merde mais c'est pas grave
-        CharacterMenuButton.Instance.UpdateUI();
     }
 
     void EndMemberCreationDelay()

@@ -88,6 +88,7 @@ GameObject:
   - component: {fileID: 114876326964062062}
   - component: {fileID: 114675718328513754}
   - component: {fileID: 8390293741269457067}
+  - component: {fileID: 1149101424731250498}
   m_Layer: 0
   m_Name: JobButton
   m_TagString: Untagged
@@ -236,13 +237,14 @@ MonoBehaviour:
     color: {r: 0, g: 0, b: 0, a: 0}
     locked: 0
     id: 0
-    price: 10
+    finished: 0
   initParent: {fileID: 0}
   image: {fileID: 114481191914465540}
   selected: 0
   scaleAmount: 1.1
   scrollView: {fileID: 0}
   outline: {fileID: 8390293741269457067}
+  canvasGroup: {fileID: 1149101424731250498}
   text: {fileID: 114716399102226040}
 --- !u!114 &8390293741269457067
 MonoBehaviour:
@@ -256,9 +258,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_EffectColor: {r: 1, g: 0.050980397, b: 0, a: 1}
-  m_EffectDistance: {x: 5, y: 5}
+  m_EffectColor: {r: 0, g: 0.050980397, b: 0, a: 1}
+  m_EffectDistance: {x: 3, y: 3}
   m_UseGraphicAlpha: 1
+--- !u!225 &1149101424731250498
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1232184226134622}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1504071305051198
 GameObject:
   m_ObjectHideFlags: 0

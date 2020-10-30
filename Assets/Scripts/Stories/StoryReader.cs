@@ -19,9 +19,6 @@ public class StoryReader : MonoBehaviour {
 
 	private StoryManager currentStoryManager;
 
-	[SerializeField]
-	private AudioClip pressInputButton;
-
 	void Awake () {
 		Instance = this;
 	}
@@ -111,7 +108,7 @@ public class StoryReader : MonoBehaviour {
 
 		Node node = GetNodeFromText (nodeName);
 
-		CurrentStoryHandler.SaveDecal (decal,node.row,node.col);
+        Debug.Log("SWITCHING : found node : " + node.name);
 
 		StoryReader.Instance.NextCell ();
 		StoryReader.Instance.UpdateStory ();
@@ -257,7 +254,7 @@ public class StoryReader : MonoBehaviour {
 
 		if (timer <= 0) {
 			waitToNextCell = false;
-			StoryReader.Instance.UpdateStory ();
+            StoryReader.Instance.ContinueStory();
 		}
 	}
 

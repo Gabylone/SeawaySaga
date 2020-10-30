@@ -11,8 +11,8 @@ public class CharacterMenuButton : MonoBehaviour {
 
 	public Text jobText;
 
-	public GameObject skillPointsGroup;
-	public Text skillPointsText;
+	/*public GameObject skillPointsGroup;
+	public Text skillPointsText;*/
 
 	public GameObject group;
 
@@ -45,14 +45,13 @@ public class CharacterMenuButton : MonoBehaviour {
 			print ("skill l : " + SkillManager.jobSprites.Length + " / member job " + (int)member.job);
 
 		jobImage.sprite = SkillManager.jobSprites [(int)member.job];
-		//jobText.text = SkillManager.jobNames [(int)member.job];
 
 		Tween.Bounce (jobImage.transform);
 
-		UpdateSkillPoints ();
+		//UpdateSkillPoints ();
 	}
 
-	void UpdateSkillPoints ()
+	/*void UpdateSkillPoints ()
 	{
 		if (CrewMember.GetSelectedMember.SkillPoints > 0) {
 
@@ -66,5 +65,5 @@ public class CharacterMenuButton : MonoBehaviour {
 			skillPointsGroup.SetActive (false);
 			//
 		}
-	}
+	}*/
 }

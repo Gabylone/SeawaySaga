@@ -19,11 +19,13 @@ public class Narrator : MonoBehaviour {
 	}
 
 	void Start () {
-		StoryFunctions.Instance.getFunction+= HandleGetFunction;
+
+        StoryInput.Instance.onPressInput += HandleOnPressInput;
+
+        StoryFunctions.Instance.getFunction+= HandleGetFunction;
 
 		InGameMenu.Instance.onOpenMenu += HandleOpenInventory;
 		InGameMenu.Instance.onCloseMenu += HandleCloseInventory;
-        StoryInput.Instance.onPressInput += HandleOnPressInput;
 
         HideNarrator();
 
@@ -33,8 +35,7 @@ public class Narrator : MonoBehaviour {
 	{
 		if ( func == FunctionType.Narrator)
         {
-            ShowNarrator(cellParameters.Remove(0, 2));
-            StoryInput.Instance.WaitForInput();
+            ShowNarratorInput(cellParameters.Remove(0, 2));
         }
     }
 
@@ -42,11 +43,17 @@ public class Narrator : MonoBehaviour {
 	{
         if (!visible)
             return;
-		HideNarrator ();
+
+        Invoke("HandleOnPressInputDelay", 0.0001f);   
+    }
+
+    void HandleOnPressInputDelay()
+    {
+        HideNarrator();
         StoryReader.Instance.ContinueStory();
     }
 
-	bool previousActive = false;
+    bool previousActive = false;
 	void HandleOpenInventory ()
 	{
 		if (narratorObj.activeSelf) {
@@ -77,7 +84,12 @@ public class Narrator : MonoBehaviour {
 
 		Invoke ("HideNarrator" , 2.5f );
 	}
-	public void ShowNarrator (string text) {
+    public void ShowNarratorInput(string text)
+    {
+        ShowNarrator(text);
+        StoryInput.Instance.WaitForInput();
+    }
+    public void ShowNarrator (string text) {
 
         //InGameMenu.Instance.HideMenuButtons();
 

@@ -19,7 +19,7 @@ OtherSpeak : Howdy, sailor!;Node=>mort;Node=>combat;;;;;;;;;;;
 SetChoices4;;;;;;SetChoices4;;;;;;OtherSpeak : You mongrel, I knew it!;
 Choice : (leave);Choice : Show me your wares! (trade);Choice : The treasure of NOMTRESOR?;;Choice : (other);;Choice : Give me everything you have! (attack);Choice : How are things? (quest);;Choice : Tell me about the ocean !;;Choice : (other);LaunchCombat;
 OtherSpeak : See you!;TradeMisc;RandomPercent20;;Node=>choix autre;;Node=>combat;RandomPercent65;;RandomRange2;;Node=>choix;RemoveKarma;
-Leave;Node=>choix;OtherSpeak : Only sailors from the DIRECTIONTOFORMULA are interested;OtherSpeak : Nope, first time I hear about it, sorry.;;;;OtherSpeak : Nowadays people rarely cross the ocean;NewQuest=>choix;GiveTip;OtherSpeak : I’d prefer we talk business only;;[mort];
+Leave;Node=>choix;TellClue;OtherSpeak : Nope, first time I hear about it, sorry.;;;;OtherSpeak : Nowadays people rarely cross the ocean;NewQuest=>choix;GiveTip;OtherSpeak : I’d prefer we talk business only;;[mort];
 ;;Node=>choix;Node=>choix;;;;OtherSpeak : to buy things I find at the bottom of it.;;Node=>choix;Node=>choix;;PlayerSpeak : The vendor’s dead on the floor!;
 ;;;;;;;OtherSpeak : Nevertheless, it’s alright.;;;;;SetChoices2;
 ;;;;;;;Node=>choix;;;;;Choice : (leave);Choice : (search the shop)

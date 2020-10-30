@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class QuestFeedback : MonoBehaviour {
 
+    public static QuestFeedback Instance;
+
 	[SerializeField]
 	private GameObject group;
 
@@ -13,8 +15,13 @@ public class QuestFeedback : MonoBehaviour {
 
 	public float duration = 2f;
 
-	// Use this for initialization
-	void Start () {
+    private void Awake()
+    {
+        Instance = this;
+    }
+
+    // Use this for initialization
+    void Start () {
 		
 		QuestManager.Instance.onNewQuest += HandleNewQuestEvent;
 		QuestManager.Instance.onFinishQuest += HandleOnFinishQuest;
@@ -94,6 +101,16 @@ public class QuestFeedback : MonoBehaviour {
         SoundManager.Instance.PlaySound("Tribal 01");
 
         SoundManager.Instance.PlaySound("ui_jauge_up");
+    }
+
+    public void HandleOnNewRumor()
+    {
+        SoundManager.Instance.PlayRandomSound("Magic Chimes");
+        SoundManager.Instance.PlayRandomSound("Magic Chimes");
+        SoundManager.Instance.PlaySound("Boost 02");
+        SoundManager.Instance.PlaySound("Tribal 01");
+
+        Display("New Rumor !");
     }
 
     void HandleOnMaxQuest()

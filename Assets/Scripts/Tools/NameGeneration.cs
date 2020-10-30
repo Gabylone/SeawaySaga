@@ -42,7 +42,23 @@ public class NameGeneration : MonoBehaviour {
 
 	public static string CheckForKeyWords ( string text ) {
 
-		if ( text.Contains ("CAPITAINE") ) {
+        if (text.Contains("CAPITAINE"))
+        {
+            text = text.Replace("CAPITAINE", Crews.playerCrew.captain.MemberName );
+
+        }
+
+        if (text.Contains("OTHERNAME"))
+        {
+            text = text.Replace("OTHERNAME", Crews.enemyCrew.captain.MemberName );
+        }
+
+        if (text.Contains("NOMBATEAU"))
+        {
+            text = text.Replace("NOMBATEAU", Boats.Instance.playerBoatInfo.Name);
+        }
+
+        /*if ( text.Contains ("CAPITAINE") ) {
 			text = text.Replace ( "CAPITAINE" , "<i>" + Crews.playerCrew.captain.MemberName + "</i>");
 
         }
@@ -56,8 +72,8 @@ public class NameGeneration : MonoBehaviour {
         }
 
 		if ( text.Contains ("DIRECTIONTOFORMULA") ) {
-			text = text.Replace ("DIRECTIONTOFORMULA", "<b>" + FormulaManager.Instance.getDirectionToFormula() + "</b>");
-        }
+			text = text.Replace ("DIRECTIONTOFORMULA", " >" + FormulaManager.Instance.getDirectionToFormula() + "</b>");
+        }*/
 
         if (text.Contains("NEXTTIME"))
         {
@@ -81,7 +97,22 @@ public class NameGeneration : MonoBehaviour {
             text = text.Replace("BOUNTY", "<i>" + Karma.Instance.bounty.ToString() + " </i>");
         }
 
-		if ( text.Contains ("FORMULA") ) {
+        // à mettre AVANT FORMULAS pour par que ça s'emmerde
+        if (text.Contains("NUMBEROFFORMULAS"))
+        {
+            int formulasLeftToFind = 0;
+            foreach (var item in FormulaManager.Instance.formulas)
+            {
+                if (!item.verified) {
+                    ++formulasLeftToFind;
+                }
+            }
+
+            text = text.Replace("NUMBEROFFORMULAS", "" + formulasLeftToFind );
+        }
+
+
+        if ( text.Contains ("FORMULA") ) {
 
 			Formula formula = FormulaManager.Instance.formulas.Find(x=>x.coords == Boats.Instance.playerBoatInfo.coords);
 

@@ -15,7 +15,11 @@ public class EnemyBoat : Boat {
 
     private bool visible = false;
 
+    public Renderer renderer;
+
     private bool exitingScreen = false;
+
+    public float distanceFromOtherPlayer = 5f;
 
     public enum MovementType
     {
@@ -32,16 +36,13 @@ public class EnemyBoat : Boat {
 
     public float timeToShowBoat = 1.5f;
 
-    BoxCollider boxCollider;
+    private BoxCollider boxCollider;
 
     public GameObject group;
 
 	public override void Start ()
 	{
 		base.Start();
-
-        Boats.Instance.onMeetPlayer += HandleOnMeetPlayer;
-        Boats.Instance.onLeavePlayer += HandleOnLeavePlayer;
 
 		boxCollider = GetComponent<BoxCollider> ();
 
@@ -97,23 +98,46 @@ public class EnemyBoat : Boat {
         Visible = true;
 
         UpdatePositionOnScreen();
+        UpdateMastColor();
 
         CancelInvoke("ShowDelay");
         Invoke("ShowDelay", timeToShowBoat * id);
     }
 
+    void UpdateMastColor()
+    {
+        renderer.materials[4] = Boats.Instance.boatMaterials[boatInfo.storyManager.CurrentStoryHandler.Story.param];
+    }
+
     void ShowDelay()
     {
-        if (boatInfo.storyManager.CurrentStoryHandler.Story.param == 0)
+        switch (boatInfo.storyManager.CurrentStoryHandler.Story.param)
         {
-            movementType = MovementType.MoveAround;
+            case 0:
+                movementType = MovementType.FollowPlayer;
+                break;
+            case 1:
+                movementType = MovementType.FollowPlayer;
+                break;
+            case 2:
+                movementType = MovementType.MoveAround;
+                break;
+            case 3:
+                movementType = MovementType.MoveAround;
+                break;
+            default:
+                break;
+        }
+
+        if (StoryLauncher.Instance.PlayingStory)
+        {
+
         }
         else
         {
-            movementType = MovementType.FollowPlayer;
+            GoToTargetDestination();
         }
 
-        GoToTargetDestination();
     }
     #endregion
 
@@ -200,7 +224,7 @@ public class EnemyBoat : Boat {
             return;
         }
         // another boat is meeting the player
-        if (Boats.Instance.meetingPlayer)
+        if (Boats.Instance.pausingBoats)
         {
             return;
         }
@@ -209,7 +233,7 @@ public class EnemyBoat : Boat {
 
         Tween.Bounce(transform);
 
-        Boats.Instance.MeetPlayer();
+        Boats.Instance.WithdrawBoats();
 
         // if he met the player once IN THE SCREEN
         metPlayer = true;
@@ -228,9 +252,8 @@ public class EnemyBoat : Boat {
 		StoryLauncher.Instance.PlayStory (boatInfo.storyManager, StoryLauncher.StorySource.boat);
 	}
 
-    public void LeavePlayer()
+    public void LeaveBoat()
     {
-        Boats.Instance.LeaveOtherBoat();
 
         reachedPlayer = false;
         followPlayer = false;
@@ -241,12 +264,18 @@ public class EnemyBoat : Boat {
         SetSpeed(leavingSpeed);
     }
 
-    void HandleOnMeetPlayer()
+    public void Withdraw()
     {
         EndMovenent();
+
+        Vector3 dirFromPlayer = (PlayerBoat.Instance.GetTransform.position - GetTransform.position).normalized;
+        Vector3 posAwayFromPos = GetTransform.position + (dirFromPlayer * distanceFromOtherPlayer);
+
+        //SetTargetPos(posAwayFromPos);
+
     }
 
-    void HandleOnLeavePlayer()
+    public void Resume()
     {
         GoToTargetDestination();
     }
@@ -262,7 +291,6 @@ public class EnemyBoat : Boat {
     #endregion
 
     #region properties
-
 	public bool Visible {
 		get {
 			return visible;

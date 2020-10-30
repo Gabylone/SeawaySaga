@@ -390,7 +390,26 @@ MonoBehaviour:
   agent: {fileID: 2173402500898047978}
   rotationSpeed: 450
   id: 0
+  boatInfo:
+    Name: bateau
+    previousCoords:
+      x: 0
+      y: 0
+    coords:
+      x: 0
+      y: 0
+    currentDirection: 0
+    id: 0
+    storyManager:
+      hasBeenPlayed: 0
+      storyHandlers: []
+    alreadyMet: 0
+    color: {r: 0, g: 0, b: 0, a: 0}
+    timeToShowBoat: 1.5
   followPlayer: 0
+  renderer: {fileID: 2173402500175489238}
+  distanceFromOtherPlayer: 5
+  movementType: 0
   leavingSpeed: 5.5
   followPlayer_Speed: 5.5
   decalToCenter: -4

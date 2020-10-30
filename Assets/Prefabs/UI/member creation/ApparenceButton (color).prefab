@@ -86,6 +86,7 @@ GameObject:
   - component: {fileID: 114814783912888838}
   - component: {fileID: 114885955157533504}
   - component: {fileID: 7521096683013859}
+  - component: {fileID: -7650124103125016209}
   m_Layer: 0
   m_Name: ApparenceButton (color)
   m_TagString: Untagged
@@ -161,21 +162,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64a95d0bc2de3c24dbc601b3e8ca0857, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pearlPriceUIText: {fileID: 114264348645570136, guid: d763b1e568d092c4b92e5cd489dc83d6,
-    type: 3}
+  pearlPriceUIText: {fileID: 0}
   apparenceItem:
     apparenceType: 0
     sprite: {fileID: 0}
     color: {r: 0, g: 0, b: 0, a: 0}
     locked: 0
     id: 0
-    price: 10
+    finished: 0
   initParent: {fileID: 0}
   image: {fileID: 114008975691943162}
   selected: 0
   scaleAmount: 1.05
   scrollView: {fileID: 0}
   outline: {fileID: 7521096683013859}
+  canvasGroup: {fileID: -7650124103125016209}
 --- !u!114 &7521096683013859
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -188,6 +189,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_EffectColor: {r: 1, g: 0.05105193, b: 0, a: 1}
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
   m_EffectDistance: {x: 2, y: -2}
   m_UseGraphicAlpha: 1
+--- !u!225 &-7650124103125016209
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1404989575009044}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0

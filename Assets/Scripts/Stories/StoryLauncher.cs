@@ -53,7 +53,6 @@ public class StoryLauncher : MonoBehaviour {
     #region propeties
     public void PlayStory(StoryManager storyManager, StoryLauncher.StorySource source)
     {
-
         if (playingStory)
             return;
 
@@ -111,7 +110,7 @@ public class StoryLauncher : MonoBehaviour {
                 break;
             case StorySource.boat:
                 //
-                Boats.Instance.currentEnemyBoat.LeavePlayer();
+                Boats.Instance.currentEnemyBoat.LeaveBoat();
                 break;
             default:
                 break;
@@ -132,6 +131,9 @@ public class StoryLauncher : MonoBehaviour {
         Invoke("EndStoryDelay", 0.5f);
 
         Transitions.Instance.ScreenTransition.FadeIn( 0.5f );
+
+        Boats.Instance.ResumeBoats();
+
 
     }
 

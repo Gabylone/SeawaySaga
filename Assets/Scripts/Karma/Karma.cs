@@ -142,7 +142,6 @@ public class Karma : MonoBehaviour {
 
 		AddKarma (1);
 
-        StoryReader.Instance.NextCell();
         StoryReader.Instance.Wait(1f);
     }
 
@@ -150,7 +149,6 @@ public class Karma : MonoBehaviour {
 
 		RemoveKarma (1);
 
-        StoryReader.Instance.NextCell();
         StoryReader.Instance.Wait(1f);
 	}
 

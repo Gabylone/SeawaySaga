@@ -49,9 +49,12 @@ public class DisplayCombatResults : Displayable
 
     public void Confirm()
     {
+        Hide();
+
         if (onConfirm != null)
         {
             onConfirm();
+            onConfirm = null;
         }
     }
 }

@@ -25,7 +25,6 @@ public class QuestManager : MonoBehaviour {
 
 		Instance = this;
 
-        Quest.onSetTargetCoords = null;
         Quest.currentQuest = null;
 
         onNewQuest = null;
@@ -36,8 +35,6 @@ public class QuestManager : MonoBehaviour {
 		StoryFunctions.Instance.getFunction+= HandleGetFunction;
 
 		Crews.Instance.onCrewMemberKilled += HandleOnCrewMemberKilled;
-
-        StoryInput.Instance.onPressInput += HandleOnPressInput;
 
     }
 
@@ -77,7 +74,7 @@ public class QuestManager : MonoBehaviour {
 			SendPlayerBackToGiver ();
 			break;
 		case FunctionType.ShowQuestOnMap:
-                Quest.currentQuest.ShowOnMap();
+                Story_ShowQuestOnMap();
                 break;
             case FunctionType.FinishQuest:
 			FinishQuest ();
@@ -97,6 +94,12 @@ public class QuestManager : MonoBehaviour {
 		}
 	}
 
+    void Story_ShowQuestOnMap()
+    {
+        DisplayMinimap.Instance.continueStoryOnClose = true;
+        Quest.currentQuest.ShowOnMap();
+    }
+
     void CheckIfQuestIsAccomplished ()
 	{
 		if ( Quest.currentQuest == null ) {
@@ -115,21 +118,27 @@ public class QuestManager : MonoBehaviour {
 
 	void AccomplishQuest ()
 	{
-		if ( Quest.currentQuest == null ) {
+        Quest quest = Quest.currentQuest;
+
+        if ( quest == null ) {
 			Debug.LogError ("QUEST IS NULL : accomplish quest");
 			return;
 		}
 
-		Quest.currentQuest.accomplished = true;
+        DisplayCombatResults.Instance.onConfirm += AccomplishQuest_HandleOnConfirm;
+        DisplayCombatResults.Instance.Display("Quest Accomplished !", "Go back to " + quest.giver.Name + " to receive gold and experience...");
 
-		Quest.currentQuest.SetTargetCoords (Quest.currentQuest.originCoords);
+        quest.accomplished = true;
 
-		Quest.currentQuest.ShowOnMap ();
+        quest.SetTargetIsland(quest.GetOriginIslandData());
 
-		StoryReader.Instance.NextCell ();
-		StoryReader.Instance.UpdateStory ();
+        //Story_ShowQuestOnMap();
 
 	}
+    void AccomplishQuest_HandleOnConfirm()
+    {
+        Story_ShowQuestOnMap();
+    }
     #endregion
 
     #region new quest
@@ -181,12 +190,7 @@ public class QuestManager : MonoBehaviour {
 		StoryReader.Instance.UpdateStory ();
 	}
 	void FallBackDelay () {
-//		Quest newQuest = new Quest ();
-//		newQuest.GetNewQuestnode ();
-//		StoryReader.Instance.GoToNode (newQuest.newQuest_FallbackNode);
-
 		StoryLauncher.Instance.EndStory ();
-
 	}
 	#endregion
 
@@ -198,31 +202,33 @@ public class QuestManager : MonoBehaviour {
 			phrase = "I'll never thank you enough for helping me";
 		}
 
-		DialogueManager.Instance.SetDialogueTimed (phrase, Crews.enemyCrew.captain);
+		DialogueManager.Instance.SetDialogueInput (phrase, Crews.enemyCrew.captain);
+        DialogueManager.Instance.onEndDialogue += HandleOnEndDialogue;
 
-		Invoke ("HandleCompletedQuest_Delay", DialogueManager.Instance.DisplayTime);
+        //Invoke("HandleCompletedQuest_Delay", DialogueManager.Instance.DisplayTime);
 	}
-	void HandleCompletedQuest_Delay () {
-		StoryReader.Instance.GoToNode (Coords_CheckForFinishedQuest.newQuest_FallbackNode);
-	}
+    void HandleOnEndDialogue()
+    {
+        DialogueManager.Instance.onEndDialogue -= HandleOnEndDialogue;
+        StoryReader.Instance.GoToNode(Coords_CheckForFinishedQuest.newQuest_FallbackNode);
+    }
 	#endregion
 
 	void ContinueQuest () {
 
-		Quest quest = currentQuests.Find (x => x.targetCoords == Boats.Instance.playerBoatInfo.coords);
+		Quest quest = currentQuests.Find (x => x.GetTargetIslandData() == IslandManager.Instance.GetCurrentIslandData());
 
 		if ( quest != null) {
 
-			if (quest.targetCoords != quest.originCoords && StoryReader.Instance.currentStoryLayer == 0) {
-
-//				Debug.Log ();
-
+            // si le joueur retourne sur l'ile d'origine, dans le premier layer d'histoire, continuer quete
+            if ( quest.GetTargetIslandData() != quest.GetOriginIslandData()
+                && StoryReader.Instance.currentStoryLayer == 0) {
 				quest.Continue ();
-
 				return;
-
 			}
 		}
+
+        // sinon on ignore, et il returnToGiver quand il recroise le donneur de quete
 			
 		StoryReader.Instance.NextCell();
 		StoryReader.Instance.UpdateStory ();
@@ -233,31 +239,55 @@ public class QuestManager : MonoBehaviour {
 	void FinishQuest ()
 	{
 		Quest quest = Quest.currentQuest;
+
 		
-		GoldManager.Instance.AddGold(quest.goldValue);
 
-		foreach ( CrewMember member in Crews.playerCrew.CrewMembers ) {
-			member.AddXP (quest.experience);
-		}
+        DisplayCombatResults.Instance.onConfirm += FinishQuest_HandleOnConfirm;
+        DisplayCombatResults.Instance.Display("Quest Finished !", "In addition to receiving gold and experience, you just made a good action ! Your karma just got better");
+        DisplayCombatResults.Instance.DisplayResults(quest.goldValue, quest.experience);
 
-		Karma.Instance.AddKarma (1);
+        
+	}
 
-		finishedQuests.Add (quest);
-		currentQuests.Remove (quest);
+    void FinishQuest_HandleOnConfirm()
+    {
+        Quest quest = Quest.currentQuest;
 
-		if (onFinishQuest != null) {
-			onFinishQuest (quest);
-		}
+        Karma.Instance.AddKarma(1);
 
-		if ( quest.nodeWhenCompleted != null ) {
+        
+        if ( quest.nodeWhenCompleted != null ) {
 			StoryReader.Instance.CurrentStoryHandler.fallbackNode = quest.nodeWhenCompleted;
 		}
 
-		StoryReader.Instance.NextCell();
-		StoryReader.Instance.UpdateStory ();
-	}
 
-	public delegate void OnGiveUpQuest ( Quest quest );
+        GoldManager.Instance.AddGold(quest.goldValue);
+
+        foreach (CrewMember member in Crews.playerCrew.CrewMembers)
+        {
+            member.AddXP(quest.experience);
+        }
+
+        if (onFinishQuest != null)
+        {
+            onFinishQuest(quest);
+        }
+
+        finishedQuests.Add(quest);
+        currentQuests.Remove(quest);
+
+        CancelInvoke("FinishQuest_HandleOnConfirmDelay");
+        Invoke("FinishQuest_HandleOnConfirmDelay", 1f);
+    }
+
+    void FinishQuest_HandleOnConfirmDelay()
+    {
+        StoryReader.Instance.NextCell();
+        StoryReader.Instance.UpdateStory();
+    }
+
+
+    public delegate void OnGiveUpQuest ( Quest quest );
 	public OnGiveUpQuest onGiveUpQuest;
 	public void GiveUpQuest (Quest quest) {
 		
@@ -282,23 +312,10 @@ public class QuestManager : MonoBehaviour {
 		Debug.LogError ("SEND PLAYER BACK TO GIVER DOESNT EXIST ANYMORE");
 	}
 
-    void HandleOnPressInput()
-    {
-        /*if (showingQuestOnMap)
-        {
-            StoryReader.Instance.ContinueStory();
-        }*/
-    }
-
     #endregion
 
-    public Quest Coords_CheckForTargetQuest {
-		get {
-			return currentQuests.Find ( x=> x.targetCoords == Boats.Instance.playerBoatInfo.coords);
-		}
-	}
-
 	Quest CheckForQuest_OriginCoords {
+
 		get {
 
 			foreach (Quest quest in currentQuests) {
@@ -313,12 +330,6 @@ public class QuestManager : MonoBehaviour {
 			}
 
 			return currentQuests.Find ( x => x.giver.SameAs(Crews.enemyCrew.captain.MemberID));
-//			return currentQuests.Find ( x => 
-//				x.originCoords == Boats.Instance.playerBoatInfo.coords && 
-//				storyLayer == x.layer &&
-//				x.row == StoryReader.Instance.Col &&
-//				x.col == StoryReader.Instance.Row
-//			);
 		}
 	}
 

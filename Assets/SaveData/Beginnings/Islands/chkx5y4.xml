@@ -1,13 +1,23 @@
 <?xml version="1.0"?>
 <Chunk xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <state>VisitedIsland</state>
+  <coords>
+    <x>5</x>
+    <y>4</y>
+  </coords>
   <islandDatas>
     <IslandData>
       <worldPosition>
-        <x>-15.7909393</x>
-        <y>-17.2234879</y>
+        <x>19.01485</x>
+        <y>17.42865</y>
       </worldPosition>
-      <worldRotation>332.0179</worldRotation>
+      <worldRotation>292.99472</worldRotation>
+      <index>0</index>
+      <coords>
+        <x>5</x>
+        <y>4</y>
+      </coords>
+      <containsFormula>false</containsFormula>
       <storyManager>
         <hasBeenPlayed>true</hasBeenPlayed>
         <storyHandlers>
@@ -19,87 +29,41 @@
             <storyType>Normal</storyType>
             <contentDecals>
               <contentDecal>
-                <row>0</row>
-                <col>11</col>
+                <row>4</row>
+                <col>22</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>5</row>
+                <col>59</col>
                 <decal>1</decal>
               </contentDecal>
             </contentDecals>
-            <loots />
+            <loots>
+              <Loot>
+                <row>6</row>
+                <col>61</col>
+                <ids>
+                  <ArrayOfInt />
+                  <ArrayOfInt />
+                  <ArrayOfInt />
+                  <ArrayOfInt />
+                </ids>
+                <weight>0</weight>
+                <AllItems>
+                  <ArrayOfItem />
+                  <ArrayOfItem />
+                  <ArrayOfItem />
+                  <ArrayOfItem />
+                </AllItems>
+              </Loot>
+            </loots>
             <crews>
               <Crew>
                 <hostile>false</hostile>
                 <row>0</row>
-                <col>11</col>
-                <MemberIDs>
-                  <Member>
-                    <id>22</id>
-                    <Name>Cassius</Name>
-                    <health>100</health>
-                    <maxHealth>100</maxHealth>
-                    <currentHunger>0</currentHunger>
-                    <Lvl>3</Lvl>
-                    <xp>0</xp>
-                    <skillPoints>0</skillPoints>
-                    <specialSkillsIndexes>
-                      <int>12</int>
-                      <int>13</int>
-                    </specialSkillsIndexes>
-                    <stats>
-                      <int>1</int>
-                      <int>1</int>
-                      <int>2</int>
-                      <int>2</int>
-                    </stats>
-                    <daysOnBoard>0</daysOnBoard>
-                    <equipedWeapon>
-                      <ID>69</ID>
-                      <names>
-                        <string>Lance courte</string>
-                        <string>Good Club</string>
-                      </names>
-                      <value>31</value>
-                      <price>48</price>
-                      <weight>10</weight>
-                      <level>3</level>
-                      <spriteID>4</spriteID>
-                      <weaponType>Stick</weaponType>
-                      <category>Weapon</category>
-                    </equipedWeapon>
-                    <equipedCloth>
-                      <ID>163</ID>
-                      <names>
-                        <string>Plastron de cuir</string>
-                        <string>Leather breastplate</string>
-                      </names>
-                      <value>28</value>
-                      <price>45</price>
-                      <weight>10</weight>
-                      <level>3</level>
-                      <spriteID>1</spriteID>
-                      <weaponType>Distance</weaponType>
-                      <category>Clothes</category>
-                    </equipedCloth>
-                    <job>Cook</job>
-                    <characterIDS>
-                      <int>4</int>
-                      <int>0</int>
-                      <int>5</int>
-                      <int>9</int>
-                      <int>2</int>
-                      <int>2</int>
-                      <int>1</int>
-                      <int>1</int>
-                      <int>0</int>
-                      <int>0</int>
-                      <int>7</int>
-                      <int>6</int>
-                      <int>16</int>
-                      <int>14</int>
-                      <int>8</int>
-                      <int>0</int>
-                    </characterIDS>
-                  </Member>
-                </MemberIDs>
+                <col>10</col>
+                <MemberIDs />
               </Crew>
             </crews>
           </StoryHandler>

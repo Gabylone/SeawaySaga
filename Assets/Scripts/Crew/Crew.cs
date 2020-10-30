@@ -31,16 +31,22 @@ public class Crew {
 		row = r;
 		col = c;
 
-		if (crewParams.amount == 0) {
+        if (crewParams.amount == 0)
+        {
 
-			int amount = Random.Range ( Crews.playerCrew.CrewMembers.Count , 4 );
+            int amount = Random.Range(Crews.playerCrew.CrewMembers.Count, 4);
 
-			if (Random.value < 0.6f)
-				amount = Crews.playerCrew.CrewMembers.Count;
-			
-//			Debug.Log ("");
-			crewParams.amount = Mathf.Clamp (amount, 1, 4);
-		}
+            if (Random.value < 0.6f)
+                amount = Crews.playerCrew.CrewMembers.Count;
+
+            //			Debug.Log ("");
+            crewParams.amount = Mathf.Clamp(amount, 1, 4);
+
+            if ( Crews.Instance.startJob != Job.None)
+            {
+                crewParams.amount = 1;
+            }
+        }
 
 		for (int i = 0; i < crewParams.amount; ++i) {
 			Member id = new Member (crewParams);

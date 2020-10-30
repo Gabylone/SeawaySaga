@@ -19,7 +19,7 @@ OtherSpeak : Hey, traveller!;Node=>mort;Node=>combat;;;;;;;;;;;
 SetChoices4;;;;;;SetChoices4;;;;;;OtherSpeak : Why?!;
 Choice : (leave);Choice : Show me what you sell. (trade);Choice : The treasure of NOMTRESOR?;;Choice : (other);;Choice : Give us the food! (attack) ;Choice : Is everything ok? (quest);;Choice : Tell me about the ocean !;;Choice : (other);LaunchCombat;
 OtherSpeak : Bye bye !;TradeFood;RandomPercent20;;Node=>choix autre;;Node=>combat;RandomPercent65;;RandomRange2;;Node=>choix;RemoveKarma;
-Leave;Node=>choix;OtherSpeak : Only pirates from the DIRECTIONTOFORMULA are interested. You should go there too!;OtherSpeak : I haven’t heard about it.;;;;OtherSpeak : You know what they say...;NewQuest=>choix;GiveTip;OtherSpeak : I’d prefer we talk business only;;[mort];
+Leave;Node=>choix;TellClue;OtherSpeak : I haven’t heard about it.;;;;OtherSpeak : You know what they say...;NewQuest=>choix;GiveTip;OtherSpeak : I’d prefer we talk business only;;[mort];
 ;;Node=>choix;Node=>choix;;;;OtherSpeak : The bigger the laugh, the bigger the belly!;;Node=>choix;Node=>choix;;PlayerSpeak : We killed him! It wasn't too hard.;
 ;;;;;;;Node=>choix;;;;;SetChoices2;
 ;;;;;;;;;;;;Choice : (leave);Choice : (search the farm)

@@ -38,8 +38,8 @@ public class Skill_Leap: Skill {
 
             fighter.Speak(str);
 
+            // delayed stuff
             fighter.AddStatus(Fighter.Status.PreparingAttack);
-
             fighter.onSkillDelay += HandleOnSkillDelay;
 
             EndSkill();

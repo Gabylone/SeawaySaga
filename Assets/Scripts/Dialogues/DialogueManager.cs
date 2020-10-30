@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
 
 public class DialogueManager : MonoBehaviour {
 
@@ -27,7 +28,7 @@ public class DialogueManager : MonoBehaviour {
 
 	private int TextIndex = 0;
 
-	public string dialogueText = "";
+	public string[] Texts;
 
 	public float DisplayTime = 2f;
 	private float CurrentTime = 0f;
@@ -36,6 +37,9 @@ public class DialogueManager : MonoBehaviour {
 	[SerializeField] private AudioClip[] speakSounds;
 
 	bool timed = false;
+
+    public delegate void OnEndDialogue();
+    public OnEndDialogue onEndDialogue;
 
 	void Awake () {
 		Instance = this;
@@ -48,7 +52,6 @@ public class DialogueManager : MonoBehaviour {
 		InGameMenu.Instance.onCloseMenu += HandleCloseInventory;
 
         StoryInput.Instance.onPressInput += HandleOnPressInput;
-
     }
 
     bool previousActive = false;
@@ -70,36 +73,38 @@ public class DialogueManager : MonoBehaviour {
 
 	void HandleOnPressInput ()
 	{
-		if ( DisplayingText)
+        Invoke("HandleOnPressInputDelay", 0.0001f);
+    }
+
+    void HandleOnPressInputDelay()
+    {
+        if (DisplayingText)
         {
             SoundManager.Instance.PlayRandomSound("click_med");
-            EndDialogue();
-            StoryReader.Instance.ContinueStory();
+
+            if (TextIndex == Texts.Length - 1)
+            {
+                EndDialogue();
+                //StoryReader.Instance.ContinueStory();
+            }
+            else
+            {
+                StoryInput.Instance.WaitForInput();
+                ContinueDialogue();
+            }
+
         }
     }
 
-	void HandleGetFunction (FunctionType func, string cellParameters)
+    void HandleGetFunction (FunctionType func, string cellParameters)
 	{
 		switch (func) {
 		case FunctionType.OtherSpeak:
-
-                /*Crews.enemyCrew.captain.Icon.MoveToPoint(Crews.PlacingType.World);
-                Crews.playerCrew.captain.Icon.MoveToPoint(Crews.PlacingType.World);*/
-
-                Crews.playerCrew.UpdateCrew(Crews.PlacingType.World);
-                Crews.enemyCrew.UpdateCrew(Crews.PlacingType.World);
-
-                SetDialogue(cellParameters.Remove (0, 2), Crews.enemyCrew.captain);
-                StoryInput.Instance.WaitForInput();
+                OtherSpeak(cellParameters.Remove(0, 2));
                 break;
 
             case FunctionType.PlayerSpeak:
-
-                //Crews.playerCrew.captain.Icon.MoveToPoint(Crews.PlacingType.World);
-                Crews.playerCrew.UpdateCrew(Crews.PlacingType.World);
-
-			    SetDialogue (cellParameters.Remove (0, 2), Crews.playerCrew.captain);
-                StoryInput.Instance.WaitForInput();
+                PlayerSpeak(cellParameters.Remove(0, 2));
                 break;
         }
 	}
@@ -113,8 +118,32 @@ public class DialogueManager : MonoBehaviour {
 
 	}
 
-	#region set dialogue
-	public void SetDialogueTimed (string phrase, Transform _target) {
+    #region story dialogue
+    public void OtherSpeak(string text)
+    {
+        Crews.playerCrew.UpdateCrew(Crews.PlacingType.World);
+        Crews.enemyCrew.UpdateCrew(Crews.PlacingType.World);
+
+        SetDialogueInput(text, Crews.enemyCrew.captain);
+
+        onEndDialogue += HandleOnEndDialogue;
+    }
+    public void PlayerSpeak(string text)
+    {
+        Crews.playerCrew.UpdateCrew(Crews.PlacingType.World);
+        SetDialogueInput(text, Crews.playerCrew.captain);
+
+        onEndDialogue += HandleOnEndDialogue;
+    }
+    public void HandleOnEndDialogue()
+    {
+        StoryReader.Instance.ContinueStory();
+        onEndDialogue -= HandleOnEndDialogue;
+    }
+    #endregion
+
+    #region set dialogue
+    public void SetDialogueTimed (string phrase, Transform _target) {
 
         timed = true;
 
@@ -127,17 +156,24 @@ public class DialogueManager : MonoBehaviour {
     }
 
 
-	// INPUT
-	public void SetDialogue (string phrase, CrewMember crewMember) {
+    // INPUT
+    public void SetDialogueInput(string phrase, CrewMember crewMember)
+    {
+        StoryInput.Instance.WaitForInput();
+        SetDialogue(phrase, crewMember);
+    }
+
+    public void SetDialogue (string phrase, CrewMember crewMember) {
 		crewMember.Icon.animator.SetTrigger ("speak");
 		crewMember.Icon.animator.SetInteger ("speakIndex",Random.Range(0,3) );
+
 		SetDialogue (phrase, crewMember.Icon.dialogueAnchor);
 	}
 	public void SetDialogue (string phrase, Transform _target) {
 
 		phrase = NameGeneration.CheckForKeyWords (phrase);
 
-		dialogueText = phrase;
+        Texts = phrase.Split('*');
 
 		target = _target;
 
@@ -153,7 +189,7 @@ public class DialogueManager : MonoBehaviour {
 		// reset text
 		TextIndex = 0;
 
-		bubble_Text.text = dialogueText;
+		bubble_Text.text = Texts[TextIndex];
 
 		CurrentTime = DisplayTime;
 
@@ -167,7 +203,15 @@ public class DialogueManager : MonoBehaviour {
 //	
 	}
 
-	private void UpdateDialogue () {
+    public void ContinueDialogue()
+    {
+        ++TextIndex;
+        bubble_Text.text = Texts[TextIndex];
+
+        UpdateBubbleScale();
+    }
+
+    private void UpdateDialogue () {
 
 		if (target == null) {
 			EndDialogue ();
@@ -194,6 +238,12 @@ public class DialogueManager : MonoBehaviour {
 		bubble_Obj.SetActive (false);
 
 		timed = false;
+
+        if ( onEndDialogue != null)
+        {
+            onEndDialogue();
+            //onEndDialogue = null;
+        }
 	}
 	#endregion
 

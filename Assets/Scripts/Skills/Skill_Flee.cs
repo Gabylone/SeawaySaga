@@ -72,11 +72,7 @@ public class Skill_Flee : Skill {
 
     void CriticalFailure()
     {
-        fighter.combatFeedback.Display("Knocked Out !", Color.magenta);
-        fighter.AddStatus(Fighter.Status.KnockedOut);
-
-        fighter.crewMember.energy = 0;
-
+        fighter.KnockOut();
         Invoke("EndSkill", escapeDelay);
     }
 

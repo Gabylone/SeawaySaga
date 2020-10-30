@@ -6,9 +6,10 @@ using DG.Tweening;
 
 public class SkillButton_Combat : SkillButton {
 
-
 	public GameObject energyGroup;
-	public Text uiText_Energy;
+    public Text uiText_Energy;
+
+    public CanvasGroup canvasGroup;
 
 	// charge
 	public Image chargeFillImage;
@@ -33,14 +34,19 @@ public class SkillButton_Combat : SkillButton {
 
 	void Enable () {
 		canTriggerSkill = true;
-		skillImage.color = Color.black;
+		//skillImage.color = Color.black;
         button.interactable = true;
+
+        canvasGroup.alpha = 1f;
 	}
 
 	void Disable() {
 		canTriggerSkill = false;
-		skillImage.color = new Color ( 1,1,1,0.35f );
+		//skillImage.color = new Color ( 1,1,1,0.35f );
         button.interactable = false;
+
+        canvasGroup.alpha = 0.5f;
+
     }
 
     void CheckSkill ()

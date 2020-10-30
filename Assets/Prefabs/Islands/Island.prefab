@@ -174,7 +174,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8659458110617119843
 Transform:
   m_ObjectHideFlags: 0
@@ -676,7 +676,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8659458111842961928
 Transform:
   m_ObjectHideFlags: 0
@@ -811,6 +811,17 @@ MonoBehaviour:
   _collider: {fileID: 0}
   uiBackground: {fileID: 0}
   gameViewCenter: {fileID: 0}
+  islandData:
+    worldPosition: {x: 0, y: 0}
+    worldRotation: 0
+    index: 0
+    coords:
+      x: 0
+      y: 0
+    containsFormula: 0
+    storyManager:
+      hasBeenPlayed: 0
+      storyHandlers: []
   targeted: 0
 --- !u!65 &8659458111997913572
 BoxCollider:
@@ -1527,7 +1538,7 @@ PrefabInstance:
     - target: {fileID: 2300000, guid: 8b2230cce4db908469076ba5049c2b14, type: 3}
       propertyPath: m_Materials.Array.data[4]
       value: 
-      objectReference: {fileID: 2100000, guid: c1b217a5d0257054f99954a785b89397, type: 2}
+      objectReference: {fileID: 2100000, guid: e125c7f61b9088040a8cea78e2368a23, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b2230cce4db908469076ba5049c2b14, type: 3}
 --- !u!1 &8659458110503122859 stripped

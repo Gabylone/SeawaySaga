@@ -6,10 +6,12 @@ public class StoryInput : MonoBehaviour {
 
 	public static StoryInput Instance;
 
-	bool waitForInput = false;
+	private bool waitForInput = false;
 
     public delegate void OnPressInput();
     public OnPressInput onPressInput;
+
+    public bool activateInputDebug = false;
 
     void Awake()
     {
@@ -76,11 +78,22 @@ public class StoryInput : MonoBehaviour {
 
 	public void WaitForInput () {
 
+        if (activateInputDebug)
+        {
+            Debug.Log("trigger wait for input");
+        }
+
         CancelInvoke("WaitForInputDelay");
 		Invoke ("WaitForInputDelay", 0.1f);
     }
 	void WaitForInputDelay () {
-		waitForInput = true;
+
+        if (activateInputDebug)
+        {
+            Debug.Log("waiting input delay");
+        }
+
+        waitForInput = true;
     }
 
     void PressInput()
@@ -90,16 +103,29 @@ public class StoryInput : MonoBehaviour {
             return;
         }
 
+        if (activateInputDebug)
+        {
+            Debug.Log("pressing input");
+        }
 
         waitForInput = false;
 
+
+        CancelInvoke("PressInputDelay");
+        Invoke("PressInputDelay", 0.001f);
+    }
+
+    void PressInputDelay()
+    {
         if (onPressInput != null)
         {
             onPressInput();
         }
 
-
-
+        if (activateInputDebug)
+        {
+            Debug.Log("pressing input delay");
+        }
     }
 
 }

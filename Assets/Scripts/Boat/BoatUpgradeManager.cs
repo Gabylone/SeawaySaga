@@ -85,8 +85,6 @@ public class BoatUpgradeManager : MonoBehaviour {
 			onOpenBoatUpgrade ();
 	}
 
-	
-
     public void Close()
     {
         if (!opened)
@@ -103,11 +101,9 @@ public class BoatUpgradeManager : MonoBehaviour {
         if (trading == true)
         {
             StopTrading();
-
         }
 
         Invoke( "Hide" , 0.5f );
-
     }
 
     void Hide()

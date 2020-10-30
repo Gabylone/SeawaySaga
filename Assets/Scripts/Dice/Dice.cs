@@ -24,7 +24,13 @@ public class Dice : MonoBehaviour {
 	[SerializeField] private float minForce = 500f;
 	[SerializeField] private float minTorque = 100f;
 	[SerializeField] private float maxForce = 700f;
-	[SerializeField] private float maxTorque = 200f;
+    [SerializeField] private float maxTorque = 200f;
+
+    public Transform bodyTransform;
+
+    public float tweenDecal = 1f;
+    public float tweenDuration = 0.2f;
+    public float quickTweenDuration = 0.2f;
 
     private Transform _transform;
 
@@ -48,7 +54,7 @@ public class Dice : MonoBehaviour {
 	private float settleDuration = 0.5f;
 
 	public Transform anchor;
-	private bool thrown = false;
+	public bool thrown = false;
 
 	public int targetResult = 1;
 
@@ -68,7 +74,7 @@ public class Dice : MonoBehaviour {
 			float y = Random.Range (0f,360f);
 			float z = Random.Range (0f,360f);
 
-			GetTransform.rotation = Quaternion.Euler ( new Vector3(x,y,z) );
+			bodyTransform.rotation = Quaternion.Euler ( new Vector3(x,y,z) );
 		}
 	}
 
@@ -79,6 +85,10 @@ public class Dice : MonoBehaviour {
 		Vector3 pos = anchor.position;
 		pos.x *= throwDirection;
 		GetTransform.position = pos;
+
+        bodyTransform.localPosition = Vector3.zero;
+        bodyTransform.rotation = Quaternion.identity;
+        bodyTransform.localScale = Vector3.one;
 
 		// SCALE
 		GetTransform.localScale = Vector3.one;
@@ -107,10 +117,10 @@ public class Dice : MonoBehaviour {
 	#region settle
 	float targetScale;
 
-	public void SettleDown () {
+	public void SettleDown ()
+    {
 
-        GetTransform.DOKill();
-        GetTransform.DOScale(Vector3.one * 0.8f, settleDuration);
+        bodyTransform.DOScale(0f, tweenDuration).SetEase(Ease.InBounce);
 
         Color c = rends[0].material.color;
 
@@ -124,8 +134,8 @@ public class Dice : MonoBehaviour {
 
 	public void SettleUp() {
 
-        GetTransform.DOKill();
-        GetTransform.DOScale(Vector3.one * 1.2f, settleDuration);
+        //GetTransform.DOKill();
+        bodyTransform.DOScale(Vector3.one * 1.2f, settleDuration);
         
         //Tween.Bounce (transform);
 
@@ -140,28 +150,6 @@ public class Dice : MonoBehaviour {
 	#region properties
 	public int result {
 		get {
-//			Vector3[] dirs = new Vector3[6] {
-//				transform.up,
-//				transform.right,
-//				transform.forward,
-//				-transform.forward,
-//				-transform.right,
-//				-transform.up,
-//			};
-//
-//			int i = 1;
-//
-//			foreach ( Vector3 d in dirs ) {
-//				if (Vector3.Dot (d, Vector3.up) > 0.5f) {
-//					
-//					return i;
-//				}
-//
-//				++i;
-//			}
-//
-//			Debug.LogError ("Coudn't find value of die\nreturning 0");
-//			return 0;
 			return targetResult;
 		}
 	}
@@ -176,32 +164,44 @@ public class Dice : MonoBehaviour {
 		}
 	}
 	public void TurnToDirection (int i ) {
-		
-//		GetComponent<Rigidbody> ().velocity = Vector3.zero;
-//		GetComponent<Rigidbody> ().angularVelocity = Vector3.zero;
 
-		thrown = false;
+        thrown = false;
 
-		switch(i) {
+        Vector3 rot = Vector3.zero;
+
+        switch (i) {
 		case 1:
-			GetTransform.up = Vector3.up;
+                rot = new Vector3(0,0,0);
+			//GetTransform.up = Vector3.up;
 			break;
 		case 2:
-                GetTransform.right = Vector3.up;
-			break;
+                rot = new Vector3(0,0,90);
+                //GetTransform.right = Vector3.up;
+                break;
 		case 3:
-                GetTransform.forward = Vector3.up;
-			break;
+                rot = new Vector3(0, 0, 90);
+                //GetTransform.forward = Vector3.up;
+                break;
 		case 4:
-                GetTransform.forward= -Vector3.up;
-			break;
+                rot = new Vector3(-270, -180, 90);
+                //GetTransform.forward= -Vector3.up;
+                break;
 		case 5:
-                GetTransform.right = -Vector3.up;
-			break;
+                rot = new Vector3(-180, -180, 90);
+                //GetTransform.right = -Vector3.up;
+                break;
 		case 6:
-                GetTransform.up = -Vector3.up;
-			break;
+                rot = new Vector3(-180, -180, 0);
+                //GetTransform.up = -Vector3.up;
+                break;
 		}
+
+        Vector3 init = Vector3.zero;
+        Vector3 p = Vector3.up * tweenDecal;
+
+        bodyTransform.DOLocalMove(p, tweenDuration);
+        bodyTransform.DOLocalMove(init, quickTweenDuration).SetDelay(tweenDuration);
+        bodyTransform.DORotate(rot, tweenDuration + quickTweenDuration);
 	}
 	#endregion
 
@@ -216,10 +216,13 @@ public class Dice : MonoBehaviour {
 		}
 	}
 	public void Fade () {
-        foreach (var rend in rends)
+
+        bodyTransform.DOScale(0f, tweenDuration).SetEase(Ease.InBounce);
+
+        /*foreach (var rend in rends)
         {
             rend.material.DOFade(0f, settleDuration);
-        }
+        }*/
     }
     #endregion
 }

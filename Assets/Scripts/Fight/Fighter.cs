@@ -478,6 +478,7 @@ public class Fighter : MonoBehaviour {
 
 	public void Select () {
 
+
 		if ( Pickable ) {
 			CombatManager.Instance.ChoseTargetMember (this);
 			Tween.Bounce (GetTransform);
@@ -488,7 +489,7 @@ public class Fighter : MonoBehaviour {
 
 		if (CombatManager.Instance.currentFighter == this && CombatManager.Instance.currentFighter.crewMember.side == Crews.Side.Player ) {
 			return;
-		}
+        }
 
         card.HandleOnShowInfo();
 	}
@@ -633,6 +634,43 @@ public class Fighter : MonoBehaviour {
 		return false;
 
 	}
+
+    public bool SkippingTurn()
+    {
+        return 
+            HasStatus(Status.KnockedOut)
+            ||
+            HasStatus(Status.PreparingAttack);
+    }
+
+    public void CancelDelayedAttack()
+    {
+        iconVisual.RemoveAimingEyes();
+        iconVisual.RemoveMadFace();
+
+        RemoveStatus(Status.PreparingAttack);
+        onSkillDelay = null;
+    }
+
+    public void KnockOut()
+    {
+        SoundManager.Instance.PlayRandomSound("Blunt");
+        SoundManager.Instance.PlayRandomSound("Punch");
+        SoundManager.Instance.PlayRandomSound("slash");
+
+        SoundManager.Instance.PlaySound("knockout");
+
+        if (HasStatus(Status.PreparingAttack))
+        {
+            CancelDelayedAttack();
+        }
+
+        combatFeedback.Display("Knocked Out !", Color.magenta);
+
+        AddStatus(Fighter.Status.KnockedOut);
+
+        crewMember.energy = 0;
+    }
 
     void Dodge()
     {

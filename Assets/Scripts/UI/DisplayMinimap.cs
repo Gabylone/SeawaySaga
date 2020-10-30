@@ -69,11 +69,11 @@ public class DisplayMinimap : MonoBehaviour {
     public bool fullyDisplayed = false;
     ///
 
-    private bool continueStoryOnClose = false;
+    public bool continueStoryOnClose = false;
 
 	public Image outlineImage;
 
-	public GameObject mapCloseButton;
+	public GameObject fullMapGroup;
 
     public float decal_X = 0f;
     public float decal_Y = 0f;
@@ -86,7 +86,7 @@ public class DisplayMinimap : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-		rectTransform = GetComponent<RectTransform> ();
+        rectTransform = GetComponent<RectTransform>();
 
 		// subscribe
 
@@ -94,10 +94,7 @@ public class DisplayMinimap : MonoBehaviour {
 		CombatManager.Instance.onFightEnd += FadeIn;
 
 		StoryFunctions.Instance.getFunction += HandleOnGetFunction;
-
-		// quest feedback
-		Quest.onSetTargetCoords += HandleOnSetTargetCoords;
-
+        
 		QuestManager.Instance.onFinishQuest += HandleOnFinishQuest;
 		QuestManager.Instance.onGiveUpQuest += HandleOnGiveUpQuest;
 
@@ -106,33 +103,28 @@ public class DisplayMinimap : MonoBehaviour {
 		initScaleX = rectTransform.sizeDelta.x;
         initScaleY = rectTransform.sizeDelta.y;
 
-        previousParent = transform.parent;
+        previousParent = rectTransform.parent;
 
         targetScale = zoom_NormalScale;
 
 		Show ();
-		HideCloseButton ();
+
+		HideFullMapGroup ();
 	}
 
     private void Update()
     {
         UpdatePlayerBoatIcon();
         UpdateZoom();
+
         if (fullyDisplayed)
         {
             UpdateZoomControl();
         }
-
-        /*CenterOnBoat();
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            Crews.maxHunger = 20000;
-        }*/
     }
 
     void UpdateZoom()
     {
-
         if (overallRectTranfsorm.localScale.x >= targetScale + 0.1f)
         {
             overallRectTranfsorm.localScale = Vector3.Lerp(overallRectTranfsorm.localScale, Vector3.one * targetScale, zoom_LerpSpeed * Time.deltaTime);
@@ -195,14 +187,12 @@ public class DisplayMinimap : MonoBehaviour {
 
     IEnumerator ObserveHorizonCoroutine()
     {
+        continueStoryOnClose = true;
+
         FullDisplay();
 
         // wait for map to open
         yield return new WaitForSeconds(fullDisplay_Duration);
-
-        mapCloseButton.SetActive(false);
-
-        yield return new WaitForSeconds(0.3f);
 
         targetScale = 1f;
 
@@ -211,78 +201,59 @@ public class DisplayMinimap : MonoBehaviour {
 
         CenterOnBoat();
         UpdateRange(5);
-
-        // wait for map to center
-        yield return new WaitForSeconds(0.5f);
-
-        continueStoryOnClose = true;
-
-        mapCloseButton.SetActive(true);
-
     }
 
     #region update minimap chunks
     public MinimapChunk GetCurrentMinimapChunk()
     {
-        int id = 0;
-
-        if (IslandManager.Instance.currentIsland != null)
-        {
-            id = IslandManager.Instance.currentIsland.id;
-        }
-
-        return GetMinimapChunk(Coords.current, id);
+        return GetMinimapChunk(IslandManager.Instance.GetCurrentIslandData());
     }
 
-    public MinimapChunk GetMinimapChunk ( Coords coords , int targetIslandID)
+    public MinimapChunk GetMinimapChunk ( IslandData islandData )
     {
-        MinimapChunk minimapChunk = minimapChunks.Find( x => x.coords == coords && x.islandID == targetIslandID);
+        MinimapChunk minimapChunk = minimapChunks.Find( x => x.coords == islandData.coords && x.index == islandData.index);
 
         if ( minimapChunk == null)
         {
-            Debug.LogError("coulfn't find minimap chunk at coords : " + coords.ToString());
+            Debug.LogError("coulfn't find minimap chunk at coords : " + islandData.coords);
         }
          
         return minimapChunk;
     }
-
-	void HandleOnSetTargetCoords (Quest quest)
-	{
-		if (quest.targetCoords == quest.originCoords) {
-
-            quest.GetOriginChunk().HideQuestFeedback();
-        }
-
-        quest.GetTargetChunk().ShowQuestFeedback();
-    }
      
 	void HandleOnGiveUpQuest (Quest quest)
 	{
-        MinimapChunk targetMinimapChunk = GetMinimapChunk(quest.targetCoords, quest.targetID);
+        MinimapChunk originMinimapChunk = GetMinimapChunk(quest.GetOriginIslandData());
+        MinimapChunk targetMinimapChunk = GetMinimapChunk(quest.GetTargetIslandData());
+
+        if (originMinimapChunk != null)
+        {
+            Debug.Log("hide origin feedback quest on mini map chunck");
+            originMinimapChunk.HideQuestFeedback();
+        }
 
         if ( targetMinimapChunk != null)
         {
             Debug.Log("hide target feedback quest on mini map chunck");
             targetMinimapChunk.HideQuestFeedback();
         }
-        else
-        {
-            Debug.LogError("ERROR : not found : hide target feedback quest on mini map chunck");
-
-        }
     }
 
 	void HandleOnFinishQuest (Quest quest)
 	{
-        MinimapChunk targetMinimapChunk = GetMinimapChunk(quest.targetCoords, quest.targetID);
+        MinimapChunk originMinimapChunk = GetMinimapChunk(quest.GetOriginIslandData());
+        MinimapChunk targetMinimapChunk = GetMinimapChunk(quest.GetTargetIslandData());
+
+        if (originMinimapChunk != null)
+        {
+            Debug.Log("hide origin feedback quest on mini map chunck");
+            originMinimapChunk.HideQuestFeedback();
+        }
+
         if (targetMinimapChunk != null)
         {
             Debug.Log("hide target feedback quest on mini map chunck");
-            targetMinimapChunk.ShowQuestFeedback();
-        }
-        else
-        {
-            Debug.LogError("ERROR : not found : hide target feedback quest on mini map chunck");
+            targetMinimapChunk.HideQuestFeedback();
         }
     }
 
@@ -324,29 +295,38 @@ public class DisplayMinimap : MonoBehaviour {
 
     IEnumerator ShowQuestCoroutine(Quest quest)
     {
+        MinimapChunk minimapChunk = quest.GetTargetChunk();
+
         FullDisplay();
-
-
-        // wait for map to open
-        yield return new WaitForSeconds(fullDisplay_Duration);
-
-        mapCloseButton.SetActive(false);
 
         // pause
         yield return new WaitForSeconds(0.3f);
 
-        CenterOnMap_Tween(quest.GetTargetChunk().rectTransform);
+        CenterOnMap_Tween(minimapChunk.rectTransform);
 
         // wait for map to center
         yield return new WaitForSeconds(centerTweenDuration);
 
-        MinimapCenterFeedback.Instance.CenterOnMap(quest.targetCoords);
 
-        yield return new WaitForSeconds(centerTweenDuration);
+        MinimapCenterFeedback.Instance.CenterOnMap(minimapChunk.rectTransform.anchoredPosition);
 
-        mapCloseButton.SetActive(true);
+        Chunk chunk = Chunk.GetChunk(minimapChunk.coords);
 
-        continueStoryOnClose = true;
+        switch (chunk.state)
+        {
+            case ChunkState.UndiscoveredSea:
+            case ChunkState.DiscoveredSea:
+            case ChunkState.UndiscoveredIsland:
+            case ChunkState.DiscoveredIsland:
+                minimapChunk.SetDiscovered();
+                break;
+            case ChunkState.VisitedIsland:
+                break;
+            default:
+                break;
+        }
+
+        minimapChunk.ShowQuestFeedback();
 
     }
     #endregion
@@ -377,24 +357,30 @@ public class DisplayMinimap : MonoBehaviour {
 	}
 
     #region center
-    void CenterOnBoat() {
+    void CenterOnBoat()
+    {
 		CenterOnMap_Tween (playerBoat_World_RectTransform);
 	}
 
     public void CenterOnBoat_Quick()
     {
+        CenterOnMap_Quick(playerBoat_World_RectTransform);
+    }
+
+    public void CenterOnMap_Quick(Transform target)
+    {
         Canvas.ForceUpdateCanvases();
 
         Vector2 p =
-            (Vector2)scrollRect.transform.InverseTransformPoint(overallRectTranfsorm.position)
-            - (Vector2)scrollRect.transform.InverseTransformPoint(playerBoat_World_RectTransform.position);
+            (Vector2)scrollViewRectTransform.InverseTransformPoint(overallRectTranfsorm.position)
+            - (Vector2)scrollViewRectTransform.InverseTransformPoint(target.position);
 
         p = p + scrollViewRectTransform.rect.size / 2f;
 
-        overallRectTranfsorm.anchoredPosition = p; 
+        overallRectTranfsorm.anchoredPosition = p;
     }
 
-	public void CenterOnMap_Tween (RectTransform target)
+    public void CenterOnMap_Tween (RectTransform target)
 	{
         /*float x = (float)coords.x / MapGenerator.Instance.GetMapHorizontalScale;
         float y = (float)coords.y / MapGenerator.Instance.GetMapVerticalScale;*/
@@ -402,8 +388,8 @@ public class DisplayMinimap : MonoBehaviour {
         Canvas.ForceUpdateCanvases();
 
         Vector2 p =
-            (Vector2)scrollRect.transform.InverseTransformPoint(overallRectTranfsorm.position)
-            - (Vector2)scrollRect.transform.InverseTransformPoint(target.position);
+            (Vector2)scrollViewRectTransform.InverseTransformPoint(overallRectTranfsorm.position)
+            - (Vector2)scrollViewRectTransform.InverseTransformPoint(target.position);
 
         p = p + scrollViewRectTransform.rect.size / 2f;
 
@@ -437,9 +423,9 @@ public class DisplayMinimap : MonoBehaviour {
                         chunk.state = ChunkState.DiscoveredIsland;
                         chunk.Save(c);
 
-                        for (int i = 0; i < chunk.IslandCount; i++)
+                        foreach (var item in chunk.islandDatas)
                         {
-                            MinimapChunk minimapChunk = GetMinimapChunk(c, i);
+                            MinimapChunk minimapChunk = GetMinimapChunk(item);
                             minimapChunk.SetDiscovered();
                         }
 
@@ -650,18 +636,19 @@ public class DisplayMinimap : MonoBehaviour {
         SoundManager.Instance.PlayRandomSound("Book");
         SoundManager.Instance.PlayRandomSound("Page");
 
-        CancelInvoke("ShowCloseButton");
+
         CancelInvoke("FullDisplayDelay");
-        Invoke ("ShowCloseButton",fullDisplay_Duration);
 		Invoke ("FullDisplayDelay", fullDisplay_Duration/2f);
 	}
     void FullDisplayDelay()
     {
+        ShowFullMapGroup();
+
         SoundManager.Instance.PlayRandomSound("Book");
         SoundManager.Instance.PlayRandomSound("Page");
 
-        transform.SetParent(targetParent);
-        transform.SetAsFirstSibling();
+        rectTransform.SetParent(targetParent);
+        rectTransform.SetAsFirstSibling();
 
         Vector2 scale = new Vector2(0f, 0f);
 
@@ -692,19 +679,19 @@ public class DisplayMinimap : MonoBehaviour {
 
         targetScale = zoom_NormalScale;
 
-		Tween.Bounce (mapCloseButton.transform, 0.2f , 1.1f);
-
 		Transitions.Instance.ScreenTransition.FadeIn (fullDisplay_Duration/2f);
 
 		fullDisplay_Exiting = true;
 
-		Invoke ("HideCloseButton",0.2f);
+        HideFullMapGroup();
 		Invoke ("ExitFullDisplayDelay", fullDisplay_Duration/2f);
 	}
 	void ExitFullDisplayDelay() {
 
-        transform.SetParent(previousParent);
-        transform.SetAsLastSibling();
+        fullDisplay_Exiting = false;
+
+        rectTransform.SetParent(previousParent);
+        rectTransform.SetAsLastSibling();
 
         rayBlockerImage.gameObject.SetActive(false);
 
@@ -726,6 +713,7 @@ public class DisplayMinimap : MonoBehaviour {
 
         if (continueStoryOnClose)
         {
+            continueStoryOnClose = false;
             CancelInvoke("ContinueStory");
             Invoke("ContinueStory", 0.3f);
         }
@@ -736,18 +724,15 @@ public class DisplayMinimap : MonoBehaviour {
         StoryReader.Instance.NextCell();
         StoryReader.Instance.UpdateStory();
 
-        continueStoryOnClose = false;
     }
 
-	void ShowCloseButton ()
+	void ShowFullMapGroup ()
 	{
-		Tween.Bounce (mapCloseButton.transform, 0.2f , 1.1f);
-		mapCloseButton.SetActive (true);
+		fullMapGroup.SetActive (true);
 	}
-	void HideCloseButton ()
+	void HideFullMapGroup ()
 	{
-		fullDisplay_Exiting = false;
-		mapCloseButton.SetActive (false);
+		fullMapGroup.SetActive (false);
 	}
 	void FadeOut ()
 	{

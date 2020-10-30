@@ -199,6 +199,8 @@ public class InGameMenu : MonoBehaviour {
             // set bool
         opened = true;
 
+        //Boats.Instance.WithdrawBoats();
+
         SoundManager.Instance.PlaySound("button_tap_light 01");
         SoundManager.Instance.PlaySound("Whoosh 01");
 

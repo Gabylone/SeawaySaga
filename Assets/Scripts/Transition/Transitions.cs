@@ -21,7 +21,7 @@ public class Transitions : MonoBehaviour {
         screenTransition.FadeOut( defaultTransition );
         actionTransition.FadeOut(defaultTransition);
 
-		if ( StoryFunctions.Instance )
+        if (StoryFunctions.Instance!=null)
 		StoryFunctions.Instance.getFunction += HandleGetFunction;
 
 	}
@@ -31,15 +31,7 @@ public class Transitions : MonoBehaviour {
 		switch (func) {
 
             case FunctionType.Fade:
-
-
-			    StoryReader.Instance.NextCell ();
-
-			    /*FadeScreen ();
-                StoryReader.Instance.Wait (defaultTransition);*/
-
-                StoryReader.Instance.UpdateStory();
-
+                StoryReader.Instance.ContinueStory();
                 break;
 		}
 	}

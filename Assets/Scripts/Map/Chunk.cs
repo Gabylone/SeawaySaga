@@ -20,14 +20,21 @@ public class Chunk
 
     public ChunkState state;
 
+    public Coords coords;
+
     // c'est ici que tout se passe
     public IslandData[] islandDatas = new IslandData[0];
+
+    public Chunk (Coords c)
+    {
+        this.coords = c;
+    }
 
 	public Chunk () {
 		
 	}
 
-	public void AddIslandData (IslandData _newIslandData) {
+	public void AddIslandData (IslandData newIslandData) {
 
         if ( islandDatas == null)
         {
@@ -41,7 +48,13 @@ public class Chunk
             tmp_IslandDatas[i] = islandDatas[i];
         }
 
-        tmp_IslandDatas[tmp_IslandDatas.Length - 1] = _newIslandData;
+        int index = tmp_IslandDatas.Length - 1;
+
+        newIslandData.index = index;
+        newIslandData.coords = coords;
+
+        tmp_IslandDatas[index] = newIslandData;
+
 
         islandDatas = tmp_IslandDatas;
 
@@ -55,9 +68,18 @@ public class Chunk
     
     public bool IsFormulaIsland()
     {
-        bool firstLayer = StoryReader.Instance.currentStoryLayer == 0;
-
-        return firstLayer && IslandManager.Instance.currentIsland.islandData.containsFormula;
+        if (StoryReader.Instance.CurrentStoryHandler.Story.dataName == "Jeu")
+        {
+            Debug.Log("c'est l'histoire du jeu");
+            bool secondLayer = StoryReader.Instance.currentStoryLayer == 1;
+            return secondLayer && IslandManager.Instance.currentIsland.islandData.containsFormula;
+        }
+        else
+        {
+            bool firstLayer = StoryReader.Instance.currentStoryLayer == 0;
+            return firstLayer && IslandManager.Instance.currentIsland.islandData.containsFormula;
+        }
+        
     }
 
     public IslandData GetIslandData(int id)

@@ -1,12 +1,12 @@
 Nom;Fréquence %;Sprite ID;Display Name;;;;;;;;;;;
-Casino;3,39;1;Casino;;;;;;;;;;;
+Hangar;5,08;1;Carpenter;;;;;;;;;;;
 Narrator : The boat arrives on a tiny island, its beach riddled with boat carcasses of all size and shapes. There’s an old cabin a the end of the beach.;;;;;;;;;;;;;;
 CheckQuest=>choix debut;;;;;;;;;;;;;;
 [choix debut];;;;;;;;;;;;;;
 SetChoices2;;;;;;;;;;;;;;
 Choice : (leave);Choice : (towards the cabin);;;;;;;;;;;;;
 PlayerSpeak : Let’s leave!;Fade;;;;;;;;;;;;;
-Leave;[charpentier];;;;;;;;;;;;;
+Leave;[gougou gaga];;;;;;;;;;;;;
 ;SetBG(Island);;;;;;;;;;;;;
 ;NewCrew;;;;;;;;;;;;;
 ;OtherSpeak : Greetings!;Node=>Charpentier Mort;Node=>Combat Charpentier;;;;;;;;;;;
@@ -15,9 +15,9 @@ Leave;[charpentier];;;;;;;;;;;;;
 ;SetChoices4;;;;;;;SetChoices4;;;;;;
 ;Choice : (leave);Choice : Take a look at my NOMBATEAU! (trade);;Choice : (attack);;Choice : (chat) (other);;Choice : Let's go back to serious matters.;Choice : NOMTRESOR, ring any bells?;;Choice : How’s the carpenter life going? (quest);;Choice : What’s going on around the island ?;
 ;HideOther;[bateau];;RemoveKarma;;Node=>discussion;;OtherSpeak : Very well.;RandomRange2;;RandomPercent65;;RandomRange2;
-;Leave;OtherSpeak : With great pleasure!;OtherSpeak : After threatening me? No way.;RandomPercent50;;;;Node=>conversation;OtherSpeak : Go DIRECTIONTOFORMULA, you’ll hear about it, for sure!;OtherSpeak : Nope, never heard about it!;OtherSpeak : Business is great!;NewQuest=>discussion;GiveTip;OtherSpeak : Can’t talk… Too many boats to fix.
-;;BoatUpgrades;Node=>conversation;OtherSpeak : No, I beg you!;Node=>Combat Charpentier;;;;Node=>conversation;Node=>conversation;OtherSpeak : Maybe even too much...;;Node=>discussion;Node=>discussion
-;;Node=>conversation;;OtherSpeak : Take this and leave this island!;;;;;;;OtherSpeak : I don’t have time to sail myself anymore.;;;
+;Leave;OtherSpeak : With great pleasure!;OtherSpeak : After threatening me? No way.;RandomPercent50;;;;Node=>conversation;OtherSpeak : Well yes !;OtherSpeak : Nope, never heard about it!;OtherSpeak : Business is great!;NewQuest=>discussion;GiveTip;OtherSpeak : Can’t talk… Too many boats to fix.
+;;BoatUpgrades;Node=>conversation;OtherSpeak : No, I beg you!;Node=>Combat Charpentier;;;;TellClue;Node=>conversation;OtherSpeak : Maybe even too much...;;Node=>discussion;Node=>discussion
+;;Node=>conversation;;OtherSpeak : Take this and leave this island!;;;;;Node=>conversation;;OtherSpeak : I don’t have time to sail myself anymore.;;;
 ;;;;LootMisc/Food;;;;;;;Node=>discussion;;;
 ;;;;OtherSpeak : It’s all I have left...;;;;;;;;;;
 ;;;;SetChoices2;;;;;;;;;;

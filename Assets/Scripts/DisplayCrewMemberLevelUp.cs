@@ -30,6 +30,22 @@ public class DisplayCrewMemberLevelUp : Displayable
 
     public void Display(CrewMember crewMember)
     {
+        crewMembersToDisplay.Add(crewMember);
+
+        if (CombatManager.Instance.fighting)
+        {
+            Debug.Log( crewMember.MemberName + " leveled up but it's a fight, so we'll show at the end");
+        }
+        else
+        {
+            DisplayLastCrewMember();
+        }
+    }
+    
+    public void DisplayLastCrewMember()
+    {
+        StoryInput.Instance.Lock();
+
         Show();
 
         SoundManager.Instance.PlaySound("Big Tap");
@@ -37,13 +53,6 @@ public class DisplayCrewMemberLevelUp : Displayable
         SoundManager.Instance.PlayRandomSound("Magic Chimes");
         SoundManager.Instance.PlayRandomSound("Tribal");
 
-        crewMembersToDisplay.Add(crewMember);
-
-        DisplayLastCrewMember();
-    }
-    
-    private void DisplayLastCrewMember()
-    {
         CrewMember crewMember = crewMembersToDisplay[0];
 
         iconVisual.InitVisual(crewMember.MemberID);
@@ -54,17 +63,26 @@ public class DisplayCrewMemberLevelUp : Displayable
 
     public void Confirm()
     {
-        Hide();
+        crewMembersToDisplay.RemoveAt(0);
+
+        if (crewMembersToDisplay.Count > 0)
+        {
+            DisplayLastCrewMember();
+        }
+        else
+        {
+            Hide();
+            StoryInput.Instance.Unlock();
+        }
     }
 
     public override void HideDelay()
     {
         base.HideDelay();
-        
-        if ( crewMembersToDisplay.Count > 0)
+
+        if (CombatManager.Instance.fighting)
         {
-            crewMembersToDisplay.RemoveAt(0);
-            DisplayLastCrewMember();
+            CombatManager.Instance.HandleOnConfirm_Victory_Continue();
         }
     }
 }

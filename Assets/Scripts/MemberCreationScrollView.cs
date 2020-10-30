@@ -7,8 +7,9 @@ using DG.Tweening;
 public class MemberCreationScrollView : MonoBehaviour
 {
     public RectTransform rectTransform;
-    
-    public RectTransform contentFitter;
+
+    public RectTransform scrollView_RectTransform;
+    public RectTransform content_RectTransform;
 
     public GameObject memberCreationPrefab;
 
@@ -38,7 +39,7 @@ public class MemberCreationScrollView : MonoBehaviour
     {
         for (int i = 0; i < CrewCreator.Instance.apparenceGroups[(int)apparenceType].items.Count; ++i)
         {
-            GameObject inst = Instantiate(memberCreationPrefab, contentFitter.transform) as GameObject;
+            GameObject inst = Instantiate(memberCreationPrefab, content_RectTransform.transform) as GameObject;
 
             MemberCreationButton_Apparence butt = inst.GetComponent<MemberCreationButton_Apparence>();
 
@@ -49,6 +50,17 @@ public class MemberCreationScrollView : MonoBehaviour
         }
 
         categoryName_Text.text = "" + apparenceType.ToString();
+    }
+
+    public void CenterOnElement(Transform target)
+    {
+        Vector2 p =
+            (Vector2)scrollView_RectTransform.InverseTransformPoint(content_RectTransform.position)
+            - (Vector2)scrollView_RectTransform.InverseTransformPoint(target.position);
+
+        p = p + scrollView_RectTransform.rect.size / 2f;
+
+        content_RectTransform.DOAnchorPos(p, 0.5f);
     }
 
     void ShowItems()

@@ -1,12 +1,12 @@
 Nom;Fréquence / 5;Boat Type;Display Name;;;;;;;;;;;;
-Marchand;25;0;Merchant;;;;;;;;;;;;
+Marchand;25;2;Merchant;;;;;;;;;;;;
 [debut];;;;;;;;;;;;;;;
 Narrator : A small ship approaches NOMBATEAU. The crew is small but it looks like they carry some goods.;;;;;;;;;;;;;;;
 NewCrew1;;;;;[bobby];;;[combat];;[bateau vide];;;;;
 OtherSpeak : Hello there, travelers!;Node=>bateau vide;Node=>combat;;;RandomPercent20;;;OtherSpeak : You bloody bandit!;;Narrator : The ship is empty.;;;;;
-[choix];;;;;OtherSpeak : Oh I heard some stories! People talk about heading DIRECTIONTOFORMULA.;OtherSpeak : Never heard of it, sorry mate.;;RemoveKarma;;SetChoices2;;;;;
-RandomRange4;;;;;Node=>choix;Node=>choix;;LaunchCombat;;Choice : (leave);Choice : (search)(loot);;;;
-Node=>vetement;Node=>armes;Node=>nourriture;Node=>babiole;;;;;Node=>bateau vide;;DestroyShip;Fade;;;;
+[choix];;;;;OtherSpeak : Oh I heard some stories! ;OtherSpeak : Never heard of it, sorry mate.;;RemoveKarma;;SetChoices2;;;;;
+RandomRange4;;;;;TellClue;Node=>choix;;LaunchCombat;;Choice : (leave);Choice : (search)(loot);;;;
+Node=>vetement;Node=>armes;Node=>nourriture;Node=>babiole;;Node=>choix;;;Node=>bateau vide;;DestroyShip;Fade;;;;
 ;;;;;;;;;;Leave;RandomPercent20;;;;
 ;;;;;;;;;;;PlayerSpeak : Nothin' really worth anythin'.;[fouille];;;
 ;;;;;;;;;;;Node=>bateau vide;RandomRange3;;;PlayerSpeak : There’s nothing left.

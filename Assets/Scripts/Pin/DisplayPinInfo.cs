@@ -11,7 +11,7 @@ public class DisplayPinInfo : Displayable
 
     public void OnEndEdit()
     {
-        Tween.Bounce(GetRectTransform());
+        Tween.Bounce(GetRectTransform);
 
         pin.content = inputField.text;
 

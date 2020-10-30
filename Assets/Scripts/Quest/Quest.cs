@@ -25,14 +25,8 @@ public class Quest {
 	public int row = 0;
 	public int col = 0;
 
-    public int originID = 0;
-    public Coords originCoords;
-
-    public int previousID = 0;
-    public Coords previousCoords;
-
-    public int targetID = 0;
-	public Coords targetCoords;
+    private IslandData targetIslandData;
+    private IslandData originIslandData;
 
 	public Node nodeWhenCompleted;
 	public Node newQuest_FallbackNode;
@@ -83,9 +77,8 @@ public class Quest {
 		level = Mathf.Clamp (level, 1, 10);
 
 		experience = 15;
-
-        originCoords = Boats.Instance.playerBoatInfo.coords;
-        originID = IslandManager.Instance.currentIsland.id;
+        
+        SetOriginIsland(IslandManager.Instance.GetCurrentIslandData());
 
 		giver = Crews.enemyCrew.captain.MemberID;
 
@@ -118,9 +111,36 @@ public class Quest {
     }
 
 	public void SetRandomCoords () {
-		Coords _targetCoords = Coords.GetClosest (Boats.Instance.playerBoatInfo.coords);
-		SetTargetCoords (_targetCoords);
+
+		SetTargetIsland (IslandManager.Instance.GetRandomIslandDataForQuest());
+
+        //Debug.Log("target island : " + targetIslandData.storyManager.storyHandlers[0].Story.displayName);
 	}
+
+    public IslandData GetTargetIslandData()
+    {
+        return targetIslandData;
+    }
+
+    public void SetTargetIsland (IslandData islandData)
+    {
+        // disable quest feedback on island if there's already a target island
+        if ( targetIslandData != null)
+        {
+            GetTargetChunk().HideQuestFeedback();
+        }
+
+        targetIslandData = islandData;
+    }
+
+    public IslandData GetOriginIslandData()
+    {
+        return originIslandData;
+    }
+    public void SetOriginIsland (IslandData islandData)
+    {
+        originIslandData = islandData;
+    }
 	#endregion
 
 	#region nodes
@@ -148,22 +168,12 @@ public class Quest {
 
     public MinimapChunk GetOriginChunk()
     {
-        return DisplayMinimap.Instance.GetMinimapChunk(originCoords, originID);
+        return DisplayMinimap.Instance.GetMinimapChunk(originIslandData);
     }
 
     public MinimapChunk GetTargetChunk()
     {
-        return DisplayMinimap.Instance.GetMinimapChunk(targetCoords, targetID);
+        return DisplayMinimap.Instance.GetMinimapChunk(targetIslandData);
     }
-
-    public void SetTargetCoords ( Coords coords ) {
-
-		previousCoords = targetCoords;
-		targetCoords = coords;
-
-		if ( onSetTargetCoords != null ) {
-			onSetTargetCoords (this);
-		}
-	}
 	//
 }

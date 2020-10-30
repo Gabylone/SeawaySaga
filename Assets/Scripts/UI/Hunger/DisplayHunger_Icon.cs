@@ -52,7 +52,7 @@ public class DisplayHunger_Icon : DisplayHunger {
     {
         UpdateHungerIcon(linkedIcon.member);
 
-        if (linkedIcon.member.CurrentHunger >= Crews.maxHunger)
+        if (linkedIcon.member.CurrentHunger >= linkedIcon.member.MaxHunger)
         {
 
             DisplayHealthAmount(linkedIcon.member.hungerDamage);
@@ -98,7 +98,7 @@ public class DisplayHunger_Icon : DisplayHunger {
         displayFood_Obj.SetActive(true);
 
         displayFood_Image.sprite = displayFood_FoodSprite;
-        displayFood_Text.text = "" + (Crews.maxHunger-linkedIcon.member.CurrentHunger);
+        displayFood_Text.text = "" + (linkedIcon.member.MaxHunger - linkedIcon.member.CurrentHunger);
 
         CancelInvoke("HideFoodFeedback");
         Invoke("HideFoodFeedback", displayFood_Delay + 1f);
@@ -178,7 +178,7 @@ public class DisplayHunger_Icon : DisplayHunger {
 
 	public override void UpdateHungerIcon (CrewMember member)
 	{
-		float fillAmount = 1f - ((float)member.CurrentHunger / (float)Crews.maxHunger);
+		float fillAmount = 1f - ((float)member.CurrentHunger / (float)member.MaxHunger);
 
         UpdateHeartImage();
 

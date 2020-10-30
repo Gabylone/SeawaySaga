@@ -19,7 +19,7 @@ OtherSpeak : Greetings, sailor!;Node=>mort;Node=>combat;;;;;;;;;;;
 SetChoices4;;;;;;SetChoices4;;;;;;OtherSpeak : You scum will taste my finest choice!;
 Choice : (leave);Choice : Show me your weapons. (trade);Choice : Ever heard of the treasure of NOMTRESOR?;;Choice : (other);;Choice : This is a robbery! (attack);Choice : How are things on your island? (quest);;Choice : Tell me about the ocean !;;Choice : (other);LaunchCombat;
 OtherSpeak : This is goodbye!;TradeWeapons;RandomPercent20;;Node=>choix autre;;Node=>combat;RandomPercent65;;RandomRange2;;Node=>choix;RemoveKarma;
-Leave;Node=>choix;OtherSpeak : Only sailors from the DIRECTIONTOFORMULA are interested in this old tale.;OtherSpeak : Nope, first time I hear about it!;;;;OtherSpeak : As a weapon seller,;NewQuest=>choix;GiveTip;OtherSpeak : I’d prefer we talk business only;;[mort];
+Leave;Node=>choix;TellClue;OtherSpeak : Nope, first time I hear about it!;;;;OtherSpeak : As a weapon seller,;NewQuest=>choix;GiveTip;OtherSpeak : I’d prefer we talk business only;;[mort];
 ;;Node=>choix;Node=>choix;;;;OtherSpeak : I never get to see what people do with my weapons.;;Node=>choix;Node=>choix;;PlayerSpeak : The weapons vendor is dead!;
 ;;;;;;;OtherSpeak : Which suits me fine to be honest.;;;;;SetChoices2;
 ;;;;;;;Node=>choix;;;;;Choice : (leave);Choice : (search the armory)

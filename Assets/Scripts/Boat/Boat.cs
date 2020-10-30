@@ -67,11 +67,17 @@ public class Boat : MonoBehaviour {
     #region moving
     public virtual void SetTargetPos(Vector3 p)
     {
-        if (agent.isOnNavMesh)
+        if (agent.isOnNavMesh
+            && agent.isActiveAndEnabled)
         {
-            agent.isStopped = false;
+
+        }
+        else
+        {
+            return;
         }
 
+        agent.isStopped = false;
         agent.SetDestination(p);
 
         moving = true;

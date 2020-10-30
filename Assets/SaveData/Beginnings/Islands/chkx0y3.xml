@@ -1,13 +1,23 @@
 <?xml version="1.0"?>
 <Chunk xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <state>VisitedIsland</state>
+  <coords>
+    <x>0</x>
+    <y>3</y>
+  </coords>
   <islandDatas>
     <IslandData>
       <worldPosition>
-        <x>7.268958</x>
-        <y>2.49056625</y>
+        <x>-8.70137</x>
+        <y>-17.049202</y>
       </worldPosition>
-      <worldRotation>273.543335</worldRotation>
+      <worldRotation>66.36514</worldRotation>
+      <index>0</index>
+      <coords>
+        <x>0</x>
+        <y>3</y>
+      </coords>
+      <containsFormula>false</containsFormula>
       <storyManager>
         <hasBeenPlayed>true</hasBeenPlayed>
         <storyHandlers>
@@ -19,22 +29,153 @@
             <storyType>Normal</storyType>
             <contentDecals>
               <contentDecal>
-                <row>0</row>
-                <col>11</col>
-                <decal>0</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>2</row>
-                <col>64</col>
+                <row>5</row>
+                <col>59</col>
                 <decal>0</decal>
               </contentDecal>
             </contentDecals>
-            <loots />
+            <loots>
+              <Loot>
+                <row>0</row>
+                <col>10</col>
+                <ids>
+                  <ArrayOfInt />
+                  <ArrayOfInt>
+                    <int>62</int>
+                    <int>66</int>
+                    <int>63</int>
+                  </ArrayOfInt>
+                  <ArrayOfInt>
+                    <int>162</int>
+                    <int>161</int>
+                    <int>151</int>
+                  </ArrayOfInt>
+                  <ArrayOfInt>
+                    <int>226</int>
+                    <int>210</int>
+                  </ArrayOfInt>
+                </ids>
+                <weight>53</weight>
+                <AllItems>
+                  <ArrayOfItem />
+                  <ArrayOfItem>
+                    <Item>
+                      <ID>62</ID>
+                      <englishName>Rusty gun</englishName>
+                      <frenchName>Poivrière rouillée</frenchName>
+                      <value>21</value>
+                      <price>40</price>
+                      <weight>8</weight>
+                      <level>2</level>
+                      <spriteID>6</spriteID>
+                      <description />
+                      <weaponType>Distance</weaponType>
+                      <category>Weapon</category>
+                    </Item>
+                    <Item>
+                      <ID>66</ID>
+                      <englishName>Long iron sword</englishName>
+                      <frenchName>Massue de pierre</frenchName>
+                      <value>28</value>
+                      <price>47</price>
+                      <weight>8</weight>
+                      <level>3</level>
+                      <spriteID>3</spriteID>
+                      <description>C'est un massue de pierre</description>
+                      <weaponType>Stick</weaponType>
+                      <category>Weapon</category>
+                    </Item>
+                    <Item>
+                      <ID>63</ID>
+                      <englishName>Big steel sword</englishName>
+                      <frenchName>Grande épée en acier</frenchName>
+                      <value>30</value>
+                      <price>48</price>
+                      <weight>8</weight>
+                      <level>3</level>
+                      <spriteID>2</spriteID>
+                      <description>C'est un grande épée en acier</description>
+                      <weaponType>Stick</weaponType>
+                      <category>Weapon</category>
+                    </Item>
+                  </ArrayOfItem>
+                  <ArrayOfItem>
+                    <Item>
+                      <ID>162</ID>
+                      <englishName>Reinforced vest</englishName>
+                      <frenchName>Veste renforcée</frenchName>
+                      <value>19</value>
+                      <price>33</price>
+                      <weight>8</weight>
+                      <level>2</level>
+                      <spriteID>1</spriteID>
+                      <description>C'est un veste renforcée</description>
+                      <weaponType>Distance</weaponType>
+                      <category>Clothes</category>
+                    </Item>
+                    <Item>
+                      <ID>161</ID>
+                      <englishName>Leather harness</englishName>
+                      <frenchName>Harnais de cuir</frenchName>
+                      <value>24</value>
+                      <price>44</price>
+                      <weight>8</weight>
+                      <level>2</level>
+                      <spriteID>0</spriteID>
+                      <description>C'est un harnais de cuir</description>
+                      <weaponType>Distance</weaponType>
+                      <category>Clothes</category>
+                    </Item>
+                    <Item>
+                      <ID>151</ID>
+                      <englishName>Simple docker</englishName>
+                      <frenchName>Marcel</frenchName>
+                      <value>7</value>
+                      <price>20</price>
+                      <weight>8</weight>
+                      <level>1</level>
+                      <spriteID>0</spriteID>
+                      <description>C'est un marcel</description>
+                      <weaponType>Distance</weaponType>
+                      <category>Clothes</category>
+                    </Item>
+                  </ArrayOfItem>
+                  <ArrayOfItem>
+                    <Item>
+                      <ID>226</ID>
+                      <englishName>Fork</englishName>
+                      <frenchName>Fourchette</frenchName>
+                      <value>0</value>
+                      <price>2</price>
+                      <weight>1</weight>
+                      <level>0</level>
+                      <spriteID>8</spriteID>
+                      <description>C'est un fourchette</description>
+                      <weaponType>Distance</weaponType>
+                      <category>Misc</category>
+                    </Item>
+                    <Item>
+                      <ID>210</ID>
+                      <englishName>Pillow</englishName>
+                      <frenchName>Oreiller</frenchName>
+                      <value>0</value>
+                      <price>8</price>
+                      <weight>4</weight>
+                      <level>0</level>
+                      <spriteID>0</spriteID>
+                      <description>C'est un oreiller</description>
+                      <weaponType>Distance</weaponType>
+                      <category>Misc</category>
+                    </Item>
+                  </ArrayOfItem>
+                </AllItems>
+              </Loot>
+            </loots>
             <crews>
               <Crew>
                 <hostile>false</hostile>
                 <row>0</row>
-                <col>11</col>
+                <col>10</col>
                 <MemberIDs />
               </Crew>
             </crews>

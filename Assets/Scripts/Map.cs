@@ -142,6 +142,15 @@ public class Map : MonoBehaviour {
             KeepOnLoad.dataToLoad = -1;
         }
 
+        if ( mapParameters.id == 0)
+        {
+            KeepOnLoad.displayTuto = true;
+        }
+        else
+        {
+            KeepOnLoad.displayTuto = false;
+        }
+
         KeepOnLoad.Instance.mapName = mapParameters.mapName;
 
 

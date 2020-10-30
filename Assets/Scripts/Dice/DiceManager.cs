@@ -28,6 +28,8 @@ public class DiceManager : MonoBehaviour {
 
 	float timeInState = 0f;
 
+    public float timeBetweenSettles = 0.3f;
+
 	private delegate void UpdateState ();
 	UpdateState updateState;
 
@@ -188,17 +190,39 @@ public class DiceManager : MonoBehaviour {
 
         SoundManager.Instance.PlaySound("Dice Settle");
 
-		for (int diceIndex = 0; diceIndex < currentThrow.diceAmount; diceIndex++) {
+        StartCoroutine(Settling_Coroutine());
+        
+        /*for (int diceIndex = 0; diceIndex < currentThrow.diceAmount; diceIndex++) {
 			dices[diceIndex].TurnToDirection (dices[diceIndex].result);
-		}
+		}*/
 	}
-	private void Settling_Update () {
-		if (timeInState > settlingDuration)
-			ChangeState (states.showingHighest);
+
+    IEnumerator Settling_Coroutine()
+    {
+        for (int diceIndex = 0; diceIndex < currentThrow.diceAmount; diceIndex++)
+        {
+            dices[diceIndex].TurnToDirection(dices[diceIndex].result);
+
+            yield return new WaitForSeconds(
+                dices[diceIndex].tweenDuration
+                +
+                dices[diceIndex].quickTweenDuration
+                );
+        }
+
+        yield return new WaitForSeconds(timeBetweenSettles);
+
+        ChangeState(states.showingHighest);
+    }
+
+    private void Settling_Update () {
+
+		/*if (timeInState > settlingDuration)
+			ChangeState (states.showingHighest);*/
 	}
 	private void Settling_Exit () {
 	
-        Transitions.Instance.actionTransition.FadeOut(0.5f);
+        
 	}
 	#endregion
 
@@ -258,6 +282,8 @@ public class DiceManager : MonoBehaviour {
 
     void EndThrow()
     {
+        Transitions.Instance.actionTransition.FadeOut(0.5f);
+
         if (onEndThrow != null)
             onEndThrow();
     }

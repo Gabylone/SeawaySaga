@@ -16,9 +16,20 @@ public class PinManager : Singleton<PinManager>
     private DisplayPin previousDisplayedPin;
     private DisplayPin currentDisplayedPin;
 
+    public DisplayPin currentDraggedPin;
+
+    public bool drappingPin = false;
+
+    public GameObject deletePinGroup;
+    public GameObject placePinGroup;
+
+    public bool pointerInside = false;
+
     protected override void Awake()
     {
         base.Awake();
+
+        DragPin_Exit();
     }
 
     public void LoadPins()
@@ -36,8 +47,10 @@ public class PinManager : Singleton<PinManager>
             newDisplayPin.displayPinInfo.inputField.text = pin.content;
             newDisplayPin.displayPinInfo.Hide();
 
-            newDisplayPin.GetRectTransform().SetParent(secondParent);
-            newDisplayPin.GetRectTransform().localScale = Vector3.one;
+            newDisplayPin.canBeDraggeedOnMap = true;
+
+            newDisplayPin.GetRectTransform.SetParent(secondParent);
+            newDisplayPin.GetRectTransform.localScale = Vector3.one;
 
             float x = pin.save_X;
             float y = pin.save_Y;
@@ -45,56 +58,67 @@ public class PinManager : Singleton<PinManager>
 
             rectTransform.anchoredPosition = p;
 
+            Debug.Log("LOADING PIN : at " + p);
+
         }
     }
 
-    public void PlacePin()
+    public void DeletePin(DisplayPin displayPin)
     {
-        if (!DisplayMinimap.Instance.fullyDisplayed)
-        {
-            return;
-        }
+        pins.Remove(displayPin.displayPinInfo.pin);
 
-        GameObject go = Instantiate(prefab, firstParent);
+        displayPin.Hide();
+    }
 
-        Vector2 inputPos = InputManager.Instance.GetInputPosition();
-
-        RectTransform rectTransform = go.GetComponent<RectTransform>();
-
-        float x = inputPos.x * firstParent.rect.width / Screen.width;
-        float y = inputPos.y * firstParent.rect.height / Screen.height;
-
-        Vector2 p = new Vector2(x, y);
-
-        rectTransform.anchoredPosition = p;
+    public void CreatePin()
+    {
+        GameObject go = Instantiate(prefab, null);
 
         DisplayPin newDisplayPin = go.GetComponent<DisplayPin>();
 
+        // data
         Pin newPin = new Pin();
-
-        SoundManager.Instance.PlayRandomSound("click_light");
-
-        // 
         pins.Add(newPin);
-
-        // 
         newDisplayPin.displayPinInfo.pin = newPin;
 
-        // 
-        newDisplayPin.displayPinInfo.inputField.ActivateInputField();
+        newDisplayPin.displayPinInfo.HideDelay();
 
         // parent
-        newDisplayPin.GetRectTransform().SetParent(secondParent);
-        newDisplayPin.GetRectTransform().localScale = Vector3.one;
+        /*newDisplayPin.GetRectTransform.SetParent(secondParent);
+        newDisplayPin.GetRectTransform.localScale = Vector3.one;*/
 
-        // save info ( après parent )
-        newPin.save_X = rectTransform.anchoredPosition.x;
-        newPin.save_Y = rectTransform.anchoredPosition.y;
+        newDisplayPin.TakePin();
 
-        // anim
-        newDisplayPin.GetRectTransform().DOMove(newDisplayPin.GetRectTransform().position + Vector3.up * 0.25f, 0.3f);
-        newDisplayPin.GetRectTransform().DOMove(newDisplayPin.GetRectTransform().position, 0.1f).SetDelay(0.3f);
+        // sound
+        SoundManager.Instance.PlayRandomSound("click_light");
+    }
 
+    public void OnPointerEnter()
+    {
+        pointerInside = true;
+    }
+
+    public void OnPointerExit()
+    {
+        pointerInside = false;
+    }
+
+    public void DragPin_Start(DisplayPin displayPin)
+    {
+        currentDraggedPin = displayPin;
+
+        drappingPin = true;
+
+        deletePinGroup.SetActive(true);
+        placePinGroup.SetActive(false);
+    }
+
+    public void DragPin_Exit()
+    {
+        drappingPin = false;
+
+        deletePinGroup.SetActive(false);
+        placePinGroup.SetActive(true);
     }
 
     public void SetDisplayedPin( DisplayPin displayPin)

@@ -11,6 +11,7 @@ public class PlayerIcons : MonoBehaviour {
     public static PlayerIcons Instance;
 
     public Image[] images;
+    public GameObject[] deleteMember_Objs;
 
     public CanvasGroup canvasGroup;
 
@@ -30,13 +31,14 @@ public class PlayerIcons : MonoBehaviour {
 		InGameMenu.Instance.onCloseMenu += HandleOnCloseInventory;
 
         HandleOnChangeCrewMembers();
+
+        canvasGroup.alpha = 0f;
 	}
 
     public void FadeIn()
     {
         canvasGroup.alpha = 0f;
         canvasGroup.DOFade(1f, fadeDuration);
-
     }
 
     public void FadeOut()
@@ -68,17 +70,23 @@ public class PlayerIcons : MonoBehaviour {
     {
         FadeIn();
 
-        foreach (var item in images)
+        for (int i = 0; i < images.Length; i++)
         {
-            item.color = Color.grey;
+            images[i].color = Color.grey;
+            deleteMember_Objs[i].SetActive(false);
         }
 
         int id = Crews.playerCrew.CrewMembers.FindIndex(x => x.MemberID.SameAs(CrewMember.GetSelectedMember.MemberID));
 
         images[id].color = Color.white;
+
+        if ( Crews.playerCrew.CrewMembers.Count > 1)
+        {
+            deleteMember_Objs[id].SetActive(true);
+        }
     }
 
-	void HandleOnChangeCrewMembers ()
+    void HandleOnChangeCrewMembers ()
 	{
 		int i = 0;
 

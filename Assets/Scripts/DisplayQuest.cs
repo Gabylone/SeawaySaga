@@ -12,14 +12,17 @@ public class DisplayQuest : MonoBehaviour {
 
     public Text nameText;
 
-    public Text rewardText;
-    public Text levelText;
+    public Text gold_Text;
+    public Text experience_Text;
 
-    public Text descriptionText;
+    public ScrollRect ScrollRect;
+
+    public Text description_Text;
 
     public GameObject achievedFeedback;
-
     public GameObject giveUpButtonObj;
+
+    public GameObject infoGroup;
 
     Quest currentQuest;
 
@@ -40,32 +43,50 @@ public class DisplayQuest : MonoBehaviour {
         currentQuest = quest;
         nameText.text = quest.Story.displayName;
 
-        rewardText.text = "Reward : " + quest.goldValue + " / XP : " + quest.experience;
+        //gold_Text.text = "Reward : " + quest.goldValue + " / XP : " + quest.experience;
+        gold_Text.text = "" + quest.goldValue;
+        experience_Text.text = "" + quest.experience;
+        description_Text.text = "Given by " + quest.giver.Name + "\n";
 
-        descriptionText.text = "Given by " + quest.giver.Name + "\n";
+        if (quest.level == 10)
+        {
+            description_Text.text = "<i>(most suited for level " + quest.level + ")</i>" +
+                "\n";
+        }
+        else
+        {
+            description_Text.text = "<i>(most suited for level " + quest.level + " or more)</i>" +
+                "\n";
+        }
 
-        descriptionText.text += "\n";
+        description_Text.text += "\n";
 
         for (int i = 1; i < 3; i++)
         {
-            descriptionText.text += "''" + quest.Story.content[0][i].Remove(0,13) + "''";
+            description_Text.text += "''" + quest.Story.content[0][i].Remove(0,13) + "''";
         }
 
         giveUpButtonObj.SetActive(true);
 
-        currentQuest.ShowOnMap();
+        ScrollRect.verticalNormalizedPosition = 1f;
+
+        infoGroup.SetActive(true);
 
         if (quest.accomplished)
         {
-            levelText.gameObject.SetActive(false);
+            giveUpButtonObj.SetActive(false);
             achievedFeedback.SetActive(true);
         }
         else
         {
-            levelText.text = "Quest level : " + quest.level.ToString();
-            levelText.gameObject.SetActive(true);
             achievedFeedback.SetActive(false);
+            giveUpButtonObj.SetActive(true);
         }
+    }
+
+    public void ShowCurrentQuestOnMap()
+    {
+        currentQuest.ShowOnMap();
     }
 
     #region main quest
@@ -73,47 +94,56 @@ public class DisplayQuest : MonoBehaviour {
     {
         Show();
 
-        nameText.text = "Treasure of " + MapGenerator.Instance.treasureName;
+        nameText.text = "The treasure of " + MapGenerator.Instance.treasureName;
 
-        DisplayFormulasOnDescription();
+        DisplayFormulasInDescription();
 
+
+        experience_Text.text = "";
+        gold_Text.text = "";
+        achievedFeedback.SetActive(false);
         giveUpButtonObj.SetActive(false);
 
-        levelText.text = "";
-        rewardText.text = "";
+        infoGroup.SetActive(false);
 
-        achievedFeedback.SetActive(false);
-        
     }
 
-    private void DisplayFormulasOnDescription()
+    private void DisplayFormulasInDescription()
     {
         string str = "";
 
-        bool foundOne = false;
-
-        int formulaIndex = 0;
-        foreach (var form in FormulaManager.Instance.formulas)
-        {
-            if (form.found == true)
-            {
-
-                str += form.name.ToUpper() + "\n";
-
-                foundOne = true;
-
-            }
-
-            formulaIndex++;
-
-        }
+        bool foundOne = FormulaManager.Instance.formulas.Find(x=> x.found == true ) != null;
 
         if (foundOne == false)
         {
             str = "No clues yet";
         }
+        else
+        {
+            str = "<b>Strange words I heard about the treasure : </b>\n\n";
 
-        descriptionText.text = str;
+            foreach (var form in FormulaManager.Instance.formulas)
+            {
+                if (form.found == true)
+                {
+                    str += form.name.ToUpper() + "\n";
+                }
+            }
+        }
+
+
+        if (FormulaManager.Instance.clueIndexesFound.Count > 0)
+        {
+            str = "\n\n\n";
+            str = "<b>Useful rumors I heard about the treasure : </b>\n\n";
+
+            foreach (var clueIndex in FormulaManager.Instance.clueIndexesFound)
+            {
+                str += ClueManager.Instance.GetClue(clueIndex) + "\n";
+            }
+        }
+
+        description_Text.text = str;
     }
     #endregion
 

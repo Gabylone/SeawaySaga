@@ -37,7 +37,7 @@ public class DisplayHunger : MonoBehaviour {
 
         fillImage.rectTransform.DOKill();
 
-		float fillAmount = 1f - ((float)member.CurrentHunger / (float)Crews.maxHunger);
+		float fillAmount = 1f - ((float)member.CurrentHunger / (float)member.MaxHunger);
 		Vector2 v = new Vector2 (fillImage.rectTransform.rect.width, (fillAmount * maxFillAmountScale));
 
         fillImage_Fast.rectTransform.DOSizeDelta(v,fastTweenDuration);

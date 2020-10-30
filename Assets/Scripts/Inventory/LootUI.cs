@@ -281,14 +281,25 @@ public class LootUI : MonoBehaviour {
 
     public delegate void OnHideLoot ();
 	public static OnHideLoot onHideLoot;
+
+    // pour quand on revient sur les lieux d'un combat pour loot, il faut pas que l'histoire avance
+    public bool preventAdvanceStory = false;
+
     public void Hide()
     {
         lootObj.SetActive(false);
 
         if (OnOtherLoot())
         {
+            if (preventAdvanceStory)
+            {
+                preventAdvanceStory = false;
+            }
+            else
+            {
+                StoryReader.Instance.NextCell();
+            }
 
-            StoryReader.Instance.NextCell();
             StoryReader.Instance.UpdateStory();
 
             InGameMenu.Instance.Hide();
@@ -523,6 +534,7 @@ public class LootUI : MonoBehaviour {
     {
         // basic open the menu stuff
         InGameMenu.Instance.Open();
+
         DisplayCrew.Instance.Show(targetCrewMember);
 
         if (BoatUpgradeManager.Instance.opened)

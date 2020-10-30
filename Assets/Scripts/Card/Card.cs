@@ -36,6 +36,8 @@ public class Card : MonoBehaviour {
     [SerializeField]
     private RectTransform energyFill;
 
+    public Text energy_Text;
+
     //
     [SerializeField]
 	private GameObject jobGroup;
@@ -55,12 +57,9 @@ public class Card : MonoBehaviour {
 	public Transform endTurnFeedback;
 	float endTurnFeedbackDuration = 0.7f;
 
-    private Outline[] outlines;
-
 //	void Awake () {
 	public void Init() {
 
-        outlines = GetComponentsInChildren<Outline>();
 
         HideEnergy();
 
@@ -110,23 +109,12 @@ public class Card : MonoBehaviour {
 	void ShowTargetFeedback(Color color) {
 
         linkedFighter.iconVisual.TaintLoop(color);
-
-        foreach (var item in outlines)
-        {
-            item.enabled = true;
-            item.effectColor = color;
-        }
     }
 
     void HideTargetFeedback () {
 
 
         linkedFighter.iconVisual.ResetTaint();
-
-        foreach (var item in outlines)
-        {
-            item.enabled = false;
-        }
 
     }
 
@@ -263,7 +251,9 @@ public class Card : MonoBehaviour {
 
         energyFill.DOSizeDelta(v, dur);
         energyFillDelay.DOSizeDelta(v, dur * 3f).SetEase(Ease.OutCirc).SetDelay(dur * 3f);
-//		
+
+        energy_Text.text = "" + member.energy;
+
 	}
 
 	public void ShowCard () {

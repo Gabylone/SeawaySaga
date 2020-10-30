@@ -24,8 +24,6 @@ public class Island : RandomPlacable {
 
     public RectTransform uiBackground;
 
-	private Transform _transform;
-
 	[SerializeField]
 	private RectTransform gameViewCenter;
 
@@ -40,7 +38,6 @@ public class Island : RandomPlacable {
     {
         base.Start();
 
-        _transform = GetComponent<Transform>();
         image = GetComponentInChildren<Image>();
 
         islandTriggers = GetComponentsInChildren<IslandTrigger>(true);
@@ -86,6 +83,8 @@ public class Island : RandomPlacable {
 
 	#region story
 	public void Enter () {
+
+        Boats.Instance.WithdrawBoats();
 
         SoundManager.Instance.PlaySound("enter port");
 

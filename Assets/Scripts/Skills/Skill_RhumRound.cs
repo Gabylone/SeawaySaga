@@ -36,7 +36,10 @@ public class Skill_RhumRound : Skill {
     {
         foreach (var item in CombatManager.Instance.getCurrentFighters(fighter.crewMember.side))
         {
-            item.animator.SetTrigger("throw");
+            if (!item.SkippingTurn())
+            {
+                item.animator.SetTrigger("throw");
+            }
         }
     }
 
@@ -46,7 +49,10 @@ public class Skill_RhumRound : Skill {
 
         foreach (var item in CombatManager.Instance.getCurrentFighters(fighter.crewMember.side))
         {
-            item.AttachItemToHand(item.iconVisual.rhumBottle_Transform);
+            if (!item.SkippingTurn())
+            {
+                item.AttachItemToHand(item.iconVisual.rhumBottle_Transform);
+            }
         }
 
         SoundManager.Instance.PlayRandomSound("Potion");
@@ -67,9 +73,13 @@ public class Skill_RhumRound : Skill {
     {
         SoundManager.Instance.PlayRandomSound("Whoosh");
 
+
         foreach (var item in CombatManager.Instance.getCurrentFighters(fighter.crewMember.side))
         {
-            item.animator.SetTrigger("drink");
+            if (!item.SkippingTurn())
+            {
+                item.animator.SetTrigger("drink");
+            }
         }
 
         Invoke("HandleOnApplyEffect", timeToApplyEffects);
@@ -83,9 +93,12 @@ public class Skill_RhumRound : Skill {
         SoundManager.Instance.PlayRandomSound("Alchemy");
         SoundManager.Instance.PlayRandomSound("Cook");
 
-        foreach (var targetFighter in CombatManager.Instance.getCurrentFighters(fighter.crewMember.side))
+        foreach (var item in CombatManager.Instance.getCurrentFighters(fighter.crewMember.side))
         {
-            targetFighter.Heal(25);
+            if (!item.SkippingTurn())
+            {
+                item.Heal(25);
+            }
         }
 
         EndSkill();
@@ -96,9 +109,12 @@ public class Skill_RhumRound : Skill {
 
     void HandleOnApplyEffectDelay()
     {
-        foreach (var targetFighter in CombatManager.Instance.getCurrentFighters(fighter.crewMember.side))
+        foreach (var item in CombatManager.Instance.getCurrentFighters(fighter.crewMember.side))
         {
-            targetFighter.iconVisual.rhumBottle_Transform.gameObject.SetActive(false);
+            if (!item.SkippingTurn())
+            {
+                item.iconVisual.rhumBottle_Transform.gameObject.SetActive(false);
+            }
         }
     }
 
@@ -112,7 +128,7 @@ public class Skill_RhumRound : Skill {
 		foreach (var item in Crews.getCrew(member.side).CrewMembers) {
 			if (item.Health < healthToHeal) {
 				++count;
-				if ( count > 1 )
+				if ( count >= 1 )
 					allyInHelp = true;
 			}
 		}

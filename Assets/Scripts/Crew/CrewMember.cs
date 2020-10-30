@@ -223,36 +223,6 @@ public class CrewMember {
 
         Crews.playerCrew.UpdateCrew(Crews.PlacingType.Portraits);
 
-        /*if (previousMember != null)
-        {
-            if (StoryLauncher.Instance.PlayingStory && OtherInventory.Instance.type == OtherInventory.Type.None)
-            {
-                if (GetSelectedMember != Crews.playerCrew.captain)
-                {
-                    Crews.getCrew(Crews.Side.Player).captain.Icon.MoveToPoint(Crews.PlacingType.Portraits);
-
-                    if (previousMember != Crews.playerCrew.captain)
-                    {
-                        previousMember.Icon.MoveToPoint(Crews.PlacingType.Portraits);
-                    }
-                }
-                else
-                {
-                    if (previousMember != Crews.playerCrew.captain)
-                    {
-                        previousMember.Icon.MoveToPoint(Crews.PlacingType.Portraits);
-                    }
-                }
-
-            }
-            else
-            {
-                previousMember.Icon.MoveToPoint(Crews.PlacingType.Portraits);
-
-            }
-
-        }*/
-
         Icon.MoveToPoint(Crews.PlacingType.Inventory);
 
         if ( onShowInInventory != null) {
@@ -332,7 +302,7 @@ public class CrewMember {
 
 		++CurrentHunger;
 
-		if ( CurrentHunger >= Crews.maxHunger ) {
+		if ( CurrentHunger >= MaxHunger) {
 
 			if ( Health - hungerDamage <= 0 )
 			{
@@ -539,9 +509,22 @@ public class CrewMember {
 			return memberID.currentHunger;
 		}
 		set {
-			memberID.currentHunger = Mathf.Clamp (value, 0, Crews.maxHunger);
+			memberID.currentHunger = Mathf.Clamp (value, 0, MaxHunger);
 		}
 	}
+    public int MaxHunger
+    {
+        get
+        {
+            float lerp = (float)GetStat(Stat.Constitution) / 6;
+
+            int maxHunger = (int)Mathf.Lerp(Crews.maxHunger_MinConstitution, Crews.maxHunger_MaxConstitution, lerp);
+
+            //Debug.Log("max hunger of " + MemberName + " : " + maxHunger);
+
+            return maxHunger;
+        }
+    }
 	#endregion
 
 	#region level

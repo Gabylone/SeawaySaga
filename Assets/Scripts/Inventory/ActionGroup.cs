@@ -26,8 +26,6 @@ public class ActionGroup : MonoBehaviour {
 
     public void UpdateButtons(ButtonType[] buttonTypes) {
 
-        Debug.Log("update buttons");
-
         int a = (int)buttonTypes[0];
 
         HideAll();
@@ -51,8 +49,6 @@ public class ActionGroup : MonoBehaviour {
                 {
                     canThrow = false;
 
-                    Debug.Log("unequip");
-
                     a = (int)ButtonType.Unequip;
                 }
                 else
@@ -67,7 +63,6 @@ public class ActionGroup : MonoBehaviour {
             default:
                 break;
         }
-        Debug.Log(" id : " + a);
 		inventoryActionButtons [a].gameObject.SetActive (true);
 		Tween.Bounce (inventoryActionButtons [(int)buttonTypes [0]].transform);
 

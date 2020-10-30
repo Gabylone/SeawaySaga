@@ -12,6 +12,8 @@ public class MemberCreatorButton : MonoBehaviour {
 
     public Transform initParent;
 
+    public RectTransform rectTransform;
+
     public Image image;
 
     public bool selected = false;
@@ -24,8 +26,12 @@ public class MemberCreatorButton : MonoBehaviour {
 
     public Outline outline;
 
+    public CanvasGroup canvasGroup;
+
     public virtual void Start()
     {
+        rectTransform = GetComponent<RectTransform>();
+
         UpdateImage();
 
         if (Crews.playerCrew.captain.MemberID.GetCharacterID(apparenceItem.apparenceType) == apparenceItem.id)
@@ -68,6 +74,11 @@ public class MemberCreatorButton : MonoBehaviour {
         {
             outline.enabled = false;
         }
+
+        if (canvasGroup != null)
+        {
+            canvasGroup.alpha = 1f;
+        }
     }
 
     public virtual void Select()
@@ -100,6 +111,11 @@ public class MemberCreatorButton : MonoBehaviour {
         if (outline != null)
         {
             outline.enabled = true;
+        }
+
+        if (canvasGroup != null)
+        {
+            canvasGroup.alpha = 0.6f;
         }
 
     }

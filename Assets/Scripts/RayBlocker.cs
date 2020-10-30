@@ -38,6 +38,7 @@ public class RayBlocker : MonoBehaviour {
     }
 
     public void OnPointerDown () {
+
 		if (onTouchRayBlocker != null)
 			onTouchRayBlocker ();
 	}

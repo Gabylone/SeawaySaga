@@ -634,7 +634,7 @@ public class TutoStep_Hunger: TutoStep {
 
 		CrewMember member = Crews.playerCrew.captain;
 
-		float fillAmount = 1f - ((float)member.CurrentHunger / (float)Crews.maxHunger);
+		float fillAmount = 1f - ((float)member.CurrentHunger / (float)member.MaxHunger);
 
 		if (fillAmount < 0.25f) {
 			corner = DisplayInfo.Corner.TopLeft;

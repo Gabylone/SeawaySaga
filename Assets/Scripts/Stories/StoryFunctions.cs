@@ -23,7 +23,7 @@ public enum FunctionType {
 	PlayerSpeak,
 	OtherSpeak,
 	GiveTip,
-	GiveClue,
+    TellClue,
     CheckGold,
 	RemoveGold,
 	AddGold,
@@ -94,6 +94,11 @@ public class StoryFunctions : MonoBehaviour {
 
 	public void Read ( string content ) {
 
+        if (debug)
+        {
+            Debug.Log("reading cell");
+        }
+
 		if (content.Length == 0) {
 			
 			string text = "cell is empty on story " + StoryReader.Instance.CurrentStoryHandler.Story.dataName + "" +
@@ -107,37 +112,45 @@ public class StoryFunctions : MonoBehaviour {
 		}
 
 //		// GET DECAL
-		/*int decal = StoryReader.Instance.CurrentStoryHandler.GetDecal();
-		if ( decal >= 0 ) {
-
-            if (debug)
-            {
-                Debug.Log("switching : decal " + decal);
-            }
-
-			StoryReader.Instance.NextCell ();
-			StoryReader.Instance.SetDecal (decal);
-			StoryReader.Instance.UpdateStory ();
-			//
-			return;
-		}*/
+		
 	
 		if ( content[0] == '[' ) {
 
             if ( debug)
             {
-                Debug.Log("node " + content);
+                Debug.Log("going through node " + content);
             }
 
-			StoryReader.Instance.NextCell ();
-			StoryReader.Instance.UpdateStory ();
-			return;
-		}
+            int decal = StoryReader.Instance.CurrentStoryHandler.GetDecal();
+            if (decal >= 0)
+            {
+                if (debug)
+                {
+                    Debug.Log("switching : decal " + decal);
+                }
+
+                Debug.Log("switching : decal " + decal);
 
 
-		foreach ( FunctionType func in System.Enum.GetValues(typeof(FunctionType)) ) {
+                StoryReader.Instance.NextCell();
+                StoryReader.Instance.SetDecal(decal);
+                StoryReader.Instance.UpdateStory();
+            }
+            else
+            {
+                StoryReader.Instance.NextCell();
+                StoryReader.Instance.UpdateStory();
+            }
 
-			if ( content.Contains (func.ToString()) ){
+            //
+            return;
+        }
+
+
+        foreach ( FunctionType func in System.Enum.GetValues(typeof(FunctionType)) ) {
+
+			if ( content.StartsWith(func.ToString()) ){
+			//if ( content.Contains(func.ToString()) ){
 
 				cellParams = content.Remove (0, func.ToString().Length);
 
@@ -149,19 +162,15 @@ public class StoryFunctions : MonoBehaviour {
                 if (getFunction != null)
 					getFunction (func,cellParams);
 
-               
-
                 return;
 			}
 
 		}
 
-		Debug.LogError (
-			"cell returns no function at decal\n" + StoryReader.Instance.Row + "\n" +
-			"index : " + StoryReader.Instance.Col + "\n" +
-			"qui contient : " + content);
+        Debug.LogError(
+            "cell (" + content + ") returns no function (" + StoryCheck.GetCellName(StoryReader.Instance.Row, StoryReader.Instance.Col) + ")");
 
-		StoryLauncher.Instance.EndStory ();
+        StoryLauncher.Instance.EndStory ();
 
 	}
 

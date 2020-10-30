@@ -1,13 +1,23 @@
 <?xml version="1.0"?>
 <Chunk xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <state>VisitedIsland</state>
+  <coords>
+    <x>3</x>
+    <y>5</y>
+  </coords>
   <islandDatas>
     <IslandData>
       <worldPosition>
-        <x>-6.367733</x>
-        <y>11.6840782</y>
+        <x>11.7967453</x>
+        <y>3.1968956</y>
       </worldPosition>
-      <worldRotation>294.549255</worldRotation>
+      <worldRotation>304.443939</worldRotation>
+      <index>0</index>
+      <coords>
+        <x>3</x>
+        <y>5</y>
+      </coords>
+      <containsFormula>false</containsFormula>
       <storyManager>
         <hasBeenPlayed>true</hasBeenPlayed>
         <storyHandlers>
@@ -26,12 +36,7 @@
               <contentDecal>
                 <row>0</row>
                 <col>41</col>
-                <decal>0</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>0</row>
-                <col>59</col>
-                <decal>0</decal>
+                <decal>3</decal>
               </contentDecal>
             </contentDecals>
             <loots />
@@ -42,10 +47,16 @@
     </IslandData>
     <IslandData>
       <worldPosition>
-        <x>-3.01228333</x>
-        <y>13.75647</y>
+        <x>-2.013729</x>
+        <y>-16.2216148</y>
       </worldPosition>
-      <worldRotation>9.009905</worldRotation>
+      <worldRotation>174.563156</worldRotation>
+      <index>1</index>
+      <coords>
+        <x>3</x>
+        <y>5</y>
+      </coords>
+      <containsFormula>false</containsFormula>
       <storyManager>
         <hasBeenPlayed>true</hasBeenPlayed>
         <storyHandlers>
@@ -70,10 +81,16 @@
     </IslandData>
     <IslandData>
       <worldPosition>
-        <x>13.2587957</x>
-        <y>-2.8820343</y>
+        <x>-13.282403</x>
+        <y>-4.548723</y>
       </worldPosition>
-      <worldRotation>104.348427</worldRotation>
+      <worldRotation>301.9771</worldRotation>
+      <index>2</index>
+      <coords>
+        <x>3</x>
+        <y>5</y>
+      </coords>
+      <containsFormula>false</containsFormula>
       <storyManager>
         <hasBeenPlayed>true</hasBeenPlayed>
         <storyHandlers>
@@ -87,38 +104,10 @@
               <contentDecal>
                 <row>0</row>
                 <col>2</col>
-                <decal>1</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>1</row>
-                <col>3</col>
-                <decal>0</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>2</row>
-                <col>23</col>
                 <decal>0</decal>
               </contentDecal>
             </contentDecals>
-            <loots>
-              <Loot>
-                <row>2</row>
-                <col>25</col>
-                <ids>
-                  <ArrayOfInt />
-                  <ArrayOfInt />
-                  <ArrayOfInt />
-                  <ArrayOfInt />
-                </ids>
-                <weight>0</weight>
-                <AllItems>
-                  <ArrayOfItem />
-                  <ArrayOfItem />
-                  <ArrayOfItem />
-                  <ArrayOfItem />
-                </AllItems>
-              </Loot>
-            </loots>
+            <loots />
             <crews />
           </StoryHandler>
         </storyHandlers>

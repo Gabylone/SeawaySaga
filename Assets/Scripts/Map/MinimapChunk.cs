@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.EventSystems;
 
-public class MinimapChunk : MonoBehaviour, IPointerClickHandler{
+public class MinimapChunk : MonoBehaviour
+{
 
 	public delegate void OnTouchMinimapChunk (Chunk chunk, Transform tr);
 	public static OnTouchMinimapChunk onTouchMinimapChunk;
 
 	public Coords coords;
 
-    public int islandID = 0;
+    public int index = 0;
 
 	public GameObject islandGroup;
 
@@ -23,7 +23,12 @@ public class MinimapChunk : MonoBehaviour, IPointerClickHandler{
 
     public Text uiText_IslandCount;
 
-	public void InitChunk (Coords worldCoords,int islandID)
+    private void Start()
+    {
+        HideQuestFeedback();
+    }
+
+    public void InitChunk (Coords worldCoords,int islandID)
 	{
 		Chunk chunk = Chunk.GetChunk (worldCoords);
 
@@ -34,7 +39,7 @@ public class MinimapChunk : MonoBehaviour, IPointerClickHandler{
 
         coords = worldCoords;
 
-        this.islandID = islandID;
+        this.index = islandID;
 
         switch (chunk.state)
         {
@@ -50,12 +55,6 @@ public class MinimapChunk : MonoBehaviour, IPointerClickHandler{
             default:
                 break;
         }
-
-		if (QuestManager.Instance.currentQuests.Find (x => x.targetCoords == worldCoords) != null) {
-			ShowQuestFeedback ();
-		} else {
-			HideQuestFeedback ();
-		}
 	}
 
 
@@ -101,24 +100,30 @@ public class MinimapChunk : MonoBehaviour, IPointerClickHandler{
 
         if (chunk.state == ChunkState.VisitedIsland)
         {
-            //str = chunk.GetIslandData(0).storyManager.CurrentStoryHandler.Story.displayName;
-            for (int i = 0; i < chunk.islandDatas.Length; i++)
+            IslandData islandData = chunk.GetIslandData(index);
+
+            if (islandData.storyManager.hasBeenPlayed)
             {
-                IslandData islandData = chunk.GetIslandData(i);
+                int a = 0;
+                foreach (var item in chunk.GetIslandData(index).storyManager.storyHandlers)
+                {
 
-                if ( islandData.storyManager.hasBeenPlayed)
-                {
-                    str += islandData.storyManager.CurrentStoryHandler.Story.displayName;
-                }
-                else
-                {
-                    str += "?";
-                }
+                    if ( a > 0)
+                    {
+                        str += "\n";
+                        str += item.Story.displayName;
+                    }
+                    else
+                    {
+                        str += item.Story.displayName;
+                    }
 
-                if ( i < chunk.islandDatas.Length -1)
-                {
-                    str += "\n";
+                    ++a;
                 }
+            }
+            else
+            {
+                str = "?";
             }
         }
         else
@@ -132,7 +137,7 @@ public class MinimapChunk : MonoBehaviour, IPointerClickHandler{
         SoundManager.Instance.PlaySound("button_tap_light 05");
     }
 
-    public void OnPointerClick(PointerEventData eventData)
+    public void OnPointerClick()
     {
         TouchMinimapChunk();
     }

@@ -18,6 +18,8 @@ public class DisplayStoryItem : MonoBehaviour {
 
     public CanvasGroup canvasGroup;
 
+    public float fadeDuration = 0.2f;
+
     private void Awake()
     {
         Instance = this;
@@ -26,43 +28,56 @@ public class DisplayStoryItem : MonoBehaviour {
     // Use this for initialization
     void Start () {
 
+        Hide();
         StoryInput.Instance.onPressInput += HandleOnPressInput;
 
-        Hide();
-        
-	}
-
-	void HandleOnPressInput ()
-	{
-        if (visible)
-        {
-            Hide();
-            StoryReader.Instance.ContinueStory();
-        }
     }
 
-	public void DisplayItem (Item item)
+    void HandleOnPressInput ()
 	{
-        displayItem.Show(item);
+        if (!visible)
+        {
+            return;
+        }
 
-        StoryInput.Instance.WaitForInput();
+        Hide();
+
+        Invoke("HandleOnPressInputDelay", fadeDuration + 0.1f);
+    }
+
+    void HandleOnPressInputDelay()
+    {
+        StoryReader.Instance.ContinueStory();
+    }
+
+    public void DisplayItem(Item item)
+    {
+        displayItem.Show(item);
 
         Show();
 
-		Tween.Bounce (displayItem.transform);
-	}
+        Tween.Bounce(displayItem.transform);
+
+        Invoke("DisplayItemDelay", fadeDuration);
+    }
+
+    void DisplayItemDelay()
+    {
+        StoryInput.Instance.WaitForInput();
+    }
 
     void Show()
     {
         canvasGroup.alpha = 0f;
 
         canvasGroup.DOKill();
-        canvasGroup.DOFade(1f, 0.2f);
+        canvasGroup.DOFade(1f, fadeDuration);
 
         group.SetActive(true);
 
+        CancelInvoke("HideDelay");
         CancelInvoke("ShowDelay");
-        Invoke("ShowDelay" , 0.2f);
+        Invoke("ShowDelay" , fadeDuration);
     }
 
     void ShowDelay()
@@ -74,10 +89,10 @@ public class DisplayStoryItem : MonoBehaviour {
     {
         visible = false;
 
-        canvasGroup.DOFade(0f, 0.2f);
+        canvasGroup.DOFade(0f, fadeDuration);
 
         CancelInvoke("HideDelay");
-        Invoke("HideDelay", 0.2f);
+        Invoke("HideDelay", fadeDuration);
     }
 
     void HideDelay()

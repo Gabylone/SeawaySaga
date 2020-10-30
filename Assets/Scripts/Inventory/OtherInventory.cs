@@ -99,7 +99,7 @@ public class OtherInventory : MonoBehaviour {
 	{
 		switch (func) {
 		case FunctionType.Loot:
-			StartLooting ();
+			StartLooting (false);
 			break;
 		case FunctionType.Trade:
 			StartTrade ();
@@ -167,11 +167,10 @@ public class OtherInventory : MonoBehaviour {
 	public void StartTrade () {
 
 			// get loot
-		Loot loot = LootManager.Instance.GetIslandLoot (2);
+		Loot loot = LootManager.Instance.GetIslandLoot (2, false);
 
 		if ( loot.IsEmpty () ) {
-			StoryInput.Instance.WaitForInput ();
-			DialogueManager.Instance.SetDialogue ("Looks like you already bought everything from me !", Crews.enemyCrew.captain);
+			DialogueManager.Instance.OtherSpeak ("Looks like you already bought everything from me !");
 			return;
         }
 
@@ -191,13 +190,12 @@ public class OtherInventory : MonoBehaviour {
 	#endregion
 
 	#region looting
-	public void StartLooting () {
+	public void StartLooting (bool fightingLoot) {
 
-		Loot loot = LootManager.Instance.GetIslandLoot (1);
+		Loot loot = LootManager.Instance.GetIslandLoot (1, fightingLoot);
 
 		if ( loot.IsEmpty () ) {
-			DialogueManager.Instance.SetDialogue ("There was something but now nothing's left !", Crews.playerCrew.captain);
-			StoryInput.Instance.WaitForInput ();
+			DialogueManager.Instance.PlayerSpeak ("There was something but now nothing's left !");
 			return;
         }
 
@@ -264,7 +262,7 @@ public class OtherInventory : MonoBehaviour {
 		
 		CrewMember.GetSelectedMember.SetEquipment (item);
 
-        SoundManager.Instance.PlayRandomSound("Foley Armor");
+        SoundManager.Instance.PlayRandomSound("Foley Armour");
         SoundManager.Instance.PlayRandomSound("Bag");
         SoundManager.Instance.PlayRandomSound("Coins");
         SoundManager.Instance.PlayRandomSound("Coins");
@@ -276,7 +274,7 @@ public class OtherInventory : MonoBehaviour {
 		if (!WeightManager.Instance.CheckWeight (item.weight))
 			return;
 
-        SoundManager.Instance.PlayRandomSound("Foley Armor");
+        SoundManager.Instance.PlayRandomSound("Foley Armour");
         SoundManager.Instance.PlayRandomSound("Bag");
 
         LootManager.Instance.PlayerLoot.AddItem (item);

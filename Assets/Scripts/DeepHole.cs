@@ -15,11 +15,19 @@ public class DeepHole : RandomPlacable
     {
         base.HandleOnEnterNewChunk();
 
-        transform.localScale = Vector3.one;
+        Invoke("HandleOnEnterNewChunkDelay", 0.1f);
+    }
 
-        CanSpawn();
+    void HandleOnEnterNewChunkDelay()
+    {
+        Hide();
 
-        
+        if (CanSpawn())
+        {
+            _transform.localScale = Vector3.one;
+
+            Show();
+        }
     }
 
     public override void Trigger()

@@ -54,6 +54,22 @@ public class Loot {
 				AddItem (item);
 			}
 
+            if (OtherInventory.Instance.type == OtherInventory.Type.Trade && category == ItemCategory.Misc)
+            {
+                // commonly used in stories
+                AddItem(ItemLoader.Instance.GetItem(ItemCategory.Misc, "Corde"));
+                AddItem(ItemLoader.Instance.GetItem(ItemCategory.Misc, "Lanterne"));
+                AddItem(ItemLoader.Instance.GetItem(ItemCategory.Misc, "Clé"));
+
+                // "grotte" items
+                AddItem(ItemLoader.Instance.GetItem(ItemCategory.Misc, "Trompette"));
+                AddItem(ItemLoader.Instance.GetItem(ItemCategory.Misc, "Peluche"));
+                AddItem(ItemLoader.Instance.GetItem(ItemCategory.Misc, "Dés"));
+                AddItem(ItemLoader.Instance.GetItem(ItemCategory.Misc, "Poupée vaudou"));
+                AddItem(ItemLoader.Instance.GetItem(ItemCategory.Misc, "Perle"));
+                AddItem(ItemLoader.Instance.GetItem(ItemCategory.Misc, "Bougie"));
+            }
+
 		}
 
 

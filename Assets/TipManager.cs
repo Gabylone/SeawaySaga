@@ -15,7 +15,6 @@ public class TipManager : MonoBehaviour
         string path = MapGenerator.mapParameters.mapName + " Tips";
         TextAsset tipsTextAsset = Resources.Load("Tips/" + path) as TextAsset;
         tips = tipsTextAsset.text.Split('\n');
-        Debug.Log(tipsTextAsset.text);
     }
 
     void HandleGetFunction(FunctionType func, string cellParameters)
@@ -30,7 +29,6 @@ public class TipManager : MonoBehaviour
 
     public void GiveRandomTip()
     {
-        DialogueManager.Instance.SetDialogue(tips[Random.Range(0, tips.Length)], Crews.enemyCrew.captain);
-        StoryInput.Instance.WaitForInput();
+        DialogueManager.Instance.OtherSpeak(tips[Random.Range(0, tips.Length)]);
     }
 }

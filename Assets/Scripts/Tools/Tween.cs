@@ -13,6 +13,7 @@ public class Tween : MonoBehaviour {
         t.DOScale(Vector3.one * amount, dur).SetEase(eT);
 	}
 
+
 	public static void Bounce (Transform t) {
 		Bounce ( t, defaultDuration , defaultAmount );
 	}

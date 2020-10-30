@@ -63,14 +63,6 @@ public class TimeManager : MonoBehaviour {
         Invoke("UpdateWeather",0.001f);
 	}
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            NextHour();
-        }
-    }
-
     public void Reset () {
 		timeOfDay = startTime;
 	}
@@ -125,15 +117,8 @@ public class TimeManager : MonoBehaviour {
 		}
 
         SoundManager.Instance.PlaySound("Mystick Tap");
-    }
-    IEnumerator GoToNextDay()
-    {
-        if ( dayState == DayState.Day)
-        {
-            yield return StartCoroutine(GoToWeather(DayState.Night));
-        }
 
-        yield return StartCoroutine(GoToWeather(DayState.Day));
+        StoryReader.Instance.Wait(1f);
     }
 
     IEnumerator GoToWeather ( DayState targetWeather ) {
@@ -158,9 +143,6 @@ public class TimeManager : MonoBehaviour {
         }
 
         Transitions.Instance.ScreenTransition.FadeOut(0.5f);
-
-        StoryReader.Instance.NextCell ();
-		StoryReader.Instance.UpdateStory ();
 	}
 
 	void CheckIfDay ()
@@ -179,22 +161,15 @@ public class TimeManager : MonoBehaviour {
 	public static OnNextHour onNextHour;
 	void NextHour () {
 
-
 		++timeOfDay;
-		//currentRain++;
 
 		if (timeOfDay == dayDuration)
 			timeOfDay = 0;
 
 		UpdateTimeOfDay ();
 
-		// rain image
-		//UpdateRain();
-
 		if (onNextHour != null)
 			onNextHour ();
-
-
 	}
 
 	void UpdateTimeOfDay ()
@@ -220,23 +195,24 @@ public class TimeManager : MonoBehaviour {
 	{
 		switch ( str ) {
 		case "Day":
-			GoToWeather (DayState.Day);
+                StartCoroutine(GoToWeather(DayState.Day));
 			break;
-		case "Night":
-			GoToWeather (DayState.Night);
-			break;
+            case "Night":
+                StartCoroutine(GoToWeather(DayState.Night));
+                break;
 		case "Rain":
 			SetRain ();
-			StoryReader.Instance.NextCell ();
-			StoryReader.Instance.UpdateStory ();
 			break;
-		default :
+            default :
 			Debug.LogError ("Set Weather : <" + str + "> doesnt go in any label ?");
 			break;
 		}
-	}
 
-	void SetNight () {
+        StoryReader.Instance.Wait(1f);
+
+    }
+
+    void SetNight () {
 		
 		dayState = DayState.Night;
 
@@ -268,7 +244,7 @@ public class TimeManager : MonoBehaviour {
 			onSetRain ();
 
 	}
-	void HideRain() {
+	void StopRain() {
 		
 		raining = false;
 		currentRain = 0;
@@ -307,27 +283,48 @@ public class TimeManager : MonoBehaviour {
 
         if (dayState == DayState.Night)
         {
-            nightImage.gameObject.SetActive(true);
-            nightMask_Group.SetActive(true);
+            ShowNight();
+            
         }
         else
         {
-            nightImage.gameObject.SetActive(false);
-            nightMask_Group.SetActive(false);
+            HideNight();
         }
 
         if (raining)
         {
-            rainImage.gameObject.SetActive(true);
-            rainMask_Group.SetActive(true);
+            ShowRain();
         }
         else
         {
-            rainImage.gameObject.SetActive(false);
-            rainMask_Group.SetActive(false);
+            HideRain();
         }
 
         SoundManager.Instance.UpdateAmbianceSound();
+    }
+
+    public void ShowNight()
+    {
+        nightImage.gameObject.SetActive(true);
+        nightMask_Group.SetActive(true);
+    }
+
+    public void HideNight()
+    {
+        nightImage.gameObject.SetActive(false);
+        nightMask_Group.SetActive(false);
+    }
+
+    public void ShowRain()
+    {
+        rainImage.gameObject.SetActive(true);
+        rainMask_Group.SetActive(true);
+    }
+
+    public void HideRain()
+    {
+        rainImage.gameObject.SetActive(false);
+        rainMask_Group.SetActive(false);
     }
 	#endregion
 }

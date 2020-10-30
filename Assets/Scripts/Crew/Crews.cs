@@ -4,11 +4,8 @@ using System.Collections;
 public class Crews : MonoBehaviour {
 
     /// <summary>
-    /// jours avant que le membre ait faim
-    /// </summary>
-//	public static int maxHunger = 35; // pas assez
-	//public static int maxHunger = 10; // trop
-	public static int maxHunger = 10;
+	public static int maxHunger_MinConstitution = 10;
+	public static int maxHunger_MaxConstitution = 20;
 
     public static Crews Instance;
 
@@ -99,7 +96,12 @@ public class Crews : MonoBehaviour {
 		case FunctionType.RemoveHealth:
 			RemoveHealth();
 			break;
-		case FunctionType.HideOther:
+        case FunctionType.HidePlayer:
+            playerCrew.UpdateCrew(PlacingType.Hidden);
+            StoryReader.Instance.NextCell();
+            StoryReader.Instance.UpdateStory();
+            break;
+            case FunctionType.HideOther:
 			enemyCrew.UpdateCrew (PlacingType.Hidden);
 			StoryReader.Instance.NextCell ();
 			StoryReader.Instance.UpdateStory ();
@@ -154,16 +156,21 @@ public class Crews : MonoBehaviour {
     #region crew tools
     public void CreateNewCrew () {
 
-		StoryReader.Instance.NextCell ();
+        Crew storyCrew = Crews.Instance.GetCrewFromCurrentCell();
 
-		Crew storyCrew = Crews.Instance.GetCrewFromCurrentCell ();
+        StoryReader.Instance.NextCell();
 
 		// set decal
 		if (storyCrew.MemberIDs.Count == 0) {
 
 			StoryReader.Instance.SetDecal (1);
 
-		} else {
+            Debug.Log("!!! OPENING COMBAT LOOT !!!");
+
+            DialogueManager.Instance.SetDialogueInput("We fought here !*Looks like we forgot to pick some of their stuff...*After the fight...", Crews.playerCrew.captain);
+            DialogueManager.Instance.onEndDialogue += HandleOnEndDialogue;
+
+        } else {
 
 			Crews.enemyCrew.SetCrew (storyCrew);
 
@@ -183,13 +190,21 @@ public class Crews : MonoBehaviour {
 
 			}
 
-			//Crews.enemyCrew.captain.Icon.MoveToPoint (Crews.PlacingType.World);
             Crews.enemyCrew.UpdateCrew(Crews.PlacingType.World);
-		}
 
+            StoryReader.Instance.UpdateStory();
+        }
 
-		StoryReader.Instance.Wait (Crews.playerCrew.captain.Icon.moveDuration);
 	}
+
+    void HandleOnEndDialogue()
+    {
+        LootUI.Instance.preventAdvanceStory = true;
+        LootUI.Instance.OpenMemberLoot(Crews.playerCrew.captain);
+        OtherInventory.Instance.StartLooting(true);
+
+        DialogueManager.Instance.onEndDialogue -= HandleOnEndDialogue;
+    }
 
     public void KillMember (CrewMember crewMember)
     {
@@ -300,7 +315,6 @@ public class Crews : MonoBehaviour {
 
 		}
 
-		StoryReader.Instance.NextCell ();
 		StoryReader.Instance.Wait (0.8f);
 
 	}
@@ -311,7 +325,6 @@ public class Crews : MonoBehaviour {
 
 		memberToRemove.Kill ();
 
-		StoryReader.Instance.NextCell ();
 		StoryReader.Instance.Wait (0.5f);
 	}
 	#endregion

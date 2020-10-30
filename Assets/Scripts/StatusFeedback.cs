@@ -45,6 +45,7 @@ public class StatusFeedback : MonoBehaviour {
 	public void SetColor (Color color)
 	{
 		statusImage_Fill.color = color;
+        text_Count.color = color;
 	}
 
 	public void Hide ()

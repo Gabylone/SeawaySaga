@@ -428,33 +428,27 @@ public class CombatManager : MonoBehaviour {
 	#endregion
 
 	#region loot & xp
-	void ShowLoot () {
-
+	public void ShowLoot () {
         LootUI.Instance.OpenMemberLoot(Crews.playerCrew.captain);
-        OtherInventory.Instance.StartLooting ();
+        OtherInventory.Instance.StartLooting (true);
 	}
 	#endregion 
 
 	#region fight end
     private void DisplayEndFightMessage()
     {
-        Debug.Log("display end fith message");
         switch (currentFightOutCome)
         {
 		case FightOutcome.PlayerCrewKilled:
-        Debug.Log("player crew killed");
                 HandleDefeat();
                 break;
 		case FightOutcome.PlayerCrewEscaped:
-        Debug.Log("player crew escaped");
                 HandleEscape();
                 break;
 		case FightOutcome.EnemyCrewKilled:
-        Debug.Log("enemy crew killed");
                 HandleVictory();
                 break;
             case FightOutcome.None:
-        Debug.Log("none");
 			break;
             default:
 			break;
@@ -499,13 +493,14 @@ public class CombatManager : MonoBehaviour {
     }
     private void HandleOnConfirm_Escape()
     {
-        DisplayCombatResults.Instance.Hide();
-
         Invoke("Escape", 1f);
         Invoke("HideFight", 1f);
     }
     void Escape()
     {
+        // ici seulement pendant la FUITE, parce que le loot des morts l'ouvre auto.
+        // pour régler bug : menu droit n'apparrait pas quand on fuit
+        InGameMenu.Instance.ShowMenuButtons();
         StoryLauncher.Instance.EndStory();
     }
     #endregion
@@ -531,8 +526,6 @@ public class CombatManager : MonoBehaviour {
     }
     private void HandleOnConfirm_Defeat()
     {
-        DisplayCombatResults.Instance.Hide();
-
         Transitions.Instance.ScreenTransition.FadeIn(1f);
 
         Invoke("HandleOnConfirm_DefeatDelay", 1f);
@@ -575,12 +568,21 @@ public class CombatManager : MonoBehaviour {
 
     private void HandleOnConfirm_Victory()
     {
-        DisplayCombatResults.Instance.Hide();
+        if (DisplayCrewMemberLevelUp.Instance.crewMembersToDisplay.Count > 0)
+        {
+            DisplayCrewMemberLevelUp.Instance.DisplayLastCrewMember();
+        }
+        else
+        {
+            HandleOnConfirm_Victory_Continue();
+        }
 
-        Invoke("HideFight" , 0.5f);
+    }
 
+    public void HandleOnConfirm_Victory_Continue()
+    {
+        Invoke("HideFight", 0.5f);
         Invoke("ShowLoot", 1f);
-
     }
     #endregion
 
@@ -661,7 +663,6 @@ public class CombatManager : MonoBehaviour {
         }
 
         DetermineFightOutcome();
-        Debug.Log("fighting outcome : " + currentFightOutCome);
         if (currentFightOutCome != FightOutcome.None)
         {
             Invoke("DisplayEndFightMessage", 1f);

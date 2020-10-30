@@ -115,10 +115,17 @@ public class LootManager : MonoBehaviour {
 		}
 	}
 
-	public Loot GetIslandLoot (int mult) {
+	public Loot GetIslandLoot (int mult, bool fightingLoot) {
 
-		int row = StoryReader.Instance.Row;
-		int col = StoryReader.Instance.Col;
+        int row = StoryReader.Instance.Row;
+        int col = StoryReader.Instance.Col;
+
+        // if the loot is a fight loot, go fetch the crew's data
+        if (fightingLoot)
+        {
+            row = Crews.enemyCrew.managedCrew.row;
+            col = Crews.enemyCrew.managedCrew.col;
+        }
 
 		var tmpLoot = StoryReader.Instance.CurrentStoryHandler.GetLoot (row, col);
 
@@ -200,10 +207,10 @@ public class LootManager : MonoBehaviour {
 		if (cellParams.Contains ("<")) {
 			string itemName = cellParams.Split ('<') [1];
 			itemName = itemName.Remove (itemName.Length - 6);
-			item = LootManager.Instance.getLoot (Crews.Side.Player).AllItems [(int)targetCat].Find (x => x.names[0] == itemName);
+			item = LootManager.Instance.getLoot (Crews.Side.Player).AllItems [(int)targetCat].Find (x => x.frenchName == itemName);
 		}
 
-        Narrator.Instance.ShowNarrator("You lost the item : " + item.name);
+        Narrator.Instance.ShowNarratorInput("You lost the item : " + item.englishName);
 
         LootManager.Instance.getLoot (Crews.Side.Player).RemoveItem (item);
 
@@ -222,7 +229,7 @@ public class LootManager : MonoBehaviour {
 
             itemName = itemName.Remove(itemName.Length - 6);
 
-            item = System.Array.Find (ItemLoader.Instance.getItems (targetCat), x => x.names[0] == itemName);
+            item = ItemLoader.Instance.GetItem(targetCat,itemName);
 
 			if (item == null) {
 				Debug.LogError ("item : " + itemName + " was not found, returning random");
@@ -251,9 +258,9 @@ public class LootManager : MonoBehaviour {
 			string itemName = cellParams.Split ('<') [1];
 			itemName = itemName.Remove (itemName.Length - 6);
 
-			Item item = LootManager.Instance.getLoot (Crews.Side.Player).AllItems [(int)targetCat].Find (x => x.names[0] == itemName);
+			Item item = LootManager.Instance.getLoot (Crews.Side.Player).AllItems [(int)targetCat].Find (x => x.frenchName == itemName);
 
-			if (item == null) {
+            if (item == null) {
 				StoryReader.Instance.SetDecal (1);
 			}
 

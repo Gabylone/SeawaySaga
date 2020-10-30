@@ -6,6 +6,8 @@ using DG.Tweening;
 
 public class RandomPlacable : MonoBehaviour
 {
+    private protected Transform _transform;
+
     public float chanceAppearing = 15f;
 
     public float disappearDelay = 0.3f;
@@ -20,6 +22,8 @@ public class RandomPlacable : MonoBehaviour
     // Start is called before the first frame update
     public virtual void Start()
     {
+        _transform = GetComponent<Transform>();
+
         NavigationManager.Instance.EnterNewChunk += HandleOnEnterNewChunk;
 
         CombatManager.Instance.onFightStart += Lock;
@@ -41,34 +45,34 @@ public class RandomPlacable : MonoBehaviour
         canTrigger = true;
     }
 
-    public void CanSpawn()
+    public bool CanSpawn()
     {
-        Hide();
-
         if ( NavigationManager.Instance.chunksTravelled < 2)
         {
-            return;
+            return false;
         }
 
-        if (Random.value * 100 < chanceAppearing)
+        if (Random.value * 100 > chanceAppearing)
         {
-            ResetPosition();
-
-            for (int i = 0; i < Chunk.currentChunk.islandDatas.Length; i++)
-            {
-                if (Vector3.Distance(transform.position, IslandManager.Instance.islands[i].transform.position) < minDistanceToIsland)
-                {
-                    return;
-                }
-            }
-
-            if (Vector3.Distance(transform.position, PlayerBoat.Instance.transform.position) < minDistanceToPlayerBoat)
-            {
-                return;
-            }
-
-            Show();
+            return false;
         }
+
+        ResetPosition();
+
+        for (int i = 0; i < Chunk.currentChunk.islandDatas.Length; i++)
+        {
+            if (Vector3.Distance(_transform.position, IslandManager.Instance.islands[i]._transform.position) < minDistanceToIsland)
+            {
+                return false;
+            }
+        }
+
+        if (Vector3.Distance(_transform.position, PlayerBoat.Instance.GetTransform.position) < minDistanceToPlayerBoat)
+        {
+            return false;
+        }
+
+        return true;
     }
 
     void ResetPosition()
@@ -76,7 +80,7 @@ public class RandomPlacable : MonoBehaviour
         float x = Random.Range(NavigationManager.Instance.minX, NavigationManager.Instance.maxX);
         float y = Random.Range(NavigationManager.Instance.minY, NavigationManager.Instance.maxY);
 
-        transform.position = new Vector3(x, 0f, y);
+        _transform.position = new Vector3(x, 0f, y);
     }
 
     public virtual void OnMouseDown()
@@ -101,18 +105,18 @@ public class RandomPlacable : MonoBehaviour
             return;
         }
 
-        Tween.Bounce(transform);
+        Tween.Bounce(_transform);
 
         Flag.Instance.Hide();
-        PlayerBoat.Instance.SetTargetPos(transform.position);
+        PlayerBoat.Instance.SetTargetPos(_transform.position);
     }
 
-    void Show()
+    public void Show()
     {
         gameObject.SetActive(true);
     }
 
-    void Hide()
+    public void Hide()
     {
         gameObject.SetActive(false);
     }
@@ -129,12 +133,14 @@ public class RandomPlacable : MonoBehaviour
     {
         canTrigger = false;
 
+        Boats.Instance.WithdrawBoats();
+
         Tween.Bounce(PlayerBoat.Instance.GetTransform);
     }
 
     public void Disappear()
     {
-        transform.DOScale(0f, disappearDelay).SetEase(Ease.InBounce);
+        _transform.DOScale(0f, disappearDelay).SetEase(Ease.InBounce);
 
         Invoke("Hide", disappearDelay);
     }

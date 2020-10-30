@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <GameData xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <progression>0</progression>
-  <globalID>1</globalID>
+  <globalID>2</globalID>
   <playerCrew>
     <hostile>false</hostile>
     <row>0</row>
@@ -14,10 +14,10 @@
         <maxHealth>100</maxHealth>
         <currentHunger>1</currentHunger>
         <Lvl>1</Lvl>
-        <xp>0</xp>
+        <xp>25</xp>
         <skillPoints>0</skillPoints>
         <specialSkillsIndexes>
-          <int>8</int>
+          <int>20</int>
         </specialSkillsIndexes>
         <stats>
           <int>1</int>
@@ -27,53 +27,49 @@
         </stats>
         <daysOnBoard>1</daysOnBoard>
         <equipedWeapon>
-          <ID>46</ID>
-          <names>
-            <string>Poivrière rouillée</string>
-            <string>Rusty blunderbuss</string>
-          </names>
-          <value>8</value>
-          <price>18</price>
-          <weight>8</weight>
-          <level>1</level>
-          <spriteID>6</spriteID>
-          <description>C'est un poivrière rouillée</description>
-          <weaponType>Distance</weaponType>
-          <category>Weapon</category>
-        </equipedWeapon>
-        <equipedCloth>
-          <ID>152</ID>
-          <names>
-            <string>Toge en tissu</string>
-            <string>Linnen gown</string>
-          </names>
-          <value>9</value>
-          <price>19</price>
+          <ID>40</ID>
+          <englishName>Makeshift Bludgeon</englishName>
+          <frenchName>Pioche de mineur</frenchName>
+          <value>12</value>
+          <price>22</price>
           <weight>8</weight>
           <level>1</level>
           <spriteID>0</spriteID>
-          <description>C'est un toge en tissu</description>
+          <description>C'est un pioche de mineur</description>
+          <weaponType>Stick</weaponType>
+          <category>Weapon</category>
+        </equipedWeapon>
+        <equipedCloth>
+          <ID>151</ID>
+          <englishName>Simple docker</englishName>
+          <frenchName>Marcel</frenchName>
+          <value>7</value>
+          <price>20</price>
+          <weight>8</weight>
+          <level>1</level>
+          <spriteID>0</spriteID>
+          <description>C'est un marcel</description>
           <weaponType>Distance</weaponType>
           <category>Clothes</category>
         </equipedCloth>
-        <job>Surgeon</job>
+        <job>Gambler</job>
         <characterIDS>
           <int>5</int>
-          <int>8</int>
-          <int>8</int>
-          <int>8</int>
+          <int>4</int>
           <int>5</int>
-          <int>6</int>
-          <int>6</int>
-          <int>1</int>
-          <int>1</int>
-          <int>1</int>
+          <int>2</int>
+          <int>7</int>
+          <int>9</int>
           <int>5</int>
-          <int>6</int>
-          <int>15</int>
+          <int>3</int>
+          <int>0</int>
           <int>0</int>
           <int>2</int>
-          <int>2</int>
+          <int>5</int>
+          <int>8</int>
+          <int>1</int>
+          <int>7</int>
+          <int>1</int>
         </characterIDS>
       </Member>
     </MemberIDs>
@@ -83,12 +79,12 @@
     <col>0</col>
     <ids>
       <ArrayOfInt>
-        <int>17</int>
-        <int>33</int>
-        <int>38</int>
-        <int>36</int>
-        <int>7</int>
-        <int>14</int>
+        <int>22</int>
+        <int>20</int>
+        <int>20</int>
+        <int>5</int>
+        <int>11</int>
+        <int>8</int>
       </ArrayOfInt>
       <ArrayOfInt />
       <ArrayOfInt />
@@ -98,11 +94,9 @@
     <AllItems>
       <ArrayOfItem>
         <Item>
-          <ID>17</ID>
-          <names>
-            <string>Boeuf</string>
-            <string>Beef</string>
-          </names>
+          <ID>22</ID>
+          <englishName>Rumsteak</englishName>
+          <frenchName>Rumsteak</frenchName>
           <value>8</value>
           <price>15</price>
           <weight>2</weight>
@@ -113,56 +107,35 @@
           <category>Provisions</category>
         </Item>
         <Item>
-          <ID>33</ID>
-          <names>
-            <string>Orange</string>
-            <string>Orange</string>
-          </names>
-          <value>4</value>
-          <price>5</price>
+          <ID>20</ID>
+          <englishName>Big ham</englishName>
+          <frenchName>Gros jambon</frenchName>
+          <value>8</value>
+          <price>14</price>
           <weight>2</weight>
           <level>0</level>
-          <spriteID>0</spriteID>
-          <description>Heals the crew member a little bit only when he’s not hungry</description>
+          <spriteID>2</spriteID>
+          <description>Greatly heals the crew member only when he’s not hungry</description>
           <weaponType>Distance</weaponType>
           <category>Provisions</category>
         </Item>
         <Item>
-          <ID>38</ID>
-          <names>
-            <string>Tarte aux pommes</string>
-            <string>Applepie</string>
-          </names>
-          <value>4</value>
-          <price>2</price>
+          <ID>20</ID>
+          <englishName>Big ham</englishName>
+          <frenchName>Gros jambon</frenchName>
+          <value>8</value>
+          <price>14</price>
           <weight>2</weight>
           <level>0</level>
-          <spriteID>0</spriteID>
-          <description>Heals the crew member a little bit only when he’s not hungry</description>
+          <spriteID>2</spriteID>
+          <description>Greatly heals the crew member only when he’s not hungry</description>
           <weaponType>Distance</weaponType>
           <category>Provisions</category>
         </Item>
         <Item>
-          <ID>36</ID>
-          <names>
-            <string>Asperges</string>
-            <string>Aspergu</string>
-          </names>
-          <value>4</value>
-          <price>2</price>
-          <weight>2</weight>
-          <level>0</level>
-          <spriteID>0</spriteID>
-          <description>Heals the crew member a little bit only when he’s not hungry</description>
-          <weaponType>Distance</weaponType>
-          <category>Provisions</category>
-        </Item>
-        <Item>
-          <ID>7</ID>
-          <names>
-            <string>Crevette</string>
-            <string>Shrimp</string>
-          </names>
+          <ID>5</ID>
+          <englishName>Smelly codfish</englishName>
+          <frenchName>Morue</frenchName>
           <value>6</value>
           <price>11</price>
           <weight>2</weight>
@@ -173,17 +146,28 @@
           <category>Provisions</category>
         </Item>
         <Item>
-          <ID>14</ID>
-          <names>
-            <string>Lardon</string>
-            <string>Lard</string>
-          </names>
-          <value>8</value>
-          <price>12</price>
+          <ID>11</ID>
+          <englishName>Mackerel</englishName>
+          <frenchName>Maquereau</frenchName>
+          <value>6</value>
+          <price>7</price>
           <weight>2</weight>
           <level>0</level>
-          <spriteID>2</spriteID>
-          <description>Greatly heals the crew member only when he’s not hungry</description>
+          <spriteID>1</spriteID>
+          <description>Heals the crew member only when he’s not hungry</description>
+          <weaponType>Distance</weaponType>
+          <category>Provisions</category>
+        </Item>
+        <Item>
+          <ID>8</ID>
+          <englishName>Salmon</englishName>
+          <frenchName>Saumon</frenchName>
+          <value>6</value>
+          <price>11</price>
+          <weight>2</weight>
+          <level>0</level>
+          <spriteID>1</spriteID>
+          <description>Heals the crew member only when he’s not hungry</description>
           <weaponType>Distance</weaponType>
           <category>Provisions</category>
         </Item>
@@ -199,88 +183,7 @@
   <bounty>0</bounty>
   <formulas>
     <Formula>
-      <name>reso</name>
-      <coords>
-        <x>0</x>
-        <y>10</y>
-      </coords>
-      <verified>false</verified>
-      <found>false</found>
-    </Formula>
-    <Formula>
-      <name>gexoro</name>
-      <coords>
-        <x>0</x>
-        <y>9</y>
-      </coords>
-      <verified>false</verified>
-      <found>false</found>
-    </Formula>
-    <Formula>
-      <name>sywaxe</name>
-      <coords>
-        <x>0</x>
-        <y>8</y>
-      </coords>
-      <verified>false</verified>
-      <found>false</found>
-    </Formula>
-    <Formula>
-      <name>rocy</name>
-      <coords>
-        <x>0</x>
-        <y>7</y>
-      </coords>
-      <verified>false</verified>
-      <found>false</found>
-    </Formula>
-    <Formula>
-      <name>jodo</name>
-      <coords>
-        <x>0</x>
-        <y>6</y>
-      </coords>
-      <verified>false</verified>
-      <found>false</found>
-    </Formula>
-    <Formula>
-      <name>bymy</name>
-      <coords>
-        <x>0</x>
-        <y>5</y>
-      </coords>
-      <verified>false</verified>
-      <found>false</found>
-    </Formula>
-    <Formula>
-      <name>biqomi</name>
-      <coords>
-        <x>0</x>
-        <y>4</y>
-      </coords>
-      <verified>false</verified>
-      <found>false</found>
-    </Formula>
-    <Formula>
-      <name>tavu</name>
-      <coords>
-        <x>0</x>
-        <y>3</y>
-      </coords>
-      <verified>false</verified>
-      <found>false</found>
-    </Formula>
-    <Formula>
-      <name>dyluhy</name>
-      <coords>
-        <x>0</x>
-        <y>2</y>
-      </coords>
-      <verified>false</verified>
-      <found>false</found>
-    </Formula>
-    <Formula>
-      <name>mypeka</name>
+      <name>lobe</name>
       <coords>
         <x>0</x>
         <y>1</y>
@@ -288,16 +191,26 @@
       <verified>false</verified>
       <found>false</found>
     </Formula>
+    <Formula>
+      <name>nuwi</name>
+      <coords>
+        <x>1</x>
+        <y>1</y>
+      </coords>
+      <verified>false</verified>
+      <found>false</found>
+    </Formula>
   </formulas>
+  <clueIndexesFound />
   <playerBoatInfo>
-    <Name>The Brave Salmon</Name>
+    <Name>The ggfhrhfhgfgh</Name>
     <previousCoords>
       <x>1</x>
-      <y>10</y>
+      <y>1</y>
     </previousCoords>
     <coords>
       <x>1</x>
-      <y>10</y>
+      <y>1</y>
     </coords>
     <currentDirection>None</currentDirection>
     <shipRange>1</shipRange>
@@ -307,11 +220,11 @@
   </playerBoatInfo>
   <treasureCoords>
     <x>1</x>
-    <y>1</y>
+    <y>0</y>
   </treasureCoords>
   <homeCoords>
     <x>1</x>
-    <y>10</y>
+    <y>1</y>
   </homeCoords>
   <currentQuests />
   <finishedQuests />
@@ -319,6 +232,6 @@
   <currentRain>0</currentRain>
   <night>false</night>
   <timeOfDay>6</timeOfDay>
-  <treasureName>The Dead Lobsters</treasureName>
+  <treasureName>The Drunken Cods</treasureName>
   <pins />
 </GameData>

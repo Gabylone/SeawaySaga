@@ -129,7 +129,7 @@ public class MapGenerator : MonoBehaviour {
             for (int y = 0; y < GetMapVerticalScale; y++)
             {
                 Coords c = new Coords(x, y);
-                Chunk.chunks.Add(c, new Chunk());
+                Chunk.chunks.Add(c, new Chunk(c));
             }
         }
 
@@ -267,7 +267,7 @@ public class MapGenerator : MonoBehaviour {
             {
                 Coords c = new Coords(x, y);
 
-                Chunk.chunks.Add(c, new Chunk());
+                Chunk.chunks.Add(c, new Chunk(c));
             }
 
 		}

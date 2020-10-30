@@ -50,7 +50,7 @@ public class DisplayItem_Selected : DisplayItem {
                 itemImage.sprite = LootManager.Instance.getItemSprite(value.category, value.spriteID);
             }
             /// NAME
-            nameText.text = "" + value.name;
+            nameText.text = "" + value.englishName;
 
             /// DESCRIPTION
             descriptionText.text = "" + value.description;

@@ -21,9 +21,19 @@ public class Typhon : RandomPlacable
     {
         base.HandleOnEnterNewChunk();
 
-        CanSpawn();
+        Invoke("HandleOnEnterNewChunkDelay", 0.1f);
+    }
 
-        transform.localScale = Vector3.one;
+    void HandleOnEnterNewChunkDelay()
+    {
+        Hide();
+
+        if (CanSpawn())
+        {
+            _transform.localScale = Vector3.one;
+
+            Show();
+        }
     }
 
     public override void Trigger()
@@ -36,7 +46,7 @@ public class Typhon : RandomPlacable
         SoundManager.Instance.PlaySound("Fury");
 
         PlayerBoat.Instance.EndMovenent();
-        PlayerBoat.Instance.GetTransform.DOMove(transform.position, delay);
+        PlayerBoat.Instance.GetTransform.DOMove(_transform.position, delay);
         PlayerBoat.Instance.animator.SetTrigger( "Typhon" );
 
         Invoke("TriggerDelay", delay);
@@ -65,5 +75,15 @@ public class Typhon : RandomPlacable
     void TriggerDelayDelay()
     {
         WorldTouch.Instance.Unlock();
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, minDistanceToIsland);
+
+        Gizmos.color = Color.white;
+        Gizmos.DrawWireSphere(transform.position, minDistanceToPlayerBoat);
+
     }
 }

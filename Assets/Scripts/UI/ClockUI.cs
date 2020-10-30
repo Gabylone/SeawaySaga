@@ -6,6 +6,8 @@ using DG.Tweening;
 
 public class ClockUI : MonoBehaviour {
 
+    public static ClockUI Instance;
+
 	[SerializeField]
 	private Transform clockBackground;
 
@@ -19,26 +21,19 @@ public class ClockUI : MonoBehaviour {
 	[SerializeField]
 	private Image nightImage;
 
-	// Use this for initialization
-	void Start ()
+    private void Awake()
+    {
+        Instance = this;
+    }
+
+    // Use this for initialization
+    void Start ()
 	{
 		TimeManager.onNextHour += UpdateNeedle;
-		StoryFunctions.Instance.getFunction += HandleGetFunction;
 
 		InitClock ();
 		UpdateNeedle ();
 	}
-
-	void HandleGetFunction (FunctionType func, string cellParameters)
-	{
-		switch (func) {
-		case FunctionType.ChangeTimeOfDay:
-		case FunctionType.SetWeather:
-			UpdateNeedle ();
-			break;
-		}
-	}
-
 	void InitClock ()
 	{
 		/*float angle = (float)TimeManager.Instance.nightStartTime * 360f / (float)TimeManager.Instance.dayDuration;
@@ -51,7 +46,7 @@ public class ClockUI : MonoBehaviour {
 	}
 
 
-	void UpdateNeedle ()
+	public void UpdateNeedle ()
 	{
 		float angle = TimeManager.Instance.timeOfDay * 360f / TimeManager.Instance.dayDuration;
 		Vector3 targetAngles = new Vector3 (0,0, angle);

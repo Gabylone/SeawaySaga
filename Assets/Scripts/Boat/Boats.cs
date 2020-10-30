@@ -1,6 +1,5 @@
-﻿using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class Boats : MonoBehaviour {
 
@@ -15,7 +14,9 @@ public class Boats : MonoBehaviour {
     public int currentBoatAmount = 0;
     public EnemyBoat[] enemyBoats;
 
-    public bool meetingPlayer = false;
+    public Material[] boatMaterials;
+
+    public bool pausingBoats = false;
 
     public delegate void OnMeetPlayer();
     public OnMeetPlayer onMeetPlayer;
@@ -72,23 +73,35 @@ public class Boats : MonoBehaviour {
 
 	#region story
 
-    public void MeetPlayer()
+    public void PauseBoats()
     {
-        meetingPlayer = true;
+        pausingBoats = true;
 
-        if (onMeetPlayer != null)
+        foreach (var item in enemyBoats)
         {
-            onMeetPlayer();
+            item.EndMovenent();
         }
     }
 
-    public void LeaveOtherBoat()
+    public void WithdrawBoats()
     {
-        meetingPlayer = false;
+        //Debug.Log("boats are withdrawing");
 
-        if (onLeavePlayer != null)
+        pausingBoats = true;
+
+        foreach (var item in enemyBoats)
         {
-            onLeavePlayer();
+            item.Withdraw();
+        }
+    }
+
+    public void ResumeBoats()
+    {
+        pausingBoats = false;
+
+        foreach (var item in enemyBoats)
+        {
+            item.Resume();
         }
     }
 

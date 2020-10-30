@@ -28,6 +28,8 @@ public class GoldManager : MonoBehaviour {
 	[SerializeField] private AudioClip noGoldSound;
 	[SerializeField] private AudioClip buySound;
 
+    Color initTextColor;
+
 	void Awake () {
 		Instance = this;
         onChangeGold = null;
@@ -35,6 +37,8 @@ public class GoldManager : MonoBehaviour {
 	}
 
 	void Start () {
+
+        initTextColor = goldText.color;
 
 		StoryFunctions.Instance.getFunction += HandleGetFunction;
 
@@ -147,7 +151,7 @@ public class GoldManager : MonoBehaviour {
 
 
 		goldImage.color = Color.white;
-		goldText.color = Color.black;
+		goldText.color = initTextColor;
 
         return true;
 	}
@@ -155,7 +159,7 @@ public class GoldManager : MonoBehaviour {
     private void HideFeedback()
     {
         goldImage.color = Color.white;
-        goldText.color = Color.black;
+        goldText.color = initTextColor;
     }
 
     public void UpdateUI () {
@@ -177,7 +181,6 @@ public class GoldManager : MonoBehaviour {
         SoundManager.Instance.PlayRandomSound("Coins");
         SoundManager.Instance.PlayRandomSound("Coins");
 
-        StoryReader.Instance.NextCell ();
 		StoryReader.Instance.Wait ( 0.3f );
 
 		DisplayFeedback ();
@@ -200,7 +203,6 @@ public class GoldManager : MonoBehaviour {
 
         AddGold (amount);
 
-		StoryReader.Instance.NextCell ();
 		StoryReader.Instance.Wait (0.3f);
 
 		DisplayFeedback ();

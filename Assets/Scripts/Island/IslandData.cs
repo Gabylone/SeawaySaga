@@ -4,9 +4,13 @@ using System.Collections.Generic;
 
 [System.Serializable]
 public class IslandData {
-
+    
+    // 
 	public Vector2 worldPosition;
     public float worldRotation = 0f;
+
+    public int index;
+    public Coords coords;
 
     public bool containsFormula = false;
 
@@ -14,8 +18,8 @@ public class IslandData {
 
 	public IslandData ()
 	{
-
-	}
+        
+    }
 
     public IslandData (StoryType storyType )
 	{
@@ -23,5 +27,5 @@ public class IslandData {
 
         worldPosition = NavigationManager.Instance.GetRandomIslandPosition();
         worldRotation = Random.Range( 0, 360f );
-	}
+    }
 }
