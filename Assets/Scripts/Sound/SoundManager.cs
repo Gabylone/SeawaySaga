@@ -152,6 +152,7 @@ public class SoundManager : MonoBehaviour
     #region load
     public void LoadSounds()
     {
+#if UNITY_EDITOR
         sounds.Clear();
 
         string path = Application.dataPath + "/Sounds";
@@ -175,6 +176,7 @@ public class SoundManager : MonoBehaviour
         }
 
         Debug.Log("Loaded " + sounds.Count + " sounds");
+#endif
     }
     #endregion
 
