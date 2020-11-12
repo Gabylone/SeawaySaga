@@ -123,8 +123,11 @@ public class Map : MonoBehaviour {
 
         Tween.Bounce(transform);
 
+
         if (apparenceItem.locked)
         {
+            SoundManager.Instance.PlayRandomSound("button_tap_light");
+            SoundManager.Instance.PlaySound("ui_wrong");
             //DisplayPurchase.Instance.Display(apparenceItem, transform);
             return;
         }
@@ -153,6 +156,10 @@ public class Map : MonoBehaviour {
 
         KeepOnLoad.Instance.mapName = mapParameters.mapName;
 
+        SoundManager.Instance.PlayRandomSound("button_tap_light");
+        SoundManager.Instance.PlayRandomSound("Swipe");
+        SoundManager.Instance.PlayRandomSound("Writing");
+        SoundManager.Instance.PlayRandomSound("Page");
 
         SaveTool.Instance.CreateDirectories();
 
@@ -170,6 +177,10 @@ public class Map : MonoBehaviour {
         MessageDisplay.Instance.Show("Erase game ?");
 
         MessageDisplay.Instance.onValidate += ConfirmEraseMap;
+
+        SoundManager.Instance.PlayRandomSound("button_tap_light");
+        SoundManager.Instance.PlayRandomSound("Tribal");
+        SoundManager.Instance.PlayRandomSound("Bag");
     }
 
     void ConfirmEraseMap()
@@ -177,6 +188,11 @@ public class Map : MonoBehaviour {
         SaveTool.Instance.DeleteFolder(mapParameters.mapName);
 
         Tween.Bounce(transform);
+
+        SoundManager.Instance.PlayRandomSound("button_tap_light");
+        SoundManager.Instance.PlayRandomSound("Tribal");
+        SoundManager.Instance.PlayRandomSound("Writing");
+        SoundManager.Instance.PlayRandomSound("Page");
 
         UpdateUI();
     }

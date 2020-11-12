@@ -15,9 +15,19 @@ public class DisplayCrew : MonoBehaviour {
 	public float duration = 1f;
 	public float decal = 200f;
 
-	Vector2 initPos;
+	private Vector2 initPos;
 
-    public GameObject skillMenuObj;
+    public GameObject switchGroup;
+
+    public CanvasGroup skillCanvasGroup;
+    public CanvasGroup inventoryCanvasGroup;
+
+    public Transform skillTransform;
+    public Transform inventoryTransform;
+
+    public bool visible = false;
+
+    public bool onSkills = false;
 
     private void Awake()
     {
@@ -27,21 +37,10 @@ public class DisplayCrew : MonoBehaviour {
     // Use this for initialization
     void Start () {
 
-		Hide ();
-        HideSkillMenu();
+        HideDelay();
 
 		initPos = rectTransform.anchoredPosition;
 	}
-
-    public void ShowSkillMenu()
-    {
-        skillMenuObj.SetActive(true);
-    }
-
-    public void HideSkillMenu()
-    {
-        skillMenuObj.SetActive(false);
-    }
 
     public void Show(CrewMember member)
     {
@@ -52,19 +51,88 @@ public class DisplayCrew : MonoBehaviour {
         targetGameObject.SetActive(true);
 
         CancelInvoke("Hide");
-        CancelInvoke("ShowDelay");
+
+
+        if ( onSkills)
+        {
+            OnSwitchSkills();
+        }
+        else
+        {
+            OnSwitchInventory();
+        }
+
+        visible = true;
+
+        CharacterMenuButton.Instance.UpdateUI();
+        PlayerIcons.Instance.HandleOpenInventory();
+
     }
 
-    public void Hide ()
-	{
-		CancelInvoke ("HideDelay");
-		CancelInvoke ("ShowDelay");
+    public void Hide()
+    {
+        PlayerIcons.Instance.Hide();
+
         rectTransform.DOAnchorPos(Vector2.up * decal, duration);
-		Invoke ("HideDelay", duration);
-	}
+
+        CancelInvoke("HideDelay");
+        Invoke("HideDelay", duration);
+
+        visible = false;
+
+        onSkills = false;
+    }
 
 	void HideDelay () {
 		targetGameObject.SetActive (false);
 	}
+
+    public void SwitchToSkills()
+    {
+        if (onSkills)
+        {
+            return;
+        }
+
+        LootUI.Instance.Hide();
+        SkillMenu.Instance.Show();
+
+        Tween.Bounce(skillTransform);
+
+        OnSwitchSkills();
+    }
+
+    public void SwitchToInventory()
+    {
+        if (!onSkills)
+        {
+            return;
+        }
+
+        SkillMenu.Instance.Hide();
+        LootUI.Instance.OpenInventory();
+
+        Tween.Bounce(inventoryTransform);
+
+        OnSwitchInventory();
+
+    }
+
+    public void OnSwitchInventory()
+    {
+        onSkills = false;
+
+        inventoryCanvasGroup.alpha = 0.5f;
+        skillCanvasGroup.alpha = 1f;
+
+    }
+
+    public void OnSwitchSkills()
+    {
+        onSkills = true;
+
+        inventoryCanvasGroup.alpha = 1f;
+        skillCanvasGroup.alpha = 0.5f;
+    }
 
 }

@@ -204,7 +204,7 @@ public class TutoStep_Saves : TutoStep {
 	{
 		base.Init ();
 
-		NavigationManager.Instance.EnterNewChunk += HandleChunkEvent;
+		NavigationManager.Instance.onMoveToChunk += HandleChunkEvent;
 	}
 
 	void HandleChunkEvent ()
@@ -214,7 +214,7 @@ public class TutoStep_Saves : TutoStep {
 		if ( chunkCount == 8 ) {
 
 			Display ();
-			NavigationManager.Instance.EnterNewChunk -= HandleChunkEvent;
+			NavigationManager.Instance.onMoveToChunk -= HandleChunkEvent;
 			WaitForConfirm ();
 		}
 	}
@@ -254,7 +254,7 @@ public class TutoStep_Treasure: TutoStep {
 	{
 		base.Init ();
 
-		NavigationManager.Instance.EnterNewChunk += HandleChunkEvent;
+		NavigationManager.Instance.onMoveToChunk += HandleChunkEvent;
 	}
 
 	void HandleChunkEvent ()
@@ -264,7 +264,7 @@ public class TutoStep_Treasure: TutoStep {
 		if ( chunkCount == 6 ) {
 
 			Display ();
-			NavigationManager.Instance.EnterNewChunk -= HandleChunkEvent;
+			NavigationManager.Instance.onMoveToChunk -= HandleChunkEvent;
 			WaitForConfirm ();
 		}
 	}
@@ -345,7 +345,7 @@ public class TutoStep_Crew: TutoStep {
 			corner = DisplayInfo.Corner.TopLeft;
 
 			Display ();
-			NavigationManager.Instance.EnterNewChunk -= HandleChunkEvent;
+			NavigationManager.Instance.onMoveToChunk -= HandleChunkEvent;
 			WaitForConfirm ();
 		}
 	}
@@ -376,14 +376,14 @@ public class TutoStep_Inventory: TutoStep {
 	{
 		base.Init ();
 
-		LootUI.onShowLoot += HandleOnShowLoot;
+		LootUI.tutorialEvent += HandleOnShowLoot;
 	}
 //
 	void HandleOnShowLoot ()
 	{
 		if (LootUI.Instance.currentSide == Crews.Side.Player) {
 			Display ();
-			LootUI.onShowLoot -= HandleOnShowLoot;
+			LootUI.tutorialEvent -= HandleOnShowLoot;
 			WaitForConfirm ();
 		}
 	}
@@ -626,7 +626,7 @@ public class TutoStep_Hunger: TutoStep {
 	{
 		base.Init ();
 
-		NavigationManager.Instance.EnterNewChunk += HandleChunkEvent;
+		NavigationManager.Instance.onMoveToChunk += HandleChunkEvent;
 	}
 
 	void HandleChunkEvent ()
@@ -638,7 +638,7 @@ public class TutoStep_Hunger: TutoStep {
 
 		if (fillAmount < 0.25f) {
 			corner = DisplayInfo.Corner.TopLeft;
-			NavigationManager.Instance.EnterNewChunk -= HandleChunkEvent;
+			NavigationManager.Instance.onMoveToChunk -= HandleChunkEvent;
 			Display ();
 			WaitForConfirm ();
 		}
@@ -703,7 +703,7 @@ public class TutoStep_SkillMenu : TutoStep {
 
 	void HandleOnShowCharacterStats ()
 	{
-		SkillMenu.Instance.onShowSkillMenu -= HandleOnShowCharacterStats;
+		SkillMenu.Instance.tutoEvent -= HandleOnShowCharacterStats;
 		Display ();
 		WaitForConfirm ();
 	}
@@ -816,7 +816,7 @@ public class TutoStep_Minimap : TutoStep {
 			corner = DisplayInfo.Corner.BottomLeft;
 
 			Display ();
-			NavigationManager.Instance.EnterNewChunk -= HandleChunkEvent;
+			NavigationManager.Instance.onMoveToChunk -= HandleChunkEvent;
 			WaitForConfirm ();
 		}
 	}

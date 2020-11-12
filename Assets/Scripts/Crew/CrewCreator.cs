@@ -229,8 +229,6 @@ public class CrewCreator : MonoBehaviour
 
 }
 
-
-
 public enum ApparenceType
 {
     // apparence
@@ -254,7 +252,6 @@ public enum ApparenceType
     shoesColor,
 
     faceType,
-
 }
 
 [System.Serializable]
@@ -283,9 +280,16 @@ public class ApparenceItem
     {
         id = i;
 
-        if ( locked && PlayerInfo.Instance.apparenceItems.Find(x => this.id == x.id && this.apparenceType == x.apparenceType) != null)    
+        if (apparenceType == ApparenceType.map)
         {
-            locked = false;
+            ApparenceItem loadedApparenceItem = PlayerInfo.Instance.apparenceItems.Find(x => this.id == x.id && this.apparenceType == x.apparenceType);
+
+            if ( loadedApparenceItem != null)
+            {
+                /// c'est vraiment de la merde putain
+                this.finished = loadedApparenceItem.finished;
+                this.locked = loadedApparenceItem.locked;
+            }
         }
     }
 

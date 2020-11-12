@@ -1,13 +1,14 @@
 Nom;Fréquence / 5;Sprite ID;Display Name;;
 Ma Maison;1;1;Captain’s House;;
-[premiere visite];;;[chambre];;
-Narrator : East of here is the labyrinth of NOMTRESOR, supposedly hiding a big treasure.;Node=>retour;;Narrator : CAPITAINE are in their childhood bedroom. Next to their bed, the desk is covered with drawings, books and tales about the ocean.;;
-Narrator : Aboard the NOMBATEAU, CAPITAINE sets sail to venture there and grab it for themselves.; ;;[choix chambre];;
-SetChoices2;;;SetChoices3;;
-Choice : (set sail);Choice : (enter the house);;Choice : (go back to the living room) (leave);Choice : (sleep until NEXTTIME) (sleep);Choice : (desk) (quest)
-PlayerSpeak : Let’s got !;Fade;;Fade;ChangeTimeOfDay;Narrator : It says that east from here, the furthest from every shore you can be, you can find a huge, maze-like island.
-Switch=>premiere visite;Node=>salon;;Node=>salon;Node=>salon;Narrator : The island also supposedly is riddled with caves filled with precious loot.
-Leave;;;;;Narrator : Before venturing into the Labyrinth and the wild waters surrounding it…
+[premiere visite];;;;;
+Narrator : East of here is the labyrinth of NOMTRESOR, supposedly hiding a big treasure.;Node=>retour;;[chambre];;
+Narrator : Aboard their boat, NOMBATEAU, CAPITAINE sets sail to venture there and grab it for themselves.; ;;Narrator : CAPITAINE are in their childhood bedroom. Next to their bed, the desk is covered with drawings, books and tales about the ocean.;;
+SetChoices2;;;[choix chambre];;
+Choice : (set sail);Choice : (enter the house);;SetChoices3;;
+PlayerSpeak : Let’s got !;Fade;;Choice : (go back to the living room) (leave);Choice : (sleep until NEXTTIME) (sleep);Choice : (desk) (quest)
+Switch=>premiere visite;Node=>salon;;Fade;ChangeTimeOfDay;Narrator : It says that east from here, the furthest from every shore you can be, you can find a huge, maze-like island.
+Leave;;;Node=>salon;Node=>salon;Narrator : The island also supposedly is riddled with caves filled with precious loot.
+;;;;;Narrator : Before venturing into the Labyrinth and the wild waters surrounding it…
 ;;;;;Narrator : One would do well to explore and prepare as much as they can in the villages and other islands around…
 ;;;;;Node=>choix chambre
 ;;;;;

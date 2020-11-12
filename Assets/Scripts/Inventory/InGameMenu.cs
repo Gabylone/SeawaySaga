@@ -38,7 +38,6 @@ public class InGameMenu : MonoBehaviour {
 
         onCloseMenu = null;
         onOpenMenu = null;
-        StatButton.onClickStatButton = null;
 	}
 
 	public void Init () {
@@ -77,7 +76,22 @@ public class InGameMenu : MonoBehaviour {
 
 		Item foodItem = LootUI.Instance.SelectedItem;
 
-		int hunger = 0;
+        // can buy
+        if (OtherInventory.Instance.type == OtherInventory.Type.Trade)
+        {
+            if (!GoldManager.Instance.CheckGold(LootUI.Instance.SelectedItem.price))
+            {
+                return;
+            }
+
+            SoundManager.Instance.PlayRandomSound("Bag");
+            SoundManager.Instance.PlayRandomSound("Coins");
+
+            GoldManager.Instance.RemoveGold(LootUI.Instance.SelectedItem.price);
+        }
+        //
+
+        int hunger = 0;
 		int health = 0;
 
 		switch (foodItem.spriteID) {
@@ -100,21 +114,16 @@ public class InGameMenu : MonoBehaviour {
 			break;
 		}
 
-        // les membres perde la faim seulement lorsque la barre de vie est pleine //
-        /*if (CrewMember.GetSelectedMember.Health >= CrewMember.GetSelectedMember.MemberID.maxHealth - 10) {
-			CrewMember.GetSelectedMember.CurrentHunger -= hunger;
-		}*/
-
         SoundManager.Instance.PlayRandomSound("Food Eat");
-
-        CrewMember.GetSelectedMember.CurrentHunger -= hunger;
-
-        // les membres prennent la vie en meme temps qu'ils perde la faim //
-        //CrewMember.GetSelectedMember.AddHealth(health);
 
         if ( CrewMember.GetSelectedMember.CurrentHunger <= 0)
         {
             CrewMember.GetSelectedMember.AddHealth(health);
+        }
+        else
+        {
+            CrewMember.GetSelectedMember.CurrentHunger -= hunger;
+
         }
 
         if (OtherInventory.Instance.type == OtherInventory.Type.None)
@@ -133,20 +142,39 @@ public class InGameMenu : MonoBehaviour {
             return;
         }
 
+        if (OtherInventory.Instance.type == OtherInventory.Type.Trade)
+        {
+            if (!GoldManager.Instance.CheckGold(LootUI.Instance.SelectedItem.price))
+            {
+                return;
+            }
+
+            SoundManager.Instance.PlayRandomSound("Bag");
+            SoundManager.Instance.PlayRandomSound("Coins");
+
+            GoldManager.Instance.RemoveGold(LootUI.Instance.SelectedItem.price);
+        }
+
         SoundManager.Instance.PlayRandomSound("Foley Armour");
         SoundManager.Instance.PlayRandomSound("Anvil");
 
 		if (CrewMember.GetSelectedMember.GetEquipment(item.EquipmentPart) != null)
-			LootManager.Instance.PlayerLoot.AddItem (CrewMember.GetSelectedMember.GetEquipment(item.EquipmentPart) );
+        {
+            LootManager.Instance.PlayerLoot.AddItem(CrewMember.GetSelectedMember.GetEquipment(item.EquipmentPart));
+        }
 
-		CrewMember.GetSelectedMember.SetEquipment (item);
+        CrewMember.GetSelectedMember.SetEquipment (item);
 
-		if ( OtherInventory.Instance.type == OtherInventory.Type.None )
-			LootManager.Instance.PlayerLoot.RemoveItem (item);
-		else 
-			LootManager.Instance.OtherLoot.RemoveItem (item);
+        if ( OtherInventory.Instance.type == OtherInventory.Type.None)
+        {
+            LootManager.Instance.PlayerLoot.RemoveItem(item);
+        }
+        else
+        {
+            LootManager.Instance.OtherLoot.RemoveItem(item);
+        }
 
-	}
+    }
 
     public delegate void OnRemoveItemFromMember(Item item);
     public static OnRemoveItemFromMember onRemoveItemFromMember;
@@ -191,6 +219,11 @@ public class InGameMenu : MonoBehaviour {
 			return;
 		}
 
+        if (opened)
+        {
+            return;
+        }
+
         HideMenuButtons();
 
 		    // event
@@ -206,6 +239,11 @@ public class InGameMenu : MonoBehaviour {
 
     }
 	public void Hide () {
+
+        if (!opened)
+        {
+            return;
+        }
 
         ShowMenuButtons();
 

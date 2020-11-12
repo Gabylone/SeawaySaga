@@ -17,9 +17,9 @@ public class Typhon : RandomPlacable
         base.Start();
     }
 
-    public override void HandleOnEnterNewChunk()
+    public override void HandleOnUpdateCurrentChunk()
     {
-        base.HandleOnEnterNewChunk();
+        base.HandleOnUpdateCurrentChunk();
 
         Invoke("HandleOnEnterNewChunkDelay", 0.1f);
     }

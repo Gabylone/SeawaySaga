@@ -58,9 +58,9 @@ public class Island : RandomPlacable {
         DeactivateCollider();
 	}
 
-    public override void HandleOnEnterNewChunk()
+    public override void HandleOnUpdateCurrentChunk()
     {
-        base.HandleOnEnterNewChunk();
+        base.HandleOnUpdateCurrentChunk();
 
         UpdatePositionOnScreen (Boats.Instance.playerBoatInfo.coords);
 	}

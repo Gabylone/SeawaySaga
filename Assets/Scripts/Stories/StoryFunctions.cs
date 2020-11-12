@@ -112,8 +112,6 @@ public class StoryFunctions : MonoBehaviour {
 		}
 
 //		// GET DECAL
-		
-	
 		if ( content[0] == '[' ) {
 
             if ( debug)
@@ -128,9 +126,6 @@ public class StoryFunctions : MonoBehaviour {
                 {
                     Debug.Log("switching : decal " + decal);
                 }
-
-                Debug.Log("switching : decal " + decal);
-
 
                 StoryReader.Instance.NextCell();
                 StoryReader.Instance.SetDecal(decal);

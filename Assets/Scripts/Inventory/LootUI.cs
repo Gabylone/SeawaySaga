@@ -30,32 +30,17 @@ public class LootUI : MonoBehaviour {
 	public delegate void OnSetSelectedItem ();
 	public static OnSetSelectedItem onSetSelectedItem;
 
-    public void ClearSelectedItem()
-    {
-        selectedItemDisplay.Hide();
-    }
+    public bool selectingEquipment = false;
 
-    public Item SelectedItem {
-		
-		get {
 
-			return selectedItem;
-		}
+    // pour quand on revient sur les lieux d'un combat pour loot, il faut pas que l'histoire avance
+    public bool preventAdvanceStory = false;
 
-		set {
-			
-			selectedItem = value;
+    public Crews.Side currentSide;
+    public delegate void OnShowLoot();
+    public static OnShowLoot tutorialEvent;
 
-            selectedItemDisplay.Show(value);
-
-			UpdateActionButton (value);
-
-			if ( onSetSelectedItem != null  ) {
-				onSetSelectedItem ();
-			}
-
-		}
-	}
+    
 
 	private ItemCategory currentCat;
 
@@ -68,7 +53,8 @@ public class LootUI : MonoBehaviour {
 	public GameObject closeButton;
 	public GameObject switchToPlayer;
 	public GameObject switchToTrade;
-	public GameObject switchToLoot;
+    public Text switchButton_Text;
+    public GameObject switchToLoot;
     public GameObject takeAllButton;
 
     public bool visible = false;
@@ -102,19 +88,21 @@ public class LootUI : MonoBehaviour {
 		Instance = this;
 
         onSetSelectedItem = null;
-        onHideLoot = null;
-        onShowLoot = null;
+        tutorialEvent = null;
         useInventory = null;
 
 		Init ();
 	}
 
-	void Start () {
+    void Start()
+    {
 
-		InGameMenu.onRemoveItemFromMember += HandleOnRemoveItemFromMember;
+        InGameMenu.onRemoveItemFromMember += HandleOnRemoveItemFromMember;
 
-		RayBlocker.onTouchRayBlocker += HandleOnTouchRayBlocker;
-	}
+        RayBlocker.onTouchRayBlocker += HandleOnTouchRayBlocker;
+
+        HideDelay();
+    }
 
 	void HandleOnTouchRayBlocker ()
 	{
@@ -138,9 +126,10 @@ public class LootUI : MonoBehaviour {
 	}
 
 	#region show / hide
-	public Crews.Side currentSide;
-	public delegate void OnShowLoot ();
-	public static OnShowLoot onShowLoot;
+    public void Show()
+    {
+        Show(categoryContentType, currentSide);
+    }
 	public void Show (CategoryContentType _catContentType,Crews.Side side) {
 
         currentPage = 0;
@@ -157,43 +146,153 @@ public class LootUI : MonoBehaviour {
 		InitButtons ();
 		InitCategory();
 
-        closeButton.SetActive(OnOtherLoot());
-
         visible = true;
-        lootObj.SetActive(true);
-
-        UpdateLootUI();
 
         SoundManager.Instance.PlaySound("Open Chest");
 
-        if (onShowLoot != null)
-			onShowLoot ();
+        if (tutorialEvent != null)
+        {
+            tutorialEvent();
+        }
+
+        lootObj.SetActive(true);
 
         OtherInventory.Instance.LerpIn();
 
+        DisplayCrew.Instance.Show(CrewMember.GetSelectedMember);
+
         InGameMenu.Instance.Open();
+
+        UpdateLootUI();
+    }
+
+    void HideDelay()
+    {
+        lootObj.SetActive(false);
 
     }
 
     public void Close()
     {
+        if (!visible)
+        {
+            return;
+        }
+
         InGameMenu.Instance.Hide();
         DisplayCrew.Instance.Hide();
 
         SoundManager.Instance.PlaySound("Close Chest");
 
-        visible = false;
+        Hide();
+    }
 
-        if (onHideLoot != null)
+    public void Hide()
+    {
+        if (!visible)
         {
-            onHideLoot();
+            return;
+        }
+
+        if (OnOtherLoot())
+        {
+            if (preventAdvanceStory)
+            {
+                preventAdvanceStory = false;
+                Debug.Log("setting prevent story to FALSE");
+            }
+            else
+            {
+                StoryReader.Instance.NextCell();
+            }
+
+            StoryReader.Instance.UpdateStory();
+
+            InGameMenu.Instance.Hide();
+
+            Crews.getCrew(Crews.Side.Player).UpdateCrew(Crews.PlacingType.World);
+
+            OtherInventory.Instance.type = OtherInventory.Type.None;
+
         }
 
         OtherInventory.Instance.LerpOut();
 
-        Hide();
+        Invoke("HideDelay", OtherInventory.Instance.lootTransition_Duration);
+
+        visible = false;
+
     }
 
+    public void HideAllSwitchButtons()
+    {
+        switchToTrade.SetActive(false);
+        switchToLoot.SetActive(false);
+        switchToPlayer.SetActive(false);
+        takeAllButton.SetActive(false);
+
+        previousPageButton.SetActive(false);
+        nextPageButton.SetActive(false);
+
+        DisplayCrew.Instance.switchGroup.SetActive(false);
+    }
+
+    public void InitButtons ()
+	{
+        HideAllSwitchButtons();
+
+        switch (categoryContentType) {
+
+		    case CategoryContentType.PlayerTrade:
+                switchToTrade.SetActive(true);
+                switchButton_Text.text = "Sell";
+                break;
+            case CategoryContentType.PlayerLoot:
+			    switchToLoot.SetActive(true);
+                switchButton_Text.text = "Throw";
+                break;
+
+		    case CategoryContentType.OtherTrade:
+                switchButton_Text.text = "Sell";
+                switchToPlayer.SetActive(true);
+                break;
+            case CategoryContentType.OtherLoot:
+                switchButton_Text.text = "Drop";
+                switchToPlayer.SetActive(true);
+
+                if ( handledLoot.AllItems[(int)currentCat].Count > 0)
+                {
+                    takeAllButton.SetActive(true);
+                }
+
+                break;
+            case CategoryContentType.Combat:
+                break;
+            case CategoryContentType.Inventory:
+                DisplayCrew.Instance.switchGroup.SetActive(true);
+                break;
+		default:
+			break;
+		}
+
+        if (currentPage > 0)
+        {
+            previousPageButton.SetActive(true);
+        }
+
+        if (handledLoot.AllItems[(int)currentCat].Count > ItemPerPage * (currentPage+1) )
+        {
+            nextPageButton.SetActive(true);
+        }
+
+    }
+    bool OnOtherLoot ()
+    {
+        return OtherInventory.Instance.type == OtherInventory.Type.Loot || OtherInventory.Instance.type == OtherInventory.Type.Trade;
+    }
+    #endregion
+
+    #region take all
     public void TakeAll()
     {
         StartCoroutine(TakeAllCoroutine());
@@ -202,6 +301,9 @@ public class LootUI : MonoBehaviour {
     IEnumerator TakeAllCoroutine()
     {
         takeAllButton.SetActive(false);
+
+        DisplayCrew.Instance.switchGroup.SetActive(false);
+
         closeButton.SetActive(false);
 
         HideAllSwitchButtons();
@@ -226,99 +328,7 @@ public class LootUI : MonoBehaviour {
 
         InitButtons();
     }
-
-    public void HideAllSwitchButtons()
-    {
-        switchToTrade.SetActive(false);
-        switchToLoot.SetActive(false);
-        switchToPlayer.SetActive(false);
-        takeAllButton.SetActive(false);
-
-        previousPageButton.SetActive(false);
-        nextPageButton.SetActive(false);
-    }
-
-    public void InitButtons ()
-	{
-        HideAllSwitchButtons();
-
-        switch (categoryContentType) {
-
-		    case CategoryContentType.PlayerTrade:
-                switchToTrade.SetActive(true);
-                break;
-            case CategoryContentType.PlayerLoot:
-			    switchToLoot.SetActive(true);
-			    break;
-
-		    case CategoryContentType.OtherTrade:
-                switchToPlayer.SetActive(true);
-                break;
-            case CategoryContentType.OtherLoot:
-
-                switchToPlayer.SetActive(true);
-
-                if ( handledLoot.AllItems[(int)currentCat].Count > 0)
-                {
-                    takeAllButton.SetActive(true);
-                }
-                break;
-		default:
-			break;
-		}
-
-        if (currentPage > 0)
-        {
-            previousPageButton.SetActive(true);
-        }
-
-        if (handledLoot.AllItems[(int)currentCat].Count > ItemPerPage * (currentPage+1) )
-        {
-            nextPageButton.SetActive(true);
-        }
-
-    }
-
-    public delegate void OnHideLoot ();
-	public static OnHideLoot onHideLoot;
-
-    // pour quand on revient sur les lieux d'un combat pour loot, il faut pas que l'histoire avance
-    public bool preventAdvanceStory = false;
-
-    public void Hide()
-    {
-        lootObj.SetActive(false);
-
-        if (OnOtherLoot())
-        {
-            if (preventAdvanceStory)
-            {
-                preventAdvanceStory = false;
-            }
-            else
-            {
-                StoryReader.Instance.NextCell();
-            }
-
-            StoryReader.Instance.UpdateStory();
-
-            InGameMenu.Instance.Hide();
-
-            Crews.getCrew(Crews.Side.Player).UpdateCrew(Crews.PlacingType.World);
-        }
-
-        OtherInventory.Instance.type = OtherInventory.Type.None;
-    }
-    bool OnOtherLoot ()
-    {
-        return OtherInventory.Instance.type == OtherInventory.Type.Loot || OtherInventory.Instance.type == OtherInventory.Type.Trade;
-    }
-	#endregion
-
-	void HandleOnRemoveItemFromMember (Item item)
-	{
-		UpdateLootUI ();
-	}
+    #endregion
 
 	#region item button	
 	public void UpdateItemButtons () {
@@ -365,12 +375,15 @@ public class LootUI : MonoBehaviour {
             itemIndex++;
 		}
 
-
 	}
-	#endregion
+    void HandleOnRemoveItemFromMember(Item item)
+    {
+        UpdateLootUI();
+    }
+    #endregion
 
-	#region category navigation
-	void InitCategory ()
+    #region category navigation
+    void InitCategory ()
 	{
 		for (int catIndex = 0; catIndex < categoryButtons.Length; catIndex++) {
 
@@ -412,7 +425,11 @@ public class LootUI : MonoBehaviour {
 		UpdateCategoryButtons ();
         InitButtons();
 
-	}
+        if (selectedItemDisplay.DisplayedItem != null)
+        {
+            selectedItemDisplay.UpdateUI();
+        }
+    }
 
 	public CategoryContent CategoryContent {
 		get {
@@ -499,15 +516,6 @@ public class LootUI : MonoBehaviour {
 	}
 	#endregion
 
-	public GameObject LootObj {
-		get {
-			return lootObj;
-		}
-		set {
-			lootObj = value;
-		}
-	}
-
     public void NextPage()
     {
         currentPage++;
@@ -525,33 +533,59 @@ public class LootUI : MonoBehaviour {
 
     }
 
-    public void OpenMemberLoot()
+    public void OpenInventory()
     {
-        OpenMemberLoot(CrewMember.GetSelectedMember);
-    }
+        //Show(categoryContentType, currentSide);
+        Show(CategoryContentType.Inventory, Crews.Side.Player);
 
-    public void OpenMemberLoot(CrewMember targetCrewMember)
-    {
-        // basic open the menu stuff
-        InGameMenu.Instance.Open();
-
-        DisplayCrew.Instance.Show(targetCrewMember);
-
-        if (BoatUpgradeManager.Instance.opened)
-        {
-            BoatUpgradeManager.Instance.Close();
-        }
-
-        if (visible)
+        /*if (visible)
         {
             UpdateLootUI();
         }
         else
         {
             Show(CategoryContentType.Inventory, Crews.Side.Player);
-        }
+        }*/
+
+        DisplayCrew.Instance.OnSwitchInventory();
+        
     }
 
+    public void OpenMemberLoot(CrewMember targetCrewMember)
+    {
+        
+    }
+
+    public void ClearSelectedItem()
+    {
+        selectedItemDisplay.Hide();
+    }
+
+    public Item SelectedItem
+    {
+
+        get
+        {
+
+            return selectedItem;
+        }
+
+        set
+        {
+
+            selectedItem = value;
+
+            selectedItemDisplay.Show(value);
+
+            UpdateActionButton(value);
+
+            if (onSetSelectedItem != null)
+            {
+                onSetSelectedItem();
+            }
+
+        }
+    }
 }
 
 [System.Serializable]

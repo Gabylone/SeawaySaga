@@ -5,20 +5,28 @@ using UnityEngine.UI;
 
 public class StatButton : MonoBehaviour {
 
-	Button button;
-	Text text;
+    public Text uiText;
+
+    private bool canInteract = false;
+
+    Transform _transform;
+
+    public Animator animator;
+    public Image bgImage;
+    public Outline outline;
+    public GameObject skillPoint_Group;
 
 	[SerializeField]
 	private Stat stat;
 
 	// Use this for initialization
-	void Start () {
-
-		button = GetComponent<Button> ();
-		text = GetComponentInChildren<Text> ();
+	void Start ()
+    {
+        _transform = GetComponent<Transform>();
 
         InGameMenu.Instance.onDisplayCrewMember += HandleOnCardUpdate;
 		SkillButton_Inventory.onUnlockSkill += UpdateDisplay;
+        SkillManager.Instance.onLevelUpStat += UpdateDisplay;
 
 		Display (CrewMember.GetSelectedMember);
 
@@ -31,14 +39,25 @@ public class StatButton : MonoBehaviour {
 
 	void Disable ()
 	{
-		button.interactable = false;
+        canInteract = false;
+        animator.enabled = false;
+        outline.enabled = false;
+        bgImage.color = Color.white;
+
+        skillPoint_Group.SetActive(false);
 	}
 
-	void Enable () {
-		button.interactable = true;
-	}
+    void Enable()
+    {
+        canInteract = true;
+        animator.enabled = true;
+        outline.enabled = true;
 
-	void HandleOnCardUpdate (CrewMember member)
+        skillPoint_Group.SetActive(true);
+
+    }
+
+    void HandleOnCardUpdate (CrewMember member)
 	{
 		Display (member);
 	}
@@ -48,26 +67,39 @@ public class StatButton : MonoBehaviour {
 		if (member == null)
 			return;
 
-		if (member.SkillPoints > 0 && member.GetStat(stat) < 6) {
-			Enable ();
-		} else {
-			Disable ();
-		}
+        if (member.SkillPoints > 0 && member.GetStat(stat) < 6)
+        {
+            Enable();
+        }
+        else
+        {
+            Disable();
+        }
 
-		text.text = member.GetStat(stat).ToString();
+		uiText.text = member.GetStat(stat).ToString();
 	}
 
-	public delegate void OnClickStatButton();
-	public static OnClickStatButton	onClickStatButton;
-
 	public void OnClick () {
-		
-		Tween.Bounce (transform);
+
+        Tween.Bounce(_transform);
+
+        if (!canInteract)
+        {
+            SoundManager.Instance.PlayRandomSound("Bag");
+            SoundManager.Instance.PlaySound("ui_wrong");
+            return;
+        }
+
+        SoundManager.Instance.PlayRandomSound("Alchemy");
+        SoundManager.Instance.PlayRandomSound("Bag");
+        SoundManager.Instance.PlayRandomSound("Magic Chimes");
 
 		CrewMember.GetSelectedMember.HandleOnLevelUpStat (stat);
 
-		if (onClickStatButton!=null)
-			onClickStatButton ();
+        if (SkillManager.Instance.onLevelUpStat != null)
+        {
+            SkillManager.Instance.onLevelUpStat();
+        }
 
         UpdateDisplay();
 

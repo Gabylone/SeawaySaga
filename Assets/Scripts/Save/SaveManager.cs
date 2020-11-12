@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿
+using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
@@ -27,7 +28,7 @@ public class SaveManager : MonoBehaviour
 
 	void Start () {
 
-        if ( SaveTool.Instance.FileExists ("PlayerInfo" , "player info"))
+        if (SaveTool.Instance.FileExists("PlayerInfo", "player info"))
         {
             PlayerInfo.Instance = SaveTool.Instance.LoadFromSpecificPath("PlayerInfo", "player info.xml", "PlayerInfo") as PlayerInfo;
         }
@@ -40,7 +41,6 @@ public class SaveManager : MonoBehaviour
 
         if ( NavigationManager.Instance)
         {
-            NavigationManager.Instance.EnterNewChunk += HandleChunkEvent;
             Crews.Instance.onCrewMemberKilled += HandleOnCrewMemberKilled;
             StoryLauncher.Instance.onPlayStory += HandlePlayStoryEvent;
             StoryLauncher.Instance.onEndStory += HandleEndStoryEvent;
@@ -61,11 +61,6 @@ public class SaveManager : MonoBehaviour
     }
 
     void HandleOnCrewMemberKilled (CrewMember crewMember)
-	{
-		SaveGameData ();
-	}
-
-	void HandleChunkEvent ()
 	{
 		SaveGameData ();
 	}
@@ -192,14 +187,14 @@ public class SaveManager : MonoBehaviour
 
 		DisplayMinimap.Instance.Init ();
 
-		NavigationManager.Instance.ChangeChunk (Directions.None);
+        NavigationManager.Instance.UpdateCurrentChunk();
 	}
 
-	public void SaveAllIslands () {
-        StartCoroutine(SaveAllIslandsCoroutine ());
+	public void CreateFirstSave () {
+        StartCoroutine(CreateFirstSave_Coroutine ());
 	}
 
-	IEnumerator SaveAllIslandsCoroutine () {
+	IEnumerator CreateFirstSave_Coroutine () {
 
         LoadingScreen.Instance.StartLoading ("Sauvegarde îles", MapGenerator.Instance.GetMapHorizontalScale * MapGenerator.Instance.IslandsPerCol);
 
@@ -255,7 +250,7 @@ public class SaveManager : MonoBehaviour
 
 		DisplayMinimap.Instance.Init ();
 
-		NavigationManager.Instance.ChangeChunk (Directions.None);
+        NavigationManager.Instance.UpdateCurrentChunk();
 
         Vector3 islandPos = IslandManager.Instance.islands[0].transform.position + new Vector3(-2f, 0, -1.5f);
 
@@ -330,6 +325,13 @@ public class PlayerInfo
 
     public void AddApparenceItem(ApparenceItem apparenceItem)
     {
+        if (apparenceItems.Contains(apparenceItem))
+        {
+            Debug.Log("replacing apparence item : " + apparenceItem.apparenceType + " id : " + apparenceItem.id);
+            apparenceItems.Remove(apparenceItem);
+            return;
+        }
+
         apparenceItems.Add(apparenceItem);
        
         CrewCreator.Instance.GetApparenceItem(apparenceItem.apparenceType, apparenceItem.id).locked = false;

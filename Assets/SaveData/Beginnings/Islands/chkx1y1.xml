@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <Chunk xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <state>UndiscoveredIsland</state>
+  <state>VisitedIsland</state>
   <coords>
     <x>1</x>
     <y>1</y>
@@ -8,10 +8,10 @@
   <islandDatas>
     <IslandData>
       <worldPosition>
-        <x>-3.232973</x>
-        <y>17.3597336</y>
+        <x>-8.820354</x>
+        <y>-5.56854057</y>
       </worldPosition>
-      <worldRotation>315.9213</worldRotation>
+      <worldRotation>321.340271</worldRotation>
       <index>0</index>
       <coords>
         <x>1</x>
@@ -19,7 +19,7 @@
       </coords>
       <containsFormula>true</containsFormula>
       <storyManager>
-        <hasBeenPlayed>false</hasBeenPlayed>
+        <hasBeenPlayed>true</hasBeenPlayed>
         <storyHandlers>
           <StoryHandler>
             <row>0</row>
@@ -27,19 +27,255 @@
             <fallBackLayer>0</fallBackLayer>
             <storyID>2</storyID>
             <storyType>Normal</storyType>
-            <contentDecals />
-            <loots />
-            <crews />
+            <contentDecals>
+              <contentDecal>
+                <row>3</row>
+                <col>17</col>
+                <decal>2</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>3</row>
+                <col>19</col>
+                <decal>0</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>3</row>
+                <col>21</col>
+                <decal>0</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>4</row>
+                <col>27</col>
+                <decal>1</decal>
+              </contentDecal>
+            </contentDecals>
+            <loots>
+              <Loot>
+                <row>0</row>
+                <col>4</col>
+                <ids>
+                  <ArrayOfInt>
+                    <int>12</int>
+                    <int>10</int>
+                    <int>7</int>
+                    <int>14</int>
+                  </ArrayOfInt>
+                  <ArrayOfInt>
+                    <int>90</int>
+                    <int>58</int>
+                    <int>77</int>
+                    <int>72</int>
+                  </ArrayOfInt>
+                  <ArrayOfInt>
+                    <int>167</int>
+                    <int>159</int>
+                    <int>171</int>
+                  </ArrayOfInt>
+                  <ArrayOfInt>
+                    <int>205</int>
+                    <int>224</int>
+                  </ArrayOfInt>
+                </ids>
+                <weight>67</weight>
+                <AllItems>
+                  <ArrayOfItem>
+                    <Item>
+                      <ID>12</ID>
+                      <englishName>Sturgeon</englishName>
+                      <frenchName>Esturgeon</frenchName>
+                      <value>6</value>
+                      <price>8</price>
+                      <weight>2</weight>
+                      <level>0</level>
+                      <spriteID>1</spriteID>
+                      <description>Feeds the member. Heals him, only if he’s not hungry. Fishes feed fairly.</description>
+                      <weaponType>Distance</weaponType>
+                      <category>Provisions</category>
+                    </Item>
+                    <Item>
+                      <ID>10</ID>
+                      <englishName>Lobster</englishName>
+                      <frenchName>Homard</frenchName>
+                      <value>6</value>
+                      <price>10</price>
+                      <weight>2</weight>
+                      <level>0</level>
+                      <spriteID>1</spriteID>
+                      <description>Feeds the member. Heals him, only if he’s not hungry. Fishes feed fairly.</description>
+                      <weaponType>Distance</weaponType>
+                      <category>Provisions</category>
+                    </Item>
+                    <Item>
+                      <ID>7</ID>
+                      <englishName>Shrimp</englishName>
+                      <frenchName>Crevette</frenchName>
+                      <value>6</value>
+                      <price>9</price>
+                      <weight>2</weight>
+                      <level>0</level>
+                      <spriteID>1</spriteID>
+                      <description>Feeds the member. Heals him, only if he’s not hungry. Fishes feed fairly.</description>
+                      <weaponType>Distance</weaponType>
+                      <category>Provisions</category>
+                    </Item>
+                    <Item>
+                      <ID>14</ID>
+                      <englishName>Lard</englishName>
+                      <frenchName>Lardon</frenchName>
+                      <value>8</value>
+                      <price>17</price>
+                      <weight>2</weight>
+                      <level>0</level>
+                      <spriteID>2</spriteID>
+                      <description>Feeds the member. Heals him, only if he’s not hungry. Meats feeds greatly</description>
+                      <weaponType>Distance</weaponType>
+                      <category>Provisions</category>
+                    </Item>
+                  </ArrayOfItem>
+                  <ArrayOfItem>
+                    <Item>
+                      <ID>90</ID>
+                      <englishName>Iron mace</englishName>
+                      <frenchName>Marteau de guerre</frenchName>
+                      <value>46</value>
+                      <price>71</price>
+                      <weight>8</weight>
+                      <level>5</level>
+                      <spriteID>5</spriteID>
+                      <description>It's just your basic iron mace</description>
+                      <weaponType>Stick</weaponType>
+                      <category>Weapon</category>
+                    </Item>
+                    <Item>
+                      <ID>58</ID>
+                      <englishName>Old canon</englishName>
+                      <frenchName>Vielle poivrière</frenchName>
+                      <value>16</value>
+                      <price>27</price>
+                      <weight>8</weight>
+                      <level>2</level>
+                      <spriteID>6</spriteID>
+                      <description>It's just your basic old canon</description>
+                      <weaponType>Distance</weaponType>
+                      <category>Weapon</category>
+                    </Item>
+                    <Item>
+                      <ID>77</ID>
+                      <englishName>Thorny Baton</englishName>
+                      <frenchName>Claymore</frenchName>
+                      <value>39</value>
+                      <price>61</price>
+                      <weight>8</weight>
+                      <level>4</level>
+                      <spriteID>4</spriteID>
+                      <description>It's just your basic thorny baton</description>
+                      <weaponType>Stick</weaponType>
+                      <category>Weapon</category>
+                    </Item>
+                    <Item>
+                      <ID>72</ID>
+                      <englishName>Vagabond canon</englishName>
+                      <frenchName>Poivrière de vagabond</frenchName>
+                      <value>26</value>
+                      <price>48</price>
+                      <weight>8</weight>
+                      <level>3</level>
+                      <spriteID>6</spriteID>
+                      <description>It's just your basic vagabond canon</description>
+                      <weaponType>Distance</weaponType>
+                      <category>Weapon</category>
+                    </Item>
+                  </ArrayOfItem>
+                  <ArrayOfItem>
+                    <Item>
+                      <ID>167</ID>
+                      <englishName>Coat of mail</englishName>
+                      <frenchName>Cotte de mailles</frenchName>
+                      <value>32</value>
+                      <price>57</price>
+                      <weight>8</weight>
+                      <level>3</level>
+                      <spriteID>2</spriteID>
+                      <description>It's just your basic coat of mail</description>
+                      <weaponType>Distance</weaponType>
+                      <category>Clothes</category>
+                    </Item>
+                    <Item>
+                      <ID>159</ID>
+                      <englishName>Wooden armor</englishName>
+                      <frenchName>Armure de bois</frenchName>
+                      <value>24</value>
+                      <price>46</price>
+                      <weight>8</weight>
+                      <level>2</level>
+                      <spriteID>1</spriteID>
+                      <description>It's just your basic wooden armor</description>
+                      <weaponType>Distance</weaponType>
+                      <category>Clothes</category>
+                    </Item>
+                    <Item>
+                      <ID>171</ID>
+                      <englishName>Rusty breastplate</englishName>
+                      <frenchName>Cuirasse rouillée</frenchName>
+                      <value>39</value>
+                      <price>69</price>
+                      <weight>8</weight>
+                      <level>4</level>
+                      <spriteID>1</spriteID>
+                      <description>It's just your basic rusty breastplate</description>
+                      <weaponType>Distance</weaponType>
+                      <category>Clothes</category>
+                    </Item>
+                  </ArrayOfItem>
+                  <ArrayOfItem>
+                    <Item>
+                      <ID>205</ID>
+                      <englishName>Shirt button</englishName>
+                      <frenchName>Bouton de chemise</frenchName>
+                      <value>0</value>
+                      <price>5</price>
+                      <weight>2</weight>
+                      <level>0</level>
+                      <spriteID>3</spriteID>
+                      <description>It's just your basic shirt button</description>
+                      <weaponType>Distance</weaponType>
+                      <category>Misc</category>
+                    </Item>
+                    <Item>
+                      <ID>224</ID>
+                      <englishName>Dice</englishName>
+                      <frenchName>Dés</frenchName>
+                      <value>0</value>
+                      <price>1</price>
+                      <weight>1</weight>
+                      <level>0</level>
+                      <spriteID>18</spriteID>
+                      <description>It's just your basic dice</description>
+                      <weaponType>Distance</weaponType>
+                      <category>Misc</category>
+                    </Item>
+                  </ArrayOfItem>
+                </AllItems>
+              </Loot>
+            </loots>
+            <crews>
+              <Crew>
+                <hostile>true</hostile>
+                <row>0</row>
+                <col>4</col>
+                <MemberIDs />
+              </Crew>
+            </crews>
           </StoryHandler>
         </storyHandlers>
       </storyManager>
     </IslandData>
     <IslandData>
       <worldPosition>
-        <x>-11.1093559</x>
-        <y>-18.8567734</y>
+        <x>16.3947449</x>
+        <y>-17.71862</y>
       </worldPosition>
-      <worldRotation>277.0923</worldRotation>
+      <worldRotation>335.124969</worldRotation>
       <index>1</index>
       <coords>
         <x>1</x>
@@ -47,7 +283,7 @@
       </coords>
       <containsFormula>false</containsFormula>
       <storyManager>
-        <hasBeenPlayed>false</hasBeenPlayed>
+        <hasBeenPlayed>true</hasBeenPlayed>
         <storyHandlers>
           <StoryHandler>
             <row>0</row>
@@ -55,7 +291,18 @@
             <fallBackLayer>0</fallBackLayer>
             <storyID>3</storyID>
             <storyType>Normal</storyType>
-            <contentDecals />
+            <contentDecals>
+              <contentDecal>
+                <row>0</row>
+                <col>13</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>0</row>
+                <col>42</col>
+                <decal>3</decal>
+              </contentDecal>
+            </contentDecals>
             <loots />
             <crews />
           </StoryHandler>

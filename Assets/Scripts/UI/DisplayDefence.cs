@@ -15,7 +15,7 @@ public class DisplayDefence : MonoBehaviour {
 
 		InGameMenu.Instance.onDisplayCrewMember += HandleOnDisplayCrewMember;
 		LootUI.useInventory += HandleUseInventory;
-		StatButton.onClickStatButton += HandleOnClickStatButton;
+		SkillManager.Instance.onLevelUpStat += HandleOnClickStatButton;
 		InGameMenu.onRemoveItemFromMember += HandleOnRemoveItemFromMember;
 
 		UpdateUI (CrewMember.GetSelectedMember);

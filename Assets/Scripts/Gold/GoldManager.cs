@@ -197,7 +197,6 @@ public class GoldManager : MonoBehaviour {
 		}
 
         SoundManager.Instance.PlayRandomSound("Bag");
-        SoundManager.Instance.PlaySound("coin");
         SoundManager.Instance.PlayRandomSound("Coins");
         SoundManager.Instance.PlayRandomSound("Coins");
 

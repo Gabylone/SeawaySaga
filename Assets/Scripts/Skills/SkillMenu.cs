@@ -10,15 +10,10 @@ public class SkillMenu : MonoBehaviour {
 
 	public GameObject group;
 
-	public bool opened = false;
-
-    public GameObject showSkillMenuButton;
-
-    public delegate void OnHideCharacterStats();
-    public OnHideCharacterStats onHideSkillMenu;
+	public bool visible = false;
 
     public delegate void OnShowCharacterStats();
-    public OnShowCharacterStats onShowSkillMenu;
+    public OnShowCharacterStats tutoEvent;
 
     public float lootTransition_Duration = 1f;
     public float lootTransition_Decal = 1f;
@@ -31,64 +26,68 @@ public class SkillMenu : MonoBehaviour {
     }
 
     void Start () {
-		Hide ();
+		HideDelay ();
 
 		RayBlocker.onTouchRayBlocker += HandleOnTouchRayBlocker;
 	}
 
 	void HandleOnTouchRayBlocker ()
 	{
-		if ( opened ) {
+		if ( visible ) {
 			Close ();
 		}
 	}
 
 	#region character stats
 	public void Show () {
-
         Show(CrewMember.GetSelectedMember);
 	}
-    public void Show (CrewMember member)
+    public void Show(CrewMember member)
     {
-        // basic open the menu stuff
-        InGameMenu.Instance.Open();
+        SoundManager.Instance.PlaySound("Open Chest");
 
-        DisplayCrew.Instance.Show(member);
-
-        showSkillMenuButton.SetActive(false);
-
-        DisplayCrew.Instance.ShowSkillMenu();
-
-        opened = true;
+        visible = true;
 
         group.SetActive(true);
 
+        DisplayCrew.Instance.switchGroup.SetActive(true);
+        DisplayCrew.Instance.Show(CrewMember.GetSelectedMember);
+        DisplayCrew.Instance.OnSwitchSkills();
+
         LerpIn();
 
-        if (onShowSkillMenu != null)
-            onShowSkillMenu();
+        // tuto
+        if (tutoEvent != null)
+            tutoEvent();
     }
 
 	public void Close () {
 
-        showSkillMenuButton.SetActive(true);
+        if (!visible)
+        {
+            return;
+        }
 
         InGameMenu.Instance.Hide();
         DisplayCrew.Instance.Hide();
 
-        DisplayCrew.Instance.HideSkillMenu();
+        Hide();
 
-        opened = false;
+	}
 
+    public void Hide()
+    {
         LerpOut();
 
-        CancelInvoke("Hide");
-        Invoke("Hide" , lootTransition_Duration);
+        visible = false;
 
-		if (onHideSkillMenu != null)
-			onHideSkillMenu ();
-	}
-	void Hide () {
+        SoundManager.Instance.PlaySound("Close Chest");
+
+        CancelInvoke("HideDelay");
+        Invoke("HideDelay", lootTransition_Duration);
+    }
+
+	void HideDelay () {
 		group.SetActive (false);
 	}
     #endregion

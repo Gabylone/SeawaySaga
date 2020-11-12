@@ -50,7 +50,6 @@ public class OtherInventory : MonoBehaviour {
         LootUI.Instance.transform.position = Vector3.right * lootTransition_Decal;
 
         LootUI.Instance.HideAllSwitchButtons();
-        LootUI.Instance.closeButton.SetActive(false);
 
         LootUI.Instance.transform.DOMove(Vector3.zero, lootTransition_Duration);
 
@@ -65,8 +64,6 @@ public class OtherInventory : MonoBehaviour {
         LootUI.Instance.transform.DOMove(Vector3.right * lootTransition_Decal, lootTransition_Duration);
 
         LootUI.Instance.HideAllSwitchButtons();
-        LootUI.Instance.closeButton.SetActive(false);
-
     }
 
     void SwitchInventorySide()
@@ -78,7 +75,6 @@ public class OtherInventory : MonoBehaviour {
     void ShowButtons()
     {
         LootUI.Instance.InitButtons();
-        LootUI.Instance.closeButton.SetActive(true);
     }
 
     IEnumerator SwitchSideCoroutine()
@@ -152,9 +148,6 @@ public class OtherInventory : MonoBehaviour {
 		case InventoryActionType.Buy:
 			PurchaseItem ();
 			break;
-		case InventoryActionType.PurchaseAndEquip:
-			PuchaseAndEquip ();
-			break;
 		case InventoryActionType.PickUp:
 			PickUp (LootUI.Instance.SelectedItem);
 			break;
@@ -181,8 +174,6 @@ public class OtherInventory : MonoBehaviour {
         LootUI.Instance.currentSide = Crews.Side.Enemy;
 		LootManager.Instance.SetLoot ( Crews.Side.Enemy, loot);
 
-		InGameMenu.Instance.Open ();
-
 		type = Type.Trade;
 
         ShowLoot();
@@ -204,8 +195,6 @@ public class OtherInventory : MonoBehaviour {
 
         LootUI.Instance.currentSide = Crews.Side.Enemy;
         LootManager.Instance.SetLoot ( Crews.Side.Enemy, loot);
-
-		InGameMenu.Instance.Open ();
 
 		type = Type.Loot;
 
@@ -231,43 +220,8 @@ public class OtherInventory : MonoBehaviour {
 
         SoundManager.Instance.PlayRandomSound("Bag");
         SoundManager.Instance.PlayRandomSound("Coins");
-        SoundManager.Instance.PlayRandomSound("Coins");
 
 	}
-
-	public void PuchaseAndEquip () {
-
-		Item item = LootUI.Instance.SelectedItem;
-
-		if (!GoldManager.Instance.CheckGold (item.price)) {
-			print (" l'objet est torp cher ?, retour");
-			return;
-		}
-
-		if (!WeightManager.Instance.CheckWeight (item.weight)) {
-			print (" l'objet est torp lourd, retour");
-			return;
-		}
-
-		if ( !CrewMember.GetSelectedMember.CheckLevel (item.level) ) {
-			return;
-		}
-
-		GoldManager.Instance.RemoveGold (item.price);
-
-		LootManager.Instance.OtherLoot.RemoveItem (item);
-
-		if (CrewMember.GetSelectedMember.GetEquipment (item.EquipmentPart) != null)
-			LootManager.Instance.PlayerLoot.AddItem (CrewMember.GetSelectedMember.GetEquipment (item.EquipmentPart));
-		
-		CrewMember.GetSelectedMember.SetEquipment (item);
-
-        SoundManager.Instance.PlayRandomSound("Foley Armour");
-        SoundManager.Instance.PlayRandomSound("Bag");
-        SoundManager.Instance.PlayRandomSound("Coins");
-        SoundManager.Instance.PlayRandomSound("Coins");
-
-    }
 
     public void PickUp ( Item item ) {
 		

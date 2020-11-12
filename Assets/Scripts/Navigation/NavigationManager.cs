@@ -25,8 +25,11 @@ public class NavigationManager : MonoBehaviour {
 	[SerializeField]
 	private Transform[] anchors;
 
-	public delegate void ChunkEvent ();
-	public ChunkEvent EnterNewChunk;
+	public delegate void OnMoveToChunk ();
+	public OnMoveToChunk onMoveToChunk;
+
+    public delegate void OnUpdateChunk();
+    public OnUpdateChunk onUpdateCurrentChunk;
 
     public int chunksTravelled = 0;
 
@@ -71,18 +74,39 @@ public class NavigationManager : MonoBehaviour {
 
         chunksTravelled++;
 
-        if (EnterNewChunk != null)
+        TimeManager.Instance.NextHour();
+
+        Crews.playerCrew.AddToStates();
+
+        if (onMoveToChunk != null)
         {
-            EnterNewChunk();
+            onMoveToChunk();
         }
+
+        Boats.Instance.HandleOnMoveToChunk();
+
+        SaveManager.Instance.SaveGameData();
+        Boats.Instance.SaveBoats();
+
+        UpdateCurrentChunk();
+    }
+
+    public void UpdateCurrentChunk()
+    {
+        if ( onUpdateCurrentChunk != null)
+        {
+            onUpdateCurrentChunk();
+        }
+
+        Boats.Instance.HandleOnUpdateCurrentChunk();
 
         DisplayMinimap.Instance.HandleChunkEvent();
 
     }
-	#endregion
+    #endregion
 
-	#region tools
-	public Directions getDirectionFromVector ( Vector2 dir ) {
+    #region tools
+    public Directions getDirectionFromVector ( Vector2 dir ) {
 
 		for (int i = 0; i < 8; ++i ) {
 			if ( Vector2.Angle ( NavigationManager.Instance.getDir( (Directions)i ) , dir ) < 22f ) {

@@ -6,133 +6,64 @@ using DG.Tweening;
 
 public class InventoryActionButton : MonoBehaviour {
 
-	Button button;
-
 	public InventoryActionType inventoryActionType;
 
-	public GameObject descriptionGroup;
-	public RectTransform descriptionRectTransform;
+    Transform _transform;
 
-	bool touching = false;
-
-	public float timeToShowDescription = 1f;
-	public float timeToShowDescriptionFeedback = 0.15f;
-	public float targetWidth = 0f;
+    public CanvasGroup canvasGroup;
 
 	public float tweenDuration = 0.2f;
 
-	public GameObject fillGroup;
-	public Image fillImage;
+    public bool locked = true;
 
-    public bool showDescription = true;
+    public bool visible = false;
 
-    void Start()
+    private void Start()
     {
-        fillGroup.SetActive(false);
-        descriptionGroup.SetActive(false);
-
-        //ShowDescription();
+        _transform = GetComponent<Transform>();
     }
 
-    private void OnEnable()
+    public void Show()
     {
-        //ShowDescription();
+        gameObject.SetActive(true);
+        visible = true;
+    }
+
+    public void Hide()
+    {
+        gameObject.SetActive(false);
+        visible = false;
+    }
+
+    public void Lock()
+    {
+        canvasGroup.alpha = 0.5f;
+
+        locked = true;
+    }
+
+    public void Unlock()
+    {
+        canvasGroup.alpha = 1f;
+
+        locked = false;
     }
 
     public void OnPointerDown () {
 
+        if ( locked)
+        {
+            return;
+        }
+
         TriggerAction ();
-
-        /*
-		touching = true;
-         * 
-         * 
-         * CancelInvoke("OnPointerDownDelay");
-		CancelInvoke ("OnPointerDownDelayFeedback");
-		Invoke ("OnPointerDownDelay" , timeToShowDescription);
-		Invoke ("OnPointerDownDelayFeedback", timeToShowDescriptionFeedback);*/
-
     }
 
-    void OnPointerDownDelay () {
-
-		if (touching) {
-			ShowDescription ();
-		}
-
-		touching = false;
-
-	}
-
-	void OnPointerDownDelayFeedback () {
-		
-		if (!touching)
-			return;
-
-		Tween.Bounce (transform);
-
-		fillGroup.SetActive (true);
-		fillImage.fillAmount = 0f;
-
-        fillImage.DOKill();
-        fillImage.DOFillAmount(1f, timeToShowDescription - timeToShowDescriptionFeedback);
-
-	}
-
-	void HideDescription ()
-	{
-		descriptionGroup.SetActive (false);
-		fillGroup.SetActive (false);
-	}
-
-	void ShowDescription () {
-        if (!showDescription)
-            return;
-		Tween.Bounce (transform);
-
-		descriptionGroup.SetActive (true);
-
-		float y = descriptionRectTransform.sizeDelta.y;
-
-		descriptionRectTransform.sizeDelta = new Vector2 ( 0f, y );
-
-		Vector2 targetScale = new Vector2 ( targetWidth , y );
-
-        descriptionRectTransform.DOSizeDelta(targetScale, tweenDuration);
-
-		fillGroup.SetActive (false);
-	}
-
-	public void OnPointerUp () {
-
-		if ( touching ) {
-			TriggerAction ();
-		}
-
-		touching = false;
-
-		HideDescription ();
-	}
-
-
-	/// <summary>
-	/// Triggers the action.
-	/// </summary>
 	void TriggerAction () {
 		
-		Tween.Bounce (transform);
+		Tween.Bounce (_transform);
 
-		TriggerActionDelay ();
+        LootUI.Instance.InventoryAction(inventoryActionType);
 
-		/*CancelInvoke ("TriggerActionDelay");
-		Invoke ("TriggerActionDelay" , Tween.defaultDuration);*/
-
-	}
-
-	void TriggerActionDelay () {
-		LootUI.Instance.InventoryAction (inventoryActionType);
-
-		//
-	}
-
+    }
 }

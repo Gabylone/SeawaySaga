@@ -1,13 +1,13 @@
 Nom histoire;Fréquence %;Sprite ID;Display Name;;;;;;;;;;
 Quincaillerie;1,69;1;Misc Shop;;;;;;;;;;
 Narrator : It's a small island covered in grassy fields.;;;;;;;;;;;;;
-CheckQuest=>debut;;;;;;;;;;;;;
 [debut];;;;;;;;;;;;;
 Narrator : A sign on the beach reads: « Stuff, things & baubles »;;;;;;;;;;;;;
 SetChoices2;;;;;;;;;;;;;
 Choice : (leave);Choice : (follow sign);;;;;;;;;;;;
-Leave;Fade;;;;;;;;;;;;
+Leave;CheckQuest=>marchand;;;;;;;;;;;;
 ;Node=>marchand;;;;;;;;;;;;
+;;;;;;;;;;;;;
 ;;;;;;;;;;;;;
 ;;;;;;;;;;;;;
 ;;;;;;;;;;;;;

@@ -407,12 +407,13 @@ MonoBehaviour:
     color: {r: 0, g: 0, b: 0, a: 0}
     timeToShowBoat: 1.5
   followPlayer: 0
+  decalToCenter: 5
+  distanceToExitScreen: 0.5
   renderer: {fileID: 2173402500175489238}
   distanceFromOtherPlayer: 5
   movementType: 0
   leavingSpeed: 5.5
   followPlayer_Speed: 5.5
-  decalToCenter: -4
   timeToShowBoat: 1.5
   group: {fileID: 2173402501821785482}
 --- !u!65 &2173402500898047983

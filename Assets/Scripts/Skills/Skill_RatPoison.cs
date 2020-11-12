@@ -14,11 +14,21 @@ public class Skill_RatPoison : Skill {
 
     public float throwDuration = 2f;
 
+    public float rotateSpeed = 1500f;
+
     public override void Start()
     {
         base.Start();
 
         poisonBottle_Transform.gameObject.SetActive(false);
+    }
+
+    private void Update()
+    {
+        if (throwing)
+        {
+            poisonBottle_Transform.Rotate(Vector3.forward * rotateSpeed * Time.deltaTime);
+        }
     }
 
     public override void StartAnimation()

@@ -56,8 +56,6 @@ public class TimeManager : MonoBehaviour {
 		
 		StoryFunctions.Instance.getFunction += HandleGetFunction;
 
-		NavigationManager.Instance.EnterNewChunk += NextHour;
-
 		UpdateRainRate ();
 
         Invoke("UpdateWeather",0.001f);
@@ -159,7 +157,7 @@ public class TimeManager : MonoBehaviour {
 	#region next hour
 	public delegate void OnNextHour ();
 	public static OnNextHour onNextHour;
-	void NextHour () {
+	public void NextHour () {
 
 		++timeOfDay;
 

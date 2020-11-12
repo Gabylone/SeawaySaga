@@ -9,11 +9,13 @@ public class DisplayItem_Selected : DisplayItem {
 
     [SerializeField] private Text nameText;
     [SerializeField] private Text paramText;
+    public Outline paramOutline;
     [SerializeField] private Text priceText;
     [SerializeField] private Text weightText;
     [SerializeField] private Text descriptionText;
 
     [SerializeField] private GameObject levelObj;
+    public Outline levelOutline;
     [SerializeField] private Text levelText;
 
     public Image itemImage;
@@ -25,7 +27,11 @@ public class DisplayItem_Selected : DisplayItem {
         base.Start();
 
         CrewMember.onWrongLevel += HandleOnWrongLevelEvent;
+    }
 
+    public void UpdateUI()
+    {
+        DisplayedItem = DisplayedItem;
     }
 
     void HandleOnWrongLevelEvent()
@@ -33,16 +39,16 @@ public class DisplayItem_Selected : DisplayItem {
         Tween.Bounce(transform);
     }
 
-    public override Item HandledItem
+    public override Item DisplayedItem
     {
         get
         {
-            return base.HandledItem;
+            return base.DisplayedItem;
         }
 
         set
         {
-            base.HandledItem = value;
+            base.DisplayedItem = value;
 
             if ( itemImage != null )
             {
@@ -66,20 +72,34 @@ public class DisplayItem_Selected : DisplayItem {
 
                 if (CrewMember.GetSelectedMember.GetEquipment(part) == null)
                 {
+                        paramOutline.enabled = true;
                     paramText.color = Color.green;
+                    paramOutline.effectColor = Color.green;
                 }
                 else
                 {
                     if (value.value > CrewMember.GetSelectedMember.GetEquipment(part).value)
+                    {
+                        paramOutline.enabled = true;
+                        paramOutline.effectColor = Color.green;
                         paramText.color = Color.green;
+                    }
                     else if (value.value < CrewMember.GetSelectedMember.GetEquipment(part).value)
+                    {
+                        paramOutline.enabled = true;
+                        paramOutline.effectColor = Color.red; ;
                         paramText.color = Color.red;
+                    }
                     else
+                    {
                         paramText.color = Color.white;
+                        paramOutline.enabled = false;
+                    }
                 }
             }
             else
             {
+                paramOutline.enabled = false;
                 paramText.color = Color.white;
             }
 
@@ -129,6 +149,15 @@ public class DisplayItem_Selected : DisplayItem {
             {
                 levelObj.SetActive(true);
                 levelText.text = "" + value.level;
+
+                if ( value.level > CrewMember.GetSelectedMember.Level)
+                {
+                    levelOutline.enabled = true;
+                }
+                else
+                {
+                    levelOutline.enabled = false;
+                }
             }
             else
             {

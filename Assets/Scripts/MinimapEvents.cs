@@ -27,7 +27,7 @@ public class MinimapEvents : MonoBehaviour, IPointerUpHandler, IPointerDownHandl
     {
         if ( canPlacePin)
         {
-            PinManager.Instance.CreatePin();
+            //PinManager.Instance.CreatePin();
         }
     }
 }

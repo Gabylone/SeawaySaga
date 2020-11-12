@@ -23,8 +23,20 @@ public class DiceManager : MonoBehaviour {
 		settling,
 		showingHighest,
 	}
+
 	private states previousState;
-	private states currentState;
+    private states currentState;
+
+    public enum Result
+    {
+        CriticalFailure,
+        Failure,
+        Success,
+
+        None
+    }
+
+    public Result result;
 
 	float timeInState = 0f;
 
@@ -57,7 +69,13 @@ public class DiceManager : MonoBehaviour {
 	private bool throwing = false;
 	private float timer = 0f;
 
-	void Awake () {
+    public Color color_CriticalFailure;
+    public Color color_Failure;
+    public Color color_Success;
+    // no critical sucess, <= 5 is failure
+    //public Color color_CriticalSuccess;
+
+    void Awake () {
 		Instance = this;
 	}
 
@@ -149,6 +167,8 @@ public class DiceManager : MonoBehaviour {
 
         SoundManager.Instance.PlayLoop("dice_wait");
 
+        result = Result.None;
+
 		ResetDice ();
 
 		Throwing = true;
@@ -201,16 +221,109 @@ public class DiceManager : MonoBehaviour {
     {
         for (int diceIndex = 0; diceIndex < currentThrow.diceAmount; diceIndex++)
         {
-            dices[diceIndex].TurnToDirection(dices[diceIndex].result);
+            Dice dice = dices[diceIndex];
+
+            dice.TurnToDirection(dice.targetResult);
 
             yield return new WaitForSeconds(
-                dices[diceIndex].tweenDuration
+                dice.tweenDuration
                 +
-                dices[diceIndex].quickTweenDuration
+                dice.quickTweenDuration
                 );
+
+            Tween.Bounce(dice.bodyTransform);
+
+            if (dice.targetResult == 6)
+            {
+                bool good = true;
+
+                for (int i = 0; i < diceIndex; i++)
+                {
+                    Dice previousDice = dices[i];
+
+                    if (previousDice.targetResult == 1)
+                    {
+                        SoundManager.Instance.PlaySound("ui_wrong");
+                        SoundManager.Instance.PlayRandomSound("Magic Chimes");
+
+                        dice.SettleDown();
+
+                        dice.targetResult = -1;
+                        previousDice.targetResult = -1;
+
+                        yield return new WaitForSeconds(dice.tweenDuration);
+
+                        SoundManager.Instance.PlaySound("ui_wrong");
+                        SoundManager.Instance.PlayRandomSound("Whoosh");
+
+                        dice.Fade();
+                        previousDice.Fade();
+
+                        good = false;
+
+                        break;
+                    }
+                }
+
+                if (good)
+                {
+                    dice.SettleUp();
+                }
+
+            }
+            else
+            {
+                if ( dice.targetResult == 1)
+                {
+                    for (int i = 0; i < diceIndex; i++)
+                    {
+                        Dice previousDice = dices[i];
+
+                        if (previousDice.targetResult == 6)
+                        {
+                            SoundManager.Instance.PlaySound("ui_wrong");
+                            SoundManager.Instance.PlayRandomSound("Magic Chimes");
+
+                            dice.SettleDown();
+
+                            dice.targetResult = -1;
+                            previousDice.targetResult = -1;
+
+                            yield return new WaitForSeconds(dice.tweenDuration);
+
+                            SoundManager.Instance.PlaySound("ui_wrong");
+                            SoundManager.Instance.PlayRandomSound("Whoosh");
+
+                            dice.Fade();
+                            previousDice.Fade();
+
+                            break;
+                        }
+                    }
+                }
+
+                dice.SettleDown();
+            }
+
+            yield return new WaitForSeconds(dice.tweenDuration);
         }
 
-        yield return new WaitForSeconds(timeBetweenSettles);
+        foreach (var item in dices)
+        {
+            if ( item.targetResult == 6)
+            {
+                result = Result.Success;
+                break;
+            }
+
+            if ( item.targetResult == 1)
+            {
+                result = Result.CriticalFailure;
+                break;
+            }
+
+            result = Result.Failure;
+        }
 
         ChangeState(states.showingHighest);
     }
@@ -229,68 +342,67 @@ public class DiceManager : MonoBehaviour {
 	#region showing highest
 	public delegate void OnEndThrow ();
 	public OnEndThrow onEndThrow;
-	private void ShowingHighest_Start () {
+    private void ShowingHighest_Start()
+    {
 
         SoundManager.Instance.PlayRandomSound("Tribal");
         SoundManager.Instance.PlayRandomSound("ting");
 
-        Dice highestDie = dices [0];
-
-		highestResult = 0;
-
-        int highestIndex = 0;
-
-        for (int diceIndex = 0; diceIndex < CurrentThrow.diceAmount; diceIndex++) {
-
-			if (dices[diceIndex].result > highestResult) {
-				highestResult = dices [diceIndex].result;
-                highestDie = dices[diceIndex];
-                highestIndex = diceIndex;
-			}
-		}
-
-        int a = 0;
-        foreach (var die in dices)
-        {
-            if ( a != highestIndex)
-            dices[a].SettleDown();
-
-            ++a;
-        }
-
-        highestDie.SettleUp ();
-		Throwing = false;
-	}
-	private void ShowingHighest_Update () {
-		
-		if (timeInState > settlingDuration + 0.1f) {
-			
-			ChangeState (states.none);
-		}
-	}
-	private void ShowingHighest_Exit () {
+        Throwing = false;
 
         foreach (var item in dices)
         {
             item.Fade();
         }
 
-        Invoke("ResetDice" , 1f);
+        
 
-        EndThrow();
+    }
+    private void ShowingHighest_Update () {
+		
+		if (timeInState > settlingDuration + 0.1f) {
+			
+			ChangeState (states.none);
+		}
 	}
-
-    void EndThrow()
+    private void ShowingHighest_Exit()
     {
         Transitions.Instance.actionTransition.FadeOut(0.5f);
+
+        switch (result)
+        {
+            case Result.CriticalFailure:
+                DisplayDiceResult.Instance.Display("Critical Failure !");
+                break;
+            case Result.Failure:
+                DisplayDiceResult.Instance.Display("Failure !");
+                break;
+            case Result.Success:
+                DisplayDiceResult.Instance.Display("Success!");
+                break;
+            case Result.None:
+                break;
+            default:
+                break;
+        }
+    }
+
+    public void EndThrow()
+    {
+        Invoke("EndThrowDelay", 0.5f);
+    }
+
+    void EndThrowDelay()
+    {
+        ResetDice();
 
         if (onEndThrow != null)
             onEndThrow();
     }
-	#endregion
+    #endregion
 
-	#region paint dice
-	public Color DiceColors (DiceTypes type) {
+    #region paint dice
+    public Color DiceColors (DiceTypes type) {
 		return diceColors [(int)type];
 	}
 
@@ -333,12 +445,6 @@ public class DiceManager : MonoBehaviour {
 		set {
 			throwing = value;
 		}
-	}
-	public int HighestResult {
-		get {
-			return highestResult;
-		}
-
 	}
 	#endregion
 
@@ -385,25 +491,70 @@ public class DiceManager : MonoBehaviour {
 
 		timeInState = 0f;
 	}
-	#endregion
+    #endregion
 
-	#region dice
-	void ThrowDiceAmount ()
-	{
-		string cellParams = StoryFunctions.Instance.CellParams;
-		int amount = int.Parse ( cellParams );
+    #region dice
+    void ThrowDiceAmount()
+    {
+        string cellParams = StoryFunctions.Instance.CellParams;
+        int amount = int.Parse(cellParams);
 
-		StartCoroutine (ThrowDiceAmount_Coroutine (amount));
-	}
-	private void CheckStat () {
+        ThrowDirection = 1;
+        ThrowDice(DiceTypes.CHA, amount);
+
+        onEndThrow += ThrowDiceAmount_HandleOnEndThrow;
+    }
+
+    void ThrowDiceAmount_HandleOnEndThrow()
+    {
+        onEndThrow -= ThrowDiceAmount_HandleOnEndThrow;
+
+        int decal = result == Result.Success ? 0 : 1;
+
+        StoryReader.Instance.NextCell();
+
+        StoryReader.Instance.SetDecal(decal);
+
+        StoryReader.Instance.UpdateStory();
+    }
+    #endregion throw dice amount
+
+    #region check stat
+    private void CheckStat () {
 
 		int decal = StoryReader.Instance.CurrentStoryHandler.GetDecal ();
 
 		if (decal < 0) {
 
-			StartCoroutine (CheckStat_Coroutine ());
+            onEndThrow += CheckStat_HandleOnEndThrow;
 
-		} else {
+            Crews.playerCrew.captain.memberIcon.animator.SetTrigger("throw dice");
+
+            ThrowDirection = 1;
+
+            string cellParams = StoryFunctions.Instance.CellParams;
+
+            switch (cellParams)
+            {
+                case "STR":
+                    ThrowDice(DiceTypes.STR, Crews.playerCrew.captain.GetStat(Stat.Strenght));
+                    break;
+                case "DEX":
+                    ThrowDice(DiceTypes.DEX, Crews.playerCrew.captain.GetStat(Stat.Dexterity));
+                    break;
+                case "CHA":
+                    ThrowDice(DiceTypes.CHA, Crews.playerCrew.captain.GetStat(Stat.Charisma));
+                    break;
+                case "CON":
+                    ThrowDice(DiceTypes.CON, Crews.playerCrew.captain.GetStat(Stat.Constitution));
+                    break;
+                default:
+                    Debug.LogError("PAS DE Dé " + cellParams + " : lancé de force");
+                    ThrowDice(DiceTypes.STR, Crews.playerCrew.captain.GetStat(Stat.Strenght));
+                    break;
+            }
+
+        } else {
 
 			StoryReader.Instance.NextCell ();
 
@@ -415,73 +566,24 @@ public class DiceManager : MonoBehaviour {
 
 	}
 
-	IEnumerator CheckStat_Coroutine () {
+    void CheckStat_HandleOnEndThrow()
+    {
+        onEndThrow -= CheckStat_HandleOnEndThrow;
 
-        Crews.playerCrew.captain.memberIcon.animator.SetTrigger("throw dice");
-
-		ThrowDirection = 1;
-
-		string cellParams = StoryFunctions.Instance.CellParams;
-
-		switch (cellParams) {
-		case "STR":
-			ThrowDice (DiceTypes.STR, Crews.playerCrew.captain.GetStat(Stat.Strenght));
-			break;
-		case "DEX":
-			ThrowDice (DiceTypes.DEX, Crews.playerCrew.captain.GetStat(Stat.Dexterity));
-			break;
-		case "CHA":
-			ThrowDice (DiceTypes.CHA, Crews.playerCrew.captain.GetStat(Stat.Charisma));
-			break;
-		case "CON":
-			ThrowDice (DiceTypes.CON, Crews.playerCrew.captain.GetStat(Stat.Constitution));
-			break;
-		default:
-			Debug.LogError ("PAS DE Dé " + cellParams + " : lancé de force");
-			ThrowDice (DiceTypes.STR, Crews.playerCrew.captain.GetStat(Stat.Strenght));
-			break;
-		}
-
-
-		while (Throwing)
-			yield return null;
-
-		int decal = HighestResult == 6 ? 0 : 1;
+        int decal = result == Result.Success ? 0 : 1;
 
         // story
-		StoryReader.Instance.CurrentStoryHandler.SaveDecal (decal);
+        StoryReader.Instance.CurrentStoryHandler.SaveDecal(decal);
 
-		StoryReader.Instance.NextCell ();
+        StoryReader.Instance.NextCell();
 
-		StoryReader.Instance.SetDecal (decal);
+        StoryReader.Instance.SetDecal(decal);
 
-		StoryReader.Instance.UpdateStory ();
-	}
-
-	IEnumerator ThrowDiceAmount_Coroutine (int amount) {
-
-		ThrowDirection = 1;
-
-		ThrowDice (DiceTypes.CHA, amount);
-
-		while (Throwing)
-			yield return null;
-
-		int decal = HighestResult == 6 ? 0 : 1;
-
-		StoryReader.Instance.NextCell ();
-
-		StoryReader.Instance.SetDecal (decal);
-
-		StoryReader.Instance.UpdateStory ();
-	}
-
-
+        StoryReader.Instance.UpdateStory();
+    }
 	#endregion
 
 }
-
-
 
 public class Throw {
 

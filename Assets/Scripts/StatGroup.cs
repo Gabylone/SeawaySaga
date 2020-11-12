@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+using DG.Tweening;
+
 public class StatGroup : MonoBehaviour {
 
 	[SerializeField]
@@ -13,22 +15,38 @@ public class StatGroup : MonoBehaviour {
 
 	public Image jobImage;
 
+    public float fadeDuration = 0.15f;
+
+    public CanvasGroup canvasGroup;
+
 	// Use this for initialization
 	void Start () {
-		Hide ();
+		HideDelay ();
 	}
 
-	void Show () {
-		group.SetActive (true);
-	}
-	void Hide () 
-	{
-		group.SetActive (false);
-	}
+    void Show()
+    {
+        group.SetActive(true);
+        canvasGroup.alpha = 0f;
+        canvasGroup.DOFade(1f, fadeDuration);
+
+    }
+    void Hide()
+    {
+        canvasGroup.DOFade(0f, fadeDuration);
+
+        CancelInvoke("HideDelay");
+        Invoke("HideDelay", fadeDuration);
+    }
+
+    public void HideDelay()
+    {
+        group.SetActive(false);
+    }
 
 	public void Display (CrewMember member) {
 
-		CancelInvoke ();
+        CancelInvoke("Hide");
 		Invoke("Hide" , 1f);
 
 		Show ();

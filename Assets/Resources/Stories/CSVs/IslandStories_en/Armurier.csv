@@ -1,13 +1,13 @@
 Nom;Fréquence %;Sprite ID;Display Name;;;;;;;;;;
 Armurier;1,69;1;Armory;;;;;;;;;;
 Narrator : The island is small, flat and green.;;;;;;;;;;;;;
-CheckQuest=>debut;;;;;;;;;;;;;
 [debut];;;;;;;;;;;;;
-Narrator : On the beach, a sign reads : « Armory, Metal & Leather shop, follow the road »;;;;;;;;;;;;;
+Narrator : Down on the beach, a sign reads : « Armory, Metal & Leather shop, follow the road »;;;;;;;;;;;;;
 SetChoices2;;;;;;;;;;;;;
 Choice : (leave);Choice : (follow the sign);;;;;;;;;;;;
-Leave;Fade;;;;;;;;;;;;
+Leave;CheckQuest=>marchand;;;;;;;;;;;;
 ;Node=>marchand;;;;;;;;;;;;
+;;;;;;;;;;;;;
 ;;;;;;;;;;;;;
 ;;;;;;;;;;;;;
 [marchand];;;;;;;;;;;;;

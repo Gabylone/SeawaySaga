@@ -84,7 +84,7 @@ public class Swipe : MonoBehaviour {
 
 //		prevPoint = InputManager.Instance.GetInputPosition ();
 
-		if ( InputManager.Instance.OnInputExit() ) {
+		if ( InputManager.Instance.Touch_Exit() ) {
 			Swipe_Exit ();
 		}
 	}

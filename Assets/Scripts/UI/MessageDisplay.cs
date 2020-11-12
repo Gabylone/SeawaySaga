@@ -17,6 +17,8 @@ public class MessageDisplay : MonoBehaviour {
 
     public CanvasGroup canvasGroup;
 
+    public GameObject cancelButtonObj;
+
 	public delegate void OnValidate ();
 	public OnValidate onValidate;
 
@@ -37,13 +39,18 @@ public class MessageDisplay : MonoBehaviour {
 
         canvasGroup.alpha = 0f;
         canvasGroup.DOFade(1f, 0.4f);
+    }
 
-
+    public void HideCancelButton()
+    {
+        cancelButtonObj.SetActive(false);
     }
 
 	public void Validate () {
 
-		Close ();
+        SoundManager.Instance.PlayRandomSound("button_tap_light");
+
+        Close();
 
 		if ( onValidate != null ) {
 			onValidate ();
@@ -52,7 +59,10 @@ public class MessageDisplay : MonoBehaviour {
 		onValidate = null;
 	}
 	public void Cancel() {
-		Close ();
+
+        SoundManager.Instance.PlayRandomSound("button_tap_light");
+
+        Close();
 		onValidate = null;
 	}
 

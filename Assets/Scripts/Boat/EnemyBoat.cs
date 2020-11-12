@@ -1,17 +1,21 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class EnemyBoat : Boat {
-
+public class EnemyBoat : Boat
+{
     public int id = 0;
 
-	public OtherBoatInfo boatInfo;
+    public OtherBoatInfo boatInfo;
 
-	public bool followPlayer = false;
+    public bool followPlayer = false;
 
     private bool reachedPlayer = false;
 
-	private bool metPlayer = false;
+    public float decalToCenter = -2f;
+
+    public float distanceToExitScreen = 0.5f;
+
+    private bool metPlayer = false;
 
     private bool visible = false;
 
@@ -29,10 +33,8 @@ public class EnemyBoat : Boat {
 
     public MovementType movementType;
 
-	public float leavingSpeed = 20f;
-	public float followPlayer_Speed= 15f;
-
-    public float decalToCenter = 5f;
+    public float leavingSpeed = 20f;
+    public float followPlayer_Speed = 15f;
 
     public float timeToShowBoat = 1.5f;
 
@@ -40,11 +42,13 @@ public class EnemyBoat : Boat {
 
     public GameObject group;
 
-	public override void Start ()
-	{
-		base.Start();
+    public override void Start()
+    {
+        minimapBoat = DisplayMinimap.Instance.CreateMinimapBoat(DisplayMinimap.Instance.enemyBoatIconPrefab, GetTransform, GetBoatInfo());
 
-		boxCollider = GetComponent<BoxCollider> ();
+        base.Start();
+
+        boxCollider = GetComponent<BoxCollider>();
 
         Hide();
 
@@ -55,23 +59,23 @@ public class EnemyBoat : Boat {
         base.SetTargetPos(p);
     }
 
-    public override void Update ()
-	{
-		base.Update ();
+    public override void Update()
+    {
+        base.Update();
 
-		if  (exitingScreen ) {
-
-            if (Vector2.Distance(targetPos, transform.position) < 0.5f)
+        if (exitingScreen)
+        {
+            if (Vector2.Distance(targetPos, GetTransform.position) < distanceToExitScreen)
             {
                 ExitToOtherChunk();
             }
 
-		}
-        else 
+        }
+        else
         {
-            if( moving)
+            if (moving)
             {
-                SetTargetPos(PlayerBoat.Instance.transform.position);
+                SetTargetPos(PlayerBoat.Instance.GetTransform.position);
             }
         }
     }
@@ -86,8 +90,8 @@ public class EnemyBoat : Boat {
     }
 
     #region boat appears
-    public void Show ( OtherBoatInfo boatInfo ) 
-	{
+    public void Show(OtherBoatInfo boatInfo)
+    {
         this.boatInfo = boatInfo;
 
         exitingScreen = false;
@@ -97,11 +101,22 @@ public class EnemyBoat : Boat {
 
         Visible = true;
 
+        GetMinimapBoat.Show(boatInfo);
+
         UpdatePositionOnScreen();
         UpdateMastColor();
 
         CancelInvoke("ShowDelay");
         Invoke("ShowDelay", timeToShowBoat * id);
+    }
+
+    public void Hide()
+    {
+        GetMinimapBoat.Hide();
+
+        CancelInvoke("ShowDelay");
+
+        Visible = false;
     }
 
     void UpdateMastColor()
@@ -143,7 +158,7 @@ public class EnemyBoat : Boat {
 
     void GoToTargetDestination()
     {
-        if (movementType == MovementType.MoveAround)
+        if (exitingScreen || movementType == MovementType.MoveAround)
         {
             // go about
             ExitScreen();
@@ -161,26 +176,19 @@ public class EnemyBoat : Boat {
 
     void ExitScreen()
     {
+        exitingScreen = true;
+
         Vector3 corner = NavigationManager.Instance.GetCornerPosition(boatInfo.currentDirection);
-        //Debug.Log("target position : " + otherBoatInfo.currentDirection);
 
         Vector3 p = corner + (corner - Vector3.zero).normalized * decalToCenter;
 
         SetTargetPos(p);
 
-        exitingScreen = true;
     }
 
-	public void Hide () {
-
-        CancelInvoke("ShowDelay");
-
-        Visible = false;
-	}
-
-	public override void UpdatePositionOnScreen ()
-	{
-		base.UpdatePositionOnScreen ();
+    public override void UpdatePositionOnScreen()
+    {
+        base.UpdatePositionOnScreen();
 
         Vector3 corner = NavigationManager.Instance.GetOppositeCornerPosition(boatInfo.currentDirection);
 
@@ -189,23 +197,28 @@ public class EnemyBoat : Boat {
         Vector3 p = corner + dir * 25f;
 
         GetTransform.position = p;
+
         SetTargetPos(p);
 
-		metPlayer = false;
-	}
+        metPlayer = false;
 
-	#region world
-	void OnTriggerEnter (Collider other) {
+        GetMinimapBoat.MoveToCoords(boatInfo.coords);
+    }
+
+    #region world
+    void OnTriggerEnter(Collider other)
+    {
 
         if (other.tag == "Player")
         {
             MeetPlayer();
         }
-	}
-	#endregion
+    }
+    #endregion
 
-	#region story
-	public void MeetPlayer () {
+    #region story
+    public void MeetPlayer()
+    {
 
         // a story is currently going
         if (StoryLauncher.Instance.PlayingStory)
@@ -231,7 +244,7 @@ public class EnemyBoat : Boat {
 
         Boats.Instance.currentEnemyBoat = this;
 
-        Tween.Bounce(transform);
+        Tween.Bounce(GetTransform);
 
         Boats.Instance.WithdrawBoats();
 
@@ -241,16 +254,16 @@ public class EnemyBoat : Boat {
         // if he met the player in the WHOLE story
         boatInfo.alreadyMet = true;
 
-		reachedPlayer = true;
+        reachedPlayer = true;
 
         boxCollider.enabled = false;
 
         SetSpeed(0);
 
-        SoundManager.Instance.PlayLoop("enter port");
+        SoundManager.Instance.PlaySound("enter port");
 
-		StoryLauncher.Instance.PlayStory (boatInfo.storyManager, StoryLauncher.StorySource.boat);
-	}
+        StoryLauncher.Instance.PlayStory(boatInfo.storyManager, StoryLauncher.StorySource.boat);
+    }
 
     public void LeaveBoat()
     {
@@ -258,7 +271,7 @@ public class EnemyBoat : Boat {
         reachedPlayer = false;
         followPlayer = false;
 
-        SoundManager.Instance.PlayLoop("leave port");
+        SoundManager.Instance.PlaySound("leave port");
 
         ExitScreen();
         SetSpeed(leavingSpeed);
@@ -282,31 +295,53 @@ public class EnemyBoat : Boat {
 
     private void OnMouseDown()
     {
-        Tween.Bounce(transform);
+        Tween.Bounce(GetTransform);
 
-        PlayerBoat.Instance.SetTargetPos(transform.position);
+        PlayerBoat.Instance.SetTargetPos(GetTransform.position);
 
         SoundManager.Instance.PlayRandomSound("button_big");
     }
     #endregion
 
     #region properties
-	public bool Visible {
-		get {
-			return visible;
-		}
-		set {
+    public bool Visible
+    {
+        get
+        {
+            return visible;
+        }
+        set
+        {
 
             gameObject.SetActive(value);
 
             visible = value;
 
-			reachedPlayer = false;
+            reachedPlayer = false;
 
             group.SetActive(value);
 
 
         }
-	}
-	#endregion
+    }
+    #endregion
+
+    public override BoatInfo GetBoatInfo()
+    {
+        return boatInfo;
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        if (exitingScreen)
+        {
+            Gizmos.color = Color.red;
+        }
+        else
+        {
+            Gizmos.color = Color.blue;
+        }
+
+        Gizmos.DrawWireSphere(targetPos, distanceToExitScreen);
+    }
 }

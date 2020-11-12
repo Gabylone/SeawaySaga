@@ -166,6 +166,7 @@ GameObject:
   - component: {fileID: 2729120246280006408}
   - component: {fileID: 2729120246280006410}
   - component: {fileID: 6830217250744048108}
+  - component: {fileID: 789817096013961624}
   m_Layer: 5
   m_Name: Member Socket
   m_TagString: Untagged
@@ -257,3 +258,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bf25e176dff49e44832c5efb97d8091, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canvasGroup: {fileID: 789817096013961624}
+  kickOut_Group: {fileID: 636976583}
+  fadeDuration: 0.2
+  image: {fileID: 2729120246280006408}
+--- !u!225 &789817096013961624
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2729120246280006414}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0

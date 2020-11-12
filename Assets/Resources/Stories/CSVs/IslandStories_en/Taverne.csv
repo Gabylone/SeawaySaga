@@ -40,9 +40,9 @@ SetChoices3;;;;Narrator : A handful of musicians performing at the back of the 
 Choice : (leave);Choice : (approach innkeeper);Choice : (stroll around the room);;SetChoices4;;;;;;;;
 Fade;Fade;Fade;;Choice : (leave);Choice : (chat with the innkeeper);Choice : (walk around the tavern);Choice : (check out the musicians);;;;;
 Leave;Node=>tavernier;Node=>salle;;Fade;Fade;Fade;Fade;;;;;
-;;;;Leave;Node=>tavernier;Node=>salle;ChangeStory=>Musiciens[debut/choix taverne – musiciens];;;;;
-;;;;;;;;;;;;
-;Choice : We’ll stay until NEXTTIME (sleep);;;;;;;;;;;
+;;;;Leave;Node=>tavernier;Node=>salle;RandomRange4;;;;;
+;;;;;;;Narrator : A famous irish tune is playing, « The Wild Rover », CAPITAINE lays back and rests his ears from the heavy clatter of the waves.;Narrator : A famous irish tune is playing, « Raglan Road », CAPITAINE lays back and rests his ears from the heavy clatter of the waves.;Narrator : Everybody’s singing along the famous sailor shanty  « Blow the Man Down ». CAPITAINE sings along, forgetting his quest for just a little while.;Narrator : Everybody’s singing along the famous sailor shanty  « Fiddler’s Green ». CAPITAINE sings along, forgetting his quest for just a little while.;;
+;Choice : We’ll stay until NEXTTIME (sleep);;;;;;Node=>salle;Node=>salle;Node=>salle;Node=>salle;;
 [tavernier];;;;;;;;;;;;
 NewCrew;;;;;;;;;;;;
 [tavernier check];Node=>combat tavernier;OtherSpeak : How dare you step back into my establishment?!;;;;;;;;;;

@@ -61,6 +61,10 @@ public class StoryReader : MonoBehaviour {
 	#endregion
 
 	#region navigation
+    public void PreviousCell()
+    {
+        --col;
+    }
 	public void NextCell () {
 		++col;
 	}
@@ -89,6 +93,11 @@ public class StoryReader : MonoBehaviour {
 
 	public void GoToNode (Node node) {
 
+        if (node == null)
+        {
+            Debug.LogError("node : " + node.name + " in story " + CurrentStoryHandler.Story.displayName + " doesn't exist");
+        }
+
 		StoryReader.Instance.Row = node.row;
 		StoryReader.Instance.Col = node.col;
 
@@ -108,7 +117,7 @@ public class StoryReader : MonoBehaviour {
 
 		Node node = GetNodeFromText (nodeName);
 
-        Debug.Log("SWITCHING : found node : " + node.name);
+        StoryReader.Instance.CurrentStoryHandler.SaveDecal(decal, node.row, node.col);
 
 		StoryReader.Instance.NextCell ();
 		StoryReader.Instance.UpdateStory ();
@@ -127,8 +136,13 @@ public class StoryReader : MonoBehaviour {
 		Node node = story.nodes.Find ( x => x.name == text);
 
 		if ( node == null ) {
-			Debug.LogError ("couldn't find node " + text + " // story : " + story.dataName);
-            
+			Debug.LogError ("couldn't find node " + text + " (l:"+text.Length+ ") in story : " + story.dataName);
+
+            foreach (var item in story.nodes)
+            {
+                Debug.LogError("out of node : " + item.name + " (l:" + item.name.Length + ")");
+            }
+
 			return null;
 		}
 		return node;

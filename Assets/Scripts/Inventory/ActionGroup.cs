@@ -22,62 +22,60 @@ public class ActionGroup : MonoBehaviour {
 		None
 	}
 
-	bool visible = false;
+    public InventoryActionButton GetActionButton(ButtonType buttonType)
+    {
+        return inventoryActionButtons[(int)buttonType];
+    }
 
     public void UpdateButtons(ButtonType[] buttonTypes) {
 
-        int a = (int)buttonTypes[0];
-
         HideAll();
 
-        bool canThrow = true;
+        Item item = CrewMember.GetSelectedMember.GetEquipment(LootUI.Instance.SelectedItem.EquipmentPart);
 
-        switch (LootUI.Instance.SelectedItem.category)
+        if (item != null
+            &&
+            LootUI.Instance.SelectedItem == item
+            &&
+            LootUI.Instance.currentSide == Crews.Side.Player
+            &&
+            LootUI.Instance.selectingEquipment
+            )
+        {
+            GetActionButton(ButtonType.Unequip).Show();
+            return;
+        }
+        else
         {
 
-            case ItemCategory.Weapon:
-            case ItemCategory.Clothes:
+            foreach (var buttonType in buttonTypes)
+            {
+                GetActionButton(buttonType).Unlock();
+                GetActionButton(buttonType).Show();
+            }
 
-                Item item = CrewMember.GetSelectedMember.GetEquipment(LootUI.Instance.SelectedItem.EquipmentPart);
-
-                if (item != null
-                    &&
-                    LootUI.Instance.SelectedItem == item
-                    &&
-                    LootUI.Instance.currentSide == Crews.Side.Player
-                    )
+            if (GetActionButton(ButtonType.Eat).visible)
+            {
+                if (!CrewMember.GetSelectedMember.HasHunger() && CrewMember.GetSelectedMember.HasMaxHealth())
                 {
-                    canThrow = false;
-
-                    a = (int)ButtonType.Unequip;
+                    GetActionButton(ButtonType.Eat).Lock();
                 }
-                else
-                {
-                    if (LootUI.Instance.categoryContentType == CategoryContentType.Inventory)
-                    {
-                        a = (int)ButtonType.Equip;
-                    }
-
-                }
-                break;
-            default:
-                break;
+            }
         }
-		inventoryActionButtons [a].gameObject.SetActive (true);
-		Tween.Bounce (inventoryActionButtons [(int)buttonTypes [0]].transform);
+
+        /*inventoryActionButtons[buttonTypeIndex].Unlock();
+        inventoryActionButtons[buttonTypeIndex].Show();
 
 		if (buttonTypes.Length > 1 && canThrow) {
-			inventoryActionButtons [(int)buttonTypes [1]].gameObject.SetActive (true);
-			Tween.Bounce (inventoryActionButtons [(int)buttonTypes [1]].transform);
-		}
-
+            inventoryActionButtons[(int)buttonTypes[1]].Show();
+		}*/
 	}
 
     public void HideAll()
     {
         foreach (var item in inventoryActionButtons)
         {
-            item.gameObject.SetActive(false);
+            item.Hide();
         }
     }
 }

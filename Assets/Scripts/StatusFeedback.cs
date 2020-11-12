@@ -10,6 +10,8 @@ public class StatusFeedback : MonoBehaviour {
 
     public Text text_Count;
 
+    Transform _transform;
+
     public float tweenDur = 0.5f;
 	public float tweenScaleAmount = 1.2f;
 
@@ -19,6 +21,11 @@ public class StatusFeedback : MonoBehaviour {
     public static OnTouchStatusFeedback onTouchStatusFeedback;
 
     int max = 1;
+
+    private void Start()
+    {
+        _transform = GetComponent<Transform>();
+    }
 
     public void SetMax(int i)
     {
@@ -60,7 +67,7 @@ public class StatusFeedback : MonoBehaviour {
 
 	public void OnPointerDown () 
 	{
-		Tween.Bounce (transform);
+		Tween.Bounce (_transform);
 
 		if (onTouchStatusFeedback != null)
 			onTouchStatusFeedback (status);

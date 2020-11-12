@@ -68,7 +68,7 @@ public class StoryInput : MonoBehaviour {
 		 
 		if ( waitForInput ) {
 
-			if (InputManager.Instance.OnInputDown ()) {
+			if (InputManager.Instance.Touch_Down ()) {
 				PressInput ();
 			}
 		}

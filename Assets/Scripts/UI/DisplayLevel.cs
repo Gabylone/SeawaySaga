@@ -15,7 +15,7 @@ public class DisplayLevel : MonoBehaviour {
 
 		CrewMember.onWrongLevel += HandleOnWrongLevelEvent;
         InGameMenu.Instance.onDisplayCrewMember += HandleOnDisplayCrewMemberDisplay;
-		StatButton.onClickStatButton += UpdateUI;
+        SkillManager.Instance.onLevelUpStat += UpdateUI;
 
         HandleOnDisplayCrewMemberDisplay(CrewMember.GetSelectedMember);
 

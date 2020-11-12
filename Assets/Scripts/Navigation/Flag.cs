@@ -44,10 +44,7 @@ public class Flag : MonoBehaviour {
         WorldTouch.onPointerDown += HandleOnPointerDown;
         WorldTouch.onPointerExit += HandleOnPointerExit;
 
-        NavigationManager.Instance.EnterNewChunk += HandleChunkEvent;
-
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-
     }
 
     private void Update()
@@ -86,13 +83,6 @@ public class Flag : MonoBehaviour {
     public void SetPos(Vector3 pos)
     {
         transform.position = pos;
-    }
-
-    void HandleChunkEvent ()
-	{
-        /*Show();
-        transform.localPosition = Vector3.zero;
-        PlayerBoat.Instance.SetTargetPos(transform.position);*/
     }
 
     public void HandleOnEndMovement()

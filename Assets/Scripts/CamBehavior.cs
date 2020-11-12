@@ -38,8 +38,6 @@ public class CamBehavior : MonoBehaviour
 
         initPos = _transform.position;
         initRot = _transform.forward;
-
-        StoryLauncher.Instance.onEndStory += UnZoom;
     }
 
     private void Update()

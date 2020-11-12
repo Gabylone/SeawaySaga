@@ -49,7 +49,7 @@ public class MemberCreationScrollView : MonoBehaviour
             butt.apparenceItem.apparenceType = apparenceType;
         }
 
-        categoryName_Text.text = "" + apparenceType.ToString();
+        categoryName_Text.text = "" + MemberCreator.Instance.apparenceType_Names[(int)apparenceType];
     }
 
     public void CenterOnElement(Transform target)

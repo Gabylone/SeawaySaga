@@ -25,13 +25,13 @@ public class Skill_Flee : Skill {
 
     void HandleOnEndThrow ()
 	{
-		if ( DiceManager.Instance.HighestResult == 6 ) {
+		if ( DiceManager.Instance.result == DiceManager.Result.Success ) {
 
             SoundManager.Instance.PlaySound("ui_correct");
 
             Escape();
 
-		} else if ( DiceManager.Instance.HighestResult == 1 ) {
+		} else if ( DiceManager.Instance.result == DiceManager.Result.CriticalFailure ) {
 
             SoundManager.Instance.PlaySound("ui_wrong");
 

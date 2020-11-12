@@ -198,6 +198,10 @@ public class SoundManager : MonoBehaviour
     #region ambiance
     public void UpdateAmbianceSound()
     {
+        if(StoryLauncher.Instance== null)
+        {
+            return;
+        }
         if (StoryLauncher.Instance.PlayingStory)
         {
             UpdateLandAmbianceSound();
@@ -212,7 +216,13 @@ public class SoundManager : MonoBehaviour
 
     void UpdateSeaAmbianceSound()
     {
+        if (TimeManager.Instance == null)
+        {
+            return;
+        }
+
         rainSource.Stop();
+
         if ( TimeManager.Instance.raining)
         {
             PlayAmbiance("ambiance_sea_rain");
@@ -229,6 +239,10 @@ public class SoundManager : MonoBehaviour
 
     void UpdateLandAmbianceSound()
     {
+        if ( InGameBackGround.Instance == null) {
+            return;
+        }
+
         switch (InGameBackGround.Instance.currentType)
         {
             case InGameBackGround.Type.Island:

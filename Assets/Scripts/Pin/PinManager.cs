@@ -16,20 +16,11 @@ public class PinManager : Singleton<PinManager>
     private DisplayPin previousDisplayedPin;
     private DisplayPin currentDisplayedPin;
 
-    public DisplayPin currentDraggedPin;
-
-    public bool drappingPin = false;
-
-    public GameObject deletePinGroup;
-    public GameObject placePinGroup;
-
-    public bool pointerInside = false;
+    public Color[] colors;
 
     protected override void Awake()
     {
         base.Awake();
-
-        DragPin_Exit();
     }
 
     public void LoadPins()
@@ -37,7 +28,6 @@ public class PinManager : Singleton<PinManager>
         foreach (var pin in SaveManager.Instance.GameData.pins)
         {
             GameObject go = Instantiate(prefab, firstParent);
-            RectTransform rectTransform = go.GetComponent<RectTransform>();
 
             DisplayPin newDisplayPin = go.GetComponent<DisplayPin>();
 
@@ -47,7 +37,7 @@ public class PinManager : Singleton<PinManager>
             newDisplayPin.displayPinInfo.inputField.text = pin.content;
             newDisplayPin.displayPinInfo.Hide();
 
-            newDisplayPin.canBeDraggeedOnMap = true;
+            newDisplayPin.canBeDraggedOnMap = true;
 
             newDisplayPin.GetRectTransform.SetParent(secondParent);
             newDisplayPin.GetRectTransform.localScale = Vector3.one;
@@ -56,9 +46,7 @@ public class PinManager : Singleton<PinManager>
             float y = pin.save_Y;
             Vector2 p = new Vector2(x, y);
 
-            rectTransform.anchoredPosition = p;
-
-            Debug.Log("LOADING PIN : at " + p);
+            newDisplayPin.GetRectTransform.anchoredPosition = p;
 
         }
     }
@@ -70,7 +58,7 @@ public class PinManager : Singleton<PinManager>
         displayPin.Hide();
     }
 
-    public void CreatePin()
+    public void CreatePin(Pin.ColorType colorType)
     {
         GameObject go = Instantiate(prefab, null);
 
@@ -78,47 +66,13 @@ public class PinManager : Singleton<PinManager>
 
         // data
         Pin newPin = new Pin();
+        newPin.colorType = colorType;
+
         pins.Add(newPin);
         newDisplayPin.displayPinInfo.pin = newPin;
-
         newDisplayPin.displayPinInfo.HideDelay();
 
-        // parent
-        /*newDisplayPin.GetRectTransform.SetParent(secondParent);
-        newDisplayPin.GetRectTransform.localScale = Vector3.one;*/
-
         newDisplayPin.TakePin();
-
-        // sound
-        SoundManager.Instance.PlayRandomSound("click_light");
-    }
-
-    public void OnPointerEnter()
-    {
-        pointerInside = true;
-    }
-
-    public void OnPointerExit()
-    {
-        pointerInside = false;
-    }
-
-    public void DragPin_Start(DisplayPin displayPin)
-    {
-        currentDraggedPin = displayPin;
-
-        drappingPin = true;
-
-        deletePinGroup.SetActive(true);
-        placePinGroup.SetActive(false);
-    }
-
-    public void DragPin_Exit()
-    {
-        drappingPin = false;
-
-        deletePinGroup.SetActive(false);
-        placePinGroup.SetActive(true);
     }
 
     public void SetDisplayedPin( DisplayPin displayPin)
@@ -132,6 +86,11 @@ public class PinManager : Singleton<PinManager>
 
         currentDisplayedPin = displayPin;
 
+    }
+
+    public Color GetPinColor(Pin.ColorType colorType)
+    {
+        return colors[(int)colorType];
     }
 
 }

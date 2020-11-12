@@ -4,9 +4,9 @@ Narrator : There’s no beach on this island. From the shallow water rises a sm
 [debut];;;;;;;;;;;;;;;;;;;
 SetChoices3;;;;;;;;;;;;;;;;;;;
 Choice : (leave);Choice : (set up camp) (sleep);Choice : (enter the woods);;;;;;;;;;;;;;;;;
-PlayerSpeak : Ciao !;ChangeTimeOfDay;Fade;;;;;;;;;;;;;;;;;
-Leave;Node=>debut;Node=>bois;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;
+PlayerSpeak : Ciao !;SetBG(Island);Fade;;;;;;;;;;;;;;;;;
+Leave;;Node=>bois;;;;;;;;;;;;;;;;;
+;Node=>debut;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;

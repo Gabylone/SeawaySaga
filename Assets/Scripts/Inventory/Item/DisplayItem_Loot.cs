@@ -31,12 +31,25 @@ public class DisplayItem_Loot : DisplayItem {
 
     public void EquipmentSelect()
     {
+        LootUI.Instance.selectingEquipment = true;
+
         Select();
 
         if (LootUI.Instance.currentSide == Crews.Side.Enemy)
         {
             LootUI.Instance.actionGroup.HideAll();
         }
+        else
+        {
+
+        }
+    }
+
+    public void InventorySelect()
+    {
+        LootUI.Instance.selectingEquipment = false;
+
+        Select();
     }
 
     public void Select () {
@@ -56,7 +69,7 @@ public class DisplayItem_Loot : DisplayItem {
         selectedDisplayItem = this;
         selected = true;
 
-		LootUI.Instance.SelectedItem = HandledItem;
+		LootUI.Instance.SelectedItem = DisplayedItem;
 		LootUI.Instance.selectedItemDisplay.transform.position = (Vector2)transform.position + LootUI.Instance.selectedItemDisplay.decalToItem;
 
         Tween.Bounce (transform);
@@ -79,18 +92,18 @@ public class DisplayItem_Loot : DisplayItem {
 
 	void UpdateColor ()
 	{
-		if (HandledItem == null ) {
+		if (DisplayedItem == null ) {
 			return;
 		}
 
 		float a = 0.7f;
 
-        if ( HandledItem.level > CrewMember.GetSelectedMember.Level ) {
+        if ( DisplayedItem.level > CrewMember.GetSelectedMember.Level ) {
 
             image.color = LootManager.Instance.item_SuperiorColor;
             image.color = new Color(1f, a, a);
 
-        } else if ( HandledItem.level < CrewMember.GetSelectedMember.Level && HandledItem.level > 0 ) {
+        } else if ( DisplayedItem.level < CrewMember.GetSelectedMember.Level && DisplayedItem.level > 0 ) {
 
             image.color = LootManager.Instance.item_InferiorColor;
             image.color = new Color(a, 1f, a);
@@ -143,13 +156,13 @@ public class DisplayItem_Loot : DisplayItem {
         group.SetActive(false);
     }
 
-    public override Item HandledItem {
+    public override Item DisplayedItem {
 		get {
-			return base.HandledItem;
+			return base.DisplayedItem;
 		}
 		set {
 			
-			base.HandledItem = value;
+			base.DisplayedItem = value;
 
 			UpdateColor ();
 

@@ -3,11 +3,11 @@ Peche;0;1;Fishing;;;;;;;;
 [debut];;;;;;;;;;;
 SetBG(Boat);;;;;[fish];;;;;[fail fish];
 PlayerSpeak : I can spot some movement down here. This must be a good fishing spot!;;;;;CheckStatSTR;;;;;RandomPercent25;
-SetChoices2;;;;;Fade;Node=>fail fish;;;;PlayerSpeak : The fish got away...;PlayerSpeak : Oh no, the fish got away!
-Choice : (leave);CheckInInventory<Canne à pêche>/Misc;;;;PlayerSpeak : Good catch!;;;;;PlayerSpeak : and my fishing rod broke!;Leave
-Leave;Choice : (fish) (loot);Choice : I’d fish, but I’m missing a fishing rod… (leave);;;RandomRange3;;;;;Leave;
-;Node=>fish;Leave;;;AddToInventory<Maquereau>/Food;AddToInventory<Hareng>/Food;AddToInventory<Sardine>/Food;;;;
-;;;;;AddToInventory<Maquereau>/Food;AddToInventory<Hareng>/Food;AddToInventory<Sardine>/Food;;;;
+CheckInInventory<Canne à pêche>/Misc;;;;;Fade;Node=>fail fish;;;;PlayerSpeak : The fish got away...;PlayerSpeak : Oh no, the fish got away!
+SetChoices2;;SetChoices1;;;PlayerSpeak : Good catch!;;;;;PlayerSpeak : and my fishing rod broke!;Leave
+Choice : (leave);Choice : (fish) (loot);Choice : I’d fish, but I’m missing a fishing rod… (leave);;;RandomRange3;;;;;Leave;
+Leave;PlayerSpeak : Thank god for this fishing rod !;Leave;;;AddToInventory<Maquereau>/Food;AddToInventory<Hareng>/Food;AddToInventory<Sardine>/Food;;;;
+;Node=>fish;;;;AddToInventory<Maquereau>/Food;AddToInventory<Hareng>/Food;AddToInventory<Sardine>/Food;;;;
 ;;;;;AddToInventory<Maquereau>/Food;AddToInventory<Hareng>/Food;AddToInventory<Sardine>/Food;;;;
 ;;;;;AddToInventory<Maquereau>/Food;AddToInventory<Hareng>/Food;AddToInventory<Sardine>/Food;;;;
 ;;;;;Leave;Leave;Leave;;;;

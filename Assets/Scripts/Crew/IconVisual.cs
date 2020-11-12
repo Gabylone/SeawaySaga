@@ -6,6 +6,8 @@ using System;
 
 public class IconVisual : MonoBehaviour
 {
+    public RectTransform rectTransform;
+
     public BodyVisual bodyVisual;
 
     private Member currentMember;
@@ -55,6 +57,11 @@ public class IconVisual : MonoBehaviour
     public float range = 0.3f;
 
     private float timer = 0f;
+
+    private void Start()
+    {
+        rectTransform = GetComponent<RectTransform>();
+    }
 
     private void Update()
     {

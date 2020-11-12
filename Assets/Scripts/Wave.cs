@@ -18,8 +18,10 @@ public class Wave : MonoBehaviour {
 
     private void Start()
     {
-        if (NavigationManager.Instance !=null)
-        NavigationManager.Instance.EnterNewChunk += HandleOnEnterNewChunk;
+        if (NavigationManager.Instance != null)
+        {
+            NavigationManager.Instance.onUpdateCurrentChunk += HandleOnUpdateCurrentChunk;
+        }
 
         _transform = GetComponent<Transform>();
 
@@ -32,7 +34,7 @@ public class Wave : MonoBehaviour {
         Move();
     }
 
-    private void HandleOnEnterNewChunk()
+    private void HandleOnUpdateCurrentChunk()
     {
         Move();
     }

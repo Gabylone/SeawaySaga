@@ -19,7 +19,9 @@ public class FormulaManager : MonoBehaviour {
 	[SerializeField]
 	private InputField inputField;
     public Image inputBackground;
+    public Transform inputTransform;
     public CanvasGroup inputCanvasGroup;
+    public float tweenDuration = 0f;
 
     private bool previousActive = false;
 
@@ -78,22 +80,27 @@ public class FormulaManager : MonoBehaviour {
 	#region formula check
 	void StartFormulaCheck () {
 
-		formulaGroup.SetActive (true);
-		StoryReader.Instance.NextCell ();
+        ShowFormulaCheck();
 	}
 
     void ShowFormulaCheck()
     {
+        SoundManager.Instance.PlayRandomSound("Bag");
+        SoundManager.Instance.PlayRandomSound("Magic Chimes");
+        SoundManager.Instance.PlayRandomSound("Tribal");
+
+        formulaGroup.SetActive(true);
+
         inputCanvasGroup.alpha = 0f;
         inputCanvasGroup.DOFade(1f, 0.4f);
         inputBackground.color = Color.white;
-
-        Tween.Bounce(inputBackground.rectTransform);
+        Tween.Bounce(inputTransform);
     }
 
     void HideFormulaCheck()
     {
         inputCanvasGroup.DOFade(0f, 0.4f);
+
         CancelInvoke("HideFormulaCheckDelay");
         Invoke("HideFormulaCheckDelay", 0.5f);
     }
@@ -107,8 +114,6 @@ public class FormulaManager : MonoBehaviour {
     {
         StoryReader.Instance.NextCell();
 
-        
-
         if (Chunk.currentChunk.IsFormulaIsland())
         {
             StoryReader.Instance.SetDecal(1);
@@ -120,29 +125,66 @@ public class FormulaManager : MonoBehaviour {
 
     public void CheckFormula () {
 
-		string stringToCheck = inputField.text.ToLower();
-		inputField.text = "";
+        string stringToCheck = inputField.text.ToLower();
+        Formula containedFormula = formulas.Find(x => stringToCheck.Contains(x.name.ToLower()));
 
-		Formula containedFormula = formulas.Find ( x => stringToCheck.Contains (x.name.ToLower ()));
+        Tween.Bounce(inputTransform);
 
-        Tween.Bounce(inputBackground.rectTransform);
-
-        if ( containedFormula == null ) {
-
-            inputBackground.color = Color.red;
-
-			StoryReader.Instance.SetDecal (0);
-		} else if ( containedFormula.verified ) {
+        if (containedFormula == null)
+        {
+            // NOT CORRECT
+            SoundManager.Instance.PlaySound("ui_wrong");
+            SoundManager.Instance.PlayRandomSound("Bag");
+            SoundManager.Instance.PlayRandomSound("Magic Chimes");
 
             inputBackground.color = Color.red;
+        }
+        else if (containedFormula.verified)
+        {
+            SoundManager.Instance.PlaySound("ui_wrong");
+            SoundManager.Instance.PlayRandomSound("Bag");
+            SoundManager.Instance.PlayRandomSound("Magic Chimes");
 
-            StoryReader.Instance.SetDecal (0);
-		}
+            inputBackground.color = Color.red;
+        }
         else
         {
+            SoundManager.Instance.PlaySound("ui_correct");
+            SoundManager.Instance.PlayRandomSound("Bag");
+            SoundManager.Instance.PlayRandomSound("Magic Chimes");
+            SoundManager.Instance.PlaySound("Confirm_Big");
 
-            inputBackground.color = Color.green;
+            inputBackground.color = Color.blue;
+        }
 
+        HideFormulaCheck();
+
+        Invoke("CheckFormulaDelay", 0.5f);
+
+    }
+
+    void CheckFormulaDelay()
+    {
+        string stringToCheck = inputField.text.ToLower();
+        inputField.text = "";
+
+        Formula containedFormula = formulas.Find(x => stringToCheck.Contains(x.name.ToLower()));
+
+        StoryReader.Instance.NextCell();
+
+        if (containedFormula == null)
+        {
+            DialogueManager.Instance.PlayerSpeak("Nothing seems to happen, I must have spoke something wrong");
+            StoryReader.Instance.SetDecal(0);
+        }
+        else if (containedFormula.verified)
+        {
+            // ALREADY SPOKE
+            DialogueManager.Instance.PlayerSpeak("I already spoke this word, and it already worked");
+            StoryReader.Instance.SetDecal(0);
+        }
+        else
+        {
             containedFormula.verified = true;
 
             bool allFormulasHaveBeenVerified = true;
@@ -157,25 +199,17 @@ public class FormulaManager : MonoBehaviour {
 
             if (allFormulasHaveBeenVerified)
             {
+                DialogueManager.Instance.PlayerSpeak("Look like something happened !*The door moved a little, but did not opened*I need to keep looking");
                 StoryReader.Instance.SetDecal(2);
             }
             else
             {
+                DialogueManager.Instance.PlayerSpeak("Look like something happened !*The door is OPENING COMPLETLY !");
                 StoryReader.Instance.SetDecal(1);
             }
-
         }
 
-        Invoke("CheckFormulaDelay", 1f);
-
-    }
-
-    void CheckFormulaDelay()
-    {
-        StoryReader.Instance.UpdateStory();
-
-        Invoke("HideFormulaCheck", 0.5f);
-
+        StoryReader.Instance.PreviousCell();
     }
     #endregion
 

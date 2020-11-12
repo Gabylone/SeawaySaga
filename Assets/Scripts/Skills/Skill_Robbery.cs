@@ -6,8 +6,6 @@ public class Skill_Robbery : Skill {
 
     public Transform goldBag_Transform;
 
-	public int goldStolen = 30;
-
     public float targetFighterStopDistance = -3f;
 
     public float initFighterStopDistance = 0f;
@@ -49,6 +47,11 @@ public class Skill_Robbery : Skill {
         SoundManager.Instance.PlayRandomSound("Whoosh");
         SoundManager.Instance.PlayRandomSound("Bag");
 
+        // calculate gold stolen
+        int maxGold = Mathf.RoundToInt((float)GoldManager.Instance.goldAmount / 9);
+        int minGold = Mathf.RoundToInt((float)GoldManager.Instance.goldAmount / 12);
+        int goldStolen =  Random.Range(minGold, maxGold);
+
         if ( fighter.crewMember.side == Crews.Side.Enemy )
         {
 			GoldManager.Instance.RemoveGold(goldStolen);
@@ -62,8 +65,9 @@ public class Skill_Robbery : Skill {
 
 		fighter.combatFeedback.Display ("+" + goldStolen, Color.yellow);
 		fighter.TargetFighter.combatFeedback.Display ("-" + goldStolen, Color.red);
+        fighter.TargetFighter.Speak("THIEF !");
 
-		EndSkill ();
+        EndSkill ();
 
         ResetFightPosition();
 
@@ -102,9 +106,12 @@ public class Skill_Robbery : Skill {
 	{
 		bool hasMinimumGold = false;
 
-		if (GoldManager.Instance.goldAmount > minimumGoldToSteal)
-			hasMinimumGold = true;
+		if (GoldManager.Instance.goldAmount > minimumGoldToSteal
+            && Random.value < .55f)
+        {
+            hasMinimumGold = true;
+        }
 
-		return hasMinimumGold && base.MeetsConditions (member);
+        return hasMinimumGold && base.MeetsConditions (member);
 	}
 }

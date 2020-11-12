@@ -28,8 +28,7 @@ public class Skill_DoubleTalk : Skill {
 
     void HandleOnEndThrow ()
 	{
-        if ( DiceManager.Instance.HighestResult == 6 ) {
-
+        if ( DiceManager.Instance.result == DiceManager.Result.Success ) {
 
             SoundManager.Instance.PlaySound("ui_correct");
 
@@ -67,8 +66,6 @@ public class Skill_DoubleTalk : Skill {
             targetFighter.escaped = true;
             //CombatManager.Instance.getCurrentFighters(fighter.crewMember.side)[0].EndTurn();
             targetFighter.Fade();
-
-            
         }
 
         int l = CombatManager.Instance.getCurrentFighters(fighter.crewMember.side).Count;

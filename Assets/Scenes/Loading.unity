@@ -96,6 +96,7 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
+    m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
   m_UseShadowmask: 0
 --- !u!196 &4
@@ -495,7 +496,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: 6e7112f0dc98d294d8171ec4f32a0367, type: 3}
   m_Type: 0
-  m_PreserveAspect: 1
+  m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -756,6 +757,7 @@ MonoBehaviour:
   m_Text: {fileID: 2082223674}
   rectTransform_Background: {fileID: 1019422297}
   rectTransform_Fill: {fileID: 678884050}
+  activateAtStart: 1
 --- !u!1 &376463468
 GameObject:
   m_ObjectHideFlags: 0
@@ -1242,7 +1244,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1303271558}
   - component: {fileID: 1303271557}
-  - component: {fileID: 1303271556}
   - component: {fileID: 1303271555}
   - component: {fileID: 1303271554}
   m_Layer: 5
@@ -1261,14 +1262,6 @@ AudioListener:
   m_GameObject: {fileID: 1303271553}
   m_Enabled: 1
 --- !u!124 &1303271555
-Behaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1303271553}
-  m_Enabled: 1
---- !u!92 &1303271556
 Behaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

@@ -14,6 +14,8 @@ public class WorldTouch : MonoBehaviour
     public delegate void OnPointerDownEvent();
     public static OnPointerDownEvent onPointerDown;
 
+    public bool debugTouch = false;
+
     public bool touching = false;
 
     public bool swipped = false;
@@ -54,6 +56,7 @@ public class WorldTouch : MonoBehaviour
 
     public void Lock()
     {
+        
         locked = true;
     }
 
@@ -83,6 +86,18 @@ public class WorldTouch : MonoBehaviour
         }
         else
         {
+            if ( debugTouch)
+            {
+                RaycastHit hit;
+
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+                if (Physics.Raycast(ray, out hit , 1000f ))
+                {
+                    Debug.Log("raycast hitting : " + hit.collider.name);
+                }
+            }
+
             if (IsPointerOverUIObject())
             {
                 Disable();
@@ -101,11 +116,13 @@ public class WorldTouch : MonoBehaviour
     {
         if (locked)
         {
+
             return;
         }
 
         if (!IsEnabled())
         {
+
             return;
         }
 
@@ -121,15 +138,32 @@ public class WorldTouch : MonoBehaviour
     private void OnMouseUp()
     {
         if (locked)
+        {
+            if (debugTouch)
+            {
+                Debug.Log("! Locked !");
+            }
+
             return;
+        }
 
         if (!IsEnabled())
         {
+            if (debugTouch)
+            {
+                Debug.Log("! Disabled !");
+            }
+
             return;
         }
 
         if (!touching)
         {
+            if (debugTouch)
+            {
+                Debug.Log("! Not touching !");
+            }
+
             return;
         }
 
@@ -169,14 +203,10 @@ public class WorldTouch : MonoBehaviour
         List<RaycastResult> results = new List<RaycastResult>();
         EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
 
-        /*if ( results.Count > 0)
+        if ( debugTouch && results.Count > 0)
         {
-            Debug.LogError("results : " + results[0].gameObject.name);
+            Debug.Log("UI : results : " + results[0].gameObject.name + " (out of " + results.Count + ")");
         }
-        else
-        {
-            Debug.LogError("not touching anything");
-        }*/
 
         return results.Count > 0;
     }

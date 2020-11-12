@@ -25,7 +25,7 @@ public class BoatInfo {
 		//
 	}
 
-	public virtual void UpdatePosition () {
+	public virtual void TryMoveOnMap () {
 
 	}
 
@@ -39,8 +39,13 @@ public class BoatInfo {
         coords.y = Mathf.Clamp(newCoords.y, 0, MapGenerator.Instance.GetMapVerticalScale - 1);
     }
 
+    public virtual void SetDirection ( Directions dir)
+    {
+        currentDirection = dir;
+    }
+
 	public void Move ( Directions dir ) {
-		currentDirection = dir;
+        SetDirection(dir);
 		SetCoords(coords + NavigationManager.Instance.getNewCoords(currentDirection));
 	}
 }

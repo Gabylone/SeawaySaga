@@ -52,9 +52,10 @@ MonoBehaviour:
   tweenDecal: 5
   tweenDuration: 0.7
   quickTweenDuration: 0.2
+  rendeder: {fileID: 2106187653622494676}
   anchor: {fileID: 0}
   thrown: 0
-  targetResult: 1
+  targetResult: -1
 --- !u!1 &5652856362693410638
 GameObject:
   m_ObjectHideFlags: 0
@@ -183,6 +184,12 @@ PrefabInstance:
 --- !u!4 &6229786395141264730 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 1b8a6697cd6a93645b56bed4ddf30630,
+    type: 3}
+  m_PrefabInstance: {fileID: 1373054137942244928}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &2106187653622494676 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 1023654077413067668, guid: 1b8a6697cd6a93645b56bed4ddf30630,
     type: 3}
   m_PrefabInstance: {fileID: 1373054137942244928}
   m_PrefabAsset: {fileID: 0}

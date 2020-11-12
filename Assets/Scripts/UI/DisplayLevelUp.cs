@@ -11,7 +11,7 @@ public class DisplayLevelUp : MonoBehaviour {
 	[SerializeField]
 	private Text statText;
 
-    MemberIcon memberIcon;
+    private MemberIcon memberIcon;
 
 	// Use this for initialization
 	void Start () {
@@ -38,22 +38,28 @@ public class DisplayLevelUp : MonoBehaviour {
 
 	void HandleOnUnlockSkill ()
 	{
-		if (GetComponentInParent<MemberIcon> ().member == CrewMember.GetSelectedMember) {
-			UpdateStatText (CrewMember.GetSelectedMember);
-		}
-	}
+        if (GetComponentInParent<MemberIcon>().member == CrewMember.GetSelectedMember)
+        {
+            UpdateStatText(CrewMember.GetSelectedMember);
+            CharacterMenuButton.Instance.UpdateUI();
+        }
+    }
 
 	void HandleOnLevelUp (CrewMember member)
 	{
 		Show ();
+
+        CharacterMenuButton.Instance.UpdateUI();
 	}
 
 	void HandleOnLevelUpStat (CrewMember member)
 	{
 		UpdateStatText (member);
-	}
 
-	void UpdateStatText (CrewMember member)
+        CharacterMenuButton.Instance.UpdateUI();
+    }
+
+    void UpdateStatText (CrewMember member)
 	{
 		if (member.SkillPoints == 0) {
 			Hide ();
@@ -65,7 +71,7 @@ public class DisplayLevelUp : MonoBehaviour {
 
 	void Show () {
 		group.SetActive (true);
-		UpdateStatText (CrewMember.GetSelectedMember);
+		UpdateStatText (memberIcon.member);
 	}
 
 	void Hide () {
@@ -74,8 +80,8 @@ public class DisplayLevelUp : MonoBehaviour {
 
 	void InitEvents ()
 	{
-		GetComponentInParent<MemberIcon> ().member.onLevelUp 		+= HandleOnLevelUp;
-		GetComponentInParent<MemberIcon> ().member.onLevelUpStat 	+= HandleOnLevelUpStat;
+		memberIcon.member.onLevelUp 		+= HandleOnLevelUp;
+        memberIcon.member.onLevelUpStat 	+= HandleOnLevelUpStat;
 		SkillButton_Inventory.onUnlockSkill 						+= HandleOnUnlockSkill;
 	}
 

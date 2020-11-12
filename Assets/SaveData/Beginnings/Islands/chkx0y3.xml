@@ -8,10 +8,10 @@
   <islandDatas>
     <IslandData>
       <worldPosition>
-        <x>-8.70137</x>
-        <y>-17.049202</y>
+        <x>-8.875883</x>
+        <y>5.89041138</y>
       </worldPosition>
-      <worldRotation>66.36514</worldRotation>
+      <worldRotation>167.61731</worldRotation>
       <index>0</index>
       <coords>
         <x>0</x>
@@ -27,156 +27,81 @@
             <fallBackLayer>0</fallBackLayer>
             <storyID>19</storyID>
             <storyType>Normal</storyType>
-            <contentDecals>
-              <contentDecal>
-                <row>5</row>
-                <col>59</col>
-                <decal>0</decal>
-              </contentDecal>
-            </contentDecals>
-            <loots>
-              <Loot>
-                <row>0</row>
-                <col>10</col>
-                <ids>
-                  <ArrayOfInt />
-                  <ArrayOfInt>
-                    <int>62</int>
-                    <int>66</int>
-                    <int>63</int>
-                  </ArrayOfInt>
-                  <ArrayOfInt>
-                    <int>162</int>
-                    <int>161</int>
-                    <int>151</int>
-                  </ArrayOfInt>
-                  <ArrayOfInt>
-                    <int>226</int>
-                    <int>210</int>
-                  </ArrayOfInt>
-                </ids>
-                <weight>53</weight>
-                <AllItems>
-                  <ArrayOfItem />
-                  <ArrayOfItem>
-                    <Item>
-                      <ID>62</ID>
-                      <englishName>Rusty gun</englishName>
-                      <frenchName>Poivrière rouillée</frenchName>
-                      <value>21</value>
-                      <price>40</price>
-                      <weight>8</weight>
-                      <level>2</level>
-                      <spriteID>6</spriteID>
-                      <description />
-                      <weaponType>Distance</weaponType>
-                      <category>Weapon</category>
-                    </Item>
-                    <Item>
-                      <ID>66</ID>
-                      <englishName>Long iron sword</englishName>
-                      <frenchName>Massue de pierre</frenchName>
-                      <value>28</value>
-                      <price>47</price>
-                      <weight>8</weight>
-                      <level>3</level>
-                      <spriteID>3</spriteID>
-                      <description>C'est un massue de pierre</description>
-                      <weaponType>Stick</weaponType>
-                      <category>Weapon</category>
-                    </Item>
-                    <Item>
-                      <ID>63</ID>
-                      <englishName>Big steel sword</englishName>
-                      <frenchName>Grande épée en acier</frenchName>
-                      <value>30</value>
-                      <price>48</price>
-                      <weight>8</weight>
-                      <level>3</level>
-                      <spriteID>2</spriteID>
-                      <description>C'est un grande épée en acier</description>
-                      <weaponType>Stick</weaponType>
-                      <category>Weapon</category>
-                    </Item>
-                  </ArrayOfItem>
-                  <ArrayOfItem>
-                    <Item>
-                      <ID>162</ID>
-                      <englishName>Reinforced vest</englishName>
-                      <frenchName>Veste renforcée</frenchName>
-                      <value>19</value>
-                      <price>33</price>
-                      <weight>8</weight>
-                      <level>2</level>
-                      <spriteID>1</spriteID>
-                      <description>C'est un veste renforcée</description>
-                      <weaponType>Distance</weaponType>
-                      <category>Clothes</category>
-                    </Item>
-                    <Item>
-                      <ID>161</ID>
-                      <englishName>Leather harness</englishName>
-                      <frenchName>Harnais de cuir</frenchName>
-                      <value>24</value>
-                      <price>44</price>
-                      <weight>8</weight>
-                      <level>2</level>
-                      <spriteID>0</spriteID>
-                      <description>C'est un harnais de cuir</description>
-                      <weaponType>Distance</weaponType>
-                      <category>Clothes</category>
-                    </Item>
-                    <Item>
-                      <ID>151</ID>
-                      <englishName>Simple docker</englishName>
-                      <frenchName>Marcel</frenchName>
-                      <value>7</value>
-                      <price>20</price>
-                      <weight>8</weight>
-                      <level>1</level>
-                      <spriteID>0</spriteID>
-                      <description>C'est un marcel</description>
-                      <weaponType>Distance</weaponType>
-                      <category>Clothes</category>
-                    </Item>
-                  </ArrayOfItem>
-                  <ArrayOfItem>
-                    <Item>
-                      <ID>226</ID>
-                      <englishName>Fork</englishName>
-                      <frenchName>Fourchette</frenchName>
-                      <value>0</value>
-                      <price>2</price>
-                      <weight>1</weight>
-                      <level>0</level>
-                      <spriteID>8</spriteID>
-                      <description>C'est un fourchette</description>
-                      <weaponType>Distance</weaponType>
-                      <category>Misc</category>
-                    </Item>
-                    <Item>
-                      <ID>210</ID>
-                      <englishName>Pillow</englishName>
-                      <frenchName>Oreiller</frenchName>
-                      <value>0</value>
-                      <price>8</price>
-                      <weight>4</weight>
-                      <level>0</level>
-                      <spriteID>0</spriteID>
-                      <description>C'est un oreiller</description>
-                      <weaponType>Distance</weaponType>
-                      <category>Misc</category>
-                    </Item>
-                  </ArrayOfItem>
-                </AllItems>
-              </Loot>
-            </loots>
+            <contentDecals />
+            <loots />
             <crews>
               <Crew>
                 <hostile>false</hostile>
                 <row>0</row>
-                <col>10</col>
-                <MemberIDs />
+                <col>9</col>
+                <MemberIDs>
+                  <Member>
+                    <id>17</id>
+                    <Name>Laura</Name>
+                    <health>100</health>
+                    <maxHealth>100</maxHealth>
+                    <currentHunger>0</currentHunger>
+                    <Lvl>4</Lvl>
+                    <xp>0</xp>
+                    <skillPoints>0</skillPoints>
+                    <specialSkillsIndexes>
+                      <int>12</int>
+                      <int>13</int>
+                    </specialSkillsIndexes>
+                    <stats>
+                      <int>3</int>
+                      <int>1</int>
+                      <int>2</int>
+                      <int>1</int>
+                    </stats>
+                    <daysOnBoard>0</daysOnBoard>
+                    <equipedWeapon>
+                      <ID>80</ID>
+                      <englishName>Immense mace</englishName>
+                      <frenchName>Fléau d'ames</frenchName>
+                      <value>36</value>
+                      <price>60</price>
+                      <weight>8</weight>
+                      <level>4</level>
+                      <spriteID>5</spriteID>
+                      <description>It's just your basic immense mace</description>
+                      <weaponType>Stick</weaponType>
+                      <category>Weapon</category>
+                    </equipedWeapon>
+                    <equipedCloth>
+                      <ID>171</ID>
+                      <englishName>Rusty breastplate</englishName>
+                      <frenchName>Cuirasse rouillée</frenchName>
+                      <value>39</value>
+                      <price>69</price>
+                      <weight>8</weight>
+                      <level>4</level>
+                      <spriteID>1</spriteID>
+                      <description>It's just your basic rusty breastplate</description>
+                      <weaponType>Distance</weaponType>
+                      <category>Clothes</category>
+                    </equipedCloth>
+                    <job>Cook</job>
+                    <characterIDS>
+                      <int>5</int>
+                      <int>8</int>
+                      <int>4</int>
+                      <int>4</int>
+                      <int>2</int>
+                      <int>4</int>
+                      <int>0</int>
+                      <int>2</int>
+                      <int>1</int>
+                      <int>0</int>
+                      <int>0</int>
+                      <int>7</int>
+                      <int>11</int>
+                      <int>3</int>
+                      <int>0</int>
+                      <int>2</int>
+                    </characterIDS>
+                  </Member>
+                </MemberIDs>
               </Crew>
             </crews>
           </StoryHandler>

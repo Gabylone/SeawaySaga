@@ -34,6 +34,8 @@ public class Dice : MonoBehaviour {
 
     private Transform _transform;
 
+    public Renderer rendeder;
+
     private Transform GetTransform
     {
         get
@@ -58,14 +60,10 @@ public class Dice : MonoBehaviour {
 
 	public int targetResult = 1;
 
-    MeshRenderer[] rends;
-
     // Use this for initialization
     public void Init () {
 
 		settleDuration = DiceManager.Instance.settlingDuration;
-
-        rends = GetComponentsInChildren<MeshRenderer>();
 	}
 
 	void LateUpdate () {
@@ -85,6 +83,8 @@ public class Dice : MonoBehaviour {
 		Vector3 pos = anchor.position;
 		pos.x *= throwDirection;
 		GetTransform.position = pos;
+
+        rendeder.material.SetColor("_EmissionColor", Color.white);
 
         bodyTransform.localPosition = Vector3.zero;
         bodyTransform.rotation = Quaternion.identity;
@@ -119,42 +119,34 @@ public class Dice : MonoBehaviour {
 
 	public void SettleDown ()
     {
+        SoundManager.Instance.PlaySound("ui_wrong");
+        SoundManager.Instance.PlayRandomSound("Tribal");
 
-        bodyTransform.DOScale(0f, tweenDuration).SetEase(Ease.InBounce);
+        if (targetResult == 1)
+        {
+            rendeder.material.DOColor(DiceManager.Instance.color_CriticalFailure, "_EmissionColor", tweenDuration);
 
-        Color c = rends[0].material.color;
+            SoundManager.Instance.PlaySound("Death");
+            SoundManager.Instance.PlaySound("Defeat");
 
-        c.a = 0f;
-
-		foreach (MeshRenderer rend in rends) {
-            rend.material.DOColor(c, settleDuration);
-		}
-
-	}
+        }
+        else
+        {
+            rendeder.material.DOColor(DiceManager.Instance.color_Failure, "_EmissionColor", tweenDuration);
+        }
+    }
 
 	public void SettleUp() {
 
-        //GetTransform.DOKill();
-        bodyTransform.DOScale(Vector3.one * 1.2f, settleDuration);
-        
-        //Tween.Bounce (transform);
+        SoundManager.Instance.PlaySound("ui_correct");
+        SoundManager.Instance.PlayRandomSound("Tribal");
 
-		/*foreach (SpriteRenderer rend in GetComponentsInChildren<SpriteRenderer>()) {
+        rendeder.material.DOColor(DiceManager.Instance.color_Success, "_EmissionColor", tweenDuration);
 
-			HOTween.To (rend, settleDuration, "color", Color.white);
+    }
+    #endregion
 
-		}*/
-	}
-	#endregion
-
-	#region properties
-	public int result {
-		get {
-			return targetResult;
-		}
-	}
-
-
+    #region properties
 	public int ThrowDirection {
 		get {
 			return throwDirection;
@@ -196,17 +188,19 @@ public class Dice : MonoBehaviour {
                 break;
 		}
 
-        Vector3 init = Vector3.zero;
-        Vector3 p = Vector3.up * tweenDecal;
-
-        bodyTransform.DOLocalMove(p, tweenDuration);
-        bodyTransform.DOLocalMove(init, quickTweenDuration).SetDelay(tweenDuration);
+        bodyTransform.DOMove(_transform.position + Vector3.up * tweenDecal, tweenDuration);
         bodyTransform.DORotate(rot, tweenDuration + quickTweenDuration);
-	}
-	#endregion
 
-	#region dice color
-	DiceTypes currType;
+        Invoke("TurnToDirectionDelay", tweenDuration);
+	}
+    void TurnToDirectionDelay()
+    {
+        bodyTransform.DOMove( _transform.position, quickTweenDuration);
+    }
+    #endregion
+
+    #region dice color
+    DiceTypes currType;
 	public void Paint ( DiceTypes type ) {
 
 		currType = type;

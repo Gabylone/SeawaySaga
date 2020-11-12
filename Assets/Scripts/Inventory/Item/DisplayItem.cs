@@ -6,7 +6,7 @@ using System;
 
 public class DisplayItem : MonoBehaviour {
 
-	private Item handledItem;
+	private protected Item handledItem;
 
     public virtual void Start()
     {
@@ -15,7 +15,7 @@ public class DisplayItem : MonoBehaviour {
 
     public virtual void Show(Item item)
     {
-        HandledItem = item;
+        DisplayedItem = item;
     }
 
     public virtual void Hide()
@@ -24,7 +24,7 @@ public class DisplayItem : MonoBehaviour {
     }
 
     #region params
-    public virtual Item HandledItem {
+    public virtual Item DisplayedItem {
 		get {
 			return handledItem;
 		}

@@ -13,15 +13,24 @@ public class PlayerBoat : Boat {
         Instance = this;
     }
 
-    public override void Start ()
-	{
-		base.Start();
+    public override void Start()
+    {
+        base.Start();
 
-		WorldTouch.onPointerExit += HandleOnPointerExit;
 
-		NavigationManager.Instance.EnterNewChunk += HandleChunkEvent;
+        WorldTouch.onPointerExit += HandleOnPointerExit;
 
-	}
+        NavigationManager.Instance.onUpdateCurrentChunk += HandleOnUpdateChunk;
+
+        Invoke("StartDelay", 0.001f);
+
+    }
+
+    void StartDelay()
+    {
+        minimapBoat = DisplayMinimap.Instance.CreateMinimapBoat(DisplayMinimap.Instance.playerBoatIconPrefab, GetTransform, GetBoatInfo());
+
+    }
 
     public override void Update()
     {
@@ -41,9 +50,11 @@ public class PlayerBoat : Boat {
         
     }
 
-    void HandleChunkEvent ()
+    public void HandleOnUpdateChunk ()
 	{
         UpdatePositionOnScreen();
+
+        GetMinimapBoat.TweenToCoords(GetBoatInfo().coords);
 
         CamBehavior.Instance.RefreshCamOnPlayer();
 	}
@@ -64,11 +75,11 @@ public class PlayerBoat : Boat {
             SoundManager.Instance.PlaySound("click_light 03");
         }
 
-        Tween.Bounce(transform);
+        Tween.Bounce(GetTransform);
 
         WorldTouch.Instance.touching = false;
 
-        SetTargetPos(transform.position);
+        SetTargetPos(GetTransform.position);
 
         if (agent.isOnNavMesh)
         {
@@ -84,7 +95,7 @@ public class PlayerBoat : Boat {
     {
         base.UpdatePositionOnScreen();
 
-        GetTransform.position = NavigationManager.Instance.GetOppositeCornerPosition(Boats.Instance.playerBoatInfo.currentDirection);
+        GetTransform.position = NavigationManager.Instance.GetOppositeCornerPosition(GetBoatInfo().currentDirection);
 
         SetTargetPos( GetTransform.position );
     }
@@ -96,4 +107,9 @@ public class PlayerBoat : Boat {
 			EndMovenent ();
 		}
 	}
+
+    public override BoatInfo GetBoatInfo()
+    {
+        return Boats.Instance.playerBoatInfo;
+    }
 }

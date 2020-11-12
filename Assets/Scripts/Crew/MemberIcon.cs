@@ -11,7 +11,7 @@ public class MemberIcon : MonoBehaviour {
 
 	public Animator animator;
 
-    RectTransform rectTransform;
+    private RectTransform rectTransform;
 
 	public bool overable = true;
 
@@ -19,7 +19,11 @@ public class MemberIcon : MonoBehaviour {
 
     public int indexInList = 0;
 
-	public float bodyScale = 1f;
+    public float bodyScale = 1f;
+
+    public bool visible = true;
+    public CanvasGroup canvasGroup;
+    public float fadeDuration = 0.2f;
 
 	public float initScale;
 
@@ -91,19 +95,34 @@ public class MemberIcon : MonoBehaviour {
             return;
         }
 
+        if ( currentPlacingType != Crews.PlacingType.Portraits)
+        {
+            return;
+        }
+
         if (!InGameMenu.Instance.canOpen)
         {
             print("cannot open player loot");
             return;
         }
 
-        if ( SkillMenu.Instance.opened)
+        CrewMember.SetSelectedMember(member);
+
+        if ( DisplayCrew.Instance.onSkills)
         {
-            SkillMenu.Instance.Show(member);
+            SkillMenu.Instance.Show();
         }
         else
         {
-            LootUI.Instance.OpenMemberLoot(member);
+            if (LootUI.Instance.visible)
+            {
+                LootUI.Instance.UpdateLootUI();
+                DisplayCrew.Instance.Show(CrewMember.GetSelectedMember);
+            }
+            else
+            {
+                LootUI.Instance.OpenInventory();
+            }
         }
     }
     #endregion
@@ -114,7 +133,13 @@ public class MemberIcon : MonoBehaviour {
 		previousPlacingType = currentPlacingType;
 		currentPlacingType = targetPlacingType;
 
-		Vector3 targetPos = Crews.getCrew(member.side).CrewAnchors [(int)targetPlacingType].position;
+        if (targetPlacingType == Crews.PlacingType.Hidden)
+        {
+            Hide();
+            return;
+        }
+
+        Vector3 targetPos = Crews.getCrew(member.side).CrewAnchors [(int)targetPlacingType].position;
 
         if (currentPlacingType == Crews.PlacingType.Portraits) {
 			targetPos = Crews.getCrew (member.side).inventoryAnchors [member.GetIndex].position;
@@ -122,65 +147,76 @@ public class MemberIcon : MonoBehaviour {
         else if (currentPlacingType == Crews.PlacingType.World)
         {
             int index = indexInList;
-            transform.SetParent(Crews.getCrew(member.side).worldAnchord[index]);
+            rectTransform.SetParent(Crews.getCrew(member.side).worldAnchord[index]);
             targetPos = Crews.getCrew(member.side).worldAnchord[index].position;
         }
 
+        Show();
+
         rectTransform.DOMove(targetPos, moveDuration);
 
-		switch (currentPlacingType) {
+        switch (currentPlacingType) {
 
             case Crews.PlacingType.Portraits:
-
-                HideBody();
-
-                break;
-
             case Crews.PlacingType.Hidden:
-
-                HideBody();
-
-                break;
-
             case Crews.PlacingType.None:
-
                 HideBody();
-
                 break;
-
             case Crews.PlacingType.MemberCreation:
-
-                ShowBody();
-
-                break;
-
             case Crews.PlacingType.Inventory:
-
+            case Crews.PlacingType.World:
                 ShowBody();
-
                 if ( member.side == Crews.Side.Player)
                 {
                     hungerIcon.HideInfo();
                 }
-
                 break;
-
-            case Crews.PlacingType.World:
-
-                ShowBody();
-
-                if (member.side == Crews.Side.Player)
-                {
-                    hungerIcon.HideInfo();
-                }
-
-                break;
-
             default:
 
                 break;
 
 		}
+    }
+    #endregion
+
+    #region visibility
+    // pour l'instant tout ça c'est avec déplacements, le perso est juste hors de l'écran
+    // ça donne cet effet dynamique mais peut être à changer
+    public void Show()
+    {
+        if (visible)
+        {
+            return;
+        }
+
+        CancelInvoke("HideDelay");
+
+        group.SetActive(true);
+
+        visible = true;
+
+        canvasGroup.alpha = 0f;
+        canvasGroup.DOFade(1f, fadeDuration);
+    }
+
+    public void Hide()
+    {
+        if (!visible)
+        {
+            return;
+        }
+
+        visible = false;
+
+        canvasGroup.DOFade(0f, fadeDuration);
+
+        CancelInvoke("HideDelay");
+        Invoke("HideDelay", fadeDuration);
+    }
+
+    public void HideDelay()
+    {
+        group.SetActive(false);
     }
     #endregion
 
@@ -198,7 +234,8 @@ public class MemberIcon : MonoBehaviour {
 		if (member.side == Crews.Side.Player)
 			targetScale.x = -targetScale.x;
 
-        group.transform.DOScale(targetScale, moveDuration);
+
+        iconVisual.rectTransform.DOScale(targetScale, moveDuration);
 
 	}
 	public void ShowBody () {
@@ -214,7 +251,7 @@ public class MemberIcon : MonoBehaviour {
         if (member.side == Crews.Side.Player)
             targetScale.x = -targetScale.x;
 
-        group.transform.DOScale(targetScale,moveDuration);
+        iconVisual.rectTransform.DOScale(targetScale,moveDuration);
 
     }
 

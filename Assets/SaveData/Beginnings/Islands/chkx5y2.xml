@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <Chunk xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <state>UndiscoveredIsland</state>
+  <state>VisitedIsland</state>
   <coords>
     <x>5</x>
     <y>2</y>
@@ -8,10 +8,10 @@
   <islandDatas>
     <IslandData>
       <worldPosition>
-        <x>7.60948133</x>
-        <y>8.707413</y>
+        <x>9.100285</x>
+        <y>-2.26698112</y>
       </worldPosition>
-      <worldRotation>102.616745</worldRotation>
+      <worldRotation>232.273163</worldRotation>
       <index>0</index>
       <coords>
         <x>5</x>
@@ -19,7 +19,7 @@
       </coords>
       <containsFormula>false</containsFormula>
       <storyManager>
-        <hasBeenPlayed>false</hasBeenPlayed>
+        <hasBeenPlayed>true</hasBeenPlayed>
         <storyHandlers>
           <StoryHandler>
             <row>0</row>
@@ -27,7 +27,13 @@
             <fallBackLayer>0</fallBackLayer>
             <storyID>14</storyID>
             <storyType>Normal</storyType>
-            <contentDecals />
+            <contentDecals>
+              <contentDecal>
+                <row>0</row>
+                <col>1</col>
+                <decal>0</decal>
+              </contentDecal>
+            </contentDecals>
             <loots />
             <crews />
           </StoryHandler>
@@ -36,10 +42,10 @@
     </IslandData>
     <IslandData>
       <worldPosition>
-        <x>0.747005463</x>
-        <y>15.26392</y>
+        <x>3.00164986</x>
+        <y>4.10839272</y>
       </worldPosition>
-      <worldRotation>194.916489</worldRotation>
+      <worldRotation>358.001343</worldRotation>
       <index>1</index>
       <coords>
         <x>5</x>
@@ -47,7 +53,7 @@
       </coords>
       <containsFormula>false</containsFormula>
       <storyManager>
-        <hasBeenPlayed>false</hasBeenPlayed>
+        <hasBeenPlayed>true</hasBeenPlayed>
         <storyHandlers>
           <StoryHandler>
             <row>0</row>
@@ -55,7 +61,18 @@
             <fallBackLayer>0</fallBackLayer>
             <storyID>3</storyID>
             <storyType>Normal</storyType>
-            <contentDecals />
+            <contentDecals>
+              <contentDecal>
+                <row>0</row>
+                <col>13</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>0</row>
+                <col>42</col>
+                <decal>3</decal>
+              </contentDecal>
+            </contentDecals>
             <loots />
             <crews />
           </StoryHandler>

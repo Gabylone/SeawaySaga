@@ -11,7 +11,7 @@ public class QuestMenu : MonoBehaviour {
 	[SerializeField]
 	private GameObject buttonPrefab;
 
-	private List<Button> buttons = new List<Button>();
+    private List<QuestButton> questButtons = new List<QuestButton>();
 
 	[SerializeField]
 	private float buttonDecal = 0f;
@@ -32,10 +32,13 @@ public class QuestMenu : MonoBehaviour {
 	public delegate void OnOpenQuestMenu ();
 	public static OnOpenQuestMenu onOpenQuestMenu;
 
-	[SerializeField]
-	DisplayFormulas displayFormulas;
+    public Animator animator;
+
+    public QuestButton mainQuestButton;
 
 	bool opened = false;
+
+    bool closing = false;
 
 	void Awake () {
 		Instance = this;
@@ -76,6 +79,8 @@ public class QuestMenu : MonoBehaviour {
         SoundManager.Instance.PlayRandomSound("Book");
         SoundManager.Instance.PlayRandomSound("Page");
 
+        animator.SetTrigger("open");
+
         menuGroup.SetActive (true);
 
 		//displayFormulas.ShowFormulas ();
@@ -98,14 +103,20 @@ public class QuestMenu : MonoBehaviour {
 
 	public void Close () {
 
-        InGameMenu.Instance.Hide();
+        if ( closing)
+        {
+            return;
+        }
 
         SoundManager.Instance.PlayRandomSound("Book");
         SoundManager.Instance.PlayRandomSound("Page");
 
-        opened = false;
+        closing = true;
 
-		HideMenu();
+        animator.SetTrigger("close");
+
+
+		Invoke("HideMenu", 1f);
     }
 
     void DisplayQuestAmount () {
@@ -118,7 +129,14 @@ public class QuestMenu : MonoBehaviour {
 
 	}
 	void HideMenu() {
-		menuGroup.SetActive (false);
+
+        closing = false;
+
+        opened = false;
+
+        InGameMenu.Instance.Hide();
+
+        menuGroup.SetActive (false);
 	}
 
 	void InitButtons () {
@@ -127,34 +145,27 @@ public class QuestMenu : MonoBehaviour {
 		for (int buttonIndex = 0; buttonIndex < QuestManager.Instance.maxQuestAmount; buttonIndex++) {
 
 			GameObject newButton = Instantiate (buttonPrefab, anchor) as GameObject;
-			buttons.Add(newButton.GetComponent<Button> ());
-
+			questButtons.Add(newButton.GetComponent<QuestButton> ());
 		}
 
 	}
 
 	void UpdateButtons () {
-		StartCoroutine (UpdateButtonsCoroutine ());
-	}
 
-	IEnumerator UpdateButtonsCoroutine () {
+        mainQuestButton.Deselect();
 
-		foreach (var item in buttons) {
+		foreach (var item in questButtons) {
 			item.gameObject.SetActive (false);
+            item.Deselect();
 		}
 
 		/// UPDATE BUTTON TO QUESTS
-		for (int questIndex = 0; questIndex < buttons.Count; questIndex++) {
+		for (int questIndex = 0; questIndex < questButtons.Count; questIndex++) {
 
 			if (questIndex < QuestManager.Instance.currentQuests.Count) {
 
-				buttons [questIndex].gameObject.SetActive (true);
-				buttons [questIndex].GetComponent<QuestButton> ().SetQuest (questIndex);
-
-				Tween.Bounce (buttons[questIndex].transform);
-
-				yield return new WaitForSeconds (Tween.defaultDuration/1.5f);
-
+                questButtons[questIndex].gameObject.SetActive (true);
+                questButtons[questIndex].GetComponent<QuestButton> ().SetQuest (questIndex);
 			}
 		}
 	}

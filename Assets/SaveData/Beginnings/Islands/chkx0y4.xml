@@ -8,10 +8,10 @@
   <islandDatas>
     <IslandData>
       <worldPosition>
-        <x>-11.4802132</x>
-        <y>16.4186516</y>
+        <x>10.3541279</x>
+        <y>10.5458679</y>
       </worldPosition>
-      <worldRotation>72.59302</worldRotation>
+      <worldRotation>68.92668</worldRotation>
       <index>0</index>
       <coords>
         <x>0</x>
@@ -30,19 +30,39 @@
             <contentDecals>
               <contentDecal>
                 <row>2</row>
-                <col>21</col>
+                <col>22</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>4</row>
+                <col>32</col>
                 <decal>0</decal>
               </contentDecal>
               <contentDecal>
+                <row>4</row>
+                <col>39</col>
+                <decal>0</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>4</row>
+                <col>41</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
                 <row>7</row>
-                <col>19</col>
+                <col>20</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>6</row>
+                <col>61</col>
                 <decal>0</decal>
               </contentDecal>
             </contentDecals>
             <loots>
               <Loot>
-                <row>1</row>
-                <col>29</col>
+                <row>4</row>
+                <col>34</col>
                 <ids>
                   <ArrayOfInt />
                   <ArrayOfInt />
@@ -58,7 +78,155 @@
                 </AllItems>
               </Loot>
             </loots>
-            <crews />
+            <crews>
+              <Crew>
+                <hostile>false</hostile>
+                <row>3</row>
+                <col>27</col>
+                <MemberIDs>
+                  <Member>
+                    <id>1</id>
+                    <Name>Marina</Name>
+                    <health>100</health>
+                    <maxHealth>100</maxHealth>
+                    <currentHunger>0</currentHunger>
+                    <Lvl>10</Lvl>
+                    <xp>0</xp>
+                    <skillPoints>0</skillPoints>
+                    <specialSkillsIndexes>
+                      <int>8</int>
+                      <int>9</int>
+                      <int>10</int>
+                      <int>11</int>
+                    </specialSkillsIndexes>
+                    <stats>
+                      <int>3</int>
+                      <int>3</int>
+                      <int>2</int>
+                      <int>5</int>
+                    </stats>
+                    <daysOnBoard>0</daysOnBoard>
+                    <equipedWeapon>
+                      <ID>149</ID>
+                      <englishName>Sword of the Pirate King</englishName>
+                      <frenchName>Epée du roi pirate</frenchName>
+                      <value>103</value>
+                      <price>160</price>
+                      <weight>8</weight>
+                      <level>10</level>
+                      <spriteID>3</spriteID>
+                      <description>It's just your basic sword of the pirate king</description>
+                      <weaponType>Stick</weaponType>
+                      <category>Weapon</category>
+                    </equipedWeapon>
+                    <equipedCloth>
+                      <ID>201</ID>
+                      <englishName>The armor of the Pirate King</englishName>
+                      <frenchName>Armure du roi pirate</frenchName>
+                      <value>103</value>
+                      <price>155</price>
+                      <weight>8</weight>
+                      <level>10</level>
+                      <spriteID>2</spriteID>
+                      <description>It's just your basic the armor of the pirate king</description>
+                      <weaponType>Distance</weaponType>
+                      <category>Clothes</category>
+                    </equipedCloth>
+                    <job>Surgeon</job>
+                    <characterIDS>
+                      <int>9</int>
+                      <int>0</int>
+                      <int>2</int>
+                      <int>3</int>
+                      <int>1</int>
+                      <int>2</int>
+                      <int>2</int>
+                      <int>3</int>
+                      <int>0</int>
+                      <int>0</int>
+                      <int>2</int>
+                      <int>9</int>
+                      <int>15</int>
+                      <int>2</int>
+                      <int>8</int>
+                      <int>1</int>
+                    </characterIDS>
+                  </Member>
+                </MemberIDs>
+              </Crew>
+              <Crew>
+                <hostile>false</hostile>
+                <row>3</row>
+                <col>53</col>
+                <MemberIDs>
+                  <Member>
+                    <id>2</id>
+                    <Name>Richard</Name>
+                    <health>100</health>
+                    <maxHealth>100</maxHealth>
+                    <currentHunger>0</currentHunger>
+                    <Lvl>1</Lvl>
+                    <xp>0</xp>
+                    <skillPoints>0</skillPoints>
+                    <specialSkillsIndexes>
+                      <int>16</int>
+                    </specialSkillsIndexes>
+                    <stats>
+                      <int>1</int>
+                      <int>1</int>
+                      <int>1</int>
+                      <int>1</int>
+                    </stats>
+                    <daysOnBoard>0</daysOnBoard>
+                    <equipedWeapon>
+                      <ID>46</ID>
+                      <englishName>Rusty blunderbuss</englishName>
+                      <frenchName>Poivrière rouillée</frenchName>
+                      <value>7</value>
+                      <price>17</price>
+                      <weight>8</weight>
+                      <level>1</level>
+                      <spriteID>6</spriteID>
+                      <description>It's just your basic rusty blunderbuss</description>
+                      <weaponType>Distance</weaponType>
+                      <category>Weapon</category>
+                    </equipedWeapon>
+                    <equipedCloth>
+                      <ID>153</ID>
+                      <englishName>Farmer clothing</englishName>
+                      <frenchName>Habit de paysan</frenchName>
+                      <value>11</value>
+                      <price>18</price>
+                      <weight>8</weight>
+                      <level>1</level>
+                      <spriteID>0</spriteID>
+                      <description>It's just your basic farmer clothing</description>
+                      <weaponType>Distance</weaponType>
+                      <category>Clothes</category>
+                    </equipedCloth>
+                    <job>Flibuster</job>
+                    <characterIDS>
+                      <int>10</int>
+                      <int>1</int>
+                      <int>3</int>
+                      <int>5</int>
+                      <int>9</int>
+                      <int>5</int>
+                      <int>4</int>
+                      <int>4</int>
+                      <int>0</int>
+                      <int>0</int>
+                      <int>1</int>
+                      <int>5</int>
+                      <int>7</int>
+                      <int>0</int>
+                      <int>0</int>
+                      <int>1</int>
+                    </characterIDS>
+                  </Member>
+                </MemberIDs>
+              </Crew>
+            </crews>
           </StoryHandler>
         </storyHandlers>
       </storyManager>

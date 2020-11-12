@@ -22,4 +22,9 @@ public class PlayerBoatInfo : BoatInfo {
 //		coords = Coords.Zero;
 
 	}
+
+    public override void SetDirection(Directions dir)
+    {
+        base.SetDirection(dir);
+    }
 }

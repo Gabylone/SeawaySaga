@@ -124,7 +124,7 @@ public class Chunk
 
 	}
 
-	public void Save (Coords c)
+	public void SaveIslandData (Coords c)
 	{
 		string fileName = "chk" + "x" + c.x + "y" + c.y;	
 

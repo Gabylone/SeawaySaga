@@ -40,6 +40,15 @@ public class BodyVisual : MonoBehaviour
             {
                 GetImage(id).enabled = true;
                 GetImage(id).sprite = bodySet.sprites[i];
+
+                if ( id == BodyID.Face)
+                {
+                    Debug.Log("FACE : setting sprite : " + bodySet.sprites[i].name);
+                }
+                else if ( id == BodyID.RightArm)
+                {
+
+                }
             }
             else
             {
@@ -50,8 +59,11 @@ public class BodyVisual : MonoBehaviour
             GetImage(id).rectTransform.SetSiblingIndex(index);
         }
 
-        int faceIndex = faceGroup.GetSiblingIndex() - 1;
-        faceGroup.SetSiblingIndex(faceIndex);
+        // face
+        int faceSiblingIndex = faceGroup.GetSiblingIndex() - 1;
+        faceGroup.SetSiblingIndex(faceSiblingIndex);
+        int faceSpriteIndex = memberID.GetCharacterID(ApparenceType.faceType);
+        GetImage(BodyID.Face).sprite = CrewCreator.Instance.GetApparenceItem(ApparenceType.faceType, faceSpriteIndex).GetSprite();
 
         // skin color
         Color skinColor = IconVisual.GetColor(ApparenceType.skinColor);

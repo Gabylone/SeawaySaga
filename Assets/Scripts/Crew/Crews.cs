@@ -66,7 +66,7 @@ public class Crews : MonoBehaviour {
 
 	}
 
-	void HandleCloseInventory ()
+    void HandleCloseInventory ()
 	{
 		if (StoryLauncher.Instance.PlayingStory) {
 
@@ -161,14 +161,26 @@ public class Crews : MonoBehaviour {
         StoryReader.Instance.NextCell();
 
 		// set decal
-		if (storyCrew.MemberIDs.Count == 0) {
+		if (storyCrew.MemberIDs.Count == 0 ) {
 
 			StoryReader.Instance.SetDecal (1);
 
             Debug.Log("!!! OPENING COMBAT LOOT !!!");
 
-            DialogueManager.Instance.SetDialogueInput("We fought here !*Looks like we forgot to pick some of their stuff...*After the fight...", Crews.playerCrew.captain);
-            DialogueManager.Instance.onEndDialogue += HandleOnEndDialogue;
+            if (storyCrew.hostile)
+            {
+                Loot loot = LootManager.Instance.GetIslandLoot(1, /* fighting loot */ true);
+
+                if (!loot.IsEmpty())
+                {
+                    LootUI.Instance.preventAdvanceStory = true;
+                    DialogueManager.Instance.PlayerSpeak("We fought here !*Looks like we forgot to pick some of their stuff...*After the fight...");
+                    DialogueManager.Instance.onEndDialogue += HandleOnEndDialogue;
+                    return;
+                }
+            }
+
+            StoryReader.Instance.UpdateStory();
 
         } else {
 
@@ -176,7 +188,7 @@ public class Crews : MonoBehaviour {
 
 			if (storyCrew.hostile) {
 				
-				DialogueManager.Instance.SetDialogueTimed ("He's back, on guard !", Crews.enemyCrew.captain);
+				//DialogueManager.Instance.SetDialogueTimed ("He's back, on guard !", Crews.enemyCrew.captain);
 				StoryReader.Instance.SetDecal (2);
 			
 			} else if ( !QuestManager.Instance.metPersonOnIsland ) {
@@ -199,8 +211,6 @@ public class Crews : MonoBehaviour {
 
     void HandleOnEndDialogue()
     {
-        LootUI.Instance.preventAdvanceStory = true;
-        LootUI.Instance.OpenMemberLoot(Crews.playerCrew.captain);
         OtherInventory.Instance.StartLooting(true);
 
         DialogueManager.Instance.onEndDialogue -= HandleOnEndDialogue;
@@ -300,26 +310,39 @@ public class Crews : MonoBehaviour {
 		if (Crews.playerCrew.CrewMembers.Count >= Crews.playerCrew.CurrentMemberCapacity) {
 
 			string phrase = "The boat is too small, I can't even put a foot in it";
-			DialogueManager.Instance.SetDialogueTimed (phrase, Crews.enemyCrew.captain);
+            DialogueManager.Instance.PlayerSpeak(phrase);
 
 		} else {
 
 			CrewMember targetMember = Crews.enemyCrew.captain;
 
 			CrewCreator.Instance.TargetSide = Crews.Side.Player;
-			CrewMember newMember = CrewCreator.Instance.NewMember (targetMember.MemberID);
-			Crews.playerCrew.AddMember (newMember);
+
+            CrewMember newMember = CrewCreator.Instance.NewMember (targetMember.MemberID);
+
+            Crews.playerCrew.AddMember(newMember);
+
+            string title = newMember.MemberName + " joins the crew !";
+
+            string content = "NOMBATEAU now counts a new crew member. Under CAPTAINE's orders, " + newMember.MemberName + " will fight, sail and explore. Keep an eye on the food cellar, though. Another weapon in combat is also another mouth to feed.";
+
+            DisplayCombatResults.Instance.Display(title, content);
+            DisplayCombatResults.Instance.onConfirm += HandleOnConfirm;
+
 			Crews.enemyCrew.RemoveMember (targetMember);
 
 			newMember.Icon.MoveToPoint (Crews.PlacingType.Portraits);
 
 		}
 
-		StoryReader.Instance.Wait (0.8f);
-
 	}
-	
-	public void RemoveMemberFromCrew () {
+
+    void HandleOnConfirm()
+    {
+        StoryReader.Instance.ContinueStory();
+    }
+
+    public void RemoveMemberFromCrew () {
 		int removeIndex = Random.Range (0,Crews.playerCrew.CrewMembers.Count);
 		CrewMember memberToRemove = Crews.playerCrew.CrewMembers [removeIndex];
 

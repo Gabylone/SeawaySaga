@@ -14,6 +14,7 @@ public class WeightManager : MonoBehaviour {
 	private Image weightImage;
 	[SerializeField]
 	private Text currentWeightText;
+    public Color text_InitColor;
     [SerializeField]
     private Text weightCapacityText;
 
@@ -28,11 +29,14 @@ public class WeightManager : MonoBehaviour {
 	[SerializeField] 
 	private AudioClip noRoomSound;
 
-	void Awake () {
-		Instance = this;
+    void Awake()
+    {
+        Instance = this;
 
         onTooMuchWeight = null;
-	}
+
+        text_InitColor = currentWeightText.color;
+    }
 
 	public void Init () {
 //
@@ -73,7 +77,7 @@ public class WeightManager : MonoBehaviour {
         }
 
         weightImage.color = Color.white;
-        currentWeightText.color = Color.black;
+        currentWeightText.color = text_InitColor;
 
         return true;
 
@@ -90,7 +94,7 @@ public class WeightManager : MonoBehaviour {
 	#region feedback
 	public void HideFeedback () {
         weightImage.color = Color.white;
-        currentWeightText.color = Color.black;
+        currentWeightText.color = text_InitColor;
     }
 	#endregion
 

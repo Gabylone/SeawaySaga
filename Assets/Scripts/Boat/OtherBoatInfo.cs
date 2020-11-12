@@ -31,30 +31,20 @@ public class OtherBoatInfo : BoatInfo {
 
         color = Random.ColorHSV();
 
-		currentDirection = (Directions)Random.Range (0,8);
+		SetDirection((Directions)Random.Range(0, 8));
 
 		// assign story
 		storyManager = new StoryManager ();
 		storyManager.InitHandler (StoryType.Boat);
 	}
 
-	public override void UpdatePosition ()
+	public override void TryMoveOnMap ()
 	{
-		base.UpdatePosition ();
+		base.TryMoveOnMap ();
 
 		if ( Random.value < 0.4f ) {
 			MoveToOtherChunk ();
 		}
-	}
-
-	public void HandleChunkEvent ()
-	{
-        if ( NavigationManager.Instance.chunksTravelled < 2)
-        {
-            return;
-        }
-
-        UpdatePosition ();
 	}
 
 	public void MoveToOtherChunk ()
@@ -96,11 +86,7 @@ public class OtherBoatInfo : BoatInfo {
 
 	private void SwitchDirection () {
 
-		currentDirection = NavigationManager.GetOppositeDirection (currentDirection);
+        SetDirection(NavigationManager.GetOppositeDirection(currentDirection));
 
-	}
-
-	void OnDestroy() {
-		NavigationManager.Instance.EnterNewChunk -= HandleChunkEvent;
 	}
 }

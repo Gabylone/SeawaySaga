@@ -287,12 +287,13 @@ public class Fighter : MonoBehaviour {
 
     public void Fade()
     {
-
         ChangeState(states.none);
 
         canvasGroup.DOFade(0f, 0.5f);
-
         ui_Group.SetActive(false);
+
+        CancelInvoke("Hide");
+        Invoke("Hide", 0.5f);
     }
 
 	void Show () {

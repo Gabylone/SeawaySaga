@@ -2,8 +2,13 @@ Nom histoire;Fréquence %;Sprite ID;Display Name;;;;;;;
 Manoir;5,08;1;Manor;;;;;;;
 [debut];;;;;;;;;;
 Narrator : In the middle of an immense field stands an old mansion. It’s in a very poor state and looks abandoned.;;;;;;;;;;
-CheckQuest=>choix porte;;;;;;;;;;
+SetChoices2;;;;;;;;;;
+Choice : Let’s bail (leave);Choice : (approach the house);;;;;;;;;
+Leave;Node=>choix porte;;;;;;;;;
+;;;;;;;;;;
 [choix porte];;;;;;;;;;
+SetBG(Forest);;;;;;;;;;
+CheckQuest=>choix porte;;;;;;;;;;
 SetChoices3;;;;;;;[toquer];;;
 Choice : (leave);Choice : (open mansion door);Choice : (knock on the door);;;;;RandomRange3;;;
 Leave;Fade;Node=>toquer;;;;;Narrator : …;;Narrator : You knock at the door, and a old, chalky, dusty voice starts sounding, behind the wooden door :;Narrator : Nobody answers

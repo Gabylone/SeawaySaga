@@ -56,11 +56,15 @@ public class StoryLauncher : MonoBehaviour {
         if (playingStory)
             return;
 
+        InGameMenu.Instance.HideMenuButtons();
+
         CurrentStorySource = source;
 
         StoryReader.Instance.CurrentStoryManager = storyManager;
         StoryReader.Instance.CurrentStoryManager.hasBeenPlayed = true;
         StoryReader.Instance.Reset();
+
+        WorldTouch.Instance.Lock();
 
         CamBehavior.Instance.Zoom();
 
@@ -83,6 +87,8 @@ public class StoryLauncher : MonoBehaviour {
 
     void StartStory()
     {
+        InGameMenu.Instance.ShowMenuButtons();
+
         QuestManager.Instance.metPersonOnIsland = false;
 
         InGameBackGround.Instance.ShowBackground();
@@ -126,7 +132,7 @@ public class StoryLauncher : MonoBehaviour {
             return;
         }
 
-        Chunk.currentChunk.Save(Coords.current);
+        Chunk.currentChunk.SaveIslandData(Coords.current);
 
         Invoke("EndStoryDelay", 0.5f);
 
@@ -152,6 +158,9 @@ public class StoryLauncher : MonoBehaviour {
 
         InGameBackGround.Instance.Hide();
 
+        CamBehavior.Instance.UnZoom();
+
+        WorldTouch.Instance.Unlock();
 
         if (onEndStory != null)
             onEndStory();

@@ -21,7 +21,7 @@ public class NavigationTrigger : MonoBehaviour {
         _boxCollider = GetComponent<BoxCollider>();
         _transform = GetComponent<Transform>();
 
-        NavigationManager.Instance.EnterNewChunk += HandleChunkEvent;
+        NavigationManager.Instance.onUpdateCurrentChunk += HandleOnUpdateCurrentChunk;
 
         WorldTouch.onPointerDown += HandleOnTouchWorld;
 
@@ -36,7 +36,7 @@ public class NavigationTrigger : MonoBehaviour {
         Deselect();
     }
 
-	void HandleChunkEvent ()
+	void HandleOnUpdateCurrentChunk ()
 	{
         Coords targetCoords = Boats.Instance.playerBoatInfo.coords + NavigationManager.Instance.getNewCoords(direction);
 

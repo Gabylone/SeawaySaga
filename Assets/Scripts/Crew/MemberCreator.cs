@@ -20,10 +20,8 @@ public class MemberCreator : MonoBehaviour {
 
 	public CreationStep currentStep;
 
-	public GameObject confirmButtonObj;
-    //public GameObject previousButtonObj;
-
     public MemberCreation_NextStepArrow nextStepArrow;
+    public MemberCreation_PreviousStepArrow previousStepArrow;
 
     public Transform iconTargetParent;
     public Transform iconInitParent;
@@ -33,8 +31,7 @@ public class MemberCreator : MonoBehaviour {
 
 	public Color initColor;
 
-    public string[] boat_Names;
-    public string[] boat_Adjectives;
+    public string[] apparenceType_Names;
 
 	public GameObject[] stepObjs;
 	public GameObject GetStep ( CreationStep step ) {
@@ -45,12 +42,6 @@ public class MemberCreator : MonoBehaviour {
 
 	public Sprite femaleSprite;
 	public Sprite maleSprite;
-
-	[SerializeField]
-	InputField captainName;
-
-	[SerializeField]
-	InputField boatName;
 
 	public GameObject memberCreatorButtonParent;
 	public MemberCreatorButton[] memberCreatorButtons;
@@ -86,7 +77,7 @@ public class MemberCreator : MonoBehaviour {
     
 	public void ShowStep ( CreationStep step ) {
 
-        //previousButtonObj.SetActive(false);
+        previousStepArrow.Hide();
 
         // TWEEN NEXT STEP
         GetStep(step).SetActive (true);
@@ -102,11 +93,11 @@ public class MemberCreator : MonoBehaviour {
 
         if ( currentStep == 0)
         {
-            //previousButtonObj.SetActive(false);
+            previousStepArrow.HideDelay();
         }
         else
         {
-            //previousButtonObj.SetActive(true);
+            previousStepArrow.Show();
         }
 
         nextStepArrow.Show();
@@ -118,7 +109,7 @@ public class MemberCreator : MonoBehaviour {
 
         if (currentStep > CreationStep.CaptainName)
         {
-            GetStep(currentStep - 1).SetActive(false);
+            HideStep(currentStep - 1);
         }
 
         ShowStep(currentStep);
@@ -131,8 +122,6 @@ public class MemberCreator : MonoBehaviour {
         --currentStep;
 
         HideStep(currentStep + 1);
-        GetStep(currentStep + 1).SetActive(false);
-
         ShowStep(currentStep);
     }
 
@@ -148,27 +137,9 @@ public class MemberCreator : MonoBehaviour {
 
 		ShowStep(currentStep);
 
-        SetRandomBoatName();
-
-        Crews.playerCrew.captain.MemberID.Name = "The Captain";
-		captainName.text = Crews.playerCrew.captain.MemberID.Name;
-
         iconInitParent = CrewCreator.Instance.crewParent_Player;
         Crews.playerCrew.captain.Icon.transform.SetParent(iconTargetParent);
         Crews.playerCrew.captain.Icon.transform.localScale = Vector3.one;
-    }
-
-    public void SetRandomBoatName()
-    {
-        string boat_name = CrewCreator.Instance.boatNames[Random.Range(0, CrewCreator.Instance.boatNames.Length)];
-        string boat_adjective = CrewCreator.Instance.boatAdjectives[Random.Range(0, CrewCreator.Instance.boatAdjectives.Length)];
-        string boat_fulName = "The " + boat_adjective + " " + boat_name;
-
-        Boats.Instance.playerBoatInfo.Name = boat_fulName;
-        boatName.text = boat_fulName;
-
-        SoundManager.Instance.PlayRandomSound("click_med");
-
     }
 
     public void Confirm () {
@@ -192,9 +163,10 @@ public class MemberCreator : MonoBehaviour {
 
     void EndMemberCreation () {
 
-        HideStep(CreationStep.Appearance);
+        HideStep(CreationStep.Job);
 
-		//previousButtonObj.SetActive (false);
+        previousStepArrow.Hide();
+        nextStepArrow.Hide();
 
         Transitions.Instance.ScreenTransition.FadeIn(tweenDuration);
 
@@ -205,6 +177,12 @@ public class MemberCreator : MonoBehaviour {
     {
         Crews.playerCrew.captain.Icon.transform.SetParent(iconInitParent);
         Crews.playerCrew.captain.Icon.MoveToPoint(Crews.PlacingType.Portraits);
+
+        // pour régler un bug avec les skills là j'en peux plus c'est un fix sale
+        foreach (var crewMember in Crews.playerCrew.CrewMembers)
+        {
+            crewMember.ResetSkills();
+        }
 
         Invoke("EndMemberCreationDelay2", tweenDuration);
     }
@@ -223,41 +201,9 @@ public class MemberCreator : MonoBehaviour {
         IslandManager.Instance.islands[0].Enter();
 	}
 
-	public void ChangeBoatName () {
-
-		Tween.Bounce ( boatName.transform , 0.2f , 1.05f);
-
-        if (boatName.text.StartsWith("The "))
-        {
-
-        }
-        else
-        {
-            boatName.text = "The " + boatName.text;
-        }
-
-		Boats.Instance.playerBoatInfo.Name = boatName.text;
-
-            SoundManager.Instance.PlaySound("click_med 03");
-    }
-
-	public void ChangeCaptainName () {
-
-		Tween.Bounce ( captainName.transform , 0.2f , 1.05f);
-
-		Crews.playerCrew.captain.MemberID.Name = captainName.text;
-
-            SoundManager.Instance.PlaySound("click_med 03");
-
-    }
-
     public void ChangeApparence ( ApparenceType apparence , int id) {
-
-
         Crews.playerCrew.captain.Icon.InitVisual (Crews.playerCrew.captain.MemberID);
-
-            SoundManager.Instance.PlaySound("click_med 01");
-
+        SoundManager.Instance.PlaySound("click_med 01");
     }
 
     public void UpdateDescriptionText(int i)

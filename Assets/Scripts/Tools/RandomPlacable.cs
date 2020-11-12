@@ -24,7 +24,7 @@ public class RandomPlacable : MonoBehaviour
     {
         _transform = GetComponent<Transform>();
 
-        NavigationManager.Instance.EnterNewChunk += HandleOnEnterNewChunk;
+        NavigationManager.Instance.onUpdateCurrentChunk += HandleOnUpdateCurrentChunk;
 
         CombatManager.Instance.onFightStart += Lock;
         CombatManager.Instance.onFightEnd += Unlock;
@@ -40,7 +40,7 @@ public class RandomPlacable : MonoBehaviour
         locked = false;
     }
 
-    public virtual void HandleOnEnterNewChunk()
+    public virtual void HandleOnUpdateCurrentChunk()
     {
         canTrigger = true;
     }

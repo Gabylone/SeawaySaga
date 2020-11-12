@@ -50,8 +50,6 @@ public class DisplaySurroundingHexes : MonoBehaviour {
 		hexHeight = hexPrefab.GetComponent<Image> ().rectTransform.rect.height;
 
 		UpdateBoatSurrounding ();
-
-		NavigationManager.Instance.EnterNewChunk += UpdateBoatSurrounding;
 	}
 
 	void Clear ()

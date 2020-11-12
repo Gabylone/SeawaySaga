@@ -1,26 +1,26 @@
 ;nom;;;;;description
 ;fr;en;Cost;Charge;Prop.;Actif
-Default;Attack;Attack;5;0;2;Classic Strike. Does Melee Damage, according to the crew member’s Force and Weapon Value.
-;Shoot;Shoot;5;0;2;The Strike does distance damage, according to the crew member’s Dexterity and Weapon Value.
-;Flee;Flee;3;0;2;The Member rolls a die. If the roll contains a 6, the member runs away.
-;Skip Turn;Skip Turn;0;0;0;Ends the member’s turn.
-Brute;Cosh;Cosh;7;3;2;The Brute knocks the target for 1 turn ( necesits a melee weapon )
-;Wallop;Wallop;7;4;3;The Brute does half damage to each member of the enemy crew.
-;Leap;Leap;6;3;2;The Brute prepares itself for a turn. Then strikes the target, inflicting 3 times his normal damage.
-;Fury;Fury;10;6;3;During 2 turns, The Brute gains twice the energy.
+Default;Attack;Attack;5;0;2;With a melee weapon, according to the crew member’s Force and Weapon Value
+;Shoot;Shoot;5;0;2;With a distance weapon, according to the crew member’s Dexterity and Weapon Value
+;Flee;Flee;3;0;2;Roll some dice. Succeed : Runaway, Fail : Nothing happens, Critical : Knock Out
+;Skip Turn;Skip Turn;0;0;0;Ends the member’s turn
+Brute;Cosh;Cosh;7;3;2;With a Melee Weapon, the Brute knocks the target for 1 turn
+;Wallop;Wallop;7;4;3;With a Melee Weapon, the Brute does half its damage to each enemy member
+;Leap;Leap;6;3;2;The Brute waits for 1 turn, inflicting 3 times his normal damage
+;Fury;Fury;10;6;3;During 2 turns, The Brute gains full energy
 Chirurgien;Bistoury Blow;Bistoury Blow;7;3;3;The Doctor heals 30 damage to the target
-;Jag;Jag;4;3;2;The Doctor heals 10 damage to the target during 3 turns.
-;Rat Poison;Rat Poison;3;4;2;The Doctor deals 10 damage to the target during 3 turns.
-;Rhum Round;Rhum Round;9;5;4;The Doctor heals 25 damage to each member of its crew.
-Cuistot;Helpmate;Helpmate;3;2;2;The target is protected. Its damage is halved during 3 turns.
-;Edgy Goading;Edgy Goading;3;2;2;The Cook provoques the enemy crew. For 3 turns, each attack is directed to the Cooks target.
-;Toast Up;Toast Up;3;2;2;The damage the target inflicts are doubled for 3 turns.
-;Pledge of feast;Pledge of feast;10;3;2;The Cook fills the crew’s energy points.
-Flibustier;Headshot;Headshot;6;3;2;The Filibuster waits for 1 turn, then inflicts 3 times his normal damage. ( necessits distance weapon )
-;Grape Shot;Grape Shot;7;4;3;The Filibuster inflicts the third of its domage to 4 random targets.
-;Bear Trap;Bear Trap;3;2;2;The Filibuster’s does 30 damage to its next attacker.
-;Dynamite;Dynamite;8;4;3;The Filibuster does 20 damage to the entire enemy crew.
-Joueur;Heads or Tails;Heads or Tails;3;1;2;The Crook throws a coin. Heads, the Crook does twice its domage. Tails, The Crook misses it’s blow.
-;Robbery;Robbery;4;1;2;With skillful fingers, The Crook steals 50 gold coins to its target.
-;Cuss;Cuss;3;1;2;"The Crook makes the target cry. Its damages are halved, and  it cancels the Toated Effect
-;Double Talk;Double Talk;10;5;3;The Crook rolls dices. If the roll contains a 6, the whole crew runs away
+;Jag;Jag;4;3;2;The target gets 10 health points at the beginning of every turn, for 3 turns
+;Rat Poison;Rat Poison;3;4;2;The target loses 10 health points, for 3 turns
+;Rhum Round;Rhum Round;9;5;4;The Doctor heals 25 damage to each member of its crew
+Cuistot;Helpmate;Helpmate;3;2;2;The target is protected. Its damage is halved for 2 turns
+;Edgy Goading;Edgy Goading;3;2;2;The next 3 attacks are directed to the Cooks target
+;Toast Up;Toast Up;3;2;2;The target's damage are doubled for 3 turns
+;Pledge of feast;Pledge of feast;10;3;2;The Cook fills the crew’s energy points
+Filibuster;Headshot;Headshot;6;3;2;The Filibuster waits for 1 turn, inflicting 3 times his normal damage
+;Grape Shot;Grape Shot;7;4;3;The Filibuster inflicts the third of its damage to 4 random targets
+;Bear Trap;Bear Trap;3;2;2;The Filibuster’s does 30 damage to its next attacker
+;Dynamite;Dynamite;8;4;3;The Filibuster does 20 damage to the entire enemy crew
+Joueur;Heads or Tails;Heads or Tails;3;1;2;The Crook throws a coin. Heads: Double Damage, Tails: Miss
+;Robbery;Robbery;4;1;2;With skillful fingers, The Crook steals some gold coins to its target
+;Cuss;Cuss;3;1;2;The Crook makes the target cry. Its damages are halved, and it cancels the Toated Effect
+;Double Talk;Double Talk;10;5;3;Roll some dice. Succeed : All the Crew runs away, Fail : Nothing happens

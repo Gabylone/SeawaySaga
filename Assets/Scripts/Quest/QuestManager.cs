@@ -202,8 +202,7 @@ public class QuestManager : MonoBehaviour {
 			phrase = "I'll never thank you enough for helping me";
 		}
 
-		DialogueManager.Instance.SetDialogueInput (phrase, Crews.enemyCrew.captain);
-        DialogueManager.Instance.onEndDialogue += HandleOnEndDialogue;
+        DialogueManager.Instance.OtherSpeak(phrase);
 
         //Invoke("HandleCompletedQuest_Delay", DialogueManager.Instance.DisplayTime);
 	}

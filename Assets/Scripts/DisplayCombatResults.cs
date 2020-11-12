@@ -31,6 +31,10 @@ public class DisplayCombatResults : Displayable
 
     public void Display(string title, string content)
     {
+
+        title = NameGeneration.CheckForKeyWords(title);
+        content = NameGeneration.CheckForKeyWords(content);
+
         Show();
 
         fightResults_Group.SetActive(false);

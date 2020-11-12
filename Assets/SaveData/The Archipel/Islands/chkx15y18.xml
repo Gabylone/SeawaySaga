@@ -1,0 +1,229 @@
+<?xml version="1.0"?>
+<Chunk xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <state>VisitedIsland</state>
+  <coords>
+    <x>15</x>
+    <y>18</y>
+  </coords>
+  <islandDatas>
+    <IslandData>
+      <worldPosition>
+        <x>-13.5350122</x>
+        <y>-0.009614944</y>
+      </worldPosition>
+      <worldRotation>120.639778</worldRotation>
+      <index>0</index>
+      <coords>
+        <x>15</x>
+        <y>18</y>
+      </coords>
+      <containsFormula>false</containsFormula>
+      <storyManager>
+        <hasBeenPlayed>true</hasBeenPlayed>
+        <storyHandlers>
+          <StoryHandler>
+            <row>0</row>
+            <col>0</col>
+            <fallBackLayer>0</fallBackLayer>
+            <storyID>7</storyID>
+            <storyType>Normal</storyType>
+            <contentDecals>
+              <contentDecal>
+                <row>0</row>
+                <col>2</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>0</row>
+                <col>16</col>
+                <decal>0</decal>
+              </contentDecal>
+            </contentDecals>
+            <loots />
+            <crews />
+          </StoryHandler>
+        </storyHandlers>
+      </storyManager>
+    </IslandData>
+    <IslandData>
+      <worldPosition>
+        <x>6.075277</x>
+        <y>15.9915876</y>
+      </worldPosition>
+      <worldRotation>210.554031</worldRotation>
+      <index>1</index>
+      <coords>
+        <x>15</x>
+        <y>18</y>
+      </coords>
+      <containsFormula>false</containsFormula>
+      <storyManager>
+        <hasBeenPlayed>true</hasBeenPlayed>
+        <storyHandlers>
+          <StoryHandler>
+            <row>0</row>
+            <col>0</col>
+            <fallBackLayer>0</fallBackLayer>
+            <storyID>7</storyID>
+            <storyType>Normal</storyType>
+            <contentDecals>
+              <contentDecal>
+                <row>0</row>
+                <col>2</col>
+                <decal>0</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>0</row>
+                <col>16</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>0</row>
+                <col>50</col>
+                <decal>0</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>0</row>
+                <col>66</col>
+                <decal>3</decal>
+              </contentDecal>
+            </contentDecals>
+            <loots>
+              <Loot>
+                <row>3</row>
+                <col>68</col>
+                <ids>
+                  <ArrayOfInt />
+                  <ArrayOfInt />
+                  <ArrayOfInt>
+                    <int>152</int>
+                  </ArrayOfInt>
+                  <ArrayOfInt />
+                </ids>
+                <weight>8</weight>
+                <AllItems>
+                  <ArrayOfItem />
+                  <ArrayOfItem />
+                  <ArrayOfItem>
+                    <Item>
+                      <ID>152</ID>
+                      <englishName>Linnen gown</englishName>
+                      <frenchName>Toge en tissu</frenchName>
+                      <value>7</value>
+                      <price>11</price>
+                      <weight>8</weight>
+                      <level>1</level>
+                      <spriteID>0</spriteID>
+                      <description>It's just your basic linnen gown</description>
+                      <weaponType>Distance</weaponType>
+                      <category>Clothes</category>
+                    </Item>
+                  </ArrayOfItem>
+                  <ArrayOfItem />
+                </AllItems>
+              </Loot>
+            </loots>
+            <crews />
+          </StoryHandler>
+        </storyHandlers>
+      </storyManager>
+    </IslandData>
+    <IslandData>
+      <worldPosition>
+        <x>17.1908035</x>
+        <y>-0.195959091</y>
+      </worldPosition>
+      <worldRotation>14.0773487</worldRotation>
+      <index>2</index>
+      <coords>
+        <x>15</x>
+        <y>18</y>
+      </coords>
+      <containsFormula>false</containsFormula>
+      <storyManager>
+        <hasBeenPlayed>true</hasBeenPlayed>
+        <storyHandlers>
+          <StoryHandler>
+            <row>0</row>
+            <col>0</col>
+            <fallBackLayer>0</fallBackLayer>
+            <storyID>7</storyID>
+            <storyType>Normal</storyType>
+            <contentDecals>
+              <contentDecal>
+                <row>0</row>
+                <col>2</col>
+                <decal>0</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>0</row>
+                <col>16</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>0</row>
+                <col>50</col>
+                <decal>0</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>0</row>
+                <col>66</col>
+                <decal>3</decal>
+              </contentDecal>
+            </contentDecals>
+            <loots>
+              <Loot>
+                <row>3</row>
+                <col>68</col>
+                <ids>
+                  <ArrayOfInt />
+                  <ArrayOfInt />
+                  <ArrayOfInt>
+                    <int>153</int>
+                    <int>153</int>
+                  </ArrayOfInt>
+                  <ArrayOfInt />
+                </ids>
+                <weight>16</weight>
+                <AllItems>
+                  <ArrayOfItem />
+                  <ArrayOfItem />
+                  <ArrayOfItem>
+                    <Item>
+                      <ID>153</ID>
+                      <englishName>Farmer clothing</englishName>
+                      <frenchName>Habit de paysan</frenchName>
+                      <value>11</value>
+                      <price>23</price>
+                      <weight>8</weight>
+                      <level>1</level>
+                      <spriteID>0</spriteID>
+                      <description>It's just your basic farmer clothing</description>
+                      <weaponType>Distance</weaponType>
+                      <category>Clothes</category>
+                    </Item>
+                    <Item>
+                      <ID>153</ID>
+                      <englishName>Farmer clothing</englishName>
+                      <frenchName>Habit de paysan</frenchName>
+                      <value>11</value>
+                      <price>23</price>
+                      <weight>8</weight>
+                      <level>1</level>
+                      <spriteID>0</spriteID>
+                      <description>It's just your basic farmer clothing</description>
+                      <weaponType>Distance</weaponType>
+                      <category>Clothes</category>
+                    </Item>
+                  </ArrayOfItem>
+                  <ArrayOfItem />
+                </AllItems>
+              </Loot>
+            </loots>
+            <crews />
+          </StoryHandler>
+        </storyHandlers>
+      </storyManager>
+    </IslandData>
+  </islandDatas>
+</Chunk>

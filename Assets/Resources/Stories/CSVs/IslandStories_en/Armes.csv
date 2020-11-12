@@ -1,13 +1,13 @@
 Nom histoire;Fréquence %;Sprite ID;Display Name;;;;;;;;;;
 Armes;1,69;1;Weapon Shop;;;;;;;;;;
 Narrator : The island is made of small hills surrounded by rocky cliffs.;;;;;;;;;;;;;
-CheckQuest=>debut;;;;;;;;;;;;;
 [debut];;;;;;;;;;;;;
 Narrator : A sign pointing to a path reads : « Weapons of all kinds »;;;;;;;;;;;;;
 SetChoices2;;;;;;;;;;;;;
 Choice : (leave);Choice : (follow sign);;;;;;;;;;;;
-Leave;Fade;;;;;;;;;;;;
+Leave;CheckQuest=>marchand;;;;;;;;;;;;
 ;Node=>marchand;;;;;;;;;;;;
+;;;;;;;;;;;;;
 ;;;;;;;;;;;;;
 ;;;;;;;;;;;;;
 ;;;;;;;;;;;;;

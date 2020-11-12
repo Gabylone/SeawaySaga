@@ -79,7 +79,7 @@ public class MapGenerator : MonoBehaviour {
         string str_adj = CrewCreator.Instance.boatAdjectives[Random.Range(0, CrewCreator.Instance.boatAdjectives.Length)];
         string fullName = str_adj + " " + str_name;
 
-        treasureName = "The " + fullName + "s";
+        treasureName = "The " + fullName;
 
         LoadMapFromFile();
 
@@ -229,7 +229,7 @@ public class MapGenerator : MonoBehaviour {
 
         yield return new WaitForEndOfFrame();
 
-        SaveManager.Instance.SaveAllIslands();
+        SaveManager.Instance.CreateFirstSave();
 
     }
 

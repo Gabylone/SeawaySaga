@@ -100,7 +100,7 @@ public class Skill_HeadsOrTail : Skill {
 
             SoundManager.Instance.PlaySound("ui_deny");
 
-            fighter.combatFeedback.Display ("MIss !", Color.red);
+            fighter.combatFeedback.Display ("Miss !", Color.red);
 		}
 
 		EndSkill ();

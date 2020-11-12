@@ -11,10 +11,7 @@ public class CharacterMenuButton : MonoBehaviour {
 
 	public Text jobText;
 
-	/*public GameObject skillPointsGroup;
-	public Text skillPointsText;*/
-
-	public GameObject group;
+    public Animator animator;
 
     private void Awake()
     {
@@ -23,47 +20,49 @@ public class CharacterMenuButton : MonoBehaviour {
 
     void Start()
     {
-        InGameMenu.Instance.onOpenMenu += HandleOpenInventory;
-        SkillMenu.Instance.onHideSkillMenu += UpdateUI;
+        animator = GetComponent<Animator>();
 
+        InGameMenu.Instance.onOpenMenu += HandleOpenInventory;
+    }
+
+    private void OnEnable()
+    {
         UpdateUI();
     }
 
-	void HandleOpenInventory ()
+    void HandleOpenInventory ()
 	{
 		UpdateUI ();
 	}
 
+    public void OnPointerClick()
+    {
+        SkillMenu.Instance.Show();
+    }
+
 	public void UpdateUI ()
 	{
 		if (CrewMember.GetSelectedMember == null)
-			return;
+        {
+            return;
+        }
 
-		CrewMember member = CrewMember.GetSelectedMember;
+        CrewMember member = CrewMember.GetSelectedMember;
 
-		if (SkillManager.jobSprites.Length <= (int)member.job)
-			print ("skill l : " + SkillManager.jobSprites.Length + " / member job " + (int)member.job);
+        jobImage.sprite = SkillManager.jobSprites [(int)member.job];
 
-		jobImage.sprite = SkillManager.jobSprites [(int)member.job];
-
-		Tween.Bounce (jobImage.transform);
-
-		//UpdateSkillPoints ();
+		UpdateSkillPoints ();
 	}
 
-	/*void UpdateSkillPoints ()
+	void UpdateSkillPoints ()
 	{
-		if (CrewMember.GetSelectedMember.SkillPoints > 0) {
-
-			skillPointsGroup.SetActive (true);
-
-			skillPointsText.text = CrewMember.GetSelectedMember.SkillPoints.ToString ();
-
-			Tween.Bounce (skillPointsGroup.transform);
-
-		} else {
-			skillPointsGroup.SetActive (false);
-			//
-		}
-	}*/
+        if (CrewMember.GetSelectedMember.SkillPoints > 0)
+        {
+            animator.SetBool("hasSkills", true);
+        }
+        else
+        {
+            animator.SetBool("hasSkills", false);
+        }
+    }
 }

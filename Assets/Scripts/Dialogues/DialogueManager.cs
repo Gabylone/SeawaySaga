@@ -137,7 +137,11 @@ public class DialogueManager : MonoBehaviour {
     }
     public void HandleOnEndDialogue()
     {
-        StoryReader.Instance.ContinueStory();
+        if (!LootUI.Instance.preventAdvanceStory)
+        {
+            StoryReader.Instance.ContinueStory();
+        }
+
         onEndDialogue -= HandleOnEndDialogue;
     }
     #endregion

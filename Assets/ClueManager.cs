@@ -100,6 +100,8 @@ public class ClueManager : MonoBehaviour
             }
             else
             {
+                str = str.Replace("*", " ");
+
                 if ( alreadyKnown)
                 {
                     str += ">>. But CAPITAINE clearly already knew about it... He also had the feeling he knew enough about the treasure to just go and follow the leads he pick up here and there...";
@@ -116,7 +118,7 @@ public class ClueManager : MonoBehaviour
         {
             if ( alreadyKnown)
             {
-                str += "/But you clearly already know this/And it seems you know everything about the treasure, too.../So you just go find follow the leads people gave you...";
+                str += "*But you clearly already know this*And it seems you know everything about the treasure, too...*So you just go find follow the leads people gave you...";
             }
 
             DialogueManager.Instance.OtherSpeak(str);

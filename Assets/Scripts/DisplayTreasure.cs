@@ -30,8 +30,6 @@ public class DisplayTreasure : MonoBehaviour {
 
     public Transform pearlDestination;
 
-    public DisplayPearls displayPearls;
-
 	// Use this for initialization
 	void Start () {
         StoryFunctions.Instance.getFunction += HandleOnGetFunction;
@@ -118,18 +116,26 @@ public class DisplayTreasure : MonoBehaviour {
         if (MapGenerator.mapParameters.id == 3)
         {
             MessageDisplay.Instance.Show("Well done ! You finished the game");
+            MessageDisplay.Instance.HideCancelButton();
+
         }
         else
         {
             if (CrewCreator.Instance.GetApparenceItem(ApparenceType.map, MapGenerator.mapParameters.id + 1).locked)
             {
                 CrewCreator.Instance.GetApparenceItem(ApparenceType.map, MapGenerator.mapParameters.id).finished = true;
+
+                PlayerInfo.Instance.AddApparenceItem(CrewCreator.Instance.GetApparenceItem(ApparenceType.map, MapGenerator.mapParameters.id));
                 PlayerInfo.Instance.AddApparenceItem(CrewCreator.Instance.GetApparenceItem(ApparenceType.map, MapGenerator.mapParameters.id + 1));
+
                 MessageDisplay.Instance.Show("You unlocked the next story !");
+                MessageDisplay.Instance.HideCancelButton();
+
             }
             else
             {
                 MessageDisplay.Instance.Show("The next story is already unlocked");
+                MessageDisplay.Instance.HideCancelButton();
             }
 
         }

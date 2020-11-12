@@ -1,13 +1,14 @@
 Nom;Fréquence / 5;Sprite ID;Display Name;;
 Maison;1;1;Captain’s House;;
-[premiere visite];;;[chambre];;
-Narrator : Nobody knows what mysteries are hiding north of the ocean, behind the sea of NOMTRESOR. Today, CAPITAINE finally decides to go and find out, aboard the NOMBATEAU.;Node=>retour;;Narrator : CAPITAINE are in their childhood bedroom. Next to their bed, the desk is covered with drawings, books and tales about the ocean.;;
-Narrator : It’s been told that the fool venturing in this long and dangerous journey, will find a whole different world, as well as the famous NOMTRESOR.; ;;[choix chambre];;
-SetChoices2;;;SetChoices3;;
-Choice : (set sail);Choice : (enter the house);;Choice : (go back to the living room) (leave);Choice : (sleep until NEXTTIME) (sleep);Choice : (desk) (quest)
-PlayerSpeak : Let’s go !;Fade;;Fade;ChangeTimeOfDay;Narrator : The most worn down book talks about the waters surrounding this island :
-Switch=>premiere visite;Node=>salon;;Node=>salon;Node=>salon;Narrator : It says that those who left seeking to unveil the mysteries beyond the sea of NOMTRESOR, and to find its treasure, never came back.
-Leave;;;;;Narrator : Nobody knows how far one should travel to find life out there. But there are rumors about desert islands, bandits and castaways.
+[premiere visite];;;;;
+Narrator : Nobody knows what mysteries are hiding north of the ocean, behind the sea of NOMTRESOR. Today, CAPITAINE finally decides to go and find out, aboard their boat, NOMBATEAU.;Node=>retour;;[chambre];;
+Narrator : It’s been told that the fool venturing in this long and dangerous journey, will find a whole different world, as well as the famous NOMTRESOR.; ;;Narrator : CAPITAINE are in their childhood bedroom. Next to their bed, the desk is covered with drawings, books and tales about the ocean.;;
+SetChoices2;;;[choix chambre];;
+Choice : (set sail);Choice : (enter the house);;SetChoices3;;
+PlayerSpeak : Let’s go !;Fade;;Choice : (go back to the living room) (leave);Choice : (sleep until NEXTTIME) (sleep);Choice : (desk) (quest)
+Switch=>premiere visite;Node=>salon;;Fade;ChangeTimeOfDay;Narrator : The most worn down book talks about the waters surrounding this island :
+Leave;;;Node=>salon;Node=>salon;Narrator : It says that those who left seeking to unveil the mysteries beyond the sea of NOMTRESOR, and to find its treasure, never came back.
+;;;;;Narrator : Nobody knows how far one should travel to find life out there. But there are rumors about desert islands, bandits and castaways.
 ;;;;;Narrator : There is also the legend of a farm, far to the west. But nobody believes this story.
 ;;;;;Node=>choix chambre
 ;;;;;

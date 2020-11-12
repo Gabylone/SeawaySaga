@@ -10,12 +10,7 @@ public class PlayerIcons : MonoBehaviour {
 
     public static PlayerIcons Instance;
 
-    public Image[] images;
-    public GameObject[] deleteMember_Objs;
-
-    public CanvasGroup canvasGroup;
-
-    public float fadeDuration = 0.5f;
+    public MemberSocket[] memberSockets;
 
     private void Awake()
     {
@@ -25,77 +20,53 @@ public class PlayerIcons : MonoBehaviour {
     // Use this for initialization
     void Start () {
 
-		Crews.playerCrew.onChangeCrewMembers += HandleOnChangeCrewMembers;
+        memberSockets = GetComponentsInChildren<MemberSocket>();
 
-        InGameMenu.Instance.onOpenMenu += HandleOpenInventory;
-		InGameMenu.Instance.onCloseMenu += HandleOnCloseInventory;
-
-        HandleOnChangeCrewMembers();
-
-        canvasGroup.alpha = 0f;
-	}
-
-    public void FadeIn()
-    {
-        canvasGroup.alpha = 0f;
-        canvasGroup.DOFade(1f, fadeDuration);
-    }
-
-    public void FadeOut()
-    {
-        canvasGroup.DOFade(0f, fadeDuration);
-    }
-
-    public Image GetImage ( int id)
-    {
-        return images[id];
-    }
-
-    private void HandleOnCloseInventory()
-    {
-        FadeOut(); 
-
-        foreach (var item in images)
+        foreach (var item in memberSockets)
         {
-            item.color = Color.white;
+            item.canvasGroup.alpha = 0f;
         }
     }
 
-    void HandleOpenInventory ()
-	{
-        Invoke( "HandleOpenInventoryDelay" , 0.001f );
-	}
-
-    void HandleOpenInventoryDelay()
+    public void Show()
     {
-        FadeIn();
-
-        for (int i = 0; i < images.Length; i++)
+        foreach (var item in memberSockets)
         {
-            images[i].color = Color.grey;
-            deleteMember_Objs[i].SetActive(false);
+            item.Show();
+        }
+    }
+
+    public void Hide()
+    {
+        foreach (var item in memberSockets)
+        {
+            item.Hide();
+        }
+    }
+
+    public void HandleOpenInventory ()
+	{
+        UpdateMemberIcons();
+
+        foreach (var item in memberSockets)
+        {
+            item.Deselect();
         }
 
         int id = Crews.playerCrew.CrewMembers.FindIndex(x => x.MemberID.SameAs(CrewMember.GetSelectedMember.MemberID));
-
-        images[id].color = Color.white;
-
-        if ( Crews.playerCrew.CrewMembers.Count > 1)
-        {
-            deleteMember_Objs[id].SetActive(true);
-        }
+        memberSockets[id].Select();
     }
 
-    void HandleOnChangeCrewMembers ()
+    public void UpdateMemberIcons ()
 	{
 		int i = 0;
 
-		foreach (var item in images) {
+		foreach (var item in memberSockets) {
 
 			if (i < Crews.playerCrew.CrewMembers.Count) {
-				item.enabled = true;
+                item.Show();
 			} else {
-				item.enabled = false;
+                item.Hide();
 			}
 
 			i++;

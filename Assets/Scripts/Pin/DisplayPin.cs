@@ -10,20 +10,24 @@ public class DisplayPin : Displayable
 {
     public DisplayPinInfo displayPinInfo;
 
+    public static DisplayPin currentDraggedPin;
+    public static bool draggingPin = false;
+
     public Image image;
 
     public Vector2 dragDecal = Vector2.zero;
 
     public float dragSpeed = 1f;
 
-    bool dragging = false;
+    private bool dragging = false;
 
-
-    public bool canBeDraggeedOnMap = false;
+    public bool canBeDraggedOnMap = false;
 
     public override void Start()
     {
         base.Start();
+
+        image.color = PinManager.Instance.GetPinColor(displayPinInfo.pin.colorType);
     }
 
     public void OnBeginDrag()
@@ -33,7 +37,7 @@ public class DisplayPin : Displayable
             return;
         }
 
-        if (!canBeDraggeedOnMap)
+        if (!canBeDraggedOnMap)
         {
             return;
         }
@@ -52,7 +56,10 @@ public class DisplayPin : Displayable
 
         dragging = true;
 
-        PinManager.Instance.DragPin_Start(this);
+        currentDraggedPin = this;
+        draggingPin = true;
+
+        PinDispencer.GetPinDispencer(displayPinInfo.pin.colorType).SetDeleteMode();
     }
 
     private void Update()
@@ -61,7 +68,7 @@ public class DisplayPin : Displayable
         {
             UpdatePos();
 
-            if (InputManager.Instance.OnInputExit())
+            if (InputManager.Instance.Touch_Exit())
             {
                 OnEndDrag();
             }
@@ -77,7 +84,9 @@ public class DisplayPin : Displayable
 
         SoundManager.Instance.PlayRandomSound("click_light");
 
-        if (PinManager.Instance.pointerInside)
+        PinDispencer.GetPinDispencer(displayPinInfo.pin.colorType).SetPlaceMode();
+
+        if (PinDispencer.GetPinDispencer(displayPinInfo.pin.colorType).pointerInside)
         {
             PinManager.Instance.DeletePin(this);
             return;
@@ -97,15 +106,9 @@ public class DisplayPin : Displayable
         displayPinInfo.pin.save_X = GetRectTransform.anchoredPosition.x;
         displayPinInfo.pin.save_Y = GetRectTransform.anchoredPosition.y;
 
-        Debug.Log("saving pin x : " + displayPinInfo.pin.save_X);
-        Debug.Log("saving pin y : " + displayPinInfo.pin.save_Y);
-
-
         image.raycastTarget = true;
 
-        PinManager.Instance.DragPin_Exit();
-
-        canBeDraggeedOnMap = true;
+        canBeDraggedOnMap = true;
 
         ShowInfo();
         displayPinInfo.inputField.ActivateInputField();

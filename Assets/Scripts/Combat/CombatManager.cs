@@ -84,6 +84,9 @@ public class CombatManager : MonoBehaviour {
 
     public Skill currentSkill;
 
+    public GameObject cancelPlayerMemberChoiceButton;
+    public Transform cancelPlayerMemberChoice_Transform;
+
     public bool debugKill = false;
 
     void Awake () {
@@ -96,6 +99,7 @@ public class CombatManager : MonoBehaviour {
 		InitFighters ();
 
         cancelPlayerMemberChoiceButton.SetActive(false);
+        cancelPlayerMemberChoice_Transform = cancelPlayerMemberChoiceButton.transform;
 
         StoryFunctions.Instance.getFunction += HandleGetFunction;
 	}
@@ -301,14 +305,13 @@ public class CombatManager : MonoBehaviour {
 	#endregion
 
 	#region Player Member Choice 
-	public GameObject cancelPlayerMemberChoiceButton;
 	private void PlayerMemberChoice_Start () {
 
 		cancelPlayerMemberChoiceButton.SetActive (true);
 
         SkillDescription.Instance.Show(currentSkill);
 
-		Tween.Bounce (cancelPlayerMemberChoiceButton.transform);
+		Tween.Bounce (cancelPlayerMemberChoice_Transform);
 
 		if (currentSkill.targetType == Skill.TargetType.Self) {
 			ChoosingTarget (Crews.Side.Player);
@@ -326,6 +329,7 @@ public class CombatManager : MonoBehaviour {
     {
 		DisablePickable ();
         SkillDescription.Instance.Hide();
+
 		cancelPlayerMemberChoiceButton.SetActive (false);
 
     }
@@ -429,7 +433,6 @@ public class CombatManager : MonoBehaviour {
 
 	#region loot & xp
 	public void ShowLoot () {
-        LootUI.Instance.OpenMemberLoot(Crews.playerCrew.captain);
         OtherInventory.Instance.StartLooting (true);
 	}
 	#endregion 
@@ -500,8 +503,14 @@ public class CombatManager : MonoBehaviour {
     {
         // ici seulement pendant la FUITE, parce que le loot des morts l'ouvre auto.
         // pour régler bug : menu droit n'apparrait pas quand on fuit
-        InGameMenu.Instance.ShowMenuButtons();
         StoryLauncher.Instance.EndStory();
+
+        Invoke("EscapeDelay", 1f);
+
+    }
+    void EscapeDelay()
+    {
+        InGameMenu.Instance.ShowMenuButtons();
     }
     #endregion
 
@@ -581,22 +590,33 @@ public class CombatManager : MonoBehaviour {
 
     public void HandleOnConfirm_Victory_Continue()
     {
-        Invoke("HideFight", 0.5f);
-        Invoke("ShowLoot", 1f);
+        Invoke("ShowLoot", 0.8f);
+        Invoke("HideFight", 0.4f);
     }
     #endregion
 
-    public void HideFight () {
-
+    public void HideFight()
+    {
         fighting = false;
 
         ChangeState(States.None);
 
-		HideFighters (Crews.Side.Player);
-		HideFighters (Crews.Side.Enemy);
+        HideFighters(Crews.Side.Player);
+        HideFighters(Crews.Side.Enemy);
 
-		onFightEnd ();
-	}
+        if (onFightEnd != null)
+        {
+            onFightEnd();
+        }
+
+        UIBackground.Instance.ShowBackGround();
+
+        Invoke("HideFightDelay", UIBackground.Instance.duration);
+    }
+    void HideFightDelay()
+    {
+        InGameBackGround.Instance.SetWhite();
+    }
 	#endregion
 
 	#region fighters

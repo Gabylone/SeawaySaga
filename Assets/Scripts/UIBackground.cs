@@ -6,6 +6,8 @@ using System;
 
 public class UIBackground : MonoBehaviour {
 
+    public static UIBackground Instance;
+
 	RectTransform rectTransform;
 
     public Vector2 initPos;
@@ -17,14 +19,19 @@ public class UIBackground : MonoBehaviour {
 	public GameObject group;
     public GameObject playerIconsObj;
 
-	// Use this for initialization
-	void Start () {
+    private void Awake()
+    {
+        Instance = this;
+    }
+
+    // Use this for initialization
+    void Start () {
 		rectTransform = GetComponent<RectTransform> ();
 
         CombatManager.Instance.onChangeState += HandleOnChangeState;
 
         CombatManager.Instance.onFightStart += HideBackground;
-		CombatManager.Instance.onFightEnd += HandleFightEnding;
+		//CombatManager.Instance.onFightEnd += HandleFightEnding;
 
 		initPos = rectTransform.anchoredPosition;
 	}
@@ -56,18 +63,7 @@ public class UIBackground : MonoBehaviour {
         }
     }
 
-    void HandleFightEnding ()
-	{
-		Invoke("HandleFightEndingDelay" , duration);
-        ShowBackGround();
-    }
-
-    void HandleFightEndingDelay () {
-
-        //Crews.playerCrew.UpdateCrew (Crews.PlacingType.Portraits);
-	}
-
-	void ShowBackGround ()
+	public void ShowBackGround ()
 	{
         rectTransform.DOAnchorPos(initPos, duration);
 

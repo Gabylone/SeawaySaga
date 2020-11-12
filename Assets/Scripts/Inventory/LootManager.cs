@@ -53,10 +53,9 @@ public class LootManager : MonoBehaviour {
 		Instance = this;
 	}
 
-	void Start () {
-
+	void Start ()
+    {
 		StoryFunctions.Instance.getFunction += HandleGetFunction;
-
     }
 
     void HandleGetFunction (FunctionType func, string cellParameters)

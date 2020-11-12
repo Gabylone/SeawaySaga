@@ -8,10 +8,10 @@
   <islandDatas>
     <IslandData>
       <worldPosition>
-        <x>6.54098463</x>
-        <y>-3.62768364</y>
+        <x>-12.8226509</x>
+        <y>8.696465</y>
       </worldPosition>
-      <worldRotation>335.563416</worldRotation>
+      <worldRotation>256.438721</worldRotation>
       <index>0</index>
       <coords>
         <x>6</x>
@@ -30,176 +30,150 @@
             <contentDecals>
               <contentDecal>
                 <row>0</row>
-                <col>12</col>
+                <col>13</col>
+                <decal>0</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>3</row>
+                <col>21</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>5</row>
+                <col>25</col>
                 <decal>1</decal>
               </contentDecal>
               <contentDecal>
                 <row>0</row>
-                <col>41</col>
-                <decal>2</decal>
+                <col>42</col>
+                <decal>0</decal>
               </contentDecal>
               <contentDecal>
                 <row>0</row>
-                <col>67</col>
+                <col>62</col>
                 <decal>1</decal>
               </contentDecal>
               <contentDecal>
-                <row>0</row>
-                <col>73</col>
-                <decal>1</decal>
+                <row>1</row>
+                <col>63</col>
+                <decal>4</decal>
               </contentDecal>
             </contentDecals>
             <loots />
             <crews />
           </StoryHandler>
           <StoryHandler>
-            <row>1</row>
-            <col>69</col>
+            <row>5</row>
+            <col>65</col>
             <fallBackLayer>0</fallBackLayer>
             <fallbackNode>
               <name>random foret</name>
               <row>0</row>
               <col>40</col>
             </fallbackNode>
-            <storyID>22</storyID>
+            <storyID>7</storyID>
             <storyType>Normal</storyType>
             <contentDecals>
               <contentDecal>
                 <row>0</row>
-                <col>1</col>
+                <col>2</col>
                 <decal>1</decal>
               </contentDecal>
               <contentDecal>
-                <row>0</row>
+                <row>7</row>
                 <col>11</col>
                 <decal>0</decal>
               </contentDecal>
               <contentDecal>
                 <row>0</row>
-                <col>22</col>
+                <col>16</col>
                 <decal>1</decal>
               </contentDecal>
               <contentDecal>
-                <row>6</row>
-                <col>55</col>
+                <row>0</row>
+                <col>50</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>0</row>
+                <col>66</col>
                 <decal>0</decal>
               </contentDecal>
               <contentDecal>
-                <row>9</row>
-                <col>53</col>
+                <row>8</row>
+                <col>38</col>
                 <decal>1</decal>
               </contentDecal>
+              <contentDecal>
+                <row>11</row>
+                <col>42</col>
+                <decal>0</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>13</row>
+                <col>57</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>14</row>
+                <col>58</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>10</row>
+                <col>56</col>
+                <decal>0</decal>
+              </contentDecal>
             </contentDecals>
-            <loots />
-            <crews>
-              <Crew>
-                <hostile>false</hostile>
-                <row>0</row>
-                <col>44</col>
-                <MemberIDs>
-                  <Member>
-                    <id>10</id>
-                    <Name>Gabriel</Name>
-                    <health>100</health>
-                    <maxHealth>100</maxHealth>
-                    <currentHunger>0</currentHunger>
-                    <Lvl>1</Lvl>
-                    <xp>0</xp>
-                    <skillPoints>0</skillPoints>
-                    <specialSkillsIndexes>
-                      <int>4</int>
-                    </specialSkillsIndexes>
-                    <stats>
-                      <int>1</int>
-                      <int>1</int>
-                      <int>1</int>
-                      <int>1</int>
-                    </stats>
-                    <daysOnBoard>0</daysOnBoard>
-                    <equipedWeapon>
-                      <ID>39</ID>
-                      <englishName>Rock on a stick</englishName>
-                      <frenchName>Epée rouillée</frenchName>
+            <loots>
+              <Loot>
+                <row>10</row>
+                <col>58</col>
+                <ids>
+                  <ArrayOfInt />
+                  <ArrayOfInt>
+                    <int>46</int>
+                    <int>47</int>
+                  </ArrayOfInt>
+                  <ArrayOfInt />
+                  <ArrayOfInt />
+                </ids>
+                <weight>16</weight>
+                <AllItems>
+                  <ArrayOfItem />
+                  <ArrayOfItem>
+                    <Item>
+                      <ID>46</ID>
+                      <englishName>Rusty blunderbuss</englishName>
+                      <frenchName>Poivrière rouillée</frenchName>
+                      <value>10</value>
+                      <price>15</price>
+                      <weight>8</weight>
+                      <level>1</level>
+                      <spriteID>6</spriteID>
+                      <description>It's just your basic rusty blunderbuss</description>
+                      <weaponType>Distance</weaponType>
+                      <category>Weapon</category>
+                    </Item>
+                    <Item>
+                      <ID>47</ID>
+                      <englishName>Rusty pistol</englishName>
+                      <frenchName>Pistolet rouillé</frenchName>
                       <value>13</value>
                       <price>26</price>
                       <weight>8</weight>
                       <level>1</level>
-                      <spriteID>0</spriteID>
-                      <description>C'est un epée rouillée</description>
-                      <weaponType>Stick</weaponType>
-                      <category>Weapon</category>
-                    </equipedWeapon>
-                    <equipedCloth>
-                      <ID>151</ID>
-                      <englishName>Simple docker</englishName>
-                      <frenchName>Marcel</frenchName>
-                      <value>7</value>
-                      <price>20</price>
-                      <weight>8</weight>
-                      <level>1</level>
-                      <spriteID>0</spriteID>
-                      <description>C'est un marcel</description>
+                      <spriteID>7</spriteID>
+                      <description>It's just your basic rusty pistol</description>
                       <weaponType>Distance</weaponType>
-                      <category>Clothes</category>
-                    </equipedCloth>
-                    <job>Brute</job>
-                    <characterIDS>
-                      <int>2</int>
-                      <int>0</int>
-                      <int>0</int>
-                      <int>8</int>
-                      <int>6</int>
-                      <int>8</int>
-                      <int>3</int>
-                      <int>1</int>
-                      <int>1</int>
-                      <int>0</int>
-                      <int>7</int>
-                      <int>0</int>
-                      <int>17</int>
-                      <int>16</int>
-                      <int>2</int>
-                      <int>0</int>
-                    </characterIDS>
-                  </Member>
-                </MemberIDs>
-              </Crew>
-            </crews>
-          </StoryHandler>
-          <StoryHandler>
-            <row>10</row>
-            <col>54</col>
-            <fallBackLayer>1</fallBackLayer>
-            <fallbackNode>
-              <name>choix2</name>
-              <row>4</row>
-              <col>51</col>
-            </fallbackNode>
-            <storyID>0</storyID>
-            <storyType>Quest</storyType>
-            <contentDecals />
-            <loots />
-            <crews />
-          </StoryHandler>
-          <StoryHandler>
-            <row>1</row>
-            <col>75</col>
-            <fallBackLayer>0</fallBackLayer>
-            <fallbackNode>
-              <name>random foret</name>
-              <row>0</row>
-              <col>40</col>
-            </fallbackNode>
-            <storyID>22</storyID>
-            <storyType>Normal</storyType>
-            <contentDecals>
-              <contentDecal>
-                <row>0</row>
-                <col>1</col>
-                <decal>1</decal>
-              </contentDecal>
-            </contentDecals>
-            <loots />
+                      <category>Weapon</category>
+                    </Item>
+                  </ArrayOfItem>
+                  <ArrayOfItem />
+                  <ArrayOfItem />
+                </AllItems>
+              </Loot>
+            </loots>
             <crews />
           </StoryHandler>
         </storyHandlers>
@@ -207,10 +181,10 @@
     </IslandData>
     <IslandData>
       <worldPosition>
-        <x>17.6698265</x>
-        <y>-18.395771</y>
+        <x>-19.87461</x>
+        <y>15.2690125</y>
       </worldPosition>
-      <worldRotation>172.550217</worldRotation>
+      <worldRotation>259.70816</worldRotation>
       <index>1</index>
       <coords>
         <x>6</x>
@@ -218,7 +192,7 @@
       </coords>
       <containsFormula>false</containsFormula>
       <storyManager>
-        <hasBeenPlayed>false</hasBeenPlayed>
+        <hasBeenPlayed>true</hasBeenPlayed>
         <storyHandlers>
           <StoryHandler>
             <row>0</row>
@@ -226,7 +200,18 @@
             <fallBackLayer>0</fallBackLayer>
             <storyID>3</storyID>
             <storyType>Normal</storyType>
-            <contentDecals />
+            <contentDecals>
+              <contentDecal>
+                <row>0</row>
+                <col>13</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>0</row>
+                <col>42</col>
+                <decal>3</decal>
+              </contentDecal>
+            </contentDecals>
             <loots />
             <crews />
           </StoryHandler>

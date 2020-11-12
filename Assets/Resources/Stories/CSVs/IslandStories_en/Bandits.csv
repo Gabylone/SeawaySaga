@@ -1,11 +1,11 @@
 Nom;Fréquence %;Sprite ID;Display Name;;;
 Bandits;5,08;0;Bandits;;;
 [debut];;;;;;
-SetBG(Island);;;;;;
-Narrator : The crew lands on a small island.;;;;;;
+Narrator : The crew docks on a small island.;;;;;;
 [arrivée bandits];;;;;;
+SetBG(Island);;;;;;
 NewCrew;;;;;;
-Narrator : A bunch of armed men run towards CAPITAINE and the crew.;Node=>bandits morts;OtherSpeak : Oh well? Did you forget about us?;;;;
+Narrator : After laying just one foot on the ground, a bunch of armed men run towards CAPITAINE and the crew.;Node=>bandits morts;OtherSpeak : Oh well? Did you forget about us?;;;;
 OtherSpeak : Ayyyy!;;Node=>payed ?;;;;
 PlayerSpeak : Ahoy!;;;;;;
 Node=>payed ?;;;;;;

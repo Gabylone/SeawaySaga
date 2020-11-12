@@ -92,7 +92,6 @@ public class BoatUpgradeManager : MonoBehaviour {
             return;
         }
 
-        InGameMenu.Instance.Hide();
 
         animator.SetBool("opened", false);
 
@@ -108,6 +107,7 @@ public class BoatUpgradeManager : MonoBehaviour {
 
     void Hide()
     {
+        InGameMenu.Instance.Hide();
         menuObj.SetActive(false);
     }
     #endregion

@@ -1,15 +1,16 @@
 Nom;Fréquence / 5;Sprite ID;Display Name
 Maison_Test;1;4;Captain’s House
 [debut];;;
+Narrator : Le joueur arrive dans l’ile et va rencontrer quelqu’un;;;
 NewCrew1/M/1;;;
 Node=>choix;Narrator : Le joueur est devant le cadavre;Narrator : Le joueur est de retour;
 ;SetChoices1;SetChoices1;
 ;Choice : (leave);Choice : (leave);
 [choix];Leave;Leave;
-SetChoices2;;;
-Choice : Leave;Choice : (fight);;
-Leave;LaunchCombat;;
-;Node=>choix;;
+SetChoices4;;;
+Choice : Leave;Choice : (loot);Choice : (trade);Choice : (trésor)
+Leave;Loot;Trade;EndMap
+;Node=>choix;Node=>choix;
 ;;;
 ;;;
 ;;;

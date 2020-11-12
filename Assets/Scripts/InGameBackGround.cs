@@ -44,7 +44,6 @@ public class InGameBackGround : MonoBehaviour {
         StoryFunctions.Instance.getFunction += HandleGetFunction;
 
         CombatManager.Instance.onFightStart += SetDark;
-        CombatManager.Instance.onFightEnd += SetWhite;
 
         Hide();
 	}
@@ -97,13 +96,14 @@ public class InGameBackGround : MonoBehaviour {
     {
         Show();
 
+        SetSprite(Type.Boat);
+
         if (StoryLauncher.Instance.CurrentStorySource == StoryLauncher.StorySource.boat)
         {
-            SetSprite(Type.Boat);
         }
         else
         {
-            SetSprite(Type.Island);
+            //SetSprite(Type.Island);
         }
     }
 

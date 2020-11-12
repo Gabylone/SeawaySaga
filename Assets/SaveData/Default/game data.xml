@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <GameData xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <progression>0</progression>
-  <globalID>2</globalID>
+  <globalID>4</globalID>
   <playerCrew>
     <hostile>false</hostile>
     <row>0</row>
@@ -12,9 +12,139 @@
         <Name>The Captain</Name>
         <health>100</health>
         <maxHealth>100</maxHealth>
-        <currentHunger>1</currentHunger>
+        <currentHunger>0</currentHunger>
         <Lvl>1</Lvl>
-        <xp>25</xp>
+        <xp>0</xp>
+        <skillPoints>0</skillPoints>
+        <specialSkillsIndexes>
+          <int>12</int>
+        </specialSkillsIndexes>
+        <stats>
+          <int>1</int>
+          <int>1</int>
+          <int>1</int>
+          <int>1</int>
+        </stats>
+        <daysOnBoard>0</daysOnBoard>
+        <equipedWeapon>
+          <ID>39</ID>
+          <englishName>Rock on a stick</englishName>
+          <frenchName>Epée rouillée</frenchName>
+          <value>13</value>
+          <price>22</price>
+          <weight>8</weight>
+          <level>1</level>
+          <spriteID>0</spriteID>
+          <description>It's just your basic rock on a stick</description>
+          <weaponType>Stick</weaponType>
+          <category>Weapon</category>
+        </equipedWeapon>
+        <equipedCloth>
+          <ID>154</ID>
+          <englishName>Traveller gear</englishName>
+          <frenchName>Tenue de voyageur</frenchName>
+          <value>7</value>
+          <price>18</price>
+          <weight>8</weight>
+          <level>1</level>
+          <spriteID>0</spriteID>
+          <description>It's just your basic traveller gear</description>
+          <weaponType>Distance</weaponType>
+          <category>Clothes</category>
+        </equipedCloth>
+        <job>Cook</job>
+        <characterIDS>
+          <int>3</int>
+          <int>1</int>
+          <int>6</int>
+          <int>6</int>
+          <int>3</int>
+          <int>8</int>
+          <int>4</int>
+          <int>2</int>
+          <int>0</int>
+          <int>1</int>
+          <int>0</int>
+          <int>11</int>
+          <int>6</int>
+          <int>9</int>
+          <int>8</int>
+          <int>3</int>
+        </characterIDS>
+      </Member>
+      <Member>
+        <id>1</id>
+        <Name>Julia</Name>
+        <health>100</health>
+        <maxHealth>100</maxHealth>
+        <currentHunger>0</currentHunger>
+        <Lvl>1</Lvl>
+        <xp>0</xp>
+        <skillPoints>0</skillPoints>
+        <specialSkillsIndexes>
+          <int>4</int>
+        </specialSkillsIndexes>
+        <stats>
+          <int>1</int>
+          <int>1</int>
+          <int>1</int>
+          <int>1</int>
+        </stats>
+        <daysOnBoard>0</daysOnBoard>
+        <equipedWeapon>
+          <ID>39</ID>
+          <englishName>Rock on a stick</englishName>
+          <frenchName>Epée rouillée</frenchName>
+          <value>13</value>
+          <price>22</price>
+          <weight>8</weight>
+          <level>1</level>
+          <spriteID>0</spriteID>
+          <description>It's just your basic rock on a stick</description>
+          <weaponType>Stick</weaponType>
+          <category>Weapon</category>
+        </equipedWeapon>
+        <equipedCloth>
+          <ID>154</ID>
+          <englishName>Traveller gear</englishName>
+          <frenchName>Tenue de voyageur</frenchName>
+          <value>7</value>
+          <price>18</price>
+          <weight>8</weight>
+          <level>1</level>
+          <spriteID>0</spriteID>
+          <description>It's just your basic traveller gear</description>
+          <weaponType>Distance</weaponType>
+          <category>Clothes</category>
+        </equipedCloth>
+        <job>Brute</job>
+        <characterIDS>
+          <int>4</int>
+          <int>1</int>
+          <int>5</int>
+          <int>3</int>
+          <int>5</int>
+          <int>1</int>
+          <int>6</int>
+          <int>3</int>
+          <int>1</int>
+          <int>0</int>
+          <int>0</int>
+          <int>5</int>
+          <int>16</int>
+          <int>17</int>
+          <int>3</int>
+          <int>2</int>
+        </characterIDS>
+      </Member>
+      <Member>
+        <id>2</id>
+        <Name>Henry</Name>
+        <health>100</health>
+        <maxHealth>100</maxHealth>
+        <currentHunger>0</currentHunger>
+        <Lvl>1</Lvl>
+        <xp>0</xp>
         <skillPoints>0</skillPoints>
         <specialSkillsIndexes>
           <int>20</int>
@@ -25,51 +155,116 @@
           <int>1</int>
           <int>1</int>
         </stats>
-        <daysOnBoard>1</daysOnBoard>
+        <daysOnBoard>0</daysOnBoard>
         <equipedWeapon>
-          <ID>40</ID>
-          <englishName>Makeshift Bludgeon</englishName>
-          <frenchName>Pioche de mineur</frenchName>
-          <value>12</value>
-          <price>22</price>
+          <ID>52</ID>
+          <englishName>Sloppy gun</englishName>
+          <frenchName>Pistolet négligé</frenchName>
+          <value>6</value>
+          <price>15</price>
           <weight>8</weight>
           <level>1</level>
-          <spriteID>0</spriteID>
-          <description>C'est un pioche de mineur</description>
-          <weaponType>Stick</weaponType>
+          <spriteID>6</spriteID>
+          <description>It's just your basic sloppy gun</description>
+          <weaponType>Distance</weaponType>
           <category>Weapon</category>
         </equipedWeapon>
         <equipedCloth>
-          <ID>151</ID>
-          <englishName>Simple docker</englishName>
-          <frenchName>Marcel</frenchName>
+          <ID>152</ID>
+          <englishName>Linnen gown</englishName>
+          <frenchName>Toge en tissu</frenchName>
           <value>7</value>
-          <price>20</price>
+          <price>11</price>
           <weight>8</weight>
           <level>1</level>
           <spriteID>0</spriteID>
-          <description>C'est un marcel</description>
+          <description>It's just your basic linnen gown</description>
           <weaponType>Distance</weaponType>
           <category>Clothes</category>
         </equipedCloth>
         <job>Gambler</job>
         <characterIDS>
-          <int>5</int>
-          <int>4</int>
-          <int>5</int>
-          <int>2</int>
-          <int>7</int>
           <int>9</int>
-          <int>5</int>
-          <int>3</int>
-          <int>0</int>
-          <int>0</int>
-          <int>2</int>
-          <int>5</int>
+          <int>9</int>
           <int>8</int>
           <int>1</int>
-          <int>7</int>
+          <int>8</int>
+          <int>9</int>
+          <int>0</int>
+          <int>4</int>
+          <int>0</int>
+          <int>0</int>
+          <int>2</int>
+          <int>4</int>
+          <int>11</int>
+          <int>9</int>
+          <int>4</int>
           <int>1</int>
+        </characterIDS>
+      </Member>
+      <Member>
+        <id>3</id>
+        <Name>Vladimir</Name>
+        <health>100</health>
+        <maxHealth>100</maxHealth>
+        <currentHunger>0</currentHunger>
+        <Lvl>1</Lvl>
+        <xp>0</xp>
+        <skillPoints>0</skillPoints>
+        <specialSkillsIndexes>
+          <int>12</int>
+        </specialSkillsIndexes>
+        <stats>
+          <int>1</int>
+          <int>1</int>
+          <int>1</int>
+          <int>1</int>
+        </stats>
+        <daysOnBoard>0</daysOnBoard>
+        <equipedWeapon>
+          <ID>43</ID>
+          <englishName>Solid stick</englishName>
+          <frenchName>Bâton solide</frenchName>
+          <value>6</value>
+          <price>17</price>
+          <weight>8</weight>
+          <level>1</level>
+          <spriteID>1</spriteID>
+          <description>It's just your basic solid stick</description>
+          <weaponType>Stick</weaponType>
+          <category>Weapon</category>
+        </equipedWeapon>
+        <equipedCloth>
+          <ID>156</ID>
+          <englishName>Overall</englishName>
+          <frenchName>Salopette</frenchName>
+          <value>10</value>
+          <price>24</price>
+          <weight>8</weight>
+          <level>1</level>
+          <spriteID>0</spriteID>
+          <description>It's just your basic overall</description>
+          <weaponType>Distance</weaponType>
+          <category>Clothes</category>
+        </equipedCloth>
+        <job>Cook</job>
+        <characterIDS>
+          <int>8</int>
+          <int>3</int>
+          <int>1</int>
+          <int>7</int>
+          <int>8</int>
+          <int>0</int>
+          <int>6</int>
+          <int>4</int>
+          <int>1</int>
+          <int>1</int>
+          <int>6</int>
+          <int>0</int>
+          <int>8</int>
+          <int>1</int>
+          <int>6</int>
+          <int>2</int>
         </characterIDS>
       </Member>
     </MemberIDs>
@@ -79,12 +274,12 @@
     <col>0</col>
     <ids>
       <ArrayOfInt>
-        <int>22</int>
-        <int>20</int>
-        <int>20</int>
-        <int>5</int>
+        <int>30</int>
+        <int>26</int>
+        <int>27</int>
         <int>11</int>
-        <int>8</int>
+        <int>7</int>
+        <int>6</int>
       </ArrayOfInt>
       <ArrayOfInt />
       <ArrayOfInt />
@@ -94,54 +289,41 @@
     <AllItems>
       <ArrayOfItem>
         <Item>
-          <ID>22</ID>
-          <englishName>Rumsteak</englishName>
-          <frenchName>Rumsteak</frenchName>
-          <value>8</value>
-          <price>15</price>
+          <ID>30</ID>
+          <englishName>Carrot</englishName>
+          <frenchName>Carotte</frenchName>
+          <value>4</value>
+          <price>7</price>
           <weight>2</weight>
           <level>0</level>
-          <spriteID>2</spriteID>
-          <description>Greatly heals the crew member only when he’s not hungry</description>
+          <spriteID>0</spriteID>
+          <description>Feeds the member. Heals him, only if he’s not hungry. Vegetables and fruits heal poorly</description>
           <weaponType>Distance</weaponType>
           <category>Provisions</category>
         </Item>
         <Item>
-          <ID>20</ID>
-          <englishName>Big ham</englishName>
-          <frenchName>Gros jambon</frenchName>
-          <value>8</value>
-          <price>14</price>
+          <ID>26</ID>
+          <englishName>Chestnut</englishName>
+          <frenchName>Châtaigne</frenchName>
+          <value>4</value>
+          <price>2</price>
           <weight>2</weight>
           <level>0</level>
-          <spriteID>2</spriteID>
-          <description>Greatly heals the crew member only when he’s not hungry</description>
+          <spriteID>0</spriteID>
+          <description>Feeds the member. Heals him, only if he’s not hungry. Vegetables and fruits heal poorly</description>
           <weaponType>Distance</weaponType>
           <category>Provisions</category>
         </Item>
         <Item>
-          <ID>20</ID>
-          <englishName>Big ham</englishName>
-          <frenchName>Gros jambon</frenchName>
-          <value>8</value>
-          <price>14</price>
+          <ID>27</ID>
+          <englishName>Lemon</englishName>
+          <frenchName>Citron</frenchName>
+          <value>4</value>
+          <price>4</price>
           <weight>2</weight>
           <level>0</level>
-          <spriteID>2</spriteID>
-          <description>Greatly heals the crew member only when he’s not hungry</description>
-          <weaponType>Distance</weaponType>
-          <category>Provisions</category>
-        </Item>
-        <Item>
-          <ID>5</ID>
-          <englishName>Smelly codfish</englishName>
-          <frenchName>Morue</frenchName>
-          <value>6</value>
-          <price>11</price>
-          <weight>2</weight>
-          <level>0</level>
-          <spriteID>1</spriteID>
-          <description>Heals the crew member only when he’s not hungry</description>
+          <spriteID>0</spriteID>
+          <description>Feeds the member. Heals him, only if he’s not hungry. Vegetables and fruits heal poorly</description>
           <weaponType>Distance</weaponType>
           <category>Provisions</category>
         </Item>
@@ -150,24 +332,37 @@
           <englishName>Mackerel</englishName>
           <frenchName>Maquereau</frenchName>
           <value>6</value>
-          <price>7</price>
+          <price>13</price>
           <weight>2</weight>
           <level>0</level>
           <spriteID>1</spriteID>
-          <description>Heals the crew member only when he’s not hungry</description>
+          <description>Feeds the member. Heals him, only if he’s not hungry. Fishes feed fairly.</description>
           <weaponType>Distance</weaponType>
           <category>Provisions</category>
         </Item>
         <Item>
-          <ID>8</ID>
-          <englishName>Salmon</englishName>
-          <frenchName>Saumon</frenchName>
+          <ID>7</ID>
+          <englishName>Shrimp</englishName>
+          <frenchName>Crevette</frenchName>
           <value>6</value>
-          <price>11</price>
+          <price>9</price>
           <weight>2</weight>
           <level>0</level>
           <spriteID>1</spriteID>
-          <description>Heals the crew member only when he’s not hungry</description>
+          <description>Feeds the member. Heals him, only if he’s not hungry. Fishes feed fairly.</description>
+          <weaponType>Distance</weaponType>
+          <category>Provisions</category>
+        </Item>
+        <Item>
+          <ID>6</ID>
+          <englishName>Crab</englishName>
+          <frenchName>Crabe</frenchName>
+          <value>6</value>
+          <price>7</price>
+          <weight>2</weight>
+          <level>0</level>
+          <spriteID>1</spriteID>
+          <description>Feeds the member. Heals him, only if he’s not hungry. Fishes feed fairly.</description>
           <weaponType>Distance</weaponType>
           <category>Provisions</category>
         </Item>
@@ -183,7 +378,7 @@
   <bounty>0</bounty>
   <formulas>
     <Formula>
-      <name>lobe</name>
+      <name>cysaxe</name>
       <coords>
         <x>0</x>
         <y>1</y>
@@ -192,7 +387,7 @@
       <found>false</found>
     </Formula>
     <Formula>
-      <name>nuwi</name>
+      <name>zituhu</name>
       <coords>
         <x>1</x>
         <y>1</y>
@@ -202,22 +397,6 @@
     </Formula>
   </formulas>
   <clueIndexesFound />
-  <playerBoatInfo>
-    <Name>The ggfhrhfhgfgh</Name>
-    <previousCoords>
-      <x>1</x>
-      <y>1</y>
-    </previousCoords>
-    <coords>
-      <x>1</x>
-      <y>1</y>
-    </coords>
-    <currentDirection>None</currentDirection>
-    <shipRange>1</shipRange>
-    <crewCapacity>2</crewCapacity>
-    <cargoLevel>1</cargoLevel>
-    <level>1</level>
-  </playerBoatInfo>
   <treasureCoords>
     <x>1</x>
     <y>0</y>
@@ -231,7 +410,7 @@
   <raining>false</raining>
   <currentRain>0</currentRain>
   <night>false</night>
-  <timeOfDay>6</timeOfDay>
-  <treasureName>The Drunken Cods</treasureName>
+  <timeOfDay>5</timeOfDay>
+  <treasureName>The Bearded Whale</treasureName>
   <pins />
 </GameData>

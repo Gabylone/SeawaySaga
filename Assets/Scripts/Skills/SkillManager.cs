@@ -12,6 +12,9 @@ public class SkillManager : MonoBehaviour {
 	public static Sprite[] statusSprites;
 	public static Sprite[] jobSprites;
 
+    public delegate void OnLevelUpStat();
+    public OnLevelUpStat onLevelUpStat;
+
 	public static string[] jobNames = new string[5] {
 		"Brute",
 		"Doctor",

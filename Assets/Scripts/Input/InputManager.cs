@@ -15,14 +15,28 @@ public class InputManager : MonoBehaviour {
 		Instance = this;
 	}
 
-	#region get touch & click
-	/// <summary>
-	/// Raises the input down event.
-	/// </summary>
-	public bool OnInputDown () {
-		return OnInputDown (0,ScreenPart.Any);
+    public delegate void OnPointerDown();
+    public OnPointerDown onPointerDown;
+
+    private void Update()
+    {
+        if ( Touch_Down ())
+        {
+            if (onPointerDown != null)
+            {
+                onPointerDown();
+            }
+        }
+    }
+
+    #region get touch & click
+    /// <summary>
+    /// Raises the input down event.
+    /// </summary>
+    public bool Touch_Down () {
+		return Touching_Down (0,ScreenPart.Any);
 	}
-	public bool OnInputDown (int id, ScreenPart screenPart) {
+	public bool Touching_Down (int id, ScreenPart screenPart) {
 
 		bool rightSideOfScreen = GetInputPosition ().x > 0;
 		if (screenPart == ScreenPart.Left)
@@ -44,10 +58,10 @@ public class InputManager : MonoBehaviour {
 	/// <summary>
 	/// Raises the input stay event.
 	/// </summary>
-	public bool OnInputStay () {
-		return OnInputStay (0,ScreenPart.Any);
+	public bool Touch_Stay () {
+		return Touch_Stay (0,ScreenPart.Any);
 	}
-	public bool OnInputStay (int id, ScreenPart screenPart) {
+	public bool Touch_Stay (int id, ScreenPart screenPart) {
 
 		bool rightSideOfScreen = GetInputPosition ().x > 0;
 		if (screenPart == ScreenPart.Left)
@@ -67,10 +81,10 @@ public class InputManager : MonoBehaviour {
 	/// <summary>
 	/// Raises the input exit event.
 	/// </summary>
-	public bool OnInputExit () {
-		return OnInputExit (0,ScreenPart.Any);
+	public bool Touch_Exit () {
+		return Touch_Exit (0,ScreenPart.Any);
 	}
-	public bool OnInputExit (int id, ScreenPart screenPart) {
+	public bool Touch_Exit (int id, ScreenPart screenPart) {
 
 		bool rightSideOfScreen = GetInputPosition ().x > 0;
 		if (screenPart == ScreenPart.Left)

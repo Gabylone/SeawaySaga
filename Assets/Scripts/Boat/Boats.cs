@@ -52,8 +52,6 @@ public class Boats : MonoBehaviour {
 
         Karma.onChangeKarma += HandleOnChangeKarma;
 
-		NavigationManager.Instance.EnterNewChunk += HandleOnChunkEvent;
-
 		StoryFunctions.Instance.getFunction += HandleGetFunction;
 	}
 
@@ -91,7 +89,10 @@ public class Boats : MonoBehaviour {
 
         foreach (var item in enemyBoats)
         {
-            item.Withdraw();
+            if (  item.Visible)
+            {
+                item.Withdraw();
+            }
         }
     }
 
@@ -101,7 +102,10 @@ public class Boats : MonoBehaviour {
 
         foreach (var item in enemyBoats)
         {
-            item.Resume();
+            if (item.Visible)
+            {
+                item.Resume();
+            }
         }
     }
 
@@ -112,13 +116,25 @@ public class Boats : MonoBehaviour {
 		}
 	}
 
-    void HandleOnChunkEvent()
+    public void HandleOnMoveToChunk()
     {
-        SaveBoats();
+        foreach (var item in boatData.boats)
+        {
+            item.TryMoveOnMap();
+        }
+    }
 
+    public void HandleOnUpdateCurrentChunk()
+    {
         foreach (var enemyBoat in enemyBoats)
         {
             enemyBoat.Hide();
+        }
+
+        // no boats before 
+        if (NavigationManager.Instance.chunksTravelled < 2)
+        {
+            return;
         }
 
         PlaceEnemyBoats();
@@ -127,17 +143,13 @@ public class Boats : MonoBehaviour {
 
     void PlaceEnemyBoats()
     {
-        if (Boats.Instance.playerBoatInfo.coords == SaveManager.Instance.GameData.homeCoords)
-        {
-            return;
-        }
-
         currentBoatAmount = 0;
 
         foreach (var item in boatData.boats)
         {
-            item.HandleChunkEvent();
+            item.TryMoveOnMap();
 
+            // if same coords as player, appear
             if (item.coords == Boats.Instance.playerBoatInfo.coords)
             {
                 EnemyBoat enemyBoat = enemyBoats[currentBoatAmount];

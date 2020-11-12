@@ -98,7 +98,6 @@ public class DisplayQuest : MonoBehaviour {
 
         DisplayFormulasInDescription();
 
-
         experience_Text.text = "";
         gold_Text.text = "";
         achievedFeedback.SetActive(false);
@@ -116,11 +115,11 @@ public class DisplayQuest : MonoBehaviour {
 
         if (foundOne == false)
         {
-            str = "No clues yet";
+            str += "No clues yet";
         }
         else
         {
-            str = "<b>Strange words I heard about the treasure : </b>\n\n";
+            str += "<b>Strange words I heard about the treasure : </b>\n\n";
 
             foreach (var form in FormulaManager.Instance.formulas)
             {
@@ -131,15 +130,16 @@ public class DisplayQuest : MonoBehaviour {
             }
         }
 
-
         if (FormulaManager.Instance.clueIndexesFound.Count > 0)
         {
-            str = "\n\n\n";
-            str = "<b>Useful rumors I heard about the treasure : </b>\n\n";
+            str += "\n\n";
+            str += "<b>Useful rumors I heard about the treasure : </b>\n\n";
 
             foreach (var clueIndex in FormulaManager.Instance.clueIndexesFound)
             {
-                str += ClueManager.Instance.GetClue(clueIndex) + "\n";
+                string clue_str = ClueManager.Instance.GetClue(clueIndex).Replace('*', '\n');
+                clue_str = NameGeneration.CheckForKeyWords(clue_str);
+                str += clue_str + "\n\n";
             }
         }
 

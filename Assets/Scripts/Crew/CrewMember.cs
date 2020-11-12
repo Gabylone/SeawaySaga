@@ -11,11 +11,16 @@ public class CrewMember {
 		get {
 
 			if (selectedMember == null) {
+                if ( Crews.playerCrew == null)
+                {
+                    return null;
+                }
 				if (Crews.playerCrew.CrewMembers.Count != 0) {
 					return Crews.playerCrew.captain;
 				} else {
+					return Crews.playerCrew.captain;
 					Debug.LogError("no captain, merde chier");
-					return null;
+                    return null;
 				}
 			}
 
@@ -39,8 +44,8 @@ public class CrewMember {
 		}
 	}
 
-	// COMPONENTS
-	public Crews.Side side;
+    // COMPONENTS
+    public Crews.Side side;
 	private Member memberID;
 
     // HUNGER
@@ -207,27 +212,19 @@ public class CrewMember {
     #endregion
 
     #region in inventory
-    public delegate void OnShowInventory();
-    public OnShowInventory onShowInInventory;
     public void ShowInInventory()
     {
-        CrewMember previousMember = null;
-
-        if (GetSelectedMember != null)
-        {
-            previousMember = GetSelectedMember;
-        }
-
-        // return
         SetSelectedMember(this);
 
-        Crews.playerCrew.UpdateCrew(Crews.PlacingType.Portraits);
+        foreach (var item in Crews.playerCrew.CrewMembers)
+        {
+            if (item != this)
+            {
+                item.Icon.MoveToPoint(Crews.PlacingType.Portraits);
+            }
+        }
 
         Icon.MoveToPoint(Crews.PlacingType.Inventory);
-
-        if ( onShowInInventory != null) {
-            onShowInInventory();
-        }
 
         if ( InGameMenu.Instance.onDisplayCrewMember != null)
         {
@@ -325,6 +322,12 @@ public class CrewMember {
         ++daysOnBoard;
 
 	}
+
+    public bool HasHunger()
+    {
+        return CurrentHunger > 0;
+    }
+
 	private int daysOnBoard {
 		get {
 			return memberID.daysOnBoard;
@@ -338,6 +341,12 @@ public class CrewMember {
     #region parameters
     public delegate void OnChangeHealth();
     public OnChangeHealth onChangeHealth;
+    
+    public bool HasMaxHealth()
+    {
+        return Health == memberID.maxHealth;
+    }
+
 	public int Health {
 		get {
 			return memberID.health;

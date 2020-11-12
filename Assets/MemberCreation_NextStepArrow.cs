@@ -6,8 +6,9 @@ using DG.Tweening;
 
 public class MemberCreation_NextStepArrow : MonoBehaviour
 {
-
     public GameObject group;
+
+    RectTransform rectTransform;
 
     public CanvasGroup CanvasGroup;
 
@@ -15,7 +16,7 @@ public class MemberCreation_NextStepArrow : MonoBehaviour
 
     private void Start()
     {
-        //HideDelay();
+        rectTransform = GetComponent<RectTransform>();
     }
 
     public void OnPointerClick()

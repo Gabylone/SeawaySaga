@@ -8,10 +8,10 @@
   <islandDatas>
     <IslandData>
       <worldPosition>
-        <x>19.01485</x>
-        <y>17.42865</y>
+        <x>-8.585312</x>
+        <y>14.0672007</y>
       </worldPosition>
-      <worldRotation>292.99472</worldRotation>
+      <worldRotation>349.6063</worldRotation>
       <index>0</index>
       <coords>
         <x>5</x>
@@ -25,44 +25,109 @@
             <row>0</row>
             <col>0</col>
             <fallBackLayer>0</fallBackLayer>
-            <storyID>19</storyID>
+            <storyID>2</storyID>
             <storyType>Normal</storyType>
-            <contentDecals>
-              <contentDecal>
-                <row>4</row>
-                <col>22</col>
-                <decal>1</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>5</row>
-                <col>59</col>
-                <decal>1</decal>
-              </contentDecal>
-            </contentDecals>
+            <contentDecals />
             <loots>
               <Loot>
-                <row>6</row>
-                <col>61</col>
+                <row>0</row>
+                <col>4</col>
                 <ids>
                   <ArrayOfInt />
-                  <ArrayOfInt />
-                  <ArrayOfInt />
-                  <ArrayOfInt />
+                  <ArrayOfInt>
+                    <int>46</int>
+                  </ArrayOfInt>
+                  <ArrayOfInt>
+                    <int>162</int>
+                    <int>156</int>
+                  </ArrayOfInt>
+                  <ArrayOfInt>
+                    <int>220</int>
+                    <int>207</int>
+                  </ArrayOfInt>
                 </ids>
-                <weight>0</weight>
+                <weight>31</weight>
                 <AllItems>
                   <ArrayOfItem />
-                  <ArrayOfItem />
-                  <ArrayOfItem />
-                  <ArrayOfItem />
+                  <ArrayOfItem>
+                    <Item>
+                      <ID>46</ID>
+                      <englishName>Rusty blunderbuss</englishName>
+                      <frenchName>Poivrière rouillée</frenchName>
+                      <value>10</value>
+                      <price>15</price>
+                      <weight>8</weight>
+                      <level>1</level>
+                      <spriteID>6</spriteID>
+                      <description>It's just your basic rusty blunderbuss</description>
+                      <weaponType>Distance</weaponType>
+                      <category>Weapon</category>
+                    </Item>
+                  </ArrayOfItem>
+                  <ArrayOfItem>
+                    <Item>
+                      <ID>162</ID>
+                      <englishName>Reinforced vest</englishName>
+                      <frenchName>Veste renforcée</frenchName>
+                      <value>17</value>
+                      <price>26</price>
+                      <weight>8</weight>
+                      <level>2</level>
+                      <spriteID>1</spriteID>
+                      <description>It's just your basic reinforced vest</description>
+                      <weaponType>Distance</weaponType>
+                      <category>Clothes</category>
+                    </Item>
+                    <Item>
+                      <ID>156</ID>
+                      <englishName>Overall</englishName>
+                      <frenchName>Salopette</frenchName>
+                      <value>10</value>
+                      <price>24</price>
+                      <weight>8</weight>
+                      <level>1</level>
+                      <spriteID>0</spriteID>
+                      <description>It's just your basic overall</description>
+                      <weaponType>Distance</weaponType>
+                      <category>Clothes</category>
+                    </Item>
+                  </ArrayOfItem>
+                  <ArrayOfItem>
+                    <Item>
+                      <ID>220</ID>
+                      <englishName>Novel</englishName>
+                      <frenchName>Roman</frenchName>
+                      <value>0</value>
+                      <price>9</price>
+                      <weight>3</weight>
+                      <level>0</level>
+                      <spriteID>17</spriteID>
+                      <description>It's just your basic novel</description>
+                      <weaponType>Distance</weaponType>
+                      <category>Misc</category>
+                    </Item>
+                    <Item>
+                      <ID>207</ID>
+                      <englishName>Feather</englishName>
+                      <frenchName>Plume</frenchName>
+                      <value>0</value>
+                      <price>10</price>
+                      <weight>4</weight>
+                      <level>0</level>
+                      <spriteID>5</spriteID>
+                      <description>It's just your basic feather</description>
+                      <weaponType>Distance</weaponType>
+                      <category>Misc</category>
+                    </Item>
+                  </ArrayOfItem>
                 </AllItems>
               </Loot>
             </loots>
             <crews>
               <Crew>
-                <hostile>false</hostile>
+                <hostile>true</hostile>
                 <row>0</row>
-                <col>10</col>
+                <col>4</col>
                 <MemberIDs />
               </Crew>
             </crews>

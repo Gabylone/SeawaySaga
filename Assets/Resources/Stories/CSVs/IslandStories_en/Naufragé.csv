@@ -1,13 +1,12 @@
 Nom;Fréquence %;Sprite ID;Display Name;;;;;;;;;;;;;
 Naufragé;6,78;0;Castaway;;;;;;;;;;;;;
 [debut];;;;;;;;;;;;;;;;
-SetBG(Island);;;;;;;;;;;;;;;;
 Narrator : The island is huge and a tall column of smoke is rising from its shore.;;;;;;;;;;;;;;;;
 SetChoices2;;;;;;;;;;;;;;;;
 Choice : (leave);Choice : (accost on land);;;;;;;;;;;;;;;
 PlayerSpeak : There's nothing to do here.;Fade;;;;;;;;;;;;;;;
-Leave;Node=>naufragé;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;
+Leave;SetBG(Island);;;;;;;;;;;;;;;
+;Node=>naufragé;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;
 [naufragé];;;;;;;;;;;;;;;;
 NewCrew1;;;;;;;;;;;;;;;;

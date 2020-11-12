@@ -29,13 +29,13 @@ public class VirtualJoystick : MonoBehaviour {
 
 		if ( !TouchingScreen ) {
 
-			if (InputManager.Instance.OnInputDown (0,screenPart)) {
+			if (InputManager.Instance.Touching_Down (0,screenPart)) {
 				TouchingScreen = true;
 			}
 
 		} else {
 
-			if ( InputManager.Instance.OnInputExit (0,screenPart))  {
+			if ( InputManager.Instance.Touch_Exit (0,screenPart))  {
 				
 				TouchingScreen = false;
 			}

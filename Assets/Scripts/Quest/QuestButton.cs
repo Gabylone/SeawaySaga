@@ -8,6 +8,8 @@ public class QuestButton : MonoBehaviour {
 
 	public int id = 0;
 
+    public static QuestButton currentlySelectedButton;
+
     public bool mainQuest = false;
 
 	[SerializeField]
@@ -28,12 +30,21 @@ public class QuestButton : MonoBehaviour {
 	[SerializeField]
 	private GameObject achievedFeedback;
 
+    public CanvasGroup canvasGroup;
+
 	public void Select () {
+
+        if ( currentlySelectedButton != null)
+        {
+            currentlySelectedButton.Deselect();
+        }
 
 		Tween.Bounce ( transform );
 
         SoundManager.Instance.PlaySound("Quest");
         SoundManager.Instance.PlayRandomSound("click_med");
+
+        canvasGroup.alpha = 0.5f;
 
         if ( mainQuest)
         {
@@ -44,10 +55,15 @@ public class QuestButton : MonoBehaviour {
             DisplayQuest.Instance.Display(QuestManager.Instance.currentQuests[id]);
         }
 
-
+        currentlySelectedButton = this;
     }
 
-	public void SetQuest ( int id ) {
+    public void Deselect()
+    {
+        canvasGroup.alpha = 1f;
+    }
+
+    public void SetQuest ( int id ) {
 
 		this.id = id;
 

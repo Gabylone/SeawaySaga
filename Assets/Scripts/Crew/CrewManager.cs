@@ -35,7 +35,6 @@ public class CrewManager : MonoBehaviour {
 
 	void Start () {
 		if (side == Crews.Side.Player) {
-			NavigationManager.Instance.EnterNewChunk += AddToStates;
 			StoryFunctions.Instance.getFunction += HandleGetFunction;
 			NameGeneration.onDiscoverFormula += HandleOnDiscoverFormula;
 		}
@@ -65,7 +64,7 @@ public class CrewManager : MonoBehaviour {
 
 	}
 
-	void AddToStates ()
+	public void AddToStates ()
 	{
         CancelInvoke("AddToStatesDelay");
         Invoke("AddToStatesDelay" , 1f);
@@ -106,9 +105,6 @@ public class CrewManager : MonoBehaviour {
 	#endregion
 
 	#region crew list
-	public delegate void OnChangeCrewMembers ();
-	public OnChangeCrewMembers onChangeCrewMembers;
-   
 	public void AddMember ( CrewMember member )
         {
 
@@ -118,9 +114,7 @@ public class CrewManager : MonoBehaviour {
 		managedCrew.Add (member.MemberID);
 		crewMembers.Add (member);
 
-		if (onChangeCrewMembers != null) {
-			onChangeCrewMembers ();
-		}
+        PlayerIcons.Instance.UpdateMemberIcons();
 	}
 
     public void RemoveMember(int i)
@@ -136,9 +130,7 @@ public class CrewManager : MonoBehaviour {
 		managedCrew.Remove (member.MemberID);
 		crewMembers.Remove (member);
 
-		if (onChangeCrewMembers != null) {
-			onChangeCrewMembers ();
-		}
+        PlayerIcons.Instance.UpdateMemberIcons();
 	}
 
 	public List<CrewMember> CrewMembers {
