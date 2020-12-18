@@ -34,7 +34,7 @@ public class DisplayCrewMemberLevelUp : Displayable
 
         if (CombatManager.Instance.fighting)
         {
-            Debug.Log( crewMember.MemberName + " leveled up but it's a fight, so we'll show at the end");
+            //Debug.Log( crewMember.MemberName + " leveled up but it's a fight, so we'll show at the end");
         }
         else
         {

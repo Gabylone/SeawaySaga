@@ -13,6 +13,8 @@ public class LoadingScene : MonoBehaviour
 
     public bool activateAtStart = true;
 
+    public static string sceneToLoad = "Menu";
+
     void Start()
     {
         Transitions.Instance.ScreenTransition.FadeOut(1f);
@@ -23,6 +25,8 @@ public class LoadingScene : MonoBehaviour
 
     void StartDelay()
     {
+
+
         StartCoroutine(LoadScene());
     }
 
@@ -31,10 +35,17 @@ public class LoadingScene : MonoBehaviour
         yield return null;
 
         //Begin to load the Scene you specify
-        AsyncOperation asyncOperation = SceneManager.LoadSceneAsync("Main");
+        AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(sceneToLoad);
 
-        //Don't let the Scene activate until you allow it to
-        asyncOperation.allowSceneActivation = activateAtStart;
+        if ( MainMenuManager.debugLoading_ActivateSceneAtTheEnd)
+        {
+            asyncOperation.allowSceneActivation = false;
+        }
+        else
+        {
+            asyncOperation.allowSceneActivation = true;
+        }
+
 
         //When the load is still in progress, output the Text and progress bar
         while (!asyncOperation.isDone)

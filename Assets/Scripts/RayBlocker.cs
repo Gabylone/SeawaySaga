@@ -15,6 +15,8 @@ public class RayBlocker : MonoBehaviour {
 	public GameObject group;
 	public Image image;
 
+    public CanvasGroup canvasGroup;
+
 	public float tweenDur = 1f;
 	Color initColor;
 
@@ -63,9 +65,23 @@ public class RayBlocker : MonoBehaviour {
 
 	public void Hide ()
 	{
-		group.SetActive (false);
+        canvasGroup.DOFade(0f, tweenDur);
+        CancelInvoke("HideDelay");
+        Invoke("HideDelay", tweenDur);        
 	}
+
+    void HideDelay()
+    {
+        group.SetActive(false);
+    }
+
 	public void Show () {
+
+        CancelInvoke("HideDelay");
+
+        canvasGroup.alpha = 0f;
+        canvasGroup.DOFade(1f, tweenDur);
+
 		group.SetActive (true);
 	}
 }

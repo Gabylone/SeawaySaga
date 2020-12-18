@@ -56,7 +56,7 @@ public class StoryLauncher : MonoBehaviour {
         if (playingStory)
             return;
 
-        InGameMenu.Instance.HideMenuButtons();
+        HideEverything();
 
         CurrentStorySource = source;
 
@@ -69,7 +69,8 @@ public class StoryLauncher : MonoBehaviour {
         CamBehavior.Instance.Zoom();
 
         PlayerBoat.Instance.EndMovenent();
-        InGameMenu.Instance.Hide();
+
+        DisplayMinimap.Instance.FadeOut();
 
         Invoke("DisplayBackground", 1f);
 
@@ -78,9 +79,42 @@ public class StoryLauncher : MonoBehaviour {
         SoundManager.Instance.UpdateAmbianceSound();
     }
 
+    void HideEverything()
+    {
+        // close everything
+        InGameMenu.Instance.HideMenuButtons();
+        InGameMenu.Instance.Hide();
+
+        if (DisplayMinimap.Instance.fullyDisplayed)
+        {
+            DisplayMinimap.Instance.ExitFullDisplay();
+        }
+
+        if (BoatUpgradeManager.Instance.opened)
+        {
+            BoatUpgradeManager.Instance.Close();
+        }
+
+        if ( QuestMenu.Instance.opened)
+        {
+            QuestMenu.Instance.Close();
+        }
+
+        if (LootUI.Instance.visible)
+        {
+            LootUI.Instance.Close();
+        }
+
+        if (SkillMenu.Instance.visible)
+        {
+            SkillMenu.Instance.Close();
+        }
+    }
+
     void DisplayBackground()
     {
         Transitions.Instance.ScreenTransition.FadeIn(0.5f);
+
 
         Invoke("StartStory", 1f);
     }
@@ -95,6 +129,7 @@ public class StoryLauncher : MonoBehaviour {
         Transitions.Instance.ScreenTransition.FadeOut(0.5f);
 
         playingStory = true;
+
 
         if (onPlayStory != null)
             onPlayStory();
@@ -132,6 +167,7 @@ public class StoryLauncher : MonoBehaviour {
             return;
         }
 
+
         Chunk.currentChunk.SaveIslandData(Coords.current);
 
         Invoke("EndStoryDelay", 0.5f);
@@ -145,6 +181,9 @@ public class StoryLauncher : MonoBehaviour {
 
     void EndStoryDelay()
     {
+
+
+        DisplayMinimap.Instance.FadeIn();
 
         SoundManager.Instance.PlaySound("leave port");
 

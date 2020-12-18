@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <Chunk xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <state>VisitedIsland</state>
+  <state>DiscoveredIsland</state>
   <coords>
     <x>2</x>
     <y>5</y>
@@ -8,10 +8,10 @@
   <islandDatas>
     <IslandData>
       <worldPosition>
-        <x>17.89928</x>
-        <y>12.1547775</y>
+        <x>-4.56263733</x>
+        <y>16.7886429</y>
       </worldPosition>
-      <worldRotation>10.1733828</worldRotation>
+      <worldRotation>302.36554</worldRotation>
       <index>0</index>
       <coords>
         <x>2</x>
@@ -19,7 +19,7 @@
       </coords>
       <containsFormula>false</containsFormula>
       <storyManager>
-        <hasBeenPlayed>true</hasBeenPlayed>
+        <hasBeenPlayed>false</hasBeenPlayed>
         <storyHandlers>
           <StoryHandler>
             <row>0</row>
@@ -28,49 +28,8 @@
             <storyID>2</storyID>
             <storyType>Normal</storyType>
             <contentDecals />
-            <loots>
-              <Loot>
-                <row>0</row>
-                <col>4</col>
-                <ids>
-                  <ArrayOfInt />
-                  <ArrayOfInt />
-                  <ArrayOfInt />
-                  <ArrayOfInt>
-                    <int>216</int>
-                  </ArrayOfInt>
-                </ids>
-                <weight>5</weight>
-                <AllItems>
-                  <ArrayOfItem />
-                  <ArrayOfItem />
-                  <ArrayOfItem />
-                  <ArrayOfItem>
-                    <Item>
-                      <ID>216</ID>
-                      <englishName>Shell</englishName>
-                      <frenchName>Coquillage</frenchName>
-                      <value>0</value>
-                      <price>10</price>
-                      <weight>5</weight>
-                      <level>0</level>
-                      <spriteID>22</spriteID>
-                      <description>It's just your basic shell</description>
-                      <weaponType>Distance</weaponType>
-                      <category>Misc</category>
-                    </Item>
-                  </ArrayOfItem>
-                </AllItems>
-              </Loot>
-            </loots>
-            <crews>
-              <Crew>
-                <hostile>true</hostile>
-                <row>0</row>
-                <col>4</col>
-                <MemberIDs />
-              </Crew>
-            </crews>
+            <loots />
+            <crews />
           </StoryHandler>
         </storyHandlers>
       </storyManager>

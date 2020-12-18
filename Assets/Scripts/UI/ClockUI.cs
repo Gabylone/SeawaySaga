@@ -29,10 +29,8 @@ public class ClockUI : MonoBehaviour {
     // Use this for initialization
     void Start ()
 	{
-		TimeManager.onNextHour += UpdateNeedle;
-
 		InitClock ();
-		UpdateNeedle ();
+		UpdateUI ();
 	}
 	void InitClock ()
 	{
@@ -46,7 +44,7 @@ public class ClockUI : MonoBehaviour {
 	}
 
 
-	public void UpdateNeedle ()
+	public void UpdateUI ()
 	{
 		float angle = TimeManager.Instance.timeOfDay * 360f / TimeManager.Instance.dayDuration;
 		Vector3 targetAngles = new Vector3 (0,0, angle);

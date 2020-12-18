@@ -63,7 +63,10 @@ public class DisplayMinimap : MonoBehaviour {
     public float initPosY = 0f;
     public float initPosX = 0f;
 	public float initScaleY = 0f;
-	public float initScaleX = 0f;
+    public float initScaleX = 0f;
+
+    public delegate void OnFullDisplay();
+    public OnFullDisplay onFullDisplay;
 
     public bool fullyDisplayed = false;
     ///
@@ -599,7 +602,7 @@ public class DisplayMinimap : MonoBehaviour {
         SoundManager.Instance.PlaySound("click_light 01");
         SoundManager.Instance.PlayRandomSound("Book");
         SoundManager.Instance.PlayRandomSound("Page");
-
+        fullyDisplayed = true;
 
         CancelInvoke("FullDisplayDelay");
 		Invoke ("FullDisplayDelay", fullDisplay_Duration/2f);
@@ -632,9 +635,13 @@ public class DisplayMinimap : MonoBehaviour {
 
         Transitions.Instance.ScreenTransition.FadeOut(fullDisplay_Duration / 2f);
 
-        fullyDisplayed = true;
 
         CenterOnBoat_Quick();
+
+        if (onFullDisplay != null)
+        {
+            onFullDisplay();
+        }
     }
 
 	public void ExitFullDisplay ()
@@ -652,9 +659,15 @@ public class DisplayMinimap : MonoBehaviour {
 
 		fullDisplay_Exiting = true;
 
+        FastTravelButton.Instance.Hide();
+        IslandInfo.Instance.Hide();
+
+        
+
         HideFullMapGroup();
+        CancelInvoke("FullDisplayDelay");
 		Invoke ("ExitFullDisplayDelay", fullDisplay_Duration/2f);
-	}
+    }
 	void ExitFullDisplayDelay() {
 
         fullDisplay_Exiting = false;
@@ -680,6 +693,16 @@ public class DisplayMinimap : MonoBehaviour {
 
         fullyDisplayed = false;
 
+        if (MinimapChunk.currentMinimapChunk != null)
+        {
+            MinimapChunk.currentMinimapChunk.Deselect();
+        }
+
+        if (StoryLauncher.Instance.PlayingStory)
+        {
+            FadeOut();
+        }
+
         if (continueStoryOnClose)
         {
             continueStoryOnClose = false;
@@ -703,11 +726,11 @@ public class DisplayMinimap : MonoBehaviour {
 	{
 		fullMapGroup.SetActive (false);
 	}
-	void FadeOut ()
+	public void FadeOut ()
 	{
         rectTransform.DOAnchorPos(new Vector2(hiddenPos, 0f), hideDuration);
 	}
-	void FadeIn ()
+	public void FadeIn ()
 	{
         rectTransform.DOAnchorPos(new Vector2(initPosX, initPosY), hideDuration);
 	}

@@ -248,6 +248,7 @@ GameObject:
   - component: {fileID: 6253622139295438160}
   - component: {fileID: 6253622139295438162}
   - component: {fileID: 6253622139295438157}
+  - component: {fileID: 8905769697876796420}
   m_Layer: 5
   m_Name: PinDispencer
   m_TagString: Untagged
@@ -340,36 +341,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 6253622139295438157}
-          m_MethodName: OnPointerEnter
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 1
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 6253622139295438157}
-          m_MethodName: OnPointerExit
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!114 &6253622139295438157
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -382,6 +353,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dd7e4646d5adf54a91b2e8605864cd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  visible: 1
+  group: {fileID: 6253622139295438166}
+  fadeDuration: 0.5
+  canvasGroup: {fileID: 8905769697876796420}
   pointerInside: 0
   colorType: 0
   pinImages:
@@ -392,6 +367,18 @@ MonoBehaviour:
   placePinGroup: {fileID: 6253622139592579969}
   deletePin_Transform: {fileID: 6253622139486825688}
   deleteOutline: {fileID: 6253622139102915792}
+--- !u!225 &8905769697876796420
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6253622139295438166}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &6253622139461061204
 GameObject:
   m_ObjectHideFlags: 0

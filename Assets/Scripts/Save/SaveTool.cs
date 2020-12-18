@@ -26,9 +26,19 @@ public class SaveTool : MonoBehaviour
 	#region directories
 	public void CreateDirectories ()
 	{
-		if ( DirectoryExists(GetSaveFolderPath()) == false ) {
+        if(!DirectoryExists(GetSavePath() + "PlayerInfo"))
+        {
+            Directory.CreateDirectory(GetSavePath() + "PlayerInfo");
+            Debug.Log("PlayerInfo directory DOESNT EXIST, creating it");
+        }
+        else
+        {
+            Debug.Log("PlayerInfo directory exists");
+        }
+
+		if ( DirectoryExists(GetCurrentMapPath()) == false ) {
 //			Debug.Log ("BYTES SaveData folder doesnt exist, creating it");
-			Directory.CreateDirectory (GetSaveFolderPath ());
+			Directory.CreateDirectory (GetCurrentMapPath ());
 		}
 	}
 	#endregion
@@ -37,11 +47,11 @@ public class SaveTool : MonoBehaviour
 	#region save & load
 	public void ResetIslandFolder ()
 	{
-		if ( DirectoryExists(GetSaveFolderPath() + "/Islands") == true ) {
-            Directory.Delete (GetSaveFolderPath() + "/Islands",true);
+		if ( DirectoryExists(GetCurrentMapPath() + "/Islands") == true ) {
+            Directory.Delete (GetCurrentMapPath() + "/Islands",true);
 		}
 
-		Directory.CreateDirectory (GetSaveFolderPath() + "/Islands");
+		Directory.CreateDirectory (GetCurrentMapPath() + "/Islands");
 
 	}
 
@@ -51,7 +61,7 @@ public class SaveTool : MonoBehaviour
     }
 
     public void DeleteGameData () {
-		string path = GetSaveFolderPath () + "/game data.xml";
+		string path = GetCurrentMapPath () + "/game data.xml";
 		File.Delete (path);
 	}
 
@@ -63,7 +73,7 @@ public class SaveTool : MonoBehaviour
 
     public void SaveToCurrentMap ( string path , object o) {
 
-		path = GetSaveFolderPath () + "/" + path + ".xml";
+		path = GetCurrentMapPath () + "/" + path + ".xml";
         Save(path, o);
     }
 
@@ -90,7 +100,7 @@ public class SaveTool : MonoBehaviour
     }
 	public object LoadFromCurrentMap(string path, string className)
 	{
-        path = GetSaveFolderPath() + "/" + path;
+        path = GetCurrentMapPath() + "/" + path;
         return LoadFromPath(path, className);
 	}
     public object LoadFromPath(string path, string className)
@@ -147,7 +157,7 @@ public class SaveTool : MonoBehaviour
 
         return path;
     }
-    public string GetSaveFolderPath () {
+    public string GetCurrentMapPath () {
 
         string s = "";
 
@@ -160,13 +170,19 @@ public class SaveTool : MonoBehaviour
             s = "Default";
         }
 
-		string path = Application.dataPath + "/SaveData/" + s;
-
-        if ( Application.isMobilePlatform )
-			path = Application.persistentDataPath + "/SaveData/" + s;
+        string path = GetSavePath() + s;
 
 		return path;
 	}
+    public string GetSavePath()
+    {
+        string path = Application.dataPath + "/SaveData/";
+
+        if (Application.isMobilePlatform)
+            path = Application.persistentDataPath + "/SaveData/";
+
+        return path;
+    }
 	#endregion
 
 }

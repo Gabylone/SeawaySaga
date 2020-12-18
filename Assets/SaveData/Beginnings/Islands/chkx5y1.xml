@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <Chunk xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <state>VisitedIsland</state>
+  <state>UndiscoveredIsland</state>
   <coords>
     <x>5</x>
     <y>1</y>
@@ -8,10 +8,10 @@
   <islandDatas>
     <IslandData>
       <worldPosition>
-        <x>-4.9552803</x>
-        <y>12.2226181</y>
+        <x>-15.5515289</x>
+        <y>-11.7814064</y>
       </worldPosition>
-      <worldRotation>0.3868389</worldRotation>
+      <worldRotation>263.0816</worldRotation>
       <index>0</index>
       <coords>
         <x>5</x>
@@ -19,7 +19,7 @@
       </coords>
       <containsFormula>false</containsFormula>
       <storyManager>
-        <hasBeenPlayed>true</hasBeenPlayed>
+        <hasBeenPlayed>false</hasBeenPlayed>
         <storyHandlers>
           <StoryHandler>
             <row>0</row>
@@ -27,57 +27,8 @@
             <fallBackLayer>0</fallBackLayer>
             <storyID>9</storyID>
             <storyType>Normal</storyType>
-            <contentDecals>
-              <contentDecal>
-                <row>2</row>
-                <col>9</col>
-                <decal>0</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>1</row>
-                <col>17</col>
-                <decal>0</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>3</row>
-                <col>17</col>
-                <decal>0</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>3</row>
-                <col>20</col>
-                <decal>5</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>0</row>
-                <col>25</col>
-                <decal>0</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>1</row>
-                <col>33</col>
-                <decal>1</decal>
-              </contentDecal>
-            </contentDecals>
-            <loots>
-              <Loot>
-                <row>1</row>
-                <col>19</col>
-                <ids>
-                  <ArrayOfInt />
-                  <ArrayOfInt />
-                  <ArrayOfInt />
-                  <ArrayOfInt />
-                </ids>
-                <weight>0</weight>
-                <AllItems>
-                  <ArrayOfItem />
-                  <ArrayOfItem />
-                  <ArrayOfItem />
-                  <ArrayOfItem />
-                </AllItems>
-              </Loot>
-            </loots>
+            <contentDecals />
+            <loots />
             <crews />
           </StoryHandler>
         </storyHandlers>

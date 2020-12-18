@@ -152,6 +152,8 @@ public class Fighter : MonoBehaviour {
 
         timeInState += Time.deltaTime;
 
+        
+
 
     }
 
@@ -162,7 +164,9 @@ public class Fighter : MonoBehaviour {
 	{
 		this.crewMember = crewMember;
 
-		Show ();
+        crewMember.energy = 0;
+
+        Show();
 
 		ChangeState (states.none);
 
@@ -171,9 +175,6 @@ public class Fighter : MonoBehaviour {
 
 		// animation
 		GetTransform.position = initPos;
-
-		// energy & status
-		crewMember.energy = 0;
 
 		onSkillDelay = null;
 
@@ -190,9 +191,13 @@ public class Fighter : MonoBehaviour {
         iconVisual.RemoveDeadEyes();
         iconVisual.ResetSkinColor();
         iconVisual.RemoveMadFace();
+        iconVisual.ResetEffects();
 
-		// event
-		if ( onReset != null )
+        // energy & status
+        crewMember.energy = 0;
+
+        // event
+        if ( onReset != null )
 			onReset ();
 	}
 
@@ -232,7 +237,14 @@ public class Fighter : MonoBehaviour {
 
 		CheckStatus ();
 
-		crewMember.AddEnergy (crewMember.energyPerTurn);
+		if (HasStatus(Status.Enraged))
+        {
+            crewMember.AddEnergy(10);
+        }
+        else
+        {
+            crewMember.AddEnergy(6);
+        }
 
         for (int i = 0; i < crewMember.charges.Length; i++) {
 			if ( crewMember.charges [i] > 0 )
@@ -522,7 +534,8 @@ public class Fighter : MonoBehaviour {
 
         iconVisual.TaintOnce(Color.red);
 
-        iconVisual.hitEffect_Obj.SetActive(true);
+        iconVisual.hitEffect_Anim.gameObject.SetActive(true);
+        iconVisual.hitEffect_Anim.SetTrigger("Trigger");
         iconVisual.hitEffect_Transform.position = GetTransform.position - Vector3.up * 3f + (Vector3)Random.insideUnitCircle * 1f;
 
         Tween.Bounce(GetTransform, getHit_ScaleDuration , getHit_ScaleAmount);
@@ -572,7 +585,7 @@ public class Fighter : MonoBehaviour {
                 int xpPerMember = 25;
 
                 otherFighter.crewMember.AddXP(xpPerMember);
-                otherFighter.combatFeedback.Display("" + xpPerMember, Color.white);
+                otherFighter.combatFeedback.Display("" + xpPerMember, Color.magenta);
             }
         }
 
@@ -609,7 +622,8 @@ public class Fighter : MonoBehaviour {
 
         crewMember.AddHealth (amount);
 
-        iconVisual.healEffect_Obj.SetActive(true);
+        iconVisual.healEffect_Anim.gameObject.SetActive(true);
+        iconVisual.healEffect_Anim.SetTrigger("Trigger");
 
         iconVisual.TaintOnce(Color.green);
 
@@ -666,7 +680,7 @@ public class Fighter : MonoBehaviour {
             CancelDelayedAttack();
         }
 
-        combatFeedback.Display("Knocked Out !", Color.magenta);
+        combatFeedback.Display("Knocked Out !", Color.red);
 
         AddStatus(Fighter.Status.KnockedOut);
 
@@ -910,6 +924,7 @@ public class Fighter : MonoBehaviour {
                     iconVisual.RemoveHappyFace();
                     break;
                 case Status.Poisonned:
+                    iconVisual.poisonEffect_Obj.SetActive(false);
                     iconVisual.poisonPuddle_Obj.SetActive(false);
                     iconVisual.ResetSkinColor();
                     break;

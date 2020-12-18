@@ -122,8 +122,9 @@ public class StoryReader : MonoBehaviour {
 		StoryReader.Instance.NextCell ();
 		StoryReader.Instance.UpdateStory ();
 
-
-	}
+        SaveManager.Instance.SaveCurrentIsland();
+        SaveManager.Instance.SaveGameData();
+    }
 
 	public Node GetNodeFromText ( string text ) {
 		return GetNodeFromText (CurrentStoryHandler.Story, text);

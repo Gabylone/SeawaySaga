@@ -319,8 +319,6 @@ public class CrewMember {
             onAddHunger();
         }
 
-        ++daysOnBoard;
-
 	}
 
     public bool HasHunger()
@@ -328,7 +326,12 @@ public class CrewMember {
         return CurrentHunger > 0;
     }
 
-	private int daysOnBoard {
+    public bool Hungry()
+    {
+        return CurrentHunger >= MaxHunger;
+    }
+
+	public int daysOnBoard {
 		get {
 			return memberID.daysOnBoard;
 		}

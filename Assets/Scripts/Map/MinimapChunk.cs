@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class MinimapChunk : MonoBehaviour
 {
+    public static MinimapChunk currentMinimapChunk;
 
 	public delegate void OnTouchMinimapChunk (Chunk chunk, Transform tr);
 	public static OnTouchMinimapChunk onTouchMinimapChunk;
@@ -21,10 +22,13 @@ public class MinimapChunk : MonoBehaviour
 
 	public GameObject questGroup;
 
+    public Outline outline;
+
     public Text uiText_IslandCount;
 
     private void Start()
     {
+        Deselect();
         HideQuestFeedback();
     }
 
@@ -92,10 +96,29 @@ public class MinimapChunk : MonoBehaviour
     }
 
     public void TouchMinimapChunk () {
-		
-		Tween.Bounce (islandGroup.transform);
 
         Chunk chunk = Chunk.GetChunk(coords);
+
+        if ( chunk.state == ChunkState.UndiscoveredIsland
+            || chunk.state == ChunkState.UndiscoveredSea)
+        {
+            return;
+        }
+
+        if ( currentMinimapChunk != null)
+        {
+            if (currentMinimapChunk == this)
+            {
+                currentMinimapChunk.Deselect();
+                currentMinimapChunk = null;
+                return;
+            }
+
+            currentMinimapChunk.Deselect();
+        }
+
+		Tween.Bounce (rectTransform);
+
         string str = "";
 
         if (chunk.state == ChunkState.VisitedIsland)
@@ -105,7 +128,7 @@ public class MinimapChunk : MonoBehaviour
             if (islandData.storyManager.hasBeenPlayed)
             {
                 int a = 0;
-                foreach (var item in chunk.GetIslandData(index).storyManager.storyHandlers)
+                foreach (var item in islandData.storyManager.storyHandlers)
                 {
 
                     if ( a > 0)
@@ -132,9 +155,35 @@ public class MinimapChunk : MonoBehaviour
         }
 
         IslandInfo.Instance.DisplayIslandInfo(str);
-        IslandInfo.Instance.ShowAtTransform(islandGroup.transform);
+        IslandInfo.Instance.ShowAtTransform(rectTransform);
+
+        if (chunk.coords != Coords.current)
+        {
+            FastTravelButton.Instance.Display(rectTransform);
+        }
+        else
+        {
+            FastTravelButton.Instance.HideDelay();
+        }
 
         SoundManager.Instance.PlaySound("button_tap_light 05");
+
+        currentMinimapChunk = this;
+
+        outline.enabled = true;
+    }
+
+    public void GetIslandNames()
+    {
+
+    }
+
+    public void Deselect()
+    {
+        FastTravelButton.Instance.Hide();
+        IslandInfo.Instance.Hide();
+
+        outline.enabled = false;
     }
 
     public void OnPointerClick()

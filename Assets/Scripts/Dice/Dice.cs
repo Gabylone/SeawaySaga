@@ -26,6 +26,8 @@ public class Dice : MonoBehaviour {
 	[SerializeField] private float maxForce = 700f;
     [SerializeField] private float maxTorque = 200f;
 
+    public GameObject group;
+
     public Transform bodyTransform;
 
     public float tweenDecal = 1f;
@@ -77,6 +79,8 @@ public class Dice : MonoBehaviour {
 	}
 
 	public void Reset () {
+
+        Hide();
 
 		// POS
 		throwDirection = DiceManager.Instance.ThrowDirection;
@@ -171,7 +175,7 @@ public class Dice : MonoBehaviour {
                 //GetTransform.right = Vector3.up;
                 break;
 		case 3:
-                rot = new Vector3(0, 0, 90);
+                rot = new Vector3(-90, 0, 0);
                 //GetTransform.forward = Vector3.up;
                 break;
 		case 4:
@@ -212,11 +216,16 @@ public class Dice : MonoBehaviour {
 	public void Fade () {
 
         bodyTransform.DOScale(0f, tweenDuration).SetEase(Ease.InBounce);
-
-        /*foreach (var rend in rends)
-        {
-            rend.material.DOFade(0f, settleDuration);
-        }*/
     }
     #endregion
+
+    public void Show()
+    {
+        group.SetActive(true);
+    }
+
+    public void Hide()
+    {
+        group.SetActive(false);
+    }
 }

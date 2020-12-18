@@ -6,11 +6,13 @@ using DG.Tweening;
 
 public class MainMenuManager : MonoBehaviour {
 
+    public static bool debugLoading_ActivateSceneAtTheEnd = false;
+    public static bool debugLoading_SkipLoading = false;
+
     public GameObject mapsGroup;
 
 	[SerializeField]
 	private GameObject quitButton;
-
 
     public GameObject HandObj;
 
@@ -32,13 +34,13 @@ public class MainMenuManager : MonoBehaviour {
     public Animator mapAnimator;
 
 	void Start () {
+
 		Transitions.Instance.ScreenTransition.FadeOut (0.5f);
 
 		Screen.orientation = ScreenOrientation.Landscape;
 
         mapsGroup.SetActive(false);
         MenuObj.SetActive(false);
-
 
 	}
 
@@ -87,9 +89,19 @@ public class MainMenuManager : MonoBehaviour {
         SoundManager.Instance.PlayRandomSound("button_tap_light");
     }
 	private void NewGameDelay () {
+
 		KeepOnLoad.dataToLoad = -1;
-		SceneManager.LoadScene ("Loading");
-	}
+
+        if (MainMenuManager.debugLoading_SkipLoading)
+        {
+            SceneManager.LoadScene("Main");
+        }
+        else
+        {
+            SceneManager.LoadScene("Loading");
+        }
+
+    }
 	public void QuitButton () {
 
         SoundManager.Instance.PlayRandomSound("button_tap_light");
@@ -114,8 +126,16 @@ public class MainMenuManager : MonoBehaviour {
 		Transitions.Instance.ScreenTransition.FadeIn (transitionDuration);
 		Invoke ("LoadDelay" , transitionDuration);
 	}
-	private void LoadDelay () {
-		SceneManager.LoadScene ("Loading");
+	private void LoadDelay ()
+    {
+        if (MainMenuManager.debugLoading_SkipLoading)
+        {
+            SceneManager.LoadScene("Main");
+        }
+        else
+        {
+            SceneManager.LoadScene("Loading");
+        }
     }
 
 	public void OpenLoadMenu () {

@@ -12,6 +12,12 @@ public class ChoiceManager : MonoBehaviour {
 
     public bool visible = false;
 
+    public class Choice
+    {
+        public string content;
+        public bool alreadyMade = false;
+    }
+
     public string[] bubblePhrases = new string[8] {
 		"(partir)",
 		"(attaquer)",
@@ -26,9 +32,6 @@ public class ChoiceManager : MonoBehaviour {
 	[Header("Choices")]
 	[SerializeField]
 	private ChoiceButton[] choiceButtons;
-
-	[SerializeField]
-	private Color[] statColor;
 
 	[SerializeField]
 	private GameObject choiceGroup;
@@ -46,8 +49,6 @@ public class ChoiceManager : MonoBehaviour {
 
     void StartDelay()
     {
-        feedbackSprites = Resources.LoadAll<Sprite>("Graph/ChoiceBubbleFeedbackSprites");
-
         StoryFunctions.Instance.getFunction += HandleGetFunction;
 
         InGameMenu.Instance.onOpenMenu += HandleOpenInventory;
@@ -100,12 +101,13 @@ public class ChoiceManager : MonoBehaviour {
         }
 	}
 
-	public void SetChoices (int amount, string[] content) {
+	public void SetChoices (int amount, Choice[] choices) {
+
         Show();
 
 		for (int i = 0; i < amount ; ++i ) {
             choiceButtons[i].id = i;
-            choiceButtons[i].Init(content[i]);
+            choiceButtons[i].Init(choices[i]);
 		}
 
 		//Crews.playerCrew.captain.Icon.MoveToPoint (Crews.PlacingType.World);
@@ -118,17 +120,9 @@ public class ChoiceManager : MonoBehaviour {
 			choiceButton.image.color = Color.white;
 	}
 
-	public void TaintChoice (int buttonIndex , int statIndex) {
-
-		choiceButtons [buttonIndex].GetComponentInChildren<Image> ().color = statColor [statIndex];
-
-	}
-
 	public void Choose (int i) {
 
         SoundManager.Instance.PlayRandomSound("click_med");
-
-        StoryReader.Instance.SetDecal (i);
 
         /// ici, si tu veux tainter les choix que tu as déjà fais.
         //StoryReader.Instance.CurrentStoryHandler.SaveDecal(-2);
@@ -140,7 +134,13 @@ public class ChoiceManager : MonoBehaviour {
 		}
 
 		StoryReader.Instance.NextCell ();
-		StoryReader.Instance.UpdateStory ();
+
+        //decal 
+        StoryReader.Instance.SetDecal(i);
+
+        StoryReader.Instance.CurrentStoryHandler.SaveDecal(1, StoryReader.Instance.Row , StoryReader.Instance.Col-1);
+
+        StoryReader.Instance.UpdateStory ();
 	}
 
 	#region dialogues choices
@@ -153,7 +153,7 @@ public class ChoiceManager : MonoBehaviour {
 		// get bubble content
 		StoryReader.Instance.NextCell ();
 
-		string[] choices = new string[amount];
+        Choice[] choices = new Choice[amount];
 
 		int tmpDecal = StoryReader.Instance.Row;
 		int a = amount;
@@ -163,29 +163,17 @@ public class ChoiceManager : MonoBehaviour {
 
 			if ( StoryReader.Instance.ReadDecal (tmpDecal).Length > 0 ) {
 
-				string choice = StoryReader.Instance.ReadDecal (tmpDecal);
+				string content = StoryReader.Instance.ReadDecal (tmpDecal);
+                content = content.Remove (0, 9);
 
-				choice = choice.Remove (0, 9);
+                bool alreadyMade = StoryReader.Instance.CurrentStoryHandler.GetDecal(tmpDecal , StoryReader.Instance.Col) == 1;
 
-				int i = 0;
+                Choice choice = new Choice();
+                choice.content = content;
+                choice.alreadyMade = alreadyMade;
+                choices[amount - a] = choice;
 
-				string[] stats = new string[] { "(str)", "(dex)", "(cha)", "(con)" };
-				foreach ( string stat in stats ) {
-
-					if ( choice.Contains ( stat ) ) {
-
-						ChoiceManager.Instance.TaintChoice (index, i);
-						choice = choice.Replace (stat, "");
-
-					}
-
-					++i;
-
-				}
-
-				choices [amount - a] = choice;
-
-				--a;
+                --a;
 				++index;
 			}
 

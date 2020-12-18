@@ -13,12 +13,12 @@ Leave;[gougou gaga];;;;;;;;;;;;;
 ;OtherSpeak : I'm a master carpenter, I can make your boat better if you want!;;;;;;;;;;;;;
 ;[conversation];;;;;;;[discussion];;;;;;
 ;SetChoices4;;;;;;;SetChoices4;;;;;;
-;Choice : (leave);Choice : Take a look at my NOMBATEAU! (trade);;Choice : (attack);;Choice : (chat) (other);;Choice : Let's go back to serious matters.;Choice : NOMTRESOR, ring any bells?;;Choice : How’s the carpenter life going? (quest);;Choice : What’s going on around the island ?;
-;HideOther;[bateau];;RemoveKarma;;Node=>discussion;;OtherSpeak : Very well.;RandomRange2;;RandomPercent65;;RandomRange2;
-;Leave;OtherSpeak : With great pleasure!;OtherSpeak : After threatening me? No way.;RandomPercent50;;;;Node=>conversation;OtherSpeak : Well yes !;OtherSpeak : Nope, never heard about it!;OtherSpeak : Business is great!;NewQuest=>discussion;GiveTip;OtherSpeak : Can’t talk… Too many boats to fix.
-;;BoatUpgrades;Node=>conversation;OtherSpeak : No, I beg you!;Node=>Combat Charpentier;;;;TellClue;Node=>conversation;OtherSpeak : Maybe even too much...;;Node=>discussion;Node=>discussion
-;;Node=>conversation;;OtherSpeak : Take this and leave this island!;;;;;Node=>conversation;;OtherSpeak : I don’t have time to sail myself anymore.;;;
-;;;;LootMisc/Food;;;;;;;Node=>discussion;;;
+;Choice : (leave);Choice : Take a look at my boat, NOMBATEAU! (trade);;Choice : (attack);;Choice : (chat) (other);;Choice : NOMTRESOR, ring any bells?;;Choice : How’s the carpenter life going? (quest);;Choice : What’s going on around the island ?;;Choice : Let's go back to serious matters (other)
+;HideOther;[bateau];;RemoveKarma;;Node=>discussion;;RandomRange2;;RandomPercent65;;RandomRange2;;OtherSpeak : Very well.
+;Leave;OtherSpeak : With great pleasure!;OtherSpeak : After threatening me? No way.;RandomPercent50;;;;OtherSpeak : Well yes !;OtherSpeak : Nope, never heard about it!;OtherSpeak : Business is great!;NewQuest=>discussion;GiveTip;OtherSpeak : Can’t talk… Too many boats to fix.;Node=>conversation
+;;BoatUpgrades;Node=>conversation;OtherSpeak : No, I beg you!;Node=>Combat Charpentier;;;TellClue;Node=>conversation;OtherSpeak : Maybe even too much...;;Node=>discussion;Node=>discussion;
+;;Node=>conversation;;OtherSpeak : Take this and leave this island!;;;;Node=>conversation;;OtherSpeak : I don’t have time to sail myself anymore.;;;;
+;;;;LootMisc/Food;;;;;;Node=>discussion;;;;
 ;;;;OtherSpeak : It’s all I have left...;;;;;;;;;;
 ;;;;SetChoices2;;;;;;;;;;
 ;;;;Choice : Thanks!;Choice : I’ll kill you anyways. (attack);;;;;;;;;

@@ -122,8 +122,12 @@ public class StoryLoader : MonoBehaviour {
 
                 bool containsParam = int.TryParse (freq_Str, out newStory.param);
 				if (containsParam == false ) {
-					
-					print("sprite id pas parcable : (" + freq_Str + ") dans l'histoire " + newStory.dataName);
+
+                    Debug.Log("sprite id pas parcable : (" + freq_Str + ") dans l'histoire " + newStory.dataName);
+
+                    Debug.Log("fffffff" + rows[rowIndex+1][0]);
+                    Debug.Log("fffffff" + rows[rowIndex+1][1]);
+                    Debug.Log("fffffff" + rows[rowIndex+1][2]);
 
 					print (rowContent [0]);
 					print (rowContent [1]);

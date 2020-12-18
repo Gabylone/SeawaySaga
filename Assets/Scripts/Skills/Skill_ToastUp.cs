@@ -160,7 +160,7 @@ public class Skill_ToastUp : Skill {
         SoundManager.Instance.PlayRandomSound("Alchemy");
 
 
-        fighter.TargetFighter.AddStatus (Fighter.Status.Toasted);
+        fighter.TargetFighter.AddStatus (Fighter.Status.Toasted,2);
 
 		EndSkill ();
 

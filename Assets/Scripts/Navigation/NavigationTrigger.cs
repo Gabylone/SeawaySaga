@@ -73,13 +73,13 @@ public class NavigationTrigger : MonoBehaviour {
 		}
 	}*/
 
-	void OnTriggerStay ( Collider other ) {
+	/*void OnTriggerStay ( Collider other ) {
 
 		if (other.tag == "Player" && selected ) {
 			NavigationManager.Instance.ChangeChunk (direction);
             Deselect();
 		}
-	}
+	}*/
 
     void OnTriggerEnter(Collider other)
     {

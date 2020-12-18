@@ -1,5 +1,4 @@
-﻿
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
@@ -18,6 +17,11 @@ public class SaveManager : MonoBehaviour
 
 	public GameData GameData {
 		get {
+            if ( gameData == null)
+            {
+                Debug.LogError("no game data");
+            }
+
 			return gameData;
 		}
 	}
@@ -133,18 +137,21 @@ public class SaveManager : MonoBehaviour
 
 		TimeManager.Instance.Save ();
 
-		SaveTool.Instance.SaveToCurrentMap ("game data",gameData);
+        Boats.Instance.SaveBoats();
+
+        SaveTool.Instance.SaveToCurrentMap ("game data",gameData);
 
 		SaveTool.Instance.SaveToCurrentMap ("discovered coords", MapGenerator.Instance.discoveredCoords);
 
-	}
-	#endregion
 
-	/// <summary>
-	/// load
-	/// </summary>
-	#region Load island data
-	public void LoadAllIslands () {
+    }
+    #endregion
+
+    /// <summary>
+    /// load
+    /// </summary>
+    #region Load island data
+    public void LoadAllIslands () {
 		StartCoroutine(LoadAllIslandCoroutine ());
 	}
 
@@ -152,7 +159,7 @@ public class SaveManager : MonoBehaviour
 
 		MapGenerator.Instance.LoadMap ();
 
-		string pathToFolder = SaveTool.Instance.GetSaveFolderPath() + "/Islands";
+		string pathToFolder = SaveTool.Instance.GetCurrentMapPath() + "/Islands";
 
 		var folder = new DirectoryInfo (pathToFolder);
 		var files = folder.GetFiles ();
@@ -293,9 +300,6 @@ public class PlayerInfo
     /// 
     /// </summary>
 
-    public delegate void OnChangePearlAmount();
-    public static OnChangePearlAmount onChangePearlAmount;
-
     public List<int> mapIDs = new List<int>();
 
     public void Init()
@@ -311,24 +315,19 @@ public class PlayerInfo
     public void RemovePearl(int i)
     {
         pearlAmount -= i;
-
-        onChangePearlAmount();
     }
 
     public void AddPearl(int i)
     {
         pearlAmount += i;
-
-        onChangePearlAmount();
-
     }
 
     public void AddApparenceItem(ApparenceItem apparenceItem)
     {
         if (apparenceItems.Contains(apparenceItem))
         {
-            Debug.Log("replacing apparence item : " + apparenceItem.apparenceType + " id : " + apparenceItem.id);
-            apparenceItems.Remove(apparenceItem);
+            Debug.Log("apparence item already exists apparence item : " + apparenceItem.apparenceType + " id : " + apparenceItem.id);
+            //apparenceItems.Remove(apparenceItem);
             return;
         }
 

@@ -106,7 +106,20 @@ public class Crews : MonoBehaviour {
 			StoryReader.Instance.NextCell ();
 			StoryReader.Instance.UpdateStory ();
 			break;
-		}
+            case FunctionType.HasRoomOnBoat:
+
+                StoryReader.Instance.NextCell();
+
+                if (Crews.playerCrew.CrewMembers.Count >= Crews.playerCrew.CurrentMemberCapacity)
+                {
+                    StoryReader.Instance.SetDecal(1);
+                }
+
+                StoryReader.Instance.UpdateStory();
+
+                break;
+
+        }
 	}
 
 	#region get crews
@@ -158,6 +171,8 @@ public class Crews : MonoBehaviour {
 
         Crew storyCrew = Crews.Instance.GetCrewFromCurrentCell();
 
+        Crews.enemyCrew.SetCrew(storyCrew);
+
         StoryReader.Instance.NextCell();
 
 		// set decal
@@ -165,7 +180,7 @@ public class Crews : MonoBehaviour {
 
 			StoryReader.Instance.SetDecal (1);
 
-            Debug.Log("!!! OPENING COMBAT LOOT !!!");
+            //Debug.Log("!!! OPENING COMBAT LOOT !!!");
 
             if (storyCrew.hostile)
             {
@@ -184,7 +199,6 @@ public class Crews : MonoBehaviour {
 
         } else {
 
-			Crews.enemyCrew.SetCrew (storyCrew);
 
 			if (storyCrew.hostile) {
 				
@@ -310,7 +324,7 @@ public class Crews : MonoBehaviour {
 		if (Crews.playerCrew.CrewMembers.Count >= Crews.playerCrew.CurrentMemberCapacity) {
 
 			string phrase = "The boat is too small, I can't even put a foot in it";
-            DialogueManager.Instance.PlayerSpeak(phrase);
+            DialogueManager.Instance.OtherSpeak(phrase);
 
 		} else {
 

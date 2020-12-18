@@ -16,15 +16,18 @@ public class Transition : MonoBehaviour {
 
 	public void FadeIn (float duration)
 	{
+        transitionCanvas.SetActive(true);
+
         CancelInvoke("FadeOutDelay");
         targetImage.DOKill();
 
-        transitionCanvas.SetActive (true);
         targetImage.color = Color.clear;
         targetImage.DOColor(targetColor, duration);
 	}
 	public void FadeOut (float duration)
 	{
+        transitionCanvas.SetActive(true);
+
         CancelInvoke("FadeOutDelay");
         targetImage.DOKill();
 

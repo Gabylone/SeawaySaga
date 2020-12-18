@@ -28,6 +28,10 @@ public class SoundManager : MonoBehaviour
     public AudioSource ambiantSource;
     public AudioSource rainSource;
 
+    public Image soundImage;
+    public Sprite soundOn_Sprite;
+    public Sprite soundOff_Sprite;
+
     public List<Sound> sounds = new List<Sound>();
 
     void Awake()
@@ -37,10 +41,10 @@ public class SoundManager : MonoBehaviour
 
     void Start()
     {
-        EnableSound = true;
-
         fxSources = sourceParent.GetComponentsInChildren<AudioSource>();
         loopFxSources = loopSourceParent.GetComponentsInChildren<AudioSource>();
+
+        SoundEnabled = PlayerPrefs.GetInt("SoundEnabled", 1) == 1;
 
         UpdateAmbianceSound();
     }
@@ -48,6 +52,11 @@ public class SoundManager : MonoBehaviour
     #region play functions
     public void PlayLoop(string soundName)
     {
+        if (!SoundEnabled)
+        {
+            return;
+        }
+
         Sound sound = sounds.Find(x => x.name == soundName);
 
         if (sound == null)
@@ -86,7 +95,7 @@ public class SoundManager : MonoBehaviour
 
         if (tmp_Sounds.Count == 0)
         {
-            Debug.LogError("no random sound named : " + soundName);
+            //Debug.LogError("no random sound named : " + soundName);
             return;
         }
 
@@ -108,6 +117,11 @@ public class SoundManager : MonoBehaviour
     }
     private void PlaySound (Sound sound)
     {
+        if (!SoundEnabled)
+        {
+            return;
+        }
+
         fxSources[sourceIndex].clip = sound.clip;
         fxSources[sourceIndex].Play();
 
@@ -123,6 +137,11 @@ public class SoundManager : MonoBehaviour
     #region ambiance
     public void PlayAmbiance(string ambianceName)
     {
+        if (!SoundEnabled)
+        {
+            return;
+        }
+
         Sound sound = sounds.Find(x => x.name == ambianceName);
 
         if (sound == null)
@@ -141,6 +160,11 @@ public class SoundManager : MonoBehaviour
     }
     public void PlayRain()
     {
+        if (!SoundEnabled)
+        {
+            return;
+        }
+
         rainSource.Play();
     }
     public void StopRain()
@@ -182,10 +206,15 @@ public class SoundManager : MonoBehaviour
 
     public void SwitchEnableSound()
     {
-        EnableSound = !EnableSound;
+        SoundEnabled = !SoundEnabled;
+
+        PlayerPrefs.SetInt("SoundEnabled", SoundEnabled ? 1 : 0);
+
+        soundImage.sprite = SoundEnabled ? soundOn_Sprite : soundOff_Sprite;
+
     }
 
-    public bool EnableSound
+    public bool SoundEnabled
     {
         get
         {
@@ -194,16 +223,36 @@ public class SoundManager : MonoBehaviour
         set
         {
             enableSound = value;
+
+            foreach (var item in fxSources)
+            {
+                item.mute = !SoundEnabled;
+            }
+
+            foreach (var item in loopFxSources)
+            {
+                item.mute = !SoundEnabled;
+            }
+
+            ambiantSource.mute = !SoundEnabled;
+
+            rainSource.mute = !SoundEnabled;
         }
     }
 
     #region ambiance
     public void UpdateAmbianceSound()
     {
-        if(StoryLauncher.Instance== null)
+        if (!SoundEnabled)
         {
             return;
         }
+
+        if (StoryLauncher.Instance== null)
+        {
+            return;
+        }
+
         if (StoryLauncher.Instance.PlayingStory)
         {
             UpdateLandAmbianceSound();
@@ -218,6 +267,11 @@ public class SoundManager : MonoBehaviour
 
     void UpdateSeaAmbianceSound()
     {
+        if (!SoundEnabled)
+        {
+            return;
+        }
+
         if (TimeManager.Instance == null)
         {
             return;
@@ -241,6 +295,11 @@ public class SoundManager : MonoBehaviour
 
     void UpdateLandAmbianceSound()
     {
+        if (!SoundEnabled)
+        {
+            return;
+        }
+
         if ( InGameBackGround.Instance == null) {
             return;
         }

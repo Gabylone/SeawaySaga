@@ -206,7 +206,7 @@ public class BoatUpgradeManager : MonoBehaviour {
     {
         memberToRemove = i;
 
-        MessageDisplay.Instance.Show("Abandon " + Crews.playerCrew.CrewMembers[i].MemberName + " ?");
+        MessageDisplay.Instance.Display("Abandon " + Crews.playerCrew.CrewMembers[i].MemberName + " ?");
         MessageDisplay.Instance.onValidate += ConfirmRemoveMember;
     }
 

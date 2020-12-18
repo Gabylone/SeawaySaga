@@ -317,11 +317,6 @@ public class QuestManager : MonoBehaviour {
 
 		get {
 
-			foreach (Quest quest in currentQuests) {
-				print (quest.Story.dataName);
-				print (quest.layer);
-			}
-
 			int storyLayer = StoryReader.Instance.currentStoryLayer;
 
 			if (StoryReader.Instance.CurrentStoryHandler.storyType == StoryType.Quest ) {

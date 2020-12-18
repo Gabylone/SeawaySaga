@@ -36,7 +36,6 @@ public class Skill_Fury: Skill {
         SoundManager.Instance.PlaySound("Fury 2");
 
         fighter.AddStatus (Fighter.Status.Enraged, 3);
-		fighter.onRemoveStatus += HandleOnRemoveStatus;
 		fighter.crewMember.energyPerTurn += energyPerTurnAdded;
 
 		EndSkill ();
@@ -47,13 +46,5 @@ public class Skill_Fury: Skill {
     {
         base.EndSkill();
     }
-
-    void HandleOnRemoveStatus (Fighter.Status status, int count)
-	{
-		if ( status == Fighter.Status.Enraged && count == 0 ) {
-//			fighter.onRemoveStatus -= 
-			energyPerTurnAdded -= energyPerTurnAdded;
-		}
-	}
 
 }

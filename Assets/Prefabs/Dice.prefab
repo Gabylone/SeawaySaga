@@ -48,10 +48,11 @@ MonoBehaviour:
   minTorque: 150
   maxForce: 13
   maxTorque: 300
+  group: {fileID: 5652856362693410638}
   bodyTransform: {fileID: 3146449264928115702}
   tweenDecal: 5
-  tweenDuration: 0.7
-  quickTweenDuration: 0.2
+  tweenDuration: 0.3
+  quickTweenDuration: 0.1
   rendeder: {fileID: 2106187653622494676}
   anchor: {fileID: 0}
   thrown: 0

@@ -107,7 +107,6 @@ public class CombatManager : MonoBehaviour {
 
     void Update()
     {
-
         if (updateState != null)
         {
             updateState();
@@ -307,11 +306,19 @@ public class CombatManager : MonoBehaviour {
 	#region Player Member Choice 
 	private void PlayerMemberChoice_Start () {
 
-		cancelPlayerMemberChoiceButton.SetActive (true);
-
         SkillDescription.Instance.Show(currentSkill);
 
-		Tween.Bounce (cancelPlayerMemberChoice_Transform);
+        if ( currentSkill.type == Skill.Type.Leap 
+            || currentSkill.type == Skill.Type.HeadShot)
+        {
+            cancelPlayerMemberChoiceButton.SetActive(false);
+        }
+        else
+        {
+            cancelPlayerMemberChoiceButton.SetActive(true);
+        }
+
+        Tween.Bounce (cancelPlayerMemberChoice_Transform);
 
 		if (currentSkill.targetType == Skill.TargetType.Self) {
 			ChoosingTarget (Crews.Side.Player);
@@ -406,9 +413,16 @@ public class CombatManager : MonoBehaviour {
 				}
 			}
 
-			weakestFighter.SetAsTarget ();
+            if ( Random.value < 0.4f )
+            {
+			    weakestFighter.SetAsTarget ();
+            }
+            else
+            {
+                currPlayerFighters[Random.Range(0, currPlayerFighters.Count)].SetAsTarget();
+            }
 
-		}
+        }
 
 	}
 	private void EnemyMemberChoice_Update () {
@@ -552,7 +566,7 @@ public class CombatManager : MonoBehaviour {
         int xpPerMember = 40;
         foreach (var item in currPlayerFighters)
         {
-            item.combatFeedback.Display("" + xpPerMember, Color.white);
+            item.combatFeedback.Display("" + xpPerMember, Color.magenta);
             item.crewMember.AddXP(xpPerMember);
         }
 

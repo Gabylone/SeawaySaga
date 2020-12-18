@@ -18,8 +18,12 @@ public class Transitions : MonoBehaviour {
 
 	void Start () {
 
-        screenTransition.FadeOut( defaultTransition );
-        actionTransition.FadeOut(defaultTransition);
+        screenTransition.FadeOut(defaultTransition);
+        if ( actionTransition != null)
+        {
+            actionTransition.FadeOut(defaultTransition);
+
+        }
 
         if (StoryFunctions.Instance!=null)
 		StoryFunctions.Instance.getFunction += HandleGetFunction;

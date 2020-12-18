@@ -33,8 +33,8 @@ public class IconVisual : MonoBehaviour
 
     public GameObject poisonPuddle_Obj;
     public GameObject poisonEffect_Obj;
-    public GameObject healEffect_Obj;
-    public GameObject hitEffect_Obj;
+    public Animator healEffect_Anim;
+    public Animator hitEffect_Anim;
     public Transform hitEffect_Transform;
     public GameObject food_Obj;
     public Transform rhumBottle_Transform;
@@ -179,6 +179,7 @@ public class IconVisual : MonoBehaviour
 
         // weapon
         weaponImage.color = Color.Lerp(Color.white, targetHighlightColor, lerp);
+
     }
 
 
@@ -295,6 +296,17 @@ public class IconVisual : MonoBehaviour
 
         InitVisual();
     }
+
+    public void ResetEffects()
+    {
+        poisonPuddle_Obj.SetActive(false);
+        poisonEffect_Obj.SetActive(false);
+        healEffect_Anim.gameObject.SetActive(false);
+        hitEffect_Transform.gameObject.SetActive(false);
+        food_Obj.SetActive(false);
+        rhumBottle_Transform.gameObject.SetActive(false);
+        bearTrap_Transform.gameObject.SetActive(false);
+}
 
     /// <summary>
     /// knocked out

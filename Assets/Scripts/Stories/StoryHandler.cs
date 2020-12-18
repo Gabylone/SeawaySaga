@@ -131,7 +131,19 @@ public class StoryHandler {
 		contentDecals.Add (new contentDecal(_row, _col , _decal) );
 	}
 
-	public int GetDecal() {
+    public int GetDecal(int x , int y)
+    {
+        contentDecal cDecal = contentDecals.Find((contentDecal obj) => (obj.row == x) && (obj.col == y));
+
+        if (cDecal == default(contentDecal))
+        {
+            return -1;
+        }
+
+        return cDecal.decal;
+    }
+
+    public int GetDecal() {
 		contentDecal cDecal = contentDecals.Find ((contentDecal obj) => (obj.row == StoryReader.Instance.Row) && (obj.col == StoryReader.Instance.Col) );
 
 		if (cDecal == default(contentDecal)) {

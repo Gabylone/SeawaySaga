@@ -26,6 +26,12 @@ public class Tutorial : MonoBehaviour {
 
     private void Awake()
     {
+        if (debugTutorial)
+        {
+            Debug.Log("debugging tuto");
+            KeepOnLoad.displayTuto = true;
+        }
+
         Instance = this;
 
         onWaitForConfirm = null;
@@ -35,9 +41,7 @@ public class Tutorial : MonoBehaviour {
 
     void Start () {
 
-		if (debugTutorial) {
-			KeepOnLoad.displayTuto = true;
-		}
+		
 
 		if (KeepOnLoad.displayTuto) {
 
@@ -145,7 +149,11 @@ public enum TutorialStep {
 	Meeting1,
 	Meeting2,
 	BigMap,
-	PowerfullFoe,
+	BigMap2,
+	BigMap3,
+	BigMap4,
+	BigMap5,
+    PowerfullFoe,
 }
 
 public class TutoStep {
@@ -204,7 +212,7 @@ public class TutoStep_Saves : TutoStep {
 	{
 		base.Init ();
 
-		NavigationManager.Instance.onMoveToChunk += HandleChunkEvent;
+		NavigationManager.Instance.tutorial_OnMoveChunk += HandleChunkEvent;
 	}
 
 	void HandleChunkEvent ()
@@ -214,7 +222,7 @@ public class TutoStep_Saves : TutoStep {
 		if ( chunkCount == 8 ) {
 
 			Display ();
-			NavigationManager.Instance.onMoveToChunk -= HandleChunkEvent;
+			NavigationManager.Instance.tutorial_OnMoveChunk -= HandleChunkEvent;
 			WaitForConfirm ();
 		}
 	}
@@ -254,7 +262,7 @@ public class TutoStep_Treasure: TutoStep {
 	{
 		base.Init ();
 
-		NavigationManager.Instance.onMoveToChunk += HandleChunkEvent;
+		NavigationManager.Instance.tutorial_OnMoveChunk += HandleChunkEvent;
 	}
 
 	void HandleChunkEvent ()
@@ -264,7 +272,7 @@ public class TutoStep_Treasure: TutoStep {
 		if ( chunkCount == 6 ) {
 
 			Display ();
-			NavigationManager.Instance.onMoveToChunk -= HandleChunkEvent;
+			NavigationManager.Instance.tutorial_OnMoveChunk -= HandleChunkEvent;
 			WaitForConfirm ();
 		}
 	}
@@ -345,7 +353,7 @@ public class TutoStep_Crew: TutoStep {
 			corner = DisplayInfo.Corner.TopLeft;
 
 			Display ();
-			NavigationManager.Instance.onMoveToChunk -= HandleChunkEvent;
+			NavigationManager.Instance.tutorial_OnMoveChunk -= HandleChunkEvent;
 			WaitForConfirm ();
 		}
 	}
@@ -626,7 +634,7 @@ public class TutoStep_Hunger: TutoStep {
 	{
 		base.Init ();
 
-		NavigationManager.Instance.onMoveToChunk += HandleChunkEvent;
+		NavigationManager.Instance.tutorial_OnMoveChunk += HandleChunkEvent;
 	}
 
 	void HandleChunkEvent ()
@@ -638,7 +646,7 @@ public class TutoStep_Hunger: TutoStep {
 
 		if (fillAmount < 0.25f) {
 			corner = DisplayInfo.Corner.TopLeft;
-			NavigationManager.Instance.onMoveToChunk -= HandleChunkEvent;
+			NavigationManager.Instance.tutorial_OnMoveChunk -= HandleChunkEvent;
 			Display ();
 			WaitForConfirm ();
 		}
@@ -816,7 +824,7 @@ public class TutoStep_Minimap : TutoStep {
 			corner = DisplayInfo.Corner.BottomLeft;
 
 			Display ();
-			NavigationManager.Instance.onMoveToChunk -= HandleChunkEvent;
+			NavigationManager.Instance.tutorial_OnMoveChunk -= HandleChunkEvent;
 			WaitForConfirm ();
 		}
 	}
@@ -931,17 +939,131 @@ public class TutoStep_BigMap: TutoStep {
 	{
 		base.Init ();
 
-		//DisplayMinimap.onZoom += HandleOnZoom;
+		DisplayMinimap.Instance.onFullDisplay += HandleOnZoom;
 	}
 
 	void HandleOnZoom ()
 	{
 		Display ();
 		WaitForConfirm ();
-	}
+
+        DisplayMinimap.Instance.onFullDisplay -= HandleOnZoom;
+
+    }
 
 }
 
+public class TutoStep_BigMap2 : TutoStep
+{
+    public override void Init()
+    {
+        base.Init();
+
+        Tutorial.onDisplayTutorial += HandleOnDisplayTutorial;
+    }
+
+    void HandleOnDisplayTutorial(TutoStep tutoStep)
+    {
+        if (tutoStep.step == TutorialStep.BigMap)
+        {
+            Tutorial.onDisplayTutorial -= HandleOnDisplayTutorial;
+            Tutorial.onHideTutorial += HandleOnHideTutorial;
+        }
+    }
+
+    void HandleOnHideTutorial()
+    {
+        Tutorial.onHideTutorial -= HandleOnHideTutorial;
+
+        Display();
+        WaitForConfirm();
+    }
+
+}
+
+public class TutoStep_BigMap3 : TutoStep
+{
+    public override void Init()
+    {
+        base.Init();
+
+        Tutorial.onDisplayTutorial += HandleOnDisplayTutorial;
+    }
+
+    void HandleOnDisplayTutorial(TutoStep tutoStep)
+    {
+        if (tutoStep.step == TutorialStep.BigMap2)
+        {
+            Tutorial.onDisplayTutorial -= HandleOnDisplayTutorial;
+            Tutorial.onHideTutorial += HandleOnHideTutorial;
+        }
+    }
+
+    void HandleOnHideTutorial()
+    {
+        Tutorial.onHideTutorial -= HandleOnHideTutorial;
+
+        Display();
+        WaitForConfirm();
+    }
+
+}
+
+public class TutoStep_BigMap4 : TutoStep
+{
+    public override void Init()
+    {
+        base.Init();
+
+        Tutorial.onDisplayTutorial += HandleOnDisplayTutorial;
+    }
+
+    void HandleOnDisplayTutorial(TutoStep tutoStep)
+    {
+        if (tutoStep.step == TutorialStep.BigMap3)
+        {
+            Tutorial.onDisplayTutorial -= HandleOnDisplayTutorial;
+            Tutorial.onHideTutorial += HandleOnHideTutorial;
+        }
+    }
+
+    void HandleOnHideTutorial()
+    {
+        Tutorial.onHideTutorial -= HandleOnHideTutorial;
+
+        Display();
+        WaitForConfirm();
+    }
+
+}
+
+public class TutoStep_BigMap5 : TutoStep
+{
+    public override void Init()
+    {
+        base.Init();
+
+        Tutorial.onDisplayTutorial += HandleOnDisplayTutorial;
+    }
+
+    void HandleOnDisplayTutorial(TutoStep tutoStep)
+    {
+        if (tutoStep.step == TutorialStep.BigMap4)
+        {
+            Tutorial.onDisplayTutorial -= HandleOnDisplayTutorial;
+            Tutorial.onHideTutorial += HandleOnHideTutorial;
+        }
+    }
+
+    void HandleOnHideTutorial()
+    {
+        Tutorial.onHideTutorial -= HandleOnHideTutorial;
+
+        Display();
+        WaitForConfirm();
+    }
+
+}
 
 public class TutoStep_PowerfullFoe: TutoStep {
 

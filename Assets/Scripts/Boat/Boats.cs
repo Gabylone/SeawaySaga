@@ -98,6 +98,11 @@ public class Boats : MonoBehaviour {
 
     public void ResumeBoats()
     {
+        Invoke("ResumeBoatsDelay", 2f);
+    }
+
+    void ResumeBoatsDelay()
+    {
         pausingBoats = false;
 
         foreach (var item in enemyBoats)

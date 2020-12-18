@@ -62,6 +62,11 @@ public class SceneSwitchWindow : EditorWindow
             GameObject.FindObjectOfType<SoundManager>().LoadSounds();
         }
 
+        if (GUILayout.Button("Clear Map Saves", new GUIStyle(GUI.skin.GetStyle("Button")) { alignment = TextAnchor.MiddleLeft }))
+        {
+            PlayerPrefs.DeleteAll();
+        }
+
         EditorGUILayout.EndScrollView();
         EditorGUILayout.EndVertical();
     }

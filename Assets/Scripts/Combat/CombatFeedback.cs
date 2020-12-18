@@ -83,6 +83,7 @@ public class CombatFeedback : MonoBehaviour {
 
         text.text = content;
 
+
         // status
         statusImage.gameObject.SetActive(false);
 

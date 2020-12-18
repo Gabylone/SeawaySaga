@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <Chunk xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <state>VisitedIsland</state>
+  <state>DiscoveredIsland</state>
   <coords>
     <x>0</x>
     <y>3</y>
@@ -8,10 +8,10 @@
   <islandDatas>
     <IslandData>
       <worldPosition>
-        <x>-8.875883</x>
-        <y>5.89041138</y>
+        <x>-17.8118172</x>
+        <y>16.3883553</y>
       </worldPosition>
-      <worldRotation>167.61731</worldRotation>
+      <worldRotation>352.007355</worldRotation>
       <index>0</index>
       <coords>
         <x>0</x>
@@ -19,7 +19,7 @@
       </coords>
       <containsFormula>false</containsFormula>
       <storyManager>
-        <hasBeenPlayed>true</hasBeenPlayed>
+        <hasBeenPlayed>false</hasBeenPlayed>
         <storyHandlers>
           <StoryHandler>
             <row>0</row>
@@ -29,81 +29,7 @@
             <storyType>Normal</storyType>
             <contentDecals />
             <loots />
-            <crews>
-              <Crew>
-                <hostile>false</hostile>
-                <row>0</row>
-                <col>9</col>
-                <MemberIDs>
-                  <Member>
-                    <id>17</id>
-                    <Name>Laura</Name>
-                    <health>100</health>
-                    <maxHealth>100</maxHealth>
-                    <currentHunger>0</currentHunger>
-                    <Lvl>4</Lvl>
-                    <xp>0</xp>
-                    <skillPoints>0</skillPoints>
-                    <specialSkillsIndexes>
-                      <int>12</int>
-                      <int>13</int>
-                    </specialSkillsIndexes>
-                    <stats>
-                      <int>3</int>
-                      <int>1</int>
-                      <int>2</int>
-                      <int>1</int>
-                    </stats>
-                    <daysOnBoard>0</daysOnBoard>
-                    <equipedWeapon>
-                      <ID>80</ID>
-                      <englishName>Immense mace</englishName>
-                      <frenchName>Fléau d'ames</frenchName>
-                      <value>36</value>
-                      <price>60</price>
-                      <weight>8</weight>
-                      <level>4</level>
-                      <spriteID>5</spriteID>
-                      <description>It's just your basic immense mace</description>
-                      <weaponType>Stick</weaponType>
-                      <category>Weapon</category>
-                    </equipedWeapon>
-                    <equipedCloth>
-                      <ID>171</ID>
-                      <englishName>Rusty breastplate</englishName>
-                      <frenchName>Cuirasse rouillée</frenchName>
-                      <value>39</value>
-                      <price>69</price>
-                      <weight>8</weight>
-                      <level>4</level>
-                      <spriteID>1</spriteID>
-                      <description>It's just your basic rusty breastplate</description>
-                      <weaponType>Distance</weaponType>
-                      <category>Clothes</category>
-                    </equipedCloth>
-                    <job>Cook</job>
-                    <characterIDS>
-                      <int>5</int>
-                      <int>8</int>
-                      <int>4</int>
-                      <int>4</int>
-                      <int>2</int>
-                      <int>4</int>
-                      <int>0</int>
-                      <int>2</int>
-                      <int>1</int>
-                      <int>0</int>
-                      <int>0</int>
-                      <int>7</int>
-                      <int>11</int>
-                      <int>3</int>
-                      <int>0</int>
-                      <int>2</int>
-                    </characterIDS>
-                  </Member>
-                </MemberIDs>
-              </Crew>
-            </crews>
+            <crews />
           </StoryHandler>
         </storyHandlers>
       </storyManager>

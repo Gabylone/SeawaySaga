@@ -45,8 +45,8 @@ Leave;Node=>tavernier;Node=>salle;;Fade;Fade;Fade;Fade;;;;;
 ;Choice : We’ll stay until NEXTTIME (sleep);;;;;;Node=>salle;Node=>salle;Node=>salle;Node=>salle;;
 [tavernier];;;;;;;;;;;;
 NewCrew;;;;;;;;;;;;
-[tavernier check];Node=>combat tavernier;OtherSpeak : How dare you step back into my establishment?!;;;;;;;;;;
-OtherSpeak : What can I do for you ?;;Node=>combat tavernier;;;;;;;;;;
+[tavernier check];Narrator : The inn-keeper lays dead behind the counter.;OtherSpeak : How dare you step back into my establishment?!;;;;;;;;;;
+OtherSpeak : What can I do for you ?;Node=>choix taverne;Node=>combat tavernier;;;;;;;;;;
 Node=>choix1;;;;;;;;;;;;
 ;;;;;;;;;;;;
 ;;;;;;;;;;;;
@@ -118,17 +118,17 @@ Node=>salle_mercenaire;Node=>salle_vendeur de trucs;Node=>salle_joueurs;Node=>sa
 [salle_mercenaire];;;;[achat mercenaire];;;[choix mercenaires];;;;;
 NewCrew4;;;;OtherSpeak : Hello kiddo!;OtherSpeak : You already took one of our men, that’s enough!;;SetChoices4;;;;;
 Narrator : A group of armed men is drinking.;;Node=>salle vide;OtherSpeak : You shouldn’t have come back!;Node=>choix mercenaires;HideOther;;Choice : No thanks (leave);Choice : How much for one of your men to join me? (trade);Choice : I’ll take one man! (member);;Choice : «Kiddo»?;
-SetChoices2;;;Node=>combat salle;;Fade;;HideOther;OtherSpeak : 100 coins but our skills are well worth the gold!;CheckGold100;;OtherSpeak : Yeah kiddo, ye heard me!;
-Choice : (leave);Choice : (speak to the mercenaries);;;;Node=>salle_mercenaire;;Fade;Node=>choix mercenaires;RemoveGold100;OtherSpeak : That’s cute but you don’t have the gold, mate.;Node=>gamin;
-HideOther;Node=>achat mercenaire;;;;;;Node=>salle_mercenaire;;OtherSpeak : You won’t regret it.;HideOther;;
-Fade;;;;;;;;;Switch=>achat mercenaire;Fade;;
-Node=>choix taverne;;;;;;;;;AddMember;Node=>choix taverne;;
+SetChoices2;;;Node=>combat salle;;Fade;;HideOther;OtherSpeak : 100 coins but our skills are well worth the gold!;HasRoomOnBoat;;OtherSpeak : Yeah kiddo, ye heard me!;
+Choice : (leave);Choice : (speak to the mercenaries);;;;Node=>salle_mercenaire;;Fade;Node=>choix mercenaires;Node=>take man;OtherSpeak : Looks like your boat’s too small, mate.;Node=>gamin;
+HideOther;Node=>achat mercenaire;;;;;;Node=>salle_mercenaire;;[take man];OtherSpeak : You oughta swing by a carpenters to make room for one of my boys.;;
+Fade;;;;;;;;;CheckGold100;Node=>choix mercenaires;;
+Node=>choix taverne;;;;;;;;;RemoveGold100;OtherSpeak : That’s cute but you don’t have the gold, mate.;;
+;;;;;;;;;OtherSpeak : You won’t regret it.;HideOther;;
+;;;;;;;;;Switch=>achat mercenaire;Fade;;
+;;;;;;;;;AddMember;Node=>choix taverne;;
 ;;;;;;;;;HideOther;;;
 ;;;;;;;;;Fade;;;
-;;;;;;;;;Node=>choix taverne;;;
-;;;;;;;;;;;;
-;;;;;;;;;;;;
-[salle_vendeur de trucs];;;;[choix vendeur];;;;;;;;
+[salle_vendeur de trucs];;;;[choix vendeur];;;;;Node=>choix taverne;;;
 NewCrew;;;;SetChoices3;;;;;;;;
 Narrator : At the back of the tavern, a man has displayed random items on a table.;Node=>salle vide;Node=>combat salle;;Choice : Let’s see these goods! (trade);Choice : Forget it. (leave);Choice : Show me what ye're peddlin'!;;;[gamin];;[salle vide];
 SetChoices2;;;;TradeMisc/Clothes;HideOther;OtherSpeak : Didn't your mother teach you to say please?;;;OtherSpeak : Got a problem, kiddo?;;Narrator : The room is empty.;
@@ -169,9 +169,8 @@ SetChoices3;;;;;[garde manger ouvert];;;[garde manger fermé];;;;
 Choice : (set sails) (leave);Choice : (sleep at the tavern again) (sleep);;Choice : (search for food)(loot);;Narrator : The pantry door is ajar.;;;Narrator : The pantry door is closed.;Narrator : The pantry is empty.;;;
 PlayerSpeak : Nothing to do here anymore, let's bounce.;PlayerSpeak : I reckon we need another good night of sleep;;RandomRange2;;SetChoices2;;;SetChoices3;;;;
 Leave;Node=>sleep – vide;;Node=>garde manger ouvert;Node=>garde manger fermé;Choice : (go back);Choice : (loot);;Choice : (go back to the main room)(leave);Choice : (smash the door)(str);;Choice : (use a key);
-;;;;;Node=>auberge vide;RandomPercent25;;Node=>auberge vide;RemoveKarma;;CheckInInventory<Clé>/Misc;
-;;;;;;PlayerSpeak : There’s nothing in it.;PlayerSpeak : Yummy!;;CheckStatSTR;;PlayerSpeak : The door is wide open.;PlayerSpeak : I don’t have any key…
-;;;;;;Node=>auberge vide;LootFood;;PlayerSpeak : The door broke open!;PlayerSpeak : It’s empty.;LootFood;Node=>auberge vide
-;;;;;;;RemoveKarma;;LootFood;Node=>auberge vide;Switch=>garde manger fermé;
-;;;;;;;Node=>auberge vide;;Switch=>garde manger fermé;;Node=>auberge vide;
-;;;;;;;;;Node=>auberge vide;;;
+;;;;;Node=>auberge vide;RandomPercent25;;Node=>auberge vide;CheckStatSTR;;CheckInInventory<Clé>/Misc;
+;;;;;;PlayerSpeak : There’s nothing in it.;PlayerSpeak : Yummy!;;PlayerSpeak : The door broke open!;PlayerSpeak : It’s empty.;PlayerSpeak : The door is wide open.;PlayerSpeak : I don’t have any key…
+;;;;;;Node=>auberge vide;LootFood;;LootFood;Node=>auberge vide;LootFood;Node=>auberge vide
+;;;;;;;RemoveKarma;;Switch=>garde manger fermé;;Switch=>garde manger fermé;
+;;;;;;;Node=>auberge vide;;Node=>auberge vide;;Node=>auberge vide;

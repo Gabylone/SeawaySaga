@@ -199,15 +199,18 @@ public class FormulaManager : MonoBehaviour {
 
             if (allFormulasHaveBeenVerified)
             {
-                DialogueManager.Instance.PlayerSpeak("Look like something happened !*The door moved a little, but did not opened*I need to keep looking");
+                DialogueManager.Instance.PlayerSpeak("Look like something happened !*The door is OPENING COMPLETLY !");
                 StoryReader.Instance.SetDecal(2);
             }
             else
             {
-                DialogueManager.Instance.PlayerSpeak("Look like something happened !*The door is OPENING COMPLETLY !");
+                DialogueManager.Instance.PlayerSpeak("Look like something happened !*The door moved a little, but did not open*I need to keep looking");
                 StoryReader.Instance.SetDecal(1);
             }
         }
+
+        SaveManager.Instance.SaveCurrentIsland();
+        SaveManager.Instance.SaveGameData();
 
         StoryReader.Instance.PreviousCell();
     }

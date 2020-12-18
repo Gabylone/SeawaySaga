@@ -129,6 +129,13 @@ public class DiceManager : MonoBehaviour {
 			die.Reset ();
 		}
 	}
+    void ShowDice()
+    {
+        foreach (var item in dices)
+        {
+            item.Show();
+        }
+    }
 	#endregion
 
 	#region throwing
@@ -159,6 +166,10 @@ public class DiceManager : MonoBehaviour {
 
 	public void ThrowDice (DiceTypes type, int diceAmount) {
 
+        ResetDice();
+
+        ShowDice();
+
         Transitions.Instance.actionTransition.FadeIn(0.5f);
 
         SoundManager.Instance.PlayRandomSound("Whoosh");
@@ -169,7 +180,6 @@ public class DiceManager : MonoBehaviour {
 
         result = Result.None;
 
-		ResetDice ();
 
 		Throwing = true;
 
@@ -235,7 +245,7 @@ public class DiceManager : MonoBehaviour {
 
             if (dice.targetResult == 6)
             {
-                bool good = true;
+                dice.SettleUp();
 
                 for (int i = 0; i < diceIndex; i++)
                 {
@@ -246,7 +256,7 @@ public class DiceManager : MonoBehaviour {
                         SoundManager.Instance.PlaySound("ui_wrong");
                         SoundManager.Instance.PlayRandomSound("Magic Chimes");
 
-                        dice.SettleDown();
+                        //dice.SettleDown();
 
                         dice.targetResult = -1;
                         previousDice.targetResult = -1;
@@ -259,15 +269,8 @@ public class DiceManager : MonoBehaviour {
                         dice.Fade();
                         previousDice.Fade();
 
-                        good = false;
-
                         break;
                     }
-                }
-
-                if (good)
-                {
-                    dice.SettleUp();
                 }
 
             }
@@ -308,8 +311,10 @@ public class DiceManager : MonoBehaviour {
             yield return new WaitForSeconds(dice.tweenDuration);
         }
 
-        foreach (var item in dices)
+        for (int i = 0; i < currentThrow.diceAmount; i++)
         {
+            Dice item = dices[i];
+
             if ( item.targetResult == 6)
             {
                 result = Result.Success;

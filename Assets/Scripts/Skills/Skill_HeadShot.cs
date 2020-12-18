@@ -41,6 +41,20 @@ public class Skill_HeadShot : Skill {
 
     }
 
+    public override void EndSkillDelay()
+    {
+        if (!secondPart)
+        {
+            fighter.EndTurn();
+            CombatManager.Instance.NextTurn();
+        }
+        else
+        {
+            base.EndSkillDelay();
+        }
+
+    }
+
     public override void StartAnimation()
     {
         base.StartAnimation();
@@ -64,11 +78,7 @@ public class Skill_HeadShot : Skill {
 
             fighter.animator.SetBool("aiming", false);
 
-            SoundManager.Instance.PlaySound("shoot");
-
-            secondPart = false;
-			hasTarget = false;
-            goToTarget = false;
+            SoundManager.Instance.PlayRandomSound("shoot");
 
             fighter.iconVisual.RemoveAimingEyes();
 
@@ -77,9 +87,14 @@ public class Skill_HeadShot : Skill {
 			fighter.SetTurn ();
 
 			EndSkill ();
-			//
 
-		}
+            // reset
+            secondPart = false;
+            hasTarget = false;
+            goToTarget = false;
+            //
+
+        }
 
 	}
 

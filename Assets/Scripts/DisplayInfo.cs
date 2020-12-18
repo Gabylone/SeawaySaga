@@ -56,8 +56,9 @@ public class DisplayInfo : MonoBehaviour {
         group.transform.DOKill();
         rectTransform.DOKill();
 		CancelInvoke ("Hide");
+        CancelInvoke("HideDelay");
 
-		Tween.ClearFade (group.transform);
+        Tween.ClearFade (group.transform);
 		group.SetActive (true);
 
 		Tween.Bounce (group.transform);

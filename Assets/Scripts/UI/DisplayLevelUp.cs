@@ -1,7 +1,10 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+
+using DG.Tweening;
 
 public class DisplayLevelUp : MonoBehaviour {
 
@@ -10,6 +13,8 @@ public class DisplayLevelUp : MonoBehaviour {
 
 	[SerializeField]
 	private Text statText;
+
+    public CanvasGroup canvasGroup;
 
     private MemberIcon memberIcon;
 
@@ -69,26 +74,43 @@ public class DisplayLevelUp : MonoBehaviour {
 		statText.text = member.SkillPoints.ToString();
 	}
 
-	void Show () {
-		group.SetActive (true);
-		UpdateStatText (memberIcon.member);
-	}
+    void Show()
+    {
+        group.SetActive(true);
+        UpdateStatText(memberIcon.member);
+
+        canvasGroup.alpha = 0f;
+        canvasGroup.DOFade(1f, 0.2f);
+    }
 
 	void Hide () {
-		group.SetActive (false);
+        group.SetActive (false);
 	}
 
-	void InitEvents ()
-	{
-		memberIcon.member.onLevelUp 		+= HandleOnLevelUp;
-        memberIcon.member.onLevelUpStat 	+= HandleOnLevelUpStat;
-		SkillButton_Inventory.onUnlockSkill 						+= HandleOnUnlockSkill;
-	}
+    private void HandleOnDisplayCrewMember(CrewMember member)
+    {
+        Show();
+    }
 
-	void OnDestroy ()
-	{
-//		GetComponentInParent<MemberIcon> ().member.onLevelUp 		-= HandleOnLevelUp;
-//		GetComponentInParent<MemberIcon> ().member.onLevelUpStat 	-= HandleOnLevelUpStat;
-		SkillButton_Inventory.onUnlockSkill 						-= HandleOnUnlockSkill;
-	}
+    void InitEvents()
+    {
+        memberIcon.member.onLevelUp += HandleOnLevelUp;
+        memberIcon.member.onLevelUpStat += HandleOnLevelUpStat;
+        SkillButton_Inventory.onUnlockSkill += HandleOnUnlockSkill;
+
+        InGameMenu.Instance.onDisplayCrewMember += HandleOnDisplayCrewMember;
+        InGameMenu.Instance.onCloseMenu += Hide;
+    }
+
+    void OnDestroy()
+    {
+        //		GetComponentInParent<MemberIcon> ().member.onLevelUp 		-= HandleOnLevelUp;
+        //		GetComponentInParent<MemberIcon> ().member.onLevelUpStat 	-= HandleOnLevelUpStat;
+        SkillButton_Inventory.onUnlockSkill -= HandleOnUnlockSkill;
+
+        InGameMenu.Instance.onCloseMenu -= Hide;
+        InGameMenu.Instance.onDisplayCrewMember -= HandleOnDisplayCrewMember;
+
+
+    }
 }

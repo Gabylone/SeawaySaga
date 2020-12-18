@@ -52,6 +52,7 @@ public enum FunctionType {
 	ObserveHorizon,
     EndMap,
     SetBG,
+    HasRoomOnBoat,
 
 	// quest
 	NewQuest,

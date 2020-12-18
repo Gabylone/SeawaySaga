@@ -3,17 +3,17 @@ Poules;0;1;Chickens;;;;;
 [poules];;;;;;;;
 Narrator : As CAPITAINE gets closer to the hen house, the birds inside are getting more and more agitated.;Node=>plus de poules;;;;;;;
 SetChoices2;;;;;;;;
-Choice : Let’ s go back to the farmer. (leave);Choice : Let’s try to catch one! (dex);;;;;;;[plus de poules]
+Choice : Let’ s go back to the orchard. (leave);Choice : Let’s try to catch one! (dex);;;;;;;[plus de poules]
 Fade;Switch=>poules;;;;;;;PlayerSpeak : Looks like all the chicken are hidding now
 Leave;CheckStatDEX;;;;;;;PlayerSpeak : Because of me
-;PlayerSpeak : Got ya!;RandomRange2;;;;;;Fade
-;AddToInventory<Poulet>/Food;PlayerSpeak : Darn it...;PlayerSpeak : Got it!;;;;;Leave
-;AddToInventory<Poulet>/Food;PlayerSpeak : Missed it completely...;PlayerSpeak : Heck, it escaped!;;;;;
-;AddToInventory<Poulet>/Food;Node=>test ferme;AddToInventory<Plume>/Misc;;;;;
-;Node=>test ferme;;AddToInventory<Plume>/Misc;;;;;
-;;;AddToInventory<Plume>/Misc;;;;;
-;;;PlayerSpeak : Well at least that’s something...;;;;;
-[test ferme];;;Node=>test ferme;;;;;
+;RandomRange2;;PlayerSpeak : Darn it...;;;;;Fade
+;PlayerSpeak : Got ya!;PlayerSpeak : Got it!;PlayerSpeak : Missed it completely...;;;;;Leave
+;AddToInventory<Poulet>/Food;PlayerSpeak : Heck, it escaped!;Node=>test ferme;;;;;
+;AddToInventory<Poulet>/Food;AddToInventory<Plume>/Misc;;;;;;
+;AddToInventory<Poulet>/Food;AddToInventory<Plume>/Misc;;;;;;
+;Node=>test ferme;AddToInventory<Plume>/Misc;;;;;;
+;;PlayerSpeak : Well at least that’s something...;;;;;;
+[test ferme];;Node=>test ferme;;;;;;
 RandomRange2;;;;;;;;
 Node=>fermière mécontante;PlayerSpeak : Perfect, looks like the farmer didn’t see anything.;;;;;;;
 ;Leave;;;;;;;
@@ -21,9 +21,9 @@ Node=>fermière mécontante;PlayerSpeak : Perfect, looks like the farmer didn�
 ;;;;;;;;
 ;;;;;;;;
 [fermière mécontante];;;;;;;;
-Narrator : As CAPITAINE is running after one of the chickens, the farmer appears.;;;;;;[combat fermier];;
-NewCrew1;;;;;;LaunchCombat;;
-OtherSpeak : What the heck are you doing?!;;;;;;Leave;;
+NewCrew1;;;;;;[combat fermier];;
+Narrator : As CAPITAINE is running after one of the chickens, the farmer appears.;Narrator : As you cold heartedly killed the farmer, noone’s here to see your crime.;Node=>combat fermier;;;;LaunchCombat;;
+OtherSpeak : What the heck are you doing?!;Leave;;;;;Leave;;
 OtherSpeak : You’ll pay for that chicken right now!;;;;;;;;
 OtherSpeak : 50 gold coins, you thief !;;;;;;;;
 SetChoices3;;;;;;;;

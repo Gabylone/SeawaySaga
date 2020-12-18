@@ -4,8 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
-public class Map : MonoBehaviour {
+public class Map : MonoBehaviour, IPointerClickHandler {
 
     public MapParameters mapParameters;
 
@@ -23,11 +24,12 @@ public class Map : MonoBehaviour {
 
     public Text mapName_UIText;
 
-    public GameObject iconVisualGroup;
-    public IconVisual targetIconVisual;
-    public Text captainUIText;
-    public Text levelUIText;
-    public Image jobImage;
+    public GameObject loadGroup;
+
+    public GameObject[] membersGroups;
+    public IconVisual[] targetIconVisuals;
+    public Text[] captainUITexts;
+    public Text[] levelUITexts;
 
     public GameObject newGameGroup;
 
@@ -35,7 +37,6 @@ public class Map : MonoBehaviour {
 
     private bool load = false;
 
-    public ApparenceItem apparenceItem;
 
     // Use this for initialization
     void Start()
@@ -47,49 +48,60 @@ public class Map : MonoBehaviour {
 
     public void UpdateUI()
     {
-        apparenceItem = CrewCreator.Instance.GetApparenceItem(apparenceItem.apparenceType, apparenceItem.id);
+        loadGroup.SetActive(false);
 
-        mapName_UIText.text = mapParameters.mapName.Replace(' ', '\n');
+        // remove return
+        //mapName_UIText.text = mapParameters.mapName.Replace(' ', '\n');
+        mapName_UIText.text = mapParameters.mapName;
 
-        if (apparenceItem.locked)
+        string currentMap_data = PlayerPrefs.GetString("map_data" + mapParameters.id, mapParameters.id == 0 ? "unlocked": "locked");
+
+        if (currentMap_data == "locked")
         {
             padlockGroup.SetActive(true);
-            mapImage.color = Color.black;
             newGameGroup.SetActive(false);
         }
-        else if (apparenceItem.finished)
+        else if (currentMap_data == "finished")
         {
             finishedGroup.SetActive(true);
             padlockGroup.SetActive(false);
-            mapImage.color = Color.white;
             newGameGroup.SetActive(false);
             load = false;
-            iconVisualGroup.SetActive(false);
+
+            HideMemberIcons();
             return;
         }
         else
         {
             padlockGroup.SetActive(false);
-            mapImage.color = Color.white;
         }
 
         if (SaveTool.Instance.FileExists(mapParameters.mapName, "game data"))
         {
-            load = true;
+            loadGroup.SetActive(true);
 
-            iconVisualGroup.SetActive(true);
+            load = true;
 
             GameData gameData = SaveTool.Instance.LoadFromSpecificPath(mapParameters.mapName, "game data.xml", "GameData") as GameData;
 
-            Member captain = gameData.playerCrew.MemberIDs[0];
+            HideMemberIcons();
 
-            targetIconVisual.InitVisual(captain);
+            for (int i = 0; i < gameData.playerCrew.MemberIDs.Count; i++)
+            {
+                Member member = gameData.playerCrew.MemberIDs[i];
 
-            captainUIText.text = captain.Name;
-            levelUIText.text = captain.Lvl.ToString();
+                membersGroups[i].SetActive(true);
 
-            Sprite[] jobSprites = Resources.LoadAll<Sprite>("Graph/JobSprites");
-            jobImage.sprite = jobSprites[(int)captain.job];
+
+                targetIconVisuals[i].InitVisual(member);
+
+                captainUITexts[i].text = member.Name;
+
+                levelUITexts[i].text = member.Lvl.ToString();
+
+                /*Sprite[] jobSprites = Resources.LoadAll<Sprite>("Graph/JobSprites");
+                jobImage.sprite = jobSprites[(int)captain.job];*/
+            }
 
             newGameGroup.SetActive(false);
 
@@ -97,9 +109,18 @@ public class Map : MonoBehaviour {
         else
         {
             load = false;
-            iconVisualGroup.SetActive(false);
 
-            newGameGroup.SetActive(!apparenceItem.locked);
+            HideMemberIcons();
+
+            newGameGroup.SetActive(currentMap_data != "locked");
+        }
+    }
+
+    void HideMemberIcons()
+    {
+        foreach (var item in membersGroups)
+        {
+            item.SetActive(false);
         }
     }
 
@@ -116,15 +137,18 @@ public class Map : MonoBehaviour {
 
     public void LaunchMap()
     {
-        if (apparenceItem.finished)
+        string currentMapKey = "map_data" + mapParameters.id;
+        string currentMap_data = PlayerPrefs.GetString(currentMapKey, mapParameters.id == 0 ? "unlocked" : "locked");
+
+        if (currentMap_data == "finished")
         {
             return;
         }
 
-        Tween.Bounce(transform);
+        Tween.Bounce(transform, 0.1f , 1.01f);
 
 
-        if (apparenceItem.locked)
+        if (currentMap_data == "locked")
         {
             SoundManager.Instance.PlayRandomSound("button_tap_light");
             SoundManager.Instance.PlaySound("ui_wrong");
@@ -145,7 +169,7 @@ public class Map : MonoBehaviour {
             KeepOnLoad.dataToLoad = -1;
         }
 
-        if ( mapParameters.id == 0)
+        if ( mapParameters.id == 0 && !load)
         {
             KeepOnLoad.displayTuto = true;
         }
@@ -169,12 +193,13 @@ public class Map : MonoBehaviour {
 
     void LaunchMapDelay()
     {
+        LoadingScene.sceneToLoad = "Main";
         SceneManager.LoadScene("Loading");
     }
 
     public void EraseMap()
     {
-        MessageDisplay.Instance.Show("Erase game ?");
+        MessageDisplay.Instance.Display("Erase game ?");
 
         MessageDisplay.Instance.onValidate += ConfirmEraseMap;
 
@@ -197,4 +222,8 @@ public class Map : MonoBehaviour {
         UpdateUI();
     }
 
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        LaunchMap();
+    }
 }

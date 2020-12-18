@@ -169,7 +169,7 @@ Node=>choix autre;Node=>choix autre;Choice : OK… No need to get upset, old go
 ;;Node=>choix autre;Node=>oignons;;;TellClue;CheckInInventory<Roman>/Misc;;;
 ;;;[oignons];;;Node=>choix autre;SetChoices2;;SetChoices1;
 ;;;CheckStatCHA;[pas oignons];;;Choice : Here you are, granny, enjoy!;Choice : I don’t have any, sorry...;Choice : I don’t have any, sorry...;
-;;;Node=>dire bob;OtherSpeak : I said MIND YOUR OWN BUSINESS!*;;;RemoveFromInventory<Roman>/Misc;Node=>conv;Node=>conv;
+;;;Node=>dire bob;OtherSpeak : I said MIND YOUR OWN BUSINESS!;;;RemoveFromInventory<Roman>/Misc;Node=>conv;Node=>conv;
 ;;;;Switch=>oignons;;;OtherSpeak : Oh my, thank you dear!;;;
 ;;;;Node=>choix autre;;;OtherSpeak : People don’t read enough nowadays.;;;
 ;;;;;;;OtherSpeak : It’s just bandits and pirates everywhere, illiterates brutes!;;;

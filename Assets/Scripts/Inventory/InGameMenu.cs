@@ -72,14 +72,19 @@ public class InGameMenu : MonoBehaviour {
     #endregion
 
     #region button action
-    public void EatItem () {
+    public void EatItem()
+    {
+        Item foodItem = LootUI.Instance.SelectedItem;
 
-		Item foodItem = LootUI.Instance.SelectedItem;
+        EatItem(foodItem, CrewMember.GetSelectedMember);
+
+    }
+    public void EatItem (Item foodItem, CrewMember crewMember) {
 
         // can buy
         if (OtherInventory.Instance.type == OtherInventory.Type.Trade)
         {
-            if (!GoldManager.Instance.CheckGold(LootUI.Instance.SelectedItem.price))
+            if (!GoldManager.Instance.CheckGold(foodItem.price))
             {
                 return;
             }
@@ -87,27 +92,23 @@ public class InGameMenu : MonoBehaviour {
             SoundManager.Instance.PlayRandomSound("Bag");
             SoundManager.Instance.PlayRandomSound("Coins");
 
-            GoldManager.Instance.RemoveGold(LootUI.Instance.SelectedItem.price);
+            GoldManager.Instance.RemoveGold(foodItem.price);
         }
         //
 
-        int hunger = 0;
 		int health = 0;
 
 		switch (foodItem.spriteID) {
 		// légume
 		case 0:
-            hunger = 4;
 			health = 25;
 			break;
 		// poisson
 		case 1:
-            hunger = 6;
 			health = 50;
 			break;
 		// viande
 		case 2:
-            hunger = 8;
 			health = 75;
 			break;
 		default:
@@ -116,26 +117,34 @@ public class InGameMenu : MonoBehaviour {
 
         SoundManager.Instance.PlayRandomSound("Food Eat");
 
-        if ( CrewMember.GetSelectedMember.CurrentHunger <= 0)
+        crewMember.AddHealth(health);
+        crewMember.CurrentHunger -= foodItem.value;
+
+        /*if ( CrewMember.GetSelectedMember.CurrentHunger <= 0)
         {
             CrewMember.GetSelectedMember.AddHealth(health);
         }
         else
         {
             CrewMember.GetSelectedMember.CurrentHunger -= hunger;
-
-        }
+        }*/
 
         if (OtherInventory.Instance.type == OtherInventory.Type.None)
-			LootManager.Instance.PlayerLoot.RemoveItem (LootUI.Instance.SelectedItem);
+			LootManager.Instance.PlayerLoot.RemoveItem (foodItem);
 		else
-			LootManager.Instance.OtherLoot.RemoveItem (LootUI.Instance.SelectedItem);
+			LootManager.Instance.OtherLoot.RemoveItem (foodItem);
 
 	}
 
 	void EquipItem ()
 	{
 		Item item = LootUI.Instance.SelectedItem;
+
+        if (!WeightManager.Instance.CheckWeight(item.weight))
+        {
+            return;
+        }
+
 
         if (CrewMember.GetSelectedMember.CheckLevel(item.level) == false)
         {

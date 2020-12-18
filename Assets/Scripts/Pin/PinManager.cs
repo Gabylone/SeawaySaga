@@ -14,13 +14,44 @@ public class PinManager : Singleton<PinManager>
     public RectTransform secondParent;
 
     private DisplayPin previousDisplayedPin;
-    private DisplayPin currentDisplayedPin;
+    public DisplayPin currentDisplayedPin;
+
+    public float distanceToDeletePin = 1f;
 
     public Color[] colors;
+
+    public bool pointerInside = false;
 
     protected override void Awake()
     {
         base.Awake();
+    }
+
+    private void Update()
+    {
+        DisplayPin displayPin = DisplayPin.currentDraggedPin;
+
+        if (displayPin != null)
+        {
+            PinDispencer pinDispencer = PinDispencer.GetPinDispencer(displayPin.displayPinInfo.pin.colorType);
+
+            float dis = Vector2.Distance(displayPin.GetRectTransform.position,pinDispencer.GetRectTransform.position);
+
+            if (pinDispencer.pointerInside)
+            {
+                if (dis > distanceToDeletePin)
+                {
+                    pinDispencer.OnPointerExit();
+                }
+            }
+            else
+            {
+                if ( dis < distanceToDeletePin)
+                {
+                    pinDispencer.OnPointerEnter();
+                }
+            }
+        }
     }
 
     public void LoadPins()

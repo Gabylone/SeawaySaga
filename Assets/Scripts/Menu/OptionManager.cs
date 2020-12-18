@@ -3,6 +3,8 @@ using UnityEngine.SceneManagement;
 using System.Collections;
 using System;
 
+using DG.Tweening;
+
 public class OptionManager : MonoBehaviour {
 
 	[SerializeField]
@@ -10,11 +12,15 @@ public class OptionManager : MonoBehaviour {
 
 	[SerializeField]
 	private GameObject openButton;
-	[SerializeField]
-	private GameObject menuGroup;
+    [SerializeField]
+    private GameObject menuGroup;
+
+    
 
 	[SerializeField]
 	private GameObject saveButton;
+
+    public CanvasGroup canvasGroup;
 
 	bool quit_Confirmed = false;
 
@@ -35,25 +41,26 @@ public class OptionManager : MonoBehaviour {
 
     public void Open()
     {
+        canvasGroup.alpha = 0f;
+        canvasGroup.DOFade(1f, 0.5f);
+
         InGameMenu.Instance.Open();
 
         opened = true;
 
         menuGroup.SetActive(true);
-
-        Tween.Bounce(menuGroup.transform, 0.2f, 1.1f);
-
-        Tween.Bounce(openButton.transform);
-
     }
 
     public void Close () {
+
+        canvasGroup.DOFade(0f, 0.5f);
 
         InGameMenu.Instance.Hide();
 
         opened = false;
 
-        Hide ();
+        CancelInvoke("Hide");
+        Invoke("Hide", 0.5f);
 
 		quit_Confirmed = false;
 
@@ -63,25 +70,14 @@ public class OptionManager : MonoBehaviour {
 	}
 
 	#region buttons
-	public void SaveButton () {
-
-		Tween.Bounce (saveButton.transform);
-
-		MessageDisplay.Instance.Show ("Save game ?");
-		MessageDisplay.Instance.onValidate += HandleOnValidate;
-	}
-
-	void HandleOnValidate ()
-	{
-//		SaveManager.Instance.SaveOverallGame ();
-	}
 	public void QuitButton () {
 
-		Tween.Bounce (transform);
-		Invoke ("Quit",Tween.defaultDuration);
+        Transitions.Instance.ScreenTransition.FadeIn(0.5f);
+
+		Invoke ("Quit",0.6f);
 	}
 	void Quit () {
-		Application.Quit ();
+        SceneManager.LoadScene("Menu");
 	}
 	#endregion
 }

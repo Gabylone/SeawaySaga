@@ -7,6 +7,8 @@ public class IslandInfo : MonoBehaviour {
 
     public static IslandInfo Instance;
 
+    public Transform _transform;
+
 	[Header("Island Info")]
 	[SerializeField]
 	private GameObject obj;
@@ -14,8 +16,6 @@ public class IslandInfo : MonoBehaviour {
 	private Text uiText;
 
 	public float decal = 2f;
-
-	public float displayDuration = 1f;
 
 	bool displaying = false;
 
@@ -28,7 +28,10 @@ public class IslandInfo : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-		Hide ();
+
+        _transform = GetComponent<Transform>();
+
+        Hide ();
 	}
 
 	void Update () 
@@ -61,18 +64,17 @@ public class IslandInfo : MonoBehaviour {
     {
         Show();
 
-        Tween.Bounce(transform, 0.2f, 1.05f);
+        Tween.Bounce(_transform, 0.2f, 1.05f);
 
         currentTransform = tr;
         UpdatePosition();
 
         CancelInvoke();
-        Invoke("Hide", displayDuration);
     }
 
 	void UpdatePosition ()
 	{
-		transform.position = currentTransform.position + Vector3.up * decal;
+		_transform.position = currentTransform.position + Vector3.up * decal;
 
 	}
 

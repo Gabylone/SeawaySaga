@@ -113,30 +113,39 @@ public class DisplayTreasure : MonoBehaviour {
     {
         MessageDisplay.Instance.onValidate += CloseTreasure;
 
+        string currentMapKey = "map_data" + MapGenerator.mapParameters.id;
+        string nextMapKey = "map_data" + (MapGenerator.mapParameters.id + 1);
+
+        string currentMap_data = PlayerPrefs.GetString(currentMapKey, "locked");
+        string nextMap_Data = PlayerPrefs.GetString(nextMapKey, "locked");
+
+        PlayerPrefs.SetString(currentMapKey, "finished");
+
         if (MapGenerator.mapParameters.id == 3)
         {
-            MessageDisplay.Instance.Show("Well done ! You finished the game");
+            MessageDisplay.Instance.Display("Well done ! You finished the game");
             MessageDisplay.Instance.HideCancelButton();
 
         }
         else
         {
-            if (CrewCreator.Instance.GetApparenceItem(ApparenceType.map, MapGenerator.mapParameters.id + 1).locked)
+            Debug.Log("next map KEY is : " + nextMapKey);
+            Debug.Log("next map data is : " + nextMap_Data);
+
+            if (nextMap_Data == "locked")
             {
-                CrewCreator.Instance.GetApparenceItem(ApparenceType.map, MapGenerator.mapParameters.id).finished = true;
+                PlayerPrefs.SetString(nextMapKey, "unlocked");
 
-                PlayerInfo.Instance.AddApparenceItem(CrewCreator.Instance.GetApparenceItem(ApparenceType.map, MapGenerator.mapParameters.id));
-                PlayerInfo.Instance.AddApparenceItem(CrewCreator.Instance.GetApparenceItem(ApparenceType.map, MapGenerator.mapParameters.id + 1));
-
-                MessageDisplay.Instance.Show("You unlocked the next story !");
+                MessageDisplay.Instance.Display("You unlocked the next story !");
                 MessageDisplay.Instance.HideCancelButton();
 
             }
             else
             {
-                MessageDisplay.Instance.Show("The next story is already unlocked");
+                MessageDisplay.Instance.Display("The next story is already unlocked");
                 MessageDisplay.Instance.HideCancelButton();
             }
+
 
         }
 

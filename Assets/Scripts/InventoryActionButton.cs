@@ -14,7 +14,7 @@ public class InventoryActionButton : MonoBehaviour {
 
 	public float tweenDuration = 0.2f;
 
-    public bool locked = true;
+    private bool locked = false;
 
     public bool visible = false;
 

@@ -47,7 +47,6 @@ public class TimeManager : MonoBehaviour {
 	void Awake () {
 		Instance = this;
 
-        onNextHour = null;
         onSetRain = null;
         onSetTimeOfDay = null;
 	}
@@ -140,6 +139,8 @@ public class TimeManager : MonoBehaviour {
             }
         }
 
+        ClockUI.Instance.UpdateUI();
+
         Transitions.Instance.ScreenTransition.FadeOut(0.5f);
 	}
 
@@ -155,19 +156,22 @@ public class TimeManager : MonoBehaviour {
 	#endregion
 
 	#region next hour
-	public delegate void OnNextHour ();
-	public static OnNextHour onNextHour;
 	public void NextHour () {
 
 		++timeOfDay;
 
 		if (timeOfDay == dayDuration)
-			timeOfDay = 0;
+        {
+            foreach (var item in Crews.playerCrew.CrewMembers)
+            {
+                item.daysOnBoard++;
+            }
 
-		UpdateTimeOfDay ();
+            timeOfDay = 0;
+        }
 
-		if (onNextHour != null)
-			onNextHour ();
+        UpdateTimeOfDay ();
+
 	}
 
 	void UpdateTimeOfDay ()

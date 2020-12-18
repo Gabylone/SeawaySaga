@@ -18,6 +18,8 @@ public class MinimapBoat_Enemy : MinimapBoat
 
     public void OnPointerDown()
     {
+        return;
+
         Tween.Bounce(local_RectTransform);
 
         IslandInfo.Instance.DisplayBoatInfo(EnemyBoat.boatInfo);

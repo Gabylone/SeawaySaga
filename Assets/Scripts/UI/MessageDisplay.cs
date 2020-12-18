@@ -31,7 +31,7 @@ public class MessageDisplay : MonoBehaviour {
         CloseDelay();
     }
 
-    public void Show (string str) {
+    public void Display (string str) {
 
 		group.SetActive (true);
 
@@ -70,8 +70,15 @@ public class MessageDisplay : MonoBehaviour {
 	{
         canvasGroup.DOFade(0f, 0.4f);
         Invoke("CloseDelay", 0.4f);
-        
-	}
+
+
+
+        if (DisplayFastTravelInfo.Instance != null && DisplayFastTravelInfo.Instance.visible)
+        {
+            DisplayFastTravelInfo.Instance.Hide();
+        }
+
+    }
 
     void CloseDelay()
     {

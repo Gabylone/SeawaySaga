@@ -212,7 +212,7 @@ public class Skill : MonoBehaviour {
 		}
 	}
 
-	void EndSkillDelay () {
+	public virtual void EndSkillDelay () {
 
 		if (fighter.crewMember.side == Crews.Side.Player) {
 

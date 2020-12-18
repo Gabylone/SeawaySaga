@@ -15,6 +15,10 @@ public class ChoiceButton : MonoBehaviour
         NewMember,
         Loot,
         Quest,
+        Dice_Strenght,
+        Dice_Dex,
+        Dice_Cha,
+        Dice_Con,
 
         Normal,
     }
@@ -32,11 +36,13 @@ public class ChoiceButton : MonoBehaviour
 
     public int id = 0;
 
-    public void Init(string str)
+    public void Init(ChoiceManager.Choice choice)
     {
         gameObject.SetActive(true);
 
         _transform = GetComponent<Transform>();
+
+        string str = choice.content;
 
         type = GetBubbleType(str);
 
@@ -49,6 +55,27 @@ public class ChoiceButton : MonoBehaviour
 
         str = NameGeneration.CheckForKeyWords(str);
                 text.color = Color.black;
+
+        switch (type)
+        {
+            case Type.Dice_Strenght:
+                str += "\n<b>(strenght)</b>";
+                break;
+            case Type.Dice_Dex:
+                str += "\n<b>(dexterity)</b>";
+                break;
+            case Type.Dice_Cha:
+                str += "\n<b>(charisma)</b>";
+                break;
+            case Type.Dice_Con:
+                str += "\n<b>(consitution)</b>";
+                break;
+            case Type.Normal:
+                break;
+            default:
+                break;
+        }
+
         text.text = str;
 
         // image
@@ -61,8 +88,13 @@ public class ChoiceButton : MonoBehaviour
             image.sprite = ChoiceManager.Instance.bubbleSprites[1];
         }
 
-        // bubble color
         image.color = ChoiceManager.Instance.bubbleColors[(int)type];
+
+        // bubble color
+        if ( choice.alreadyMade)
+        {
+            image.color = Color.Lerp(image.color, Color.black , 0.35f );
+        }
 
         // bubble type
         if (type == Type.Normal)

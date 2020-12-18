@@ -88,14 +88,15 @@ public class WorldTouch : MonoBehaviour
         {
             if ( debugTouch)
             {
-                RaycastHit hit;
+
+                /*RaycastHit hit;
 
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
                 if (Physics.Raycast(ray, out hit , 1000f ))
                 {
                     Debug.Log("raycast hitting : " + hit.collider.name);
-                }
+                }*/
             }
 
             if (IsPointerOverUIObject())

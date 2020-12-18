@@ -60,17 +60,17 @@ public class CrewManager : MonoBehaviour {
 	void HandleGetFunction (FunctionType func, string cellParameters)
 	{
 		if (func == FunctionType.ChangeTimeOfDay)
-			AddToStates ();
+			InvokeAddToStates ();
 
 	}
 
-	public void AddToStates ()
+	public void InvokeAddToStates ()
 	{
-        CancelInvoke("AddToStatesDelay");
-        Invoke("AddToStatesDelay" , 1f);
+        CancelInvoke("AddToStates");
+        Invoke("AddToStates", 1f);
 	}
 
-    void AddToStatesDelay()
+    public void AddToStates()
     {
         for (int i = 0; i < CrewMembers.Count; i++)
         {

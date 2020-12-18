@@ -19,6 +19,8 @@ public class QuestMenu : MonoBehaviour {
 	[SerializeField]
 	private Transform anchor;
 
+    public CanvasGroup canvasGroup;
+
 	[SerializeField]
 	private RectTransform contentTransform;
 
@@ -36,7 +38,7 @@ public class QuestMenu : MonoBehaviour {
 
     public QuestButton mainQuestButton;
 
-	bool opened = false;
+	public bool opened = false;
 
     bool closing = false;
 
@@ -73,6 +75,9 @@ public class QuestMenu : MonoBehaviour {
 	}
 
 	public void Open () {
+
+        canvasGroup.alpha = 0f;
+        canvasGroup.DOFade(1f, 0.5f);
 
         InGameMenu.Instance.Open();
 
@@ -115,8 +120,9 @@ public class QuestMenu : MonoBehaviour {
 
         animator.SetTrigger("close");
 
+        canvasGroup.DOFade(0f, 0.5f).SetDelay(0.5f);
 
-		Invoke("HideMenu", 1f);
+        Invoke("HideMenu", 1f);
     }
 
     void DisplayQuestAmount () {

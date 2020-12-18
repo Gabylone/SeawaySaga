@@ -274,23 +274,9 @@ public class ApparenceItem
 
     public int id = 0;
 
-    public bool finished = false;
-
     public void Init (int i)
     {
         id = i;
-
-        if (apparenceType == ApparenceType.map)
-        {
-            ApparenceItem loadedApparenceItem = PlayerInfo.Instance.apparenceItems.Find(x => this.id == x.id && this.apparenceType == x.apparenceType);
-
-            if ( loadedApparenceItem != null)
-            {
-                /// c'est vraiment de la merde putain
-                this.finished = loadedApparenceItem.finished;
-                this.locked = loadedApparenceItem.locked;
-            }
-        }
     }
 
     public Sprite GetSprite()

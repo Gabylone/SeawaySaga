@@ -10,21 +10,21 @@ Narrator : CAPITAINE cautiously approaches a little shipwreck, crashed on rocks
 [choix1];;;;Narrator : The mast of the boat, on the other hand, is still intact.;;;;;;;;;SetChoices3;;;;
 SetChoices3;;;;[choix2];;;;;;;;;Choice : (leave);Choice : (sleep until NEXTTIME) (sleep);Choice : (search the wreck) (loot);;
 Choice : (leave);Choice : (search the wreck) (loot);Choice : (sleep until NEXTTIME) (sleep);;SetChoices4;;;;;;;;;PlayerSpeak : Tayo !;Narrator : CAPITAINE finds a hay bed to spend the night on.;PlayerSpeak : The hold is so deep that we can’t see the bottom of it.;;
-PlayerSpeak : Let's go!;Fade;RandomRange2;;Choice : (leave);Choice : (search the wreck) (loot);Choice : (sleep until NEXTTIME) (sleep);;;;;;;Leave;ChangeTimeOfDay;PlayerSpeak : I can’t go down without a rope.;;
-Leave;Node=>épave;Narrator : The ship is too small to sleep into.;Narrator : CAPITAINE finds a hay bed to spend the night on.;PlayerSpeak : Let's go!;Fade;RandomRange2;;Choice : (climb the mast);;;;;;Node=>épave corde;CheckInInventory<Corde>/Misc;;
-;;Node=>choix1;ChangeTimeOfDay;Leave;Node=>épave;Narrator : The ship is too small to sleep into.;Narrator : CAPITAINE finds a hay bed to spend the night on.;RandomRange2;;;;;;;SetChoices2;;Node=>épave corde
-;;;Node=>choix1;;;Node=>choix2;ChangeTimeOfDay;Fade;Narrator : The mast is very slippery. CAPITAINE will have to climb carefully.;;;;;;Choice : (get the rope out);Choice : (leave);
-;;;;;;;Node=>choix2;Node=>haut mât;SetChoices2;;;;;;Fade;Leave;
-[épave];;;;;;;;;Choice : (go back on the wreck);Choice : (climb)(dex);;;;;Node=>épave;;
-RandomRange2;;;;;;;;;Fade;CheckStatDEX;;;;;;;
-Narrator : The interior of the boat is pitch black, CAPITAINE cannot see half a meter away.;Node=>suite épave;;;;;;;;Node=>choix2;Fade;Narrator : While climbing, CAPITAINE slips on the humid wood and falls down.;;;;;;
-SetChoices2;;;;;;;;;;PlayerSpeak : Phew... Made it.;[mal];;;;;;
-Choice : (get lantern out);;Choice : (leave);;;;;;;;Node=>haut mât;;;;;;;
-CheckInInventory<Lanterne>/Misc;;Leave;;;;;;;;;RemoveHealth10;Fade;;;;;
-PlayerSpeak : Oh that helps!;PlayerSpeak : I wish I had a lantern...;;;;;;;;;;;;;;;;
-PlayerSpeak : Let’s see what treasures this ship’s hiding!;Leave;;;;;;;;;;Fade;Switch=>mal;;;;;
-Node=>suite épave;;;;;;;;;;;Switch=>mal;Node=>choix2;;;;;
-;;;;;;;;;;;Node=>choix2;;;;;;
+PlayerSpeak : Let's go!;Fade;RandomRange2;;Choice : (leave);Choice : (search the wreck) (loot);Choice : (sleep until NEXTTIME) (sleep);;Choice : (climb the mast);;;;;Leave;ChangeTimeOfDay;PlayerSpeak : I can’t go down without a rope.;;
+Leave;Node=>épave;Narrator : The ship is too small to sleep into.;Narrator : CAPITAINE finds a hay bed to spend the night on.;PlayerSpeak : Let's go!;Fade;RandomRange2;;RandomRange2;;;;;;Node=>épave corde;CheckInInventory<Corde>/Misc;;
+;;Node=>choix1;ChangeTimeOfDay;Leave;Node=>épave;Narrator : The ship is too small to sleep into.;Narrator : CAPITAINE finds a hay bed to spend the night on.;Fade;Narrator : The mast is very slippery. CAPITAINE will have to climb carefully.;;;;;;SetChoices2;;Node=>épave corde
+;;;Node=>choix1;;;Node=>choix2;ChangeTimeOfDay;Node=>haut mât;SetChoices2;;;;;;Choice : (get the rope out);Choice : (leave);
+;;;;;;;Node=>choix2;;Choice : (go back on the wreck);Choice : (climb)(dex);;;;;Fade;Leave;
+[épave];;;;;;;;;Fade;CheckStatDEX;;;;;Node=>épave;;
+RandomRange2;;;;;;;;;Node=>choix2;Fade;Narrator : While climbing, CAPITAINE slips on the humid wood and falls down.;;;;;;
+Narrator : The interior of the boat is pitch black, CAPITAINE cannot see half a meter away.;Node=>suite épave;;;;;;;;;PlayerSpeak : Phew... Made it.;[mal];;;;;;
+SetChoices2;;;;;;;;;;Node=>haut mât;;;;;;;
+Choice : (get lantern out);;Choice : (leave);;;;;;;;;RemoveHealth10;Fade;;;;;
+CheckInInventory<Lanterne>/Misc;;Leave;;;;;;;;;;;;;;;
+PlayerSpeak : Oh that helps!;PlayerSpeak : I wish I had a lantern...;;;;;;;;;;Fade;Switch=>mal;;;;;
+PlayerSpeak : Let’s see what treasures this ship’s hiding!;Leave;;;;;;;;;;Switch=>mal;Node=>choix2;;;;;
+Node=>suite épave;;;;;;;;;;;Node=>choix2;;;;;;
+;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;

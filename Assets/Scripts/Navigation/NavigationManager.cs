@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
 
 public enum Directions {
 	North,
@@ -26,7 +25,7 @@ public class NavigationManager : MonoBehaviour {
 	private Transform[] anchors;
 
 	public delegate void OnMoveToChunk ();
-	public OnMoveToChunk onMoveToChunk;
+	public OnMoveToChunk tutorial_OnMoveChunk;
 
     public delegate void OnUpdateChunk();
     public OnUpdateChunk onUpdateCurrentChunk;
@@ -67,7 +66,103 @@ public class NavigationManager : MonoBehaviour {
         }
     }
 
-    #region movementf
+    #region movement
+    public void ChangeChunk(Coords coords, int trips)
+    {
+        Boats.Instance.playerBoatInfo.SetCoords(coords);
+
+        bool somebodyAteSomething = false;
+
+        string[] memberFoods = new string[4] { "" , "" , "" , ""};
+
+        for (int i = 0; i < trips; i++)
+        {
+            Crews.playerCrew.AddToStates();
+
+            // feeding member while travelling
+
+            Loot loot = LootManager.Instance.PlayerLoot;
+
+
+            int memberIndex = 0;
+            foreach (var crewMember in Crews.playerCrew.CrewMembers)
+            {
+                if (crewMember.CurrentHunger == crewMember.MaxHunger)
+                {
+                    if (loot.AllItems[0].Count == 0)
+                    {
+                        break;
+                    }
+
+                    Item foodItem = loot.AllItems[0][0];
+
+                    string foodName = foodItem.englishName;
+                    switch (foodItem.spriteID)
+                    {
+                        case 0:
+                            foodName = "<color=red>" + foodItem.englishName + "</color>";
+                            break;
+                        case 1:
+                            foodName = "<color=blue>" + foodItem.englishName + "</color>";
+                            break;
+                        case 2:
+                            foodName = "<color=green>" + foodItem.englishName + "</color>";
+                            break;
+                        default:
+                            break;
+                    }
+
+                    if (memberFoods[memberIndex].Length > 2)
+                    {
+                        memberFoods[memberIndex] += ", some " + foodName;
+                    }
+                    else
+                    {
+                        memberFoods[memberIndex] += "<b>" + crewMember.MemberName + "</b> ate some " + foodName;
+                    }
+
+                    somebodyAteSomething = true;
+                    InGameMenu.Instance.EatItem(foodItem, crewMember);
+
+                }
+
+                ++memberIndex;
+            }
+
+            if ( somebodyAteSomething)
+            {
+                Chunk chunk = Chunk.GetChunk(MinimapChunk.currentMinimapChunk.coords);
+                string IslandName = chunk.GetIslandData(MinimapChunk.currentMinimapChunk.index).storyManager.storyHandlers[0].Story.displayName;
+
+                string str = "On the way to the " + IslandName + "\n";
+
+                foreach (var item in memberFoods)
+                {
+                    if ( item.Length > 2)
+                    {
+                        str += item + "\n";
+                    }
+
+                }
+
+                Narrator.Instance.ShowNarrator(str);
+            }
+
+            chunksTravelled++;
+            TimeManager.Instance.NextHour();
+            Boats.Instance.HandleOnMoveToChunk();
+        }
+
+        MinimapChunk.currentMinimapChunk.Deselect();
+
+        SaveManager.Instance.SaveGameData();
+        Boats.Instance.SaveBoats();
+
+        ClockUI.Instance.UpdateUI();
+
+        UpdateCurrentChunk();
+
+    }
     public void ChangeChunk ( Directions newDirection ) {
 
 		Boats.Instance.playerBoatInfo.Move (newDirection);
@@ -75,13 +170,11 @@ public class NavigationManager : MonoBehaviour {
         chunksTravelled++;
 
         TimeManager.Instance.NextHour();
+        ClockUI.Instance.UpdateUI();
 
-        Crews.playerCrew.AddToStates();
+        Crews.playerCrew.InvokeAddToStates();
 
-        if (onMoveToChunk != null)
-        {
-            onMoveToChunk();
-        }
+        CallTutorial();
 
         Boats.Instance.HandleOnMoveToChunk();
 
@@ -89,6 +182,14 @@ public class NavigationManager : MonoBehaviour {
         Boats.Instance.SaveBoats();
 
         UpdateCurrentChunk();
+    }
+
+    void CallTutorial()
+    {
+        if (tutorial_OnMoveChunk != null)
+        {
+            tutorial_OnMoveChunk();
+        }
     }
 
     public void UpdateCurrentChunk()
@@ -104,6 +205,40 @@ public class NavigationManager : MonoBehaviour {
 
     }
     #endregion
+
+    public Item[] GetTripsFood(int trips)
+    {
+        Loot loot = LootManager.Instance.PlayerLoot;
+
+        int memberIndex = 0;
+        foreach (var crewMember in Crews.playerCrew.CrewMembers)
+        {
+            int tmpHunger = crewMember.CurrentHunger;
+
+            for (int i = 0; i < trips; i++)
+            {
+                if (tmpHunger >= crewMember.MaxHunger)
+                {
+                    if (loot.AllItems[0].Count == 0)
+                    {
+                        break;
+                    }
+
+                    Item foodItem = loot.AllItems[0][0];
+
+                    tmpHunger -= foodItem.value;
+                }
+
+            }
+
+            ++memberIndex;
+        }
+
+
+        // j'ai pas réussi c'était trop compliqué 
+        return null;
+        
+    }
 
     #region tools
     public Directions getDirectionFromVector ( Vector2 dir ) {

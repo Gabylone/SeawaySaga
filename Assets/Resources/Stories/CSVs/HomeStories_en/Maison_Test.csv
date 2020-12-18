@@ -1,22 +1,29 @@
-Nom;Fréquence / 5;Sprite ID;Display Name
-Maison_Test;1;4;Captain’s House
-[debut];;;
-Narrator : Le joueur arrive dans l’ile et va rencontrer quelqu’un;;;
-NewCrew1/M/1;;;
-Node=>choix;Narrator : Le joueur est devant le cadavre;Narrator : Le joueur est de retour;
-;SetChoices1;SetChoices1;
-;Choice : (leave);Choice : (leave);
-[choix];Leave;Leave;
-SetChoices4;;;
-Choice : Leave;Choice : (loot);Choice : (trade);Choice : (trésor)
-Leave;Loot;Trade;EndMap
-;Node=>choix;Node=>choix;
-;;;
-;;;
-;;;
-;;;
-Choice : (fight);;;
-PlayerSpeak : je te battre;;;
-OtherSpeak : oh non;;;
-LaunchCombat;;;
-Leave;;;
+Nom;Fréquence / 5;Sprite ID;Display Name;;
+Maison_Test;1;4;Captain’s House;;
+[choix];;;;;
+SetBG(Cave);;;;;
+SetChoices4;;;;;
+Choice : (verger 1);Choice : (verger 2);Choice : (verger 13;Choice : (leave);;
+ChangeStory=>Verger[debut/choix];ChangeStory=>Verger[debut/choix];ChangeStory=>Verger[debut/choix];Leave;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+[mec 1];;;[mec 2];;
+NewCrew1/M/1;;;NewCrew1/M/1;;
+Node=>choix1;Narrator : Le joueur est devant le cadavre;Narrator : Le joueur est de retour;Node=>choix2;Narrator : Le joueur est devant le cadavre;Narrator : Le joueur est de retour
+;SetChoices1;SetChoices1;;SetChoices1;SetChoices1
+;Choice : (leave);Choice : (leave);;Choice : (leave);Choice : (leave)
+;Leave;Leave;;Leave;Leave
+;;;;;
+[choix1];;;[choix2];;
+SetChoices2;;;SetChoices2;;
+Choice : (leave);Choice : (fight);;Choice : (leave);Choice : (fight);
+Leave;LaunchCombat;;Leave;LaunchCombat;
+;Leave;;;Leave;

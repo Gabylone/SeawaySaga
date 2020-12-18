@@ -93,7 +93,21 @@ public class Skill_Leap: Skill {
 
 	}
 
-	void HandleOnSkillDelay (Fighter _delayFighter)
+    public override void EndSkillDelay()
+    {
+        if (!secondPart)
+        {
+            fighter.EndTurn();
+            CombatManager.Instance.NextTurn();
+        }
+        else
+        {
+            base.EndSkillDelay();
+        }
+
+    }
+
+    void HandleOnSkillDelay (Fighter _delayFighter)
 	{
 		this.delayFighter = _delayFighter;
 

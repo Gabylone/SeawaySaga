@@ -52,7 +52,7 @@ public class IslandManager : MonoBehaviour
                 // PEUT BEUGUER PARCE que serialization bizarre
                 if (islandData == GetCurrentIslandData())
                 {
-                    Debug.Log("QUEST : Island is current island");
+                    //Debug.Log("QUEST : Island is current island");
                     continue;
                 }
 
@@ -61,7 +61,7 @@ public class IslandManager : MonoBehaviour
                 // the island has already a quest
                 if (islandQuest != null)
                 {
-                    Debug.Log("QUEST : Island already has a quest");
+                    //Debug.Log("QUEST : Island already has a quest");
                     continue;
                 }
 

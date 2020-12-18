@@ -69,6 +69,7 @@ MonoBehaviour:
   rectTransform: {fileID: 224120202497231896}
   image: {fileID: 114715270745315968}
   questGroup: {fileID: 1121598223815828}
+  outline: {fileID: 8485760463454002365}
   uiText_IslandCount: {fileID: 0}
 --- !u!114 &2623306876918946742
 MonoBehaviour:
@@ -202,6 +203,7 @@ GameObject:
   - component: {fileID: 224518054500431474}
   - component: {fileID: 222799614789317996}
   - component: {fileID: 114715270745315968}
+  - component: {fileID: 8485760463454002365}
   m_Layer: 5
   m_Name: IslandImage
   m_TagString: Untagged
@@ -264,6 +266,21 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &8485760463454002365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1625626521167714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 1, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 0.5, y: 0.5}
+  m_UseGraphicAlpha: 1
 --- !u!1 &4794008471659097490
 GameObject:
   m_ObjectHideFlags: 0

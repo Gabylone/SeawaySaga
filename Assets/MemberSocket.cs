@@ -73,7 +73,7 @@ public class MemberSocket : MonoBehaviour
         Tween.Bounce(tr);
 
         MessageDisplay.Instance.onValidate += HandleOnValidate;
-        MessageDisplay.Instance.Show("Are you sure you want to remove " + CrewMember.GetSelectedMember.MemberName + " from the crew ?!");
+        MessageDisplay.Instance.Display("Are you sure you want to remove " + CrewMember.GetSelectedMember.MemberName + " from the crew ?!");
 
     }
 
@@ -82,6 +82,8 @@ public class MemberSocket : MonoBehaviour
         DisplayCombatResults.Instance.Display(CrewMember.GetSelectedMember.MemberName + " leaves the crew", "The captain discards " + CrewMember.GetSelectedMember.MemberName + " from the boat, wishes him good luck, and everybody waves at him goodbye.");
 
         Crews.playerCrew.RemoveMember(CrewMember.GetSelectedMember);
+
+        CrewMember.SetSelectedMember(Crews.playerCrew.CrewMembers[0]);
 
         Crews.playerCrew.UpdateCrew(Crews.PlacingType.Portraits);
     }

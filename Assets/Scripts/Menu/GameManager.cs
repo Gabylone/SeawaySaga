@@ -35,9 +35,10 @@ public class GameManager : MonoBehaviour {
 
 		Crews.Instance.Init ();
 
-		if (loadOnStart) {
+        if (loadOnStart) {
 			
 			KeepOnLoad.dataToLoad = 0;
+            KeepOnLoad.Instance.mapName = "Default";
 			SaveManager.Instance.LoadGame ();
 
 		} else if (KeepOnLoad.dataToLoad >= 0) {
@@ -57,8 +58,6 @@ public class GameManager : MonoBehaviour {
 			GoldManager.Instance.InitGold ();
 
 			TimeManager.Instance.Reset ();
-
-            KeepOnLoad.displayTuto = true;
 
         }
 

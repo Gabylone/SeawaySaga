@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PinDispencer : MonoBehaviour
+public class PinDispencer : Displayable
 {
     public bool pointerInside = false;
 
@@ -24,8 +24,10 @@ public class PinDispencer : MonoBehaviour
         return pinDispencers[(int)colorType];
     }
 
-    private void Start()
+    public override void Start()
     {
+        base.Start();
+
         pinDispencers[(int)colorType] = this;
 
         foreach (var item in pinImages)

@@ -19,6 +19,8 @@ public class DisplayQuest : MonoBehaviour {
 
     public Text description_Text;
 
+    public RectTransform content_RectTransform;
+
     public GameObject achievedFeedback;
     public GameObject giveUpButtonObj;
 
@@ -43,7 +45,6 @@ public class DisplayQuest : MonoBehaviour {
         currentQuest = quest;
         nameText.text = quest.Story.displayName;
 
-        //gold_Text.text = "Reward : " + quest.goldValue + " / XP : " + quest.experience;
         gold_Text.text = "" + quest.goldValue;
         experience_Text.text = "" + quest.experience;
         description_Text.text = "Given by " + quest.giver.Name + "\n";
@@ -82,6 +83,8 @@ public class DisplayQuest : MonoBehaviour {
             achievedFeedback.SetActive(false);
             giveUpButtonObj.SetActive(true);
         }
+
+        LayoutRebuilder.ForceRebuildLayoutImmediate(content_RectTransform);
     }
 
     public void ShowCurrentQuestOnMap()
@@ -166,7 +169,7 @@ public class DisplayQuest : MonoBehaviour {
     {
         MessageDisplay.Instance.onValidate += HandleOnValidate;
 
-        MessageDisplay.Instance.Show("Abandon quest ?");
+        MessageDisplay.Instance.Display("Abandon quest ?");
     }
 
     public void HandleOnValidate()
