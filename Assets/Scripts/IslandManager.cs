@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class IslandManager : MonoBehaviour
 {
@@ -11,6 +12,16 @@ public class IslandManager : MonoBehaviour
     public Sprite[] icons;
 
     public Island currentIsland;
+
+    public NavMeshObstacle NavMeshObstacle;
+
+    public float minDistanceBetweenIslands = 9f;
+
+    // NE CORRIGE PAS TU ASSUME LE TYPO SINON TU VAS NIQUER L INSPECTEUR
+    public Vector3[] possiblePosisitions;
+    // STP NE CORRIGE PAS TU AS FAIS UNE FAUTE TU AURAIS DU LECRIRE BIEN MAINTENANT LAISSE LINSPECTEUR TRANQUILE
+
+    public List<Vector3> tmpPossiblePositions = new List<Vector3>();
 
     private void Awake()
     {
@@ -79,6 +90,29 @@ public class IslandManager : MonoBehaviour
 
         return potentialIslands[Random.Range(0, potentialIslands.Count)];
     }
+
+    #region island positions
+    public void ResetIslandPositions()
+    {
+        tmpPossiblePositions.Clear();
+
+        foreach (var item in possiblePosisitions)
+        {
+            tmpPossiblePositions.Add(item);
+        }
+    }
+    public Vector2 GetNewIslandPosition()
+    {
+        int index = Random.Range(0, tmpPossiblePositions.Count);
+
+        Vector3 v = tmpPossiblePositions[index];
+
+        tmpPossiblePositions.RemoveAt(index);
+
+        return new Vector2(v.x, v.z);
+
+    }
+    #endregion
 
     public Sprite GetIcon(int i)
     {

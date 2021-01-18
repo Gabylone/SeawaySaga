@@ -33,11 +33,15 @@ public class Crew {
 
         if (crewParams.amount == 0)
         {
-
             int amount = Random.Range(Crews.playerCrew.CrewMembers.Count, 4);
 
-            if (Random.value < 0.6f)
+            if (Random.value < 0.5f)
                 amount = Crews.playerCrew.CrewMembers.Count;
+
+            if ( MapGenerator.mapParameters.id == 0)
+            {
+                amount = Random.Range(1, 2);
+            }
 
             //			Debug.Log ("");
             crewParams.amount = Mathf.Clamp(amount, 1, 4);

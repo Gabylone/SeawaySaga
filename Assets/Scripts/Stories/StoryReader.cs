@@ -84,7 +84,7 @@ public class StoryReader : MonoBehaviour {
 	#region node & switch
 	public void Node () {
 
-		string text = StoryFunctions.Instance.CellParams;
+		string text = StoryFunctions.Instance.cellParams;
 		string nodeName = text.Remove (0, 2);
 		Node node = GetNodeFromText (nodeName);
 		GoToNode (node);
@@ -109,7 +109,7 @@ public class StoryReader : MonoBehaviour {
 
 	public void Switch () {
 
-		string text = StoryFunctions.Instance.CellParams;
+		string text = StoryFunctions.Instance.cellParams;
 
 		int decal = 1;
 
@@ -192,7 +192,7 @@ public class StoryReader : MonoBehaviour {
 	public void ChangeStory () {
 
 			// extract story informations
-		string text = StoryFunctions.Instance.CellParams;
+		string text = StoryFunctions.Instance.cellParams;
 
 			// get story
 		string storyName = text.Remove (0, 2);

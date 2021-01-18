@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
 
 public enum InventoryActionType {
 
@@ -21,17 +22,36 @@ public class LootUI : MonoBehaviour {
 
 	public static LootUI Instance;
 
-	public RectTransform scollViewRectTransform;
+	public ScrollRect scrollRect;
 
 	private Loot handledLoot;
 
+    public Image background;
+    public Color background_PlayerSideColor;
+    public Color background_OtherSideColor;
+
 	private Item selectedItem = null;
+
+    public GameObject categoryObj;
+
+    public GameObject lootTitle_Obj;
+    public GameObject tradeTitle_Obj;
+
+    public CanvasGroup lootFade_Up;
+    public CanvasGroup lootFade_Down;
+    public Image lootFade_Image_Up;
+    public Image lootFade_Image_Down;
+    public Color lootFade_OtherSideColor;
+    public Color lootFade_PlayerSideColor;
+    public float lootFade_Speed = 1f;
+    public float lootFade_Buffer = 0.1f;
+
+    List<Item> displayedItems = new List<Item>();
 
 	public delegate void OnSetSelectedItem ();
 	public static OnSetSelectedItem onSetSelectedItem;
 
     public bool selectingEquipment = false;
-
 
     // pour quand on revient sur les lieux d'un combat pour loot, il faut pas que l'histoire avance
     public bool preventAdvanceStory = false;
@@ -40,9 +60,7 @@ public class LootUI : MonoBehaviour {
     public delegate void OnShowLoot();
     public static OnShowLoot tutorialEvent;
 
-    
-
-	private ItemCategory currentCat;
+	private ItemCategory currentItemCategory;
 
 	public delegate void UseInventory ( InventoryActionType actionType );
 	public static UseInventory useInventory;
@@ -51,16 +69,24 @@ public class LootUI : MonoBehaviour {
 	private GameObject lootObj;
 
 	public GameObject closeButton;
+	public CanvasGroup closeButton_canvasGroup;
+
 	public GameObject switchToPlayer;
-	public GameObject switchToTrade;
-    public Text switchButton_Text;
+    public GameObject switchToTrade;
     public GameObject switchToLoot;
+
+    public CanvasGroup switchToPlayer_CanvasGroup;
+    public CanvasGroup switchToTrade_CanvasGroup;
+    public CanvasGroup switchToLoot_CanvasGroup;
+
     public GameObject takeAllButton;
 
     public bool visible = false;
 
     [Header("Item Buttons")]
-    public DisplayItem_Loot[] displayItems = new DisplayItem_Loot[0];
+    public List<DisplayItem_Loot> displayItems = new List<DisplayItem_Loot>();
+    public DisplayItem_Loot displayItem_Prefab;
+    public RectTransform displayItem_Parent;
 
     public DisplayItem_Loot displayWeaponItem;
     public DisplayItem_Loot displayClotheItem;
@@ -69,16 +95,10 @@ public class LootUI : MonoBehaviour {
 
 	[Header("Categories")]
 	[SerializeField] private Button[] categoryButtons;
-	private CategoryContent categoryContent;
+    private Transform[] categoryButtons_Transforms;
+    private CanvasGroup[] categoryButtons_CanvasGroup;
+    private CategoryContent categoryContent;
 	public CategoryContentType categoryContentType;
-	public Transform selectedParent;
-	public Transform initParent;
-
-	[Header("Pages")]
-	[SerializeField] private GameObject previousPageButton;
-	[SerializeField] private GameObject nextPageButton;
-	private int currentPage 	= 0;
-	private int maxPage 		= 0;
 
 	[Header("Actions")]
 	[SerializeField]
@@ -91,7 +111,15 @@ public class LootUI : MonoBehaviour {
         tutorialEvent = null;
         useInventory = null;
 
-		Init ();
+        categoryButtons_Transforms = new Transform[categoryButtons.Length];
+        categoryButtons_CanvasGroup = new CanvasGroup[categoryButtons.Length];
+        for (int i = 0; i < categoryButtons_Transforms.Length; i++)
+        {
+            categoryButtons_Transforms[i] = categoryButtons[i].GetComponent<Transform>();
+            categoryButtons_CanvasGroup[i] = categoryButtons[i].GetComponent<CanvasGroup>();
+        }
+
+        Init();
 	}
 
     void Start()
@@ -102,9 +130,36 @@ public class LootUI : MonoBehaviour {
         RayBlocker.onTouchRayBlocker += HandleOnTouchRayBlocker;
 
         HideDelay();
+
     }
 
-	void HandleOnTouchRayBlocker ()
+    private void Update()
+    {
+        if (visible)
+        {
+            if ( scrollRect.verticalNormalizedPosition > 1 - lootFade_Buffer )
+            {
+                lootFade_Down.alpha = Mathf.Lerp( lootFade_Down.alpha , 1f , lootFade_Speed * Time.deltaTime );
+            }
+            else
+            {
+                lootFade_Down.alpha = Mathf.Lerp(lootFade_Down.alpha, 0f, lootFade_Speed * Time.deltaTime);
+
+            }
+
+            if (scrollRect.verticalNormalizedPosition < lootFade_Buffer)
+            {
+                lootFade_Up.alpha = Mathf.Lerp(lootFade_Up.alpha, 1f, lootFade_Speed * Time.deltaTime);
+            }
+            else
+            {
+                lootFade_Up.alpha = Mathf.Lerp(lootFade_Up.alpha, 0f, lootFade_Speed * Time.deltaTime);
+
+            }
+        }
+    }
+
+    void HandleOnTouchRayBlocker ()
 	{
 	}
 
@@ -131,8 +186,6 @@ public class LootUI : MonoBehaviour {
         Show(categoryContentType, currentSide);
     }
 	public void Show (CategoryContentType _catContentType,Crews.Side side) {
-
-        currentPage = 0;
 
         ClearSelectedItem();
 
@@ -164,6 +217,9 @@ public class LootUI : MonoBehaviour {
         InGameMenu.Instance.Open();
 
         UpdateLootUI();
+
+        scrollRect.verticalNormalizedPosition = 1f;
+
     }
 
     void HideDelay()
@@ -224,66 +280,105 @@ public class LootUI : MonoBehaviour {
 
     }
 
-    public void HideAllSwitchButtons()
-    {
-        switchToTrade.SetActive(false);
-        switchToLoot.SetActive(false);
-        switchToPlayer.SetActive(false);
-        takeAllButton.SetActive(false);
-
-        previousPageButton.SetActive(false);
-        nextPageButton.SetActive(false);
-
-        DisplayCrew.Instance.switchGroup.SetActive(false);
-    }
-
     public void InitButtons ()
 	{
-        HideAllSwitchButtons();
+        // hide skill / / inventory
+        DisplayCrew.Instance.HideSkillSwitchGroup();
+
+        switchToLoot.SetActive(false);
+        switchToTrade.SetActive(false);
+        switchToPlayer.SetActive(false);
+
+        lootTitle_Obj.SetActive(false);
+        tradeTitle_Obj.SetActive(false);
+        categoryObj.SetActive(false);
+
+        takeAllButton.SetActive(false);
+
+        background.color = background_PlayerSideColor;
+
+        lootFade_Image_Down.color = lootFade_PlayerSideColor;
+        lootFade_Image_Up.color = lootFade_PlayerSideColor;
 
         switch (categoryContentType) {
 
-		    case CategoryContentType.PlayerTrade:
+            case CategoryContentType.PlayerTrade:
+
+                switchToPlayer.SetActive(true);
+                switchToPlayer_CanvasGroup.alpha = 0.5f;
+
                 switchToTrade.SetActive(true);
-                switchButton_Text.text = "Sell";
+                switchToTrade_CanvasGroup.alpha = 1f;
+
+                categoryObj.SetActive(true);
+
                 break;
             case CategoryContentType.PlayerLoot:
-			    switchToLoot.SetActive(true);
-                switchButton_Text.text = "Throw";
+
+                switchToPlayer.SetActive(true);
+                switchToPlayer_CanvasGroup.alpha = 0.5f;
+
+                switchToLoot.SetActive(true);
+                switchToLoot_CanvasGroup.alpha = 1f;
+
+                categoryObj.SetActive(true);
                 break;
 
-		    case CategoryContentType.OtherTrade:
-                switchButton_Text.text = "Sell";
+            case CategoryContentType.OtherTrade:
+
                 switchToPlayer.SetActive(true);
+                switchToPlayer_CanvasGroup.alpha = 1f;
+
+                switchToTrade.SetActive(true);
+                switchToTrade_CanvasGroup.alpha = 0.5f;
+
+                tradeTitle_Obj.SetActive(true);
+
+                background.color = background_OtherSideColor;
+                lootFade_Image_Down.color = lootFade_OtherSideColor;
+                lootFade_Image_Up.color = lootFade_OtherSideColor;
+
+
                 break;
             case CategoryContentType.OtherLoot:
-                switchButton_Text.text = "Drop";
-                switchToPlayer.SetActive(true);
 
-                if ( handledLoot.AllItems[(int)currentCat].Count > 0)
+                switchToPlayer.SetActive(true);
+                switchToPlayer_CanvasGroup.alpha = 1f;
+
+                switchToLoot_CanvasGroup.alpha = 0.5f;
+                switchToLoot.SetActive(true);
+
+
+                background.color = background_OtherSideColor;
+                lootFade_Image_Down.color = lootFade_OtherSideColor;
+                lootFade_Image_Up.color = lootFade_OtherSideColor;
+
+                lootTitle_Obj.SetActive(true);
+
+                if ( displayedItems.Count > 0)
                 {
                     takeAllButton.SetActive(true);
+                }
+                else
+                {
+                    takeAllButton.SetActive(false);
                 }
 
                 break;
             case CategoryContentType.Combat:
                 break;
             case CategoryContentType.Inventory:
-                DisplayCrew.Instance.switchGroup.SetActive(true);
+
+                categoryObj.SetActive(true);
+
+                DisplayCrew.Instance.ShowSkillSwitchGroup();
+                switchToPlayer.SetActive(false);
+                switchToTrade.SetActive(false);
+                switchToLoot.SetActive(false);
                 break;
 		default:
 			break;
 		}
-
-        if (currentPage > 0)
-        {
-            previousPageButton.SetActive(true);
-        }
-
-        if (handledLoot.AllItems[(int)currentCat].Count > ItemPerPage * (currentPage+1) )
-        {
-            nextPageButton.SetActive(true);
-        }
 
     }
     bool OnOtherLoot ()
@@ -302,15 +397,11 @@ public class LootUI : MonoBehaviour {
     {
         takeAllButton.SetActive(false);
 
-        DisplayCrew.Instance.switchGroup.SetActive(false);
-
         closeButton.SetActive(false);
 
-        HideAllSwitchButtons();
-
-        while (handledLoot.AllItems[(int)currentCat].Count > 0)
+        while (displayedItems.Count > 0)
         {
-            Item targetItem = handledLoot.AllItems[(int)currentCat][0];
+            Item targetItem = displayedItems[0];
 
             if (!WeightManager.Instance.CheckWeight(targetItem.weight))
             {
@@ -318,6 +409,7 @@ public class LootUI : MonoBehaviour {
             }
 
             LootUI.Instance.SelectedItem = targetItem;
+
             InventoryAction(InventoryActionType.PickUp);
 
             yield return new WaitForSeconds(0.1f);
@@ -331,8 +423,8 @@ public class LootUI : MonoBehaviour {
     #endregion
 
 	#region item button	
-	public void UpdateItemButtons () {
-
+    void DisplayMemberEquipement()
+    {
         Item weapon = CrewMember.GetSelectedMember.GetEquipment(CrewMember.EquipmentPart.Weapon);
         if (weapon != null)
         {
@@ -344,7 +436,7 @@ public class LootUI : MonoBehaviour {
         }
 
         Item clothe = CrewMember.GetSelectedMember.GetEquipment(CrewMember.EquipmentPart.Clothes);
-        if ( clothe != null)
+        if (clothe != null)
         {
             displayClotheItem.Show(clothe);
         }
@@ -352,30 +444,64 @@ public class LootUI : MonoBehaviour {
         {
             displayClotheItem.gameObject.SetActive(false);
         }
+    }
+	public void UpdateItemButtons (ItemCategory[] itemCategories) {
 
-        int itemIndex = currentPage * ItemPerPage;
-        int l = ItemPerPage;
+        DisplayMemberEquipement();
 
-        for (int i = 0; i < l; ++i ) {
+        for (int i = 0; i < displayItems.Count; i++)
+        {
+            displayItems[i].Hide();
+        }
 
-			DisplayItem_Loot displayItem = displayItems [i];
+        int itemIndex = 0;
 
-			if ( itemIndex < handledLoot.AllItems [(int)currentCat].Count ) {
+        displayedItems.Clear();
 
-                Item item = handledLoot.AllItems[(int)currentCat][itemIndex];
+        foreach (var category in itemCategories)
+        {
+            foreach (var item in handledLoot.GetCategory(category))
+            {
+
+                DisplayItem_Loot displayItem;
+
+                if ( itemIndex >= displayItems.Count)
+                {
+                    displayItem = NewDisplayItem();
+                }
+                else
+                {
+                    displayItem = displayItems[itemIndex];
+                }
 
                 displayItem.Show(item);
 
-            }
-            else
-            {
-                displayItem.Hide();
-            }
+                itemIndex++;
 
-            itemIndex++;
-		}
+                displayedItems.Add(item);
+            }
+        }
 
-	}
+        /*for (int i = 0; i < handledLoot.AllItems[(int)currentCat].Count; ++i ) {
+
+			DisplayItem_Loot displayItem = displayItems [i];
+
+            Item item = handledLoot.AllItems[(int)currentCat][i];
+
+            displayItem.Show(item);
+		}*/
+
+    }
+
+    private DisplayItem_Loot NewDisplayItem()
+    {
+        DisplayItem_Loot displayItem_Loot = Instantiate(displayItem_Prefab, displayItem_Parent);
+
+        displayItems.Add(displayItem_Loot);
+
+        return displayItem_Loot;
+    }
+
     void HandleOnRemoveItemFromMember(Item item)
     {
         UpdateLootUI();
@@ -385,16 +511,45 @@ public class LootUI : MonoBehaviour {
     #region category navigation
     void InitCategory ()
 	{
-		for (int catIndex = 0; catIndex < categoryButtons.Length; catIndex++) {
+        if ( currentSide == Crews.Side.Enemy)
+        {
+            categoryObj.SetActive(false);
+
+            if ( OtherInventory.Instance.type == OtherInventory.Type.Loot)
+            {
+                lootTitle_Obj.SetActive(true);
+                tradeTitle_Obj.SetActive(false);
+            }
+            else
+            {
+                lootTitle_Obj.SetActive(false);
+                tradeTitle_Obj.SetActive(true);
+            }
+
+            return;
+        }
+
+        lootTitle_Obj.SetActive(false);
+        categoryObj.SetActive(true);
+
+        /*for (int catIndex = 0; catIndex < categoryButtons.Length; catIndex++) {
 
 			if ( handledLoot.AllItems[catIndex].Count > 0 ) {
-				currentCat = (ItemCategory)catIndex;
+				currentItemCategory = (ItemCategory)catIndex;
 				return;
 			}
 
-		}
-	}
-	public void SwitchCategory ( int cat ) {
+		}*/
+
+        Invoke("SwitchToCurrentCategory", 0.01f);
+
+    }
+    void SwitchToCurrentCategory()
+    {
+        SwitchCategory(currentItemCategory);
+    }
+
+    public void SwitchCategory ( int cat ) {
 		SwitchCategory ((ItemCategory)cat);
 	}
 	public void SwitchCategory ( ItemCategory cat ) {
@@ -402,27 +557,42 @@ public class LootUI : MonoBehaviour {
 		if ( DisplayItem_Loot.selectedDisplayItem != null )
 			DisplayItem_Loot.selectedDisplayItem.Deselect ();
 
-		currentCat = cat;
-
-		Tween.Bounce (categoryButtons[(int)cat].transform, 0.2f , 1.1f);
-
-		currentPage = 0;
+        categoryButtons_CanvasGroup[(int)currentItemCategory].alpha = 1f;
+ 
+		currentItemCategory = cat;
 
         ClearSelectedItem();
 
 		UpdateLootUI ();
 
-		scollViewRectTransform.anchoredPosition = Vector2.zero;
+        scrollRect.verticalNormalizedPosition = 1f;
 
-	}
+        foreach (var item in categoryButtons_CanvasGroup)
+        {
+            item.alpha = 1f;
+        }
+
+        Tween.Bounce(categoryButtons_Transforms[(int)currentItemCategory], 0.2f, 1.1f);
+        categoryButtons_CanvasGroup[(int)currentItemCategory].alpha = 0.5f;
+    }
 
 	public void UpdateLootUI () {
 
 		if (!visible)
 			return;
 
-		UpdateItemButtons ();
-		UpdateCategoryButtons ();
+        if ( currentSide == Crews.Side.Enemy)
+        {
+            ItemCategory[] cats = new ItemCategory[4] { ItemCategory.Provisions, ItemCategory.Weapon, ItemCategory.Clothes, ItemCategory.Misc };
+
+            UpdateItemButtons(cats);
+        }
+        else
+        {
+            UpdateItemButtons(new ItemCategory[1] { currentItemCategory });
+        }
+
+        UpdateCategoryButtons ();
         InitButtons();
 
         if (selectedItemDisplay.DisplayedItem != null)
@@ -448,8 +618,6 @@ public class LootUI : MonoBehaviour {
 
 		for (int buttonIndex = 0; buttonIndex < categoryButtons.Length; ++buttonIndex) {
 
-			categoryButtons [buttonIndex].transform.SetParent (initParent);
-
 			if ( handledLoot.AllItems[buttonIndex].Count == 0 ) {
 
                 categoryButtons[buttonIndex].interactable = false;
@@ -469,20 +637,11 @@ public class LootUI : MonoBehaviour {
             }
         }
 
-		categoryButtons [(int)currentCat].interactable = false;
-        foreach (var item in categoryButtons[(int)currentCat].GetComponentsInChildren<Image>())
+		categoryButtons [(int)currentItemCategory].interactable = false;
+        foreach (var item in categoryButtons[(int)currentItemCategory].GetComponentsInChildren<Image>())
         {
             item.color = Color.white;
         }
-		categoryButtons [(int)currentCat].transform.SetParent (selectedParent);
-	}
-	#endregion
-
-	#region page navigation
-	public int ItemPerPage {
-		get {
-			return displayItems.Length;
-		}
 	}
 	#endregion
 
@@ -511,14 +670,13 @@ public class LootUI : MonoBehaviour {
 			return;
 		}
 
-		actionGroup.UpdateButtons (CategoryContent.catButtonType[(int)currentCat].buttonTypes);
+		actionGroup.UpdateButtons (CategoryContent.catButtonType[(int)item.category].buttonTypes);
 
 	}
 	#endregion
 
     public void NextPage()
     {
-        currentPage++;
         UpdateLootUI();
 
         SoundManager.Instance.PlaySound("paper tap 01");
@@ -526,11 +684,9 @@ public class LootUI : MonoBehaviour {
 
     public void PreviousPage()
     {
-        --currentPage;
         UpdateLootUI();
 
         SoundManager.Instance.PlaySound("paper tap 02");
-
     }
 
     public void OpenInventory()
@@ -574,8 +730,6 @@ public class LootUI : MonoBehaviour {
         {
 
             selectedItem = value;
-
-            selectedItemDisplay.Show(value);
 
             UpdateActionButton(value);
 

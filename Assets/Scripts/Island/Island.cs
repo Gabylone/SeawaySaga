@@ -47,12 +47,12 @@ public class Island : RandomPlacable {
 
     void Init () {
 
-		WorldTouch.onPointerExit += HandleOnTouchWorld;
+		WorldTouch.onPointerExit += Exit;
 
 		UpdatePositionOnScreen (Boats.Instance.playerBoatInfo.coords);
 	}
 
-	void HandleOnTouchWorld ()
+	public void Exit ()
 	{
 		targeted = false;
         DeactivateCollider();
@@ -105,11 +105,10 @@ public class Island : RandomPlacable {
             gameObject.SetActive ( true );
 
             //GetComponent<RectTransform> ().anchoredPosition = chunk.IslandData.positionOnScreen;
-            transform.localPosition = new Vector3(islandData.worldPosition.x  , 0f , islandData.worldPosition.y);
+            _transform.localPosition = new Vector3(islandData.worldPosition.x, 0f, islandData.worldPosition.y);;
+            //Debug.Log( "local position : " + _transform.localPosition.x + " / local position " + _transform.localPosition.y );
 
-            //Debug.Log( "local position : " + transform.localPosition.x + " / local position " + transform.localPosition.y );
-
-            transform.rotation = Quaternion.EulerAngles(0, islandData.worldRotation,0);
+            _transform.rotation = Quaternion.EulerAngles(0, islandData.worldRotation,0);
 
             //GetComponentInChildren<Image>().sprite = sprites [islandData.storyManager.storyHandlers [0].Story.param];
 
@@ -124,7 +123,7 @@ public class Island : RandomPlacable {
 			
 			gameObject.SetActive ( false );
 
-			transform.localPosition = new Vector3 (10000f, 0, 0);
+            _transform.localPosition = new Vector3 (10000f, 0, 0);
 		}
 	}
     #endregion

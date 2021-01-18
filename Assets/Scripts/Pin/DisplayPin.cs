@@ -77,6 +77,11 @@ public class DisplayPin : Displayable
 
     public void OnEndDrag()
     {
+        if (!DisplayMinimap.Instance.fullyDisplayed)
+        {
+            return;
+        }
+
         // stop dragging update
         dragging = false;
 

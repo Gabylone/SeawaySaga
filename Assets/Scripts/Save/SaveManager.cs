@@ -45,7 +45,6 @@ public class SaveManager : MonoBehaviour
 
         if ( NavigationManager.Instance)
         {
-            Crews.Instance.onCrewMemberKilled += HandleOnCrewMemberKilled;
             StoryLauncher.Instance.onPlayStory += HandlePlayStoryEvent;
             StoryLauncher.Instance.onEndStory += HandleEndStoryEvent;
         }
@@ -63,11 +62,6 @@ public class SaveManager : MonoBehaviour
         SaveCurrentIsland();
         SaveGameData();
     }
-
-    void HandleOnCrewMemberKilled (CrewMember crewMember)
-	{
-		SaveGameData ();
-	}
 
 	#region load game data
 	public void LoadGame () {

@@ -65,7 +65,7 @@ public class ChoiceButton : MonoBehaviour
                 str += "\n<b>(dexterity)</b>";
                 break;
             case Type.Dice_Cha:
-                str += "\n<b>(charisma)</b>";
+                str += "\n<b>(trickery)</b>";
                 break;
             case Type.Dice_Con:
                 str += "\n<b>(consitution)</b>";
@@ -113,7 +113,7 @@ public class ChoiceButton : MonoBehaviour
         }
 
         // tween
-        Tween.Bounce(_transform, 0.2f, 1.1f);
+        Tween.Bounce(_transform, 0.1f, 1.025f);
     }
 
     public void Select()

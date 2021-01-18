@@ -18,7 +18,7 @@ Node=>choix;Node=>mort;Node=>combat;;;;;;;;;;;
 [choix];;;;;;[choix autre];;;;;;[combat];
 SetChoices4;;;;;;SetChoices4;;;;;;OtherSpeak : ?!?;
 Choice : (leave);Choice : Show me what you got! (trade);Choice : Have you heard about NOMTRESOR?;;Choice : (other);;Choice : Hands up! (attack);Choice : How’s business? (quest);;Choice : Tell me about the ocean !;;Choice : (other);LaunchCombat;
-OtherSpeak : Bye bye !;TradeClothes;RandomPercent20;;Node=>choix autre;;Node=>combat;RandomPercent65;;RandomRange2;;Node=>choix;RemoveKarma;
+OtherSpeak : Cheerio, sailor !;TradeClothes;RandomPercent20;;Node=>choix autre;;Node=>combat;RandomPercent65;;RandomRange2;;Node=>choix;RemoveKarma;
 Leave;Node=>choix;TellClue;OtherSpeak : Nope, never heard about it, sorry!;;;;OtherSpeak : Pretty good actually!;NewQuest=>choix;GiveTip;OtherSpeak : I’d prefer we talk business only;;[mort];
 ;;Node=>choix;Node=>choix;;;;OtherSpeak : Pirates come here for winter clothes.;;Node=>choix;Node=>choix;;Narrator : The armorer is laying on the floor, dead.;
 ;;;;;;;Node=>choix;;;;;SetChoices2;

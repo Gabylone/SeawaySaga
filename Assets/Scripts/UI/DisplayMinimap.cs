@@ -23,6 +23,7 @@ public class DisplayMinimap : MonoBehaviour {
     public MinimapBoat playerBoatIconPrefab;
     public Transform minimapIconsParent;
 
+
     /*public Vector2 enemyBoatIconDecal;
     public List<MinimapBoat> minimapBoatIcons = new List<MinimapBoat>();*/
 
@@ -59,6 +60,9 @@ public class DisplayMinimap : MonoBehaviour {
     public float fullDisplay_Duration = 0.8f;
     private bool fullDisplay_Exiting = false;
 
+    public GameObject fullDisplay_ButtonObj;
+
+
     public RectTransform fullDisplay_Parent;
     public float initPosY = 0f;
     public float initPosX = 0f;
@@ -91,16 +95,15 @@ public class DisplayMinimap : MonoBehaviour {
         rectTransform = GetComponent<RectTransform>();
 
 		// subscribe
-
-		CombatManager.Instance.onFightStart += FadeOut;
-		CombatManager.Instance.onFightEnd += FadeIn;
+		CombatManager.Instance.onFightStart += HandleOnFightStart;
+		CombatManager.Instance.onFightEnd   += HandleOnFightEnd;
 
 		StoryFunctions.Instance.getFunction += HandleOnGetFunction;
         
 		QuestManager.Instance.onFinishQuest += HandleOnFinishQuest;
 		QuestManager.Instance.onGiveUpQuest += HandleOnGiveUpQuest;
 
-        StoryLauncher.Instance.onPlayStory += HandlePlayStoryEvent;
+        StoryLauncher.Instance.onPlayStory  += HandlePlayStoryEvent;
 
 		initScaleX = rectTransform.sizeDelta.x;
         initScaleY = rectTransform.sizeDelta.y;
@@ -112,7 +115,9 @@ public class DisplayMinimap : MonoBehaviour {
 		Show ();
 
 		HideFullMapGroup ();
-	}
+    }
+
+    
 
     private void Update()
     {
@@ -312,6 +317,20 @@ public class DisplayMinimap : MonoBehaviour {
 
         minimapChunk.ShowQuestFeedback();
 
+    }
+    #endregion
+
+    #region events
+    void HandleOnFightStart()
+    {
+        FadeOut();
+        fullDisplay_ButtonObj.SetActive(false);
+    }
+
+    void HandleOnFightEnd()
+    {
+        FadeIn();
+        fullDisplay_ButtonObj.SetActive(true);
     }
     #endregion
 
@@ -586,6 +605,19 @@ public class DisplayMinimap : MonoBehaviour {
     }*/
     #endregion
 
+    public void OnPointerClick()
+    {
+        if (fullyDisplayed)
+        {
+
+        }
+        else
+        {
+            Tween.Bounce(scrollViewRectTransform);
+            FullDisplay();
+        }
+    }
+
     void Show () {
 		scrollViewRectTransform.gameObject.SetActive (true);
 	}
@@ -597,7 +629,9 @@ public class DisplayMinimap : MonoBehaviour {
 	#region full display
 	public void FullDisplay ()
 	{
-		Transitions.Instance.ScreenTransition.FadeIn (fullDisplay_Duration/2f);
+        fullDisplay_ButtonObj.SetActive(false);
+
+        Transitions.Instance.ScreenTransition.FadeIn (fullDisplay_Duration/2f);
 
         SoundManager.Instance.PlaySound("click_light 01");
         SoundManager.Instance.PlayRandomSound("Book");
@@ -692,6 +726,8 @@ public class DisplayMinimap : MonoBehaviour {
 		Transitions.Instance.ScreenTransition.FadeOut (fullDisplay_Duration/2f);
 
         fullyDisplayed = false;
+
+        fullDisplay_ButtonObj.SetActive(true);
 
         if (MinimapChunk.currentMinimapChunk != null)
         {

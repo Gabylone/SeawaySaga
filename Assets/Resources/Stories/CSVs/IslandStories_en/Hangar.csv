@@ -1,8 +1,8 @@
 Nom;Fréquence %;Sprite ID;Display Name;;;;;;;;;;;
 Hangar;5,08;1;Carpenter;;;;;;;;;;;
-Narrator : The boat arrives on a tiny island, its beach riddled with boat carcasses of all size and shapes. There’s an old cabin a the end of the beach.;;;;;;;;;;;;;;
-CheckQuest=>choix debut;;;;;;;;;;;;;;
-[choix debut];;;;;;;;;;;;;;
+Narrator : The boat arrives on a tiny island, its beach riddled with boat carcasses of all size and shapes. There’s an old cabin a the end of the beach.;[from other story];;;;;;;;;;;;;
+CheckQuest=>choix debut;Narrator : The CAPITAINE arrives on a tiny breach, riddled with boat carcasses of all size and shapes. There’s an old cabin a the end of the beach.;;;;;;;;;;;;;
+[choix debut];Node=>choix debut;;;;;;;;;;;;;
 SetChoices2;;;;;;;;;;;;;;
 Choice : (leave);Choice : (towards the cabin);;;;;;;;;;;;;
 PlayerSpeak : Let’s leave!;Fade;;;;;;;;;;;;;

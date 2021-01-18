@@ -26,7 +26,7 @@ public class DeepHole : RandomPlacable
         {
             _transform.localScale = Vector3.one;
 
-            Show();
+            Invoke("Show", 1f);
         }
     }
 

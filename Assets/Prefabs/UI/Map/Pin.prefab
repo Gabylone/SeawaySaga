@@ -65,6 +65,7 @@ MonoBehaviour:
   canvasGroup: {fileID: 4050349452695053290}
   inputField: {fileID: 4744595624201738603}
   pin:
+    colorType: 0
     content: 
     save_X: 0
     save_Y: 0
@@ -144,8 +145,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 6ac2e58dbbb73a44c9b09a0024747f35, type: 3}
-    m_FontSize: 18
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 15
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
@@ -254,7 +255,7 @@ MonoBehaviour:
   image: {fileID: 1917709887553509732}
   dragDecal: {x: 0, y: 0}
   dragSpeed: 3
-  canBeDraggeedOnMap: 0
+  canBeDraggedOnMap: 0
 --- !u!225 &4197561749623688030
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -524,8 +525,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 6ac2e58dbbb73a44c9b09a0024747f35, type: 3}
-    m_FontSize: 18
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 15
     m_FontStyle: 2
     m_BestFit: 0
     m_MinSize: 1

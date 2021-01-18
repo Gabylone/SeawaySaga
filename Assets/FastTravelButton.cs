@@ -95,6 +95,12 @@ public class FastTravelButton : MonoBehaviour, IPointerClickHandler
         // display travel info
         DisplayFastTravelInfo.Instance.Display(trips, trips_Food , trips_Hunger);
 
+        // deselect current minimap chunk
+        if ( MinimapChunk.currentMinimapChunk != null)
+        {
+            MinimapChunk.currentMinimapChunk.Deselect();
+        }
+
         if (trips_Food + trips_Hunger < trips)
         {
             MessageDisplay.Instance.Display("You don't have enough food, or you crew has not eaten enough.\nIt would take <color=red>" + trips + "</color> trips to get to the <size=32><b>" + IslandName + "</b></size>");

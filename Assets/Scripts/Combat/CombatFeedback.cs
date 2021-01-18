@@ -9,6 +9,9 @@ public class CombatFeedback : MonoBehaviour {
 	public Image statusImage;
 	public GameObject group;
 	public Image backgroundImage;
+    Transform _transform;
+
+    public Outline outline;
 
 	public float fadeDecal = 1f;
 	public float fadeDuration = 1f;
@@ -24,8 +27,13 @@ public class CombatFeedback : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		initPos = transform.localPosition;
-		Hide ();
+
+        _transform = transform;
+
+		initPos = _transform.localPosition;
+
+        Hide();
+
 	}
 	void ShowFeedbackInfo() {
 		
@@ -36,11 +44,11 @@ public class CombatFeedback : MonoBehaviour {
 		Show ();
 
 		// tween
-		Tween.ClearFade (transform);
+		Tween.ClearFade (_transform);
 
 		// pos
-		transform.localPosition = initPos;
-        transform.DOLocalMove(initPos + Vector3.up * fadeDecal, fadeDuration);
+		_transform.localPosition = initPos;
+        _transform.DOLocalMove(initPos + Vector3.up * fadeDecal, fadeDuration);
 
         // invokes
         CancelInvoke("Fade");
@@ -67,15 +75,29 @@ public class CombatFeedback : MonoBehaviour {
         CancelInvoke("ShowFeedbackInfo");
         Invoke("ShowFeedbackInfo", delay);
 	}
-	#endregion
+    #endregion
 
-	#region display content
-	public void Display (string content, Color color) {
+    #region display content
+    public void Display(string content, Color color)
+    {
+        Display(content, color, 1f);
+    }
+
+    public void Display(string content, Color color, float modScale) {
 
 		if ( displaying && secondCombatFeedback != null) {
-			secondCombatFeedback.Display (content, color);
+			secondCombatFeedback.Display (content, color, modScale);
 			return;
 		}
+
+        if ( color == Color.white)
+        {
+            outline.effectColor = Color.black;
+        }
+        else
+        {
+            outline.effectColor = Color.white;
+        }
 
         // ui text
         text.gameObject.SetActive(true);
@@ -83,6 +105,7 @@ public class CombatFeedback : MonoBehaviour {
 
         text.text = content;
 
+        _transform.localScale = Vector3.one * modScale;
 
         // status
         statusImage.gameObject.SetActive(false);
@@ -95,12 +118,12 @@ public class CombatFeedback : MonoBehaviour {
 
 	// tools
 	void Fade() {
-		Tween.Fade (transform, fadeDuration/2f);
+		Tween.Fade (_transform, fadeDuration/2f);
 	}
 
 	void Show() {
 		group.SetActive (true);
-		Tween.Bounce (transform);
+		Tween.Bounce (_transform);
 	}
 
 	void Hide () {

@@ -28,6 +28,8 @@ public class DisplayQuest : MonoBehaviour {
 
     Quest currentQuest;
 
+    public RectTransform[] layoutGroups_RectTransforms;
+
     private void Awake()
     {
         Instance = this;
@@ -36,6 +38,14 @@ public class DisplayQuest : MonoBehaviour {
     private void Start()
     {
         Hide();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.U))
+        {
+            UpdateLayout();
+        }
     }
 
     public void Display ( Quest quest)
@@ -84,7 +94,15 @@ public class DisplayQuest : MonoBehaviour {
             giveUpButtonObj.SetActive(true);
         }
 
-        LayoutRebuilder.ForceRebuildLayoutImmediate(content_RectTransform);
+        UpdateLayout();
+    }
+
+    void UpdateLayout()
+    {
+        foreach (var item in layoutGroups_RectTransforms)
+        {
+            LayoutRebuilder.ForceRebuildLayoutImmediate(item);
+        }
     }
 
     public void ShowCurrentQuestOnMap()
@@ -108,6 +126,7 @@ public class DisplayQuest : MonoBehaviour {
 
         infoGroup.SetActive(false);
 
+        UpdateLayout();
     }
 
     private void DisplayFormulasInDescription()
@@ -118,7 +137,7 @@ public class DisplayQuest : MonoBehaviour {
 
         if (foundOne == false)
         {
-            str += "No clues yet";
+                str += "No clues yet ";
         }
         else
         {
@@ -174,6 +193,7 @@ public class DisplayQuest : MonoBehaviour {
 
     public void HandleOnValidate()
     {
+        MessageDisplay.Instance.onValidate -= HandleOnValidate;
         QuestManager.Instance.GiveUpQuest(currentQuest);
     }
 }

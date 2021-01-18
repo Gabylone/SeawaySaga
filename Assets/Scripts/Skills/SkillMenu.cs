@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 using DG.Tweening;
 
@@ -8,12 +9,16 @@ public class SkillMenu : MonoBehaviour {
 
     public static SkillMenu Instance;
 
-	public GameObject group;
+    public GameObject group;
+
+    private Transform _transform;
 
 	public bool visible = false;
 
     public delegate void OnShowCharacterStats();
     public OnShowCharacterStats tutoEvent;
+
+    public CanvasGroup closeButton;
 
     public float lootTransition_Duration = 1f;
     public float lootTransition_Decal = 1f;
@@ -26,6 +31,9 @@ public class SkillMenu : MonoBehaviour {
     }
 
     void Start () {
+
+        _transform = GetComponent<Transform>();
+
 		HideDelay ();
 
 		RayBlocker.onTouchRayBlocker += HandleOnTouchRayBlocker;
@@ -50,7 +58,6 @@ public class SkillMenu : MonoBehaviour {
 
         group.SetActive(true);
 
-        DisplayCrew.Instance.switchGroup.SetActive(true);
         DisplayCrew.Instance.Show(CrewMember.GetSelectedMember);
         DisplayCrew.Instance.OnSwitchSkills();
 
@@ -94,13 +101,18 @@ public class SkillMenu : MonoBehaviour {
 
     public void LerpIn()
     {
-        transform.position = Vector3.right * lootTransition_Decal;
+        _transform.position = Vector3.right * lootTransition_Decal;
 
-        transform.DOMove(Vector3.zero, lootTransition_Duration);
+        closeButton.alpha = 0f;
+        closeButton.DOFade(1f, 0.2f).SetDelay(lootTransition_Duration);
+
+        _transform.DOMove(Vector3.zero, lootTransition_Duration);
     }
 
     public void LerpOut()
     {
-        transform.DOMove(Vector3.right * lootTransition_Decal, lootTransition_Duration);
+        _transform.DOMove(Vector3.right * lootTransition_Decal, lootTransition_Duration);
+
+        closeButton.alpha = 0f;
     }
 }

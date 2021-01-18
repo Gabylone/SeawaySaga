@@ -12,6 +12,8 @@ public class SkillButton : MonoBehaviour {
 	public Text uiText_SkillName;
 	public Text uiText_Description;
 
+    public Transform _transform;
+
 	public Skill skill;
 
 	public Button button;
@@ -19,6 +21,8 @@ public class SkillButton : MonoBehaviour {
 	public float timeToShowDescription = 0.5f;
 
 	public virtual void Start () {
+        _transform = GetComponent<Transform>();
+
 		//button = GetComponentInChildren<Button> ();
 	}
 

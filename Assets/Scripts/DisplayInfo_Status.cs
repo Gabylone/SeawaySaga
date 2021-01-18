@@ -33,7 +33,10 @@ public class DisplayInfo_Status : DisplayInfo {
 			break;
 		case Fighter.Status.Provoking:
 			str = "The next 3 attack are directed to this member, as he's being very offensive and he's calling everybody names";
-			break;
+		    break;
+        case Fighter.Status.Parrying:
+            str = "The next attack will be halved";
+            break;
 		case Fighter.Status.Protected:
 			str = "Pumped up and looked over by a Cook, the damages directed to this member are halved";
 			break;
@@ -83,6 +86,9 @@ public class DisplayInfo_Status : DisplayInfo {
                 break;
             case Fighter.Status.Provoking:
                 str = "Provoking";
+                break;
+            case Fighter.Status.Parrying:
+                str = "Parrying";
                 break;
             case Fighter.Status.Protected:
                 str = "Protected";

@@ -52,6 +52,7 @@ public class DisplayCrew : MonoBehaviour {
 
         CancelInvoke("Hide");
 
+        DisplayMinimap.Instance.fullDisplay_ButtonObj.SetActive(false);
 
         if ( onSkills)
         {
@@ -71,9 +72,11 @@ public class DisplayCrew : MonoBehaviour {
 
     public void Hide()
     {
-        PlayerIcons.Instance.Hide();
+        DisplayMinimap.Instance.fullDisplay_ButtonObj.SetActive(true);
 
         rectTransform.DOAnchorPos(Vector2.up * decal, duration);
+
+        PlayerIcons.Instance.HandleCloseInventory();
 
         CancelInvoke("HideDelay");
         Invoke("HideDelay", duration);
@@ -118,13 +121,22 @@ public class DisplayCrew : MonoBehaviour {
 
     }
 
+    public void ShowSkillSwitchGroup()
+    {
+        switchGroup.SetActive(true);
+    }
+
+    public void HideSkillSwitchGroup()
+    {
+        switchGroup.SetActive(false);
+    }
+
     public void OnSwitchInventory()
     {
         onSkills = false;
 
         inventoryCanvasGroup.alpha = 0.5f;
         skillCanvasGroup.alpha = 1f;
-
     }
 
     public void OnSwitchSkills()

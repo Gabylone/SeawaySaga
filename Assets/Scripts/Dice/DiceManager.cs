@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
+
+using DG.Tweening;
 
 public enum DiceTypes {
 	STR,
@@ -59,12 +62,21 @@ public class DiceManager : MonoBehaviour {
 	public float throwDuration;
 	private int throwDirection = 1;
 
+    public CrewMember thrower;
+    Stat currentStat;
+
+    public bool waitingForThrowerSelection = false;
+
 	[SerializeField]
 	private Dice[] dices;
 
 	private Throw currentThrow;
 
 	private int highestResult = 0;
+
+    public GameObject backgroundObj;
+    public CanvasGroup backgroundCanvasGroup;
+    public Text backgroundText;
 
 	private bool throwing = false;
 	private float timer = 0f;
@@ -84,6 +96,8 @@ public class DiceManager : MonoBehaviour {
 		
 		InitDice ();
 		ResetDice ();
+
+        backgroundObj.SetActive(false);
 
 
 		StoryFunctions.Instance.getFunction += HandleGetFunction;
@@ -136,10 +150,10 @@ public class DiceManager : MonoBehaviour {
             item.Show();
         }
     }
-	#endregion
+    #endregion
 
-	#region throwing
-	public int QuickThrow (int diceAmount) {
+    #region throwing
+    public int QuickThrow (int diceAmount) {
 
 		int result = 0;
 
@@ -501,7 +515,7 @@ public class DiceManager : MonoBehaviour {
     #region dice
     void ThrowDiceAmount()
     {
-        string cellParams = StoryFunctions.Instance.CellParams;
+        string cellParams = StoryFunctions.Instance.cellParams;
         int amount = int.Parse(cellParams);
 
         ThrowDirection = 1;
@@ -527,49 +541,135 @@ public class DiceManager : MonoBehaviour {
     #region check stat
     private void CheckStat () {
 
-		int decal = StoryReader.Instance.CurrentStoryHandler.GetDecal ();
+        int decal = StoryReader.Instance.CurrentStoryHandler.GetDecal();
 
-		if (decal < 0) {
-
-            onEndThrow += CheckStat_HandleOnEndThrow;
-
-            Crews.playerCrew.captain.memberIcon.animator.SetTrigger("throw dice");
-
-            ThrowDirection = 1;
-
-            string cellParams = StoryFunctions.Instance.CellParams;
-
-            switch (cellParams)
+        // decal has already been done
+        if (decal >= 0)
+        {
+            if ( decal == 0)
             {
-                case "STR":
-                    ThrowDice(DiceTypes.STR, Crews.playerCrew.captain.GetStat(Stat.Strenght));
-                    break;
-                case "DEX":
-                    ThrowDice(DiceTypes.DEX, Crews.playerCrew.captain.GetStat(Stat.Dexterity));
-                    break;
-                case "CHA":
-                    ThrowDice(DiceTypes.CHA, Crews.playerCrew.captain.GetStat(Stat.Charisma));
-                    break;
-                case "CON":
-                    ThrowDice(DiceTypes.CON, Crews.playerCrew.captain.GetStat(Stat.Constitution));
-                    break;
-                default:
-                    Debug.LogError("PAS DE Dé " + cellParams + " : lancé de force");
-                    ThrowDice(DiceTypes.STR, Crews.playerCrew.captain.GetStat(Stat.Strenght));
-                    break;
+                DialogueManager.Instance.OtherSpeak("Success !");
+            }
+            else
+            {
+                DialogueManager.Instance.OtherSpeak("I already blew this, no need retrying !");
             }
 
-        } else {
+            DialogueManager.Instance.onEndDialogue += HandleOnEndDialogue;
+            return;
+        }
 
-			StoryReader.Instance.NextCell ();
+        string cellParams = StoryFunctions.Instance.cellParams;
+        string color_html = "";
 
-			StoryReader.Instance.SetDecal (decal);
+        switch (cellParams)
+        {
+            case "STR":
+                currentStat = Stat.Strenght;
+                color_html = "<color=red>";
+                break;
+            case "DEX":
+                currentStat = Stat.Dexterity;
+                color_html = "<color=green>";
+                break;
+            case "CHA":
+                color_html = "<color=magenta>";
+                currentStat = Stat.Trickery;
+                break;
+            case "CON":
+                color_html = "<color=lightblue>";
+                currentStat = Stat.Constitution;
+                break;
+            default:
+                Debug.LogError("PAS DE Dé " + cellParams + " : lancé de force");
+                currentStat = Stat.Strenght;
+                break;
+        }
 
-			StoryReader.Instance.UpdateStory ();
+        Crews.playerCrew.UpdateCrew(Crews.PlacingType.Portraits);
 
-		}
+        foreach (var item in Crews.playerCrew.CrewMembers)
+        {
+            item.Icon.ShowDiceStats(currentStat);
+        }
 
-	}
+        waitingForThrowerSelection = true;
+
+        backgroundObj.SetActive(true);
+        backgroundCanvasGroup.alpha = 0f;
+        backgroundCanvasGroup.DOFade(1f, 0.2f);
+
+        backgroundText.text = "Who will throw the dice for " + color_html + currentStat + " </color>";
+
+    }
+
+    void HandleOnEndDialogue()
+    {
+        int decal = StoryReader.Instance.CurrentStoryHandler.GetDecal();
+
+        StoryReader.Instance.NextCell();
+        StoryReader.Instance.SetDecal(decal);
+        StoryReader.Instance.UpdateStory();
+    }
+
+    public void SelectThrower(CrewMember member)
+    {
+        waitingForThrowerSelection = false;
+
+        foreach (var item in Crews.playerCrew.CrewMembers)
+        {
+            item.Icon.HideDiceStats();
+        }
+
+        Crews.playerCrew.UpdateCrew(Crews.PlacingType.World);
+
+        backgroundCanvasGroup.DOFade(0f, 0.2f);
+
+        thrower = member;
+
+        CancelInvoke("OnSelectThrower");
+        Invoke("OnSelectThrower", 0.5f);
+
+        CancelInvoke("SelectThrowerDelay");
+        Invoke("SelectThrowerDelay", 0.2f);
+    }
+
+    void SelectThrowerDelay()
+    {
+        backgroundObj.SetActive(false);
+    }
+
+    void OnSelectThrower()
+    {
+        onEndThrow += CheckStat_HandleOnEndThrow;
+
+        thrower.memberIcon.animator.SetTrigger("throw dice");
+
+        ThrowDirection = 1;
+
+        string cellParams = StoryFunctions.Instance.cellParams;
+
+        switch (cellParams)
+        {
+            case "STR":
+                ThrowDice(DiceTypes.STR, thrower.GetStat(Stat.Strenght));
+                break;
+            case "DEX":
+                ThrowDice(DiceTypes.DEX, thrower.GetStat(Stat.Dexterity));
+                break;
+            case "CHA":
+                ThrowDice(DiceTypes.CHA, thrower.GetStat(Stat.Trickery));
+                break;
+            case "CON":
+                ThrowDice(DiceTypes.CON, thrower.GetStat(Stat.Constitution));
+                break;
+            default:
+                Debug.LogError("PAS DE Dé " + cellParams + " : lancé de force");
+                ThrowDice(DiceTypes.STR, thrower.GetStat(Stat.Strenght));
+                break;
+        }
+        
+    }
 
     void CheckStat_HandleOnEndThrow()
     {

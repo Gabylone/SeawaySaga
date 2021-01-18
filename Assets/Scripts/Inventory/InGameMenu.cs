@@ -115,7 +115,6 @@ public class InGameMenu : MonoBehaviour {
 			break;
 		}
 
-        SoundManager.Instance.PlayRandomSound("Food Eat");
 
         crewMember.AddHealth(health);
         crewMember.CurrentHunger -= foodItem.value;
@@ -136,23 +135,42 @@ public class InGameMenu : MonoBehaviour {
 
 	}
 
-	void EquipItem ()
+    IEnumerator FoodFeedbackCoroutine()
+    {
+        SoundManager.Instance.PlayRandomSound("Bag");
+        SoundManager.Instance.PlayRandomSound("Food Eat");
+        yield return new WaitForSeconds(0.2f);
+        SoundManager.Instance.PlayRandomSound("Bag");
+        SoundManager.Instance.PlayRandomSound("Food Eat");
+        yield return new WaitForSeconds(0.2f);
+        SoundManager.Instance.PlayRandomSound("Food Eat");
+    }
+
+    void EquipItem ()
 	{
 		Item item = LootUI.Instance.SelectedItem;
-
-        if (!WeightManager.Instance.CheckWeight(item.weight))
-        {
-            return;
-        }
-
 
         if (CrewMember.GetSelectedMember.CheckLevel(item.level) == false)
         {
             return;
         }
 
+        if (OtherInventory.Instance.type == OtherInventory.Type.Loot)
+        {
+            if (!WeightManager.Instance.CheckWeight(item.weight))
+            {
+                return;
+            }
+        }
+
+        // equip during trade
         if (OtherInventory.Instance.type == OtherInventory.Type.Trade)
         {
+            if (!WeightManager.Instance.CheckWeight(item.weight))
+            {
+                return;
+            }
+
             if (!GoldManager.Instance.CheckGold(LootUI.Instance.SelectedItem.price))
             {
                 return;
@@ -164,9 +182,11 @@ public class InGameMenu : MonoBehaviour {
             GoldManager.Instance.RemoveGold(LootUI.Instance.SelectedItem.price);
         }
 
+        // equip 
         SoundManager.Instance.PlayRandomSound("Foley Armour");
         SoundManager.Instance.PlayRandomSound("Anvil");
 
+        // replace equipemnt
 		if (CrewMember.GetSelectedMember.GetEquipment(item.EquipmentPart) != null)
         {
             LootManager.Instance.PlayerLoot.AddItem(CrewMember.GetSelectedMember.GetEquipment(item.EquipmentPart));

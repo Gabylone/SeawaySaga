@@ -118,9 +118,10 @@ public class StatusGroup : MonoBehaviour {
 
 		case Fighter.Status.PreparingAttack:
 		case Fighter.Status.Provoking:
-		
-			// white
-			color = neutralEffectColor;
+		case Fighter.Status.Parrying:
+
+                // white
+                color = neutralEffectColor;
 
 			break;
 

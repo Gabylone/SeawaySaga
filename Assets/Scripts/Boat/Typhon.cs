@@ -21,18 +21,18 @@ public class Typhon : RandomPlacable
     {
         base.HandleOnUpdateCurrentChunk();
 
+        Hide();
+
         Invoke("HandleOnEnterNewChunkDelay", 0.1f);
     }
 
     void HandleOnEnterNewChunkDelay()
     {
-        Hide();
-
         if (CanSpawn())
         {
             _transform.localScale = Vector3.one;
 
-            Show();
+            Invoke("Show", 1f);
         }
     }
 

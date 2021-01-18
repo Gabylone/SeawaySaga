@@ -25,8 +25,8 @@ public class Quest {
 	public int row = 0;
 	public int col = 0;
 
-    private IslandData targetIslandData;
-    private IslandData originIslandData;
+    public IslandData targetIslandData;
+    public IslandData originIslandData;
 
 	public Node nodeWhenCompleted;
 	public Node newQuest_FallbackNode;
@@ -93,7 +93,7 @@ public class Quest {
 
 	public void Continue ()
 	{
-		string nodeText = StoryFunctions.Instance.CellParams;
+		string nodeText = StoryFunctions.Instance.cellParams;
 
 		nodeText = nodeText.Remove (0, 2);
 
@@ -146,7 +146,7 @@ public class Quest {
 	#region nodes
 	public void GetNewQuestnode () {
 
-		string s = StoryFunctions.Instance.CellParams;
+		string s = StoryFunctions.Instance.cellParams;
 
 		s = s.Remove (0,2);
 

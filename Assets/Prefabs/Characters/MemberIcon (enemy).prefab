@@ -497,11 +497,14 @@ MonoBehaviour:
   visible: 1
   canvasGroup: {fileID: 2944519177135683732}
   fadeDuration: 0.2
-  initScale: 0.8
+  initScale: 1
   currentPlacingType: 0
   previousPlacingType: 0
   decal: {x: 0, y: 0}
   dialogueAnchor: {fileID: 8441704440204622496}
+  diceStat_Group: {fileID: 0}
+  diceStat_Text: {fileID: 0}
+  diceStat_Image: {fileID: 0}
   member:
     maxLevel: 0
     side: 0

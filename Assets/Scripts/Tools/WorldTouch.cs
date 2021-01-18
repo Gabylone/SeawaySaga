@@ -109,7 +109,7 @@ public class WorldTouch : MonoBehaviour
 
     public bool IsEnabled ()
     {
-        return isEnabled && IsPointerOverUIObject() == false;
+        return isEnabled;
         //return isEnabled;
     }
 
@@ -117,18 +117,21 @@ public class WorldTouch : MonoBehaviour
     {
         if (locked)
         {
-
             return;
         }
 
         if (!IsEnabled())
         {
+            return;
+        }
 
+        if ( IsPointerOverUIObject())
+        {
             return;
         }
 
         touching = true;
-
+        
         if (onPointerDown != null)
         {
             onPointerDown();

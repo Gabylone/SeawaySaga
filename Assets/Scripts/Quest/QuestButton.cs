@@ -8,6 +8,10 @@ public class QuestButton : MonoBehaviour {
 
 	public int id = 0;
 
+    public GameObject update_feedback_obj;
+
+    private RectTransform rectTransform;
+
     public static QuestButton currentlySelectedButton;
 
     public bool mainQuest = false;
@@ -32,14 +36,21 @@ public class QuestButton : MonoBehaviour {
 
     public CanvasGroup canvasGroup;
 
-	public void Select () {
+    private void Start()
+    {
+        rectTransform = GetComponent<RectTransform>();
+
+        update_feedback_obj.SetActive(false);
+    }
+
+    public void Select () {
 
         if ( currentlySelectedButton != null)
         {
             currentlySelectedButton.Deselect();
         }
 
-		Tween.Bounce ( transform );
+		Tween.Bounce ( rectTransform );
 
         SoundManager.Instance.PlaySound("Quest");
         SoundManager.Instance.PlayRandomSound("click_med");

@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <Chunk xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <state>DiscoveredIsland</state>
+  <state>VisitedIsland</state>
   <coords>
     <x>2</x>
     <y>3</y>
@@ -8,10 +8,10 @@
   <islandDatas>
     <IslandData>
       <worldPosition>
-        <x>0.3788166</x>
-        <y>-6.76538658</y>
+        <x>11.1816692</x>
+        <y>-5.618923</y>
       </worldPosition>
-      <worldRotation>119.476341</worldRotation>
+      <worldRotation>123.63385</worldRotation>
       <index>0</index>
       <coords>
         <x>2</x>
@@ -19,7 +19,7 @@
       </coords>
       <containsFormula>false</containsFormula>
       <storyManager>
-        <hasBeenPlayed>false</hasBeenPlayed>
+        <hasBeenPlayed>true</hasBeenPlayed>
         <storyHandlers>
           <StoryHandler>
             <row>0</row>
@@ -27,7 +27,38 @@
             <fallBackLayer>0</fallBackLayer>
             <storyID>7</storyID>
             <storyType>Normal</storyType>
-            <contentDecals />
+            <contentDecals>
+              <contentDecal>
+                <row>0</row>
+                <col>2</col>
+                <decal>2</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>15</row>
+                <col>8</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>15</row>
+                <col>8</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>13</row>
+                <col>8</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>15</row>
+                <col>8</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>13</row>
+                <col>8</col>
+                <decal>1</decal>
+              </contentDecal>
+            </contentDecals>
             <loots />
             <crews />
           </StoryHandler>

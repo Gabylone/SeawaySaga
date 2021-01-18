@@ -7,6 +7,7 @@ public class Fighter : MonoBehaviour {
 
 	public bool killed = false;
 	public bool escaped = false;
+    public bool dodged = false;
 
 	public enum states {
 
@@ -229,13 +230,18 @@ public class Fighter : MonoBehaviour {
 			CombatManager.Instance.NextTurn ();
 
             SoundManager.Instance.PlaySound("Wake Up");
-            SoundManager.Instance.PlaySound("Tribal 01");
+            SoundManager.  Instance.PlaySound("Tribal 01");
 
 			return;
 			//
 		}
 
 		CheckStatus ();
+
+        if ( killed || escaped)
+        {
+            return;
+        }
 
 		if (HasStatus(Status.Enraged))
         {
@@ -265,7 +271,6 @@ public class Fighter : MonoBehaviour {
 	public OnEndTurn onEndTurn;
 	public void EndTurn ()
 	{
-
 		if (onEndTurn != null)
 			onEndTurn ();
 	}
@@ -279,7 +284,7 @@ public class Fighter : MonoBehaviour {
 		}
 			
 
-		CombatManager.Instance.currentFighter.TargetFighter = this;
+		CombatManager.Instance.GetCurrentFighter.TargetFighter = this;
 //		targetFighter = CombatManager.Instance.currentFighter;
 
 		Tween.Bounce (GetTransform);
@@ -500,7 +505,7 @@ public class Fighter : MonoBehaviour {
 			return;
 		}
 
-		if (CombatManager.Instance.currentFighter == this && CombatManager.Instance.currentFighter.crewMember.side == Crews.Side.Player ) {
+		if (CombatManager.Instance.GetCurrentFighter == this && CombatManager.Instance.GetCurrentFighter.crewMember.side == Crews.Side.Player ) {
 			return;
         }
 
@@ -561,6 +566,12 @@ public class Fighter : MonoBehaviour {
 			damage = damage * 0.5f;
 		}
 
+        if (HasStatus(Status.Parrying))
+        {
+            damage = damage * 0.5f;
+            RemoveStatus(Status.Parrying);
+        }
+
 		damage = Mathf.Round (damage);
 
 		return damage;
@@ -569,13 +580,15 @@ public class Fighter : MonoBehaviour {
 	public void GetHit (Fighter otherFighter, float attack, float mult) {
 
 		if (SucceedDodge() == true) {
-			return;
+            dodged = true;
 		}
+
+        dodged = false;
 
 		float damage = GetDamage (otherFighter, attack,mult);
 
 		if ( CombatManager.Instance.debugKill ) {
-			damage = 100;
+			damage = 200;
 		}
 
         if (crewMember.Health - damage <= 0)
@@ -585,12 +598,31 @@ public class Fighter : MonoBehaviour {
                 int xpPerMember = 25;
 
                 otherFighter.crewMember.AddXP(xpPerMember);
-                otherFighter.combatFeedback.Display("" + xpPerMember, Color.magenta);
+                otherFighter.combatFeedback.Display("" + xpPerMember, Color.cyan);
             }
         }
 
-        Hurt(damage);
-	}
+        if (otherFighter.CriticalHit())
+        {
+            otherFighter.combatFeedback.Display("CRITICAL !", Color.red, 2f);
+            Hurt(damage*2f);
+        }
+        else
+        {
+            Hurt(damage);
+        }
+    }
+
+    public bool CriticalHit()
+    {
+        float l = (float)crewMember.GetStat(Stat.Trickery) / 6f;
+
+        float maxChance = 20f;
+
+        float chance = l * maxChance;
+
+        return (Random.value*100f) < chance;
+    }
 
 	public void Hurt (float amount) {
 
@@ -817,12 +849,26 @@ public class Fighter : MonoBehaviour {
 			RemoveStatus (Status.Protected);
 		}
 
-		if ( HasStatus(Status.Poisonned) ) {
-			RemoveStatus (Status.Poisonned);
+        if (HasStatus(Status.Parrying))
+        {
+            RemoveStatus(Status.Parrying);
+        }
+
+        if (HasStatus(Status.Poisonned))
+        {
+            RemoveStatus(Status.Poisonned);
             iconVisual.poisonEffect_Obj.SetActive(true);
             combatFeedback.Display("POISON !", Color.red);
-			Hurt (10);
-		}
+            int damage = SkillManager.getSkill(Skill.Type.RatPoison).value;
+            Hurt(damage);
+
+            if (killed)
+            {
+                EndTurn();
+                CombatManager.Instance.NextTurn();
+                return;
+            }
+        }
 
 		if ( HasStatus(Status.Jagged) ) {
 			RemoveStatus (Status.Jagged);
@@ -869,6 +915,9 @@ public class Fighter : MonoBehaviour {
                 Tween.Bounce(iconVisual.poisonPuddle_Obj.transform);
                 Color poisonedColor = Color.Lerp(iconVisual.GetColor(ApparenceType.skinColor), Color.green , 0.3f);
                 iconVisual.OverrideSkinColor(poisonedColor);
+                break;
+            case Status.Parrying:
+                animator.SetBool("defending", true);
                 break;
             case Status.KnockedOut:
                 iconVisual.SetDeadEyes();
@@ -923,6 +972,10 @@ public class Fighter : MonoBehaviour {
                 case Status.Protected:
                     iconVisual.RemoveHappyFace();
                     break;
+
+                case Status.Parrying:
+                    animator.SetBool("defending", false);
+                    break;
                 case Status.Poisonned:
                     iconVisual.poisonEffect_Obj.SetActive(false);
                     iconVisual.poisonPuddle_Obj.SetActive(false);
@@ -965,7 +1018,7 @@ public class Fighter : MonoBehaviour {
 
 		Provoking,
 
-//		Parrying,
+		Parrying,
 
 		Protected,
 

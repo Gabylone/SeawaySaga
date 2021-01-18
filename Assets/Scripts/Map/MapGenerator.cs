@@ -135,17 +135,24 @@ public class MapGenerator : MonoBehaviour {
 
         LoadingScreen.Instance.StartLoading("Chargement îles", GetMapHorizontalScale * GetMapVerticalScale);
 
+        // each row
         for (int rowIndex = 0; rowIndex < rows.Length; rowIndex++)
         {
             string row = rows[rowIndex].TrimEnd('\n', '\r', '\t');
 
             string[] cells = row.Split(';');
 
+            // each col
             for (int colIndex = 0; colIndex < cells.Length; colIndex++)
             {
+                // the cell contains islands ?
                 if (cells[colIndex].Length > 0)
                 {
+                    // get coord
                     Coords c = new Coords(colIndex , (rows.Length-1) - rowIndex);
+
+                    // reset island positions
+                    IslandManager.Instance.ResetIslandPositions();
 
                     string[] storyNames = cells[colIndex].Split(',');
 
@@ -168,7 +175,6 @@ public class MapGenerator : MonoBehaviour {
                             newFormula.name = NameGeneration.Instance.randomWord;
                             newFormula.coords = c;
                             FormulaManager.Instance.formulas.Add(newFormula);
-
 
                             formulaIsland = true;
                         }

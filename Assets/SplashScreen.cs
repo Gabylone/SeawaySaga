@@ -13,6 +13,8 @@ public class SplashScreen : MonoBehaviour
         Transitions.Instance.ScreenTransition.FadeOut(0.5f);
 
         Invoke("GoToMenu", logoDuration);
+
+        Screen.orientation = ScreenOrientation.LandscapeLeft;
     }
 
     void GoToMenu()

@@ -108,10 +108,10 @@ public class GoldManager : MonoBehaviour {
 
 		int amount = 0;
 
-		if ( StoryFunctions.Instance.CellParams == "THIRD" ) {
+		if ( StoryFunctions.Instance.cellParams == "THIRD" ) {
 			amount = (int)((float)goldAmount / 3f);
 		} else {
-			amount = int.Parse (StoryFunctions.Instance.CellParams);
+			amount = int.Parse (StoryFunctions.Instance.cellParams);
 		}
 
 		if (CheckGold (amount)) {
@@ -170,10 +170,10 @@ public class GoldManager : MonoBehaviour {
 		
 		int amount = 0;
 
-		if ( StoryFunctions.Instance.CellParams == "THIRD" ) {
+		if ( StoryFunctions.Instance.cellParams == "THIRD" ) {
 			amount = (int)((float)goldAmount / 3f);
 		} else {
-			amount = int.Parse (StoryFunctions.Instance.CellParams);
+			amount = int.Parse (StoryFunctions.Instance.cellParams);
 		}
 
 		RemoveGold(amount);
@@ -190,10 +190,10 @@ public class GoldManager : MonoBehaviour {
 
 		int amount = 0;
 
-		if ( StoryFunctions.Instance.CellParams == "THIRD" ) {
+		if ( StoryFunctions.Instance.cellParams == "THIRD" ) {
 			amount = (int)((float)goldAmount / 3f);
 		} else {
-			amount = int.Parse (StoryFunctions.Instance.CellParams);
+			amount = int.Parse (StoryFunctions.Instance.cellParams);
 		}
 
         SoundManager.Instance.PlayRandomSound("Bag");

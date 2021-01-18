@@ -32,7 +32,7 @@ public class TurnFeedback : MonoBehaviour {
 
 	void Update () {
 		if (lerping) {
-			rectTransform.position = Vector3.Lerp (initPos, CombatManager.Instance.currentFighter.dialogueAnchor.position, timer / duration);
+			rectTransform.position = Vector3.Lerp (initPos, CombatManager.Instance.GetCurrentFighter.dialogueAnchor.position, timer / duration);
 
 			timer += Time.deltaTime;
 
@@ -45,7 +45,7 @@ public class TurnFeedback : MonoBehaviour {
 	{
 		if ( currState == CombatManager.States.StartTurn ) {
 
-			if ( CombatManager.Instance.currentFighter.crewMember.side == Crews.Side.Player ) {
+			if ( CombatManager.Instance.GetCurrentFighter.crewMember.side == Crews.Side.Player ) {
                 rectTransform.DORotate(Vector3.forward * -initZAngle, duration);
 			} else {
                 rectTransform.DORotate(Vector3.forward * initZAngle, duration);

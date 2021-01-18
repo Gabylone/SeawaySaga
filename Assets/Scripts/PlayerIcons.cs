@@ -21,18 +21,26 @@ public class PlayerIcons : MonoBehaviour {
     void Start () {
 
         memberSockets = GetComponentsInChildren<MemberSocket>();
-
-        foreach (var item in memberSockets)
-        {
-            item.canvasGroup.alpha = 0f;
-        }
     }
 
     public void Show()
     {
+        int i = 0;
+
         foreach (var item in memberSockets)
         {
-            item.Show();
+
+            if (i < Crews.playerCrew.CrewMembers.Count)
+            {
+                item.Show();
+            }
+            else
+            {
+                item.Hide();
+            }
+
+            i++;
+
         }
     }
 
@@ -46,7 +54,7 @@ public class PlayerIcons : MonoBehaviour {
 
     public void HandleOpenInventory ()
 	{
-        UpdateMemberIcons();
+        Show();
 
         foreach (var item in memberSockets)
         {
@@ -57,20 +65,11 @@ public class PlayerIcons : MonoBehaviour {
         memberSockets[id].Select();
     }
 
-    public void UpdateMemberIcons ()
-	{
-		int i = 0;
-
-		foreach (var item in memberSockets) {
-
-			if (i < Crews.playerCrew.CrewMembers.Count) {
-                item.Show();
-			} else {
-                item.Hide();
-			}
-
-			i++;
-
-		}
-	}
+    public void HandleCloseInventory()
+    {
+        foreach (var item in memberSockets)
+        {
+            item.Deselect();
+        }
+    }
 }

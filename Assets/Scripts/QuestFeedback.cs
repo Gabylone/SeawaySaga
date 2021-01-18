@@ -29,9 +29,12 @@ public class QuestFeedback : MonoBehaviour {
         StoryFunctions.Instance.getFunction += HandleGetFunction;
 
 		NameGeneration.onDiscoverFormula += HandleOnDiscoverFormula;
-	}
 
-	void HandleGetFunction (FunctionType func, string cellParameters)
+        QuestMenu.Instance.exclamationMark_Obj.SetActive(false);
+
+    }
+
+    void HandleGetFunction (FunctionType func, string cellParameters)
 	{
 		if ( func == FunctionType.AccomplishQuest ) {
             AccomplishQuest();
@@ -123,6 +126,8 @@ public class QuestFeedback : MonoBehaviour {
 	void Display ( string str ) {
 		
 		Show ();
+
+        QuestMenu.Instance.exclamationMark_Obj.SetActive(true);
 
         SoundManager.Instance.PlayRandomSound("Writing");
 

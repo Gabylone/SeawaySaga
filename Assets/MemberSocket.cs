@@ -13,6 +13,8 @@ public class MemberSocket : MonoBehaviour
 
     public GameObject kickOut_Group;
 
+    private Outline outline;
+
     public float fadeDuration = 0.2f;
 
     public bool visible = false;
@@ -22,6 +24,8 @@ public class MemberSocket : MonoBehaviour
     private void Start()
     {
         tr = transform;
+
+        outline = GetComponent<Outline>();
 
         canvasGroup.alpha = 0f;
     }
@@ -56,14 +60,25 @@ public class MemberSocket : MonoBehaviour
     {
         image.color = Color.grey;
 
-        if (Crews.playerCrew.CrewMembers.Count > 1)
+        outline.effectColor = Color.red;
+
+        outline.effectDistance = new Vector2( 2f,2f );
+
+        if ( DisplayCrew.Instance.visible && Crews.playerCrew.CrewMembers.Count > 1)
         {
             kickOut_Group.SetActive(true);
+        }
+        else
+        {
+            kickOut_Group.SetActive(false);
         }
     }
 
     public void Deselect()
     {
+        outline.effectDistance = new Vector2(1.5f,1.5f);
+
+        outline.effectColor = Color.black;
         image.color = Color.white;
         kickOut_Group.SetActive(false);
     }

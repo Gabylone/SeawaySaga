@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <Chunk xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <state>DiscoveredIsland</state>
+  <state>VisitedIsland</state>
   <coords>
     <x>7</x>
     <y>4</y>
@@ -8,10 +8,10 @@
   <islandDatas>
     <IslandData>
       <worldPosition>
-        <x>-6.75305557</x>
-        <y>15.4655075</y>
+        <x>8.244448</x>
+        <y>-2.44016838</y>
       </worldPosition>
-      <worldRotation>3.24457169</worldRotation>
+      <worldRotation>240.723969</worldRotation>
       <index>0</index>
       <coords>
         <x>7</x>
@@ -19,7 +19,7 @@
       </coords>
       <containsFormula>false</containsFormula>
       <storyManager>
-        <hasBeenPlayed>false</hasBeenPlayed>
+        <hasBeenPlayed>true</hasBeenPlayed>
         <storyHandlers>
           <StoryHandler>
             <row>0</row>
@@ -27,7 +27,48 @@
             <fallBackLayer>0</fallBackLayer>
             <storyID>3</storyID>
             <storyType>Treasure</storyType>
-            <contentDecals />
+            <contentDecals>
+              <contentDecal>
+                <row>2</row>
+                <col>5</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>1</row>
+                <col>15</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>1</row>
+                <col>28</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>1</row>
+                <col>42</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>1</row>
+                <col>29</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>1</row>
+                <col>52</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>1</row>
+                <col>65</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>0</row>
+                <col>5</col>
+                <decal>1</decal>
+              </contentDecal>
+            </contentDecals>
             <loots />
             <crews />
           </StoryHandler>

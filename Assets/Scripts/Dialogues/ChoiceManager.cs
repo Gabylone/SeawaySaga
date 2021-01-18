@@ -148,7 +148,7 @@ public class ChoiceManager : MonoBehaviour {
 		ChoiceManager.Instance.ResetColors ();
 
 		// get amount
-		int amount = int.Parse (StoryFunctions.Instance.CellParams);
+		int amount = int.Parse (StoryFunctions.Instance.cellParams);
 
 		// get bubble content
 		StoryReader.Instance.NextCell ();

@@ -12,6 +12,9 @@ public class Narrator : MonoBehaviour {
 	[SerializeField] private GameObject narratorObj;
 	[SerializeField] private GameObject narratorButtonObj;
 
+    public delegate void OnCloseNarrator();
+    public OnCloseNarrator onCloseNarrator;
+
     public bool visible = false;
 
     void Awake () {
@@ -75,15 +78,6 @@ public class Narrator : MonoBehaviour {
 	}
 
 	#region narrator
-	public void ShowNarratorTimed (string text) {
-
-        narratorButtonObj.SetActive(false);
-
-        ShowNarrator(text);
-
-
-		Invoke ("HideNarrator" , 2.5f );
-	}
     public void ShowNarratorInput(string text)
     {
         ShowNarrator(text);
@@ -120,6 +114,12 @@ public class Narrator : MonoBehaviour {
         SoundManager.Instance.PlayRandomSound("Page");
 
         //InGameMenu.Instance.ShowMenuButtons();
+
+        if ( onCloseNarrator != null)
+        {
+            onCloseNarrator();
+            onCloseNarrator = null;
+        }
 
         narratorObj.SetActive (false);
 

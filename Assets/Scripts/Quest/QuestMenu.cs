@@ -31,6 +31,8 @@ public class QuestMenu : MonoBehaviour {
 
 	public Text displayQuestText;
 
+    public GameObject exclamationMark_Obj;
+
 	public delegate void OnOpenQuestMenu ();
 	public static OnOpenQuestMenu onOpenQuestMenu;
 
@@ -88,16 +90,13 @@ public class QuestMenu : MonoBehaviour {
 
         menuGroup.SetActive (true);
 
-		//displayFormulas.ShowFormulas ();
+        QuestMenu.Instance.exclamationMark_Obj.SetActive(false);
 
-		DisplayQuestAmount ();
+        DisplayQuestAmount();
 
 		UpdateButtons ();
 
         DisplayQuest.Instance.Hide();
-
-        //		Tween.ClearFade (menuGroup.transform);
-        //Tween.Bounce ( menuGroup.transform , 0.2f , 1.05f);
 
         if (onOpenQuestMenu != null)
 			onOpenQuestMenu ();

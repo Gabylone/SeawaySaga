@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+using DG.Tweening;
+
 public class DisplayItem_Selected : DisplayItem {
 
     public GameObject group;
@@ -14,6 +16,8 @@ public class DisplayItem_Selected : DisplayItem {
     [SerializeField] private Text weightText;
     [SerializeField] private Text descriptionText;
 
+    public CanvasGroup canvasGroup;
+
     [SerializeField] private GameObject levelObj;
     public Outline levelOutline;
     [SerializeField] private Text levelText;
@@ -24,9 +28,12 @@ public class DisplayItem_Selected : DisplayItem {
 
     public override void Start()
     {
+        canvasGroup = GetComponent<CanvasGroup>();
+
         base.Start();
 
         CrewMember.onWrongLevel += HandleOnWrongLevelEvent;
+
     }
 
     public void UpdateUI()
@@ -36,7 +43,7 @@ public class DisplayItem_Selected : DisplayItem {
 
     void HandleOnWrongLevelEvent()
     {
-        Tween.Bounce(transform);
+        Tween.Bounce(_transform);
     }
 
     public override Item DisplayedItem
@@ -72,7 +79,7 @@ public class DisplayItem_Selected : DisplayItem {
 
                 if (CrewMember.GetSelectedMember.GetEquipment(part) == null)
                 {
-                        paramOutline.enabled = true;
+                    paramOutline.enabled = true;
                     paramText.color = Color.green;
                     paramOutline.effectColor = Color.green;
                 }
@@ -173,14 +180,31 @@ public class DisplayItem_Selected : DisplayItem {
 
         group.SetActive(true);
 
+        Tween.Bounce(_transform, 0.1f, 1.025f);
+
+        canvasGroup.DOFade(1f, 0.3f);
+
         SoundManager.Instance.PlayRandomSound("paper tap");
+
+        CancelInvoke("HideDelay");
+
     }
 
     public override void Hide()
     {
         base.Hide();
 
+        canvasGroup.DOFade(0f, 0.3f);
+
+        CancelInvoke("HideDelay");
+        Invoke("HideDelay", 0.3f);
+
+    }
+
+    void HideDelay()
+    {
         group.SetActive(false);
+
     }
 
 }

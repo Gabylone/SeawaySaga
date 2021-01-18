@@ -27,13 +27,14 @@ public class Skill_Cosh : Skill {
 	{
 		base.HandleOnApplyEffect ();
 
-        fighter.TargetFighter.KnockOut();
+        fighter.TargetFighter.GetHit(fighter, fighter.crewMember.Attack, 1f);
 
+        if (!fighter.dodged)
+        {
+            fighter.TargetFighter.KnockOut();
+        }
 
-        fighter.TargetFighter.GetHit (fighter, fighter.crewMember.Attack, 1f);
-
-
-		EndSkill ();
+        EndSkill ();
 
 	}
 

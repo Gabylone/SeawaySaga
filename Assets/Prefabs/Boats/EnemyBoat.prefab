@@ -49,7 +49,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2173402500173064756
 Transform:
   m_ObjectHideFlags: 0
@@ -382,8 +382,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moving: 0
+  minimapBoat: {fileID: 0}
   boatMesh: {fileID: 2173402501935561817}
-  GetTransform: {fileID: 0}
+  _transform: {fileID: 0}
   animator: {fileID: 0}
   startSpeed: 2.5
   targetPos: {x: 0, y: 0, z: 0}

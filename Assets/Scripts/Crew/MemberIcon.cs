@@ -34,6 +34,11 @@ public class MemberIcon : MonoBehaviour {
 
 	public Transform dialogueAnchor;
 
+    // stat
+    public GameObject diceStat_Group;
+    public Text diceStat_Text;
+    public Image diceStat_Image;
+
 	public CrewMember member;
 
     public DisplayHunger_Icon hungerIcon;
@@ -47,6 +52,12 @@ public class MemberIcon : MonoBehaviour {
     }
 
     void Start () {
+
+        if (diceStat_Group != null)
+        {
+            diceStat_Group.SetActive(false);
+        }
+
         LootUI.useInventory += HandleUseInventory;
     }
 
@@ -100,6 +111,12 @@ public class MemberIcon : MonoBehaviour {
             return;
         }
 
+        if ( DiceManager.Instance.waitingForThrowerSelection)
+        {
+            DiceManager.Instance.SelectThrower(member);
+            return;
+        }
+
         if (!InGameMenu.Instance.canOpen)
         {
             print("cannot open player loot");
@@ -118,6 +135,7 @@ public class MemberIcon : MonoBehaviour {
             {
                 DisplayCrew.Instance.Show(CrewMember.GetSelectedMember);
                 LootUI.Instance.UpdateLootUI();
+                LootUI.Instance.ClearSelectedItem();
             }
             else
             {
@@ -141,14 +159,29 @@ public class MemberIcon : MonoBehaviour {
 
         Vector3 targetPos = Crews.getCrew(member.side).CrewAnchors [(int)targetPlacingType].position;
 
-        if (currentPlacingType == Crews.PlacingType.Portraits) {
-			targetPos = Crews.getCrew (member.side).inventoryAnchors [member.GetIndex].position;
-		}
-        else if (currentPlacingType == Crews.PlacingType.World)
+        int index = indexInList;
+
+        switch (currentPlacingType)
         {
-            int index = indexInList;
-            rectTransform.SetParent(Crews.getCrew(member.side).worldAnchord[index]);
-            targetPos = Crews.getCrew(member.side).worldAnchord[index].position;
+            case Crews.PlacingType.Portraits:
+                targetPos = Crews.getCrew(member.side).inventoryAnchors[member.GetIndex].position;
+                rectTransform.SetParent(Crews.getCrew(member.side).inventoryAnchors[member.GetIndex]);
+                break;
+            case Crews.PlacingType.MemberCreation:
+                break;
+            case Crews.PlacingType.Inventory:
+                rectTransform.SetParent(Crews.getCrew(member.side).worldAnchord[index]);
+                break;
+            case Crews.PlacingType.World:
+                rectTransform.SetParent(Crews.getCrew(member.side).worldAnchord[index]);
+                targetPos = Crews.getCrew(member.side).worldAnchord[index].position;
+                break;
+            case Crews.PlacingType.Hidden:
+                break;
+            case Crews.PlacingType.None:
+                break;
+            default:
+                break;
         }
 
         Show();
@@ -176,6 +209,24 @@ public class MemberIcon : MonoBehaviour {
                 break;
 
 		}
+    }
+    #endregion
+
+    #region dice stats
+    public void ShowDiceStats(Stat stat)
+    {
+        diceStat_Group.SetActive(true);
+
+        diceStat_Text.text = "" + member.GetStat(stat);
+
+        diceStat_Text.color = SkillManager.Instance.statColors[(int)stat];
+
+        diceStat_Image.sprite = SkillManager.Instance.statSprites[(int)stat];
+    }
+
+    public void HideDiceStats()
+    {
+        diceStat_Group.SetActive(false);
     }
     #endregion
 

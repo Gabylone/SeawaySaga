@@ -18,22 +18,22 @@ Node=>dialogue;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;[dialogue enfant];;
 [dialogue];;;;;;;;[no room];;;;;;SetChoices2;;
-SetChoices4;;;;;;;;RandomRange3;;;;;;Choice : Climb on ship, sailor! (member);;Choice : We have places to be lads! Anchors aweigh! (leave)
+SetChoices4;;;;;;;;RandomRange3;;OtherSpeak : That’s fine;;;;Choice : Climb on ship, sailor! (member);;Choice : We have places to be lads! Anchors aweigh! (leave)
 Choice : Climb aboard! (member);Choice : Give us everything or you’re done! (attack);;Choice : Sorry pal’, no room on board.;Choice : Know anything about NOMTRESOR ?;;;;OtherSpeak : Give me at least something to sink my teeth into! Please!;OtherSpeak : I’ll kill you all ! Your boat is mine !;OtherSpeak : I understand.;;;;OtherSpeak : I'm afraid of storms and travelling on a big boat like this.;;OtherSpeak : You heartless bastard!
 Node=>ajouté à l'équipage;RandomRange2;;Node=>no room;CheckIfFormulaIsland;;;;CheckInInventory/Food;Node=>combat naufragé;Leave;;;;OtherSpeak : I need something soft and cuddly to hold onto.;;Leave
 <;OtherSpeak : But... I told you I've been stranded here... I have NOTHING of value!;RemoveKarma;;RandomRange2;Node=>clue mec;;;Node=>has food;Node=>no food;;;;;OtherSpeak : I’ll only join if you have a teddy bear on board.;;
 ;Node=>combat dialogue;OtherSpeak : For heaven’s sake ! Why !;;TellClue;OtherSpeak : I’m stranded here ! I know nothing about anything out of this island.;;;;;;;;;SetChoices2;;
-;;Node=>combat naufragé;;Node=>dialogue;Node=>dialogue;;;;;;;;;Choice : (give teddybear);;Choice : We have places to be lads! Anchors aweigh! (leave)
+;;Node=>combat naufragé;;Node=>dialogue;Node=>dialogue;;;;;;;;;Choice : (give teddy bear);;Choice : We have places to be lads! Anchors aweigh! (leave)
 [ajouté à l'équipage];;;;;;;;[has food];;[no food];;;;CheckInInventory<Peluche>/Misc;;OtherSpeak : You heartless bastard!
 CheckIfFormulaIsland;;;;;;;;SetChoices2;;SetChoices2;;;;OtherSpeak : Thanks good sir.;PlayerSpeak : Don’t have any, sorry.;Leave
 OtherSpeak : Aye, aye, sir !;OtherSpeak : Aye, aye, sir !;;;;;;;Choice : (give some food) (loot);Choice : Ye keep eating coconuts alright? They be good for your health.;Choice : I don’t have any to spare… Sorry (no food);Choice : Ye keep eating coconuts alright? They be good for your health.;;;OtherSpeak : Here I am!;OtherSpeak : …;
 AddMember;OtherSpeak : So you’re looking for NOMTRESOR, ey…;;;[clue mec];;;;RemoveFromInventory/Food;OtherSpeak : You’re heartless!;OtherSpeak : You’re heartless!;OtherSpeak : You’re heartless!;;;RandomRange2;Leave;
 Node=>plage déserte;OtherSpeak : Here’s what I heard :;;;OtherSpeak : If I know something about NOMTRESOR ?!;;;;OtherSpeak : Thank you so much!;RemoveKarma;Node=>plage déserte;RemoveKarma;;;AddMember;OtherSpeak : By the way, while waiting:;
-;OtherSpeak : It’s a linked to an ancient magic, and so forget about logic looking for it.;;;OtherSpeak : How did you think I got myself in this situation.;;;;[switch manger];Node=>plage déserte;;Node=>plage déserte;;;Node=>naufragé;OtherSpeak : I made this pasta necklace, I want you to have it!;
-;OtherSpeak : It’s only magical scrolls, formulas and spells.;;;OtherSpeak : Only deranged sailors looking for the treasure manage to get their ship sunk.;;;;AddKarma;;;;;;;AddToInventory<Collier de nouilles>/Misc;
-;OtherSpeak : Thing is, I stumbled into one of them.;;;OtherSpeak : The crew I was part of were on the treasure trail since forever.;;;;Switch=>switch manger;HideOther;;HideOther;;;;SetChoices2;
-;OtherSpeak : « FORMULA »;;;SetChoices2;;;;HideOther;Node=>debut;;Node=>debut;;;;Choice : Thanks (member);Choice : I changed my mind.
-;OtherSpeak : All right let’s get on the ship and start looking again !!!!;;;Choice : Good for you…;Choice : Tell me EVERYTHING !;;;Node=>debut;;;;;;;AddMember;OtherSpeak : Ah...
+;OtherSpeak : It’s a linked to an ancient magic, and so forget about logic looking for it.;;;OtherSpeak : How did you think I got myself in this situation.;;;;AddKarma;Node=>plage déserte;;Node=>plage déserte;;;Node=>naufragé;OtherSpeak : I made this pasta necklace, I want you to have it!;
+;OtherSpeak : It’s only magical scrolls, formulas and spells.;;;OtherSpeak : Only deranged sailors looking for the treasure manage to get their ship sunk.;;;;Switch=>no room;;;;;;;AddToInventory<Collier de nouilles>/Misc;
+;OtherSpeak : Thing is, I stumbled into one of them.;;;OtherSpeak : The crew I was part of were on the treasure trail since forever.;;;;HideOther;;;HideOther;;;;SetChoices2;
+;OtherSpeak : « FORMULA »;;;SetChoices2;;;;Node=>debut;;;Node=>debut;;;;Choice : Thanks (member);Choice : I changed my mind.
+;OtherSpeak : All right let’s get on the ship and start looking again !!!!;;;Choice : Good for you…;Choice : Tell me EVERYTHING !;;;;;;;;;;AddMember;OtherSpeak : Ah...
 ;AddMember;;;OtherSpeak : Why did you ask then ?!;OtherSpeak : Hang on a minute there.;;;;;;;;;;Node=>naufragé;Node=>naufragé
 ;Node=>plage déserte;;;Node=>dialogue;OtherSpeak : If you think I’m gonna tell you and sail about;;;;;;;;;;;
 [combat dialogue];;;;;OtherSpeak : You’re wrong;;;;;;;;;;;

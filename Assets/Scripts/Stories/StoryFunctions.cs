@@ -78,16 +78,10 @@ public class StoryFunctions : MonoBehaviour {
 
     public bool debug = false;
 
-	string cellParams = "";
+	public string cellParams = "";
 
 	public delegate void GetFunction (FunctionType func, string cellParameters );
 	public GetFunction getFunction;
-
-	public string CellParams {
-		get {
-			return cellParams;
-		}
-	}
 
 	void Awake () {
 		Instance = this;

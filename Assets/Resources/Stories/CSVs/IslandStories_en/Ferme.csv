@@ -73,7 +73,7 @@ Fade;SetBG(Boat);;;;;;;;;;;;;;;;;
 Node=>choix ferme;RandomRange2;;;;;;;;;;;;;;;;;
 ;RandomRange2;;PlayerSpeak : It’s empty...;;;;;;;;;;;;;;;
 ;PlayerSpeak : What a well furnished pantry! Looks like these guys had just restocked!;PlayerSpeak : Weapons and… Things…;Node=>choix pirates morts;;;;;;;;;;;;;;;
-;LootFood;LootWeapons/Misc;;;;;;;;;;;;;;;;
+;LootFood2;LootWeapons/Misc;;;;;;;;;;;;;;;;
 ;Node=>choix pirates morts;Node=>choix pirates morts;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;

@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <Chunk xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <state>DiscoveredIsland</state>
+  <state>VisitedIsland</state>
   <coords>
     <x>2</x>
     <y>5</y>
@@ -8,10 +8,10 @@
   <islandDatas>
     <IslandData>
       <worldPosition>
-        <x>-4.56263733</x>
-        <y>16.7886429</y>
+        <x>19.4422569</x>
+        <y>13.9878082</y>
       </worldPosition>
-      <worldRotation>302.36554</worldRotation>
+      <worldRotation>11.7997026</worldRotation>
       <index>0</index>
       <coords>
         <x>2</x>
@@ -19,7 +19,7 @@
       </coords>
       <containsFormula>false</containsFormula>
       <storyManager>
-        <hasBeenPlayed>false</hasBeenPlayed>
+        <hasBeenPlayed>true</hasBeenPlayed>
         <storyHandlers>
           <StoryHandler>
             <row>0</row>
@@ -27,9 +27,115 @@
             <fallBackLayer>0</fallBackLayer>
             <storyID>2</storyID>
             <storyType>Normal</storyType>
-            <contentDecals />
-            <loots />
-            <crews />
+            <contentDecals>
+              <contentDecal>
+                <row>2</row>
+                <col>26</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>2</row>
+                <col>49</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>0</row>
+                <col>49</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>0</row>
+                <col>49</col>
+                <decal>1</decal>
+              </contentDecal>
+            </contentDecals>
+            <loots>
+              <Loot>
+                <row>0</row>
+                <col>4</col>
+                <ids>
+                  <ArrayOfInt />
+                  <ArrayOfInt />
+                  <ArrayOfInt>
+                    <int>151</int>
+                    <int>164</int>
+                  </ArrayOfInt>
+                  <ArrayOfInt>
+                    <int>204</int>
+                    <int>211</int>
+                  </ArrayOfInt>
+                </ids>
+                <weight>21</weight>
+                <AllItems>
+                  <ArrayOfItem />
+                  <ArrayOfItem />
+                  <ArrayOfItem>
+                    <Item>
+                      <ID>151</ID>
+                      <englishName>Simple docker</englishName>
+                      <frenchName>Marcel</frenchName>
+                      <value>10</value>
+                      <price>16</price>
+                      <weight>8</weight>
+                      <level>1</level>
+                      <spriteID>0</spriteID>
+                      <description>It's just your basic simple docker</description>
+                      <weaponType>Distance</weaponType>
+                      <category>Clothes</category>
+                    </Item>
+                    <Item>
+                      <ID>164</ID>
+                      <englishName>Officer outfit</englishName>
+                      <frenchName>Tenue d'officier</frenchName>
+                      <value>30</value>
+                      <price>45</price>
+                      <weight>8</weight>
+                      <level>3</level>
+                      <spriteID>0</spriteID>
+                      <description>It's just your basic officer outfit</description>
+                      <weaponType>Distance</weaponType>
+                      <category>Clothes</category>
+                    </Item>
+                  </ArrayOfItem>
+                  <ArrayOfItem>
+                    <Item>
+                      <ID>204</ID>
+                      <englishName>Branch</englishName>
+                      <frenchName>Bout de bois</frenchName>
+                      <value>0</value>
+                      <price>2</price>
+                      <weight>1</weight>
+                      <level>0</level>
+                      <spriteID>2</spriteID>
+                      <description>It's just your basic branch</description>
+                      <weaponType>Distance</weaponType>
+                      <category>Misc</category>
+                    </Item>
+                    <Item>
+                      <ID>211</ID>
+                      <englishName>Guitar</englishName>
+                      <frenchName>Guitare</frenchName>
+                      <value>0</value>
+                      <price>12</price>
+                      <weight>4</weight>
+                      <level>0</level>
+                      <spriteID>9</spriteID>
+                      <description>It's just your basic guitar</description>
+                      <weaponType>Distance</weaponType>
+                      <category>Misc</category>
+                    </Item>
+                  </ArrayOfItem>
+                </AllItems>
+              </Loot>
+            </loots>
+            <crews>
+              <Crew>
+                <hostile>true</hostile>
+                <row>0</row>
+                <col>4</col>
+                <MemberIDs />
+              </Crew>
+            </crews>
           </StoryHandler>
         </storyHandlers>
       </storyManager>

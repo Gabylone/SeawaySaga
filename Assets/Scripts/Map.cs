@@ -210,6 +210,8 @@ public class Map : MonoBehaviour, IPointerClickHandler {
 
     void ConfirmEraseMap()
     {
+        MessageDisplay.Instance.onValidate -= ConfirmEraseMap;
+
         SaveTool.Instance.DeleteFolder(mapParameters.mapName);
 
         Tween.Bounce(transform);

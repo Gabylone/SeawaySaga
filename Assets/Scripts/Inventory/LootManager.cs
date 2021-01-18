@@ -147,7 +147,7 @@ public class LootManager : MonoBehaviour {
 
 	public ItemCategory[] getLootCategoriesFromCell () {
 
-		string cellParams = StoryFunctions.Instance.CellParams;
+		string cellParams = StoryFunctions.Instance.cellParams;
 
 		if ( cellParams.Length < 2 ) {
 			return ItemLoader.allCategories;
@@ -191,7 +191,7 @@ public class LootManager : MonoBehaviour {
 	#region item
 	void RemoveFromInventory () {
 
-		string cellParams = StoryFunctions.Instance.CellParams;
+		string cellParams = StoryFunctions.Instance.cellParams;
 
 		ItemCategory targetCat = getLootCategoryFromString (cellParams.Split('/')[1]);
 		StoryReader.Instance.NextCell ();
@@ -216,9 +216,18 @@ public class LootManager : MonoBehaviour {
 	}
 	void AddToInventory () {
 
-		string cellParams = StoryFunctions.Instance.CellParams;
+		string cellParams = StoryFunctions.Instance.cellParams;
 
-		ItemCategory targetCat = getLootCategoryFromString (cellParams.Split('/')[1]);
+        ItemCategory targetCat = ItemCategory.Provisions;
+
+        if (cellParams.Contains("/"))
+        {
+            targetCat= getLootCategoryFromString(cellParams.Split('/')[1]);
+        }
+        else
+        {
+            targetCat = (ItemCategory)Random.Range(0 , 4);
+        }
 
 		Item item = null;
 
@@ -246,7 +255,7 @@ public class LootManager : MonoBehaviour {
 
 	void CheckInInventory () {
 		
-		string cellParams = StoryFunctions.Instance.CellParams;
+		string cellParams = StoryFunctions.Instance.cellParams;
 
 		StoryReader.Instance.NextCell ();
 

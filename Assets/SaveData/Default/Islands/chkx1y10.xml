@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <Chunk xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <state>VisitedIsland</state>
+  <state>DiscoveredIsland</state>
   <coords>
     <x>1</x>
     <y>10</y>
@@ -8,10 +8,10 @@
   <islandDatas>
     <IslandData>
       <worldPosition>
-        <x>-19.4124374</x>
-        <y>14.0211573</y>
+        <x>6.47</x>
+        <y>-7.24</y>
       </worldPosition>
-      <worldRotation>148.434753</worldRotation>
+      <worldRotation>148.211945</worldRotation>
       <index>0</index>
       <coords>
         <x>1</x>
@@ -19,7 +19,7 @@
       </coords>
       <containsFormula>false</containsFormula>
       <storyManager>
-        <hasBeenPlayed>true</hasBeenPlayed>
+        <hasBeenPlayed>false</hasBeenPlayed>
         <storyHandlers>
           <StoryHandler>
             <row>0</row>
@@ -27,191 +27,7 @@
             <fallBackLayer>0</fallBackLayer>
             <storyID>4</storyID>
             <storyType>Home</storyType>
-            <contentDecals>
-              <contentDecal>
-                <row>0</row>
-                <col>3</col>
-                <decal>1</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>1</row>
-                <col>3</col>
-                <decal>1</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>2</row>
-                <col>3</col>
-                <decal>1</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>3</row>
-                <col>3</col>
-                <decal>1</decal>
-              </contentDecal>
-            </contentDecals>
-            <loots />
-            <crews />
-          </StoryHandler>
-          <StoryHandler>
-            <row>0</row>
-            <col>4</col>
-            <fallBackLayer>0</fallBackLayer>
-            <fallbackNode>
-              <name>choix</name>
-              <row>0</row>
-              <col>0</col>
-            </fallbackNode>
-            <storyID>24</storyID>
-            <storyType>Normal</storyType>
-            <contentDecals>
-              <contentDecal>
-                <row>0</row>
-                <col>12</col>
-                <decal>0</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>0</row>
-                <col>18</col>
-                <decal>0</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>1</row>
-                <col>23</col>
-                <decal>1</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>0</row>
-                <col>27</col>
-                <decal>1</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>0</row>
-                <col>17</col>
-                <decal>1</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>0</row>
-                <col>73</col>
-                <decal>1</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>2</row>
-                <col>76</col>
-                <decal>1</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>1</row>
-                <col>76</col>
-                <decal>1</decal>
-              </contentDecal>
-            </contentDecals>
-            <loots />
-            <crews />
-          </StoryHandler>
-          <StoryHandler>
-            <row>1</row>
-            <col>4</col>
-            <fallBackLayer>0</fallBackLayer>
-            <fallbackNode>
-              <name>choix</name>
-              <row>0</row>
-              <col>0</col>
-            </fallbackNode>
-            <storyID>24</storyID>
-            <storyType>Normal</storyType>
-            <contentDecals>
-              <contentDecal>
-                <row>0</row>
-                <col>12</col>
-                <decal>0</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>0</row>
-                <col>18</col>
-                <decal>1</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>7</row>
-                <col>26</col>
-                <decal>1</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>0</row>
-                <col>27</col>
-                <decal>1</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>0</row>
-                <col>17</col>
-                <decal>1</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>0</row>
-                <col>73</col>
-                <decal>1</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>2</row>
-                <col>76</col>
-                <decal>1</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>1</row>
-                <col>76</col>
-                <decal>1</decal>
-              </contentDecal>
-            </contentDecals>
-            <loots />
-            <crews />
-          </StoryHandler>
-          <StoryHandler>
-            <row>2</row>
-            <col>4</col>
-            <fallBackLayer>0</fallBackLayer>
-            <fallbackNode>
-              <name>choix</name>
-              <row>0</row>
-              <col>0</col>
-            </fallbackNode>
-            <storyID>24</storyID>
-            <storyType>Normal</storyType>
-            <contentDecals>
-              <contentDecal>
-                <row>0</row>
-                <col>12</col>
-                <decal>2</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>0</row>
-                <col>18</col>
-                <decal>0</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>1</row>
-                <col>23</col>
-                <decal>1</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>0</row>
-                <col>27</col>
-                <decal>0</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>0</row>
-                <col>17</col>
-                <decal>1</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>0</row>
-                <col>73</col>
-                <decal>1</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>1</row>
-                <col>76</col>
-                <decal>1</decal>
-              </contentDecal>
-            </contentDecals>
+            <contentDecals />
             <loots />
             <crews />
           </StoryHandler>
@@ -220,16 +36,240 @@
     </IslandData>
     <IslandData>
       <worldPosition>
-        <x>7.04065275</x>
-        <y>12.5364771</y>
+        <x>-15.44</x>
+        <y>-17.91</y>
       </worldPosition>
-      <worldRotation>314.412323</worldRotation>
+      <worldRotation>256.51532</worldRotation>
       <index>1</index>
       <coords>
         <x>1</x>
         <y>10</y>
       </coords>
+      <containsFormula>false</containsFormula>
+      <storyManager>
+        <hasBeenPlayed>false</hasBeenPlayed>
+        <storyHandlers>
+          <StoryHandler>
+            <row>0</row>
+            <col>0</col>
+            <fallBackLayer>0</fallBackLayer>
+            <storyID>3</storyID>
+            <storyType>Normal</storyType>
+            <contentDecals />
+            <loots />
+            <crews />
+          </StoryHandler>
+        </storyHandlers>
+      </storyManager>
+    </IslandData>
+    <IslandData>
+      <worldPosition>
+        <x>8.83</x>
+        <y>19.8</y>
+      </worldPosition>
+      <worldRotation>166.6082</worldRotation>
+      <index>2</index>
+      <coords>
+        <x>1</x>
+        <y>10</y>
+      </coords>
+      <containsFormula>false</containsFormula>
+      <storyManager>
+        <hasBeenPlayed>false</hasBeenPlayed>
+        <storyHandlers>
+          <StoryHandler>
+            <row>0</row>
+            <col>0</col>
+            <fallBackLayer>0</fallBackLayer>
+            <storyID>25</storyID>
+            <storyType>Normal</storyType>
+            <contentDecals />
+            <loots />
+            <crews />
+          </StoryHandler>
+        </storyHandlers>
+      </storyManager>
+    </IslandData>
+    <IslandData>
+      <worldPosition>
+        <x>5.01</x>
+        <y>7.65</y>
+      </worldPosition>
+      <worldRotation>333.466461</worldRotation>
+      <index>3</index>
+      <coords>
+        <x>1</x>
+        <y>10</y>
+      </coords>
+      <containsFormula>false</containsFormula>
+      <storyManager>
+        <hasBeenPlayed>false</hasBeenPlayed>
+        <storyHandlers>
+          <StoryHandler>
+            <row>0</row>
+            <col>0</col>
+            <fallBackLayer>0</fallBackLayer>
+            <storyID>3</storyID>
+            <storyType>Normal</storyType>
+            <contentDecals />
+            <loots />
+            <crews />
+          </StoryHandler>
+        </storyHandlers>
+      </storyManager>
+    </IslandData>
+    <IslandData>
+      <worldPosition>
+        <x>24.62</x>
+        <y>15.01</y>
+      </worldPosition>
+      <worldRotation>32.84247</worldRotation>
+      <index>4</index>
+      <coords>
+        <x>1</x>
+        <y>10</y>
+      </coords>
+      <containsFormula>false</containsFormula>
+      <storyManager>
+        <hasBeenPlayed>false</hasBeenPlayed>
+        <storyHandlers>
+          <StoryHandler>
+            <row>0</row>
+            <col>0</col>
+            <fallBackLayer>0</fallBackLayer>
+            <storyID>25</storyID>
+            <storyType>Normal</storyType>
+            <contentDecals />
+            <loots />
+            <crews />
+          </StoryHandler>
+        </storyHandlers>
+      </storyManager>
+    </IslandData>
+    <IslandData>
+      <worldPosition>
+        <x>16.03</x>
+        <y>7.11</y>
+      </worldPosition>
+      <worldRotation>156.933716</worldRotation>
+      <index>5</index>
+      <coords>
+        <x>1</x>
+        <y>10</y>
+      </coords>
+      <containsFormula>false</containsFormula>
+      <storyManager>
+        <hasBeenPlayed>false</hasBeenPlayed>
+        <storyHandlers>
+          <StoryHandler>
+            <row>0</row>
+            <col>0</col>
+            <fallBackLayer>0</fallBackLayer>
+            <storyID>5</storyID>
+            <storyType>Normal</storyType>
+            <contentDecals />
+            <loots />
+            <crews />
+          </StoryHandler>
+        </storyHandlers>
+      </storyManager>
+    </IslandData>
+    <IslandData>
+      <worldPosition>
+        <x>-6.81</x>
+        <y>6.54</y>
+      </worldPosition>
+      <worldRotation>8.814726</worldRotation>
+      <index>6</index>
+      <coords>
+        <x>1</x>
+        <y>10</y>
+      </coords>
+      <containsFormula>false</containsFormula>
+      <storyManager>
+        <hasBeenPlayed>false</hasBeenPlayed>
+        <storyHandlers>
+          <StoryHandler>
+            <row>0</row>
+            <col>0</col>
+            <fallBackLayer>0</fallBackLayer>
+            <storyID>7</storyID>
+            <storyType>Normal</storyType>
+            <contentDecals />
+            <loots />
+            <crews />
+          </StoryHandler>
+        </storyHandlers>
+      </storyManager>
+    </IslandData>
+    <IslandData>
+      <worldPosition>
+        <x>-3.36</x>
+        <y>16.71</y>
+      </worldPosition>
+      <worldRotation>127.62442</worldRotation>
+      <index>7</index>
+      <coords>
+        <x>1</x>
+        <y>10</y>
+      </coords>
       <containsFormula>true</containsFormula>
+      <storyManager>
+        <hasBeenPlayed>false</hasBeenPlayed>
+        <storyHandlers>
+          <StoryHandler>
+            <row>0</row>
+            <col>0</col>
+            <fallBackLayer>0</fallBackLayer>
+            <storyID>3</storyID>
+            <storyType>Normal</storyType>
+            <contentDecals />
+            <loots />
+            <crews />
+          </StoryHandler>
+        </storyHandlers>
+      </storyManager>
+    </IslandData>
+    <IslandData>
+      <worldPosition>
+        <x>8.99</x>
+        <y>-21.44</y>
+      </worldPosition>
+      <worldRotation>300.702423</worldRotation>
+      <index>8</index>
+      <coords>
+        <x>1</x>
+        <y>10</y>
+      </coords>
+      <containsFormula>false</containsFormula>
+      <storyManager>
+        <hasBeenPlayed>false</hasBeenPlayed>
+        <storyHandlers>
+          <StoryHandler>
+            <row>0</row>
+            <col>0</col>
+            <fallBackLayer>0</fallBackLayer>
+            <storyID>3</storyID>
+            <storyType>Normal</storyType>
+            <contentDecals />
+            <loots />
+            <crews />
+          </StoryHandler>
+        </storyHandlers>
+      </storyManager>
+    </IslandData>
+    <IslandData>
+      <worldPosition>
+        <x>16.66</x>
+        <y>-5.83</y>
+      </worldPosition>
+      <worldRotation>8.636627</worldRotation>
+      <index>9</index>
+      <coords>
+        <x>1</x>
+        <y>10</y>
+      </coords>
+      <containsFormula>false</containsFormula>
       <storyManager>
         <hasBeenPlayed>false</hasBeenPlayed>
         <storyHandlers>

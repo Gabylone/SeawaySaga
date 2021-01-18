@@ -76,8 +76,9 @@ public class CrewMember {
 
 		DefaultSkills.Clear ();
 		DefaultSkills.Add (SkillManager.GetDefaultAttackSkill (this));
+		DefaultSkills.Add (SkillManager.getSkill(Skill.Type.Defend));
 		DefaultSkills.Add (SkillManager.getSkill(Skill.Type.Flee));
-		DefaultSkills.Add (SkillManager.getSkill(Skill.Type.SkipTurn));
+        DefaultSkills.Add (SkillManager.getSkill(Skill.Type.SkipTurn));
 
 		SpecialSkills.Clear ();
 
@@ -87,7 +88,7 @@ public class CrewMember {
 			SpecialSkills.Add (newSkill);
 		}
 
-		charges = new int[7] { 0, 0, 0, 0 , 0 , 0 , 0 };
+		charges = new int[8] { 0, 0, 0, 0 , 0 , 0 , 0 , 0};
 //		foreach (var item in SpecialSkills) {
 //			item.currentCharge = 0;
 //		}
@@ -301,15 +302,10 @@ public class CrewMember {
 
 		if ( CurrentHunger >= MaxHunger) {
 
-			if ( Health - hungerDamage <= 0 )
-			{
-				Narrator.Instance.ShowNarratorTimed (" After " + daysOnBoard + " days on board, " + MemberName + " tragically dies of hunger");
-			}
-
 			RemoveHealth(hungerDamage);
 
 			if (Health <= 0) {
-				Kill ();
+                DieOfHunger();
 			}
 
 		}
@@ -320,6 +316,34 @@ public class CrewMember {
         }
 
 	}
+
+    public void DieOfHunger()
+    {
+        if (Health - hungerDamage <= 0)
+        {
+            MessageDisplay.Instance.onValidate += HandleOnValidate;
+            MessageDisplay.Instance.Display("After " + daysOnBoard + " days on board, " + MemberName + " tragically dies of hunger");
+        }
+
+        SoundManager.Instance.PlaySound("Defeat");
+        SoundManager.Instance.PlayRandomSound("ui_deny");
+        SoundManager.Instance.PlaySound("ui_deny");
+
+        Kill();
+    }
+
+    void HandleOnValidate()
+    {
+        if ( Crews.playerCrew.CrewMembers.Count == 0)
+        {
+            GameManager.Instance.BackToMenu();
+        }
+    }
+
+    void HandleOnValidateDelay()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Menu");
+    }
 
     public bool HasHunger()
     {
@@ -496,10 +520,12 @@ public class CrewMember {
 				continue;
 
 			if (energy >= item.energyCost) {
-				return true;
+                return true;
 			}
 
 		}
+
+        // pourquoi 3 ? on sait pas mais TOUT REPOSE SUR CA
 		int a = 3;
 		foreach (var item in SpecialSkills) {
 			
@@ -587,7 +613,7 @@ public class CrewMember {
 public enum Stat {
 	Strenght,
 	Dexterity,
-	Charisma,
+	Trickery,
 	Constitution
 }
 
@@ -595,7 +621,7 @@ public enum Job {
 	Brute,
 	Surgeon,
 	Cook,
-	Flibuster,
+    Cannoneer,
 	Gambler,
 
 	None,

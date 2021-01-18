@@ -86,22 +86,21 @@ public class Skill_BearTrap : Skill {
 
         fighter.AddStatus(Fighter.Status.BearTrapped);
 
-
 		EndSkill ();
 
 	}
 
 	public override bool MeetsRestrictions (CrewMember member)
 	{
-		bool bearTrapped = CombatManager.Instance.currentFighter.HasStatus (Fighter.Status.BearTrapped);
+		bool bearTrapped = CombatManager.Instance.GetCurrentFighter.HasStatus (Fighter.Status.BearTrapped);
 
 		return bearTrapped == false && base.MeetsRestrictions (member);
 	}
 
 	public override bool MeetsConditions (CrewMember member)
 	{
-		bool bearTrapped = CombatManager.Instance.currentFighter.HasStatus (Fighter.Status.BearTrapped);
+		bool bearTrapped = CombatManager.Instance.GetCurrentFighter.HasStatus (Fighter.Status.BearTrapped);
 
-		return !bearTrapped && base.MeetsConditions (member);
-	}
+		return !bearTrapped && base.MeetsConditions (member) && Random.value < 0.5f;
+    }
 }

@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <Chunk xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <state>DiscoveredIsland</state>
+  <state>VisitedIsland</state>
   <coords>
     <x>1</x>
     <y>3</y>
@@ -8,10 +8,10 @@
   <islandDatas>
     <IslandData>
       <worldPosition>
-        <x>7.81413555</x>
-        <y>8.121023</y>
+        <x>-10.809803</x>
+        <y>-17.864151</y>
       </worldPosition>
-      <worldRotation>341.250061</worldRotation>
+      <worldRotation>336.2126</worldRotation>
       <index>0</index>
       <coords>
         <x>1</x>
@@ -19,7 +19,7 @@
       </coords>
       <containsFormula>false</containsFormula>
       <storyManager>
-        <hasBeenPlayed>false</hasBeenPlayed>
+        <hasBeenPlayed>true</hasBeenPlayed>
         <storyHandlers>
           <StoryHandler>
             <row>0</row>
@@ -27,9 +27,178 @@
             <fallBackLayer>0</fallBackLayer>
             <storyID>2</storyID>
             <storyType>Normal</storyType>
-            <contentDecals />
-            <loots />
-            <crews />
+            <contentDecals>
+              <contentDecal>
+                <row>2</row>
+                <col>26</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>2</row>
+                <col>49</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>2</row>
+                <col>49</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>2</row>
+                <col>49</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>0</row>
+                <col>49</col>
+                <decal>1</decal>
+              </contentDecal>
+            </contentDecals>
+            <loots>
+              <Loot>
+                <row>0</row>
+                <col>4</col>
+                <ids>
+                  <ArrayOfInt />
+                  <ArrayOfInt>
+                    <int>43</int>
+                  </ArrayOfInt>
+                  <ArrayOfInt>
+                    <int>153</int>
+                    <int>153</int>
+                    <int>156</int>
+                  </ArrayOfInt>
+                  <ArrayOfInt>
+                    <int>215</int>
+                    <int>202</int>
+                    <int>217</int>
+                    <int>203</int>
+                  </ArrayOfInt>
+                </ids>
+                <weight>44</weight>
+                <AllItems>
+                  <ArrayOfItem />
+                  <ArrayOfItem>
+                    <Item>
+                      <ID>43</ID>
+                      <englishName>Solid stick</englishName>
+                      <frenchName>Bâton solide</frenchName>
+                      <value>8</value>
+                      <price>20</price>
+                      <weight>8</weight>
+                      <level>1</level>
+                      <spriteID>1</spriteID>
+                      <description>It's just your basic solid stick</description>
+                      <weaponType>Stick</weaponType>
+                      <category>Weapon</category>
+                    </Item>
+                  </ArrayOfItem>
+                  <ArrayOfItem>
+                    <Item>
+                      <ID>153</ID>
+                      <englishName>Farmer clothing</englishName>
+                      <frenchName>Habit de paysan</frenchName>
+                      <value>11</value>
+                      <price>26</price>
+                      <weight>8</weight>
+                      <level>1</level>
+                      <spriteID>0</spriteID>
+                      <description>It's just your basic farmer clothing</description>
+                      <weaponType>Distance</weaponType>
+                      <category>Clothes</category>
+                    </Item>
+                    <Item>
+                      <ID>153</ID>
+                      <englishName>Farmer clothing</englishName>
+                      <frenchName>Habit de paysan</frenchName>
+                      <value>11</value>
+                      <price>26</price>
+                      <weight>8</weight>
+                      <level>1</level>
+                      <spriteID>0</spriteID>
+                      <description>It's just your basic farmer clothing</description>
+                      <weaponType>Distance</weaponType>
+                      <category>Clothes</category>
+                    </Item>
+                    <Item>
+                      <ID>156</ID>
+                      <englishName>Overall</englishName>
+                      <frenchName>Salopette</frenchName>
+                      <value>8</value>
+                      <price>21</price>
+                      <weight>8</weight>
+                      <level>1</level>
+                      <spriteID>0</spriteID>
+                      <description>It's just your basic overall</description>
+                      <weaponType>Distance</weaponType>
+                      <category>Clothes</category>
+                    </Item>
+                  </ArrayOfItem>
+                  <ArrayOfItem>
+                    <Item>
+                      <ID>215</ID>
+                      <englishName>Ladle</englishName>
+                      <frenchName>Louche</frenchName>
+                      <value>0</value>
+                      <price>8</price>
+                      <weight>3</weight>
+                      <level>0</level>
+                      <spriteID>14</spriteID>
+                      <description>It's just your basic ladle</description>
+                      <weaponType>Distance</weaponType>
+                      <category>Misc</category>
+                    </Item>
+                    <Item>
+                      <ID>202</ID>
+                      <englishName>Teddy Bear</englishName>
+                      <frenchName>Peluche</frenchName>
+                      <value>0</value>
+                      <price>7</price>
+                      <weight>3</weight>
+                      <level>0</level>
+                      <spriteID>0</spriteID>
+                      <description>It's just your basic teddy bear</description>
+                      <weaponType>Distance</weaponType>
+                      <category>Misc</category>
+                    </Item>
+                    <Item>
+                      <ID>217</ID>
+                      <englishName>Lute</englishName>
+                      <frenchName>Luth</frenchName>
+                      <value>0</value>
+                      <price>4</price>
+                      <weight>2</weight>
+                      <level>0</level>
+                      <spriteID>16</spriteID>
+                      <description>It's just your basic lute</description>
+                      <weaponType>Distance</weaponType>
+                      <category>Misc</category>
+                    </Item>
+                    <Item>
+                      <ID>203</ID>
+                      <englishName>Accordion</englishName>
+                      <frenchName>Accordéon</frenchName>
+                      <value>0</value>
+                      <price>10</price>
+                      <weight>4</weight>
+                      <level>0</level>
+                      <spriteID>1</spriteID>
+                      <description>It's just your basic accordion</description>
+                      <weaponType>Distance</weaponType>
+                      <category>Misc</category>
+                    </Item>
+                  </ArrayOfItem>
+                </AllItems>
+              </Loot>
+            </loots>
+            <crews>
+              <Crew>
+                <hostile>true</hostile>
+                <row>0</row>
+                <col>4</col>
+                <MemberIDs />
+              </Crew>
+            </crews>
           </StoryHandler>
         </storyHandlers>
       </storyManager>

@@ -76,7 +76,15 @@ public class GameManager : MonoBehaviour {
 	}
 
 	public void BackToMenu () {
-		SceneManager.LoadScene ("Menu");
+
+        Transitions.Instance.ScreenTransition.FadeIn(1f);
+
+        Invoke("BackToMenuDelay", 1f);
+
+    }
+    private void BackToMenuDelay()
+    {
+        SceneManager.LoadScene ("Menu");
 	}
 
     public void QuitGame()

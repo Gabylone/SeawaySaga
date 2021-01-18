@@ -39,17 +39,17 @@ Node=>choix taverne;Node=>choix taverne;Node=>choix taverne;Node=>choix taverne;
 SetChoices3;;;;Narrator : A handful of musicians performing at the back of the tavern are entertaining the crowd.;;;;;;;;
 Choice : (leave);Choice : (approach innkeeper);Choice : (stroll around the room);;SetChoices4;;;;;;;;
 Fade;Fade;Fade;;Choice : (leave);Choice : (chat with the innkeeper);Choice : (walk around the tavern);Choice : (check out the musicians);;;;;
-Leave;Node=>tavernier;Node=>salle;;Fade;Fade;Fade;Fade;;;;;
+Node=>switch taverne;Node=>tavernier;Node=>salle;;Fade;Fade;Fade;Fade;;;;;
 ;;;;Leave;Node=>tavernier;Node=>salle;RandomRange4;;;;;
 ;;;;;;;Narrator : A famous irish tune is playing, « The Wild Rover », CAPITAINE lays back and rests his ears from the heavy clatter of the waves.;Narrator : A famous irish tune is playing, « Raglan Road », CAPITAINE lays back and rests his ears from the heavy clatter of the waves.;Narrator : Everybody’s singing along the famous sailor shanty  « Blow the Man Down ». CAPITAINE sings along, forgetting his quest for just a little while.;Narrator : Everybody’s singing along the famous sailor shanty  « Fiddler’s Green ». CAPITAINE sings along, forgetting his quest for just a little while.;;
 ;Choice : We’ll stay until NEXTTIME (sleep);;;;;;Node=>salle;Node=>salle;Node=>salle;Node=>salle;;
 [tavernier];;;;;;;;;;;;
 NewCrew;;;;;;;;;;;;
 [tavernier check];Narrator : The inn-keeper lays dead behind the counter.;OtherSpeak : How dare you step back into my establishment?!;;;;;;;;;;
-OtherSpeak : What can I do for you ?;Node=>choix taverne;Node=>combat tavernier;;;;;;;;;;
-Node=>choix1;;;;;;;;;;;;
-;;;;;;;;;;;;
-;;;;;;;;;;;;
+CheckIfFormulaIsland;Node=>choix taverne;Node=>combat tavernier;;;;;;;;;;
+OtherSpeak : What can I do for you ?;OtherSpeak : Welcome to the NOMTRESOR Inn !;;;;;;;;;;;
+Node=>choix1;OtherSpeak : How may I serve you;;;;;;;;;;;
+;Node=>choix1;;;;;;;;;;;
 ;;;;;;;;;;;;
 [choix1];;;;[choix2];;;;;;;;
 SetChoices4;;;;SetChoices4;;;;;[nouvelles];;;
@@ -169,8 +169,10 @@ SetChoices3;;;;;[garde manger ouvert];;;[garde manger fermé];;;;
 Choice : (set sails) (leave);Choice : (sleep at the tavern again) (sleep);;Choice : (search for food)(loot);;Narrator : The pantry door is ajar.;;;Narrator : The pantry door is closed.;Narrator : The pantry is empty.;;;
 PlayerSpeak : Nothing to do here anymore, let's bounce.;PlayerSpeak : I reckon we need another good night of sleep;;RandomRange2;;SetChoices2;;;SetChoices3;;;;
 Leave;Node=>sleep – vide;;Node=>garde manger ouvert;Node=>garde manger fermé;Choice : (go back);Choice : (loot);;Choice : (go back to the main room)(leave);Choice : (smash the door)(str);;Choice : (use a key);
-;;;;;Node=>auberge vide;RandomPercent25;;Node=>auberge vide;CheckStatSTR;;CheckInInventory<Clé>/Misc;
-;;;;;;PlayerSpeak : There’s nothing in it.;PlayerSpeak : Yummy!;;PlayerSpeak : The door broke open!;PlayerSpeak : It’s empty.;PlayerSpeak : The door is wide open.;PlayerSpeak : I don’t have any key…
-;;;;;;Node=>auberge vide;LootFood;;LootFood;Node=>auberge vide;LootFood;Node=>auberge vide
-;;;;;;;RemoveKarma;;Switch=>garde manger fermé;;Switch=>garde manger fermé;
-;;;;;;;Node=>auberge vide;;Node=>auberge vide;;Node=>auberge vide;
+;;;;;Node=>auberge vide;RandomPercent40;;Node=>auberge vide;CheckStatSTR;;CheckInInventory<Clé>/Misc;
+;;;;;;PlayerSpeak : There’s nothing in it.;PlayerSpeak : Yummy!;;PlayerSpeak : The door broke open!;PlayerSpeak : The door won’t budge…;PlayerSpeak : The door is wide open.;PlayerSpeak : I don’t have any key…
+;;;;;;Node=>auberge vide;LootFood3;;LootFood3;Node=>auberge vide;LootFood3;Node=>auberge vide
+;;;;;;;[removed];;Switch=>garde manger fermé;;Switch=>garde manger fermé;
+;;;;;;;RemoveKarma;Node=>auberge vide;Node=>auberge vide;;Node=>auberge vide;
+;;;;;;;Switch=>removed;;;;;
+;;;;;;;Node=>auberge vide;;;;;

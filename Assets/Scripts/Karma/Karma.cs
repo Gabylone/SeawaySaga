@@ -59,6 +59,19 @@ public class Karma : MonoBehaviour {
 
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.U))
+        {
+            AddKarma(1);
+        }
+
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            RemoveKarma(1);
+        }
+    }
+
     void HandleOpenInventory (CrewMember member)
 	{
 		Show ();
@@ -201,23 +214,24 @@ public class Karma : MonoBehaviour {
 
     void UpdateKarmaStep()
     {
-        if (CurrentKarma == maxKarma )
+        float half = maxKarma / 2f;
+        if (CurrentKarma > maxKarma-1 )
         //if (CurrentKarma > (float)(maxKarma / 1.5f))
         {
             karmaStep = KarmaStep.Best;
             // un exemple de moralité
         }
-        else if (CurrentKarma > 0)
+        else if (CurrentKarma > half)
         {
             karmaStep = KarmaStep.Good;
             // un mec bien
         }
-        else if (CurrentKarma == 0)
+        else if (CurrentKarma <= half && currentKarma >= -half)
         {
             karmaStep = KarmaStep.Neutral;
             // rien à signaler
         }
-        else if (CurrentKarma > -maxKarma)
+        else if (CurrentKarma > -maxKarma+1)
         {
             karmaStep = KarmaStep.Bad;
             // un mec louche

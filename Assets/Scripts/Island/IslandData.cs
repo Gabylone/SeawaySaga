@@ -25,7 +25,7 @@ public class IslandData {
 	{
 		storyManager = new StoryManager ();
 
-        worldPosition = NavigationManager.Instance.GetRandomIslandPosition();
+        worldPosition = IslandManager.Instance.GetNewIslandPosition();
         worldRotation = Random.Range( 0, 360f );
     }
 }

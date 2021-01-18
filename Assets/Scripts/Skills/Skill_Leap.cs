@@ -128,7 +128,11 @@ public class Skill_Leap: Skill {
 
 	public override bool MeetsConditions (CrewMember member)
 	{
-		bool meetsChances = Random.value < 0.5f;
+        //bool meetsChances = Random.value < 0.5f;
+
+        Debug.LogError("DEBUGGING THING");
+        energyCost = 0;
+        bool meetsChances = Random.value < 1f;
 
 		return meetsChances && base.MeetsConditions (member);
 	}

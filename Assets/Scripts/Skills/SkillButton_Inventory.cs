@@ -95,6 +95,12 @@ public class SkillButton_Inventory : SkillButton
         SoundManager.Instance.PlaySound("click_med 01");
         SoundManager.Instance.PlayRandomSound("Bag");
 
+        MessageDisplay.Instance.Display("Are you want to get this skill ?");
+        MessageDisplay.Instance.onValidate += HandleOnValidateMessage;
+    }
+
+    void HandleOnValidateMessage()
+    {
         CrewMember.GetSelectedMember.SkillPoints -= GetSkillCost();
 
         CrewMember.GetSelectedMember.AddSkill(skill);
@@ -107,7 +113,6 @@ public class SkillButton_Inventory : SkillButton
         SoundManager.Instance.PlayRandomSound("Potion");
 
         UpdateUI();
-
     }
 
     public override void SetSkill(Skill _skill)

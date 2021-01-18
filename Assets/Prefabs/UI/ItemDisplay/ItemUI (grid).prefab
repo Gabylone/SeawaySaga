@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 224223562627691630}
   - component: {fileID: 222411539596189822}
   - component: {fileID: 114983533063659204}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: ItemIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -59,7 +59,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -86,7 +86,7 @@ GameObject:
   - component: {fileID: 114826774415511870}
   - component: {fileID: 114044646932957744}
   - component: {fileID: 114113665786996888}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: ItemUI (grid)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -100,9 +100,9 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1500585907313064}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.9998999, y: 0.9998999, z: 0.9998999}
+  m_LocalScale: {x: 0.9999249, y: 0.9999249, z: 0.9999249}
   m_Children:
   - {fileID: 224223562627691630}
   m_Father: {fileID: 0}
@@ -215,6 +215,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c0fca4b3e144584cb4fa67980a2e9a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _transform: {fileID: 0}
   button: {fileID: 114044646932957744}
   image: {fileID: 114826774415511870}
   group: {fileID: 1500585907313064}

@@ -121,9 +121,9 @@ public class Skill_HeadShot : Skill {
 
 	public override bool MeetsConditions (CrewMember member)
 	{
-		bool meetsChances = Random.value < 0.5f;
+        bool meetsChances = Random.value < 0.5f;
 
-		return meetsChances && base.MeetsConditions (member);
+        return meetsChances && base.MeetsConditions (member);
 	}
 
 }

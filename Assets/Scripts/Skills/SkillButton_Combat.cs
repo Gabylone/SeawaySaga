@@ -52,13 +52,14 @@ public class SkillButton_Combat : SkillButton {
     void CheckSkill ()
 	{
 		if (skill.energyCost == 0) {
+
 			energyGroup.SetActive (false);
 		} else {
 			energyGroup.SetActive (true);
 			uiText_Energy.text = "" + skill.energyCost;
 		}
 
-		Fighter fighter = CombatManager.Instance.currentFighter;
+		Fighter fighter = CombatManager.Instance.GetCurrentFighter;
 
 		Enable ();
 
@@ -91,11 +92,11 @@ public class SkillButton_Combat : SkillButton {
 	public void OnPointerUp () {
 
 		if (canTriggerSkill ) {
-			skill.Trigger (CombatManager.Instance.currentFighter);
+			skill.Trigger (CombatManager.Instance.GetCurrentFighter);
 		}
 
         chargeFillImage.DOKill();
-		CrewMember member = CombatManager.Instance.currentFighter.crewMember;
+		CrewMember member = CombatManager.Instance.GetCurrentFighter.crewMember;
 		int charge = member.charges[skill.GetSkillIndex(member)];
 		UpdateCharge (charge);
 

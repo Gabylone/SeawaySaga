@@ -12,6 +12,8 @@ public class Skill : MonoBehaviour {
 	public int energyCost = 5;
 	public int initCharge = 0;
 
+    public int value = 10;
+
 	public bool hasTarget = false;
 	public bool goToTarget = true;
 	public bool canTargetSelf = true;
@@ -47,7 +49,7 @@ public class Skill : MonoBehaviour {
         if (triggerOnAnim)
         {
             fighter.iconVisual.bodyVisual.onApplyEffect = null;
-            fighter.iconVisual.bodyVisual.onApplyEffect += HandleOnApplyEffect;
+            fighter.iconVisual.bodyVisual.onApplyEffect += ApplyEffect_Anim;
         }
         else
         {
@@ -69,7 +71,7 @@ public class Skill : MonoBehaviour {
     /// </summary>
     void SkipTarget()
     {
-        if (CombatManager.Instance.currentFighter.crewMember.side == Crews.Side.Enemy)
+        if (CombatManager.Instance.GetCurrentFighter.crewMember.side == Crews.Side.Enemy)
         {
             CombatManager.Instance.ChangeState(CombatManager.States.EnemyAction);
         }
@@ -86,7 +88,7 @@ public class Skill : MonoBehaviour {
     /// </summary>
     void SetTarget()
     {
-        if (CombatManager.Instance.currentFighter.crewMember.side == Crews.Side.Enemy)
+        if (CombatManager.Instance.GetCurrentFighter.crewMember.side == Crews.Side.Enemy)
         {
             CombatManager.Instance.GoToTargetSelection(Crews.Side.Enemy, this);
         }
@@ -166,9 +168,15 @@ public class Skill : MonoBehaviour {
     /// Triggers the skill.
     /// </summary>
     #region effects
+    void ApplyEffect_Anim()
+    {
+        HandleOnApplyEffect();
+
+    }
     public virtual void HandleOnApplyEffect ()
 	{
-		if (goToTarget) {
+
+        if (goToTarget) {
             Invoke("InvokeMoveBack", timeToMoveBack);
         }
 	}
@@ -184,18 +192,31 @@ public class Skill : MonoBehaviour {
             fighter.combatFeedback.Display("TRAPPED !", Color.red);
 
             fighter.TargetFighter.iconVisual.bearTrap_Transform.GetComponent<Animator>().SetBool("opened", false);
+            Invoke("HideBearTrap", timeToMoveBack);
 
             SoundManager.Instance.PlaySound("beartrap_close");
 
-            fighter.Hurt(30);
+            int damage = SkillManager.getSkill(Skill.Type.BearTrap).value;
+            fighter.Hurt(damage);
 
-            Invoke("InvokeMoveBack", timeToMoveBack);
+            if (fighter.killed && fighter.crewMember.side == Crews.Side.Player)
+            {
+                fighter.EndTurn();
+                CombatManager.Instance.NextTurn();
+            }
+            else
+            {
+                Invoke("InvokeMoveBack", timeToMoveBack);
+            }
             return;
         }
 
-        fighter.TargetFighter.iconVisual.bearTrap_Transform.gameObject.SetActive(false);
 
         fighter.ChangeState(Fighter.states.moveBack);
+    }
+    void HideBearTrap()
+    {
+        fighter.TargetFighter.iconVisual.bearTrap_Transform.gameObject.SetActive(false);
     }
     #endregion
 
@@ -214,14 +235,14 @@ public class Skill : MonoBehaviour {
 
 	public virtual void EndSkillDelay () {
 
-		if (fighter.crewMember.side == Crews.Side.Player) {
+        if (fighter.crewMember.CanUseSkills() == false)
+        {
+            fighter.EndTurn();
+            CombatManager.Instance.NextTurn();
+            return;
+        }
 
-			if ( fighter.crewMember.CanUseSkills() == false ) {
-                fighter.EndTurn();
-				CombatManager.Instance.NextTurn ();
-				return;
-			}
-
+        if (fighter.crewMember.side == Crews.Side.Player) {
 			CombatManager.Instance.ChangeState (CombatManager.States.PlayerActionChoice);
 
 		} else {
@@ -234,14 +255,14 @@ public class Skill : MonoBehaviour {
     #region energys
     void UseEnergy()
     {
-
         fighter.crewMember.energy -= energyCost;
 
-        Skill skill = CombatManager.Instance.currentFighter.crewMember.GetSkill(type);
+        Skill skill = CombatManager.Instance.GetCurrentFighter.crewMember.GetSkill(type);
 
         if (skill != null)
         {
-            fighter.crewMember.charges[GetSkillIndex(fighter.crewMember)] = initCharge;
+            int skillIndex = GetSkillIndex(fighter.crewMember);
+            fighter.crewMember.charges[skillIndex] = initCharge;
         }
     }
     #endregion
@@ -274,7 +295,7 @@ public class Skill : MonoBehaviour {
 		int skillIndex = member.DefaultSkills.FindIndex (x => x.type == type);
 
 		if (skillIndex < 0) {
-			skillIndex = member.SpecialSkills.FindIndex (x => x.type == type) + 3;
+			skillIndex = member.SpecialSkills.FindIndex (x => x.type == type) + member.DefaultSkills.Count;
 		}
 
 		if (skillIndex < 0) {
@@ -290,8 +311,9 @@ public class Skill : MonoBehaviour {
 		// NORMAL
 		CloseAttack,
 		DistanceAttack,
+        Defend,
 		Flee,
-		SkipTurn,
+        SkipTurn,
 
 		// BRUTE
 		Cosh,

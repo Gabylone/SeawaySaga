@@ -11,7 +11,10 @@ public class DisplayHunger_Icon : DisplayHunger {
 
 	public int hungerToAppear = 50;
 
+    bool heart_Visible = false;
     public GameObject heartGroup;
+    public Transform heart_Transform;
+    public CanvasGroup heart_CanvasGroup;
     public RectTransform healthBackground;
 
 	public Image heartImage;
@@ -66,6 +69,8 @@ public class DisplayHunger_Icon : DisplayHunger {
 
     public void DisplayHealthAmount(int i)
     {
+        HideHeart();
+
         displayFood_Obj.SetActive(true);
 
         if (hungerGroup.activeSelf)
@@ -86,6 +91,8 @@ public class DisplayHunger_Icon : DisplayHunger {
 
     public void DisplayFoodAmount(int i)
     {
+        HideHeart();
+
         if ( hungerGroup.activeSelf)
         {
             displayFood_Obj.GetComponent<RectTransform>().anchoredPosition = new Vector2(displayFood_TargetXPos, displayFood_InitPos.y);
@@ -106,20 +113,63 @@ public class DisplayHunger_Icon : DisplayHunger {
 
     void HideFoodFeedback()
     {
+        UpdateHeartUI();
+
         displayFood_Obj.SetActive(false);
     }
 
     #region health
-    void ShowHeart () {
-		heartGroup.SetActive (true);
-		Tween.Bounce (heartGroup.transform);
-		UpdateHeartImage ();
+    void ShowHeart()
+    {
+        heart_Visible = true;
+
+        heart_CanvasGroup.alpha = 0f;
+        heart_CanvasGroup.DOFade(1f, 0.2f);
+        heartGroup.SetActive(true);
+        Tween.Bounce(heart_Transform);
+        UpdateHeartImage();
+    }
+    void UpdateHeartUI () {
+
+        if (linkedIcon.currentPlacingType != Crews.PlacingType.Portraits)
+        {
+            HideHeart();
+        }
+
+        if (linkedIcon.member.HasMaxHealth())
+        {
+            if (heart_Visible)
+            {
+                HideHeart();
+
+            }
+        }
+        else
+        {
+            if (!heart_Visible)
+            {
+                ShowHeart();
+            }
+        }
+
+        UpdateHeartImage();
 	}
 	void HideHeart() {
-		heartGroup.SetActive (false);
-		//
-	}
-	void UpdateHeartImage () {
+        heart_Visible = false;
+
+        heart_CanvasGroup.DOFade(0f, 0.2f);
+
+        CancelInvoke("HideHeartDelay");
+        Invoke("HideHeartDelay", 0.2f);
+        //
+    }
+    void HideHeartDelay()
+    {
+        heartGroup.SetActive(false);
+
+    }
+
+    void UpdateHeartImage () {
 
 		float l = (float)linkedIcon.member.Health / (float)linkedIcon.member.MemberID.maxHealth;
 
@@ -135,7 +185,7 @@ public class DisplayHunger_Icon : DisplayHunger {
 
     void HandleEndStoryEvent ()
 	{
-        ShowHeart();
+        UpdateHeartUI();
 		UpdateHungerIcon (linkedIcon.member);
 	}
 
@@ -147,7 +197,7 @@ public class DisplayHunger_Icon : DisplayHunger {
 	void HandleCloseInventory ()
 	{
 		if (StoryLauncher.Instance.PlayingStory == false) {
-            ShowHeart();
+            UpdateHeartUI();
             UpdateHungerIcon(linkedIcon.member);
         }
 	}
@@ -165,12 +215,10 @@ public class DisplayHunger_Icon : DisplayHunger {
 
 	void HandleOnAddHunger ()
 	{
-		
         HideFoodFeedback();
 
         if ( NavigationManager.Instance.chunksTravelled > 1)
         {
-            
             CancelInvoke("ShowFoodFeedback");
             Invoke("ShowFoodFeedback", displayFood_Delay);
         }
@@ -205,7 +253,7 @@ public class DisplayHunger_Icon : DisplayHunger {
 
     void HandleOnChangeHealth()
     {
-        UpdateHeartImage();
+        UpdateHeartUI();
     }
 
     void InitEvents()

@@ -13,6 +13,11 @@ public class LoadingScene : MonoBehaviour
 
     public bool activateAtStart = true;
 
+    float currentTimer = 0f;
+    private float timerSpeed = 0.2f;
+
+    private float limit = 0.9f;
+    
     public static string sceneToLoad = "Menu";
 
     void Start()
@@ -23,10 +28,18 @@ public class LoadingScene : MonoBehaviour
         UpdateUI(0);
     }
 
+    private void LateUpdate()
+    {
+        UpdateUI(currentTimer);
+
+        if ( currentTimer < limit)
+        {
+            currentTimer += Time.deltaTime * timerSpeed;
+        }
+    }
+
     void StartDelay()
     {
-
-
         StartCoroutine(LoadScene());
     }
 
@@ -51,11 +64,16 @@ public class LoadingScene : MonoBehaviour
         while (!asyncOperation.isDone)
         {
             //Output the current progress
-            UpdateUI(asyncOperation.progress);
+            
 
             // Check if the load has finished
             if (asyncOperation.progress >= 0.9f)
             {
+                currentTimer = asyncOperation.progress;
+                limit = 100f;
+
+                UpdateUI(asyncOperation.progress);
+
                 asyncOperation.allowSceneActivation = true;
             }
 

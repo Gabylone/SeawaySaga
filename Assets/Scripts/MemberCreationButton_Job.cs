@@ -26,6 +26,8 @@ public class MemberCreationButton_Job : MemberCreatorButton {
             SoundManager.Instance.PlaySound("click_med 04");
 
         Crews.playerCrew.captain.MemberID.SetJob((Job)apparenceItem.id);
+
+        MemberCreator.Instance.UpdateDescriptionText(apparenceItem.id);
     }
 
 }

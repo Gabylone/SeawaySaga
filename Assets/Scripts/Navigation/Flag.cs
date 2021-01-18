@@ -12,6 +12,8 @@ public class Flag : MonoBehaviour {
     [SerializeField]
     private GameObject group = null;
 
+    Transform _transform;
+
     public Camera cam;
 
     public bool visible = false;
@@ -41,6 +43,8 @@ public class Flag : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
+        _transform = GetComponent<Transform>();
+
         WorldTouch.onPointerDown += HandleOnPointerDown;
         WorldTouch.onPointerExit += HandleOnPointerExit;
 
@@ -82,12 +86,12 @@ public class Flag : MonoBehaviour {
 
     public void SetPos(Vector3 pos)
     {
-        transform.position = pos;
+        _transform.position = pos;
     }
 
     public void HandleOnEndMovement()
     {
-        Tween.Bounce(transform);
+        Tween.Bounce(_transform);
 
         spriteRenderer.DOKill();
         spriteRenderer.DOFade(0f, Tween.defaultDuration);
@@ -112,7 +116,7 @@ public class Flag : MonoBehaviour {
         Show();
         UpdateFlagPos();
 
-        Tween.Bounce(transform);
+        Tween.Bounce(_transform);
 
     }
 

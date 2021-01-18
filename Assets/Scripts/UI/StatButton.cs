@@ -16,6 +16,8 @@ public class StatButton : MonoBehaviour {
     public Outline outline;
     public GameObject skillPoint_Group;
 
+    public string statDescription = "";
+
 	[SerializeField]
 	private Stat stat;
 
@@ -90,11 +92,17 @@ public class StatButton : MonoBehaviour {
             return;
         }
 
+        MessageDisplay.Instance.Display(statDescription);
+        MessageDisplay.Instance.onValidate += HandleOnValidate;
+    }
+
+    void HandleOnValidate()
+    {
         SoundManager.Instance.PlayRandomSound("Alchemy");
         SoundManager.Instance.PlayRandomSound("Bag");
         SoundManager.Instance.PlayRandomSound("Magic Chimes");
 
-		CrewMember.GetSelectedMember.HandleOnLevelUpStat (stat);
+        CrewMember.GetSelectedMember.HandleOnLevelUpStat(stat);
 
         if (SkillManager.Instance.onLevelUpStat != null)
         {
@@ -102,6 +110,5 @@ public class StatButton : MonoBehaviour {
         }
 
         UpdateDisplay();
-
     }
 }

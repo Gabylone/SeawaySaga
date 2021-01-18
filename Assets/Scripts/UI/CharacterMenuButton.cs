@@ -13,6 +13,10 @@ public class CharacterMenuButton : MonoBehaviour {
 
     public Animator animator;
 
+    public Text uiText;
+
+    public GameObject exclamationPoint_Obj;
+
     private void Awake()
     {
         Instance = this;
@@ -59,10 +63,28 @@ public class CharacterMenuButton : MonoBehaviour {
         if (CrewMember.GetSelectedMember.SkillPoints > 0)
         {
             animator.SetBool("hasSkills", true);
+            exclamationPoint_Obj.SetActive(true);
+
+            uiText.color = Color.cyan;
+
+            if (CrewMember.GetSelectedMember.SkillPoints > 1)
+            {
+                uiText.text = CrewMember.GetSelectedMember.SkillPoints + " skill points left";
+            }
+            else
+            {
+                uiText.text = CrewMember.GetSelectedMember.SkillPoints + " skill point left";
+            }
         }
         else
         {
+
+            uiText.text = CrewMember.GetSelectedMember.MemberName + "'s Skills";
+
+            uiText.color = Color.white;
+
             animator.SetBool("hasSkills", false);
+            exclamationPoint_Obj.SetActive(false);
         }
     }
 }

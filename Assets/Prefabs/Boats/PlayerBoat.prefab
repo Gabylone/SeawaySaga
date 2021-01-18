@@ -416,8 +416,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moving: 0
+  minimapBoat: {fileID: 0}
   boatMesh: {fileID: 2695659643602793269}
-  GetTransform: {fileID: 0}
+  _transform: {fileID: 0}
   animator: {fileID: 2695659643602793258}
   startSpeed: 10
   targetPos: {x: 0, y: 0, z: 0}
@@ -491,6 +492,10 @@ PrefabInstance:
     - target: {fileID: 100002, guid: 8b2230cce4db908469076ba5049c2b14, type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 8b2230cce4db908469076ba5049c2b14, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 100004, guid: 8b2230cce4db908469076ba5049c2b14, type: 3}
       propertyPath: m_Layer

@@ -11,6 +11,8 @@ public class SkillManager : MonoBehaviour {
 	public static Sprite[] skillSprites;
 	public static Sprite[] statusSprites;
 	public static Sprite[] jobSprites;
+    public Sprite[] statSprites;
+    public Color[] statColors;
 
     public delegate void OnLevelUpStat();
     public OnLevelUpStat onLevelUpStat;
@@ -177,13 +179,20 @@ public class SkillManager : MonoBehaviour {
 
 		int skillIndex = Random.Range(0,fittingSkills.Count);
 
+        if ( fittingSkills.Count == 0)
+        {
+            Debug.Log("no fitting skills : skipping turn");
+
+            return getSkill(Skill.Type.SkipTurn);
+        }
+
 		Skill skill = fittingSkills[skillIndex];
 
-//		foreach (var item in fittingSkills) {
-//			print ("skill possibles : " + item.name);
-//		}
-//
-//		print(" skill choisi : "+ skill.name);
+        //		foreach (var item in fittingSkills) {
+        //			print ("skill possibles : " + item.name);
+        //		}
+        //
+        //		print(" skill choisi : "+ skill.name);
 
 		return skill;
 	}

@@ -100,6 +100,8 @@ public class DisplayTreasure : MonoBehaviour {
 
     public void CloseTreasure()
     {
+        MessageDisplay.Instance.onValidate -= CloseTreasure;
+
         animator.SetTrigger("close");
 
         SoundManager.Instance.PlaySound("Close Chest");

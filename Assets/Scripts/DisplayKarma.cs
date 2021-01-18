@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 using DG.Tweening;
 
@@ -16,6 +17,14 @@ public class DisplayKarma : MonoBehaviour {
 
     public float tweenDuration = 0.3f;
 
+    public Transform _transform;
+    public float jaugeWidth = 70f;
+
+    public RectTransform jauge_RectTransform;
+    public Image jauge_Image;
+    public Color badColor;
+    public Color goodColor;
+
     private void Awake()
     {
         Instance = this;
@@ -23,6 +32,9 @@ public class DisplayKarma : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+
+        _transform = GetComponent<Transform>();
+
         UpdateUI();
     }
 
@@ -53,9 +65,36 @@ public class DisplayKarma : MonoBehaviour {
 
         targetRectTranform.DOAnchorPos(Vector2.right * x, tweenDuration);
 
+        if ( Karma.Instance.CurrentKarma >= 0)
+        {
+            float w = (float)Karma.Instance.CurrentKarma / Karma.Instance.maxKarma * jaugeWidth;
+
+            jauge_RectTransform.pivot = new Vector2(0, 0.5f);
+            jauge_RectTransform.anchorMin = new Vector2(0f, 0.5f);
+            jauge_RectTransform.anchorMax = new Vector2(0f, 0.5f);
+
+            jauge_RectTransform.anchoredPosition = Vector2.zero;
+
+            jauge_RectTransform.sizeDelta = new Vector2(w, jauge_RectTransform.sizeDelta.y);
+            jauge_Image.color = goodColor;
+        }
+        else
+        {
+            float w = (float)Karma.Instance.CurrentKarma / Karma.Instance.maxKarma * jaugeWidth;
+
+            jauge_RectTransform.pivot = new Vector2(1, 0.5f);
+            jauge_RectTransform.anchorMin = new Vector2(1f, 0.5f);
+            jauge_RectTransform.anchorMax = new Vector2(1f, 0.5f);
+
+            jauge_RectTransform.anchoredPosition = Vector2.zero;
+
+            jauge_RectTransform.sizeDelta = new Vector2(-w, jauge_RectTransform.sizeDelta.y);
+            jauge_Image.color = badColor;
+        }
+
         //targetRectTranform.anchoredPosition = Vector2.right * x;
 
-        Tween.Bounce(group.transform);
+        Tween.Bounce(_transform);
 
     }
 
@@ -63,6 +102,6 @@ public class DisplayKarma : MonoBehaviour {
     {
         KarmaFeedback.Instance.DisplayKarma();
 
-        Tween.Bounce(transform);
+        Tween.Bounce(_transform);
     }
 }

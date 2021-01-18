@@ -22,6 +22,8 @@ public class BoatUpgradeManager : MonoBehaviour {
 		Longview
 	}
 
+    public UpgradeType currentUpgradeType;
+
 	[Header("Name & Level")]
 	[SerializeField]
 	private Text nameTextUI;
@@ -97,11 +99,6 @@ public class BoatUpgradeManager : MonoBehaviour {
 
         opened = false;
 
-        if (trading == true)
-        {
-            StopTrading();
-        }
-
         Invoke( "Hide" , 0.5f );
     }
 
@@ -109,6 +106,11 @@ public class BoatUpgradeManager : MonoBehaviour {
     {
         InGameMenu.Instance.Hide();
         menuObj.SetActive(false);
+
+        if (trading == true)
+        {
+            StopTrading();
+        }
     }
     #endregion
 
@@ -133,36 +135,59 @@ public class BoatUpgradeManager : MonoBehaviour {
     {
         Upgrade((UpgradeType)i);
     }
-	public void Upgrade ( UpgradeType upgradeType )
+    public void Upgrade(UpgradeType upgradeType)
     {
-        if ( !GoldManager.Instance.CheckGold ( GetPrice(upgradeType) ))
-			return;
+        if (!GoldManager.Instance.CheckGold(GetPrice(upgradeType)))
+            return;
 
-		GoldManager.Instance.RemoveGold (GetPrice(upgradeType));
+        currentUpgradeType = upgradeType;
 
-		switch ( upgradeType ) {
-		case UpgradeType.Crew:
-			Crews.playerCrew.CurrentMemberCapacity++;
-			break;
-		case UpgradeType.Cargo:
-			Boats.Instance.playerBoatInfo.cargoLevel++;
-			break;
-		case UpgradeType.Longview:
-			Boats.Instance.playerBoatInfo.shipRange++;
-			break;
-		}
+        switch (currentUpgradeType)
+        {
+            case UpgradeType.Crew:
+                MessageDisplay.Instance.Display("This allow you to welcome new crew members on your boat ! Another sword at your side, but also another mouth to feed. The more the merier !");
+                break;
+            case UpgradeType.Cargo:
+                MessageDisplay.Instance.Display("This allow you to carry more food, weapons, armor, and miscellaneous items. Be careful not to get lost in all that equipment !");
+                break;
+            case UpgradeType.Longview:
+                MessageDisplay.Instance.Display("This allows you to see further away in the sea. This can be a life saver if your stranded in a gigantic ocean, days away from starving !");
+                break;
+        }
 
-		++currentLevel;
+        MessageDisplay.Instance.onValidate += OnValidateMessageDisplay;
+
+    }
+
+    void OnValidateMessageDisplay()
+    {
+        MessageDisplay.Instance.onValidate -= OnValidateMessageDisplay;
+
+        GoldManager.Instance.RemoveGold(GetPrice(currentUpgradeType));
+
+        switch (currentUpgradeType)
+        {
+            case UpgradeType.Crew:
+                Crews.playerCrew.CurrentMemberCapacity++;
+                break;
+            case UpgradeType.Cargo:
+                Boats.Instance.playerBoatInfo.cargoLevel++;
+                break;
+            case UpgradeType.Longview:
+                Boats.Instance.playerBoatInfo.shipRange++;
+                break;
+        }
+
+        ++currentLevel;
 
         SoundManager.Instance.PlayRandomSound("Anvil");
         SoundManager.Instance.PlayRandomSound("Workshop");
 
-        UpdateInfo ();
+        UpdateInfo();
 
-		if (onUpgradeBoat != null)
-			onUpgradeBoat (upgradeType);
+        if (onUpgradeBoat != null)
+            onUpgradeBoat(currentUpgradeType);
     }
-
 
     public void UpdateInfo () {
 
@@ -182,9 +207,9 @@ public class BoatUpgradeManager : MonoBehaviour {
 
         Show();
 
-        RayBlocker.Instance.Show();
+        //RayBlocker.Instance.Show();
 
-        InGameMenu.Instance.Lock();
+        //InGameMenu.Instance.Lock();
 
     }
 
@@ -195,9 +220,9 @@ public class BoatUpgradeManager : MonoBehaviour {
 
         trading = false;
 
-        RayBlocker.Instance.Hide();
+        /*RayBlocker.Instance.Hide();
 
-        InGameMenu.Instance.Unlock();
+        InGameMenu.Instance.Unlock();*/
 
     }
 

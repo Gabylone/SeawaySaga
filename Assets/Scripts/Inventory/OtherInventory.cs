@@ -49,21 +49,19 @@ public class OtherInventory : MonoBehaviour {
     {
         LootUI.Instance.transform.position = Vector3.right * lootTransition_Decal;
 
-        LootUI.Instance.HideAllSwitchButtons();
-
         LootUI.Instance.transform.DOMove(Vector3.zero, lootTransition_Duration);
 
-        CancelInvoke("ShowButtons");
-        Invoke("ShowButtons",lootTransition_Duration);
+        LootUI.Instance.closeButton_canvasGroup.alpha = 0f;
+        LootUI.Instance.closeButton_canvasGroup.DOFade(1f, 0.2f).SetDelay(lootTransition_Duration);
+
     }
 
     public void LerpOut()
     {
-        CancelInvoke("ShowButtons");
-
         LootUI.Instance.transform.DOMove(Vector3.right * lootTransition_Decal, lootTransition_Duration);
 
-        LootUI.Instance.HideAllSwitchButtons();
+        LootUI.Instance.closeButton_canvasGroup.alpha = 0f;
+
     }
 
     void SwitchInventorySide()
@@ -72,14 +70,10 @@ public class OtherInventory : MonoBehaviour {
         ShowLoot();
     }
 
-    void ShowButtons()
-    {
-        LootUI.Instance.InitButtons();
-    }
-
     IEnumerator SwitchSideCoroutine()
     {
         LerpOut();
+
 
         ///
         yield return new WaitForSeconds(lootTransition_Duration);
@@ -160,7 +154,7 @@ public class OtherInventory : MonoBehaviour {
 	public void StartTrade () {
 
 			// get loot
-		Loot loot = LootManager.Instance.GetIslandLoot (2, false);
+		Loot loot = LootManager.Instance.GetIslandLoot (GetCellMult(2), false);
 
 		if ( loot.IsEmpty () ) {
 			DialogueManager.Instance.OtherSpeak ("Looks like you already bought everything from me !");
@@ -182,10 +176,11 @@ public class OtherInventory : MonoBehaviour {
 
 	#region looting
 	public void StartLooting (bool fightingLoot) {
-
-		Loot loot = LootManager.Instance.GetIslandLoot (1, fightingLoot);
+        
+        Loot loot = LootManager.Instance.GetIslandLoot (GetCellMult(1), fightingLoot);
 
 		if ( loot.IsEmpty () ) {
+
 			DialogueManager.Instance.PlayerSpeak ("There was something but now nothing's left !");
 			return;
         }
@@ -202,6 +197,28 @@ public class OtherInventory : MonoBehaviour {
 
     }
 	#endregion
+
+    private int GetCellMult(int mult)
+    {
+        if ( StoryFunctions.Instance.cellParams.Length > 0)
+        {
+            int tmpMult = 0;
+
+            string lastCharacter = "" + StoryFunctions.Instance.cellParams[StoryFunctions.Instance.cellParams.Length - 1];
+
+            if (int.TryParse(lastCharacter, out tmpMult))
+            {
+                StoryFunctions.Instance.cellParams = StoryFunctions.Instance.cellParams.Remove(StoryFunctions.Instance.cellParams.Length - 1);
+                return tmpMult;
+            }
+            else
+            {
+                return mult;
+            }
+        }
+
+        return mult;
+    }
 
 	public void PurchaseItem () {
 

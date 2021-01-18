@@ -17,17 +17,29 @@ public class RandomPlacable : MonoBehaviour
 
     private bool canTrigger = true;
 
+    private bool canSpawn = false;
+
     private bool locked = false;
+
+    private SpriteRenderer spriteRenderer;
 
     // Start is called before the first frame update
     public virtual void Start()
     {
         _transform = GetComponent<Transform>();
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
 
         NavigationManager.Instance.onUpdateCurrentChunk += HandleOnUpdateCurrentChunk;
 
         CombatManager.Instance.onFightStart += Lock;
         CombatManager.Instance.onFightEnd += Unlock;
+
+        Invoke("StartDelay", 2f);
+    }
+
+    void StartDelay()
+    {
+        canSpawn = true;
     }
 
     void Lock()
@@ -47,6 +59,11 @@ public class RandomPlacable : MonoBehaviour
 
     public bool CanSpawn()
     {
+        if (!canSpawn)
+        {
+            return false;
+        }
+
         if ( NavigationManager.Instance.chunksTravelled < 2)
         {
             return false;
@@ -113,6 +130,9 @@ public class RandomPlacable : MonoBehaviour
 
     public void Show()
     {
+        spriteRenderer.color = Color.clear;
+        spriteRenderer.DOColor(Color.white, 0.2f);
+        
         gameObject.SetActive(true);
     }
 
@@ -140,7 +160,9 @@ public class RandomPlacable : MonoBehaviour
 
     public void Disappear()
     {
-        _transform.DOScale(0f, disappearDelay).SetEase(Ease.InBounce);
+        spriteRenderer.DOFade(0f, disappearDelay);
+
+        //_transform.DOScale(0f, disappearDelay).SetEase(Ease.InBounce);
 
         Invoke("Hide", disappearDelay);
     }

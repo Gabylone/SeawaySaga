@@ -33,7 +33,6 @@ public class SaveTool : MonoBehaviour
         }
         else
         {
-            Debug.Log("PlayerInfo directory exists");
         }
 
 		if ( DirectoryExists(GetCurrentMapPath()) == false ) {

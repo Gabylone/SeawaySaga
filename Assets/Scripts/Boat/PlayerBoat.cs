@@ -30,6 +30,7 @@ public class PlayerBoat : Boat {
     {
         minimapBoat = DisplayMinimap.Instance.CreateMinimapBoat(DisplayMinimap.Instance.playerBoatIconPrefab, GetTransform, GetBoatInfo());
 
+        DisplayMinimap.Instance.CenterOnBoat_Quick();
     }
 
     public override void Update()
@@ -79,7 +80,7 @@ public class PlayerBoat : Boat {
 
         WorldTouch.Instance.touching = false;
 
-        SetTargetPos(GetTransform.position);
+        //SetTargetPos(GetTransform.position);
 
         if (agent.isOnNavMesh)
         {

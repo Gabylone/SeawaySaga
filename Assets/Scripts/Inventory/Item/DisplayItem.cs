@@ -6,11 +6,13 @@ using System;
 
 public class DisplayItem : MonoBehaviour {
 
+    public Transform _transform;
+
 	private protected Item handledItem;
 
     public virtual void Start()
     {
-
+        _transform = GetComponent<Transform>();
     }
 
     public virtual void Show(Item item)

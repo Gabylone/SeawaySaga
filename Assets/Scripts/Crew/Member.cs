@@ -70,7 +70,7 @@ public class Member {
 		Item cloth = ItemLoader.Instance.GetRandomItemOfCertainLevel (ItemCategory.Clothes, Lvl);
 		equipedCloth = cloth;
 
-		if (job == Job.Flibuster) {
+		if (job == Job.Cannoneer) {
 			Item anyGun = System.Array.Find(ItemLoader.Instance.getItems(ItemCategory.Weapon), x => x.weaponType == Item.WeaponType.Distance && x.level == Lvl);
 			equipedWeapon = anyGun;
 		} else if (job == Job.Brute) {
@@ -95,8 +95,16 @@ public class Member {
 			Lvl = crewParams.level;
 		} else {
 
-			Lvl = Random.Range (Crews.playerCrew.captain.Level - 3, Crews.playerCrew.captain.Level + 3);
-			if ( StoryReader.Instance.CurrentStoryHandler.storyType == StoryType.Quest ) {
+            Lvl = Random.Range(Crews.playerCrew.captain.Level - 3, Crews.playerCrew.captain.Level + 3);
+
+            if ( MapGenerator.mapParameters.id == 0)
+            {
+                Lvl = Random.Range(1 ,2);
+
+            }
+
+
+            if ( StoryReader.Instance.CurrentStoryHandler.storyType == StoryType.Quest ) {
 				Lvl = Quest.currentQuest.level;
 			}
 		}

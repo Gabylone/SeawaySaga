@@ -204,6 +204,15 @@ public class StoryLauncher : MonoBehaviour {
         if (onEndStory != null)
             onEndStory();
 
+        if (IslandManager.Instance.currentIsland != null)
+        {
+            IslandManager.Instance.currentIsland.Exit();
+        }
+        else
+        {
+            Debug.Log("no current islaned");
+        }
+
         SoundManager.Instance.UpdateAmbianceSound();
 
 

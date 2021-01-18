@@ -36,18 +36,10 @@ public class CrewManager : MonoBehaviour {
 	void Start () {
 		if (side == Crews.Side.Player) {
 			StoryFunctions.Instance.getFunction += HandleGetFunction;
-			NameGeneration.onDiscoverFormula += HandleOnDiscoverFormula;
 		}
 		CombatManager.Instance.onFightStart += HandleFightStarting;
 
         //UpdateCrew(Crews.PlacingType.Map);
-	}
-
-	void HandleOnDiscoverFormula (Formula Formula)
-	{
-		foreach (var item in CrewMembers) {
-			item.AddXP ( 20 );
-		}
 	}
 
 	void HandleFightStarting ()
@@ -87,6 +79,28 @@ public class CrewManager : MonoBehaviour {
             crewMember.Icon.indexInList = i;
 			crewMember.Icon.MoveToPoint (placingType);
 		}
+
+        if ( side == Crews.Side.Player)
+        {
+            switch (placingType)
+            {
+                case Crews.PlacingType.Portraits:
+                case Crews.PlacingType.Inventory:
+                    PlayerIcons.Instance.Show();
+                    break;
+                case Crews.PlacingType.MemberCreation:
+                    break;
+                case Crews.PlacingType.World:
+                    PlayerIcons.Instance.Hide();
+                    break;
+                case Crews.PlacingType.Hidden:
+                    break;
+                case Crews.PlacingType.None:
+                    break;
+                default:
+                    break;
+            }
+        }
 	}
 	public float PlacingDuration {
 		get {
@@ -114,7 +128,7 @@ public class CrewManager : MonoBehaviour {
 		managedCrew.Add (member.MemberID);
 		crewMembers.Add (member);
 
-        PlayerIcons.Instance.UpdateMemberIcons();
+        PlayerIcons.Instance.Show();
 	}
 
     public void RemoveMember(int i)
@@ -130,7 +144,7 @@ public class CrewManager : MonoBehaviour {
 		managedCrew.Remove (member.MemberID);
 		crewMembers.Remove (member);
 
-        PlayerIcons.Instance.UpdateMemberIcons();
+        PlayerIcons.Instance.Show();
 	}
 
 	public List<CrewMember> CrewMembers {

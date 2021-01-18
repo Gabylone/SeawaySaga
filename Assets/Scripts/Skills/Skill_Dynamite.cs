@@ -6,8 +6,6 @@ using DG.Tweening;
 
 public class Skill_Dynamite : Skill {
 
-    public int damage = 20;
-
     public Transform dynamite_Transform;
 
     public GameObject dynamiteExplosion_Obj;
@@ -85,25 +83,30 @@ public class Skill_Dynamite : Skill {
 
 		List<Fighter> fighters = CombatManager.Instance.getCurrentFighters (Crews.otherSide (fighter.crewMember.side));
 
-		for (int fighterIndex = 0; fighterIndex < fighters.Count; fighterIndex++) {
-
-            fighters[fighterIndex].Hurt(damage);
-
-		}
-
+        // before removing anything
         switch (fighter.crewMember.side)
         {
             case Crews.Side.Player:
-        dynamiteExplosion_Transform.position = fighters[0].GetTransform.position;
+                dynamiteExplosion_Transform.position = fighters[0].GetTransform.position;
                 break;
             case Crews.Side.Enemy:
-        dynamiteExplosion_Transform.position = fighters[1].GetTransform.position;
+                dynamiteExplosion_Transform.position = fighters[1].GetTransform.position;
                 break;
             default:
                 break;
         }
 
+
+        for (int i = fighters.Count-1; i > -1; i--)
+        {
+            fighters[i].Hurt(value);
+        }
+
+        
         dynamiteExplosion_Obj.SetActive(true);
+
+        Invoke("HideExplositionEffect", 1f);
+
 
         SoundManager.Instance.PlaySound("explosion");
 
@@ -111,7 +114,14 @@ public class Skill_Dynamite : Skill {
 
 	}
 
-	public override bool MeetsConditions (CrewMember member)
+
+    void HideExplositionEffect()
+    {
+        dynamiteExplosion_Obj.SetActive(false);
+
+    }
+
+    public override bool MeetsConditions (CrewMember member)
 	{
 
 		bool moreThanOneMember = CombatManager.Instance.getCurrentFighters (Crews.otherSide (member.side)).Count > 1;

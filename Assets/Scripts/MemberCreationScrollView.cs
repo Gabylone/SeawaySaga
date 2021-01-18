@@ -33,6 +33,8 @@ public class MemberCreationScrollView : MonoBehaviour
 
     public Text categoryName_Text;
 
+    bool quickUpdated = false;
+
     public MemberCreatorButton lastSelected;
 
     private void Start()
@@ -60,7 +62,16 @@ public class MemberCreationScrollView : MonoBehaviour
 
         p = p + scrollView_RectTransform.rect.size / 2f;
 
-        content_RectTransform.DOAnchorPos(p, 0.5f);
+        if ( quickUpdated)
+        {
+            content_RectTransform.DOAnchorPos(p, 0.5f);
+        }
+        else
+        {
+            content_RectTransform.anchoredPosition = p;
+        }
+
+        quickUpdated = true;
     }
 
     void ShowItems()

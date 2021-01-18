@@ -53,6 +53,11 @@ public class NameGeneration : MonoBehaviour {
             text = text.Replace("OTHERNAME", Crews.enemyCrew.captain.MemberName );
         }
 
+        if (text.Contains("THROWER"))
+        {
+            text = text.Replace("THROWER", DiceManager.Instance.thrower.MemberName);
+        }
+
         if (text.Contains("NOMBATEAU"))
         {
             text = text.Replace("NOMBATEAU", Boats.Instance.playerBoatInfo.Name);

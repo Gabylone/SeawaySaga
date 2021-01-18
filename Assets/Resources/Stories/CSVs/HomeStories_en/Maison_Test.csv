@@ -1,29 +1,48 @@
-Nom;Fréquence / 5;Sprite ID;Display Name;;
-Maison_Test;1;4;Captain’s House;;
-[choix];;;;;
-SetBG(Cave);;;;;
-SetChoices4;;;;;
-Choice : (verger 1);Choice : (verger 2);Choice : (verger 13;Choice : (leave);;
-ChangeStory=>Verger[debut/choix];ChangeStory=>Verger[debut/choix];ChangeStory=>Verger[debut/choix];Leave;;
-;;;;;
-;;;;;
-;;;;;
-;;;;;
-;;;;;
-;;;;;
-;;;;;
-;;;;;
-;;;;;
-;;;;;
-[mec 1];;;[mec 2];;
-NewCrew1/M/1;;;NewCrew1/M/1;;
-Node=>choix1;Narrator : Le joueur est devant le cadavre;Narrator : Le joueur est de retour;Node=>choix2;Narrator : Le joueur est devant le cadavre;Narrator : Le joueur est de retour
-;SetChoices1;SetChoices1;;SetChoices1;SetChoices1
-;Choice : (leave);Choice : (leave);;Choice : (leave);Choice : (leave)
-;Leave;Leave;;Leave;Leave
-;;;;;
-[choix1];;;[choix2];;
-SetChoices2;;;SetChoices2;;
-Choice : (leave);Choice : (fight);;Choice : (leave);Choice : (fight);
-Leave;LaunchCombat;;Leave;LaunchCombat;
-;Leave;;;Leave;
+Nom;Fréquence / 5;Sprite ID;Display Name;;;;
+Maison_Test;1;4;Captain’s House;;;;
+[choix];;;;[choix 2];;;
+SetChoices4;;;;SetChoices4;;;
+Choice : (test fights);Choice : (test dice);Choice : (other);Choice : (leave);Choice : (test boat upgrades);Choice : (test quests);Choice : (other);Choice : (leave)
+Node=>fight;Node=>dice;Node=>choix 2;Leave;Node=>boat;Node=>quest;Node=>choix;Leave
+;;;;;;;
+;;;;;;;
+;;;;;;;
+;;;;;;;
+;;;;;;;
+[fight];;;;;;;
+SetChoices4;;;;;;;
+Choice : (fight normal);Choice : (fight against 4);Choice : (fight strong);Choice : (leave);;;;
+NewCrew;NewCrew4;NewCrew4/M/10;Leave;;;;
+LaunchCombat;LaunchCombat;LaunchCombat;;;;;
+Node=>choix;Node=>choix;Node=>choix;;;;;
+;;;;;;;
+[dice];;;;;;;
+SetChoices4;;;;;;;
+Choice : (dice) (cha);;Choice : (dice) (str);;Choice : (throx 5 dice);;Choice : (leave);
+CheckStatCHA;;CheckStatSTR;;ThrowDice5;;Leave;
+PlayerSpeak : Gagné !;PlayerSpeak : Perdu !;PlayerSpeak : Gagné !;PlayerSpeak : Perdu !;PlayerSpeak : Gagné !;PlayerSpeak : Perdu !;;
+Node=>choix;Node=>choix;Node=>choix;Node=>choix;Node=>choix;Node=>choix;;
+;;;;;;;
+[trade];;;;;;;
+SetChoices4;;;;;;;
+Choice : (loot);Choice : (trade misc clothes);Choice : (trade food);Choice : (leave);;;;
+Loot;NewCrew4/M/10;NewCrew4/M/10;Leave;;;;
+Node=>choix;OtherSpeak : Alors vous venez pour commercer ?;OtherSpeak : Alors vous venez pour commercer ?;;;;;
+;TradeMisc/Clothes;TradeFood;;;;;
+;OtherSpeak : Génial;OtherSpeak : Génial;;;;;
+;Node=>choix;Node=>choix;;;;;
+;;;;;;;
+[quest];;;;;;;
+SetChoices4;;;;;;;
+Choice : (quest 1);Choice : (quest 2);Choice : (quest 3);Choice : (leave);;;;
+NewCrew4/M/10;NewCrew4/M/10;NewCrew4/M/10;Leave;;;;
+OtherSpeak : tiens voilà une quete;OtherSpeak : tiens voilà une quete;OtherSpeak : tiens voilà une quete;;;;;
+NewQuest=>quest;NewQuest=>quest;NewQuest=>quest;;;;;
+;;;;;;;
+[boat];;;;;;;
+SetChoices2;;;;;;;
+Choice : (trade boat);Choice : (leave);;;;;;
+NewCrew4/M/10;Leave;;;;;;
+OtherSpeak : bateau;;;;;;;
+BoatUpgrades;;;;;;;
+Node=>boat;;;;;;;

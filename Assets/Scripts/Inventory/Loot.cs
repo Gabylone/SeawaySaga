@@ -15,6 +15,11 @@ public class Loot {
 	[NonSerialized]
 	List<List<Item>> allItems = new List<List<Item>>();
 
+    public List<Item> GetCategory(ItemCategory itemCategory)
+    {
+        return allItems[(int)itemCategory];
+    }
+
 	public List<List<Item>> AllItems {
 		get {
 			return allItems;

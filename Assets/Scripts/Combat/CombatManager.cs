@@ -44,7 +44,7 @@ public class CombatManager : MonoBehaviour {
 	/// <summary>
 	/// The fighters
 	/// </summary>
-	private int memberIndex = 0;
+	public int memberIndex = 0;
 	List<Fighter> fighters = new List<Fighter> ();
 
 	[Header("Fighter Objects")]
@@ -59,7 +59,7 @@ public class CombatManager : MonoBehaviour {
 		return side == Crews.Side.Player ? currPlayerFighters : currEnemyFighters;
 	}
 //
-	public Fighter currentFighter {
+	public Fighter GetCurrentFighter {
 		get {
 			return fighters [memberIndex];
 		}
@@ -151,7 +151,7 @@ public class CombatManager : MonoBehaviour {
 
 	#region StartTurn
 	private void StartTurn_Start () {
-		currentFighter.SetTurn ();
+		GetCurrentFighter.SetTurn ();
 	}
 	public void StartActions ()
 	{
@@ -171,15 +171,18 @@ public class CombatManager : MonoBehaviour {
 			return;
 		}
 
-		NextMember ();
+        ++memberIndex;
 
-		if ( currentFighter.killed )
+        if (memberIndex >= fighters.Count)
+            memberIndex = 0;
+
+        if ( GetCurrentFighter.killed )
         {
 			NextTurn ();
 			return;
 		}
 
-		if ( currentFighter.escaped )
+		if ( GetCurrentFighter.escaped )
         {
             NextTurn();
 			return;
@@ -281,7 +284,7 @@ public class CombatManager : MonoBehaviour {
 			foreach (Fighter fighter in getCurrentFighters (side)) {
 				if (!currentSkill.canTargetSelf) {
 
-					if ( fighter != currentFighter )
+					if ( fighter != GetCurrentFighter )
 						fighter.Pickable = true;
 
 				} else {
@@ -362,7 +365,7 @@ public class CombatManager : MonoBehaviour {
 	private void EnemyActionChoice_Start () {
 
 		Skill skill = SkillManager.RandomSkill (currentMember);
-		skill.Trigger (CombatManager.Instance.currentFighter);
+		skill.Trigger (CombatManager.Instance.GetCurrentFighter);
 
 	}
 	private void EnemyActionChoice_Update () {}
@@ -386,7 +389,7 @@ public class CombatManager : MonoBehaviour {
 			List<Fighter> targetFighters = currEnemyFighters;
 
 			if ( currentSkill.canTargetSelf == false )
-				targetFighters.Remove (currentFighter);
+				targetFighters.Remove (GetCurrentFighter);
 
 			int randomIndex = Random.Range (0, targetFighters.Count);
 
@@ -531,14 +534,8 @@ public class CombatManager : MonoBehaviour {
     #region defeat
     private void HandleDefeat()
     {
-        int goldReceived = crewValue * Random.Range(10, 15);
-        GoldManager.Instance.AddGold(goldReceived);
-
-        string str = "CAPITAINE didn't manage too bring his crew to victory. Maybe in an another life, he'll find wealth and reknown.";
-        if (Crews.playerCrew.CrewMembers.Count == 1)
-        {
-            str = "CAPITAINE didn't manage too emerge victorious from the fight. Maybe in an another life, he'll find wealth and reknown.";
-        }
+        
+        string str = "The captain didn't manage too bring his crew to victory. Maybe in an another life, he'll find wealth and glory.";
 
         DisplayCombatResults.Instance.Display("DEFEAT !", str);
         DisplayCombatResults.Instance.onConfirm += HandleOnConfirm_Defeat;
@@ -548,12 +545,6 @@ public class CombatManager : MonoBehaviour {
         SoundManager.Instance.PlaySound("ui_deny");
     }
     private void HandleOnConfirm_Defeat()
-    {
-        Transitions.Instance.ScreenTransition.FadeIn(1f);
-
-        Invoke("HandleOnConfirm_DefeatDelay", 1f);
-    }
-    private void HandleOnConfirm_DefeatDelay()
     {
         GameManager.Instance.BackToMenu();
     }
@@ -566,7 +557,7 @@ public class CombatManager : MonoBehaviour {
         int xpPerMember = 40;
         foreach (var item in currPlayerFighters)
         {
-            item.combatFeedback.Display("" + xpPerMember, Color.magenta);
+            item.combatFeedback.Display("" + xpPerMember, Color.cyan);
             item.crewMember.AddXP(xpPerMember);
         }
 
@@ -821,20 +812,21 @@ public class CombatManager : MonoBehaviour {
 	#region properties
 	public void StartFight () {
 
+        if ( Crews.enemyCrew.CrewMembers.Count == 0)
+        {
+            StoryReader.Instance.ContinueStory();
+
+            Debug.LogError("no enemies to start fight with... continuing story");
+
+            return;
+        }
+
 		Crews.enemyCrew.managedCrew.hostile = true;
 
 		fighting = true;
 
 		ChangeState (States.CombatStart);
 
-	}
-
-	void NextMember () {
-		
-		++memberIndex;
-
-		if ( memberIndex >= fighters.Count )
-			memberIndex = 0;
 	}
 	#endregion
 

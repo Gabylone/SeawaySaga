@@ -18,6 +18,8 @@ public class CombatButtons : MonoBehaviour {
 
     private RectTransform rectTransform;
 
+
+    public Transform openSkilkButton_transform;
 	public Button openSkillButton;
 	public Image jobImage;
 
@@ -119,7 +121,7 @@ public class CombatButtons : MonoBehaviour {
 
 	public void OpenSkills () {
 
-            SoundManager.Instance.PlaySound("click_med 03");
+        SoundManager.Instance.PlaySound("click_med 03");
 
         defaultGroup.SetActive(false);
         skillGroup.SetActive(true);
@@ -127,7 +129,7 @@ public class CombatButtons : MonoBehaviour {
         UpdateSkillButtons ();
 
 		foreach (var item in skillButtons) {
-			Tween.Bounce (item.transform);
+			Tween.Bounce (item._transform);
 		}
 
 	}
@@ -143,14 +145,17 @@ public class CombatButtons : MonoBehaviour {
 	}
 
 	void OpenDefaultButtons () {
-		defaultGroup.SetActive (true);
+
+        defaultGroup.SetActive (true);
 
 		UpdateDefaultButtons ();
 	}
 
 	void UpdateSkillButtons ()
 	{
-		CrewMember member = CombatManager.Instance.currentFighter.crewMember;
+		CrewMember member = CombatManager.Instance.GetCurrentFighter.crewMember;
+
+        Tween.Bounce(openSkilkButton_transform);
 
 		int skillIndex = 0;
 
@@ -174,13 +179,13 @@ public class CombatButtons : MonoBehaviour {
 	void UpdateDefaultButtons ()
 	{
 		// check if player has enought energy
-		CrewMember member = CombatManager.Instance.currentFighter.crewMember;
+		CrewMember member = CombatManager.Instance.GetCurrentFighter.crewMember;
 
 		int a = 0;
 		foreach (var item in defaultSkillButtons) {
 			
 			item.SetSkill (member.DefaultSkills[a]);
-			Tween.Bounce (item.transform);
+			Tween.Bounce (item._transform);
 
 			++a;
 		}
@@ -192,9 +197,7 @@ public class CombatButtons : MonoBehaviour {
 
 	void ResetOpenSkillButtons ()
 	{
-		CrewMember member = CombatManager.Instance.currentFighter.crewMember;
-
-		Tween.Bounce (openSkillButton.transform);
+		CrewMember member = CombatManager.Instance.GetCurrentFighter.crewMember;
 
 		openSkillButton.interactable = false;
 		foreach (var item in member.SpecialSkills ) {

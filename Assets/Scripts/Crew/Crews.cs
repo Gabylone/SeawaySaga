@@ -40,6 +40,8 @@ public class Crews : MonoBehaviour {
 
 	public static CrewManager[] crews = new CrewManager[2];
 
+    public bool firstFight = true;
+
 	[Range(1,4)]
 	public int startMemberAmount = 1;
 	[Range(1,10)]
@@ -247,7 +249,7 @@ public class Crews : MonoBehaviour {
 
 		if (tmp == null) {
 			
-			CrewParams crewParams = GetCrewFromText (StoryFunctions.Instance.CellParams);
+			CrewParams crewParams = GetCrewFromText (StoryFunctions.Instance.cellParams);
 
 			Crew newCrew = new Crew (crewParams, row, col);
 
@@ -338,7 +340,7 @@ public class Crews : MonoBehaviour {
 
             string title = newMember.MemberName + " joins the crew !";
 
-            string content = "NOMBATEAU now counts a new crew member. Under CAPTAINE's orders, " + newMember.MemberName + " will fight, sail and explore. Keep an eye on the food cellar, though. Another weapon in combat is also another mouth to feed.";
+            string content = "NOMBATEAU now counts a new crew member. Under CAPITAINE's orders, " + newMember.MemberName + " will fight, sail and explore. Keep an eye on the food cellar, though. Another weapon in combat is also another mouth to feed.";
 
             DisplayCombatResults.Instance.Display(title, content);
             DisplayCombatResults.Instance.onConfirm += HandleOnConfirm;
@@ -369,7 +371,7 @@ public class Crews : MonoBehaviour {
 	#region health
 	private void AddHealth () {
 
-		string cellParams = StoryFunctions.Instance.CellParams;
+		string cellParams = StoryFunctions.Instance.cellParams;
 		int health = int.Parse ( cellParams );
 		Crews.getCrew (Crews.Side.Player).captain.AddHealth (health);
 
@@ -378,7 +380,7 @@ public class Crews : MonoBehaviour {
 	}
 	private void RemoveHealth () {
 
-		string cellParams = StoryFunctions.Instance.CellParams;
+		string cellParams = StoryFunctions.Instance.cellParams;
 		int health = int.Parse ( cellParams );
 		Crews.getCrew (Crews.Side.Player).captain.RemoveHealth(health);
 

@@ -89,6 +89,7 @@ public class SoundManager : MonoBehaviour
 
         Debug.LogError("coudln't find loop sound named : " + soundName);
     }
+
     public void PlayRandomSound(string soundName)
     {
         List<Sound> tmp_Sounds = sounds.FindAll(x => x.name.StartsWith(soundName));

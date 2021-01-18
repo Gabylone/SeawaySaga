@@ -6,8 +6,10 @@ public class InventorySkillButtons : MonoBehaviour {
 
 	SkillButton_Inventory[] skillButtons;
 
-	// Use this for initialization
-	void Start () {
+    public float timeBetweenButtons = 0.5f;
+
+    // Use this for initialization
+    void Start () {
 		
 		skillButtons = GetComponentsInChildren<SkillButton_Inventory> (true);
 
@@ -23,7 +25,6 @@ public class InventorySkillButtons : MonoBehaviour {
         ShowSkillButtons();
 	}
 
-	public float timeBetweenButtons = 0.5f;
 
     void ShowSkillButtons() {
 
