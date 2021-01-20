@@ -18,6 +18,7 @@ public class InGameBackGround : MonoBehaviour {
         Forest,
         Village,
         Boat,
+        Dark
     }
 
 	public GameObject group;
@@ -25,6 +26,7 @@ public class InGameBackGround : MonoBehaviour {
     private bool visible = false;
 
     public Color darkColor;
+    public Color blackColor;
 
 	public Image image;
     public Sprite[] sprites;
@@ -111,7 +113,15 @@ public class InGameBackGround : MonoBehaviour {
     {
         currentType = type;
 
-        image.sprite = sprites[(int)type];
+        if ( type == Type.Dark)
+        {
+            image.color = blackColor;
+        }
+        else
+        {
+            image.sprite = sprites[(int)type];
+            image.color = Color.white;
+        }
 
         switch (type)
         {

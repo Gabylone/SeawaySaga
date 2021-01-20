@@ -17,7 +17,12 @@ public class DisplayQuest : MonoBehaviour {
 
     public ScrollRect ScrollRect;
 
+    public RectTransform scrollView_RectTransform;
+
     public Text description_Text;
+
+    public float fullScale = 260f;
+    public float normalScale = 200f;
 
     public RectTransform content_RectTransform;
 
@@ -25,6 +30,8 @@ public class DisplayQuest : MonoBehaviour {
     public GameObject giveUpButtonObj;
 
     public GameObject infoGroup;
+
+
 
     Quest currentQuest;
 
@@ -55,6 +62,9 @@ public class DisplayQuest : MonoBehaviour {
         currentQuest = quest;
         nameText.text = quest.Story.displayName;
 
+        // remove feedback on menu
+        quest.updated = false;
+
         gold_Text.text = "" + quest.goldValue;
         experience_Text.text = "" + quest.experience;
         description_Text.text = "Given by " + quest.giver.Name + "\n";
@@ -78,6 +88,8 @@ public class DisplayQuest : MonoBehaviour {
         }
 
         giveUpButtonObj.SetActive(true);
+
+        scrollView_RectTransform.sizeDelta = new Vector2(scrollView_RectTransform.sizeDelta.x, normalScale);
 
         ScrollRect.verticalNormalizedPosition = 1f;
 
@@ -119,6 +131,12 @@ public class DisplayQuest : MonoBehaviour {
 
         DisplayFormulasInDescription();
 
+        QuestMenu.Instance.mainQuestUpdated = false;
+
+        ScrollRect.verticalNormalizedPosition = 1f;
+
+        scrollView_RectTransform.sizeDelta = new Vector2(scrollView_RectTransform.sizeDelta.x , fullScale);
+
         experience_Text.text = "";
         gold_Text.text = "";
         achievedFeedback.SetActive(false);
@@ -137,21 +155,30 @@ public class DisplayQuest : MonoBehaviour {
 
         if (foundOne == false)
         {
-                str += "No clues yet ";
+            str += "No clues yet ";
         }
         else
         {
+            
             str += "<b>Strange words I heard about the treasure : </b>\n\n";
 
             foreach (var form in FormulaManager.Instance.formulas)
             {
                 if (form.found == true)
                 {
-                    str += form.name.ToUpper() + "\n";
+                    if(form.verified)
+                    {
+                        str += "<color=green>" + form.name.ToUpper() + "</color>" + "\n";
+                    }
+                    else
+                    {
+                        str += "<color=blue>" + form.name.ToUpper() + "</color>" + "\n";
+                    }
                 }
             }
         }
 
+        bool colored = false;
         if (FormulaManager.Instance.clueIndexesFound.Count > 0)
         {
             str += "\n\n";
@@ -161,7 +188,17 @@ public class DisplayQuest : MonoBehaviour {
             {
                 string clue_str = ClueManager.Instance.GetClue(clueIndex).Replace('*', '\n');
                 clue_str = NameGeneration.CheckForKeyWords(clue_str);
-                str += clue_str + "\n\n";
+
+                if (colored)
+                {
+                    str += "<color=olive>" + clue_str + "</color>" + "\n\n";
+                }
+                else
+                {
+                    str += "<color=brown>" + clue_str + "</color>" + "\n\n";
+                }
+
+                colored = !colored;
             }
         }
 

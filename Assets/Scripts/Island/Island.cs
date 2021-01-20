@@ -79,10 +79,11 @@ public class Island : RandomPlacable {
             item.ActivateCollider();
         }
 	}
-	#endregion
+    #endregion
 
-	#region story
-	public void Enter () {
+    #region story
+    public void Enter()
+    {
 
         Boats.Instance.WithdrawBoats();
 
@@ -90,7 +91,8 @@ public class Island : RandomPlacable {
 
         IslandManager.Instance.currentIsland = this;
         StoryLauncher.Instance.PlayStory(Chunk.currentChunk.GetIslandData(id).storyManager, StoryLauncher.StorySource.island);
-	}
+
+    }
     #endregion
 
     #region render

@@ -1428,7 +1428,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 840370202}
   m_HandleRect: {fileID: 840370201}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -7412,7 +7412,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 125, y: -1.8}
+  m_AnchoredPosition: {x: 125, y: -1.7999992}
   m_SizeDelta: {x: 46.2, y: 46.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &195891974
@@ -22534,10 +22534,10 @@ RectTransform:
   m_Father: {fileID: 1565917483}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 200, y: -112.49194}
-  m_SizeDelta: {x: 350, y: 164.98389}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 200, y: 0}
+  m_SizeDelta: {x: 350, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &629624742
 MonoBehaviour:
@@ -26972,6 +26972,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buttonPrefab: {fileID: 1928227687590340, guid: 8c026a0f75a9e644295cf048de9f33fd,
     type: 3}
+  mainQuestUpdated: 0
   buttonDecal: 50
   anchor: {fileID: 1522157182}
   canvasGroup: {fileID: 697600460}
@@ -39640,8 +39641,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 27.089996}
-  m_SizeDelta: {x: 0, y: -54.17}
+  m_AnchoredPosition: {x: 0, y: 0.0025024414}
+  m_SizeDelta: {x: 0, y: 0.0049972534}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1075700444
 MonoBehaviour:
@@ -46790,10 +46791,10 @@ RectTransform:
   m_Father: {fileID: 1565917483}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 375, y: -219.98389}
-  m_SizeDelta: {x: 350, y: 50}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 50}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!95 &1295492304
 Animator:
@@ -47731,7 +47732,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   group: {fileID: 1904734192}
-  darkColor: {r: 0.4056604, g: 0.4056604, b: 0.4056604, a: 1}
+  darkColor: {r: 0.5377358, g: 0.5377358, b: 0.5377358, a: 1}
+  blackColor: {r: 0.1981132, g: 0.1981132, b: 0.1981132, a: 1}
   image: {fileID: 1431667389}
   sprites:
   - {fileID: 21300000, guid: 1bf93c9694a306e4da666f0e3edf79f0, type: 3}
@@ -47802,7 +47804,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.86522865, b: 1, a: 1}
+  m_Color: {r: 0.14640439, g: 0.8867924, b: 0.18995667, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -50400,7 +50402,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1403487479
 RectTransform:
   m_ObjectHideFlags: 0
@@ -51797,7 +51799,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1824342284}
-          m_MethodName: HideNarrator
+          m_MethodName: TryHide
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -56915,7 +56917,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: -51.8}
-  m_SizeDelta: {x: 400, y: 269.9839}
+  m_SizeDelta: {x: 400, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1565917484
 MonoBehaviour:
@@ -59520,7 +59522,6 @@ GameObject:
   - component: {fileID: 1622344853}
   - component: {fileID: 1622344852}
   - component: {fileID: 1622344854}
-  - component: {fileID: 1622344851}
   m_Layer: 5
   m_Name: Scroll View (1)
   m_TagString: Untagged
@@ -59550,34 +59551,6 @@ RectTransform:
   m_AnchoredPosition: {x: 5, y: 5}
   m_SizeDelta: {x: -10, y: -10}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &1622344851
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1622344849}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 4
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1579620728}
-          m_MethodName: OnPointerClick
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!222 &1622344852
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -66782,6 +66755,7 @@ MonoBehaviour:
   narratorObj: {fileID: 1403487478}
   narratorButtonObj: {fileID: 1295492302}
   visible: 0
+  canHide: 0
 --- !u!1 &1828384931
 GameObject:
   m_ObjectHideFlags: 0
@@ -67734,9 +67708,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 108.4, y: 6.7}
-  m_SizeDelta: {x: 207.01, y: 256.58}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 108.4, y: 132.45}
+  m_SizeDelta: {x: 207.01, y: 200}
+  m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1867597883
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67790,7 +67764,10 @@ MonoBehaviour:
   gold_Text: {fileID: 213210553}
   experience_Text: {fileID: 964021297}
   ScrollRect: {fileID: 1075700444}
+  scrollView_RectTransform: {fileID: 1867597882}
   description_Text: {fileID: 1207746254}
+  fullScale: 260
+  normalScale: 200
   content_RectTransform: {fileID: 0}
   achievedFeedback: {fileID: 1014263802}
   giveUpButtonObj: {fileID: 433284221}
@@ -74083,9 +74060,39 @@ PrefabInstance:
       propertyPath: m_Text
       value: The Treasure
       objectReference: {fileID: 0}
+    - target: {fileID: 114045817860752972, guid: 8c026a0f75a9e644295cf048de9f33fd,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114045817860752972, guid: 8c026a0f75a9e644295cf048de9f33fd,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114045817860752972, guid: 8c026a0f75a9e644295cf048de9f33fd,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 114399939214837082, guid: 8c026a0f75a9e644295cf048de9f33fd,
         type: 3}
       propertyPath: mainQuest
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114626188541981760, guid: 8c026a0f75a9e644295cf048de9f33fd,
+        type: 3}
+      propertyPath: m_Colors.m_NormalColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114626188541981760, guid: 8c026a0f75a9e644295cf048de9f33fd,
+        type: 3}
+      propertyPath: m_Colors.m_NormalColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114626188541981760, guid: 8c026a0f75a9e644295cf048de9f33fd,
+        type: 3}
+      propertyPath: m_Colors.m_NormalColor.b
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114691238707507636, guid: 8c026a0f75a9e644295cf048de9f33fd,
@@ -74103,6 +74110,12 @@ PrefabInstance:
       propertyPath: m_Color.b
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114691238707507636, guid: 8c026a0f75a9e644295cf048de9f33fd,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 2b1c2369fd5538a48ac5cba5cd6abb39,
+        type: 3}
     - target: {fileID: 224600827451905222, guid: 8c026a0f75a9e644295cf048de9f33fd,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -75106,7 +75119,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1828384932}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.2520366
+  m_Size: 0.2514439
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -76570,7 +76583,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: -7.600006}
+  m_AnchoredPosition: {x: 0, y: -60.9}
   m_SizeDelta: {x: 0.0000031255186, y: 20}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &2083924702
@@ -78074,6 +78087,7 @@ MonoBehaviour:
   speed_Zoomed: 1
   speed_Init: 1
   targetDistance: 15
+  followPlayer: 1
 --- !u!124 &2109862958
 Behaviour:
   m_ObjectHideFlags: 0

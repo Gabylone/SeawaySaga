@@ -17,6 +17,8 @@ public class CamBehavior : MonoBehaviour
     public float speed_Zoomed = 1f;
     public float speed_Init = 1f;
 
+    Vector3 targetPos;
+
     private Transform _transform;
 
     bool zoomed = false;
@@ -25,6 +27,8 @@ public class CamBehavior : MonoBehaviour
     private Vector3 initRot;
 
     public float targetDistance = 2f;
+
+    public bool followPlayer = true;
 
     private void Awake()
     {
@@ -59,11 +63,21 @@ public class CamBehavior : MonoBehaviour
         else
         {
             Vector3 p =  PlayerBoat.Instance.transform.position + (Flag.Instance.transform.position - PlayerBoat.Instance.transform.position).normalized * targetDistance;
-            Vector3 targetPos = p + decal_Init;
 
-            if (!PlayerBoat.Instance.moving)
+            if (followPlayer)
             {
-                targetPos = PlayerBoat.Instance.transform.position + decal_Init;
+                if (!PlayerBoat.Instance.moving)
+                {
+                    targetPos = PlayerBoat.Instance.transform.position + decal_Init;
+                }
+                else
+                {
+                    targetPos = p + decal_Init;
+                }
+            }
+            else
+            {
+                
             }
 
             _transform.position = Vector3.Lerp(_transform.position, targetPos, speed_Init * Time.deltaTime);

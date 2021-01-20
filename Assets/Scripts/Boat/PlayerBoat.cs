@@ -29,8 +29,6 @@ public class PlayerBoat : Boat {
     void StartDelay()
     {
         minimapBoat = DisplayMinimap.Instance.CreateMinimapBoat(DisplayMinimap.Instance.playerBoatIconPrefab, GetTransform, GetBoatInfo());
-
-        DisplayMinimap.Instance.CenterOnBoat_Quick();
     }
 
     public override void Update()
@@ -85,6 +83,8 @@ public class PlayerBoat : Boat {
         if (agent.isOnNavMesh)
         {
             agent.isStopped = true;
+            agent.Stop();
+            agent.velocity = Vector3.zero;
         }
 
         moving = false;

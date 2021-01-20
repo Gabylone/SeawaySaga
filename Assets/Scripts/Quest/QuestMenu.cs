@@ -13,6 +13,8 @@ public class QuestMenu : MonoBehaviour {
 
     private List<QuestButton> questButtons = new List<QuestButton>();
 
+    public bool mainQuestUpdated = false;
+
 	[SerializeField]
 	private float buttonDecal = 0f;
 
@@ -48,11 +50,10 @@ public class QuestMenu : MonoBehaviour {
 		Instance = this;
 
         onOpenQuestMenu = null;
-        
 	}
 
-	void Start () {
-		
+	void Start ()
+    {
 		QuestManager.Instance.onGiveUpQuest += HandleOnGiveUpQuest;
 //		CrewInventory.Instance.closeInventory += HandleCloseInventory;
 
@@ -159,7 +160,17 @@ public class QuestMenu : MonoBehaviour {
 
         mainQuestButton.Deselect();
 
-		foreach (var item in questButtons) {
+        if ( mainQuestUpdated)
+        {
+            mainQuestButton.update_feedback_obj.SetActive(true);
+        }
+        else
+        {
+            mainQuestButton.update_feedback_obj.SetActive(false);
+
+        }
+
+        foreach (var item in questButtons) {
 			item.gameObject.SetActive (false);
             item.Deselect();
 		}
@@ -170,7 +181,7 @@ public class QuestMenu : MonoBehaviour {
 			if (questIndex < QuestManager.Instance.currentQuests.Count) {
 
                 questButtons[questIndex].gameObject.SetActive (true);
-                questButtons[questIndex].GetComponent<QuestButton> ().SetQuest (questIndex);
+                questButtons[questIndex].SetQuest (questIndex);
 			}
 		}
 	}

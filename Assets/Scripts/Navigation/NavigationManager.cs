@@ -145,7 +145,7 @@ public class NavigationManager : MonoBehaviour {
 
                 }
 
-                Narrator.Instance.ShowNarrator(str);
+                Narrator.Instance.ShowNarratorNoneStoryInput(str);
             }
 
             chunksTravelled++;

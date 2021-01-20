@@ -174,6 +174,7 @@ public class Crews : MonoBehaviour {
         Crew storyCrew = Crews.Instance.GetCrewFromCurrentCell();
 
         Crews.enemyCrew.SetCrew(storyCrew);
+        Crews.enemyCrew.UpdateCrew(Crews.PlacingType.World);
 
         StoryReader.Instance.NextCell();
 
@@ -213,12 +214,13 @@ public class Crews : MonoBehaviour {
 
                 Quest linkedQuest = QuestManager.Instance.currentQuests.Find (x => x.giver.SameAs(Crews.enemyCrew.captain.MemberID));
 				if (linkedQuest != null) {
+                    Debug.Log("returning to GIVER");
 					linkedQuest.ReturnToGiver ();
+                    return;
 				}
 
 			}
 
-            Crews.enemyCrew.UpdateCrew(Crews.PlacingType.World);
 
             StoryReader.Instance.UpdateStory();
         }

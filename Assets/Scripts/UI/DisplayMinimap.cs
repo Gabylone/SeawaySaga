@@ -8,6 +8,7 @@ public class DisplayMinimap : MonoBehaviour {
 
 	public static DisplayMinimap Instance;
 
+
     private RectTransform rectTransform;
 
     // minimap chunks
@@ -116,8 +117,6 @@ public class DisplayMinimap : MonoBehaviour {
 
 		HideFullMapGroup ();
     }
-
-    
 
     private void Update()
     {
@@ -357,6 +356,10 @@ public class DisplayMinimap : MonoBehaviour {
 			}
 		}
 
+        QuestManager.Instance.ShowQuestsOnMap();
+
+        CenterOnBoat_Quick();
+
 	}
 
     #region center
@@ -420,6 +423,13 @@ public class DisplayMinimap : MonoBehaviour {
                     case ChunkState.UndiscoveredSea:
                         chunk.state = ChunkState.DiscoveredSea;
                         MapGenerator.Instance.discoveredCoords.coords.Add(c);
+
+                        foreach (var item in chunk.islandDatas)
+                        {
+                            MinimapChunk minimapChunk = GetMinimapChunk(item);
+                            minimapChunk.SetDiscovered();
+                        }
+
                         break;
                     case ChunkState.UndiscoveredIsland:
 
@@ -434,6 +444,12 @@ public class DisplayMinimap : MonoBehaviour {
 
                         break;
                     case ChunkState.DiscoveredIsland:
+
+                        foreach (var item in chunk.islandDatas)
+                        {
+                            MinimapChunk minimapChunk = GetMinimapChunk(item);
+                            minimapChunk.SetDiscovered();
+                        }
                         break;
                     case ChunkState.VisitedIsland:
                         break;
@@ -441,8 +457,11 @@ public class DisplayMinimap : MonoBehaviour {
                         break;
 
 
+
 				}
-			}
+
+                
+            }
 
 		}
 
@@ -484,6 +503,8 @@ public class DisplayMinimap : MonoBehaviour {
             minimapChunk.rectTransform.anchoredPosition = pos;
 
             minimapChunk.InitChunk(coords, islandID);
+
+            minimapChunk.HideQuestFeedback();
 
             minimapChunks.Add(minimapChunk);
 

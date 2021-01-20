@@ -12,7 +12,7 @@
         <Name>The Captain</Name>
         <health>100</health>
         <maxHealth>100</maxHealth>
-        <currentHunger>3</currentHunger>
+        <currentHunger>0</currentHunger>
         <Lvl>1</Lvl>
         <xp>0</xp>
         <skillPoints>0</skillPoints>
@@ -27,49 +27,49 @@
         </stats>
         <daysOnBoard>0</daysOnBoard>
         <equipedWeapon>
-          <ID>43</ID>
-          <englishName>Solid stick</englishName>
-          <frenchName>Bâton solide</frenchName>
-          <value>11</value>
-          <price>24</price>
+          <ID>46</ID>
+          <englishName>Rusty blunderbuss</englishName>
+          <frenchName>Poivrière rouillée</frenchName>
+          <value>6</value>
+          <price>9</price>
           <weight>8</weight>
           <level>1</level>
-          <spriteID>1</spriteID>
-          <description>It's just your basic solid stick</description>
-          <weaponType>Stick</weaponType>
+          <spriteID>6</spriteID>
+          <description>It's just your basic rusty blunderbuss</description>
+          <weaponType>Distance</weaponType>
           <category>Weapon</category>
         </equipedWeapon>
         <equipedCloth>
-          <ID>151</ID>
-          <englishName>Simple docker</englishName>
-          <frenchName>Marcel</frenchName>
-          <value>10</value>
-          <price>21</price>
+          <ID>154</ID>
+          <englishName>Traveller gear</englishName>
+          <frenchName>Tenue de voyageur</frenchName>
+          <value>11</value>
+          <price>22</price>
           <weight>8</weight>
           <level>1</level>
           <spriteID>0</spriteID>
-          <description>It's just your basic simple docker</description>
+          <description>It's just your basic traveller gear</description>
           <weaponType>Distance</weaponType>
           <category>Clothes</category>
         </equipedCloth>
         <job>Gambler</job>
         <characterIDS>
           <int>2</int>
-          <int>0</int>
-          <int>1</int>
-          <int>1</int>
+          <int>8</int>
+          <int>6</int>
+          <int>4</int>
           <int>5</int>
-          <int>3</int>
-          <int>0</int>
+          <int>8</int>
+          <int>5</int>
           <int>4</int>
           <int>1</int>
           <int>0</int>
-          <int>5</int>
-          <int>8</int>
-          <int>12</int>
-          <int>2</int>
-          <int>6</int>
+          <int>7</int>
           <int>3</int>
+          <int>6</int>
+          <int>7</int>
+          <int>8</int>
+          <int>0</int>
         </characterIDS>
       </Member>
     </MemberIDs>
@@ -79,27 +79,26 @@
     <col>0</col>
     <ids>
       <ArrayOfInt>
-        <int>15</int>
-        <int>23</int>
+        <int>22</int>
+        <int>1</int>
+        <int>7</int>
         <int>14</int>
-        <int>0</int>
-        <int>9</int>
-        <int>20</int>
-        <int>32</int>
+        <int>22</int>
+        <int>33</int>
       </ArrayOfInt>
       <ArrayOfInt />
       <ArrayOfInt />
       <ArrayOfInt />
     </ids>
-    <weight>14</weight>
+    <weight>12</weight>
     <AllItems>
       <ArrayOfItem>
         <Item>
-          <ID>15</ID>
-          <englishName>Rabbit</englishName>
-          <frenchName>Lapin</frenchName>
+          <ID>22</ID>
+          <englishName>Rumsteak</englishName>
+          <frenchName>Rumsteak</frenchName>
           <value>8</value>
-          <price>14</price>
+          <price>16</price>
           <weight>2</weight>
           <level>0</level>
           <spriteID>2</spriteID>
@@ -108,15 +107,28 @@
           <category>Provisions</category>
         </Item>
         <Item>
-          <ID>23</ID>
-          <englishName>Sausage</englishName>
-          <frenchName>Saucisson</frenchName>
-          <value>8</value>
-          <price>16</price>
+          <ID>1</ID>
+          <englishName>Sardine</englishName>
+          <frenchName>Sardine</frenchName>
+          <value>6</value>
+          <price>11</price>
           <weight>2</weight>
           <level>0</level>
-          <spriteID>2</spriteID>
-          <description>Feeds the member. Heals him, only if he’s not hungry. Meats feeds greatly</description>
+          <spriteID>1</spriteID>
+          <description>Feeds the member. Heals him, only if he’s not hungry. Fishes feed fairly.</description>
+          <weaponType>Distance</weaponType>
+          <category>Provisions</category>
+        </Item>
+        <Item>
+          <ID>7</ID>
+          <englishName>Shrimp</englishName>
+          <frenchName>Crevette</frenchName>
+          <value>6</value>
+          <price>13</price>
+          <weight>2</weight>
+          <level>0</level>
+          <spriteID>1</spriteID>
+          <description>Feeds the member. Heals him, only if he’s not hungry. Fishes feed fairly.</description>
           <weaponType>Distance</weaponType>
           <category>Provisions</category>
         </Item>
@@ -134,37 +146,11 @@
           <category>Provisions</category>
         </Item>
         <Item>
-          <ID>0</ID>
-          <englishName>Herring</englishName>
-          <frenchName>Hareng</frenchName>
-          <value>6</value>
-          <price>7</price>
-          <weight>2</weight>
-          <level>0</level>
-          <spriteID>1</spriteID>
-          <description>Feeds the member. Heals him, only if he’s not hungry. Fishes feed fairly.</description>
-          <weaponType>Distance</weaponType>
-          <category>Provisions</category>
-        </Item>
-        <Item>
-          <ID>9</ID>
-          <englishName>Hude codfish</englishName>
-          <frenchName>Cabillaud</frenchName>
-          <value>6</value>
-          <price>12</price>
-          <weight>2</weight>
-          <level>0</level>
-          <spriteID>1</spriteID>
-          <description>Feeds the member. Heals him, only if he’s not hungry. Fishes feed fairly.</description>
-          <weaponType>Distance</weaponType>
-          <category>Provisions</category>
-        </Item>
-        <Item>
-          <ID>20</ID>
-          <englishName>Big ham</englishName>
-          <frenchName>Gros jambon</frenchName>
+          <ID>22</ID>
+          <englishName>Rumsteak</englishName>
+          <frenchName>Rumsteak</frenchName>
           <value>8</value>
-          <price>14</price>
+          <price>16</price>
           <weight>2</weight>
           <level>0</level>
           <spriteID>2</spriteID>
@@ -173,11 +159,11 @@
           <category>Provisions</category>
         </Item>
         <Item>
-          <ID>32</ID>
-          <englishName>Clementine</englishName>
-          <frenchName>Clémentine</frenchName>
+          <ID>33</ID>
+          <englishName>Orange</englishName>
+          <frenchName>Orange</frenchName>
           <value>4</value>
-          <price>4</price>
+          <price>6</price>
           <weight>2</weight>
           <level>0</level>
           <spriteID>0</spriteID>
@@ -197,7 +183,7 @@
   <bounty>0</bounty>
   <formulas>
     <Formula>
-      <name>syko</name>
+      <name>hesu</name>
       <coords>
         <x>0</x>
         <y>10</y>
@@ -206,7 +192,7 @@
       <found>false</found>
     </Formula>
     <Formula>
-      <name>pusapi</name>
+      <name>cova</name>
       <coords>
         <x>1</x>
         <y>10</y>
@@ -215,7 +201,7 @@
       <found>false</found>
     </Formula>
     <Formula>
-      <name>vupehi</name>
+      <name>jicaja</name>
       <coords>
         <x>2</x>
         <y>10</y>
@@ -224,7 +210,7 @@
       <found>false</found>
     </Formula>
     <Formula>
-      <name>caxe</name>
+      <name>wylapi</name>
       <coords>
         <x>0</x>
         <y>9</y>
@@ -233,7 +219,7 @@
       <found>false</found>
     </Formula>
     <Formula>
-      <name>mefe</name>
+      <name>nagu</name>
       <coords>
         <x>1</x>
         <y>9</y>
@@ -242,7 +228,7 @@
       <found>false</found>
     </Formula>
     <Formula>
-      <name>dycivi</name>
+      <name>nihu</name>
       <coords>
         <x>2</x>
         <y>9</y>
@@ -253,16 +239,16 @@
   </formulas>
   <clueIndexesFound />
   <playerBoatInfo>
-    <Name>The Mercyless Horizon</Name>
+    <Name>The Wise Terror</Name>
     <previousCoords>
-      <x>1</x>
-      <y>10</y>
+      <x>0</x>
+      <y>0</y>
     </previousCoords>
     <coords>
-      <x>0</x>
-      <y>10</y>
+      <x>2</x>
+      <y>9</y>
     </coords>
-    <currentDirection>West</currentDirection>
+    <currentDirection>North</currentDirection>
     <shipRange>1</shipRange>
     <crewCapacity>2</crewCapacity>
     <cargoLevel>1</cargoLevel>
@@ -280,8 +266,8 @@
   <finishedQuests />
   <raining>false</raining>
   <currentRain>0</currentRain>
-  <night>true</night>
-  <timeOfDay>18</timeOfDay>
-  <treasureName>The Strong Prisoner</treasureName>
+  <night>false</night>
+  <timeOfDay>5</timeOfDay>
+  <treasureName>The Treacherous Dolphin</treasureName>
   <pins />
 </GameData>

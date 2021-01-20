@@ -168,6 +168,7 @@ public class DisplayPin : Displayable
         }
 
         displayPinInfo.inputField.ActivateInputField();
+        GetRectTransform.SetAsLastSibling();
         
     }
 

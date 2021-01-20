@@ -74,6 +74,8 @@ public class StoryLauncher : MonoBehaviour {
 
         Invoke("DisplayBackground", 1f);
 
+
+
         playingStory = true;
 
         SoundManager.Instance.UpdateAmbianceSound();
@@ -121,12 +123,15 @@ public class StoryLauncher : MonoBehaviour {
 
     void StartStory()
     {
+        HideEverything();
+
         InGameMenu.Instance.ShowMenuButtons();
 
         QuestManager.Instance.metPersonOnIsland = false;
 
         InGameBackGround.Instance.ShowBackground();
         Transitions.Instance.ScreenTransition.FadeOut(0.5f);
+
 
         playingStory = true;
 

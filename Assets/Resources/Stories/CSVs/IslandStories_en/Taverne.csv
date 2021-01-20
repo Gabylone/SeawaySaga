@@ -25,13 +25,13 @@ Node=>taverne jour;Node=>taverne nuit;;;;[taverne abandonnée];;;;;;;
 RandomRange2;;RandomRange2;;;CheckQuest=>choix taverne abandonnée;;;;;;;
 Narrator : At this time of day, the tavern is crowded. Patrons are screaming and fighting, and laughter can be heard all around.;Narrator : Despite the time of the day, nothing goes on much. The silence rules, and only a few day drinkers sip lightly at their cups.;Narrator : The inn is full. A huge fireplace lights the room. Everybody’s talking about their day on sea. The air reeks of alcohol.;Narrator : The inn is absolutly empty tonight… The keeper is half asleep on the counter, a few drinkers are blind drunk on the tables at the back.;;[choix taverne abandonnée];;;;;;;
 CheckQuest=>choix taverne;CheckQuest=>choix taverne;CheckQuest=>choix taverne;CheckQuest=>choix taverne;;RandomRange2;;;;;;;
-Node=>choix taverne;Node=>choix taverne;Node=>choix taverne;Node=>choix taverne;;Node=>auberge vide;Narrator : The sunlight doesn’t reach further into the room. It’s pitch black and CAPITAINE can’t see anything.;;;;;;
+Node=>choix taverne;Node=>choix taverne;Node=>choix taverne;Node=>choix taverne;;Node=>auberge vide;SetBG(Dark);;;;;;
+;;;;;;Narrator : The sunlight doesn’t reach further into the room. It’s pitch black and CAPITAINE can’t see anything.;;;;;;
 ;;;;;;CheckInInventory<Lanterne>/Misc;;;;;;
 ;;;;;;SetChoices2;;SetChoices2;;;;
 ;;;;;;Choice : (get the lantern out) (loot);Choice : (leave);Choice : I don’t have any lantern…;Choice : (leave);;;
 ;;;;;;PlayerSpeak : We can see much better!;Leave;PlayerSpeak : I wish I had a lantern...;Leave;;;
 ;;;;;;Node=>auberge vide;;Node=>auberge vide;;;;
-;;;;;;;;;;;;
 ;;;;;;;;;;;;
 ;;;;;;;;;;;;
 ;;;;;;;;;;;;
@@ -170,9 +170,9 @@ Choice : (set sails) (leave);Choice : (sleep at the tavern again) (sleep);;Cho
 PlayerSpeak : Nothing to do here anymore, let's bounce.;PlayerSpeak : I reckon we need another good night of sleep;;RandomRange2;;SetChoices2;;;SetChoices3;;;;
 Leave;Node=>sleep – vide;;Node=>garde manger ouvert;Node=>garde manger fermé;Choice : (go back);Choice : (loot);;Choice : (go back to the main room)(leave);Choice : (smash the door)(str);;Choice : (use a key);
 ;;;;;Node=>auberge vide;RandomPercent40;;Node=>auberge vide;CheckStatSTR;;CheckInInventory<Clé>/Misc;
-;;;;;;PlayerSpeak : There’s nothing in it.;PlayerSpeak : Yummy!;;PlayerSpeak : The door broke open!;PlayerSpeak : The door won’t budge…;PlayerSpeak : The door is wide open.;PlayerSpeak : I don’t have any key…
-;;;;;;Node=>auberge vide;LootFood3;;LootFood3;Node=>auberge vide;LootFood3;Node=>auberge vide
-;;;;;;;[removed];;Switch=>garde manger fermé;;Switch=>garde manger fermé;
-;;;;;;;RemoveKarma;Node=>auberge vide;Node=>auberge vide;;Node=>auberge vide;
-;;;;;;;Switch=>removed;;;;;
+;;;;;;PlayerSpeak : There’s nothing in it.;PlayerSpeak : Yummy!;;PlayerSpeak : The door broke open!;PlayerSpeak : The door won’t budge…;RemoveFromInventory<Clé>/Misc;PlayerSpeak : I don’t have any key…
+;;;;;;Node=>auberge vide;LootFood3;;LootFood3;Node=>auberge vide;PlayerSpeak : The door is wide open.;Node=>auberge vide
+;;;;;;;[removed];;Switch=>garde manger fermé;;LootFood3;
+;;;;;;;RemoveKarma;Node=>auberge vide;Node=>auberge vide;;Switch=>garde manger fermé;
+;;;;;;;Switch=>removed;;;;Node=>auberge vide;
 ;;;;;;;Node=>auberge vide;;;;;

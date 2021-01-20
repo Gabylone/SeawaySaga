@@ -12,6 +12,8 @@ public class Narrator : MonoBehaviour {
 	[SerializeField] private GameObject narratorObj;
 	[SerializeField] private GameObject narratorButtonObj;
 
+    private bool previousActive = false;
+
     public delegate void OnCloseNarrator();
     public OnCloseNarrator onCloseNarrator;
 
@@ -56,7 +58,6 @@ public class Narrator : MonoBehaviour {
         StoryReader.Instance.ContinueStory();
     }
 
-    bool previousActive = false;
 	void HandleOpenInventory ()
 	{
 		if (narratorObj.activeSelf) {
@@ -82,6 +83,11 @@ public class Narrator : MonoBehaviour {
     {
         ShowNarrator(text);
         StoryInput.Instance.WaitForInput();
+    }
+    public void ShowNarratorNoneStoryInput (string text)
+    {
+        canHide = true;
+        ShowNarrator(text);
     }
     public void ShowNarrator (string text) {
 
@@ -125,5 +131,15 @@ public class Narrator : MonoBehaviour {
 
         visible = false;
 	}
-	#endregion
+    #endregion
+
+    public bool canHide = false;
+    public void TryHide()
+    {
+        if (canHide)
+        {
+            HideNarrator();
+            canHide = false;
+        }
+    }
 }

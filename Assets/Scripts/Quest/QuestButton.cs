@@ -39,8 +39,6 @@ public class QuestButton : MonoBehaviour {
     private void Start()
     {
         rectTransform = GetComponent<RectTransform>();
-
-        update_feedback_obj.SetActive(false);
     }
 
     public void Select () {
@@ -66,7 +64,11 @@ public class QuestButton : MonoBehaviour {
             DisplayQuest.Instance.Display(QuestManager.Instance.currentQuests[id]);
         }
 
+
+
         currentlySelectedButton = this;
+
+        update_feedback_obj.SetActive(false);
     }
 
     public void Deselect()
@@ -81,6 +83,15 @@ public class QuestButton : MonoBehaviour {
 		Quest quest = QuestManager.Instance.currentQuests [id];
 
         nameText.text = quest.Story.displayName;
+
+        if ( quest.updated)
+        {
+            update_feedback_obj.SetActive(true);
+        }
+        else
+        {
+            update_feedback_obj.SetActive(false);
+        }
 
     }
 }

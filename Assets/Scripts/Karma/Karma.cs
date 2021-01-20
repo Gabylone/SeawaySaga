@@ -134,6 +134,8 @@ public class Karma : MonoBehaviour {
         SoundManager.Instance.PlaySound("Magic Chimes 05");
         SoundManager.Instance.PlaySound("Lose Karma");
 
+        KarmaFeedback.Instance.Print("+"+i, Color.green);
+
         if (onChangeKarma != null)
 			onChangeKarma (previousKarma, currentKarma);
 		//
@@ -147,7 +149,9 @@ public class Karma : MonoBehaviour {
 
         bounty += (bountyStep*i);
 
-		if (onChangeKarma != null)
+        KarmaFeedback.Instance.Print("-" + i, Color.red);
+
+        if (onChangeKarma != null)
 			onChangeKarma (previousKarma, currentKarma);
 
 	}

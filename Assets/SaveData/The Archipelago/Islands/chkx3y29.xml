@@ -1583,6 +1583,36 @@
                 <col>53</col>
                 <decal>1</decal>
               </contentDecal>
+              <contentDecal>
+                <row>1</row>
+                <col>4</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>1</row>
+                <col>37</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>1</row>
+                <col>53</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>3</row>
+                <col>53</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>8</row>
+                <col>53</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>0</row>
+                <col>53</col>
+                <decal>1</decal>
+              </contentDecal>
             </contentDecals>
             <loots>
               <Loot>
@@ -1864,11 +1894,7 @@
                 <row>1</row>
                 <col>55</col>
                 <ids>
-                  <ArrayOfInt>
-                    <int>8</int>
-                    <int>26</int>
-                    <int>19</int>
-                  </ArrayOfInt>
+                  <ArrayOfInt />
                   <ArrayOfInt>
                     <int>58</int>
                     <int>49</int>
@@ -1881,49 +1907,9 @@
                     <int>221</int>
                   </ArrayOfInt>
                 </ids>
-                <weight>41</weight>
+                <weight>35</weight>
                 <AllItems>
-                  <ArrayOfItem>
-                    <Item>
-                      <ID>8</ID>
-                      <englishName>Salmon</englishName>
-                      <frenchName>Saumon</frenchName>
-                      <value>6</value>
-                      <price>10</price>
-                      <weight>2</weight>
-                      <level>0</level>
-                      <spriteID>1</spriteID>
-                      <description>Feeds the member. Heals him, only if he’s not hungry. Fishes feed fairly.</description>
-                      <weaponType>Distance</weaponType>
-                      <category>Provisions</category>
-                    </Item>
-                    <Item>
-                      <ID>26</ID>
-                      <englishName>Chestnut</englishName>
-                      <frenchName>Châtaigne</frenchName>
-                      <value>4</value>
-                      <price>7</price>
-                      <weight>2</weight>
-                      <level>0</level>
-                      <spriteID>0</spriteID>
-                      <description>Feeds the member. Heals him, only if he’s not hungry. Vegetables and fruits heal poorly</description>
-                      <weaponType>Distance</weaponType>
-                      <category>Provisions</category>
-                    </Item>
-                    <Item>
-                      <ID>19</ID>
-                      <englishName>Pig</englishName>
-                      <frenchName>Cochon</frenchName>
-                      <value>8</value>
-                      <price>13</price>
-                      <weight>2</weight>
-                      <level>0</level>
-                      <spriteID>2</spriteID>
-                      <description>Feeds the member. Heals him, only if he’s not hungry. Meats feeds greatly</description>
-                      <weaponType>Distance</weaponType>
-                      <category>Provisions</category>
-                    </Item>
-                  </ArrayOfItem>
+                  <ArrayOfItem />
                   <ArrayOfItem>
                     <Item>
                       <ID>58</ID>

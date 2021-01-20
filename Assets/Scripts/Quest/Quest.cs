@@ -21,6 +21,8 @@ public class Quest {
 
 	public int level = 0;
 
+    public bool updated = false;
+
 	public int layer = 0;
 	public int row = 0;
 	public int col = 0;
@@ -71,19 +73,19 @@ public class Quest {
 
 	public void Init ()
 	{
-		goldValue = level * 20 + Random.Range(1,9);
-
 		level = Random.Range(Crews.playerCrew.captain.Level -1, Crews.playerCrew.captain.Level+4);
 		level = Mathf.Clamp (level, 1, 10);
 
-		experience = 15;
+        goldValue = level * 20 + Random.Range(1, 9);
+
+
+        experience = 30;
         
         SetOriginIsland(IslandManager.Instance.GetCurrentIslandData());
 
 		giver = Crews.enemyCrew.captain.MemberID;
 
 		SetRandomCoords ();
-
 	}
 
 	public void ReturnToGiver() {

@@ -29,7 +29,6 @@ public class MinimapChunk : MonoBehaviour
     private void Start()
     {
         Deselect();
-        HideQuestFeedback();
     }
 
     public void InitChunk (Coords worldCoords,int islandID)
@@ -83,6 +82,8 @@ public class MinimapChunk : MonoBehaviour
 
 	public void SetDiscovered ()
     {
+        Chunk chunk = Chunk.GetChunk(coords);
+        chunk.state = ChunkState.DiscoveredIsland;
         gameObject.SetActive(true);
         image.color = new Color( 0.5f,0.5f,0.5f );
 	}
@@ -130,6 +131,8 @@ public class MinimapChunk : MonoBehaviour
                 int a = 0;
                 foreach (var item in islandData.storyManager.storyHandlers)
                 {
+                    if (item.storyType == StoryType.Quest)
+                        continue;
 
                     if ( a > 0)
                     {

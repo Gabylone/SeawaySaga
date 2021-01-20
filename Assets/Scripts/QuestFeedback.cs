@@ -57,11 +57,8 @@ public class QuestFeedback : MonoBehaviour {
     {
         Display("Quest " + quest.Story.displayName + " abandoned !");
 
-
         SoundManager.Instance.PlaySound("Tribal 03");
         SoundManager.Instance.PlaySound("ui_deny");
-
-
     }
 
     void HandleOnFinishQuest (Quest quest)
@@ -72,7 +69,6 @@ public class QuestFeedback : MonoBehaviour {
         SoundManager.Instance.PlayRandomSound("Magic Chimes");
         SoundManager.Instance.PlaySound("Boost 02");
         SoundManager.Instance.PlaySound("Tribal 01");
-
     }
 
     void HandleOnDiscoverFormula (Formula Formula)
@@ -83,6 +79,7 @@ public class QuestFeedback : MonoBehaviour {
         SoundManager.Instance.PlayRandomSound("Magic Chimes");
         SoundManager.Instance.PlayRandomSound("Magic Chimes");
 
+        QuestMenu.Instance.mainQuestUpdated = true;
     }
 
     void HandleNewQuestEvent ()
@@ -114,20 +111,30 @@ public class QuestFeedback : MonoBehaviour {
         SoundManager.Instance.PlaySound("Tribal 01");
 
         Display("New Rumor !");
+
+        QuestMenu.Instance.mainQuestUpdated = true;
     }
 
     void HandleOnMaxQuest()
     {
-        Display("Max quests amount reached");
+        Display("Max quests amount reached", false);
 
         SoundManager.Instance.PlaySound("ui_deny");
     }
 
-	void Display ( string str ) {
+    void Display(string str)
+    {
+        Display(str, true);
+    }
+
+    void Display ( string str , bool showQuestFeedback ) {
 		
 		Show ();
 
-        QuestMenu.Instance.exclamationMark_Obj.SetActive(true);
+        if (showQuestFeedback)
+        {
+            QuestMenu.Instance.exclamationMark_Obj.SetActive(true);
+        }
 
         SoundManager.Instance.PlayRandomSound("Writing");
 

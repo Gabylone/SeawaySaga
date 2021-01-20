@@ -47,7 +47,8 @@ public class InfoFeedbacks : MonoBehaviour {
         rectTransform.DOLocalMove(initPos + Vector3.right * decal, duration);
 
 		text.text = str;
-		image.color = color;
+		text.color = color;
+        image.color = color;
 
 		Invoke ("Fade",duration/2f);
 	}

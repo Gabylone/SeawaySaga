@@ -6,7 +6,10 @@ public class NameGeneration : MonoBehaviour {
 
 	public static NameGeneration Instance;
 
-	void Awake () {
+    public delegate void OnDiscoverFormula(Formula Formula);
+    public static OnDiscoverFormula onDiscoverFormula;
+
+    void Awake () {
 		Instance = this;
 
         onDiscoverFormula = null;
@@ -35,10 +38,6 @@ public class NameGeneration : MonoBehaviour {
 			return word;
 		}
 	}
-
-
-	public delegate void OnDiscoverFormula(Formula Formula);
-	public static OnDiscoverFormula onDiscoverFormula;
 
 	public static string CheckForKeyWords ( string text ) {
 

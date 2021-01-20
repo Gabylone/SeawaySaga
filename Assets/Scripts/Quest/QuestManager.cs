@@ -10,6 +10,9 @@ public class QuestManager : MonoBehaviour {
 	public List<Quest> currentQuests = new List<Quest>();
 	public List<Quest> finishedQuests = new List<Quest>();
 
+    public delegate void OnFinishQuest(Quest quest);
+    public OnFinishQuest onFinishQuest;
+
     public bool metPersonOnIsland = false;
 
 	public delegate void OnNewQuest ();
@@ -35,7 +38,16 @@ public class QuestManager : MonoBehaviour {
 		StoryFunctions.Instance.getFunction+= HandleGetFunction;
 
 		Crews.Instance.onCrewMemberKilled += HandleOnCrewMemberKilled;
+    }
 
+    public void ShowQuestsOnMap()
+    {
+        foreach (var quest in currentQuests)
+        {
+            MinimapChunk minimapChunk = quest.GetTargetChunk();
+            minimapChunk.ShowQuestFeedback();
+            minimapChunk.SetDiscovered();
+        }
     }
 
     void HandleOnCrewMemberKilled (CrewMember crewMember)
@@ -68,7 +80,7 @@ public class QuestManager : MonoBehaviour {
                 HandleClueNewQuest();
                 break;
             case FunctionType.CheckQuest:
-			ContinueQuest ();
+ 
 			break;
 		case FunctionType.SendPlayerBackToGiver:
 			SendPlayerBackToGiver ();
@@ -130,6 +142,8 @@ public class QuestManager : MonoBehaviour {
 
         quest.accomplished = true;
 
+        quest.updated = true;
+
         quest.SetTargetIsland(quest.GetOriginIslandData());
 
         //Story_ShowQuestOnMap();
@@ -186,6 +200,8 @@ public class QuestManager : MonoBehaviour {
 		if (onNewQuest != null)
 			onNewQuest ();
 
+        Quest.currentQuest.updated = true;
+
 		StoryReader.Instance.NextCell ();
 		StoryReader.Instance.UpdateStory ();
 	}
@@ -215,9 +231,14 @@ public class QuestManager : MonoBehaviour {
 
 	void ContinueQuest () {
 
-		Quest quest = currentQuests.Find (x => x.GetTargetIslandData() == IslandManager.Instance.GetCurrentIslandData());
+		Quest quest = currentQuests.Find (
+            x =>
+            x.GetTargetIslandData().coords == IslandManager.Instance.GetCurrentIslandData().coords
+            &&
+            x.GetTargetIslandData().index == IslandManager.Instance.GetCurrentIslandData().index
+            );
 
-		if ( quest != null) {
+        if ( quest != null) {
 
             // si le joueur retourne sur l'ile d'origine, dans le premier layer d'histoire, continuer quete
             if ( quest.GetTargetIslandData() != quest.GetOriginIslandData()
@@ -233,19 +254,14 @@ public class QuestManager : MonoBehaviour {
 		StoryReader.Instance.UpdateStory ();
 	}
 
-	public delegate void OnFinishQuest (Quest quest);
-	public OnFinishQuest onFinishQuest;
+	
 	void FinishQuest ()
 	{
 		Quest quest = Quest.currentQuest;
 
-		
-
         DisplayCombatResults.Instance.onConfirm += FinishQuest_HandleOnConfirm;
         DisplayCombatResults.Instance.Display("Quest Finished !", "In addition to receiving gold and experience, you just made a good action ! Your karma just got better");
         DisplayCombatResults.Instance.DisplayResults(quest.goldValue, quest.experience);
-
-        
 	}
 
     void FinishQuest_HandleOnConfirm()
@@ -272,6 +288,8 @@ public class QuestManager : MonoBehaviour {
             onFinishQuest(quest);
         }
 
+        quest.updated = true;
+
         finishedQuests.Add(quest);
         currentQuests.Remove(quest);
 
@@ -292,6 +310,8 @@ public class QuestManager : MonoBehaviour {
 		
 		currentQuests.Remove (quest);
 		finishedQuests.Add (quest);
+
+        quest.updated = true;
 
 		if (onGiveUpQuest != null) {
 			onGiveUpQuest(quest);

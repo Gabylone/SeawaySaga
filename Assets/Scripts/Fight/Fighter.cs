@@ -963,6 +963,10 @@ public class Fighter : MonoBehaviour {
         if ( statusCount[(int)status] == 0 ){
             switch (status)
             {
+                case Status.PreparingAttack:
+                    animator.SetBool("aiming", false);
+                    animator.SetBool("preparingToLeap", false);
+                    break;
                 case Status.Toasted:
                     iconVisual.RemoveHappyFace();
                     break;
