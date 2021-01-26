@@ -30,12 +30,11 @@ public class Skill_Wallop : Skill {
         SoundManager.Instance.PlayRandomSound("slash");
         SoundManager.Instance.PlayRandomSound("Blunt");
 
-		List<Fighter> fighters = CombatManager.Instance.getCurrentFighters (Crews.otherSide (fighter.crewMember.side));
-		for (int fighterIndex = 0; fighterIndex < fighters.Count; fighterIndex++) {
-			
-			fighters[fighterIndex].GetHit (fighter, fighter.crewMember.Attack , 0.5f);
-
-		}
+        List<Fighter> fighters = CombatManager.Instance.getCurrentFighters(Crews.otherSide(fighter.crewMember.side));
+        for (int i = fighters.Count - 1; i > -1; i--)
+        {
+            fighters[i].GetHit (fighter, fighter.crewMember.Attack , 0.5f);
+        }
 
 		EndSkill ();
 

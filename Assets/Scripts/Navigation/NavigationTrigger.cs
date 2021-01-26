@@ -85,6 +85,8 @@ public class NavigationTrigger : MonoBehaviour {
     {
         if (other.tag == "Player")
         {
+            CamBehavior.Instance.followPlayer = false;
+
             SoundManager.Instance.PlaySound("change chunk");
             SoundManager.Instance.PlayRandomSound("ting");
             SoundManager.Instance.PlaySound("Magic Chimes 05");

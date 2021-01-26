@@ -8,10 +8,10 @@
   <islandDatas>
     <IslandData>
       <worldPosition>
-        <x>-15.44</x>
-        <y>-17.91</y>
+        <x>-3.36</x>
+        <y>16.71</y>
       </worldPosition>
-      <worldRotation>234.798431</worldRotation>
+      <worldRotation>25.4676819</worldRotation>
       <index>0</index>
       <coords>
         <x>2</x>
@@ -29,23 +29,118 @@
             <storyType>Home</storyType>
             <contentDecals>
               <contentDecal>
-                <row>3</row>
+                <row>2</row>
                 <col>2</col>
                 <decal>1</decal>
               </contentDecal>
+              <contentDecal>
+                <row>6</row>
+                <col>2</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>0</row>
+                <col>10</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>0</row>
+                <col>2</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>3</row>
+                <col>20</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>0</row>
+                <col>2</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>3</row>
+                <col>20</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>2</row>
+                <col>2</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>6</row>
+                <col>2</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>0</row>
+                <col>10</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>2</row>
+                <col>2</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>6</row>
+                <col>2</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>0</row>
+                <col>10</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>0</row>
+                <col>2</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>3</row>
+                <col>20</col>
+                <decal>1</decal>
+              </contentDecal>
             </contentDecals>
-            <loots />
-            <crews />
+            <loots>
+              <Loot>
+                <row>0</row>
+                <col>11</col>
+                <ids>
+                  <ArrayOfInt />
+                  <ArrayOfInt />
+                  <ArrayOfInt />
+                  <ArrayOfInt />
+                </ids>
+                <weight>0</weight>
+                <AllItems>
+                  <ArrayOfItem />
+                  <ArrayOfItem />
+                  <ArrayOfItem />
+                  <ArrayOfItem />
+                </AllItems>
+              </Loot>
+            </loots>
+            <crews>
+              <Crew>
+                <hostile>true</hostile>
+                <row>0</row>
+                <col>11</col>
+                <MemberIDs />
+              </Crew>
+            </crews>
           </StoryHandler>
         </storyHandlers>
       </storyManager>
     </IslandData>
     <IslandData>
       <worldPosition>
-        <x>16.03</x>
-        <y>7.11</y>
+        <x>-1.44</x>
+        <y>-16.52</y>
       </worldPosition>
-      <worldRotation>45.86453</worldRotation>
+      <worldRotation>161.3413</worldRotation>
       <index>1</index>
       <coords>
         <x>2</x>
@@ -73,7 +168,7 @@
         <x>5.01</x>
         <y>7.65</y>
       </worldPosition>
-      <worldRotation>139.397217</worldRotation>
+      <worldRotation>332.498657</worldRotation>
       <index>2</index>
       <coords>
         <x>2</x>
@@ -98,10 +193,10 @@
     </IslandData>
     <IslandData>
       <worldPosition>
-        <x>8.83</x>
-        <y>19.8</y>
+        <x>-15.44</x>
+        <y>-17.91</y>
       </worldPosition>
-      <worldRotation>211.5434</worldRotation>
+      <worldRotation>334.846466</worldRotation>
       <index>3</index>
       <coords>
         <x>2</x>
@@ -126,10 +221,10 @@
     </IslandData>
     <IslandData>
       <worldPosition>
-        <x>8.99</x>
-        <y>-21.44</y>
+        <x>-17.67</x>
+        <y>-7.35</y>
       </worldPosition>
-      <worldRotation>94.1222153</worldRotation>
+      <worldRotation>295.204132</worldRotation>
       <index>4</index>
       <coords>
         <x>2</x>
@@ -154,10 +249,10 @@
     </IslandData>
     <IslandData>
       <worldPosition>
-        <x>-14.64</x>
-        <y>23.28</y>
+        <x>16.03</x>
+        <y>7.11</y>
       </worldPosition>
-      <worldRotation>66.6771851</worldRotation>
+      <worldRotation>287.966431</worldRotation>
       <index>5</index>
       <coords>
         <x>2</x>
@@ -182,10 +277,10 @@
     </IslandData>
     <IslandData>
       <worldPosition>
-        <x>-1.44</x>
-        <y>-16.52</y>
+        <x>8.99</x>
+        <y>-21.44</y>
       </worldPosition>
-      <worldRotation>298.556458</worldRotation>
+      <worldRotation>357.4385</worldRotation>
       <index>6</index>
       <coords>
         <x>2</x>
@@ -210,10 +305,10 @@
     </IslandData>
     <IslandData>
       <worldPosition>
-        <x>6.47</x>
-        <y>-7.24</y>
+        <x>-4.73</x>
+        <y>-5.82</y>
       </worldPosition>
-      <worldRotation>275.6676</worldRotation>
+      <worldRotation>86.658226</worldRotation>
       <index>7</index>
       <coords>
         <x>2</x>
@@ -238,10 +333,10 @@
     </IslandData>
     <IslandData>
       <worldPosition>
-        <x>-22.81</x>
-        <y>11.96</y>
+        <x>-6.81</x>
+        <y>6.54</y>
       </worldPosition>
-      <worldRotation>27.6609135</worldRotation>
+      <worldRotation>0.537729263</worldRotation>
       <index>8</index>
       <coords>
         <x>2</x>
@@ -266,10 +361,10 @@
     </IslandData>
     <IslandData>
       <worldPosition>
-        <x>-6.81</x>
-        <y>6.54</y>
+        <x>16.66</x>
+        <y>-5.83</y>
       </worldPosition>
-      <worldRotation>48.0161743</worldRotation>
+      <worldRotation>338.240234</worldRotation>
       <index>9</index>
       <coords>
         <x>2</x>

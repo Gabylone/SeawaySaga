@@ -1514,67 +1514,228 @@
                 <col>37</col>
                 <decal>1</decal>
               </contentDecal>
+              <contentDecal>
+                <row>1</row>
+                <col>4</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>1</row>
+                <col>37</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>0</row>
+                <col>4</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>1</row>
+                <col>4</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>1</row>
+                <col>37</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>1</row>
+                <col>53</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>3</row>
+                <col>53</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>8</row>
+                <col>53</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>0</row>
+                <col>53</col>
+                <decal>1</decal>
+              </contentDecal>
             </contentDecals>
             <loots>
               <Loot>
                 <row>1</row>
                 <col>55</col>
                 <ids>
+                  <ArrayOfInt />
                   <ArrayOfInt>
-                    <int>9</int>
-                    <int>20</int>
-                    <int>12</int>
+                    <int>76</int>
+                    <int>73</int>
+                    <int>56</int>
+                    <int>62</int>
+                    <int>84</int>
                   </ArrayOfInt>
-                  <ArrayOfInt />
-                  <ArrayOfInt />
-                  <ArrayOfInt />
+                  <ArrayOfInt>
+                    <int>161</int>
+                    <int>159</int>
+                    <int>161</int>
+                    <int>166</int>
+                  </ArrayOfInt>
+                  <ArrayOfInt>
+                    <int>210</int>
+                    <int>223</int>
+                  </ArrayOfInt>
                 </ids>
-                <weight>6</weight>
+                <weight>75</weight>
                 <AllItems>
+                  <ArrayOfItem />
                   <ArrayOfItem>
                     <Item>
-                      <ID>9</ID>
-                      <englishName>Hude codfish</englishName>
-                      <frenchName>Cabillaud</frenchName>
-                      <value>6</value>
-                      <price>12</price>
-                      <weight>2</weight>
-                      <level>0</level>
-                      <spriteID>1</spriteID>
-                      <description>Feeds the member. Heals him, only if he’s not hungry. Fishes feed fairly.</description>
+                      <ID>76</ID>
+                      <englishName>Old gun</englishName>
+                      <frenchName>Vieux pistolet</frenchName>
+                      <value>34</value>
+                      <price>57</price>
+                      <weight>8</weight>
+                      <level>3</level>
+                      <spriteID>6</spriteID>
+                      <description>It's just your basic old gun</description>
                       <weaponType>Distance</weaponType>
-                      <category>Provisions</category>
+                      <category>Weapon</category>
                     </Item>
                     <Item>
-                      <ID>20</ID>
-                      <englishName>Big ham</englishName>
-                      <frenchName>Gros jambon</frenchName>
-                      <value>8</value>
-                      <price>14</price>
-                      <weight>2</weight>
-                      <level>0</level>
-                      <spriteID>2</spriteID>
-                      <description>Feeds the member. Heals him, only if he’s not hungry. Meats feeds greatly</description>
+                      <ID>73</ID>
+                      <englishName>Deck pistol</englishName>
+                      <frenchName>Pistolet de bord</frenchName>
+                      <value>28</value>
+                      <price>47</price>
+                      <weight>8</weight>
+                      <level>3</level>
+                      <spriteID>7</spriteID>
+                      <description>It's just your basic deck pistol</description>
                       <weaponType>Distance</weaponType>
-                      <category>Provisions</category>
+                      <category>Weapon</category>
                     </Item>
                     <Item>
-                      <ID>12</ID>
-                      <englishName>Sturgeon</englishName>
-                      <frenchName>Esturgeon</frenchName>
-                      <value>6</value>
-                      <price>12</price>
-                      <weight>2</weight>
-                      <level>0</level>
-                      <spriteID>1</spriteID>
-                      <description>Feeds the member. Heals him, only if he’s not hungry. Fishes feed fairly.</description>
+                      <ID>56</ID>
+                      <englishName>Stone Hammer</englishName>
+                      <frenchName>Bâton en fer</frenchName>
+                      <value>18</value>
+                      <price>32</price>
+                      <weight>8</weight>
+                      <level>2</level>
+                      <spriteID>0</spriteID>
+                      <description>It's just your basic stone hammer</description>
+                      <weaponType>Stick</weaponType>
+                      <category>Weapon</category>
+                    </Item>
+                    <Item>
+                      <ID>62</ID>
+                      <englishName>Rusty gun</englishName>
+                      <frenchName>Poivrière rouillée</frenchName>
+                      <value>18</value>
+                      <price>36</price>
+                      <weight>8</weight>
+                      <level>2</level>
+                      <spriteID>6</spriteID>
+                      <description>It's just your basic rusty gun</description>
                       <weaponType>Distance</weaponType>
-                      <category>Provisions</category>
+                      <category>Weapon</category>
+                    </Item>
+                    <Item>
+                      <ID>84</ID>
+                      <englishName>Travelling canon</englishName>
+                      <frenchName>Poivrière de vagabond</frenchName>
+                      <value>37</value>
+                      <price>60</price>
+                      <weight>8</weight>
+                      <level>4</level>
+                      <spriteID>7</spriteID>
+                      <description>It's just your basic travelling canon</description>
+                      <weaponType>Distance</weaponType>
+                      <category>Weapon</category>
                     </Item>
                   </ArrayOfItem>
-                  <ArrayOfItem />
-                  <ArrayOfItem />
-                  <ArrayOfItem />
+                  <ArrayOfItem>
+                    <Item>
+                      <ID>161</ID>
+                      <englishName>Leather harness</englishName>
+                      <frenchName>Harnais de cuir</frenchName>
+                      <value>24</value>
+                      <price>39</price>
+                      <weight>8</weight>
+                      <level>2</level>
+                      <spriteID>0</spriteID>
+                      <description>It's just your basic leather harness</description>
+                      <weaponType>Distance</weaponType>
+                      <category>Clothes</category>
+                    </Item>
+                    <Item>
+                      <ID>159</ID>
+                      <englishName>Wooden armor</englishName>
+                      <frenchName>Armure de bois</frenchName>
+                      <value>21</value>
+                      <price>37</price>
+                      <weight>8</weight>
+                      <level>2</level>
+                      <spriteID>1</spriteID>
+                      <description>It's just your basic wooden armor</description>
+                      <weaponType>Distance</weaponType>
+                      <category>Clothes</category>
+                    </Item>
+                    <Item>
+                      <ID>161</ID>
+                      <englishName>Leather harness</englishName>
+                      <frenchName>Harnais de cuir</frenchName>
+                      <value>24</value>
+                      <price>39</price>
+                      <weight>8</weight>
+                      <level>2</level>
+                      <spriteID>0</spriteID>
+                      <description>It's just your basic leather harness</description>
+                      <weaponType>Distance</weaponType>
+                      <category>Clothes</category>
+                    </Item>
+                    <Item>
+                      <ID>166</ID>
+                      <englishName>Iron breastplate</englishName>
+                      <frenchName>Plastron de fer</frenchName>
+                      <value>27</value>
+                      <price>45</price>
+                      <weight>8</weight>
+                      <level>3</level>
+                      <spriteID>2</spriteID>
+                      <description>It's just your basic iron breastplate</description>
+                      <weaponType>Distance</weaponType>
+                      <category>Clothes</category>
+                    </Item>
+                  </ArrayOfItem>
+                  <ArrayOfItem>
+                    <Item>
+                      <ID>210</ID>
+                      <englishName>Fork</englishName>
+                      <frenchName>Fourchette</frenchName>
+                      <value>0</value>
+                      <price>6</price>
+                      <weight>2</weight>
+                      <level>0</level>
+                      <spriteID>8</spriteID>
+                      <description>It's just your basic fork</description>
+                      <weaponType>Distance</weaponType>
+                      <category>Misc</category>
+                    </Item>
+                    <Item>
+                      <ID>223</ID>
+                      <englishName>Spyglass</englishName>
+                      <frenchName>Longue vue</frenchName>
+                      <value>0</value>
+                      <price>3</price>
+                      <weight>1</weight>
+                      <level>0</level>
+                      <spriteID>27</spriteID>
+                      <description>It's just your basic spyglass</description>
+                      <weaponType>Distance</weaponType>
+                      <category>Misc</category>
+                    </Item>
+                  </ArrayOfItem>
                 </AllItems>
               </Loot>
               <Loot>
@@ -2039,6 +2200,26 @@
               <contentDecal>
                 <row>1</row>
                 <col>5</col>
+                <decal>1</decal>
+              </contentDecal>
+            </contentDecals>
+            <loots />
+            <crews />
+          </StoryHandler>
+          <StoryHandler>
+            <row>0</row>
+            <col>45</col>
+            <fallBackLayer>0</fallBackLayer>
+            <fallbackNode>
+              <row>0</row>
+              <col>0</col>
+            </fallbackNode>
+            <storyID>0</storyID>
+            <storyType>Quest</storyType>
+            <contentDecals>
+              <contentDecal>
+                <row>1</row>
+                <col>44</col>
                 <decal>1</decal>
               </contentDecal>
             </contentDecals>

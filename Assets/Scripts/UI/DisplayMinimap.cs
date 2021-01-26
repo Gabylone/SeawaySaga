@@ -218,13 +218,11 @@ public class DisplayMinimap : MonoBehaviour {
 
         if (originMinimapChunk != null)
         {
-            Debug.Log("hide origin feedback quest on mini map chunck");
             originMinimapChunk.HideQuestFeedback();
         }
 
         if ( targetMinimapChunk != null)
         {
-            Debug.Log("hide target feedback quest on mini map chunck");
             targetMinimapChunk.HideQuestFeedback();
         }
     }
@@ -236,13 +234,11 @@ public class DisplayMinimap : MonoBehaviour {
 
         if (originMinimapChunk != null)
         {
-            Debug.Log("hide origin feedback quest on mini map chunck");
             originMinimapChunk.HideQuestFeedback();
         }
 
         if (targetMinimapChunk != null)
         {
-            Debug.Log("hide target feedback quest on mini map chunck");
             targetMinimapChunk.HideQuestFeedback();
         }
     }

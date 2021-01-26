@@ -168,6 +168,71 @@
                 <col>46</col>
                 <decal>1</decal>
               </contentDecal>
+              <contentDecal>
+                <row>1</row>
+                <col>3</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>2</row>
+                <col>10</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>7</row>
+                <col>10</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>0</row>
+                <col>56</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>0</row>
+                <col>15</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>1</row>
+                <col>10</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>5</row>
+                <col>46</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>4</row>
+                <col>93</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>10</row>
+                <col>93</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>4</row>
+                <col>93</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>7</row>
+                <col>93</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>0</row>
+                <col>3</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>0</row>
+                <col>3</col>
+                <decal>1</decal>
+              </contentDecal>
             </contentDecals>
             <loots />
             <crews>
@@ -250,9 +315,8 @@
             <col>95</col>
             <fallBackLayer>0</fallBackLayer>
             <fallbackNode>
-              <name>choix autre</name>
-              <row>5</row>
-              <col>91</col>
+              <row>0</row>
+              <col>0</col>
             </fallbackNode>
             <storyID>0</storyID>
             <storyType>Quest</storyType>
@@ -262,9 +326,134 @@
                 <col>5</col>
                 <decal>1</decal>
               </contentDecal>
+              <contentDecal>
+                <row>1</row>
+                <col>44</col>
+                <decal>1</decal>
+              </contentDecal>
             </contentDecals>
             <loots />
             <crews />
+          </StoryHandler>
+          <StoryHandler>
+            <row>0</row>
+            <col>8</col>
+            <fallBackLayer>0</fallBackLayer>
+            <fallbackNode>
+              <name>choix porte</name>
+              <row>0</row>
+              <col>6</col>
+            </fallbackNode>
+            <storyID>0</storyID>
+            <storyType>Quest</storyType>
+            <contentDecals>
+              <contentDecal>
+                <row>0</row>
+                <col>13</col>
+                <decal>0</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>0</row>
+                <col>22</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>0</row>
+                <col>22</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>0</row>
+                <col>22</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>1</row>
+                <col>22</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>0</row>
+                <col>30</col>
+                <decal>2</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>5</row>
+                <col>33</col>
+                <decal>1</decal>
+              </contentDecal>
+            </contentDecals>
+            <loots>
+              <Loot>
+                <row>0</row>
+                <col>19</col>
+                <ids>
+                  <ArrayOfInt />
+                  <ArrayOfInt />
+                  <ArrayOfInt />
+                  <ArrayOfInt>
+                    <int>230</int>
+                    <int>210</int>
+                    <int>231</int>
+                  </ArrayOfInt>
+                </ids>
+                <weight>5</weight>
+                <AllItems>
+                  <ArrayOfItem />
+                  <ArrayOfItem />
+                  <ArrayOfItem />
+                  <ArrayOfItem>
+                    <Item>
+                      <ID>230</ID>
+                      <englishName>Spool</englishName>
+                      <frenchName>Fil</frenchName>
+                      <value>0</value>
+                      <price>3</price>
+                      <weight>1</weight>
+                      <level>0</level>
+                      <spriteID>24</spriteID>
+                      <description>It's just your basic spool</description>
+                      <weaponType>Distance</weaponType>
+                      <category>Misc</category>
+                    </Item>
+                    <Item>
+                      <ID>210</ID>
+                      <englishName>Fork</englishName>
+                      <frenchName>Fourchette</frenchName>
+                      <value>0</value>
+                      <price>6</price>
+                      <weight>2</weight>
+                      <level>0</level>
+                      <spriteID>8</spriteID>
+                      <description>It's just your basic fork</description>
+                      <weaponType>Distance</weaponType>
+                      <category>Misc</category>
+                    </Item>
+                    <Item>
+                      <ID>231</ID>
+                      <englishName>Spoon</englishName>
+                      <frenchName>Cuillère</frenchName>
+                      <value>0</value>
+                      <price>4</price>
+                      <weight>2</weight>
+                      <level>0</level>
+                      <spriteID>25</spriteID>
+                      <description>It's just your basic spoon</description>
+                      <weaponType>Distance</weaponType>
+                      <category>Misc</category>
+                    </Item>
+                  </ArrayOfItem>
+                </AllItems>
+              </Loot>
+            </loots>
+            <crews>
+              <Crew>
+                <hostile>true</hostile>
+                <row>0</row>
+                <col>19</col>
+                <MemberIDs />
+              </Crew>
+            </crews>
           </StoryHandler>
         </storyHandlers>
       </storyManager>
@@ -371,6 +560,61 @@
                 <col>53</col>
                 <decal>1</decal>
               </contentDecal>
+              <contentDecal>
+                <row>1</row>
+                <col>2</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>3</row>
+                <col>11</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>0</row>
+                <col>23</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>4</row>
+                <col>53</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>5</row>
+                <col>53</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>3</row>
+                <col>53</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>1</row>
+                <col>2</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>3</row>
+                <col>11</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>0</row>
+                <col>23</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>5</row>
+                <col>53</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>3</row>
+                <col>53</col>
+                <decal>1</decal>
+              </contentDecal>
             </contentDecals>
             <loots />
             <crews />
@@ -415,6 +659,21 @@
               <contentDecal>
                 <row>0</row>
                 <col>66</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>1</row>
+                <col>55</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>1</row>
+                <col>9</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>0</row>
+                <col>55</col>
                 <decal>1</decal>
               </contentDecal>
               <contentDecal>
@@ -491,6 +750,21 @@
                 <col>49</col>
                 <decal>1</decal>
               </contentDecal>
+              <contentDecal>
+                <row>2</row>
+                <col>49</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>0</row>
+                <col>49</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>0</row>
+                <col>49</col>
+                <decal>1</decal>
+              </contentDecal>
             </contentDecals>
             <loots>
               <Loot>
@@ -499,75 +773,15 @@
                 <ids>
                   <ArrayOfInt />
                   <ArrayOfInt />
-                  <ArrayOfInt>
-                    <int>153</int>
-                  </ArrayOfInt>
-                  <ArrayOfInt>
-                    <int>211</int>
-                    <int>228</int>
-                    <int>220</int>
-                  </ArrayOfInt>
+                  <ArrayOfInt />
+                  <ArrayOfInt />
                 </ids>
-                <weight>18</weight>
+                <weight>0</weight>
                 <AllItems>
                   <ArrayOfItem />
                   <ArrayOfItem />
-                  <ArrayOfItem>
-                    <Item>
-                      <ID>153</ID>
-                      <englishName>Farmer clothing</englishName>
-                      <frenchName>Habit de paysan</frenchName>
-                      <value>6</value>
-                      <price>14</price>
-                      <weight>8</weight>
-                      <level>1</level>
-                      <spriteID>0</spriteID>
-                      <description>It's just your basic farmer clothing</description>
-                      <weaponType>Distance</weaponType>
-                      <category>Clothes</category>
-                    </Item>
-                  </ArrayOfItem>
-                  <ArrayOfItem>
-                    <Item>
-                      <ID>211</ID>
-                      <englishName>Guitar</englishName>
-                      <frenchName>Guitare</frenchName>
-                      <value>0</value>
-                      <price>12</price>
-                      <weight>4</weight>
-                      <level>0</level>
-                      <spriteID>9</spriteID>
-                      <description>It's just your basic guitar</description>
-                      <weaponType>Distance</weaponType>
-                      <category>Misc</category>
-                    </Item>
-                    <Item>
-                      <ID>228</ID>
-                      <englishName>Shell</englishName>
-                      <frenchName>Coquillage</frenchName>
-                      <value>0</value>
-                      <price>6</price>
-                      <weight>2</weight>
-                      <level>0</level>
-                      <spriteID>22</spriteID>
-                      <description>It's just your basic shell</description>
-                      <weaponType>Distance</weaponType>
-                      <category>Misc</category>
-                    </Item>
-                    <Item>
-                      <ID>220</ID>
-                      <englishName>Novel</englishName>
-                      <frenchName>Roman</frenchName>
-                      <value>0</value>
-                      <price>10</price>
-                      <weight>4</weight>
-                      <level>0</level>
-                      <spriteID>17</spriteID>
-                      <description>It's just your basic novel</description>
-                      <weaponType>Distance</weaponType>
-                      <category>Misc</category>
-                    </Item>
-                  </ArrayOfItem>
+                  <ArrayOfItem />
+                  <ArrayOfItem />
                 </AllItems>
               </Loot>
             </loots>
@@ -1600,6 +1814,46 @@
               </contentDecal>
               <contentDecal>
                 <row>3</row>
+                <col>53</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>8</row>
+                <col>53</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>0</row>
+                <col>53</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>1</row>
+                <col>4</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>1</row>
+                <col>37</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>3</row>
+                <col>53</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>4</row>
+                <col>53</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>6</row>
+                <col>53</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>6</row>
                 <col>53</col>
                 <decal>1</decal>
               </contentDecal>

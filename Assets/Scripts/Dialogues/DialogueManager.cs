@@ -100,11 +100,11 @@ public class DialogueManager : MonoBehaviour {
 	{
 		switch (func) {
 		case FunctionType.OtherSpeak:
-                OtherSpeak(cellParameters.Remove(0, 2));
+                OtherSpeak_Story(cellParameters.Remove(0, 2));
                 break;
 
             case FunctionType.PlayerSpeak:
-                PlayerSpeak(cellParameters.Remove(0, 2));
+                PlayerSpeak_Story(cellParameters.Remove(0, 2));
                 break;
         }
 	}
@@ -125,10 +125,22 @@ public class DialogueManager : MonoBehaviour {
         Crews.enemyCrew.UpdateCrew(Crews.PlacingType.World);
 
         SetDialogueInput(text, Crews.enemyCrew.captain);
+    }
+    public void PlayerSpeak(string text)
+    {
+        Crews.playerCrew.UpdateCrew(Crews.PlacingType.World);
+        SetDialogueInput(text, Crews.playerCrew.captain);
+    }
+    public void OtherSpeak_Story(string text)
+    {
+        Crews.playerCrew.UpdateCrew(Crews.PlacingType.World);
+        Crews.enemyCrew.UpdateCrew(Crews.PlacingType.World);
+
+        SetDialogueInput(text, Crews.enemyCrew.captain);
 
         onEndDialogue += HandleOnEndDialogue;
     }
-    public void PlayerSpeak(string text)
+    public void PlayerSpeak_Story(string text)
     {
         Crews.playerCrew.UpdateCrew(Crews.PlacingType.World);
         SetDialogueInput(text, Crews.playerCrew.captain);

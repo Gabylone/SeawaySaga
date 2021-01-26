@@ -24,10 +24,10 @@ Node=>debut;PlayerSpeak : It's all that's left...;PlayerSpeak : Nothing to sal
 ;;;Node=>ferme détruite;;;;Fade;Fade;Fade;;;Choice : (go back to the beach) (leave);Choice : (go and see the farmer girl);Choice : (follow the path) (other);Choice : (go and see the chickens);;;
 [plage2];;;Node=>choix;;;;HideOther;HideOther;HideOther;;;Fade;Fade;Fade;Fade;;;
 SetBG(Island);;;;;;;Node=>debut;Node=>rencontre fermière;Node=>plage2;;;HideOther;HideOther;HideOther;HideOther;;;
-CheckQuest=>plage vide;;;;;;;;;;;;Node=>debut;Node=>rencontre fermière;Node=>plage2;Node=>poules;;;
+CheckQuest=>suite quete;;;;;;;;;;;;Node=>debut;Node=>rencontre fermière;Node=>plage2;Node=>poules;;;
+[suite quete];;;;;;;;;;;;;;;;;;
 RandomPercent50;;;;;;;;;;;;;;;;;;
-Node=>plage vide;Node=>plage pirates;;;;;;;;;;;;;;;;;
-;;;;;;;[poules];;;;;;;;;;;
+Node=>plage vide;Node=>plage pirates;;;;;;[poules];;;;;;;;;;;
 [plage vide];;;;;;;Narrator : CAPITAINE approaches the hen house.;Node=>poules cache;;;;;;;;;;
 Narrator : The beach is empty, but the sails of a pirate ship can be seen in the distance.;;;;;;;SetChoices2;;;;;[poules cache];;;;;;
 [choix plage vide];;;;;;;Choice : Let’s return to the farmer girl. (leave);Choice : Let’s try and steal one! (dex);;;;PlayerSpeak : The hens ran away to hide when I approached...;;;;;;

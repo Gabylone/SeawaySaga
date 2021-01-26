@@ -177,8 +177,6 @@ public class Fighter : MonoBehaviour {
 		// animation
 		GetTransform.position = initPos;
 
-		onSkillDelay = null;
-
 		for (int i = 0; i < statusCount.Length; i++) {
 			statusCount [i] = 0;
 		}
@@ -212,11 +210,17 @@ public class Fighter : MonoBehaviour {
 
         if ( HasStatus(Status.PreparingAttack) ) {
 
-			if (onSkillDelay != null) {
-				onSkillDelay (this);
-			}
+            if ( crewMember.job == Job.Cannoneer)
+            {
+                SkillManager.getSkill(Skill.Type.HeadShot).ContinueSkill();
+            }
+            else
+            {
+                SkillManager.getSkill(Skill.Type.Leap).ContinueSkill();
+            }
              
 			RemoveStatus (Status.PreparingAttack);
+
 			return;
 			//
 		}
@@ -232,11 +236,11 @@ public class Fighter : MonoBehaviour {
             SoundManager.Instance.PlaySound("Wake Up");
             SoundManager.  Instance.PlaySound("Tribal 01");
 
-			return;
+            return;
 			//
 		}
 
-		CheckStatus ();
+        CheckStatus();
 
         if ( killed || escaped)
         {
@@ -257,14 +261,15 @@ public class Fighter : MonoBehaviour {
 				crewMember.charges [i] -= 1;
 		}
 
-		CombatManager.Instance.StartActions ();
 
 		if (onSetTurn != null) {
 			onSetTurn (); 
 		}
 
-        SoundManager.Instance.PlaySound("New Turn");
+        CombatManager.Instance.StartActions();
 
+
+        SoundManager.Instance.PlaySound("New Turn");
     }
 
     public delegate void OnEndTurn ();
@@ -579,13 +584,17 @@ public class Fighter : MonoBehaviour {
 
 	public void GetHit (Fighter otherFighter, float attack, float mult) {
 
-		if (SucceedDodge() == true) {
-            dodged = true;
+        if (SucceedDodge()) {
+            Dodge();
+            return;
 		}
+        else
+        {
+            dodged = false;
+        }
 
-        dodged = false;
 
-		float damage = GetDamage (otherFighter, attack,mult);
+        float damage = GetDamage (otherFighter, attack,mult);
 
 		if ( CombatManager.Instance.debugKill ) {
 			damage = 200;
@@ -674,7 +683,6 @@ public class Fighter : MonoBehaviour {
 		dodgeSkill *= maxDodgeChance;
 
 		if ( dodgeChange < dodgeSkill ) {
-            Dodge();
             return true;
 		}
 
@@ -696,7 +704,8 @@ public class Fighter : MonoBehaviour {
         iconVisual.RemoveMadFace();
 
         RemoveStatus(Status.PreparingAttack);
-        onSkillDelay = null;
+        animator.SetBool("aiming", false);
+        animator.SetBool("preparingToLeap", false);
     }
 
     public void KnockOut()
@@ -721,6 +730,7 @@ public class Fighter : MonoBehaviour {
 
     void Dodge()
     {
+        dodged = true;
         animator.SetTrigger("dodge");
         combatFeedback.Display("Missed !", Color.red);
 
@@ -832,9 +842,6 @@ public class Fighter : MonoBehaviour {
 	/// </summary>
 
 	int[] statusCount = new int[11];
-
-	public delegate void OnSkillDelay (Fighter fighter);
-	public OnSkillDelay onSkillDelay;
 
 	void CheckStatus () {
 		if ( HasStatus(Status.Cussed) ) {
@@ -963,10 +970,6 @@ public class Fighter : MonoBehaviour {
         if ( statusCount[(int)status] == 0 ){
             switch (status)
             {
-                case Status.PreparingAttack:
-                    animator.SetBool("aiming", false);
-                    animator.SetBool("preparingToLeap", false);
-                    break;
                 case Status.Toasted:
                     iconVisual.RemoveHappyFace();
                     break;

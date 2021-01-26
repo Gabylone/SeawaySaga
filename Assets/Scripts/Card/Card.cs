@@ -93,16 +93,27 @@ public class Card : MonoBehaviour {
             }
             else
             {
+                Debug.Log("tainting fighter green : nirmal");
                 ShowTargetFeedback(CombatManager.Instance.selectionColor_Allies);
             }
         }
         else {
 
-			if ( playingTurn ) {
-				ShowTargetFeedback (CombatManager.Instance.selectionColor_Allies);
-			} else {
-				HideTargetFeedback ();
-			}
+            if (playingTurn)
+            {
+
+                if (linkedFighter.crewMember.side == Crews.Side.Player)
+                {
+                Debug.Log("tainting fighter green ????");
+                    ShowTargetFeedback(CombatManager.Instance.selectionColor_Allies);
+                }
+            }
+            else
+            {
+                HideTargetFeedback();
+            }
+
+            
 		}
 	}
 
@@ -166,7 +177,7 @@ public class Card : MonoBehaviour {
 
         UpdateMember();
 
-		ShowTargetFeedback (CombatManager.Instance.selectionColor_Self);
+        ShowTargetFeedback (CombatManager.Instance.selectionColor_Self);
 	}
 
     public void ShowEnergy()

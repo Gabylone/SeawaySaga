@@ -96,7 +96,7 @@ public class ClueManager : MonoBehaviour
         {
             if ( cellParams == "Player")
             {
-                DialogueManager.Instance.PlayerSpeak(str);
+                DialogueManager.Instance.PlayerSpeak_Story(str);
             }
             else
             {
@@ -121,7 +121,7 @@ public class ClueManager : MonoBehaviour
                 str += "*But you clearly already know this*And it seems you know everything about the treasure, too...*So you just go find follow the leads people gave you...";
             }
 
-            DialogueManager.Instance.OtherSpeak(str);
+            DialogueManager.Instance.OtherSpeak_Story(str);
         }
     }
 

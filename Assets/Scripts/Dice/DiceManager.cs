@@ -548,11 +548,11 @@ public class DiceManager : MonoBehaviour {
         {
             if ( decal == 0)
             {
-                DialogueManager.Instance.OtherSpeak("Success !");
+                DialogueManager.Instance.PlayerSpeak("I already nailed this !");
             }
             else
             {
-                DialogueManager.Instance.OtherSpeak("I already blew this, no need retrying !");
+                DialogueManager.Instance.PlayerSpeak("I already blew this, no need retrying !");
             }
 
             DialogueManager.Instance.onEndDialogue += HandleOnEndDialogue;
@@ -605,8 +605,9 @@ public class DiceManager : MonoBehaviour {
 
     void HandleOnEndDialogue()
     {
-        int decal = StoryReader.Instance.CurrentStoryHandler.GetDecal();
+        DialogueManager.Instance.onEndDialogue -= HandleOnEndDialogue;
 
+        int decal = StoryReader.Instance.CurrentStoryHandler.GetDecal();
         StoryReader.Instance.NextCell();
         StoryReader.Instance.SetDecal(decal);
         StoryReader.Instance.UpdateStory();

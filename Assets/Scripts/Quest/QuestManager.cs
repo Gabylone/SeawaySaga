@@ -80,7 +80,7 @@ public class QuestManager : MonoBehaviour {
                 HandleClueNewQuest();
                 break;
             case FunctionType.CheckQuest:
- 
+                ContinueQuest();
 			break;
 		case FunctionType.SendPlayerBackToGiver:
 			SendPlayerBackToGiver ();
@@ -151,6 +151,8 @@ public class QuestManager : MonoBehaviour {
 	}
     void AccomplishQuest_HandleOnConfirm()
     {
+        DisplayCombatResults.Instance.onConfirm -= AccomplishQuest_HandleOnConfirm;
+
         Story_ShowQuestOnMap();
     }
     #endregion
@@ -218,7 +220,7 @@ public class QuestManager : MonoBehaviour {
 			phrase = "I'll never thank you enough for helping me";
 		}
 
-        DialogueManager.Instance.OtherSpeak(phrase);
+        DialogueManager.Instance.OtherSpeak_Story(phrase);
 
         //Invoke("HandleCompletedQuest_Delay", DialogueManager.Instance.DisplayTime);
 	}
@@ -266,6 +268,8 @@ public class QuestManager : MonoBehaviour {
 
     void FinishQuest_HandleOnConfirm()
     {
+        DisplayCombatResults.Instance.onConfirm -= FinishQuest_HandleOnConfirm;
+
         Quest quest = Quest.currentQuest;
 
         Karma.Instance.AddKarma(1);

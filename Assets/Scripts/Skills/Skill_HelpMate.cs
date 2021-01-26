@@ -45,6 +45,11 @@ public class Skill_HelpMate : Skill {
 
 		fighter.TargetFighter.AddStatus (Fighter.Status.Protected, 2);
 
+        if (fighter.TargetFighter.HasStatus(Fighter.Status.KnockedOut))
+        {
+            fighter.TargetFighter.RemoveStatus(Fighter.Status.KnockedOut);
+        }
+
         SoundManager.Instance.PlaySound("Boost");
         SoundManager.Instance.PlaySound("Fury");
         SoundManager.Instance.PlaySound("Tribal 01");
@@ -59,6 +64,7 @@ public class Skill_HelpMate : Skill {
 
 		foreach (var item in CombatManager.Instance.getCurrentFighters(member.side) ) {
 			if (item.HasStatus(Fighter.Status.Protected) == false ) {
+
 				hasTarget = true;
 				preferedTarget = item;
 

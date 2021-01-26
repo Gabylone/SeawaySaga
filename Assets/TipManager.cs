@@ -29,6 +29,6 @@ public class TipManager : MonoBehaviour
 
     public void GiveRandomTip()
     {
-        DialogueManager.Instance.OtherSpeak(tips[Random.Range(0, tips.Length)]);
+        DialogueManager.Instance.OtherSpeak_Story(tips[Random.Range(0, tips.Length)]);
     }
 }

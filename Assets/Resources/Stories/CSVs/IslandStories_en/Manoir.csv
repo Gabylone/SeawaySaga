@@ -8,7 +8,8 @@ Leave;Node=>choix porte;;;;;;;;;
 ;;;;;;;;;;
 [choix porte];;;;;;;;;;
 SetBG(Forest);;;;;;;;;;
-CheckQuest=>choix porte;;;;;;;;;;
+CheckQuest=>suite quete;;;;;;;;;;
+[suite quete];;;;;;;;;;
 SetChoices3;;;;;;;[toquer];;;
 Choice : (leave);Choice : (open mansion door);Choice : (knock on the door);;;;;RandomRange3;;;
 Leave;Fade;Node=>toquer;;;;;Narrator : …;;Narrator : You knock at the door, and a old, chalky, dusty voice starts sounding, behind the wooden door :;Narrator : Nobody answers

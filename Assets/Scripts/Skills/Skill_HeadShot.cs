@@ -4,13 +4,11 @@ using UnityEngine;
 
 public class Skill_HeadShot : Skill {
 
-	private Fighter delayFighter;
+    public int healthToAttack = 30;
 
-    bool secondPart = false;
+    private bool secondPart = false;
 
-	public int healthToAttack = 30;
-
-	public override void InvokeSkill ()
+    public override void InvokeSkill ()
 	{
 		if (secondPart) {  
 			fighter.crewMember.energy += energyCost;
@@ -19,22 +17,28 @@ public class Skill_HeadShot : Skill {
 		base.InvokeSkill ();
 	}
 
-	public override void Trigger (Fighter fighter)
+    public override void OnSetTarget()
+    {
+        base.OnSetTarget();
+
+        SoundManager.Instance.PlayRandomSound("Swipe");
+    }
+
+    public override void Trigger (Fighter fighter)
 	{
 		base.Trigger (fighter);
 
-		if (!secondPart)
+        if (!secondPart)
         {
             SoundManager.Instance.PlayRandomSound("voice_mad");
             SoundManager.Instance.PlayRandomSound("Tribal");
 
             string str = "Don't you move, I'm gonna shoot you right between the eyes";
 
-			fighter.Speak (str);
+            fighter.Speak(str);
 
             // delayed stuff
             fighter.AddStatus(Fighter.Status.PreparingAttack);
-            fighter.onSkillDelay += HandleOnSkillDelay;
 
             EndSkill();
         }
@@ -62,6 +66,8 @@ public class Skill_HeadShot : Skill {
         if (secondPart)
         {
             fighter.animator.SetTrigger("headShot");
+
+            SoundManager.Instance.PlayRandomSound("Swipe");
         }
         else
         {
@@ -80,36 +86,35 @@ public class Skill_HeadShot : Skill {
 
             SoundManager.Instance.PlayRandomSound("shoot");
 
+            secondPart = false;
+            hasTarget = false;
+            goToTarget = false;
+
             fighter.iconVisual.RemoveAimingEyes();
 
 			fighter.TargetFighter.GetHit (fighter, fighter.crewMember.Attack , 2.2f);
 
-			fighter.SetTurn ();
-
-			EndSkill ();
-
-            // reset
-            secondPart = false;
-            hasTarget = false;
-            goToTarget = false;
-            //
+            fighter.SetTurn();
 
         }
 
-	}
+    }
 
-	void HandleOnSkillDelay (Fighter _delayFighter)
-	{
-		this.delayFighter = _delayFighter;
+    void HandleOnApplyEffectDelay()
+    {
+    }
 
-		delayFighter.combatFeedback.Display (Fighter.Status.PreparingAttack, Color.white);
+    public override void ContinueSkill()
+    {
+        base.ContinueSkill();
 
-		secondPart = true;
+        CombatManager.Instance.GetCurrentFighter.combatFeedback.Display (Fighter.Status.PreparingAttack, Color.white);
+
+        secondPart = true;
 		hasTarget = true;
 
-		Trigger (delayFighter);
+        Trigger(CombatManager.Instance.GetCurrentFighter);
 	}
-
 
     public override bool MeetsRestrictions (CrewMember member)
 	{

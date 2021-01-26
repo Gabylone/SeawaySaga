@@ -5,7 +5,7 @@ Default;Attack;Attack;5;0;2;With a melee weapon, according to the crew member’
 ;Defend;Defend;1;0;0;The fighter defend themselves. The next attack only does half the damage.
 ;Flee;Flee;3;0;2;Roll some dice. Succeed : Runaway, Fail : Nothing happens, Critical : Knock Out
 ;Skip Turn;Skip Turn;0;0;0;Ends the member’s turn
-Brute;Cosh;Cosh;7;3;2;With a Melee Weapon, the Brute knocks the target for 1 turn
+Brute;Cosh;Cosh;7;3;2;With a Melee Weapon, the Brute knocks the target for 1 turn. Removed by "Help mate" skill.
 ;Wallop;Wallop;7;3;3;With a Melee Weapon, the Brute does half its damage to each enemy member
 ;Leap;Leap;6;3;2;The Brute waits for 1 turn, inflicting 3 times his normal damage
 ;Fury;Fury;10;5;3;During 2 turns, The Brute gains full energy
@@ -13,7 +13,7 @@ Chirurgien;Bistoury Blow;Bistoury Blow;7;3;3;The Doctor heals 30 damage to the t
 ;Jag;Jag;4;3;2;The target gets 10 health points at the beginning of every turn, for 3 turns
 ;Rat Poison;Rat Poison;3;4;2;The target loses 10 health points, for 3 turns
 ;Rhum Round;Rhum Round;9;4;4;The Doctor heals 25 damage to each member of its crew
-Cuistot;Helpmate;Helpmate;3;3;2;The target is protected. Its damage is halved for 2 turns
+Cuistot;Helpmate;Helpmate;3;3;2;The target is protected. Its damage is halved for 2 turns. Removes Knocked out
 ;Edgy Goading;Edgy Goading;3;3;2;The next 3 attacks are directed to the Cooks target
 ;Toast Up;Toast Up;3;3;2;The target's damage are doubled for 3 turns
 ;Pledge of feast;Pledge of feast;10;3;2;The Cook fills the crew’s energy points

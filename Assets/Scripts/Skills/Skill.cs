@@ -182,7 +182,6 @@ public class Skill : MonoBehaviour {
 	}
     #endregion
 
-
     #region come back
     void InvokeMoveBack()  {
 
@@ -219,6 +218,11 @@ public class Skill : MonoBehaviour {
         fighter.TargetFighter.iconVisual.bearTrap_Transform.gameObject.SetActive(false);
     }
     #endregion
+
+    public virtual void ContinueSkill()
+    {
+
+    }
 
     /// <summary>
     /// end skill

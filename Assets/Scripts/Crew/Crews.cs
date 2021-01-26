@@ -62,7 +62,7 @@ public class Crews : MonoBehaviour {
 
 		StoryFunctions.Instance.getFunction += HandleGetFunction;
 
-		InGameMenu.Instance.onCloseMenu+= HandleCloseInventory;
+		InGameMenu.Instance.onCloseMenu += HandleCloseInventory;
 
 		Canvas.ForceUpdateCanvases ();
 
@@ -192,7 +192,7 @@ public class Crews : MonoBehaviour {
                 if (!loot.IsEmpty())
                 {
                     LootUI.Instance.preventAdvanceStory = true;
-                    DialogueManager.Instance.PlayerSpeak("We fought here !*Looks like we forgot to pick some of their stuff...*After the fight...");
+                    DialogueManager.Instance.PlayerSpeak_Story("We fought here !*Looks like we forgot to pick some of their stuff...*After the fight...");
                     DialogueManager.Instance.onEndDialogue += HandleOnEndDialogue;
                     return;
                 }
@@ -214,7 +214,6 @@ public class Crews : MonoBehaviour {
 
                 Quest linkedQuest = QuestManager.Instance.currentQuests.Find (x => x.giver.SameAs(Crews.enemyCrew.captain.MemberID));
 				if (linkedQuest != null) {
-                    Debug.Log("returning to GIVER");
 					linkedQuest.ReturnToGiver ();
                     return;
 				}
@@ -328,7 +327,7 @@ public class Crews : MonoBehaviour {
 		if (Crews.playerCrew.CrewMembers.Count >= Crews.playerCrew.CurrentMemberCapacity) {
 
 			string phrase = "The boat is too small, I can't even put a foot in it";
-            DialogueManager.Instance.OtherSpeak(phrase);
+            DialogueManager.Instance.OtherSpeak_Story(phrase);
 
 		} else {
 
@@ -357,6 +356,8 @@ public class Crews : MonoBehaviour {
 
     void HandleOnConfirm()
     {
+        DisplayCombatResults.Instance.onConfirm -= HandleOnConfirm;
+
         StoryReader.Instance.ContinueStory();
     }
 

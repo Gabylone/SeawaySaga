@@ -58,7 +58,7 @@ public class DisplayCombatResults : Displayable
         if (onConfirm != null)
         {
             onConfirm();
-            onConfirm = null;
+            //onConfirm = null;
         }
     }
 }

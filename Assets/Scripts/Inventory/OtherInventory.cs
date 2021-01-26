@@ -157,7 +157,7 @@ public class OtherInventory : MonoBehaviour {
 		Loot loot = LootManager.Instance.GetIslandLoot (GetCellMult(2), false);
 
 		if ( loot.IsEmpty () ) {
-			DialogueManager.Instance.OtherSpeak ("Looks like you already bought everything from me !");
+			DialogueManager.Instance.OtherSpeak_Story ("Looks like you already bought everything from me !");
 			return;
         }
 
@@ -181,7 +181,7 @@ public class OtherInventory : MonoBehaviour {
 
 		if ( loot.IsEmpty () ) {
 
-			DialogueManager.Instance.PlayerSpeak ("There was something but now nothing's left !");
+			DialogueManager.Instance.PlayerSpeak_Story ("There was something but now nothing's left !");
 			return;
         }
 

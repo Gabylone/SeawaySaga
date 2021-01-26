@@ -4,14 +4,14 @@
     <OtherBoatInfo>
       <Name>bateau</Name>
       <previousCoords>
-        <x>9</x>
-        <y>32</y>
+        <x>35</x>
+        <y>5</y>
       </previousCoords>
       <coords>
-        <x>8</x>
-        <y>33</y>
+        <x>36</x>
+        <y>4</y>
       </coords>
-      <currentDirection>NorthWest</currentDirection>
+      <currentDirection>SouthEast</currentDirection>
       <id>0</id>
       <storyManager>
         <hasBeenPlayed>false</hasBeenPlayed>
@@ -40,14 +40,14 @@
     <OtherBoatInfo>
       <Name>bateau</Name>
       <previousCoords>
-        <x>30</x>
-        <y>33</y>
+        <x>10</x>
+        <y>12</y>
       </previousCoords>
       <coords>
-        <x>29</x>
-        <y>32</y>
+        <x>11</x>
+        <y>13</y>
       </coords>
-      <currentDirection>SouthWest</currentDirection>
+      <currentDirection>NorthEast</currentDirection>
       <id>1</id>
       <storyManager>
         <hasBeenPlayed>false</hasBeenPlayed>
@@ -76,12 +76,12 @@
     <OtherBoatInfo>
       <Name>bateau</Name>
       <previousCoords>
-        <x>1</x>
-        <y>14</y>
+        <x>8</x>
+        <y>9</y>
       </previousCoords>
       <coords>
-        <x>2</x>
-        <y>13</y>
+        <x>9</x>
+        <y>8</y>
       </coords>
       <currentDirection>SouthEast</currentDirection>
       <id>2</id>
@@ -113,13 +113,13 @@
       <Name>bateau</Name>
       <previousCoords>
         <x>30</x>
-        <y>13</y>
+        <y>38</y>
       </previousCoords>
       <coords>
         <x>30</x>
-        <y>14</y>
+        <y>37</y>
       </coords>
-      <currentDirection>North</currentDirection>
+      <currentDirection>South</currentDirection>
       <id>3</id>
       <storyManager>
         <hasBeenPlayed>false</hasBeenPlayed>
@@ -148,14 +148,14 @@
     <OtherBoatInfo>
       <Name>bateau</Name>
       <previousCoords>
-        <x>17</x>
+        <x>18</x>
         <y>40</y>
       </previousCoords>
       <coords>
-        <x>18</x>
+        <x>17</x>
         <y>40</y>
       </coords>
-      <currentDirection>West</currentDirection>
+      <currentDirection>East</currentDirection>
       <id>4</id>
       <storyManager>
         <hasBeenPlayed>false</hasBeenPlayed>
@@ -188,10 +188,10 @@
         <y>32</y>
       </previousCoords>
       <coords>
-        <x>18</x>
+        <x>20</x>
         <y>32</y>
       </coords>
-      <currentDirection>West</currentDirection>
+      <currentDirection>East</currentDirection>
       <id>5</id>
       <storyManager>
         <hasBeenPlayed>false</hasBeenPlayed>
@@ -220,14 +220,14 @@
     <OtherBoatInfo>
       <Name>bateau</Name>
       <previousCoords>
-        <x>16</x>
+        <x>30</x>
         <y>4</y>
       </previousCoords>
       <coords>
-        <x>15</x>
+        <x>31</x>
         <y>4</y>
       </coords>
-      <currentDirection>West</currentDirection>
+      <currentDirection>East</currentDirection>
       <id>6</id>
       <storyManager>
         <hasBeenPlayed>false</hasBeenPlayed>
@@ -256,14 +256,14 @@
     <OtherBoatInfo>
       <Name>bateau</Name>
       <previousCoords>
-        <x>18</x>
+        <x>14</x>
         <y>13</y>
       </previousCoords>
       <coords>
-        <x>19</x>
+        <x>13</x>
         <y>13</y>
       </coords>
-      <currentDirection>East</currentDirection>
+      <currentDirection>West</currentDirection>
       <id>7</id>
       <storyManager>
         <hasBeenPlayed>true</hasBeenPlayed>
@@ -292,12 +292,12 @@
     <OtherBoatInfo>
       <Name>bateau</Name>
       <previousCoords>
-        <x>33</x>
-        <y>17</y>
+        <x>24</x>
+        <y>10</y>
       </previousCoords>
       <coords>
-        <x>34</x>
-        <y>18</y>
+        <x>25</x>
+        <y>11</y>
       </coords>
       <currentDirection>NorthEast</currentDirection>
       <id>8</id>
@@ -329,13 +329,13 @@
       <Name>bateau</Name>
       <previousCoords>
         <x>22</x>
-        <y>33</y>
+        <y>14</y>
       </previousCoords>
       <coords>
         <x>22</x>
-        <y>34</y>
+        <y>13</y>
       </coords>
-      <currentDirection>North</currentDirection>
+      <currentDirection>South</currentDirection>
       <id>9</id>
       <storyManager>
         <hasBeenPlayed>false</hasBeenPlayed>
@@ -365,11 +365,11 @@
       <Name>bateau</Name>
       <previousCoords>
         <x>12</x>
-        <y>3</y>
+        <y>39</y>
       </previousCoords>
       <coords>
         <x>12</x>
-        <y>2</y>
+        <y>38</y>
       </coords>
       <currentDirection>South</currentDirection>
       <id>10</id>
@@ -401,13 +401,13 @@
       <Name>bateau</Name>
       <previousCoords>
         <x>2</x>
-        <y>18</y>
+        <y>27</y>
       </previousCoords>
       <coords>
         <x>2</x>
-        <y>17</y>
+        <y>28</y>
       </coords>
-      <currentDirection>South</currentDirection>
+      <currentDirection>North</currentDirection>
       <id>11</id>
       <storyManager>
         <hasBeenPlayed>false</hasBeenPlayed>
@@ -436,14 +436,14 @@
     <OtherBoatInfo>
       <Name>bateau</Name>
       <previousCoords>
-        <x>11</x>
+        <x>28</x>
         <y>8</y>
       </previousCoords>
       <coords>
-        <x>10</x>
+        <x>29</x>
         <y>8</y>
       </coords>
-      <currentDirection>West</currentDirection>
+      <currentDirection>East</currentDirection>
       <id>12</id>
       <storyManager>
         <hasBeenPlayed>false</hasBeenPlayed>
@@ -473,13 +473,13 @@
       <Name>bateau</Name>
       <previousCoords>
         <x>6</x>
-        <y>38</y>
+        <y>0</y>
       </previousCoords>
       <coords>
         <x>6</x>
-        <y>37</y>
+        <y>0</y>
       </coords>
-      <currentDirection>South</currentDirection>
+      <currentDirection>North</currentDirection>
       <id>13</id>
       <storyManager>
         <hasBeenPlayed>false</hasBeenPlayed>
@@ -509,13 +509,13 @@
       <Name>bateau</Name>
       <previousCoords>
         <x>21</x>
-        <y>13</y>
+        <y>27</y>
       </previousCoords>
       <coords>
         <x>21</x>
-        <y>12</y>
+        <y>28</y>
       </coords>
-      <currentDirection>South</currentDirection>
+      <currentDirection>North</currentDirection>
       <id>14</id>
       <storyManager>
         <hasBeenPlayed>false</hasBeenPlayed>
@@ -544,14 +544,14 @@
     <OtherBoatInfo>
       <Name>bateau</Name>
       <previousCoords>
-        <x>2</x>
-        <y>26</y>
+        <x>22</x>
+        <y>7</y>
       </previousCoords>
       <coords>
-        <x>3</x>
-        <y>25</y>
+        <x>21</x>
+        <y>8</y>
       </coords>
-      <currentDirection>SouthEast</currentDirection>
+      <currentDirection>NorthWest</currentDirection>
       <id>15</id>
       <storyManager>
         <hasBeenPlayed>false</hasBeenPlayed>
@@ -580,14 +580,14 @@
     <OtherBoatInfo>
       <Name>bateau</Name>
       <previousCoords>
-        <x>29</x>
+        <x>7</x>
         <y>21</y>
       </previousCoords>
       <coords>
-        <x>30</x>
+        <x>6</x>
         <y>21</y>
       </coords>
-      <currentDirection>East</currentDirection>
+      <currentDirection>West</currentDirection>
       <id>16</id>
       <storyManager>
         <hasBeenPlayed>false</hasBeenPlayed>
@@ -616,17 +616,17 @@
     <OtherBoatInfo>
       <Name>bateau</Name>
       <previousCoords>
-        <x>24</x>
-        <y>20</y>
+        <x>26</x>
+        <y>17</y>
       </previousCoords>
       <coords>
-        <x>23</x>
-        <y>21</y>
+        <x>27</x>
+        <y>16</y>
       </coords>
-      <currentDirection>NorthWest</currentDirection>
+      <currentDirection>SouthEast</currentDirection>
       <id>17</id>
       <storyManager>
-        <hasBeenPlayed>false</hasBeenPlayed>
+        <hasBeenPlayed>true</hasBeenPlayed>
         <storyHandlers>
           <StoryHandler>
             <row>0</row>
@@ -634,13 +634,255 @@
             <fallBackLayer>0</fallBackLayer>
             <storyID>0</storyID>
             <storyType>Boat</storyType>
-            <contentDecals />
+            <contentDecals>
+              <contentDecal>
+                <row>9</row>
+                <col>6</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>9</row>
+                <col>7</col>
+                <decal>0</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>0</row>
+                <col>14</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>7</row>
+                <col>18</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>12</row>
+                <col>19</col>
+                <decal>1</decal>
+              </contentDecal>
+            </contentDecals>
             <loots />
-            <crews />
+            <crews>
+              <Crew>
+                <hostile>false</hostile>
+                <row>0</row>
+                <col>2</col>
+                <MemberIDs>
+                  <Member>
+                    <id>73</id>
+                    <Name>Irene</Name>
+                    <health>100</health>
+                    <maxHealth>100</maxHealth>
+                    <currentHunger>0</currentHunger>
+                    <Lvl>3</Lvl>
+                    <xp>0</xp>
+                    <skillPoints>0</skillPoints>
+                    <specialSkillsIndexes>
+                      <int>5</int>
+                      <int>6</int>
+                    </specialSkillsIndexes>
+                    <stats>
+                      <int>1</int>
+                      <int>1</int>
+                      <int>2</int>
+                      <int>2</int>
+                    </stats>
+                    <daysOnBoard>0</daysOnBoard>
+                    <equipedWeapon>
+                      <ID>63</ID>
+                      <englishName>Big steel sword</englishName>
+                      <frenchName>Grande épée en acier</frenchName>
+                      <value>33</value>
+                      <price>50</price>
+                      <weight>8</weight>
+                      <level>3</level>
+                      <spriteID>2</spriteID>
+                      <description>It's just your basic big steel sword</description>
+                      <weaponType>Stick</weaponType>
+                      <category>Weapon</category>
+                    </equipedWeapon>
+                    <equipedCloth>
+                      <ID>163</ID>
+                      <englishName>Leather breastplate</englishName>
+                      <frenchName>Plastron de cuir</frenchName>
+                      <value>29</value>
+                      <price>50</price>
+                      <weight>8</weight>
+                      <level>3</level>
+                      <spriteID>1</spriteID>
+                      <description>It's just your basic leather breastplate</description>
+                      <weaponType>Distance</weaponType>
+                      <category>Clothes</category>
+                    </equipedCloth>
+                    <job>Brute</job>
+                    <characterIDS>
+                      <int>9</int>
+                      <int>3</int>
+                      <int>0</int>
+                      <int>9</int>
+                      <int>4</int>
+                      <int>8</int>
+                      <int>6</int>
+                      <int>1</int>
+                      <int>1</int>
+                      <int>0</int>
+                      <int>5</int>
+                      <int>3</int>
+                      <int>11</int>
+                      <int>9</int>
+                      <int>6</int>
+                      <int>0</int>
+                    </characterIDS>
+                  </Member>
+                  <Member>
+                    <id>74</id>
+                    <Name>Marion</Name>
+                    <health>100</health>
+                    <maxHealth>100</maxHealth>
+                    <currentHunger>0</currentHunger>
+                    <Lvl>8</Lvl>
+                    <xp>0</xp>
+                    <skillPoints>0</skillPoints>
+                    <specialSkillsIndexes>
+                      <int>5</int>
+                      <int>6</int>
+                      <int>7</int>
+                      <int>8</int>
+                    </specialSkillsIndexes>
+                    <stats>
+                      <int>2</int>
+                      <int>4</int>
+                      <int>1</int>
+                      <int>4</int>
+                    </stats>
+                    <daysOnBoard>0</daysOnBoard>
+                    <equipedWeapon>
+                      <ID>125</ID>
+                      <englishName>OfficerMace</englishName>
+                      <frenchName>Epée immense</frenchName>
+                      <value>76</value>
+                      <price>117</price>
+                      <weight>8</weight>
+                      <level>8</level>
+                      <spriteID>5</spriteID>
+                      <description>It's just your basic officermace</description>
+                      <weaponType>Stick</weaponType>
+                      <category>Weapon</category>
+                    </equipedWeapon>
+                    <equipedCloth>
+                      <ID>193</ID>
+                      <englishName>Rusty breastplate</englishName>
+                      <frenchName>Cuirasse rouillée</frenchName>
+                      <value>80</value>
+                      <price>123</price>
+                      <weight>8</weight>
+                      <level>8</level>
+                      <spriteID>1</spriteID>
+                      <description>It's just your basic rusty breastplate</description>
+                      <weaponType>Distance</weaponType>
+                      <category>Clothes</category>
+                    </equipedCloth>
+                    <job>Brute</job>
+                    <characterIDS>
+                      <int>4</int>
+                      <int>8</int>
+                      <int>9</int>
+                      <int>5</int>
+                      <int>0</int>
+                      <int>4</int>
+                      <int>0</int>
+                      <int>4</int>
+                      <int>0</int>
+                      <int>0</int>
+                      <int>3</int>
+                      <int>10</int>
+                      <int>8</int>
+                      <int>16</int>
+                      <int>8</int>
+                      <int>0</int>
+                    </characterIDS>
+                  </Member>
+                  <Member>
+                    <id>75</id>
+                    <Name>Oleg</Name>
+                    <health>100</health>
+                    <maxHealth>100</maxHealth>
+                    <currentHunger>0</currentHunger>
+                    <Lvl>7</Lvl>
+                    <xp>0</xp>
+                    <skillPoints>0</skillPoints>
+                    <specialSkillsIndexes>
+                      <int>13</int>
+                      <int>14</int>
+                      <int>15</int>
+                      <int>16</int>
+                    </specialSkillsIndexes>
+                    <stats>
+                      <int>1</int>
+                      <int>3</int>
+                      <int>2</int>
+                      <int>4</int>
+                    </stats>
+                    <daysOnBoard>0</daysOnBoard>
+                    <equipedWeapon>
+                      <ID>119</ID>
+                      <englishName>Soldier shotgun</englishName>
+                      <frenchName>Pistolet de soldat</frenchName>
+                      <value>68</value>
+                      <price>103</price>
+                      <weight>8</weight>
+                      <level>7</level>
+                      <spriteID>6</spriteID>
+                      <description>It's just your basic soldier shotgun</description>
+                      <weaponType>Distance</weaponType>
+                      <category>Weapon</category>
+                    </equipedWeapon>
+                    <equipedCloth>
+                      <ID>187</ID>
+                      <englishName>Bandit clothes</englishName>
+                      <frenchName>Habit de bandit</frenchName>
+                      <value>68</value>
+                      <price>106</price>
+                      <weight>8</weight>
+                      <level>7</level>
+                      <spriteID>0</spriteID>
+                      <description>It's just your basic bandit clothes</description>
+                      <weaponType>Distance</weaponType>
+                      <category>Clothes</category>
+                    </equipedCloth>
+                    <job>Cook</job>
+                    <characterIDS>
+                      <int>8</int>
+                      <int>4</int>
+                      <int>7</int>
+                      <int>7</int>
+                      <int>4</int>
+                      <int>5</int>
+                      <int>4</int>
+                      <int>4</int>
+                      <int>0</int>
+                      <int>0</int>
+                      <int>5</int>
+                      <int>0</int>
+                      <int>9</int>
+                      <int>3</int>
+                      <int>6</int>
+                      <int>3</int>
+                    </characterIDS>
+                  </Member>
+                </MemberIDs>
+              </Crew>
+              <Crew>
+                <hostile>false</hostile>
+                <row>12</row>
+                <col>16</col>
+                <MemberIDs />
+              </Crew>
+            </crews>
           </StoryHandler>
         </storyHandlers>
       </storyManager>
-      <alreadyMet>false</alreadyMet>
+      <alreadyMet>true</alreadyMet>
       <color>
         <r>0.323880047</r>
         <g>0.3328984</g>
@@ -652,12 +894,12 @@
     <OtherBoatInfo>
       <Name>bateau</Name>
       <previousCoords>
-        <x>2</x>
-        <y>38</y>
+        <x>37</x>
+        <y>2</y>
       </previousCoords>
       <coords>
-        <x>1</x>
-        <y>39</y>
+        <x>37</x>
+        <y>1</y>
       </coords>
       <currentDirection>NorthWest</currentDirection>
       <id>18</id>
@@ -688,14 +930,14 @@
     <OtherBoatInfo>
       <Name>bateau</Name>
       <previousCoords>
-        <x>22</x>
-        <y>26</y>
+        <x>25</x>
+        <y>28</y>
       </previousCoords>
       <coords>
-        <x>21</x>
-        <y>25</y>
+        <x>26</x>
+        <y>29</y>
       </coords>
-      <currentDirection>SouthWest</currentDirection>
+      <currentDirection>NorthEast</currentDirection>
       <id>19</id>
       <storyManager>
         <hasBeenPlayed>false</hasBeenPlayed>
@@ -725,13 +967,13 @@
       <Name>bateau</Name>
       <previousCoords>
         <x>5</x>
-        <y>3</y>
+        <y>32</y>
       </previousCoords>
       <coords>
         <x>5</x>
-        <y>2</y>
+        <y>33</y>
       </coords>
-      <currentDirection>South</currentDirection>
+      <currentDirection>North</currentDirection>
       <id>20</id>
       <storyManager>
         <hasBeenPlayed>false</hasBeenPlayed>
@@ -761,13 +1003,13 @@
       <Name>bateau</Name>
       <previousCoords>
         <x>33</x>
-        <y>3</y>
+        <y>35</y>
       </previousCoords>
       <coords>
         <x>33</x>
-        <y>2</y>
+        <y>36</y>
       </coords>
-      <currentDirection>South</currentDirection>
+      <currentDirection>North</currentDirection>
       <id>21</id>
       <storyManager>
         <hasBeenPlayed>false</hasBeenPlayed>
@@ -797,13 +1039,13 @@
       <Name>bateau</Name>
       <previousCoords>
         <x>36</x>
-        <y>39</y>
+        <y>2</y>
       </previousCoords>
       <coords>
         <x>36</x>
-        <y>39</y>
+        <y>3</y>
       </coords>
-      <currentDirection>South</currentDirection>
+      <currentDirection>North</currentDirection>
       <id>22</id>
       <storyManager>
         <hasBeenPlayed>false</hasBeenPlayed>
@@ -832,14 +1074,14 @@
     <OtherBoatInfo>
       <Name>bateau</Name>
       <previousCoords>
-        <x>17</x>
-        <y>28</y>
+        <x>33</x>
+        <y>11</y>
       </previousCoords>
       <coords>
-        <x>16</x>
-        <y>29</y>
+        <x>34</x>
+        <y>10</y>
       </coords>
-      <currentDirection>NorthWest</currentDirection>
+      <currentDirection>SouthEast</currentDirection>
       <id>23</id>
       <storyManager>
         <hasBeenPlayed>false</hasBeenPlayed>
@@ -868,12 +1110,12 @@
     <OtherBoatInfo>
       <Name>bateau</Name>
       <previousCoords>
-        <x>0</x>
-        <y>24</y>
+        <x>12</x>
+        <y>33</y>
       </previousCoords>
       <coords>
-        <x>0</x>
-        <y>23</y>
+        <x>13</x>
+        <y>34</y>
       </coords>
       <currentDirection>NorthEast</currentDirection>
       <id>24</id>
@@ -904,14 +1146,14 @@
     <OtherBoatInfo>
       <Name>bateau</Name>
       <previousCoords>
-        <x>30</x>
-        <y>11</y>
+        <x>17</x>
+        <y>23</y>
       </previousCoords>
       <coords>
-        <x>29</x>
-        <y>12</y>
+        <x>18</x>
+        <y>22</y>
       </coords>
-      <currentDirection>NorthWest</currentDirection>
+      <currentDirection>SouthEast</currentDirection>
       <id>25</id>
       <storyManager>
         <hasBeenPlayed>false</hasBeenPlayed>
@@ -940,17 +1182,17 @@
     <OtherBoatInfo>
       <Name>bateau</Name>
       <previousCoords>
-        <x>6</x>
+        <x>34</x>
         <y>39</y>
       </previousCoords>
       <coords>
-        <x>5</x>
+        <x>35</x>
         <y>39</y>
       </coords>
-      <currentDirection>West</currentDirection>
+      <currentDirection>East</currentDirection>
       <id>26</id>
       <storyManager>
-        <hasBeenPlayed>false</hasBeenPlayed>
+        <hasBeenPlayed>true</hasBeenPlayed>
         <storyHandlers>
           <StoryHandler>
             <row>0</row>
@@ -958,13 +1200,238 @@
             <fallBackLayer>0</fallBackLayer>
             <storyID>0</storyID>
             <storyType>Boat</storyType>
-            <contentDecals />
+            <contentDecals>
+              <contentDecal>
+                <row>9</row>
+                <col>6</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>9</row>
+                <col>7</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>5</row>
+                <col>6</col>
+                <decal>1</decal>
+              </contentDecal>
+            </contentDecals>
             <loots />
-            <crews />
+            <crews>
+              <Crew>
+                <hostile>false</hostile>
+                <row>0</row>
+                <col>2</col>
+                <MemberIDs>
+                  <Member>
+                    <id>64</id>
+                    <Name>Archibald</Name>
+                    <health>100</health>
+                    <maxHealth>100</maxHealth>
+                    <currentHunger>0</currentHunger>
+                    <Lvl>7</Lvl>
+                    <xp>0</xp>
+                    <skillPoints>0</skillPoints>
+                    <specialSkillsIndexes>
+                      <int>17</int>
+                      <int>18</int>
+                      <int>19</int>
+                      <int>20</int>
+                    </specialSkillsIndexes>
+                    <stats>
+                      <int>3</int>
+                      <int>2</int>
+                      <int>2</int>
+                      <int>3</int>
+                    </stats>
+                    <daysOnBoard>0</daysOnBoard>
+                    <equipedWeapon>
+                      <ID>119</ID>
+                      <englishName>Soldier shotgun</englishName>
+                      <frenchName>Pistolet de soldat</frenchName>
+                      <value>68</value>
+                      <price>103</price>
+                      <weight>8</weight>
+                      <level>7</level>
+                      <spriteID>6</spriteID>
+                      <description>It's just your basic soldier shotgun</description>
+                      <weaponType>Distance</weaponType>
+                      <category>Weapon</category>
+                    </equipedWeapon>
+                    <equipedCloth>
+                      <ID>189</ID>
+                      <englishName>Coat of mail</englishName>
+                      <frenchName>Cotte de maille</frenchName>
+                      <value>69</value>
+                      <price>105</price>
+                      <weight>8</weight>
+                      <level>7</level>
+                      <spriteID>2</spriteID>
+                      <description>It's just your basic coat of mail</description>
+                      <weaponType>Distance</weaponType>
+                      <category>Clothes</category>
+                    </equipedCloth>
+                    <job>Cannoneer</job>
+                    <characterIDS>
+                      <int>2</int>
+                      <int>9</int>
+                      <int>4</int>
+                      <int>8</int>
+                      <int>4</int>
+                      <int>1</int>
+                      <int>6</int>
+                      <int>2</int>
+                      <int>1</int>
+                      <int>0</int>
+                      <int>4</int>
+                      <int>11</int>
+                      <int>1</int>
+                      <int>0</int>
+                      <int>3</int>
+                      <int>2</int>
+                    </characterIDS>
+                  </Member>
+                  <Member>
+                    <id>65</id>
+                    <Name>Etienne</Name>
+                    <health>100</health>
+                    <maxHealth>100</maxHealth>
+                    <currentHunger>0</currentHunger>
+                    <Lvl>4</Lvl>
+                    <xp>0</xp>
+                    <skillPoints>0</skillPoints>
+                    <specialSkillsIndexes>
+                      <int>21</int>
+                      <int>22</int>
+                    </specialSkillsIndexes>
+                    <stats>
+                      <int>2</int>
+                      <int>2</int>
+                      <int>2</int>
+                      <int>1</int>
+                    </stats>
+                    <daysOnBoard>0</daysOnBoard>
+                    <equipedWeapon>
+                      <ID>86</ID>
+                      <englishName>Well crafted gun</englishName>
+                      <frenchName>Pistolet à percussion</frenchName>
+                      <value>38</value>
+                      <price>61</price>
+                      <weight>8</weight>
+                      <level>4</level>
+                      <spriteID>7</spriteID>
+                      <description>It's just your basic well crafted gun</description>
+                      <weaponType>Distance</weaponType>
+                      <category>Weapon</category>
+                    </equipedWeapon>
+                    <equipedCloth>
+                      <ID>171</ID>
+                      <englishName>Rusty breastplate</englishName>
+                      <frenchName>Cuirasse rouillée</frenchName>
+                      <value>43</value>
+                      <price>67</price>
+                      <weight>8</weight>
+                      <level>4</level>
+                      <spriteID>1</spriteID>
+                      <description>It's just your basic rusty breastplate</description>
+                      <weaponType>Distance</weaponType>
+                      <category>Clothes</category>
+                    </equipedCloth>
+                    <job>Gambler</job>
+                    <characterIDS>
+                      <int>1</int>
+                      <int>2</int>
+                      <int>7</int>
+                      <int>0</int>
+                      <int>0</int>
+                      <int>4</int>
+                      <int>1</int>
+                      <int>3</int>
+                      <int>0</int>
+                      <int>0</int>
+                      <int>4</int>
+                      <int>4</int>
+                      <int>1</int>
+                      <int>6</int>
+                      <int>8</int>
+                      <int>3</int>
+                    </characterIDS>
+                  </Member>
+                  <Member>
+                    <id>66</id>
+                    <Name>Rose</Name>
+                    <health>100</health>
+                    <maxHealth>100</maxHealth>
+                    <currentHunger>0</currentHunger>
+                    <Lvl>5</Lvl>
+                    <xp>0</xp>
+                    <skillPoints>0</skillPoints>
+                    <specialSkillsIndexes>
+                      <int>13</int>
+                      <int>14</int>
+                      <int>15</int>
+                    </specialSkillsIndexes>
+                    <stats>
+                      <int>1</int>
+                      <int>4</int>
+                      <int>1</int>
+                      <int>2</int>
+                    </stats>
+                    <daysOnBoard>0</daysOnBoard>
+                    <equipedWeapon>
+                      <ID>89</ID>
+                      <englishName>War Hammer</englishName>
+                      <frenchName>Lance en acier</frenchName>
+                      <value>49</value>
+                      <price>78</price>
+                      <weight>8</weight>
+                      <level>5</level>
+                      <spriteID>4</spriteID>
+                      <description>It's just your basic war hammer</description>
+                      <weaponType>Stick</weaponType>
+                      <category>Weapon</category>
+                    </equipedWeapon>
+                    <equipedCloth>
+                      <ID>175</ID>
+                      <englishName>Officer outfit</englishName>
+                      <frenchName>Tenue d'officier</frenchName>
+                      <value>47</value>
+                      <price>80</price>
+                      <weight>8</weight>
+                      <level>5</level>
+                      <spriteID>0</spriteID>
+                      <description>It's just your basic officer outfit</description>
+                      <weaponType>Distance</weaponType>
+                      <category>Clothes</category>
+                    </equipedCloth>
+                    <job>Cook</job>
+                    <characterIDS>
+                      <int>3</int>
+                      <int>4</int>
+                      <int>1</int>
+                      <int>4</int>
+                      <int>3</int>
+                      <int>6</int>
+                      <int>2</int>
+                      <int>2</int>
+                      <int>0</int>
+                      <int>0</int>
+                      <int>7</int>
+                      <int>8</int>
+                      <int>1</int>
+                      <int>4</int>
+                      <int>5</int>
+                      <int>1</int>
+                    </characterIDS>
+                  </Member>
+                </MemberIDs>
+              </Crew>
+            </crews>
           </StoryHandler>
         </storyHandlers>
       </storyManager>
-      <alreadyMet>false</alreadyMet>
+      <alreadyMet>true</alreadyMet>
       <color>
         <r>0.115008458</r>
         <g>0.0553424954</g>
@@ -976,11 +1443,11 @@
     <OtherBoatInfo>
       <Name>bateau</Name>
       <previousCoords>
-        <x>3</x>
+        <x>23</x>
         <y>7</y>
       </previousCoords>
       <coords>
-        <x>2</x>
+        <x>22</x>
         <y>7</y>
       </coords>
       <currentDirection>West</currentDirection>
@@ -1005,6 +1472,114 @@
         <r>0.5152735</r>
         <g>0.5120569</g>
         <b>0.475617647</b>
+        <a>1</a>
+      </color>
+      <timeToShowBoat>1.5</timeToShowBoat>
+    </OtherBoatInfo>
+    <OtherBoatInfo>
+      <Name>bateau</Name>
+      <previousCoords>
+        <x>11</x>
+        <y>20</y>
+      </previousCoords>
+      <coords>
+        <x>12</x>
+        <y>20</y>
+      </coords>
+      <currentDirection>East</currentDirection>
+      <id>28</id>
+      <storyManager>
+        <hasBeenPlayed>false</hasBeenPlayed>
+        <storyHandlers>
+          <StoryHandler>
+            <row>0</row>
+            <col>0</col>
+            <fallBackLayer>0</fallBackLayer>
+            <storyID>0</storyID>
+            <storyType>Boat</storyType>
+            <contentDecals />
+            <loots />
+            <crews />
+          </StoryHandler>
+        </storyHandlers>
+      </storyManager>
+      <alreadyMet>false</alreadyMet>
+      <color>
+        <r>0.392943263</r>
+        <g>0.400369465</g>
+        <b>0.393829525</b>
+        <a>1</a>
+      </color>
+      <timeToShowBoat>1.5</timeToShowBoat>
+    </OtherBoatInfo>
+    <OtherBoatInfo>
+      <Name>bateau</Name>
+      <previousCoords>
+        <x>36</x>
+        <y>32</y>
+      </previousCoords>
+      <coords>
+        <x>35</x>
+        <y>32</y>
+      </coords>
+      <currentDirection>West</currentDirection>
+      <id>29</id>
+      <storyManager>
+        <hasBeenPlayed>false</hasBeenPlayed>
+        <storyHandlers>
+          <StoryHandler>
+            <row>0</row>
+            <col>0</col>
+            <fallBackLayer>0</fallBackLayer>
+            <storyID>0</storyID>
+            <storyType>Boat</storyType>
+            <contentDecals />
+            <loots />
+            <crews />
+          </StoryHandler>
+        </storyHandlers>
+      </storyManager>
+      <alreadyMet>false</alreadyMet>
+      <color>
+        <r>0.470205575</r>
+        <g>0.4810092</g>
+        <b>0.178239435</b>
+        <a>1</a>
+      </color>
+      <timeToShowBoat>1.5</timeToShowBoat>
+    </OtherBoatInfo>
+    <OtherBoatInfo>
+      <Name>bateau</Name>
+      <previousCoords>
+        <x>14</x>
+        <y>26</y>
+      </previousCoords>
+      <coords>
+        <x>13</x>
+        <y>25</y>
+      </coords>
+      <currentDirection>SouthWest</currentDirection>
+      <id>30</id>
+      <storyManager>
+        <hasBeenPlayed>false</hasBeenPlayed>
+        <storyHandlers>
+          <StoryHandler>
+            <row>0</row>
+            <col>0</col>
+            <fallBackLayer>0</fallBackLayer>
+            <storyID>0</storyID>
+            <storyType>Boat</storyType>
+            <contentDecals />
+            <loots />
+            <crews />
+          </StoryHandler>
+        </storyHandlers>
+      </storyManager>
+      <alreadyMet>false</alreadyMet>
+      <color>
+        <r>0.1139992</r>
+        <g>0.113552883</g>
+        <b>0.122547761</b>
         <a>1</a>
       </color>
       <timeToShowBoat>1.5</timeToShowBoat>

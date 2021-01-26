@@ -6,24 +6,24 @@ public class Skill_Leap: Skill {
 
     private Fighter delayFighter;
 
-    bool secondPart = false;
+    private bool secondPart = false;
+
+    public override void InvokeSkill()
+    {
+        if (secondPart)
+        {
+            fighter.crewMember.energy += energyCost;
+        }
+
+        base.InvokeSkill();
+    }
 
     public override void OnSetTarget()
     {
         base.OnSetTarget();
 
         SoundManager.Instance.PlayRandomSound("Swipe");
-
     }
-
-    public override void InvokeSkill ()
-	{
-		if (secondPart) {
-			fighter.crewMember.energy += energyCost;
-		}
-
-		base.InvokeSkill ();
-	}
 
 	public override void Trigger (Fighter fighter)
 	{
@@ -31,21 +31,34 @@ public class Skill_Leap: Skill {
 
         if (!secondPart)
         {
-            string str = "You wait and see... I'm gonna smash your brains out";
-
             SoundManager.Instance.PlaySound("Tribal 01");
             SoundManager.Instance.PlayRandomSound("voice_mad");
+
+            string str = "You wait and see... I'm gonna smash your brains out";
 
             fighter.Speak(str);
 
             // delayed stuff
             fighter.AddStatus(Fighter.Status.PreparingAttack);
-            fighter.onSkillDelay += HandleOnSkillDelay;
 
             EndSkill();
         }
 
 	}
+
+    public override void EndSkillDelay()
+    {
+        if (!secondPart)
+        {
+            fighter.EndTurn();
+            CombatManager.Instance.NextTurn();
+        }
+        else
+        {
+            base.EndSkillDelay();
+        }
+
+    }
 
     public override void StartAnimation()
     {
@@ -86,54 +99,39 @@ public class Skill_Leap: Skill {
 
             fighter.TargetFighter.GetHit (fighter, fighter.crewMember.Attack , 2.2f);
 
-			EndSkill ();
-			//
+            Invoke("HandleOnApplyEffectDelay", 0.5f);
 
-		}
+        }
 
 	}
 
-    public override void EndSkillDelay()
+    void HandleOnApplyEffectDelay()
     {
-        if (!secondPart)
-        {
-            fighter.EndTurn();
-            CombatManager.Instance.NextTurn();
-        }
-        else
-        {
-            base.EndSkillDelay();
-        }
-
+        fighter.SetTurn();
     }
 
-    void HandleOnSkillDelay (Fighter _delayFighter)
-	{
-		this.delayFighter = _delayFighter;
+    public override void ContinueSkill()
+    {
+        base.ContinueSkill();
 
-		delayFighter.combatFeedback.Display (Fighter.Status.PreparingAttack, Color.white);
+        CombatManager.Instance.GetCurrentFighter.combatFeedback.Display(Fighter.Status.PreparingAttack, Color.white);
 
-		secondPart = true;
-		hasTarget = true;
+        secondPart = true;
 		goToTarget = true;
+        hasTarget = true;
 
-		Trigger (delayFighter);
-	}
+        Trigger(CombatManager.Instance.GetCurrentFighter);
+    }
 
     public override bool MeetsRestrictions (CrewMember member)
 	{
         return base.MeetsRestrictions(member) && member.HasMeleeWepon();
 	}
 
-
 	public override bool MeetsConditions (CrewMember member)
 	{
-        //bool meetsChances = Random.value < 0.5f;
+        bool meetsChances = Random.value < 0.5f;
 
-        Debug.LogError("DEBUGGING THING");
-        energyCost = 0;
-        bool meetsChances = Random.value < 1f;
-
-		return meetsChances && base.MeetsConditions (member);
+        return meetsChances && base.MeetsConditions (member);
 	}
 }

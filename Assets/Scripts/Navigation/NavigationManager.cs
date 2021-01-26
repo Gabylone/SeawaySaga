@@ -182,6 +182,13 @@ public class NavigationManager : MonoBehaviour {
         Boats.Instance.SaveBoats();
 
         UpdateCurrentChunk();
+
+        CamBehavior.Instance.followPlayer = true;
+        Invoke("ChangeChunkDelay", 0.5f);
+    }
+
+    void ChangeChunkDelay()
+    {
     }
 
     void CallTutorial()

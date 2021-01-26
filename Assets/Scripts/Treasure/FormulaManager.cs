@@ -174,13 +174,13 @@ public class FormulaManager : MonoBehaviour {
 
         if (containedFormula == null)
         {
-            DialogueManager.Instance.PlayerSpeak("Nothing seems to happen, I must have spoke something wrong");
+            DialogueManager.Instance.PlayerSpeak_Story("Nothing seems to happen, I must have spoke something wrong");
             StoryReader.Instance.SetDecal(0);
         }
         else if (containedFormula.verified)
         {
             // ALREADY SPOKE
-            DialogueManager.Instance.PlayerSpeak("I already spoke this word, and it already worked");
+            DialogueManager.Instance.PlayerSpeak_Story("I already spoke this word, and it already worked");
             StoryReader.Instance.SetDecal(0);
         }
         else
@@ -199,12 +199,12 @@ public class FormulaManager : MonoBehaviour {
 
             if (allFormulasHaveBeenVerified)
             {
-                DialogueManager.Instance.PlayerSpeak("Look like something happened !*The door is OPENING COMPLETLY !");
+                DialogueManager.Instance.PlayerSpeak_Story("Look like something happened !*The door is OPENING COMPLETLY !");
                 StoryReader.Instance.SetDecal(2);
             }
             else
             {
-                DialogueManager.Instance.PlayerSpeak("Look like something happened !*The door moved a little, but did not open*I need to keep looking");
+                DialogueManager.Instance.PlayerSpeak_Story("Look like something happened !*The door moved a little, but did not open*I need to keep looking");
                 StoryReader.Instance.SetDecal(1);
             }
         }

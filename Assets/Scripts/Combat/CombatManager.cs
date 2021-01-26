@@ -513,6 +513,8 @@ public class CombatManager : MonoBehaviour {
     }
     private void HandleOnConfirm_Escape()
     {
+        DisplayCombatResults.Instance.onConfirm -= HandleOnConfirm_Escape;
+
         Invoke("Escape", 1f);
         Invoke("HideFight", 1f);
     }
@@ -546,6 +548,8 @@ public class CombatManager : MonoBehaviour {
     }
     private void HandleOnConfirm_Defeat()
     {
+        DisplayCombatResults.Instance.onConfirm -= HandleOnConfirm_Defeat;
+
         GameManager.Instance.BackToMenu();
     }
     #endregion
@@ -582,6 +586,8 @@ public class CombatManager : MonoBehaviour {
 
     private void HandleOnConfirm_Victory()
     {
+        DisplayCombatResults.Instance.onConfirm -= HandleOnConfirm_Victory;
+
         if (DisplayCrewMemberLevelUp.Instance.crewMembersToDisplay.Count > 0)
         {
             DisplayCrewMemberLevelUp.Instance.DisplayLastCrewMember();
