@@ -31,6 +31,11 @@ public class OtherInventory : MonoBehaviour {
     // 
     public void SwitchToPlayer ()
     {
+        if (LootUI.Instance.currentSide == Crews.Side.Player)
+        {
+            return;
+        }
+
         StartCoroutine(SwitchSideCoroutine());
 
         SoundManager.Instance.PlaySound("Whoosh 08");
@@ -39,10 +44,14 @@ public class OtherInventory : MonoBehaviour {
     //
     public void SwitchToOther()
     {
+        if (LootUI.Instance.currentSide == Crews.Side.Enemy)
+        {
+            return;
+        }
+
         StartCoroutine(SwitchSideCoroutine());
 
         SoundManager.Instance.PlaySound("Whoosh 09");
-
     }
 
     public void LerpIn()
@@ -73,7 +82,6 @@ public class OtherInventory : MonoBehaviour {
     IEnumerator SwitchSideCoroutine()
     {
         LerpOut();
-
 
         ///
         yield return new WaitForSeconds(lootTransition_Duration);

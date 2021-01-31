@@ -44,6 +44,8 @@ public class DisplayCrew : MonoBehaviour {
 
     public void Show(CrewMember member)
     {
+        DisplayItem_Loot.DeselectSelectedItem();
+
         member.ShowInInventory();
 
         rectTransform.DOAnchorPos(initPos, duration);

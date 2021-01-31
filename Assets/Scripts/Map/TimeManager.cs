@@ -12,10 +12,14 @@ public class TimeManager : MonoBehaviour {
 	public int dayDuration = 24;
 
 	public int currentRain = 0;
-	public int rainRate_Min = 75;
-	public int rainRate_Max = 130;
+    public int rainRate = 80;
+
+    public bool warned = false;
+
+    public int rainRate_Min = 75;
+    public int rainRate_Max = 130;
+
 	public int rainDuration = 10;
-	private int rainRate = 0;
 
     public float minMaskScale = 6f;
     public float maxMaskScale = 10f;
@@ -55,10 +59,14 @@ public class TimeManager : MonoBehaviour {
 		
 		StoryFunctions.Instance.getFunction += HandleGetFunction;
 
-		UpdateRainRate ();
-
-        Invoke("UpdateWeather",0.001f);
+        Invoke("StartDelay", 0.01f);
 	}
+
+    void StartDelay()
+    {
+        UpdateRain();
+        UpdateWeather();
+    }
 
     public void Reset () {
 		timeOfDay = startTime;
@@ -82,30 +90,51 @@ public class TimeManager : MonoBehaviour {
 	#endregion
 
 	#region rain
-	void UpdateRainRate ()
+	void RandomizeRainRate ()
 	{
 		rainRate = Random.Range ( rainRate_Min , rainRate_Max );
 	}
 
 	void UpdateRain ()
 	{
-
 		if ( raining ) {
-			if (currentRain == rainDuration) {
-				HideRain ();
+			if (currentRain >= rainDuration) {
+				StopRain ();
 			}
 		} else {
 
-			if ( currentRain == rainRate ) {
+            if (currentRain == (rainRate-5) && !warned)
+            {
+                Invoke("ShowNarrator", 2f);
+            }
+
+            if ( currentRain >= rainRate ) {
 				SetRain ();
 			}
 
 		}
 	}
-	#endregion
 
-	#region story functions
-	void ChangeTimeOfDay ()
+    void ShowNarrator()
+    {
+        warned = true;
+        string str = "Black clouds begin to emerge from the horizon. CAPITAINE hears thunder rumbling at a distance. The sky darkens and the air is thickening";
+        Narrator.Instance.ShowNarratorNoneStoryInput(str);
+        Narrator.Instance.onCloseNarrator += NarratorDelay;
+
+        PlayerBoat.Instance.EndMovenent();
+    }
+
+    void NarratorDelay()
+    {
+        string str = "A storm is coming. Better bring the crew and NOMTRESOR to safety at an inn, or camp in a nearby island.";
+        Narrator.Instance.onCloseNarrator -= NarratorDelay;
+        Narrator.Instance.ShowNarratorNoneStoryInput(str);
+    }
+    #endregion
+
+    #region story functions
+    void ChangeTimeOfDay ()
 	{
 		if (dayState == DayState.Day) {
 			StartCoroutine (GoToWeather(DayState.Night));
@@ -127,7 +156,6 @@ public class TimeManager : MonoBehaviour {
         int l = 0;
         while (dayState != targetWeather)
         {
-
             NextHour();
 
             ++l;
@@ -159,6 +187,7 @@ public class TimeManager : MonoBehaviour {
 	public void NextHour () {
 
 		++timeOfDay;
+        ++currentRain;
 
 		if (timeOfDay == dayDuration)
         {
@@ -170,11 +199,15 @@ public class TimeManager : MonoBehaviour {
             timeOfDay = 0;
         }
 
+
+        UpdateRain();
         UpdateTimeOfDay ();
 
+        UpdateWeather();
 	}
 
-	void UpdateTimeOfDay ()
+
+    void UpdateTimeOfDay ()
 	{
 		if ( dayState == DayState.Day ) {
 
@@ -237,10 +270,14 @@ public class TimeManager : MonoBehaviour {
 	void SetRain () {
 		
 		raining = true;
-		currentRain = 0;
 
-		UpdateRainRate ();
-		UpdateWeather ();
+        warned = false;
+
+        currentRain = 0;
+
+        Narrator.Instance.ShowNarratorNoneStoryInput("CAPITAINE and NOMTRESOR have been hit by a storm, better get to safety quickly before anyone gets hurt.");
+
+        UpdateWeather();
 
 		if (onSetRain != null)
 			onSetRain ();
@@ -250,8 +287,9 @@ public class TimeManager : MonoBehaviour {
 		
 		raining = false;
 		currentRain = 0;
+        //RandomizeRainRate();
 
-		UpdateWeather ();
+        UpdateWeather();
 
 	}
 
@@ -286,7 +324,6 @@ public class TimeManager : MonoBehaviour {
         if (dayState == DayState.Night)
         {
             ShowNight();
-            
         }
         else
         {
@@ -307,6 +344,12 @@ public class TimeManager : MonoBehaviour {
 
     public void ShowNight()
     {
+        if (InGameBackGround.Instance.IsInterior())
+        {
+            HideNight();
+            return;
+        }
+
         nightImage.gameObject.SetActive(true);
         nightMask_Group.SetActive(true);
     }
@@ -319,14 +362,24 @@ public class TimeManager : MonoBehaviour {
 
     public void ShowRain()
     {
+        if (InGameBackGround.Instance.IsInterior())
+        {
+            HideRain();
+            return;
+        }
+
         rainImage.gameObject.SetActive(true);
         rainMask_Group.SetActive(true);
+
+        ClockUI.Instance.ShowStorm();
     }
 
     public void HideRain()
     {
         rainImage.gameObject.SetActive(false);
         rainMask_Group.SetActive(false);
+
+        ClockUI.Instance.HideStorm();
     }
 	#endregion
 }

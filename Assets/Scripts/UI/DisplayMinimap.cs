@@ -14,7 +14,7 @@ public class DisplayMinimap : MonoBehaviour {
     // minimap chunks
     [Header("Minimap Chunks")]
     public GameObject minimapChunkPrefab;
-	public GameObject minimapChunkParent;
+	public Transform minimapChunkParent;
     public float minimapChunkDecal = 3f;
     public float minimapChunkScale;
     public List<MinimapChunk> minimapChunks = new List<MinimapChunk>();
@@ -456,17 +456,59 @@ public class DisplayMinimap : MonoBehaviour {
 
 				}
 
+                /*foreach (var item in Boats.Instance.getBoats)
+                {
+                    if ( item.coords == c)
+                    {
+                        PlaceNPCBoat();
+                    }
+                }*/
                 
             }
 
 		}
 
+
+
         MinimapTexture.Instance.UpdateBackgroundImage();
 	}
-	#endregion
+    void PlaceNPCBoat(Coords c)
+    {
+        /*if (c == Coords.current)
+        {
+            return;
+        }
 
-	#region map chunk
-	void PlaceMapChunks(Coords coords) {
+        GameObject minimapChunk_Obj = Instantiate(minimapChunkPrefab, minimapChunkParent);
+
+        MinimapChunk minimapChunk = minimapChunk_Obj.GetComponent<MinimapChunk>();
+
+        // SCALE
+        minimapChunk.rectTransform.localScale = Vector3.one;
+
+        // POS
+        float x = (minimapChunkScale / 2) + (coords.x * overallRectTranfsorm.rect.width / MapGenerator.Instance.GetMapHorizontalScale);
+        float y = (minimapChunkScale / 2) + (coords.y * overallRectTranfsorm.rect.height / MapGenerator.Instance.GetMapVerticalScale);
+
+        float decalX = rangeX * islandData.worldPosition.x / NavigationManager.Instance.maxX;
+        float decalY = rangeY * islandData.worldPosition.y / NavigationManager.Instance.maxY;
+
+        Vector2 pos = new Vector2(x + decalX, y + decalY);
+
+        minimapChunk.rectTransform.anchoredPosition = pos;
+
+        minimapChunk.InitChunk(coords, islandID);
+
+        minimapChunk.HideQuestFeedback();
+
+        minimapChunks.Add(minimapChunk);
+
+        ++islandID;*/
+    }
+    #endregion
+
+    #region map chunk
+    void PlaceMapChunks(Coords coords) {
 
         /*if ( minimapChunks.ContainsKey(c))
         {
@@ -480,7 +522,7 @@ public class DisplayMinimap : MonoBehaviour {
 
         foreach (var islandData in chunk.islandDatas)
         {
-            GameObject minimapChunk_Obj = Instantiate(minimapChunkPrefab, minimapChunkParent.transform);
+            GameObject minimapChunk_Obj = Instantiate(minimapChunkPrefab, minimapChunkParent);
 
             MinimapChunk minimapChunk = minimapChunk_Obj.GetComponent<MinimapChunk>();
 

@@ -24,12 +24,15 @@ public class DisplayHunger_Icon : DisplayHunger {
 
         // display food
     public GameObject displayFood_Obj;
+    public CanvasGroup displayFood_CanvasGroup;
+    private RectTransform displayFood_RectTransform;
     public float displayFood_Delay = 1.2f;
     public Vector2 displayFood_InitPos;
     public float displayFood_TargetXPos;
     public Text displayFood_Text;
     public Image displayFood_Image;
     public Sprite displayFood_FoodSprite;
+    public Sprite displayFood_StormSprite;
     public Sprite displayFood_HeartSprite;
 
     public float lerpToHideHunger = 0.3f;
@@ -38,6 +41,8 @@ public class DisplayHunger_Icon : DisplayHunger {
     public override void Start ()
 	{
 		base.Start ();
+
+        displayFood_RectTransform = displayFood_Obj.GetComponent<RectTransform>();
 
 		linkedIcon = GetComponentInParent<MemberIcon> ();
 
@@ -48,7 +53,7 @@ public class DisplayHunger_Icon : DisplayHunger {
 
         InitEvents();
 
-        displayFood_InitPos = displayFood_Obj.GetComponent<RectTransform>().anchoredPosition;
+        displayFood_InitPos = displayFood_RectTransform.anchoredPosition;
     }
 
     void ShowFoodFeedback()
@@ -57,8 +62,7 @@ public class DisplayHunger_Icon : DisplayHunger {
 
         if (linkedIcon.member.CurrentHunger >= linkedIcon.member.MaxHunger)
         {
-
-            DisplayHealthAmount(linkedIcon.member.hungerDamage);
+            DisplayHealthAmount(-linkedIcon.member.hungerDamage);
         }
         else
         {
@@ -69,21 +73,33 @@ public class DisplayHunger_Icon : DisplayHunger {
 
     public void DisplayHealthAmount(int i)
     {
-        HideHeart();
+        DisplayHealthAmount(i, false);
+    }
 
+    public void DisplayHealthAmount(int i, bool storm)
+    {
         displayFood_Obj.SetActive(true);
 
         if (hungerGroup.activeSelf)
         {
-            displayFood_Obj.GetComponent<RectTransform>().anchoredPosition = new Vector2(displayFood_TargetXPos, displayFood_InitPos.y);
+            displayFood_RectTransform.anchoredPosition = new Vector2(displayFood_TargetXPos, displayFood_InitPos.y);
         }
         else
         {
-            displayFood_Obj.GetComponent<RectTransform>().anchoredPosition = displayFood_InitPos;
+            displayFood_RectTransform.anchoredPosition = displayFood_InitPos;
         }
 
-        displayFood_Image.sprite = displayFood_HeartSprite;
-        displayFood_Text.text = "- " + i;
+
+        if(storm)
+        {
+            displayFood_Image.sprite = displayFood_StormSprite;
+        }
+        else
+        {
+            displayFood_Image.sprite = displayFood_HeartSprite;
+        }
+
+        displayFood_Text.text = "" + i;
 
         CancelInvoke("HideFoodFeedback");
         Invoke("HideFoodFeedback", displayFood_Delay + 1f);
@@ -91,16 +107,16 @@ public class DisplayHunger_Icon : DisplayHunger {
 
     public void DisplayFoodAmount(int i)
     {
-        HideHeart();
-
         if ( hungerGroup.activeSelf)
         {
-            displayFood_Obj.GetComponent<RectTransform>().anchoredPosition = new Vector2(displayFood_TargetXPos, displayFood_InitPos.y);
+            displayFood_RectTransform.anchoredPosition = new Vector2(displayFood_TargetXPos, displayFood_InitPos.y);
         }
         else
         {
-            displayFood_Obj.GetComponent<RectTransform>().anchoredPosition = displayFood_InitPos;
+            displayFood_RectTransform.anchoredPosition = displayFood_InitPos;
         }
+
+        Tween.Bounce(displayFood_RectTransform);
 
         displayFood_Obj.SetActive(true);
 
@@ -230,9 +246,6 @@ public class DisplayHunger_Icon : DisplayHunger {
 
         UpdateHeartImage();
 
-        /*if (fillAmount * 100 < hungerToShowLife) {
-		    HideHunger ();
-        } else */
         if (fillAmount * 100 < hungerToAppear) {
 			base.UpdateHungerIcon (member);
 		} else {
@@ -259,7 +272,8 @@ public class DisplayHunger_Icon : DisplayHunger {
     void InitEvents()
     {
         //NavigationManager.Instance.EnterNewChunk    += HandleOnAddHunger;
-        linkedIcon.member.onAddHunger += HandleOnAddHunger;
+            linkedIcon.member.onAddHunger += HandleOnAddHunger;
+        
 
         StoryLauncher.Instance.onPlayStory          += HandlePlayStoryEvent;
         StoryLauncher.Instance.onEndStory           += HandleEndStoryEvent;
@@ -274,8 +288,8 @@ public class DisplayHunger_Icon : DisplayHunger {
 
     void OnDestroy()
     {
+        
         //NavigationManager.Instance.EnterNewChunk    -= HandleOnAddHunger;
-        linkedIcon.member.onAddHunger -= HandleOnAddHunger;
 
         StoryLauncher.Instance.onPlayStory          -= HandlePlayStoryEvent;
         StoryLauncher.Instance.onEndStory           -= HandleEndStoryEvent; 
@@ -283,7 +297,13 @@ public class DisplayHunger_Icon : DisplayHunger {
         InGameMenu.Instance.onCloseMenu             -= HandleCloseInventory;
         InGameMenu.Instance.onOpenMenu              -= HandleOnOpenInventory;
 
-        linkedIcon.member.onChangeHealth            -= HandleOnChangeHealth;
+        linkedIcon.member.onChangeHealth -= HandleOnChangeHealth;
+        linkedIcon.member.onAddHunger -= HandleOnAddHunger;
+
+        /*if (linkedIcon != null && linkedIcon.member != null)
+        {
+            
+        }*/
 
     }
 }

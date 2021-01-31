@@ -187,7 +187,6 @@ public class DisplayItem_Selected : DisplayItem {
         SoundManager.Instance.PlayRandomSound("paper tap");
 
         CancelInvoke("HideDelay");
-
     }
 
     public override void Hide()

@@ -12,7 +12,7 @@ public class Skill_Leap: Skill {
     {
         if (secondPart)
         {
-            fighter.crewMember.energy += energyCost;
+            fighter.crewMember.AddEnergy(energyCost);
         }
 
         base.InvokeSkill();

@@ -44,19 +44,17 @@ public class MinimapChunk : MonoBehaviour
 
         this.index = islandID;
 
-        switch (chunk.state)
+        if (islandData.storyManager.hasBeenPlayed)
         {
-            case ChunkState.UndiscoveredIsland:
-                SetUndiscovered();
-                break;
-            case ChunkState.DiscoveredIsland:
-                SetDiscovered();
-                break;
-            case ChunkState.VisitedIsland:
-                SetVisited();
-                break;
-            default:
-                break;
+            SetVisited();
+        }
+        else if ( chunk.state == ChunkState.UndiscoveredIsland)
+        {
+            SetUndiscovered();
+        }
+        else
+        {
+            SetDiscovered();
         }
 	}
 
@@ -71,7 +69,7 @@ public class MinimapChunk : MonoBehaviour
 
     public void Bounce()
     {
-        Tween.Bounce(transform);
+        Tween.Bounce(rectTransform);
     }
 
     public void SetVisited ()
@@ -83,6 +81,15 @@ public class MinimapChunk : MonoBehaviour
 	public void SetDiscovered ()
     {
         Chunk chunk = Chunk.GetChunk(coords);
+
+        IslandData islandData = chunk.GetIslandData(index);
+
+        if ( islandData != null && islandData.storyManager.hasBeenPlayed)
+        {
+            SetVisited();
+            return;
+        }
+
         chunk.state = ChunkState.DiscoveredIsland;
         gameObject.SetActive(true);
         image.color = new Color( 0.5f,0.5f,0.5f );
@@ -90,9 +97,6 @@ public class MinimapChunk : MonoBehaviour
 
     void SetUndiscovered()
     {
-        //uiText_IslandCount.text = "";
-
-        //gameObject.SetActive(false);
         image.color = Color.clear;
     }
 
@@ -122,34 +126,27 @@ public class MinimapChunk : MonoBehaviour
 
         string str = "";
 
-        if (chunk.state == ChunkState.VisitedIsland)
+        IslandData islandData = chunk.GetIslandData(index);
+
+        if (islandData.storyManager.hasBeenPlayed)
         {
-            IslandData islandData = chunk.GetIslandData(index);
-
-            if (islandData.storyManager.hasBeenPlayed)
+            int a = 0;
+            foreach (var item in islandData.storyManager.storyHandlers)
             {
-                int a = 0;
-                foreach (var item in islandData.storyManager.storyHandlers)
+                if (item.storyType == StoryType.Quest)
+                    continue;
+
+                if (a > 0)
                 {
-                    if (item.storyType == StoryType.Quest)
-                        continue;
-
-                    if ( a > 0)
-                    {
-                        str += "\n";
-                        str += item.Story.displayName;
-                    }
-                    else
-                    {
-                        str += item.Story.displayName;
-                    }
-
-                    ++a;
+                    str += "\n";
+                    str += item.Story.displayName;
                 }
-            }
-            else
-            {
-                str = "?";
+                else
+                {
+                    str += item.Story.displayName;
+                }
+
+                ++a;
             }
         }
         else

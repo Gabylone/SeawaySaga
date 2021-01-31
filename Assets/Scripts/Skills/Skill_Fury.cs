@@ -36,7 +36,6 @@ public class Skill_Fury: Skill {
         SoundManager.Instance.PlaySound("Fury 2");
 
         fighter.AddStatus (Fighter.Status.Enraged, 3);
-		fighter.crewMember.energyPerTurn += energyPerTurnAdded;
 
 		EndSkill ();
 

@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <Chunk xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <state>VisitedIsland</state>
+  <state>DiscoveredIsland</state>
   <coords>
     <x>2</x>
     <y>9</y>
@@ -8,10 +8,10 @@
   <islandDatas>
     <IslandData>
       <worldPosition>
-        <x>-3.36</x>
-        <y>16.71</y>
+        <x>-1.44</x>
+        <y>-16.52</y>
       </worldPosition>
-      <worldRotation>25.4676819</worldRotation>
+      <worldRotation>171.909241</worldRotation>
       <index>0</index>
       <coords>
         <x>2</x>
@@ -19,7 +19,7 @@
       </coords>
       <containsFormula>false</containsFormula>
       <storyManager>
-        <hasBeenPlayed>true</hasBeenPlayed>
+        <hasBeenPlayed>false</hasBeenPlayed>
         <storyHandlers>
           <StoryHandler>
             <row>0</row>
@@ -27,120 +27,19 @@
             <fallBackLayer>0</fallBackLayer>
             <storyID>4</storyID>
             <storyType>Home</storyType>
-            <contentDecals>
-              <contentDecal>
-                <row>2</row>
-                <col>2</col>
-                <decal>1</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>6</row>
-                <col>2</col>
-                <decal>1</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>0</row>
-                <col>10</col>
-                <decal>1</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>0</row>
-                <col>2</col>
-                <decal>1</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>3</row>
-                <col>20</col>
-                <decal>1</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>0</row>
-                <col>2</col>
-                <decal>1</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>3</row>
-                <col>20</col>
-                <decal>1</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>2</row>
-                <col>2</col>
-                <decal>1</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>6</row>
-                <col>2</col>
-                <decal>1</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>0</row>
-                <col>10</col>
-                <decal>1</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>2</row>
-                <col>2</col>
-                <decal>1</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>6</row>
-                <col>2</col>
-                <decal>1</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>0</row>
-                <col>10</col>
-                <decal>1</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>0</row>
-                <col>2</col>
-                <decal>1</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>3</row>
-                <col>20</col>
-                <decal>1</decal>
-              </contentDecal>
-            </contentDecals>
-            <loots>
-              <Loot>
-                <row>0</row>
-                <col>11</col>
-                <ids>
-                  <ArrayOfInt />
-                  <ArrayOfInt />
-                  <ArrayOfInt />
-                  <ArrayOfInt />
-                </ids>
-                <weight>0</weight>
-                <AllItems>
-                  <ArrayOfItem />
-                  <ArrayOfItem />
-                  <ArrayOfItem />
-                  <ArrayOfItem />
-                </AllItems>
-              </Loot>
-            </loots>
-            <crews>
-              <Crew>
-                <hostile>true</hostile>
-                <row>0</row>
-                <col>11</col>
-                <MemberIDs />
-              </Crew>
-            </crews>
+            <contentDecals />
+            <loots />
+            <crews />
           </StoryHandler>
         </storyHandlers>
       </storyManager>
     </IslandData>
     <IslandData>
       <worldPosition>
-        <x>-1.44</x>
-        <y>-16.52</y>
+        <x>-22.81</x>
+        <y>11.96</y>
       </worldPosition>
-      <worldRotation>161.3413</worldRotation>
+      <worldRotation>188.748062</worldRotation>
       <index>1</index>
       <coords>
         <x>2</x>
@@ -168,7 +67,7 @@
         <x>5.01</x>
         <y>7.65</y>
       </worldPosition>
-      <worldRotation>332.498657</worldRotation>
+      <worldRotation>102.912994</worldRotation>
       <index>2</index>
       <coords>
         <x>2</x>
@@ -193,10 +92,10 @@
     </IslandData>
     <IslandData>
       <worldPosition>
-        <x>-15.44</x>
-        <y>-17.91</y>
+        <x>-14.64</x>
+        <y>23.28</y>
       </worldPosition>
-      <worldRotation>334.846466</worldRotation>
+      <worldRotation>87.3432846</worldRotation>
       <index>3</index>
       <coords>
         <x>2</x>
@@ -221,10 +120,10 @@
     </IslandData>
     <IslandData>
       <worldPosition>
-        <x>-17.67</x>
-        <y>-7.35</y>
+        <x>-6.81</x>
+        <y>6.54</y>
       </worldPosition>
-      <worldRotation>295.204132</worldRotation>
+      <worldRotation>176.191544</worldRotation>
       <index>4</index>
       <coords>
         <x>2</x>
@@ -249,10 +148,10 @@
     </IslandData>
     <IslandData>
       <worldPosition>
-        <x>16.03</x>
-        <y>7.11</y>
+        <x>6.47</x>
+        <y>-7.24</y>
       </worldPosition>
-      <worldRotation>287.966431</worldRotation>
+      <worldRotation>200.869919</worldRotation>
       <index>5</index>
       <coords>
         <x>2</x>
@@ -277,10 +176,10 @@
     </IslandData>
     <IslandData>
       <worldPosition>
-        <x>8.99</x>
-        <y>-21.44</y>
+        <x>-15.44</x>
+        <y>-17.91</y>
       </worldPosition>
-      <worldRotation>357.4385</worldRotation>
+      <worldRotation>118.788406</worldRotation>
       <index>6</index>
       <coords>
         <x>2</x>
@@ -305,10 +204,10 @@
     </IslandData>
     <IslandData>
       <worldPosition>
-        <x>-4.73</x>
-        <y>-5.82</y>
+        <x>16.03</x>
+        <y>7.11</y>
       </worldPosition>
-      <worldRotation>86.658226</worldRotation>
+      <worldRotation>28.2700119</worldRotation>
       <index>7</index>
       <coords>
         <x>2</x>
@@ -333,10 +232,10 @@
     </IslandData>
     <IslandData>
       <worldPosition>
-        <x>-6.81</x>
-        <y>6.54</y>
+        <x>-4.73</x>
+        <y>-5.82</y>
       </worldPosition>
-      <worldRotation>0.537729263</worldRotation>
+      <worldRotation>36.0479</worldRotation>
       <index>8</index>
       <coords>
         <x>2</x>
@@ -364,7 +263,7 @@
         <x>16.66</x>
         <y>-5.83</y>
       </worldPosition>
-      <worldRotation>338.240234</worldRotation>
+      <worldRotation>18.8016415</worldRotation>
       <index>9</index>
       <coords>
         <x>2</x>

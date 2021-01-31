@@ -104,8 +104,8 @@ public class ClueManager : MonoBehaviour
 
                 if ( alreadyKnown)
                 {
-                    str += ">>. But CAPITAINE clearly already knew about it... He also had the feeling he knew enough about the treasure to just go and follow the leads he pick up here and there...";
-                    Narrator.Instance.ShowNarratorInput("<<" + str);
+                    Narrator.Instance.ShowNarratorNoneStoryInput(str);
+                    Narrator.Instance.onCloseNarrator += NarratorDelay;
                 }
                 else
                 {
@@ -123,6 +123,21 @@ public class ClueManager : MonoBehaviour
 
             DialogueManager.Instance.OtherSpeak_Story(str);
         }
+    }
+
+    void NarratorDelay()
+    {
+        Debug.Log("closing narrator");
+
+        Narrator.Instance.onCloseNarrator -= NarratorDelay;
+
+        Invoke("NarratorDelay2", 0.1f);
+    }
+
+    void NarratorDelay2()
+    {
+        string str = "But CAPITAINE clearly already knew about it... He also had the feeling he knew enough about the treasure to just go and follow the leads he pick up here and there...";
+        Narrator.Instance.ShowNarratorInput(str);
     }
 
     public string GetClue( int i)

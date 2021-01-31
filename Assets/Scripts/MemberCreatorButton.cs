@@ -34,6 +34,11 @@ public class MemberCreatorButton : MonoBehaviour {
 
         UpdateImage();
 
+        Invoke("StartDelay", 0.1f);
+    }
+
+    void StartDelay()
+    {
         if (Crews.playerCrew.captain.MemberID.GetCharacterID(apparenceItem.apparenceType) == apparenceItem.id)
         {
             Select();
@@ -60,7 +65,7 @@ public class MemberCreatorButton : MonoBehaviour {
 
         if (apparenceItem.locked)
         {
-            DisplayPurchase.Instance.Display(apparenceItem, transform);
+            DisplayPurchase.Instance.Display(apparenceItem, rectTransform);
             return;
         }
 
@@ -104,7 +109,7 @@ public class MemberCreatorButton : MonoBehaviour {
 
         }
 
-        Tween.Bounce(transform);
+        Tween.Bounce(rectTransform);
 
         selected = true;
 

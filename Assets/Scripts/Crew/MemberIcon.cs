@@ -135,7 +135,6 @@ public class MemberIcon : MonoBehaviour {
             {
                 DisplayCrew.Instance.Show(CrewMember.GetSelectedMember);
                 LootUI.Instance.UpdateLootUI();
-                LootUI.Instance.ClearSelectedItem();
             }
             else
             {

@@ -147,15 +147,10 @@ public class Fighter : MonoBehaviour {
     // Update is called once per frame
     void FixedUpdate()
     {
-
         if (updateState != null)
             updateState();
 
         timeInState += Time.deltaTime;
-
-        
-
-
     }
 
 	#region initalization
@@ -196,9 +191,11 @@ public class Fighter : MonoBehaviour {
         crewMember.energy = 0;
 
         // event
-        if ( onReset != null )
-			onReset ();
-	}
+        if ( onReset != null)
+        {
+            onReset();
+        }
+    }
 
 	public delegate void OnSetTurn ();
 	public OnSetTurn onSetTurn;
@@ -249,11 +246,11 @@ public class Fighter : MonoBehaviour {
 
 		if (HasStatus(Status.Enraged))
         {
-            crewMember.AddEnergy(10);
+            crewMember.AddEnergy(12);
         }
         else
         {
-            crewMember.AddEnergy(6);
+            crewMember.AddEnergy(crewMember.EnergyPerTurn);
         }
 
         for (int i = 0; i < crewMember.charges.Length; i++) {
@@ -563,13 +560,14 @@ public class Fighter : MonoBehaviour {
 			damage = damage * 0.5f;
 		}
 
-		if ( otherFighter.HasStatus(Status.Toasted) ) {
+		if ( otherFighter.HasStatus(Status.Toasted) || otherFighter.HasStatus(Status.Enraged)) {
 			damage = damage * 1.5f;
 		}
 
-		if ( HasStatus(Status.Protected) ) {
+        if ( HasStatus(Status.Protected) ) {
 			damage = damage * 0.5f;
-		}
+            RemoveStatus(Status.Protected);
+        }
 
         if (HasStatus(Status.Parrying))
         {
@@ -844,16 +842,13 @@ public class Fighter : MonoBehaviour {
 	int[] statusCount = new int[11];
 
 	void CheckStatus () {
+
 		if ( HasStatus(Status.Cussed) ) {
 			RemoveStatus (Status.Cussed);
 		}
 
 		if ( HasStatus(Status.Toasted) ) {
 			RemoveStatus (Status.Toasted);
-		}
-
-		if ( HasStatus(Status.Protected) ) {
-			RemoveStatus (Status.Protected);
 		}
 
         if (HasStatus(Status.Parrying))

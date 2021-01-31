@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <Chunk xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <state>UndiscoveredIsland</state>
+  <state>VisitedIsland</state>
   <coords>
     <x>20</x>
     <y>2</y>
@@ -19,7 +19,7 @@
       </coords>
       <containsFormula>false</containsFormula>
       <storyManager>
-        <hasBeenPlayed>false</hasBeenPlayed>
+        <hasBeenPlayed>true</hasBeenPlayed>
         <storyHandlers>
           <StoryHandler>
             <row>0</row>
@@ -27,8 +27,146 @@
             <fallBackLayer>0</fallBackLayer>
             <storyID>7</storyID>
             <storyType>Normal</storyType>
-            <contentDecals />
-            <loots />
+            <contentDecals>
+              <contentDecal>
+                <row>0</row>
+                <col>2</col>
+                <decal>2</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>15</row>
+                <col>8</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>15</row>
+                <col>13</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>0</row>
+                <col>16</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>0</row>
+                <col>50</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>2</row>
+                <col>56</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>0</row>
+                <col>66</col>
+                <decal>3</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>3</row>
+                <col>56</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>8</row>
+                <col>38</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>11</row>
+                <col>41</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>11</row>
+                <col>42</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>9</row>
+                <col>41</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>13</row>
+                <col>41</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>4</row>
+                <col>56</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>13</row>
+                <col>8</col>
+                <decal>1</decal>
+              </contentDecal>
+            </contentDecals>
+            <loots>
+              <Loot>
+                <row>3</row>
+                <col>68</col>
+                <ids>
+                  <ArrayOfInt />
+                  <ArrayOfInt />
+                  <ArrayOfInt>
+                    <int>201</int>
+                    <int>201</int>
+                    <int>197</int>
+                  </ArrayOfInt>
+                  <ArrayOfInt />
+                </ids>
+                <weight>24</weight>
+                <AllItems>
+                  <ArrayOfItem />
+                  <ArrayOfItem />
+                  <ArrayOfItem>
+                    <Item>
+                      <ID>201</ID>
+                      <englishName>The armor of the Pirate King</englishName>
+                      <frenchName>Armure du roi pirate</frenchName>
+                      <value>99</value>
+                      <price>157</price>
+                      <weight>8</weight>
+                      <level>10</level>
+                      <spriteID>2</spriteID>
+                      <description>It's just your basic the armor of the pirate king</description>
+                      <weaponType>Distance</weaponType>
+                      <category>Clothes</category>
+                    </Item>
+                    <Item>
+                      <ID>201</ID>
+                      <englishName>The armor of the Pirate King</englishName>
+                      <frenchName>Armure du roi pirate</frenchName>
+                      <value>99</value>
+                      <price>157</price>
+                      <weight>8</weight>
+                      <level>10</level>
+                      <spriteID>2</spriteID>
+                      <description>It's just your basic the armor of the pirate king</description>
+                      <weaponType>Distance</weaponType>
+                      <category>Clothes</category>
+                    </Item>
+                    <Item>
+                      <ID>197</ID>
+                      <englishName>Officer outfit</englishName>
+                      <frenchName>Tenue d'officier</frenchName>
+                      <value>90</value>
+                      <price>144</price>
+                      <weight>8</weight>
+                      <level>9</level>
+                      <spriteID>0</spriteID>
+                      <description>It's just your basic officer outfit</description>
+                      <weaponType>Distance</weaponType>
+                      <category>Clothes</category>
+                    </Item>
+                  </ArrayOfItem>
+                  <ArrayOfItem />
+                </AllItems>
+              </Loot>
+            </loots>
             <crews />
           </StoryHandler>
         </storyHandlers>
@@ -47,7 +185,7 @@
       </coords>
       <containsFormula>false</containsFormula>
       <storyManager>
-        <hasBeenPlayed>false</hasBeenPlayed>
+        <hasBeenPlayed>true</hasBeenPlayed>
         <storyHandlers>
           <StoryHandler>
             <row>0</row>
@@ -55,9 +193,366 @@
             <fallBackLayer>0</fallBackLayer>
             <storyID>13</storyID>
             <storyType>Normal</storyType>
-            <contentDecals />
+            <contentDecals>
+              <contentDecal>
+                <row>1</row>
+                <col>4</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>6</row>
+                <col>13</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>10</row>
+                <col>13</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>10</row>
+                <col>14</col>
+                <decal>0</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>12</row>
+                <col>13</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>12</row>
+                <col>14</col>
+                <decal>0</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>14</row>
+                <col>13</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>6</row>
+                <col>13</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>8</row>
+                <col>13</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>8</row>
+                <col>14</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>2</row>
+                <col>13</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>1</row>
+                <col>13</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>1</row>
+                <col>4</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>6</row>
+                <col>13</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>14</row>
+                <col>13</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>1</row>
+                <col>13</col>
+                <decal>1</decal>
+              </contentDecal>
+            </contentDecals>
             <loots />
-            <crews />
+            <crews>
+              <Crew>
+                <hostile>false</hostile>
+                <row>1</row>
+                <col>8</col>
+                <MemberIDs>
+                  <Member>
+                    <id>167</id>
+                    <Name>Gérarde</Name>
+                    <health>100</health>
+                    <maxHealth>100</maxHealth>
+                    <currentHunger>0</currentHunger>
+                    <Lvl>5</Lvl>
+                    <xp>0</xp>
+                    <skillPoints>0</skillPoints>
+                    <specialSkillsIndexes>
+                      <int>5</int>
+                      <int>6</int>
+                      <int>7</int>
+                    </specialSkillsIndexes>
+                    <stats>
+                      <int>2</int>
+                      <int>2</int>
+                      <int>2</int>
+                      <int>2</int>
+                    </stats>
+                    <daysOnBoard>0</daysOnBoard>
+                    <equipedWeapon>
+                      <ID>89</ID>
+                      <englishName>War Hammer</englishName>
+                      <frenchName>Lance en acier</frenchName>
+                      <value>49</value>
+                      <price>78</price>
+                      <weight>8</weight>
+                      <level>5</level>
+                      <spriteID>4</spriteID>
+                      <description>It's just your basic war hammer</description>
+                      <weaponType>Stick</weaponType>
+                      <category>Weapon</category>
+                    </equipedWeapon>
+                    <equipedCloth>
+                      <ID>175</ID>
+                      <englishName>Officer outfit</englishName>
+                      <frenchName>Tenue d'officier</frenchName>
+                      <value>47</value>
+                      <price>80</price>
+                      <weight>8</weight>
+                      <level>5</level>
+                      <spriteID>0</spriteID>
+                      <description>It's just your basic officer outfit</description>
+                      <weaponType>Distance</weaponType>
+                      <category>Clothes</category>
+                    </equipedCloth>
+                    <job>Brute</job>
+                    <characterIDS>
+                      <int>7</int>
+                      <int>3</int>
+                      <int>8</int>
+                      <int>5</int>
+                      <int>4</int>
+                      <int>0</int>
+                      <int>2</int>
+                      <int>3</int>
+                      <int>0</int>
+                      <int>0</int>
+                      <int>4</int>
+                      <int>8</int>
+                      <int>8</int>
+                      <int>14</int>
+                      <int>1</int>
+                      <int>2</int>
+                    </characterIDS>
+                  </Member>
+                  <Member>
+                    <id>168</id>
+                    <Name>Laura</Name>
+                    <health>100</health>
+                    <maxHealth>100</maxHealth>
+                    <currentHunger>0</currentHunger>
+                    <Lvl>5</Lvl>
+                    <xp>0</xp>
+                    <skillPoints>0</skillPoints>
+                    <specialSkillsIndexes>
+                      <int>5</int>
+                      <int>6</int>
+                      <int>7</int>
+                    </specialSkillsIndexes>
+                    <stats>
+                      <int>3</int>
+                      <int>1</int>
+                      <int>2</int>
+                      <int>2</int>
+                    </stats>
+                    <daysOnBoard>0</daysOnBoard>
+                    <equipedWeapon>
+                      <ID>89</ID>
+                      <englishName>War Hammer</englishName>
+                      <frenchName>Lance en acier</frenchName>
+                      <value>49</value>
+                      <price>78</price>
+                      <weight>8</weight>
+                      <level>5</level>
+                      <spriteID>4</spriteID>
+                      <description>It's just your basic war hammer</description>
+                      <weaponType>Stick</weaponType>
+                      <category>Weapon</category>
+                    </equipedWeapon>
+                    <equipedCloth>
+                      <ID>174</ID>
+                      <englishName>Leather breastplate</englishName>
+                      <frenchName>Plastron de cuir</frenchName>
+                      <value>50</value>
+                      <price>80</price>
+                      <weight>8</weight>
+                      <level>5</level>
+                      <spriteID>1</spriteID>
+                      <description>It's just your basic leather breastplate</description>
+                      <weaponType>Distance</weaponType>
+                      <category>Clothes</category>
+                    </equipedCloth>
+                    <job>Brute</job>
+                    <characterIDS>
+                      <int>2</int>
+                      <int>0</int>
+                      <int>0</int>
+                      <int>8</int>
+                      <int>8</int>
+                      <int>8</int>
+                      <int>3</int>
+                      <int>4</int>
+                      <int>1</int>
+                      <int>0</int>
+                      <int>6</int>
+                      <int>11</int>
+                      <int>0</int>
+                      <int>4</int>
+                      <int>1</int>
+                      <int>1</int>
+                    </characterIDS>
+                  </Member>
+                  <Member>
+                    <id>169</id>
+                    <Name>Paul</Name>
+                    <health>100</health>
+                    <maxHealth>100</maxHealth>
+                    <currentHunger>0</currentHunger>
+                    <Lvl>6</Lvl>
+                    <xp>0</xp>
+                    <skillPoints>0</skillPoints>
+                    <specialSkillsIndexes>
+                      <int>21</int>
+                      <int>22</int>
+                      <int>23</int>
+                    </specialSkillsIndexes>
+                    <stats>
+                      <int>1</int>
+                      <int>2</int>
+                      <int>4</int>
+                      <int>2</int>
+                    </stats>
+                    <daysOnBoard>0</daysOnBoard>
+                    <equipedWeapon>
+                      <ID>108</ID>
+                      <englishName>Rusty culverine</englishName>
+                      <frenchName>Couleuvrine rouillée</frenchName>
+                      <value>56</value>
+                      <price>93</price>
+                      <weight>8</weight>
+                      <level>6</level>
+                      <spriteID>7</spriteID>
+                      <description>It's just your basic rusty culverine</description>
+                      <weaponType>Distance</weaponType>
+                      <category>Weapon</category>
+                    </equipedWeapon>
+                    <equipedCloth>
+                      <ID>179</ID>
+                      <englishName>Chain mail</englishName>
+                      <frenchName>Chemise de maille</frenchName>
+                      <value>61</value>
+                      <price>99</price>
+                      <weight>8</weight>
+                      <level>6</level>
+                      <spriteID>2</spriteID>
+                      <description>It's just your basic chain mail</description>
+                      <weaponType>Distance</weaponType>
+                      <category>Clothes</category>
+                    </equipedCloth>
+                    <job>Gambler</job>
+                    <characterIDS>
+                      <int>5</int>
+                      <int>9</int>
+                      <int>5</int>
+                      <int>1</int>
+                      <int>9</int>
+                      <int>1</int>
+                      <int>4</int>
+                      <int>4</int>
+                      <int>0</int>
+                      <int>0</int>
+                      <int>0</int>
+                      <int>10</int>
+                      <int>12</int>
+                      <int>6</int>
+                      <int>4</int>
+                      <int>0</int>
+                    </characterIDS>
+                  </Member>
+                  <Member>
+                    <id>170</id>
+                    <Name>Virgile</Name>
+                    <health>100</health>
+                    <maxHealth>100</maxHealth>
+                    <currentHunger>0</currentHunger>
+                    <Lvl>6</Lvl>
+                    <xp>0</xp>
+                    <skillPoints>0</skillPoints>
+                    <specialSkillsIndexes>
+                      <int>13</int>
+                      <int>14</int>
+                      <int>15</int>
+                    </specialSkillsIndexes>
+                    <stats>
+                      <int>1</int>
+                      <int>2</int>
+                      <int>3</int>
+                      <int>3</int>
+                    </stats>
+                    <daysOnBoard>0</daysOnBoard>
+                    <equipedWeapon>
+                      <ID>102</ID>
+                      <englishName>Iron Bludgeon</englishName>
+                      <frenchName>Epée batarde</frenchName>
+                      <value>58</value>
+                      <price>87</price>
+                      <weight>8</weight>
+                      <level>6</level>
+                      <spriteID>4</spriteID>
+                      <description>It's just your basic iron bludgeon</description>
+                      <weaponType>Stick</weaponType>
+                      <category>Weapon</category>
+                    </equipedWeapon>
+                    <equipedCloth>
+                      <ID>183</ID>
+                      <englishName>Leather harness</englishName>
+                      <frenchName>Harnais de cuir</frenchName>
+                      <value>61</value>
+                      <price>102</price>
+                      <weight>8</weight>
+                      <level>6</level>
+                      <spriteID>1</spriteID>
+                      <description>It's just your basic leather harness</description>
+                      <weaponType>Distance</weaponType>
+                      <category>Clothes</category>
+                    </equipedCloth>
+                    <job>Cook</job>
+                    <characterIDS>
+                      <int>6</int>
+                      <int>6</int>
+                      <int>7</int>
+                      <int>9</int>
+                      <int>0</int>
+                      <int>8</int>
+                      <int>5</int>
+                      <int>2</int>
+                      <int>0</int>
+                      <int>0</int>
+                      <int>2</int>
+                      <int>4</int>
+                      <int>17</int>
+                      <int>3</int>
+                      <int>3</int>
+                      <int>1</int>
+                    </characterIDS>
+                  </Member>
+                </MemberIDs>
+              </Crew>
+            </crews>
           </StoryHandler>
         </storyHandlers>
       </storyManager>
@@ -75,7 +570,7 @@
       </coords>
       <containsFormula>false</containsFormula>
       <storyManager>
-        <hasBeenPlayed>false</hasBeenPlayed>
+        <hasBeenPlayed>true</hasBeenPlayed>
         <storyHandlers>
           <StoryHandler>
             <row>0</row>
@@ -83,7 +578,93 @@
             <fallBackLayer>0</fallBackLayer>
             <storyID>7</storyID>
             <storyType>Normal</storyType>
-            <contentDecals />
+            <contentDecals>
+              <contentDecal>
+                <row>0</row>
+                <col>2</col>
+                <decal>2</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>14</row>
+                <col>8</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>15</row>
+                <col>8</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>15</row>
+                <col>13</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>0</row>
+                <col>16</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>0</row>
+                <col>50</col>
+                <decal>0</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>0</row>
+                <col>55</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>0</row>
+                <col>66</col>
+                <decal>5</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>5</row>
+                <col>69</col>
+                <decal>7</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>1</row>
+                <col>55</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>14</row>
+                <col>8</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>15</row>
+                <col>8</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>16</row>
+                <col>13</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>15</row>
+                <col>8</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>15</row>
+                <col>13</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>0</row>
+                <col>55</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>1</row>
+                <col>55</col>
+                <decal>1</decal>
+              </contentDecal>
+            </contentDecals>
             <loots />
             <crews />
           </StoryHandler>

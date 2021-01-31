@@ -125,13 +125,16 @@ public class ItemLoader : MonoBehaviour {
 				if ( (ItemCategory)itemType == ItemCategory.Misc || (ItemCategory)itemType == ItemCategory.Provisions ) {
 					tmpItems [i] = GetRandomItem ((ItemCategory)itemType);
 				} else {
-					// il ne peut prendre le capitaine ennemi que si otherinventory.trade ( ou loot ) == true
-					if (OtherInventory.Instance.type != OtherInventory.Type.Trade) {
+                    // il ne peut prendre le capitaine ennemi que si otherinventory.trade ( ou loot ) == true
+                    /*if (OtherInventory.Instance.type != OtherInventory.Type.Trade) {
 						level = Random.Range (Crews.playerCrew.captain.Level - 2, Crews.playerCrew.captain.Level + 2);
 					} else {
 						level = Random.Range (Crews.playerCrew.captain.Level - 4, Crews.playerCrew.captain.Level + 6);
-					}
-					level = Mathf.Clamp (level, 1, 10);
+					}*/
+
+                    level = Random.Range(Crews.playerCrew.captain.Level - 5, Crews.playerCrew.captain.Level + 5);
+
+                    level = Mathf.Clamp (level, 1, 10);
 					tmpItems[i] = GetRandomItemOfCertainLevel ((ItemCategory)itemType,level);
 				}
 

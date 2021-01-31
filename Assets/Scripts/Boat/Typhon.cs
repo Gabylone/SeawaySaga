@@ -59,7 +59,7 @@ public class Typhon : RandomPlacable
         foreach (var crewMember in Crews.playerCrew.CrewMembers)
         {
             crewMember.RemoveHealth(damage);
-            crewMember.Icon.hungerIcon.DisplayHealthAmount(damage);
+            crewMember.Icon.hungerIcon.DisplayHealthAmount(-damage);
 
             if (crewMember.Health <= 0)
             {

@@ -85,6 +85,11 @@ public class MemberSocket : MonoBehaviour
 
     public void OnPointerClick()
     {
+        if (Crews.playerCrew.CrewMembers.Count <= 1 )
+        {
+            return;
+        }
+
         Tween.Bounce(tr);
 
         MessageDisplay.Instance.onValidate += HandleOnValidate;

@@ -10,8 +10,8 @@ public class Skill_HeadShot : Skill {
 
     public override void InvokeSkill ()
 	{
-		if (secondPart) {  
-			fighter.crewMember.energy += energyCost;
+		if (secondPart) {
+            fighter.crewMember.AddEnergy(energyCost);
 		}
 
 		base.InvokeSkill ();

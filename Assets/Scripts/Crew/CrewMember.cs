@@ -114,15 +114,21 @@ public class CrewMember {
 	/// energy
 	/// </summary>
 	public int energy = 0;
-	public int energyPerTurn = 6;
-	public int maxEnergy = 10;
+	public int EnergyPerTurn {
+        get {
+            return 5 + GetStat(Stat.Constitution);
+        }
+    }
+	public int MaxEnergy {
+        get {
+            return 5 + GetStat(Stat.Constitution);
+        }
+    }
 
 	public void AddEnergy (int _energy)
 	{
 		energy += _energy;
-
-		energy = Mathf.Clamp (energy, 0, maxEnergy);
-
+		energy = Mathf.Clamp (energy, 0, MaxEnergy);
 	}
 
 	// ICON

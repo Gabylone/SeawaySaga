@@ -253,7 +253,7 @@ public class Card : MonoBehaviour {
 	
 	public void UpdateEnergyBar(CrewMember member) {
 
-        float l = (float)member.energy / 10;
+        float l = (float)member.energy / member.MaxEnergy;
         float width = -energyBackground.rect.width + energyBackground.rect.width * l;
 
         Vector2 v = new Vector2(width, 0f);

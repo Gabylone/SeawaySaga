@@ -475,12 +475,15 @@ MonoBehaviour:
   heartImage_Fast: {fileID: 4748604943146134961}
   hungerToShowLife: 1
   displayFood_Obj: {fileID: 3912185195139227351}
+  displayFood_CanvasGroup: {fileID: 0}
   displayFood_Delay: 0
-  displayFood_InitPos: {x: 0, y: 0}
+  displayFood_InitPos: {x: 45, y: 0}
   displayFood_TargetXPos: 93
   displayFood_Text: {fileID: 4097912259428931552}
   displayFood_Image: {fileID: 6333026363096510453}
   displayFood_FoodSprite: {fileID: 21300000, guid: a447600b1392f2649a9de7adc38284b9,
+    type: 3}
+  displayFood_StormSprite: {fileID: 21300000, guid: 73f9fdde5a884564a9d0b372cfc26e8f,
     type: 3}
   displayFood_HeartSprite: {fileID: 21300000, guid: 349970d0182e2e042b43bf1f2540c447,
     type: 3}
@@ -637,8 +640,6 @@ MonoBehaviour:
     SpecialSkills: []
     charges: 
     energy: 0
-    energyPerTurn: 0
-    maxEnergy: 0
     memberIcon: {fileID: 0}
   hungerIcon: {fileID: 114232952534978156}
   iconVisual: {fileID: 9083079217198967196}
@@ -1532,7 +1533,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 14, y: -0.8}
+  m_AnchoredPosition: {x: 45, y: -0.8}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &2947176181251196991

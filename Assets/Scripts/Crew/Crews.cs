@@ -376,22 +376,45 @@ public class Crews : MonoBehaviour {
 
 		string cellParams = StoryFunctions.Instance.cellParams;
 		int health = int.Parse ( cellParams );
-		Crews.getCrew (Crews.Side.Player).captain.AddHealth (health);
 
-		StoryReader.Instance.NextCell ();
+        foreach (var item in Crews.getCrew(Crews.Side.Player).CrewMembers)
+        {
+            item.AddHealth(health);
+            item.Icon.hungerIcon.DisplayHealthAmount(health);
+        }
+
+        StoryReader.Instance.NextCell ();
 		StoryReader.Instance.UpdateStory ();
 	}
 	private void RemoveHealth () {
 
 		string cellParams = StoryFunctions.Instance.cellParams;
 		int health = int.Parse ( cellParams );
-		Crews.getCrew (Crews.Side.Player).captain.RemoveHealth(health);
 
-		if (Crews.getCrew (Crews.Side.Player).captain.Health <= 0)
-			Crews.getCrew (Crews.Side.Player).captain.Kill ();
+        for (int i = Crews.getCrew(Crews.Side.Player).CrewMembers.Count-1; i >= 0; i--)
+        {
+            CrewMember item = Crews.getCrew(Crews.Side.Player).CrewMembers[i];
 
-		StoryReader.Instance.NextCell ();
+            item.RemoveHealth(health);
+            item.Icon.hungerIcon.DisplayHealthAmount(-health);
+
+            if (item.Health <= 0)
+                item.Kill();
+        }
+
+        if (Crews.playerCrew.CrewMembers.Count == 0)
+        {
+            MessageDisplay.Instance.onValidate += HandleOnValidate;
+            MessageDisplay.Instance.Display("The crew members of NOMTRESOR have all perished");
+            GameManager.Instance.BackToMenu();
+        }
+
+        StoryReader.Instance.NextCell ();
 		StoryReader.Instance.UpdateStory ();
 	}
-	#endregion
+    void HandleOnValidate()
+    {
+
+    }
+    #endregion
 }

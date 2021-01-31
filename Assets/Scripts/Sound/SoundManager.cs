@@ -262,8 +262,6 @@ public class SoundManager : MonoBehaviour
         {
             UpdateSeaAmbianceSound();
         }
-
-        
     }
 
     void UpdateSeaAmbianceSound()
@@ -282,7 +280,7 @@ public class SoundManager : MonoBehaviour
 
         if ( TimeManager.Instance.raining)
         {
-            PlayAmbiance("ambiance_sea_rain");
+            PlayAmbiance("ambiance_storm");
         }
         else if ( TimeManager.Instance.dayState == TimeManager.DayState.Day)
         {
@@ -308,6 +306,8 @@ public class SoundManager : MonoBehaviour
         switch (InGameBackGround.Instance.currentType)
         {
             case InGameBackGround.Type.Island:
+                CheckRain();
+
                 if (TimeManager.Instance.dayState == TimeManager.DayState.Night)
                 {
                     SoundManager.Instance.PlayAmbiance("ambiance_beach_night");
@@ -336,6 +336,8 @@ public class SoundManager : MonoBehaviour
                 SoundManager.Instance.PlayAmbiance("ambiance_cave");
                 break;
             case InGameBackGround.Type.Forest:
+                CheckRain();
+
                 if (TimeManager.Instance.dayState == TimeManager.DayState.Night)
                 {
                     SoundManager.Instance.PlayAmbiance("ambiance_forest_night");
@@ -346,6 +348,7 @@ public class SoundManager : MonoBehaviour
                 }
                 break;
             case InGameBackGround.Type.Village:
+                CheckRain();
                 if (TimeManager.Instance.dayState == TimeManager.DayState.Night)
                 {
                     SoundManager.Instance.PlayAmbiance("ambiance_village_night");
@@ -362,6 +365,11 @@ public class SoundManager : MonoBehaviour
                 break;
         }
 
+        
+    }
+
+    void CheckRain()
+    {
         if (TimeManager.Instance.raining)
         {
             rainSource.Play();

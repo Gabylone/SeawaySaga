@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <Chunk xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <state>UndiscoveredIsland</state>
+  <state>VisitedIsland</state>
   <coords>
     <x>37</x>
     <y>3</y>
@@ -75,7 +75,7 @@
       </coords>
       <containsFormula>true</containsFormula>
       <storyManager>
-        <hasBeenPlayed>false</hasBeenPlayed>
+        <hasBeenPlayed>true</hasBeenPlayed>
         <storyHandlers>
           <StoryHandler>
             <row>0</row>
@@ -83,9 +83,408 @@
             <fallBackLayer>0</fallBackLayer>
             <storyID>22</storyID>
             <storyType>Normal</storyType>
-            <contentDecals />
-            <loots />
-            <crews />
+            <contentDecals>
+              <contentDecal>
+                <row>0</row>
+                <col>1</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>3</row>
+                <col>4</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>0</row>
+                <col>22</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>1</row>
+                <col>37</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>0</row>
+                <col>53</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>3</row>
+                <col>4</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>1</row>
+                <col>37</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>3</row>
+                <col>53</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>4</row>
+                <col>53</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>9</row>
+                <col>53</col>
+                <decal>0</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>6</row>
+                <col>53</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>6</row>
+                <col>53</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>8</row>
+                <col>53</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>1</row>
+                <col>53</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>2</row>
+                <col>53</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>0</row>
+                <col>69</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>7</row>
+                <col>92</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>3</row>
+                <col>53</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>8</row>
+                <col>53</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>0</row>
+                <col>53</col>
+                <decal>1</decal>
+              </contentDecal>
+            </contentDecals>
+            <loots>
+              <Loot>
+                <row>1</row>
+                <col>55</col>
+                <ids>
+                  <ArrayOfInt />
+                  <ArrayOfInt />
+                  <ArrayOfInt />
+                  <ArrayOfInt />
+                </ids>
+                <weight>0</weight>
+                <AllItems>
+                  <ArrayOfItem />
+                  <ArrayOfItem />
+                  <ArrayOfItem />
+                  <ArrayOfItem />
+                </AllItems>
+              </Loot>
+            </loots>
+            <crews>
+              <Crew>
+                <hostile>false</hostile>
+                <row>0</row>
+                <col>44</col>
+                <MemberIDs>
+                  <Member>
+                    <id>155</id>
+                    <Name>Natasha</Name>
+                    <health>100</health>
+                    <maxHealth>100</maxHealth>
+                    <currentHunger>0</currentHunger>
+                    <Lvl>7</Lvl>
+                    <xp>0</xp>
+                    <skillPoints>0</skillPoints>
+                    <specialSkillsIndexes>
+                      <int>21</int>
+                      <int>22</int>
+                      <int>23</int>
+                      <int>24</int>
+                    </specialSkillsIndexes>
+                    <stats>
+                      <int>1</int>
+                      <int>2</int>
+                      <int>3</int>
+                      <int>4</int>
+                    </stats>
+                    <daysOnBoard>0</daysOnBoard>
+                    <equipedWeapon>
+                      <ID>119</ID>
+                      <englishName>Soldier shotgun</englishName>
+                      <frenchName>Pistolet de soldat</frenchName>
+                      <value>68</value>
+                      <price>103</price>
+                      <weight>8</weight>
+                      <level>7</level>
+                      <spriteID>6</spriteID>
+                      <description>It's just your basic soldier shotgun</description>
+                      <weaponType>Distance</weaponType>
+                      <category>Weapon</category>
+                    </equipedWeapon>
+                    <equipedCloth>
+                      <ID>189</ID>
+                      <englishName>Coat of mail</englishName>
+                      <frenchName>Cotte de maille</frenchName>
+                      <value>69</value>
+                      <price>105</price>
+                      <weight>8</weight>
+                      <level>7</level>
+                      <spriteID>2</spriteID>
+                      <description>It's just your basic coat of mail</description>
+                      <weaponType>Distance</weaponType>
+                      <category>Clothes</category>
+                    </equipedCloth>
+                    <job>Gambler</job>
+                    <characterIDS>
+                      <int>0</int>
+                      <int>6</int>
+                      <int>2</int>
+                      <int>7</int>
+                      <int>4</int>
+                      <int>5</int>
+                      <int>3</int>
+                      <int>4</int>
+                      <int>1</int>
+                      <int>0</int>
+                      <int>0</int>
+                      <int>9</int>
+                      <int>5</int>
+                      <int>9</int>
+                      <int>4</int>
+                      <int>0</int>
+                    </characterIDS>
+                  </Member>
+                  <Member>
+                    <id>156</id>
+                    <Name>Nina</Name>
+                    <health>100</health>
+                    <maxHealth>100</maxHealth>
+                    <currentHunger>0</currentHunger>
+                    <Lvl>9</Lvl>
+                    <xp>0</xp>
+                    <skillPoints>0</skillPoints>
+                    <specialSkillsIndexes>
+                      <int>9</int>
+                      <int>10</int>
+                      <int>11</int>
+                      <int>12</int>
+                    </specialSkillsIndexes>
+                    <stats>
+                      <int>4</int>
+                      <int>3</int>
+                      <int>2</int>
+                      <int>3</int>
+                    </stats>
+                    <daysOnBoard>0</daysOnBoard>
+                    <equipedWeapon>
+                      <ID>144</ID>
+                      <englishName>Sailor pistol</englishName>
+                      <frenchName>Couleuvrine de marin</frenchName>
+                      <value>87</value>
+                      <price>135</price>
+                      <weight>8</weight>
+                      <level>9</level>
+                      <spriteID>7</spriteID>
+                      <description>It's just your basic sailor pistol</description>
+                      <weaponType>Distance</weaponType>
+                      <category>Weapon</category>
+                    </equipedWeapon>
+                    <equipedCloth>
+                      <ID>198</ID>
+                      <englishName>Bandit clothes</englishName>
+                      <frenchName>Habit de bandit</frenchName>
+                      <value>92</value>
+                      <price>146</price>
+                      <weight>8</weight>
+                      <level>9</level>
+                      <spriteID>0</spriteID>
+                      <description>It's just your basic bandit clothes</description>
+                      <weaponType>Distance</weaponType>
+                      <category>Clothes</category>
+                    </equipedCloth>
+                    <job>Surgeon</job>
+                    <characterIDS>
+                      <int>7</int>
+                      <int>0</int>
+                      <int>5</int>
+                      <int>10</int>
+                      <int>4</int>
+                      <int>5</int>
+                      <int>0</int>
+                      <int>2</int>
+                      <int>1</int>
+                      <int>0</int>
+                      <int>1</int>
+                      <int>11</int>
+                      <int>7</int>
+                      <int>11</int>
+                      <int>4</int>
+                      <int>2</int>
+                    </characterIDS>
+                  </Member>
+                  <Member>
+                    <id>157</id>
+                    <Name>Esteban</Name>
+                    <health>100</health>
+                    <maxHealth>100</maxHealth>
+                    <currentHunger>0</currentHunger>
+                    <Lvl>7</Lvl>
+                    <xp>0</xp>
+                    <skillPoints>0</skillPoints>
+                    <specialSkillsIndexes>
+                      <int>21</int>
+                      <int>22</int>
+                      <int>23</int>
+                      <int>24</int>
+                    </specialSkillsIndexes>
+                    <stats>
+                      <int>3</int>
+                      <int>1</int>
+                      <int>2</int>
+                      <int>4</int>
+                    </stats>
+                    <daysOnBoard>0</daysOnBoard>
+                    <equipedWeapon>
+                      <ID>120</ID>
+                      <englishName>Old shotgun</englishName>
+                      <frenchName>Vielle couleuvrine</frenchName>
+                      <value>68</value>
+                      <price>102</price>
+                      <weight>8</weight>
+                      <level>7</level>
+                      <spriteID>7</spriteID>
+                      <description>It's just your basic old shotgun</description>
+                      <weaponType>Distance</weaponType>
+                      <category>Weapon</category>
+                    </equipedWeapon>
+                    <equipedCloth>
+                      <ID>185</ID>
+                      <englishName>Leather breastplate</englishName>
+                      <frenchName>Plastron de cuir</frenchName>
+                      <value>69</value>
+                      <price>112</price>
+                      <weight>8</weight>
+                      <level>7</level>
+                      <spriteID>1</spriteID>
+                      <description>It's just your basic leather breastplate</description>
+                      <weaponType>Distance</weaponType>
+                      <category>Clothes</category>
+                    </equipedCloth>
+                    <job>Gambler</job>
+                    <characterIDS>
+                      <int>4</int>
+                      <int>2</int>
+                      <int>2</int>
+                      <int>9</int>
+                      <int>5</int>
+                      <int>8</int>
+                      <int>2</int>
+                      <int>2</int>
+                      <int>1</int>
+                      <int>0</int>
+                      <int>2</int>
+                      <int>8</int>
+                      <int>12</int>
+                      <int>2</int>
+                      <int>1</int>
+                      <int>1</int>
+                    </characterIDS>
+                  </Member>
+                  <Member>
+                    <id>158</id>
+                    <Name>Eric</Name>
+                    <health>100</health>
+                    <maxHealth>100</maxHealth>
+                    <currentHunger>0</currentHunger>
+                    <Lvl>8</Lvl>
+                    <xp>0</xp>
+                    <skillPoints>0</skillPoints>
+                    <specialSkillsIndexes>
+                      <int>17</int>
+                      <int>18</int>
+                      <int>19</int>
+                      <int>20</int>
+                    </specialSkillsIndexes>
+                    <stats>
+                      <int>3</int>
+                      <int>2</int>
+                      <int>3</int>
+                      <int>3</int>
+                    </stats>
+                    <daysOnBoard>0</daysOnBoard>
+                    <equipedWeapon>
+                      <ID>131</ID>
+                      <englishName>Good harquebus</englishName>
+                      <frenchName>Vielle arquebuse</frenchName>
+                      <value>76</value>
+                      <price>119</price>
+                      <weight>8</weight>
+                      <level>8</level>
+                      <spriteID>6</spriteID>
+                      <description>It's just your basic good harquebus</description>
+                      <weaponType>Distance</weaponType>
+                      <category>Weapon</category>
+                    </equipedWeapon>
+                    <equipedCloth>
+                      <ID>191</ID>
+                      <englishName>Parade armor</englishName>
+                      <frenchName>Armure de parade</frenchName>
+                      <value>84</value>
+                      <price>128</price>
+                      <weight>8</weight>
+                      <level>8</level>
+                      <spriteID>1</spriteID>
+                      <description>It's just your basic parade armor</description>
+                      <weaponType>Distance</weaponType>
+                      <category>Clothes</category>
+                    </equipedCloth>
+                    <job>Cannoneer</job>
+                    <characterIDS>
+                      <int>7</int>
+                      <int>9</int>
+                      <int>0</int>
+                      <int>10</int>
+                      <int>5</int>
+                      <int>9</int>
+                      <int>3</int>
+                      <int>3</int>
+                      <int>0</int>
+                      <int>0</int>
+                      <int>0</int>
+                      <int>9</int>
+                      <int>6</int>
+                      <int>10</int>
+                      <int>7</int>
+                      <int>0</int>
+                    </characterIDS>
+                  </Member>
+                </MemberIDs>
+              </Crew>
+            </crews>
           </StoryHandler>
         </storyHandlers>
       </storyManager>

@@ -11,6 +11,8 @@ public class ClockUI : MonoBehaviour {
 	[SerializeField]
 	private Transform clockBackground;
 
+    public GameObject storm_obj;
+
     public float duration = 0.6f;
 
 //	[SerializeField]
@@ -43,6 +45,15 @@ public class ClockUI : MonoBehaviour {
 		nightImage.fillAmount = (float)nightDuration / (float)TimeManager.Instance.dayDuration;*/
 	}
 
+    public void ShowStorm()
+    {
+        storm_obj.SetActive(true);
+    }
+
+    public void HideStorm()
+    {
+        storm_obj.SetActive(false);
+    }
 
 	public void UpdateUI ()
 	{

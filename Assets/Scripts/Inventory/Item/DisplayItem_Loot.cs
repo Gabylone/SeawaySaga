@@ -55,7 +55,7 @@ public class DisplayItem_Loot : DisplayItem {
     public void Select () {
 
 		if ( selected ) {
-			Deselect ();
+            Deselect ();
 			return;
 		}
 
@@ -64,7 +64,7 @@ public class DisplayItem_Loot : DisplayItem {
         // select
 		if (selectedDisplayItem != null) {
 			selectedDisplayItem.Deselect ();
-		}
+        }
 
         selectedDisplayItem = this;
         selected = true;
@@ -79,8 +79,18 @@ public class DisplayItem_Loot : DisplayItem {
 		button.image.color = LootManager.Instance.selectedButtonColor;
 
 	}
+    
+    public static void DeselectSelectedItem()
+    {
+        LootUI.Instance.ClearSelectedItem();
 
-	public void Deselect () {
+        if ( selectedDisplayItem != null)
+        {
+            selectedDisplayItem.Deselect();
+        }
+    }
+
+    public void Deselect () {
 
 		selectedDisplayItem = null;
 

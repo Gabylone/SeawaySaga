@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <Chunk xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <state>UndiscoveredIsland</state>
+  <state>VisitedIsland</state>
   <coords>
     <x>4</x>
     <y>11</y>
@@ -19,7 +19,7 @@
       </coords>
       <containsFormula>true</containsFormula>
       <storyManager>
-        <hasBeenPlayed>false</hasBeenPlayed>
+        <hasBeenPlayed>true</hasBeenPlayed>
         <storyHandlers>
           <StoryHandler>
             <row>0</row>
@@ -27,9 +27,815 @@
             <fallBackLayer>0</fallBackLayer>
             <storyID>4</storyID>
             <storyType>Normal</storyType>
-            <contentDecals />
-            <loots />
-            <crews />
+            <contentDecals>
+              <contentDecal>
+                <row>1</row>
+                <col>6</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>1</row>
+                <col>21</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>0</row>
+                <col>27</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>1</row>
+                <col>63</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>1</row>
+                <col>65</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>4</row>
+                <col>75</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>10</row>
+                <col>75</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>7</row>
+                <col>75</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>1</row>
+                <col>114</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>4</row>
+                <col>114</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>4</row>
+                <col>115</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>3</row>
+                <col>114</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>16</row>
+                <col>79</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>0</row>
+                <col>179</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>1</row>
+                <col>181</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>1</row>
+                <col>182</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>0</row>
+                <col>56</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>0</row>
+                <col>10</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>3</row>
+                <col>201</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>0</row>
+                <col>220</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>2</row>
+                <col>220</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>2</row>
+                <col>220</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>3</row>
+                <col>220</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>0</row>
+                <col>201</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>1</row>
+                <col>6</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>2</row>
+                <col>15</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>2</row>
+                <col>201</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>7</row>
+                <col>206</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>7</row>
+                <col>208</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>5</row>
+                <col>206</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>5</row>
+                <col>208</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>3</row>
+                <col>206</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>3</row>
+                <col>208</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>2</row>
+                <col>206</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>3</row>
+                <col>201</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>0</row>
+                <col>220</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>3</row>
+                <col>220</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>0</row>
+                <col>201</col>
+                <decal>1</decal>
+              </contentDecal>
+            </contentDecals>
+            <loots>
+              <Loot>
+                <row>0</row>
+                <col>95</col>
+                <ids>
+                  <ArrayOfInt />
+                  <ArrayOfInt />
+                  <ArrayOfInt>
+                    <int>201</int>
+                    <int>171</int>
+                  </ArrayOfInt>
+                  <ArrayOfInt>
+                    <int>212</int>
+                    <int>212</int>
+                    <int>216</int>
+                  </ArrayOfInt>
+                </ids>
+                <weight>24</weight>
+                <AllItems>
+                  <ArrayOfItem />
+                  <ArrayOfItem />
+                  <ArrayOfItem>
+                    <Item>
+                      <ID>201</ID>
+                      <englishName>The armor of the Pirate King</englishName>
+                      <frenchName>Armure du roi pirate</frenchName>
+                      <value>99</value>
+                      <price>157</price>
+                      <weight>8</weight>
+                      <level>10</level>
+                      <spriteID>2</spriteID>
+                      <description>It's just your basic the armor of the pirate king</description>
+                      <weaponType>Distance</weaponType>
+                      <category>Clothes</category>
+                    </Item>
+                    <Item>
+                      <ID>171</ID>
+                      <englishName>Rusty breastplate</englishName>
+                      <frenchName>Cuirasse rouillée</frenchName>
+                      <value>43</value>
+                      <price>67</price>
+                      <weight>8</weight>
+                      <level>4</level>
+                      <spriteID>1</spriteID>
+                      <description>It's just your basic rusty breastplate</description>
+                      <weaponType>Distance</weaponType>
+                      <category>Clothes</category>
+                    </Item>
+                  </ArrayOfItem>
+                  <ArrayOfItem>
+                    <Item>
+                      <ID>212</ID>
+                      <englishName>Ink Pot</englishName>
+                      <frenchName>Encrier</frenchName>
+                      <value>0</value>
+                      <price>8</price>
+                      <weight>3</weight>
+                      <level>0</level>
+                      <spriteID>10</spriteID>
+                      <description>It's just your basic ink pot</description>
+                      <weaponType>Distance</weaponType>
+                      <category>Misc</category>
+                    </Item>
+                    <Item>
+                      <ID>212</ID>
+                      <englishName>Ink Pot</englishName>
+                      <frenchName>Encrier</frenchName>
+                      <value>0</value>
+                      <price>8</price>
+                      <weight>3</weight>
+                      <level>0</level>
+                      <spriteID>10</spriteID>
+                      <description>It's just your basic ink pot</description>
+                      <weaponType>Distance</weaponType>
+                      <category>Misc</category>
+                    </Item>
+                    <Item>
+                      <ID>216</ID>
+                      <englishName>Lantern</englishName>
+                      <frenchName>Lanterne</frenchName>
+                      <value>0</value>
+                      <price>5</price>
+                      <weight>2</weight>
+                      <level>0</level>
+                      <spriteID>15</spriteID>
+                      <description>It's just your basic lantern</description>
+                      <weaponType>Distance</weaponType>
+                      <category>Misc</category>
+                    </Item>
+                  </ArrayOfItem>
+                </AllItems>
+              </Loot>
+              <Loot>
+                <row>0</row>
+                <col>177</col>
+                <ids>
+                  <ArrayOfInt />
+                  <ArrayOfInt>
+                    <int>109</int>
+                    <int>95</int>
+                    <int>114</int>
+                    <int>150</int>
+                  </ArrayOfInt>
+                  <ArrayOfInt>
+                    <int>201</int>
+                    <int>201</int>
+                    <int>201</int>
+                    <int>177</int>
+                  </ArrayOfInt>
+                  <ArrayOfInt>
+                    <int>218</int>
+                    <int>210</int>
+                  </ArrayOfInt>
+                </ids>
+                <weight>67</weight>
+                <AllItems>
+                  <ArrayOfItem />
+                  <ArrayOfItem>
+                    <Item>
+                      <ID>109</ID>
+                      <englishName>Master pistol</englishName>
+                      <frenchName>Pistolet de bord</frenchName>
+                      <value>63</value>
+                      <price>96</price>
+                      <weight>8</weight>
+                      <level>6</level>
+                      <spriteID>6</spriteID>
+                      <description>It's just your basic master pistol</description>
+                      <weaponType>Distance</weaponType>
+                      <category>Weapon</category>
+                    </Item>
+                    <Item>
+                      <ID>95</ID>
+                      <englishName>Steel gun</englishName>
+                      <frenchName>Pistolet de voyage</frenchName>
+                      <value>51</value>
+                      <price>81</price>
+                      <weight>8</weight>
+                      <level>5</level>
+                      <spriteID>6</spriteID>
+                      <description>It's just your basic steel gun</description>
+                      <weaponType>Distance</weaponType>
+                      <category>Weapon</category>
+                    </Item>
+                    <Item>
+                      <ID>114</ID>
+                      <englishName>Stone hammer</englishName>
+                      <frenchName>Marteau de guerre</frenchName>
+                      <value>67</value>
+                      <price>103</price>
+                      <weight>8</weight>
+                      <level>7</level>
+                      <spriteID>5</spriteID>
+                      <description>It's just your basic stone hammer</description>
+                      <weaponType>Stick</weaponType>
+                      <category>Weapon</category>
+                    </Item>
+                    <Item>
+                      <ID>150</ID>
+                      <englishName>Rifle of the pirate king</englishName>
+                      <frenchName>Pistolet du roi pirate</frenchName>
+                      <value>99</value>
+                      <price>149</price>
+                      <weight>8</weight>
+                      <level>10</level>
+                      <spriteID>7</spriteID>
+                      <description>It's just your basic rifle of the pirate king</description>
+                      <weaponType>Distance</weaponType>
+                      <category>Weapon</category>
+                    </Item>
+                  </ArrayOfItem>
+                  <ArrayOfItem>
+                    <Item>
+                      <ID>201</ID>
+                      <englishName>The armor of the Pirate King</englishName>
+                      <frenchName>Armure du roi pirate</frenchName>
+                      <value>99</value>
+                      <price>157</price>
+                      <weight>8</weight>
+                      <level>10</level>
+                      <spriteID>2</spriteID>
+                      <description>It's just your basic the armor of the pirate king</description>
+                      <weaponType>Distance</weaponType>
+                      <category>Clothes</category>
+                    </Item>
+                    <Item>
+                      <ID>201</ID>
+                      <englishName>The armor of the Pirate King</englishName>
+                      <frenchName>Armure du roi pirate</frenchName>
+                      <value>99</value>
+                      <price>157</price>
+                      <weight>8</weight>
+                      <level>10</level>
+                      <spriteID>2</spriteID>
+                      <description>It's just your basic the armor of the pirate king</description>
+                      <weaponType>Distance</weaponType>
+                      <category>Clothes</category>
+                    </Item>
+                    <Item>
+                      <ID>201</ID>
+                      <englishName>The armor of the Pirate King</englishName>
+                      <frenchName>Armure du roi pirate</frenchName>
+                      <value>99</value>
+                      <price>157</price>
+                      <weight>8</weight>
+                      <level>10</level>
+                      <spriteID>2</spriteID>
+                      <description>It's just your basic the armor of the pirate king</description>
+                      <weaponType>Distance</weaponType>
+                      <category>Clothes</category>
+                    </Item>
+                    <Item>
+                      <ID>177</ID>
+                      <englishName>Iron breastplate</englishName>
+                      <frenchName>Plastron de fer</frenchName>
+                      <value>46</value>
+                      <price>71</price>
+                      <weight>8</weight>
+                      <level>5</level>
+                      <spriteID>2</spriteID>
+                      <description>It's just your basic iron breastplate</description>
+                      <weaponType>Distance</weaponType>
+                      <category>Clothes</category>
+                    </Item>
+                  </ArrayOfItem>
+                  <ArrayOfItem>
+                    <Item>
+                      <ID>218</ID>
+                      <englishName>Recipe book</englishName>
+                      <frenchName>Livre de recettes</frenchName>
+                      <value>0</value>
+                      <price>1</price>
+                      <weight>1</weight>
+                      <level>0</level>
+                      <spriteID>17</spriteID>
+                      <description>It's just your basic recipe book</description>
+                      <weaponType>Distance</weaponType>
+                      <category>Misc</category>
+                    </Item>
+                    <Item>
+                      <ID>210</ID>
+                      <englishName>Fork</englishName>
+                      <frenchName>Fourchette</frenchName>
+                      <value>0</value>
+                      <price>6</price>
+                      <weight>2</weight>
+                      <level>0</level>
+                      <spriteID>8</spriteID>
+                      <description>It's just your basic fork</description>
+                      <weaponType>Distance</weaponType>
+                      <category>Misc</category>
+                    </Item>
+                  </ArrayOfItem>
+                </AllItems>
+              </Loot>
+              <Loot>
+                <row>2</row>
+                <col>221</col>
+                <ids>
+                  <ArrayOfInt />
+                  <ArrayOfInt>
+                    <int>108</int>
+                    <int>150</int>
+                    <int>150</int>
+                  </ArrayOfInt>
+                  <ArrayOfInt />
+                  <ArrayOfInt />
+                </ids>
+                <weight>24</weight>
+                <AllItems>
+                  <ArrayOfItem />
+                  <ArrayOfItem>
+                    <Item>
+                      <ID>108</ID>
+                      <englishName>Rusty culverine</englishName>
+                      <frenchName>Couleuvrine rouillée</frenchName>
+                      <value>56</value>
+                      <price>93</price>
+                      <weight>8</weight>
+                      <level>6</level>
+                      <spriteID>7</spriteID>
+                      <description>It's just your basic rusty culverine</description>
+                      <weaponType>Distance</weaponType>
+                      <category>Weapon</category>
+                    </Item>
+                    <Item>
+                      <ID>150</ID>
+                      <englishName>Rifle of the pirate king</englishName>
+                      <frenchName>Pistolet du roi pirate</frenchName>
+                      <value>99</value>
+                      <price>149</price>
+                      <weight>8</weight>
+                      <level>10</level>
+                      <spriteID>7</spriteID>
+                      <description>It's just your basic rifle of the pirate king</description>
+                      <weaponType>Distance</weaponType>
+                      <category>Weapon</category>
+                    </Item>
+                    <Item>
+                      <ID>150</ID>
+                      <englishName>Rifle of the pirate king</englishName>
+                      <frenchName>Pistolet du roi pirate</frenchName>
+                      <value>99</value>
+                      <price>149</price>
+                      <weight>8</weight>
+                      <level>10</level>
+                      <spriteID>7</spriteID>
+                      <description>It's just your basic rifle of the pirate king</description>
+                      <weaponType>Distance</weaponType>
+                      <category>Weapon</category>
+                    </Item>
+                  </ArrayOfItem>
+                  <ArrayOfItem />
+                  <ArrayOfItem />
+                </AllItems>
+              </Loot>
+            </loots>
+            <crews>
+              <Crew>
+                <hostile>false</hostile>
+                <row>0</row>
+                <col>12</col>
+                <MemberIDs>
+                  <Member>
+                    <id>184</id>
+                    <Name>Rufus</Name>
+                    <health>100</health>
+                    <maxHealth>100</maxHealth>
+                    <currentHunger>0</currentHunger>
+                    <Lvl>10</Lvl>
+                    <xp>0</xp>
+                    <skillPoints>0</skillPoints>
+                    <specialSkillsIndexes>
+                      <int>17</int>
+                      <int>18</int>
+                      <int>19</int>
+                      <int>20</int>
+                    </specialSkillsIndexes>
+                    <stats>
+                      <int>4</int>
+                      <int>6</int>
+                      <int>2</int>
+                      <int>1</int>
+                    </stats>
+                    <daysOnBoard>0</daysOnBoard>
+                    <equipedWeapon>
+                      <ID>150</ID>
+                      <englishName>Rifle of the pirate king</englishName>
+                      <frenchName>Pistolet du roi pirate</frenchName>
+                      <value>99</value>
+                      <price>149</price>
+                      <weight>8</weight>
+                      <level>10</level>
+                      <spriteID>7</spriteID>
+                      <description>It's just your basic rifle of the pirate king</description>
+                      <weaponType>Distance</weaponType>
+                      <category>Weapon</category>
+                    </equipedWeapon>
+                    <equipedCloth>
+                      <ID>201</ID>
+                      <englishName>The armor of the Pirate King</englishName>
+                      <frenchName>Armure du roi pirate</frenchName>
+                      <value>99</value>
+                      <price>157</price>
+                      <weight>8</weight>
+                      <level>10</level>
+                      <spriteID>2</spriteID>
+                      <description>It's just your basic the armor of the pirate king</description>
+                      <weaponType>Distance</weaponType>
+                      <category>Clothes</category>
+                    </equipedCloth>
+                    <job>Cannoneer</job>
+                    <characterIDS>
+                      <int>10</int>
+                      <int>9</int>
+                      <int>3</int>
+                      <int>0</int>
+                      <int>7</int>
+                      <int>4</int>
+                      <int>0</int>
+                      <int>1</int>
+                      <int>0</int>
+                      <int>0</int>
+                      <int>2</int>
+                      <int>0</int>
+                      <int>15</int>
+                      <int>10</int>
+                      <int>3</int>
+                      <int>2</int>
+                    </characterIDS>
+                  </Member>
+                </MemberIDs>
+              </Crew>
+              <Crew>
+                <hostile>false</hostile>
+                <row>0</row>
+                <col>58</col>
+                <MemberIDs>
+                  <Member>
+                    <id>185</id>
+                    <Name>Victor</Name>
+                    <health>100</health>
+                    <maxHealth>100</maxHealth>
+                    <currentHunger>0</currentHunger>
+                    <Lvl>10</Lvl>
+                    <xp>0</xp>
+                    <skillPoints>0</skillPoints>
+                    <specialSkillsIndexes>
+                      <int>17</int>
+                      <int>18</int>
+                      <int>19</int>
+                      <int>20</int>
+                    </specialSkillsIndexes>
+                    <stats>
+                      <int>4</int>
+                      <int>4</int>
+                      <int>2</int>
+                      <int>3</int>
+                    </stats>
+                    <daysOnBoard>0</daysOnBoard>
+                    <equipedWeapon>
+                      <ID>150</ID>
+                      <englishName>Rifle of the pirate king</englishName>
+                      <frenchName>Pistolet du roi pirate</frenchName>
+                      <value>99</value>
+                      <price>149</price>
+                      <weight>8</weight>
+                      <level>10</level>
+                      <spriteID>7</spriteID>
+                      <description>It's just your basic rifle of the pirate king</description>
+                      <weaponType>Distance</weaponType>
+                      <category>Weapon</category>
+                    </equipedWeapon>
+                    <equipedCloth>
+                      <ID>201</ID>
+                      <englishName>The armor of the Pirate King</englishName>
+                      <frenchName>Armure du roi pirate</frenchName>
+                      <value>99</value>
+                      <price>157</price>
+                      <weight>8</weight>
+                      <level>10</level>
+                      <spriteID>2</spriteID>
+                      <description>It's just your basic the armor of the pirate king</description>
+                      <weaponType>Distance</weaponType>
+                      <category>Clothes</category>
+                    </equipedCloth>
+                    <job>Cannoneer</job>
+                    <characterIDS>
+                      <int>7</int>
+                      <int>8</int>
+                      <int>6</int>
+                      <int>1</int>
+                      <int>2</int>
+                      <int>4</int>
+                      <int>2</int>
+                      <int>3</int>
+                      <int>1</int>
+                      <int>0</int>
+                      <int>2</int>
+                      <int>0</int>
+                      <int>13</int>
+                      <int>10</int>
+                      <int>0</int>
+                      <int>3</int>
+                    </characterIDS>
+                  </Member>
+                  <Member>
+                    <id>186</id>
+                    <Name>Vladimir</Name>
+                    <health>100</health>
+                    <maxHealth>100</maxHealth>
+                    <currentHunger>0</currentHunger>
+                    <Lvl>9</Lvl>
+                    <xp>0</xp>
+                    <skillPoints>0</skillPoints>
+                    <specialSkillsIndexes>
+                      <int>21</int>
+                      <int>22</int>
+                      <int>23</int>
+                      <int>24</int>
+                    </specialSkillsIndexes>
+                    <stats>
+                      <int>4</int>
+                      <int>3</int>
+                      <int>2</int>
+                      <int>3</int>
+                    </stats>
+                    <daysOnBoard>0</daysOnBoard>
+                    <equipedWeapon>
+                      <ID>138</ID>
+                      <englishName>Solider Stuff</englishName>
+                      <frenchName>Marteau de guerre</frenchName>
+                      <value>87</value>
+                      <price>140</price>
+                      <weight>8</weight>
+                      <level>9</level>
+                      <spriteID>5</spriteID>
+                      <description>It's just your basic solider stuff</description>
+                      <weaponType>Stick</weaponType>
+                      <category>Weapon</category>
+                    </equipedWeapon>
+                    <equipedCloth>
+                      <ID>197</ID>
+                      <englishName>Officer outfit</englishName>
+                      <frenchName>Tenue d'officier</frenchName>
+                      <value>90</value>
+                      <price>144</price>
+                      <weight>8</weight>
+                      <level>9</level>
+                      <spriteID>0</spriteID>
+                      <description>It's just your basic officer outfit</description>
+                      <weaponType>Distance</weaponType>
+                      <category>Clothes</category>
+                    </equipedCloth>
+                    <job>Gambler</job>
+                    <characterIDS>
+                      <int>1</int>
+                      <int>8</int>
+                      <int>6</int>
+                      <int>6</int>
+                      <int>6</int>
+                      <int>4</int>
+                      <int>4</int>
+                      <int>3</int>
+                      <int>1</int>
+                      <int>0</int>
+                      <int>3</int>
+                      <int>4</int>
+                      <int>12</int>
+                      <int>9</int>
+                      <int>5</int>
+                      <int>3</int>
+                    </characterIDS>
+                  </Member>
+                  <Member>
+                    <id>187</id>
+                    <Name>Romulus</Name>
+                    <health>100</health>
+                    <maxHealth>100</maxHealth>
+                    <currentHunger>0</currentHunger>
+                    <Lvl>10</Lvl>
+                    <xp>0</xp>
+                    <skillPoints>0</skillPoints>
+                    <specialSkillsIndexes>
+                      <int>17</int>
+                      <int>18</int>
+                      <int>19</int>
+                      <int>20</int>
+                    </specialSkillsIndexes>
+                    <stats>
+                      <int>2</int>
+                      <int>3</int>
+                      <int>3</int>
+                      <int>5</int>
+                    </stats>
+                    <daysOnBoard>0</daysOnBoard>
+                    <equipedWeapon>
+                      <ID>150</ID>
+                      <englishName>Rifle of the pirate king</englishName>
+                      <frenchName>Pistolet du roi pirate</frenchName>
+                      <value>99</value>
+                      <price>149</price>
+                      <weight>8</weight>
+                      <level>10</level>
+                      <spriteID>7</spriteID>
+                      <description>It's just your basic rifle of the pirate king</description>
+                      <weaponType>Distance</weaponType>
+                      <category>Weapon</category>
+                    </equipedWeapon>
+                    <equipedCloth>
+                      <ID>201</ID>
+                      <englishName>The armor of the Pirate King</englishName>
+                      <frenchName>Armure du roi pirate</frenchName>
+                      <value>99</value>
+                      <price>157</price>
+                      <weight>8</weight>
+                      <level>10</level>
+                      <spriteID>2</spriteID>
+                      <description>It's just your basic the armor of the pirate king</description>
+                      <weaponType>Distance</weaponType>
+                      <category>Clothes</category>
+                    </equipedCloth>
+                    <job>Cannoneer</job>
+                    <characterIDS>
+                      <int>3</int>
+                      <int>9</int>
+                      <int>9</int>
+                      <int>6</int>
+                      <int>5</int>
+                      <int>0</int>
+                      <int>3</int>
+                      <int>1</int>
+                      <int>0</int>
+                      <int>0</int>
+                      <int>1</int>
+                      <int>10</int>
+                      <int>9</int>
+                      <int>1</int>
+                      <int>2</int>
+                      <int>3</int>
+                    </characterIDS>
+                  </Member>
+                </MemberIDs>
+              </Crew>
+              <Crew>
+                <hostile>true</hostile>
+                <row>0</row>
+                <col>95</col>
+                <MemberIDs />
+              </Crew>
+              <Crew>
+                <hostile>true</hostile>
+                <row>0</row>
+                <col>177</col>
+                <MemberIDs />
+              </Crew>
+            </crews>
           </StoryHandler>
         </storyHandlers>
       </storyManager>

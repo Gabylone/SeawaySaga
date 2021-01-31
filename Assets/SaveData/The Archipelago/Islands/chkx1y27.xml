@@ -483,6 +483,106 @@
                 <col>21</col>
                 <decal>1</decal>
               </contentDecal>
+              <contentDecal>
+                <row>1</row>
+                <col>6</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>1</row>
+                <col>22</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>1</row>
+                <col>21</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>1</row>
+                <col>63</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>1</row>
+                <col>65</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>4</row>
+                <col>75</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>10</row>
+                <col>75</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>13</row>
+                <col>75</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>0</row>
+                <col>75</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>0</row>
+                <col>63</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>0</row>
+                <col>21</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>1</row>
+                <col>6</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>1</row>
+                <col>21</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>3</row>
+                <col>63</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>1</row>
+                <col>114</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>0</row>
+                <col>122</col>
+                <decal>0</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>0</row>
+                <col>124</col>
+                <decal>0</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>0</row>
+                <col>114</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>0</row>
+                <col>63</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>0</row>
+                <col>21</col>
+                <decal>1</decal>
+              </contentDecal>
             </contentDecals>
             <loots />
             <crews>
@@ -558,6 +658,291 @@
                   </Member>
                 </MemberIDs>
               </Crew>
+              <Crew>
+                <hostile>false</hostile>
+                <row>0</row>
+                <col>58</col>
+                <MemberIDs>
+                  <Member>
+                    <id>180</id>
+                    <Name>Jerome</Name>
+                    <health>100</health>
+                    <maxHealth>100</maxHealth>
+                    <currentHunger>0</currentHunger>
+                    <Lvl>8</Lvl>
+                    <xp>0</xp>
+                    <skillPoints>0</skillPoints>
+                    <specialSkillsIndexes>
+                      <int>9</int>
+                      <int>10</int>
+                      <int>11</int>
+                      <int>12</int>
+                    </specialSkillsIndexes>
+                    <stats>
+                      <int>3</int>
+                      <int>1</int>
+                      <int>4</int>
+                      <int>3</int>
+                    </stats>
+                    <daysOnBoard>0</daysOnBoard>
+                    <equipedWeapon>
+                      <ID>134</ID>
+                      <englishName>Powerfull rifle</englishName>
+                      <frenchName>Couleuvrine puissante</frenchName>
+                      <value>79</value>
+                      <price>122</price>
+                      <weight>8</weight>
+                      <level>8</level>
+                      <spriteID>7</spriteID>
+                      <description>It's just your basic powerfull rifle</description>
+                      <weaponType>Distance</weaponType>
+                      <category>Weapon</category>
+                    </equipedWeapon>
+                    <equipedCloth>
+                      <ID>192</ID>
+                      <englishName>Wooden armor</englishName>
+                      <frenchName>Armure de bois</frenchName>
+                      <value>78</value>
+                      <price>121</price>
+                      <weight>8</weight>
+                      <level>8</level>
+                      <spriteID>1</spriteID>
+                      <description>It's just your basic wooden armor</description>
+                      <weaponType>Distance</weaponType>
+                      <category>Clothes</category>
+                    </equipedCloth>
+                    <job>Surgeon</job>
+                    <characterIDS>
+                      <int>5</int>
+                      <int>6</int>
+                      <int>7</int>
+                      <int>8</int>
+                      <int>9</int>
+                      <int>2</int>
+                      <int>0</int>
+                      <int>2</int>
+                      <int>1</int>
+                      <int>0</int>
+                      <int>7</int>
+                      <int>9</int>
+                      <int>12</int>
+                      <int>12</int>
+                      <int>0</int>
+                      <int>1</int>
+                    </characterIDS>
+                  </Member>
+                  <Member>
+                    <id>181</id>
+                    <Name>Jeanne</Name>
+                    <health>100</health>
+                    <maxHealth>100</maxHealth>
+                    <currentHunger>0</currentHunger>
+                    <Lvl>8</Lvl>
+                    <xp>0</xp>
+                    <skillPoints>0</skillPoints>
+                    <specialSkillsIndexes>
+                      <int>9</int>
+                      <int>10</int>
+                      <int>11</int>
+                      <int>12</int>
+                    </specialSkillsIndexes>
+                    <stats>
+                      <int>2</int>
+                      <int>2</int>
+                      <int>4</int>
+                      <int>3</int>
+                    </stats>
+                    <daysOnBoard>0</daysOnBoard>
+                    <equipedWeapon>
+                      <ID>129</ID>
+                      <englishName>Curved sword</englishName>
+                      <frenchName>Lame incurvée</frenchName>
+                      <value>84</value>
+                      <price>130</price>
+                      <weight>8</weight>
+                      <level>8</level>
+                      <spriteID>2</spriteID>
+                      <description>It's just your basic curved sword</description>
+                      <weaponType>Stick</weaponType>
+                      <category>Weapon</category>
+                    </equipedWeapon>
+                    <equipedCloth>
+                      <ID>190</ID>
+                      <englishName>Chain mail</englishName>
+                      <frenchName>Chemise de maille</frenchName>
+                      <value>80</value>
+                      <price>123</price>
+                      <weight>8</weight>
+                      <level>8</level>
+                      <spriteID>1</spriteID>
+                      <description>It's just your basic chain mail</description>
+                      <weaponType>Distance</weaponType>
+                      <category>Clothes</category>
+                    </equipedCloth>
+                    <job>Surgeon</job>
+                    <characterIDS>
+                      <int>8</int>
+                      <int>2</int>
+                      <int>0</int>
+                      <int>3</int>
+                      <int>0</int>
+                      <int>6</int>
+                      <int>5</int>
+                      <int>2</int>
+                      <int>0</int>
+                      <int>0</int>
+                      <int>6</int>
+                      <int>1</int>
+                      <int>1</int>
+                      <int>0</int>
+                      <int>7</int>
+                      <int>0</int>
+                    </characterIDS>
+                  </Member>
+                  <Member>
+                    <id>182</id>
+                    <Name>Eric</Name>
+                    <health>100</health>
+                    <maxHealth>100</maxHealth>
+                    <currentHunger>0</currentHunger>
+                    <Lvl>6</Lvl>
+                    <xp>0</xp>
+                    <skillPoints>0</skillPoints>
+                    <specialSkillsIndexes>
+                      <int>13</int>
+                      <int>14</int>
+                      <int>15</int>
+                    </specialSkillsIndexes>
+                    <stats>
+                      <int>2</int>
+                      <int>3</int>
+                      <int>1</int>
+                      <int>3</int>
+                    </stats>
+                    <daysOnBoard>0</daysOnBoard>
+                    <equipedWeapon>
+                      <ID>101</ID>
+                      <englishName>Steel Mace</englishName>
+                      <frenchName>Epée immense</frenchName>
+                      <value>63</value>
+                      <price>101</price>
+                      <weight>8</weight>
+                      <level>6</level>
+                      <spriteID>5</spriteID>
+                      <description>It's just your basic steel mace</description>
+                      <weaponType>Stick</weaponType>
+                      <category>Weapon</category>
+                    </equipedWeapon>
+                    <equipedCloth>
+                      <ID>182</ID>
+                      <englishName>Rusty breastplate</englishName>
+                      <frenchName>Cuirasse rouillée</frenchName>
+                      <value>61</value>
+                      <price>102</price>
+                      <weight>8</weight>
+                      <level>6</level>
+                      <spriteID>1</spriteID>
+                      <description>It's just your basic rusty breastplate</description>
+                      <weaponType>Distance</weaponType>
+                      <category>Clothes</category>
+                    </equipedCloth>
+                    <job>Cook</job>
+                    <characterIDS>
+                      <int>9</int>
+                      <int>6</int>
+                      <int>7</int>
+                      <int>2</int>
+                      <int>5</int>
+                      <int>6</int>
+                      <int>5</int>
+                      <int>4</int>
+                      <int>0</int>
+                      <int>0</int>
+                      <int>0</int>
+                      <int>1</int>
+                      <int>16</int>
+                      <int>17</int>
+                      <int>3</int>
+                      <int>1</int>
+                    </characterIDS>
+                  </Member>
+                </MemberIDs>
+              </Crew>
+              <Crew>
+                <hostile>false</hostile>
+                <row>0</row>
+                <col>95</col>
+                <MemberIDs>
+                  <Member>
+                    <id>183</id>
+                    <Name>Claude</Name>
+                    <health>100</health>
+                    <maxHealth>100</maxHealth>
+                    <currentHunger>0</currentHunger>
+                    <Lvl>8</Lvl>
+                    <xp>0</xp>
+                    <skillPoints>0</skillPoints>
+                    <specialSkillsIndexes>
+                      <int>21</int>
+                      <int>22</int>
+                      <int>23</int>
+                      <int>24</int>
+                    </specialSkillsIndexes>
+                    <stats>
+                      <int>5</int>
+                      <int>3</int>
+                      <int>2</int>
+                      <int>1</int>
+                    </stats>
+                    <daysOnBoard>0</daysOnBoard>
+                    <equipedWeapon>
+                      <ID>132</ID>
+                      <englishName>Small rifle</englishName>
+                      <frenchName>Petite arquebuse</frenchName>
+                      <value>78</value>
+                      <price>117</price>
+                      <weight>8</weight>
+                      <level>8</level>
+                      <spriteID>7</spriteID>
+                      <description>It's just your basic small rifle</description>
+                      <weaponType>Distance</weaponType>
+                      <category>Weapon</category>
+                    </equipedWeapon>
+                    <equipedCloth>
+                      <ID>193</ID>
+                      <englishName>Rusty breastplate</englishName>
+                      <frenchName>Cuirasse rouillée</frenchName>
+                      <value>80</value>
+                      <price>123</price>
+                      <weight>8</weight>
+                      <level>8</level>
+                      <spriteID>1</spriteID>
+                      <description>It's just your basic rusty breastplate</description>
+                      <weaponType>Distance</weaponType>
+                      <category>Clothes</category>
+                    </equipedCloth>
+                    <job>Gambler</job>
+                    <characterIDS>
+                      <int>9</int>
+                      <int>7</int>
+                      <int>2</int>
+                      <int>0</int>
+                      <int>9</int>
+                      <int>8</int>
+                      <int>3</int>
+                      <int>4</int>
+                      <int>1</int>
+                      <int>0</int>
+                      <int>1</int>
+                      <int>5</int>
+                      <int>5</int>
+                      <int>5</int>
+                      <int>3</int>
+                      <int>0</int>
+                    </characterIDS>
+                  </Member>
+                </MemberIDs>
+              </Crew>
             </crews>
           </StoryHandler>
           <StoryHandler>
@@ -591,9 +976,9 @@
             <col>13</col>
             <fallBackLayer>0</fallBackLayer>
             <fallbackNode>
-              <name>choix garde</name>
-              <row>0</row>
-              <col>19</col>
+              <name>fin quete</name>
+              <row>7</row>
+              <col>37</col>
             </fallbackNode>
             <storyID>0</storyID>
             <storyType>Quest</storyType>
@@ -601,6 +986,11 @@
               <contentDecal>
                 <row>0</row>
                 <col>45</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>1</row>
+                <col>44</col>
                 <decal>1</decal>
               </contentDecal>
               <contentDecal>
@@ -770,6 +1160,56 @@
               <contentDecal>
                 <row>4</row>
                 <col>115</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>0</row>
+                <col>114</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>0</row>
+                <col>63</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>0</row>
+                <col>21</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>1</row>
+                <col>6</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>1</row>
+                <col>21</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>1</row>
+                <col>63</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>1</row>
+                <col>63</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>3</row>
+                <col>63</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>1</row>
+                <col>114</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>4</row>
+                <col>114</col>
                 <decal>1</decal>
               </contentDecal>
               <contentDecal>

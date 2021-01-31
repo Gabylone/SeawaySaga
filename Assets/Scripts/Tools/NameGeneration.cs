@@ -41,6 +41,11 @@ public class NameGeneration : MonoBehaviour {
 
 	public static string CheckForKeyWords ( string text ) {
 
+        if ( Crews.Instance == null)
+        {
+            return text;
+        }
+
         if (text.Contains("CAPITAINE"))
         {
             text = text.Replace("CAPITAINE", Crews.playerCrew.captain.MemberName );

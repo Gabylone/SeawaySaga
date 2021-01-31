@@ -11,6 +11,7 @@ public class GoldManager : MonoBehaviour {
 	[SerializeField] private GameObject goldGroup;
 	[SerializeField] private Text goldText;
 	[SerializeField] private Image goldImage;
+    private Transform goldTransform;
 
 	[SerializeField]
 	private float feedbackDuration = 1.5f;
@@ -38,6 +39,8 @@ public class GoldManager : MonoBehaviour {
 
 	void Start () {
 
+        goldTransform = goldGroup.transform;
+
         initTextColor = goldText.color;
 
 		StoryFunctions.Instance.getFunction += HandleGetFunction;
@@ -59,7 +62,7 @@ public class GoldManager : MonoBehaviour {
 		case InventoryActionType.Sell:
 //		case InventoryActionType.Buy:
 //		case InventoryActionType.PurchaseAndEquip:
-			Tween.Bounce (goldGroup.transform);
+			Tween.Bounce (goldTransform);
 			break;
 		default:
 			break;
@@ -99,7 +102,7 @@ public class GoldManager : MonoBehaviour {
 	
 	private void DisplayFeedback () {
 
-		Tween.Bounce (goldGroup.transform);
+		Tween.Bounce (goldTransform);
 
 	}
 	#endregion
@@ -133,7 +136,7 @@ public class GoldManager : MonoBehaviour {
 
 		DisplayFeedback ();
 
-        Tween.Bounce(goldGroup.transform);
+        Tween.Bounce(goldTransform);
 
         if ( amount > goldAmount ) {
 

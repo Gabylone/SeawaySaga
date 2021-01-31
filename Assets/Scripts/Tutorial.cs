@@ -28,7 +28,6 @@ public class Tutorial : MonoBehaviour {
     {
         if (debugTutorial)
         {
-            Debug.Log("debugging tuto");
             KeepOnLoad.displayTuto = true;
         }
 

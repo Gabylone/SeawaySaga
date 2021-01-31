@@ -35,6 +35,8 @@ public class MessageDisplay : MonoBehaviour {
 
 		group.SetActive (true);
 
+        str = NameGeneration.CheckForKeyWords(str);
+
 		uiText.text = str;
 
         canvasGroup.alpha = 0f;

@@ -159,6 +159,33 @@ public class InGameBackGround : MonoBehaviour {
         SoundManager.Instance.UpdateAmbianceSound();
     }
 
+    public bool IsInterior()
+    {
+        if (!StoryLauncher.Instance.PlayingStory)
+        {
+            return false;
+        }
+
+        switch (currentType)
+        {
+            case Type.Island:
+            case Type.Forest:
+            case Type.Village:
+            case Type.Boat:
+                return false;
+                break;
+            case Type.House:
+            case Type.Tavern:
+            case Type.Cave:
+                return true;
+                break;
+            default:
+                break;
+        }
+
+        return false;
+    }
+
     public void SetDark()
     {
         image.DOColor(darkColor, 0.5f);

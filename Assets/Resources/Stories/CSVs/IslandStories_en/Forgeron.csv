@@ -21,10 +21,10 @@ Node=>discussion forgeron;;Node=>combat forgeron;;;;;
 [discussion forgeron];;;;;;;
 SetChoices4;;;;;;[partir];
 Choice : (leave);Choice : Ahoy, smith! Do you happen to sell the weapons you craft? (trade);;Choice : (attack);Choice : How are things going around here? (quest);;RandomPercent85;Leave
-Node=>partir;RandomPercent8;OtherSpeak : With great pleasure! Here's what I have for sale!;RemoveKarma;RandomPercent70;;Leave;OtherSpeak : Sailor!
-;OtherSpeak : Yes, but not to people of your kind.;TradeWeapons/Clothes;[combat forgeron];GiveTip;NewQuest=>discussion forgeron;;OtherSpeak : I’ve got a small favor to ask of you if you'll listen.
-;Node=>discussion forgeron;Node=>discussion forgeron;OtherSpeak : You’re fighting the wrong person...;RandomRange2;;;OtherSpeak : My wife is constantly nagging me because she wants some jewels...
-;;;LaunchCombat;OtherSpeak : You wanna gossip, you go and see my wife.;GiveTip;;OtherSpeak : But I’m a blacksmith, not a jeweller!
+Node=>partir;RandomPercent8;;RemoveKarma;RandomPercent70;;Leave;OtherSpeak : Sailor!
+;OtherSpeak : Yes, but not to people of your kind.;OtherSpeak : With great pleasure! Here's what I have for sale!;[combat forgeron];GiveTip;NewQuest=>discussion forgeron;;OtherSpeak : I’ve got a small favor to ask of you if you'll listen.
+;Node=>discussion forgeron;TradeWeapons/Clothes;OtherSpeak : You’re fighting the wrong person...;RandomRange2;;;OtherSpeak : My wife is constantly nagging me because she wants some jewels...
+;;Node=>discussion forgeron;LaunchCombat;OtherSpeak : You wanna gossip, you go and see my wife.;GiveTip;;OtherSpeak : But I’m a blacksmith, not a jeweller!
 ;;;Node=>forgeron mort;Node=>discussion forgeron;Node=>discussion forgeron;;OtherSpeak : If you bring me back some jewelry for her, like pretty earrings or somethin'...
 ;;;;;;;OtherSpeak : I'll let you have a look at what I have in the back of my shop!
 ;;;;;;;Switch=>partir
@@ -53,8 +53,8 @@ Node=>discussion forgeron;;;;;;;
 [forgeron mort];;;;;;;
 Narrator : The blacksmith is dead, but his forge is still burning. Scattered around are a few metal ingots and other materials.;;;;;;;
 SetChoices3;;;;;;;
-Choice : (leave);Choice : Lets enter the house.;;;Choice : (look behind the forge)(loot);;;
-Fade;;;;RandomRange3;;;
+Choice : (leave);Choice : Let’s enter the house.;;;Choice : (look behind the forge)(loot);;;
+Fade;Node=>inside house;;;RandomRange3;;;
 Node=>debut;;;;PlayerSpeak : Only rusty pieces of metal.;PlayerSpeak : All sorts of random stuffs, but unfortunately no weapons.;PlayerSpeak : Bingo!;
 ;;;;Node=>forgeron mort;LootMisc;LootWeapons;
 ;;;;;Node=>forgeron mort;Node=>forgeron mort;

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+using DG.Tweening;
+
 public class Narrator : MonoBehaviour {
 
 	public static Narrator Instance;
@@ -10,7 +12,15 @@ public class Narrator : MonoBehaviour {
 	[Header("Narrator")]
 	[SerializeField] private Text narratorText;
 	[SerializeField] private GameObject narratorObj;
-	[SerializeField] private GameObject narratorButtonObj;
+    [SerializeField] private GameObject narratorButtonObj;
+    public CanvasGroup canvasGroup;
+    public Transform _transform;
+
+    public float scale = 1.01f;
+    public float dur = 0.1f;
+
+    VerticalLayoutGroup[] verticalLayoutGroups;
+    RectTransform[] rectTransforms;
 
     private bool previousActive = false;
 
@@ -24,6 +34,14 @@ public class Narrator : MonoBehaviour {
 	}
 
 	void Start () {
+
+        _transform = GetComponent<Transform>();
+        verticalLayoutGroups = GetComponentsInChildren<VerticalLayoutGroup>();
+        rectTransforms = new RectTransform[verticalLayoutGroups.Length];
+        for (int i = 0; i < verticalLayoutGroups.Length; i++)
+        {
+            rectTransforms[i] = verticalLayoutGroups[i].GetComponent<RectTransform>();
+        }
 
         StoryInput.Instance.onPressInput += HandleOnPressInput;
 
@@ -86,15 +104,14 @@ public class Narrator : MonoBehaviour {
     }
     public void ShowNarratorNoneStoryInput (string text)
     {
-        canHide = true;
+        CanHide = true;
         ShowNarrator(text);
     }
     public void ShowNarrator (string text) {
 
-        //InGameMenu.Instance.HideMenuButtons();
-
-        //Crews.playerCrew.captain.Icon.MoveToPoint(Crews.PlacingType.Hidden);
-        //Crews.enemyCrew.captain.Icon.MoveToPoint(Crews.PlacingType.Hidden);
+        Tween.Bounce(_transform, dur, scale);
+        canvasGroup.DOKill();
+        canvasGroup.DOFade(1f, dur);
 
         SoundManager.Instance.PlayRandomSound("Book");
         SoundManager.Instance.PlayRandomSound("Page");
@@ -103,43 +120,73 @@ public class Narrator : MonoBehaviour {
 
         visible = true;
 
-        Tween.Bounce (narratorObj.transform , 0.1f , 1.01f);
-
 		narratorObj.SetActive (true);
 
 		narratorText.text = NameGeneration.CheckForKeyWords (text);
 
-        foreach (var layoutGroup in GetComponentsInChildren<VerticalLayoutGroup>())
+        int i = 0;
+        foreach (var layoutGroup in verticalLayoutGroups)
         {
-            LayoutRebuilder.ForceRebuildLayoutImmediate(layoutGroup.GetComponent<RectTransform>());
+            LayoutRebuilder.ForceRebuildLayoutImmediate(rectTransforms[i]);
+            ++i;
         }
 	}
-	public void HideNarrator () {
+    public void HideNarrator()
+    {
+        Debug.Log("closing");
 
         SoundManager.Instance.PlayRandomSound("Book");
         SoundManager.Instance.PlayRandomSound("Page");
 
-        //InGameMenu.Instance.ShowMenuButtons();
+        narratorObj.SetActive(false);
+        visible = false;
 
-        if ( onCloseNarrator != null)
+        if (onCloseNarrator != null)
         {
             onCloseNarrator();
-            onCloseNarrator = null;
         }
 
-        narratorObj.SetActive (false);
+        /*canvasGroup.DOKill();
+        canvasGroup.DOFade(0f, dur);
 
-        visible = false;
-	}
+        CancelInvoke("HideNarratorDelay");
+        Invoke("HideNarratorDelay", dur);*/
+    }
+
+    public void HideNarratorDelay()
+    {
+        
+
+    }
     #endregion
 
-    public bool canHide = false;
+    private bool canHide = false;
+
+    public bool CanHide
+    {
+        get
+        {
+            return canHide;
+        }
+
+        set
+        {
+            Debug.Log("setting can hide to : " + value);
+
+            canHide = value;
+        }
+    }
+
     public void TryHide()
     {
-        if (canHide)
+        if (CanHide)
         {
+            CanHide = false;
             HideNarrator();
-            canHide = false;
+        }
+        else
+        {
+            Debug.Log("cant close");
         }
     }
 }

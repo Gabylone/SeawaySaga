@@ -2,10 +2,10 @@ Nom;Fréquence / 5;Sprite ID;Display Name;;;;;;;;
 Maison_Test;1;4;Captain’s House;;;;;;;;
 [choix];;;;[choix 2];;;;[choix 3];;;
 SetChoices4;;;;SetChoices4;;;;SetChoices4;;;
-Choice : (test fights);Choice : (test dice);Choice : (other);Choice : (leave);Choice : (test boat upgrades);Choice : (test quests);Choice : (weak fights);Choice : (other);Choice : (weak fights);Choice : (test quests);Choice : (other);Choice : (leave)
-Node=>fight;Node=>dice;Node=>choix 2;Leave;Node=>boat;Node=>quest;Node=>fight weak;Node=>choix 3;Node=>fight weak;Node=>quest;Node=>choix;Leave
-;;;;;;;;;;;
-;;;;;;;;;;;
+Choice : (test fights);Choice : (test dice);Choice : (clues);Choice : (other);Choice : (test boat upgrades);Choice : (test quests);Choice : (weak fights);Choice : (other);Choice : (trade & loot);Choice : (add health);Choice : (remove health);Choice : (leave)
+Node=>fight;Node=>dice;Node=>clues;Node=>choix 2;Node=>boat;Node=>quest;Node=>fight weak;Node=>choix 3;Node=>trade;PlayerSpeak : Je reprends toute ma santé !;PlayerSpeak : Je perds de la vie !;Leave
+;;;;;;;;;AddHealth150;RemoveHealth20;
+;;;;;;;;;Node=>choix 3;Node=>choix 3;
 ;;;;;;;;;;;
 ;;;;;;;;;;;
 [fight weak];;;;;;;;;;;
@@ -55,3 +55,12 @@ NewCrew4/M/10;Leave;;;;;;;;;;
 OtherSpeak : bateau;;;;;;;;;;;
 BoatUpgrades;;;;;;;;;;;
 Node=>boat;;;;;;;;;;;
+;;;;;;;;;;;
+;;;;;;;;;;;
+;;;;;;;;;;;
+[clues];;;;;;;;;;;
+SetChoices4;;;;;;;;;;;
+Choice : (clue 1);Choice : (clue 2);Choice : (clue 3);Choice : (clue 4);;;;;;;;
+NewCrew1/M/1;NewCrew1/M/1;NewCrew1/M/1;NewCrew1/M/1;;;;;;;;
+TellClueNarrator;TellClueNarrator;TellClueNarrator;TellClueNarrator;;;;;;;;
+Node=>choix;Node=>choix;Node=>choix;Node=>choix;;;;;;;;

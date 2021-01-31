@@ -104,6 +104,8 @@ public class LootUI : MonoBehaviour {
 	[SerializeField]
 	public ActionGroup actionGroup;
 
+    int displayedItemCount = 0;
+
 	void Awake () {
 		Instance = this;
 
@@ -171,12 +173,6 @@ public class LootUI : MonoBehaviour {
 
 	private void Init () {
 
-		int a = 0;
-		foreach ( DisplayItem_Loot itemButton in displayItems ) {
-			itemButton.index = a;
-			++a;
-		}
-
 		Hide ();
 	}
 
@@ -187,7 +183,6 @@ public class LootUI : MonoBehaviour {
     }
 	public void Show (CategoryContentType _catContentType,Crews.Side side) {
 
-        ClearSelectedItem();
 
 		currentSide = side;
 
@@ -454,7 +449,7 @@ public class LootUI : MonoBehaviour {
             displayItems[i].Hide();
         }
 
-        int itemIndex = 0;
+        displayedItemCount = 0;
 
         displayedItems.Clear();
 
@@ -465,37 +460,30 @@ public class LootUI : MonoBehaviour {
 
                 DisplayItem_Loot displayItem;
 
-                if ( itemIndex >= displayItems.Count)
+                if ( displayedItemCount >= displayItems.Count)
                 {
                     displayItem = NewDisplayItem();
                 }
                 else
                 {
-                    displayItem = displayItems[itemIndex];
+                    displayItem = displayItems[displayedItemCount];
                 }
 
                 displayItem.Show(item);
 
-                itemIndex++;
+                displayedItemCount++;
 
                 displayedItems.Add(item);
             }
         }
-
-        /*for (int i = 0; i < handledLoot.AllItems[(int)currentCat].Count; ++i ) {
-
-			DisplayItem_Loot displayItem = displayItems [i];
-
-            Item item = handledLoot.AllItems[(int)currentCat][i];
-
-            displayItem.Show(item);
-		}*/
 
     }
 
     private DisplayItem_Loot NewDisplayItem()
     {
         DisplayItem_Loot displayItem_Loot = Instantiate(displayItem_Prefab, displayItem_Parent);
+
+        displayItem_Loot.index = displayItems.Count;
 
         displayItems.Add(displayItem_Loot);
 
@@ -561,7 +549,7 @@ public class LootUI : MonoBehaviour {
  
 		currentItemCategory = cat;
 
-        ClearSelectedItem();
+        DisplayItem_Loot.DeselectSelectedItem();
 
 		UpdateLootUI ();
 
@@ -657,12 +645,30 @@ public class LootUI : MonoBehaviour {
 
 		UpdateLootUI ();
 
-		if (DisplayItem_Loot.selectedDisplayItem != null)
-			DisplayItem_Loot.selectedDisplayItem.Deselect ();
+        Invoke("He", 0.0001f);
 
-        ClearSelectedItem();
 
 	}
+
+    void He()
+    {
+        if (DisplayItem_Loot.selectedDisplayItem != null)
+        {
+            int index = DisplayItem_Loot.selectedDisplayItem.index;
+
+            if (index >= displayedItemCount)
+            {
+                DisplayItem_Loot.selectedDisplayItem.Deselect();
+            }
+            else
+            {
+                DisplayItem_Loot.selectedDisplayItem.Deselect();
+
+                displayItems[index].Select();
+            }
+        }
+    }
+
 	public void UpdateActionButton (Item item) {
 
 		if ( item == null ) {

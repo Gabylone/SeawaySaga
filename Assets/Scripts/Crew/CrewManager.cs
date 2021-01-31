@@ -64,10 +64,42 @@ public class CrewManager : MonoBehaviour {
 
     public void AddToStates()
     {
-        for (int i = 0; i < CrewMembers.Count; i++)
+        for (int i = CrewMembers.Count-1; i >= 0; i--)
         {
             CrewMembers[i].AddHunger();
         }
+
+        Invoke("CheckRain", 2f);
+    }
+
+    void CheckRain()
+    {
+        if (TimeManager.Instance.raining)
+        {
+            for (int i = CrewMembers.Count - 1; i >= 0; i--)
+            {
+                CrewMembers[i].RemoveHealth(10);
+                CrewMembers[i].Icon.hungerIcon.DisplayHealthAmount(-10, true);
+            }
+
+            SoundManager.Instance.PlaySound("Tribal 01");
+
+            if (Crews.playerCrew.CrewMembers.Count == 0)
+            {
+                MessageDisplay.Instance.Display("All of your crew members died in the storm");
+                MessageDisplay.Instance.onValidate += HandleOnValidate;
+            }
+
+        }
+
+
+        
+    }
+
+    void HandleOnValidate()
+    {
+            MessageDisplay.Instance.onValidate -= HandleOnValidate;
+        GameManager.Instance.BackToMenu();
     }
 
     #region crew placement

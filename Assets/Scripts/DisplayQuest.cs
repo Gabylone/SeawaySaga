@@ -31,9 +31,7 @@ public class DisplayQuest : MonoBehaviour {
 
     public GameObject infoGroup;
 
-
-
-    Quest currentQuest;
+    private Quest currentQuest;
 
     public RectTransform[] layoutGroups_RectTransforms;
 
@@ -67,19 +65,22 @@ public class DisplayQuest : MonoBehaviour {
 
         gold_Text.text = "" + quest.goldValue;
         experience_Text.text = "" + quest.experience;
-        description_Text.text = "Given by " + quest.giver.Name + "\n";
+
+        description_Text.text = "Given by " + quest.giver.Name + " in some " + quest.GetOriginIslandData().storyManager.storyHandlers[0].Story.displayName;
+
+        description_Text.text += "\n";
+        description_Text.text += "\n";
 
         if (quest.level == 10)
         {
-            description_Text.text = "<i>(most suited for level " + quest.level + ")</i>" +
-                "\n";
+            description_Text.text += "<i>(most suited for level " + quest.level + ")</i>";
         }
         else
         {
-            description_Text.text = "<i>(most suited for level " + quest.level + " or more)</i>" +
-                "\n";
+            description_Text.text += "<i>(most suited for level " + quest.level + " or more)</i>";
         }
 
+        description_Text.text += "\n";
         description_Text.text += "\n";
 
         for (int i = 1; i < 3; i++)

@@ -17,7 +17,6 @@ public class PlayerBoat : Boat {
     {
         base.Start();
 
-
         WorldTouch.onPointerExit += HandleOnPointerExit;
 
         NavigationManager.Instance.onUpdateCurrentChunk += HandleOnUpdateChunk;
@@ -96,9 +95,23 @@ public class PlayerBoat : Boat {
     {
         base.UpdatePositionOnScreen();
 
+        agent.enabled = false;
+
         GetTransform.position = NavigationManager.Instance.GetOppositeCornerPosition(GetBoatInfo().currentDirection);
 
-        SetTargetPos( GetTransform.position );
+        SetTargetPos(GetTransform.position);
+
+        Invoke("UpdatePositionOnScreenDelay", 0.001f);
+    }
+
+    void UpdatePositionOnScreenDelay()
+    {
+        agent.enabled = true;
+    }
+
+    IEnumerator UpdatePositionOnScreenCoroutine()
+    {
+        yield return new WaitForEndOfFrame();
     }
 
     void OnTriggerEnter (Collider collider) {
