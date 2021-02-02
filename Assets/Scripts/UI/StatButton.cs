@@ -92,7 +92,7 @@ public class StatButton : MonoBehaviour {
             return;
         }
 
-        MessageDisplay.Instance.Display(statDescription);
+        MessageDisplay.Instance.Display(statDescription, true);
         MessageDisplay.Instance.onValidate += HandleOnValidate;
     }
 

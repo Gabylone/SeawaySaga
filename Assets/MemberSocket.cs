@@ -93,7 +93,7 @@ public class MemberSocket : MonoBehaviour
         Tween.Bounce(tr);
 
         MessageDisplay.Instance.onValidate += HandleOnValidate;
-        MessageDisplay.Instance.Display("Are you sure you want to remove " + CrewMember.GetSelectedMember.MemberName + " from the crew ?!");
+        MessageDisplay.Instance.Display("Are you sure you want to remove " + CrewMember.GetSelectedMember.MemberName + " from the crew ?!", true);
 
     }
 

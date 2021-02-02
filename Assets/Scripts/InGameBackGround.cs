@@ -109,11 +109,11 @@ public class InGameBackGround : MonoBehaviour {
         }
     }
 
-    void SetSprite( Type type )
+    void SetSprite(Type type)
     {
         currentType = type;
 
-        if ( type == Type.Dark)
+        if (type == Type.Dark)
         {
             image.color = blackColor;
         }
@@ -157,6 +157,11 @@ public class InGameBackGround : MonoBehaviour {
         }
 
         SoundManager.Instance.UpdateAmbianceSound();
+
+        if ( currentType == Type.Tavern)
+        {
+            MusicManager.Instance.PlayTavernMusic();
+        }
     }
 
     public bool IsInterior()

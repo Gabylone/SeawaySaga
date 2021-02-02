@@ -37,6 +37,7 @@ public class Map : MonoBehaviour, IPointerClickHandler {
 
     private bool load = false;
 
+    public bool retry = false;
 
     // Use this for initialization
     void Start()
@@ -56,25 +57,34 @@ public class Map : MonoBehaviour, IPointerClickHandler {
 
         string currentMap_data = PlayerPrefs.GetString("map_data" + mapParameters.id, mapParameters.id == 0 ? "unlocked": "locked");
 
-        if (currentMap_data == "locked")
+        if (retry)
         {
-            padlockGroup.SetActive(true);
-            newGameGroup.SetActive(false);
-        }
-        else if (currentMap_data == "finished")
-        {
-            finishedGroup.SetActive(true);
             padlockGroup.SetActive(false);
-            newGameGroup.SetActive(false);
-            load = false;
-
-            HideMemberIcons();
-            return;
         }
         else
         {
-            padlockGroup.SetActive(false);
+            if (currentMap_data == "locked")
+            {
+                padlockGroup.SetActive(true);
+                newGameGroup.SetActive(false);
+            }
+            else if (currentMap_data == "finished")
+            {
+                finishedGroup.SetActive(true);
+                padlockGroup.SetActive(false);
+                newGameGroup.SetActive(false);
+                load = false;
+
+                HideMemberIcons();
+                return;
+            }
+            else
+            {
+                padlockGroup.SetActive(false);
+            }
         }
+
+        
 
         if (SaveTool.Instance.FileExists(mapParameters.mapName, "game data"))
         {
@@ -140,7 +150,7 @@ public class Map : MonoBehaviour, IPointerClickHandler {
         string currentMapKey = "map_data" + mapParameters.id;
         string currentMap_data = PlayerPrefs.GetString(currentMapKey, mapParameters.id == 0 ? "unlocked" : "locked");
 
-        if (currentMap_data == "finished")
+        if (currentMap_data == "finished"&& !retry)
         {
             return;
         }
@@ -199,7 +209,7 @@ public class Map : MonoBehaviour, IPointerClickHandler {
 
     public void EraseMap()
     {
-        MessageDisplay.Instance.Display("Erase game ?");
+        MessageDisplay.Instance.Display("Erase game ?", true);
 
         MessageDisplay.Instance.onValidate += ConfirmEraseMap;
 

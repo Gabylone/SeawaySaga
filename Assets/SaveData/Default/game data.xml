@@ -17,7 +17,7 @@
         <xp>0</xp>
         <skillPoints>0</skillPoints>
         <specialSkillsIndexes>
-          <int>13</int>
+          <int>17</int>
         </specialSkillsIndexes>
         <stats>
           <int>1</int>
@@ -40,34 +40,34 @@
           <category>Weapon</category>
         </equipedWeapon>
         <equipedCloth>
-          <ID>155</ID>
-          <englishName>Fur</englishName>
-          <frenchName>Fourrure</frenchName>
-          <value>14</value>
-          <price>26</price>
+          <ID>153</ID>
+          <englishName>Farmer clothing</englishName>
+          <frenchName>Habit de paysan</frenchName>
+          <value>6</value>
+          <price>14</price>
           <weight>8</weight>
           <level>1</level>
-          <spriteID>1</spriteID>
-          <description>It's just your basic fur</description>
+          <spriteID>0</spriteID>
+          <description>It's just your basic farmer clothing</description>
           <weaponType>Distance</weaponType>
           <category>Clothes</category>
         </equipedCloth>
-        <job>Cook</job>
+        <job>Cannoneer</job>
         <characterIDS>
-          <int>0</int>
-          <int>1</int>
-          <int>9</int>
-          <int>10</int>
+          <int>5</int>
           <int>6</int>
-          <int>7</int>
+          <int>5</int>
+          <int>0</int>
           <int>1</int>
-          <int>2</int>
-          <int>0</int>
-          <int>0</int>
+          <int>6</int>
+          <int>3</int>
+          <int>3</int>
+          <int>1</int>
           <int>0</int>
           <int>7</int>
-          <int>14</int>
-          <int>11</int>
+          <int>8</int>
+          <int>17</int>
+          <int>17</int>
           <int>7</int>
           <int>0</int>
         </characterIDS>
@@ -80,13 +80,13 @@
     <ids>
       <ArrayOfInt>
         <int>28</int>
-        <int>13</int>
+        <int>1</int>
+        <int>11</int>
+        <int>34</int>
+        <int>23</int>
+        <int>11</int>
         <int>22</int>
-        <int>25</int>
-        <int>19</int>
-        <int>28</int>
-        <int>15</int>
-        <int>4</int>
+        <int>27</int>
       </ArrayOfInt>
       <ArrayOfInt />
       <ArrayOfInt />
@@ -109,11 +109,63 @@
           <category>Provisions</category>
         </Item>
         <Item>
-          <ID>13</ID>
-          <englishName>Hake</englishName>
-          <frenchName>Colin</frenchName>
+          <ID>1</ID>
+          <englishName>Sardine</englishName>
+          <frenchName>Sardine</frenchName>
           <value>6</value>
-          <price>12</price>
+          <price>11</price>
+          <weight>2</weight>
+          <level>0</level>
+          <spriteID>1</spriteID>
+          <description>Feeds the member. Heals him, only if he’s not hungry. Fishes feed fairly.</description>
+          <weaponType>Distance</weaponType>
+          <category>Provisions</category>
+        </Item>
+        <Item>
+          <ID>11</ID>
+          <englishName>Mackerel</englishName>
+          <frenchName>Maquereau</frenchName>
+          <value>6</value>
+          <price>11</price>
+          <weight>2</weight>
+          <level>0</level>
+          <spriteID>1</spriteID>
+          <description>Feeds the member. Heals him, only if he’s not hungry. Fishes feed fairly.</description>
+          <weaponType>Distance</weaponType>
+          <category>Provisions</category>
+        </Item>
+        <Item>
+          <ID>34</ID>
+          <englishName>Mushshroom</englishName>
+          <frenchName>Champignon</frenchName>
+          <value>4</value>
+          <price>7</price>
+          <weight>2</weight>
+          <level>0</level>
+          <spriteID>0</spriteID>
+          <description>Feeds the member. Heals him, only if he’s not hungry. Vegetables and fruits heal poorly</description>
+          <weaponType>Distance</weaponType>
+          <category>Provisions</category>
+        </Item>
+        <Item>
+          <ID>23</ID>
+          <englishName>Sausage</englishName>
+          <frenchName>Saucisson</frenchName>
+          <value>8</value>
+          <price>16</price>
+          <weight>2</weight>
+          <level>0</level>
+          <spriteID>2</spriteID>
+          <description>Feeds the member. Heals him, only if he’s not hungry. Meats feeds greatly</description>
+          <weaponType>Distance</weaponType>
+          <category>Provisions</category>
+        </Item>
+        <Item>
+          <ID>11</ID>
+          <englishName>Mackerel</englishName>
+          <frenchName>Maquereau</frenchName>
+          <value>6</value>
+          <price>11</price>
           <weight>2</weight>
           <level>0</level>
           <spriteID>1</spriteID>
@@ -135,67 +187,15 @@
           <category>Provisions</category>
         </Item>
         <Item>
-          <ID>25</ID>
-          <englishName>Brussel sprout</englishName>
-          <frenchName>Chou de Bruxelles</frenchName>
+          <ID>27</ID>
+          <englishName>Lemon</englishName>
+          <frenchName>Citron</frenchName>
           <value>4</value>
-          <price>3</price>
-          <weight>2</weight>
-          <level>0</level>
-          <spriteID>0</spriteID>
-          <description>Feeds the member. Heals him, only if he’s not hungry. Vegetables and fruits heal poorly</description>
-          <weaponType>Distance</weaponType>
-          <category>Provisions</category>
-        </Item>
-        <Item>
-          <ID>19</ID>
-          <englishName>Pig</englishName>
-          <frenchName>Cochon</frenchName>
-          <value>8</value>
-          <price>13</price>
-          <weight>2</weight>
-          <level>0</level>
-          <spriteID>2</spriteID>
-          <description>Feeds the member. Heals him, only if he’s not hungry. Meats feeds greatly</description>
-          <weaponType>Distance</weaponType>
-          <category>Provisions</category>
-        </Item>
-        <Item>
-          <ID>28</ID>
-          <englishName>Peer</englishName>
-          <frenchName>Poire</frenchName>
-          <value>4</value>
-          <price>8</price>
-          <weight>2</weight>
-          <level>0</level>
-          <spriteID>0</spriteID>
-          <description>Feeds the member. Heals him, only if he’s not hungry. Vegetables and fruits heal poorly</description>
-          <weaponType>Distance</weaponType>
-          <category>Provisions</category>
-        </Item>
-        <Item>
-          <ID>15</ID>
-          <englishName>Rabbit</englishName>
-          <frenchName>Lapin</frenchName>
-          <value>8</value>
-          <price>14</price>
-          <weight>2</weight>
-          <level>0</level>
-          <spriteID>2</spriteID>
-          <description>Feeds the member. Heals him, only if he’s not hungry. Meats feeds greatly</description>
-          <weaponType>Distance</weaponType>
-          <category>Provisions</category>
-        </Item>
-        <Item>
-          <ID>4</ID>
-          <englishName>Monkfish</englishName>
-          <frenchName>Lotte</frenchName>
-          <value>6</value>
           <price>7</price>
           <weight>2</weight>
           <level>0</level>
-          <spriteID>1</spriteID>
-          <description>Feeds the member. Heals him, only if he’s not hungry. Fishes feed fairly.</description>
+          <spriteID>0</spriteID>
+          <description>Feeds the member. Heals him, only if he’s not hungry. Vegetables and fruits heal poorly</description>
           <weaponType>Distance</weaponType>
           <category>Provisions</category>
         </Item>
@@ -211,7 +211,7 @@
   <bounty>0</bounty>
   <formulas>
     <Formula>
-      <name>gipyxe</name>
+      <name>belife</name>
       <coords>
         <x>0</x>
         <y>10</y>
@@ -220,7 +220,7 @@
       <found>false</found>
     </Formula>
     <Formula>
-      <name>rifa</name>
+      <name>pymece</name>
       <coords>
         <x>1</x>
         <y>10</y>
@@ -229,7 +229,7 @@
       <found>false</found>
     </Formula>
     <Formula>
-      <name>kycami</name>
+      <name>diju</name>
       <coords>
         <x>2</x>
         <y>10</y>
@@ -238,7 +238,7 @@
       <found>false</found>
     </Formula>
     <Formula>
-      <name>pybe</name>
+      <name>toxe</name>
       <coords>
         <x>0</x>
         <y>9</y>
@@ -247,7 +247,7 @@
       <found>false</found>
     </Formula>
     <Formula>
-      <name>dimy</name>
+      <name>fexy</name>
       <coords>
         <x>1</x>
         <y>9</y>
@@ -256,7 +256,7 @@
       <found>false</found>
     </Formula>
     <Formula>
-      <name>pajoma</name>
+      <name>defuhy</name>
       <coords>
         <x>2</x>
         <y>9</y>
@@ -267,7 +267,7 @@
   </formulas>
   <clueIndexesFound />
   <playerBoatInfo>
-    <Name>The Nasty Anger</Name>
+    <Name>The Orange Walrus</Name>
     <previousCoords>
       <x>0</x>
       <y>0</y>
@@ -296,6 +296,6 @@
   <currentRain>0</currentRain>
   <night>false</night>
   <timeOfDay>5</timeOfDay>
-  <treasureName>The Skinny Mystery</treasureName>
+  <treasureName>The Yelling Clam</treasureName>
   <pins />
 </GameData>

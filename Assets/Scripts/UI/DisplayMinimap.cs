@@ -324,8 +324,8 @@ public class DisplayMinimap : MonoBehaviour {
 
     void HandleOnFightEnd()
     {
-        FadeIn();
-        fullDisplay_ButtonObj.SetActive(true);
+        /*FadeIn();
+        fullDisplay_ButtonObj.SetActive(true);*/
     }
     #endregion
 

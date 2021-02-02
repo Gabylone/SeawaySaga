@@ -14,6 +14,9 @@ public class StoryLauncher : MonoBehaviour {
 	public delegate void EndStoryEvent ();
 	public EndStoryEvent onEndStory;
 
+    int musicCount ;
+    public int musicRate = 5;
+
 	public enum StorySource {
 
 		none,
@@ -132,6 +135,14 @@ public class StoryLauncher : MonoBehaviour {
         InGameBackGround.Instance.ShowBackground();
         Transitions.Instance.ScreenTransition.FadeOut(0.5f);
 
+
+        ++musicCount;
+
+        if ( musicCount >= musicRate)
+        {
+            MusicManager.Instance.PlayBaladMusic();
+            musicCount = 0;
+        }
 
         playingStory = true;
 

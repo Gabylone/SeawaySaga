@@ -72,7 +72,7 @@ public class DisplayItem_Loot : DisplayItem {
 		LootUI.Instance.SelectedItem = DisplayedItem;
         LootUI.Instance.selectedItemDisplay.Show(LootUI.Instance.SelectedItem);
 
-        LootUI.Instance.selectedItemDisplay._transform.position = (Vector2)_transform.position + LootUI.Instance.selectedItemDisplay.decalToItem;
+        //LootUI.Instance.selectedItemDisplay._transform.position = (Vector2)_transform.position + LootUI.Instance.selectedItemDisplay.decalToItem;
 
         Tween.Bounce (_transform);
 

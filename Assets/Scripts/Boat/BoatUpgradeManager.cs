@@ -145,13 +145,13 @@ public class BoatUpgradeManager : MonoBehaviour {
         switch (currentUpgradeType)
         {
             case UpgradeType.Crew:
-                MessageDisplay.Instance.Display("This allow you to welcome new crew members on your boat ! Another sword at your side, but also another mouth to feed. The more the merier !");
+                MessageDisplay.Instance.Display("This allow you to welcome new crew members on your boat ! Another sword at your side, but also another mouth to feed. The more the merier !", true);
                 break;
             case UpgradeType.Cargo:
-                MessageDisplay.Instance.Display("This allow you to carry more food, weapons, armor, and miscellaneous items. Be careful not to get lost in all that equipment !");
+                MessageDisplay.Instance.Display("This allow you to carry more food, weapons, armor, and miscellaneous items. Be careful not to get lost in all that equipment !", true);
                 break;
             case UpgradeType.Longview:
-                MessageDisplay.Instance.Display("This allows you to see further away in the sea. This can be a life saver if your stranded in a gigantic ocean, days away from starving !");
+                MessageDisplay.Instance.Display("This allows you to see further away in the sea. This can be a life saver if your stranded in a gigantic ocean, days away from starving !", true);
                 break;
         }
 
@@ -231,7 +231,7 @@ public class BoatUpgradeManager : MonoBehaviour {
     {
         memberToRemove = i;
 
-        MessageDisplay.Instance.Display("Abandon " + Crews.playerCrew.CrewMembers[i].MemberName + " ?");
+        MessageDisplay.Instance.Display("Abandon " + Crews.playerCrew.CrewMembers[i].MemberName + " ?", true);
         MessageDisplay.Instance.onValidate += ConfirmRemoveMember;
     }
 

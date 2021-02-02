@@ -24,8 +24,6 @@ public class DisplayItem_Selected : DisplayItem {
 
     public Image itemImage;
 
-    public Vector2 decalToItem;
-
     public override void Start()
     {
         canvasGroup = GetComponent<CanvasGroup>();

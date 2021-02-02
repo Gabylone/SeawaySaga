@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <Chunk xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <state>VisitedIsland</state>
+  <state>UndiscoveredIsland</state>
   <coords>
     <x>4</x>
     <y>1</y>
@@ -8,10 +8,10 @@
   <islandDatas>
     <IslandData>
       <worldPosition>
-        <x>-4.536478</x>
-        <y>-6.980551</y>
+        <x>24.62</x>
+        <y>15.01</y>
       </worldPosition>
-      <worldRotation>164.077011</worldRotation>
+      <worldRotation>2.567196</worldRotation>
       <index>0</index>
       <coords>
         <x>4</x>
@@ -19,7 +19,7 @@
       </coords>
       <containsFormula>false</containsFormula>
       <storyManager>
-        <hasBeenPlayed>true</hasBeenPlayed>
+        <hasBeenPlayed>false</hasBeenPlayed>
         <storyHandlers>
           <StoryHandler>
             <row>0</row>
@@ -27,50 +27,9 @@
             <fallBackLayer>0</fallBackLayer>
             <storyID>2</storyID>
             <storyType>Normal</storyType>
-            <contentDecals>
-              <contentDecal>
-                <row>2</row>
-                <col>26</col>
-                <decal>1</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>2</row>
-                <col>49</col>
-                <decal>1</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>0</row>
-                <col>49</col>
-                <decal>1</decal>
-              </contentDecal>
-            </contentDecals>
-            <loots>
-              <Loot>
-                <row>0</row>
-                <col>4</col>
-                <ids>
-                  <ArrayOfInt />
-                  <ArrayOfInt />
-                  <ArrayOfInt />
-                  <ArrayOfInt />
-                </ids>
-                <weight>0</weight>
-                <AllItems>
-                  <ArrayOfItem />
-                  <ArrayOfItem />
-                  <ArrayOfItem />
-                  <ArrayOfItem />
-                </AllItems>
-              </Loot>
-            </loots>
-            <crews>
-              <Crew>
-                <hostile>true</hostile>
-                <row>0</row>
-                <col>4</col>
-                <MemberIDs />
-              </Crew>
-            </crews>
+            <contentDecals />
+            <loots />
+            <crews />
           </StoryHandler>
         </storyHandlers>
       </storyManager>

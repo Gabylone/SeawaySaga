@@ -19,6 +19,8 @@ public class Narrator : MonoBehaviour {
     public float scale = 1.01f;
     public float dur = 0.1f;
 
+    public bool continueStory = false;
+
     VerticalLayoutGroup[] verticalLayoutGroups;
     RectTransform[] rectTransforms;
 
@@ -43,8 +45,6 @@ public class Narrator : MonoBehaviour {
             rectTransforms[i] = verticalLayoutGroups[i].GetComponent<RectTransform>();
         }
 
-        StoryInput.Instance.onPressInput += HandleOnPressInput;
-
         StoryFunctions.Instance.getFunction+= HandleGetFunction;
 
 		InGameMenu.Instance.onOpenMenu += HandleOpenInventory;
@@ -60,20 +60,6 @@ public class Narrator : MonoBehaviour {
         {
             ShowNarratorInput(cellParameters.Remove(0, 2));
         }
-    }
-
-	void HandleOnPressInput ()
-	{
-        if (!visible)
-            return;
-
-        Invoke("HandleOnPressInputDelay", 0.0001f);   
-    }
-
-    void HandleOnPressInputDelay()
-    {
-        HideNarrator();
-        StoryReader.Instance.ContinueStory();
     }
 
 	void HandleOpenInventory ()
@@ -100,7 +86,9 @@ public class Narrator : MonoBehaviour {
     public void ShowNarratorInput(string text)
     {
         ShowNarrator(text);
-        StoryInput.Instance.WaitForInput();
+        continueStory = true;
+
+        //StoryInput.Instance.WaitForInput();
     }
     public void ShowNarratorNoneStoryInput (string text)
     {
@@ -133,8 +121,6 @@ public class Narrator : MonoBehaviour {
 	}
     public void HideNarrator()
     {
-        Debug.Log("closing");
-
         SoundManager.Instance.PlayRandomSound("Book");
         SoundManager.Instance.PlayRandomSound("Page");
 
@@ -144,6 +130,14 @@ public class Narrator : MonoBehaviour {
         if (onCloseNarrator != null)
         {
             onCloseNarrator();
+        }
+
+        if (continueStory)
+        {
+            continueStory = false;
+
+            HideNarrator();
+            StoryReader.Instance.ContinueStory();
         }
 
         /*canvasGroup.DOKill();
@@ -171,22 +165,17 @@ public class Narrator : MonoBehaviour {
 
         set
         {
-            Debug.Log("setting can hide to : " + value);
-
             canHide = value;
         }
     }
 
     public void TryHide()
     {
+        HideNarrator();
+
         if (CanHide)
         {
             CanHide = false;
-            HideNarrator();
-        }
-        else
-        {
-            Debug.Log("cant close");
         }
     }
 }

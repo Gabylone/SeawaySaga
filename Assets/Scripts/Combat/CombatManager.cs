@@ -143,6 +143,8 @@ public class CombatManager : MonoBehaviour {
 		CrewMember.SetSelectedMember (currentMember);
 
 		ChangeState (States.StartTurn);
+
+        MusicManager.Instance.PlayCombatMusic();
 	}
 
 	private void CombatStart_Update () {}
@@ -609,6 +611,8 @@ public class CombatManager : MonoBehaviour {
     public void HideFight()
     {
         fighting = false;
+
+        MusicManager.Instance.StopCombatMusic();
 
         ChangeState(States.None);
 

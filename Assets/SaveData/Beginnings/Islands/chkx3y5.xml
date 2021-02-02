@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <Chunk xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <state>VisitedIsland</state>
+  <state>DiscoveredIsland</state>
   <coords>
     <x>3</x>
     <y>5</y>
@@ -8,10 +8,10 @@
   <islandDatas>
     <IslandData>
       <worldPosition>
-        <x>19.618248</x>
-        <y>-0.488416672</y>
+        <x>-1.44</x>
+        <y>-16.52</y>
       </worldPosition>
-      <worldRotation>149.656723</worldRotation>
+      <worldRotation>185.728271</worldRotation>
       <index>0</index>
       <coords>
         <x>3</x>
@@ -19,7 +19,7 @@
       </coords>
       <containsFormula>false</containsFormula>
       <storyManager>
-        <hasBeenPlayed>true</hasBeenPlayed>
+        <hasBeenPlayed>false</hasBeenPlayed>
         <storyHandlers>
           <StoryHandler>
             <row>0</row>
@@ -27,237 +27,9 @@
             <fallBackLayer>0</fallBackLayer>
             <storyID>3</storyID>
             <storyType>Normal</storyType>
-            <contentDecals>
-              <contentDecal>
-                <row>1</row>
-                <col>2</col>
-                <decal>1</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>0</row>
-                <col>13</col>
-                <decal>1</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>0</row>
-                <col>42</col>
-                <decal>0</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>1</row>
-                <col>53</col>
-                <decal>1</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>0</row>
-                <col>62</col>
-                <decal>1</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>1</row>
-                <col>63</col>
-                <decal>5</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>0</row>
-                <col>53</col>
-                <decal>1</decal>
-              </contentDecal>
-            </contentDecals>
+            <contentDecals />
             <loots />
             <crews />
-          </StoryHandler>
-          <StoryHandler>
-            <row>6</row>
-            <col>65</col>
-            <fallBackLayer>0</fallBackLayer>
-            <fallbackNode>
-              <name>random foret</name>
-              <row>0</row>
-              <col>40</col>
-            </fallbackNode>
-            <storyID>1</storyID>
-            <storyType>Normal</storyType>
-            <contentDecals>
-              <contentDecal>
-                <row>1</row>
-                <col>4</col>
-                <decal>1</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>2</row>
-                <col>17</col>
-                <decal>1</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>2</row>
-                <col>18</col>
-                <decal>1</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>4</row>
-                <col>17</col>
-                <decal>1</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>7</row>
-                <col>17</col>
-                <decal>1</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>7</row>
-                <col>18</col>
-                <decal>0</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>1</row>
-                <col>17</col>
-                <decal>1</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>1</row>
-                <col>17</col>
-                <decal>1</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>4</row>
-                <col>17</col>
-                <decal>1</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>9</row>
-                <col>17</col>
-                <decal>1</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>9</row>
-                <col>18</col>
-                <decal>0</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>4</row>
-                <col>17</col>
-                <decal>1</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>11</row>
-                <col>17</col>
-                <decal>1</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>1</row>
-                <col>17</col>
-                <decal>1</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>1</row>
-                <col>17</col>
-                <decal>1</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>1</row>
-                <col>17</col>
-                <decal>1</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>0</row>
-                <col>17</col>
-                <decal>1</decal>
-              </contentDecal>
-            </contentDecals>
-            <loots>
-              <Loot>
-                <row>1</row>
-                <col>18</col>
-                <ids>
-                  <ArrayOfInt />
-                  <ArrayOfInt />
-                  <ArrayOfInt />
-                  <ArrayOfInt />
-                </ids>
-                <weight>0</weight>
-                <AllItems>
-                  <ArrayOfItem />
-                  <ArrayOfItem />
-                  <ArrayOfItem />
-                  <ArrayOfItem />
-                </AllItems>
-              </Loot>
-            </loots>
-            <crews>
-              <Crew>
-                <hostile>false</hostile>
-                <row>0</row>
-                <col>12</col>
-                <MemberIDs>
-                  <Member>
-                    <id>7</id>
-                    <Name>Charlotte</Name>
-                    <health>100</health>
-                    <maxHealth>100</maxHealth>
-                    <currentHunger>0</currentHunger>
-                    <Lvl>1</Lvl>
-                    <xp>0</xp>
-                    <skillPoints>0</skillPoints>
-                    <specialSkillsIndexes>
-                      <int>5</int>
-                    </specialSkillsIndexes>
-                    <stats>
-                      <int>1</int>
-                      <int>1</int>
-                      <int>1</int>
-                      <int>1</int>
-                    </stats>
-                    <daysOnBoard>0</daysOnBoard>
-                    <equipedWeapon>
-                      <ID>39</ID>
-                      <englishName>Rock on a stick</englishName>
-                      <frenchName>Epée rouillée</frenchName>
-                      <value>9</value>
-                      <price>19</price>
-                      <weight>8</weight>
-                      <level>1</level>
-                      <spriteID>0</spriteID>
-                      <description>It's just your basic rock on a stick</description>
-                      <weaponType>Stick</weaponType>
-                      <category>Weapon</category>
-                    </equipedWeapon>
-                    <equipedCloth>
-                      <ID>153</ID>
-                      <englishName>Farmer clothing</englishName>
-                      <frenchName>Habit de paysan</frenchName>
-                      <value>11</value>
-                      <price>26</price>
-                      <weight>8</weight>
-                      <level>1</level>
-                      <spriteID>0</spriteID>
-                      <description>It's just your basic farmer clothing</description>
-                      <weaponType>Distance</weaponType>
-                      <category>Clothes</category>
-                    </equipedCloth>
-                    <job>Brute</job>
-                    <characterIDS>
-                      <int>1</int>
-                      <int>4</int>
-                      <int>4</int>
-                      <int>4</int>
-                      <int>0</int>
-                      <int>8</int>
-                      <int>4</int>
-                      <int>4</int>
-                      <int>0</int>
-                      <int>0</int>
-                      <int>0</int>
-                      <int>9</int>
-                      <int>1</int>
-                      <int>0</int>
-                      <int>2</int>
-                      <int>3</int>
-                    </characterIDS>
-                  </Member>
-                </MemberIDs>
-              </Crew>
-            </crews>
           </StoryHandler>
         </storyHandlers>
       </storyManager>

@@ -595,6 +595,9 @@ public class DiceManager : MonoBehaviour {
 
         waitingForThrowerSelection = true;
 
+        InGameMenu.Instance.HideMenuButtons();
+        DisplayMinimap.Instance.fullDisplay_ButtonObj.SetActive(false);
+
         backgroundObj.SetActive(true);
         backgroundCanvasGroup.alpha = 0f;
         backgroundCanvasGroup.DOFade(1f, 0.2f);
@@ -625,6 +628,9 @@ public class DiceManager : MonoBehaviour {
         Crews.playerCrew.UpdateCrew(Crews.PlacingType.World);
 
         backgroundCanvasGroup.DOFade(0f, 0.2f);
+
+        InGameMenu.Instance.ShowMenuButtons();
+        DisplayMinimap.Instance.fullDisplay_ButtonObj.SetActive(true);
 
         thrower = member;
 

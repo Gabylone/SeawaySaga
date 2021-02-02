@@ -31,7 +31,12 @@ public class MessageDisplay : MonoBehaviour {
         CloseDelay();
     }
 
-    public void Display (string str) {
+    public void Display(string str)
+    {
+        Display(str, false);
+    }
+
+    public void Display (string str, bool canCancel) {
 
 		group.SetActive (true);
 
@@ -39,8 +44,20 @@ public class MessageDisplay : MonoBehaviour {
 
 		uiText.text = str;
 
+        canvasGroup.DOKill();
         canvasGroup.alpha = 0f;
         canvasGroup.DOFade(1f, 0.4f);
+
+        CancelInvoke("CloseDelay");
+
+        if (canCancel)
+        {
+            cancelButtonObj.SetActive(true);
+        }
+        else
+        {
+            cancelButtonObj.SetActive(false);
+        }
     }
 
     public void HideCancelButton()

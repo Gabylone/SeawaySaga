@@ -119,17 +119,18 @@ public class TimeManager : MonoBehaviour {
     {
         warned = true;
         string str = "Black clouds begin to emerge from the horizon. CAPITAINE hears thunder rumbling at a distance. The sky darkens and the air is thickening";
-        Narrator.Instance.ShowNarratorNoneStoryInput(str);
-        Narrator.Instance.onCloseNarrator += NarratorDelay;
+
+        MessageDisplay.Instance.Display(str);
+        MessageDisplay.Instance.onValidate += HandleOnValidate;
 
         PlayerBoat.Instance.EndMovenent();
     }
 
-    void NarratorDelay()
+    void HandleOnValidate()
     {
         string str = "A storm is coming. Better bring the crew and NOMTRESOR to safety at an inn, or camp in a nearby island.";
-        Narrator.Instance.onCloseNarrator -= NarratorDelay;
-        Narrator.Instance.ShowNarratorNoneStoryInput(str);
+        MessageDisplay.Instance.onValidate -= HandleOnValidate;
+        MessageDisplay.Instance.Display(str);
     }
     #endregion
 
@@ -275,7 +276,8 @@ public class TimeManager : MonoBehaviour {
 
         currentRain = 0;
 
-        Narrator.Instance.ShowNarratorNoneStoryInput("CAPITAINE and NOMTRESOR have been hit by a storm, better get to safety quickly before anyone gets hurt.");
+        string str = "CAPITAINE and NOMTRESOR have been hit by a storm, better get to safety quickly before anyone gets hurt.";
+        MessageDisplay.Instance.Display(str);
 
         UpdateWeather();
 

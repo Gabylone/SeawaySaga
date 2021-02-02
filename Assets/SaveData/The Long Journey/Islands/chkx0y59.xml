@@ -1,0 +1,94 @@
+<?xml version="1.0"?>
+<Chunk xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <state>UndiscoveredIsland</state>
+  <coords>
+    <x>0</x>
+    <y>59</y>
+  </coords>
+  <islandDatas>
+    <IslandData>
+      <worldPosition>
+        <x>8.99</x>
+        <y>-21.44</y>
+      </worldPosition>
+      <worldRotation>171.790237</worldRotation>
+      <index>0</index>
+      <coords>
+        <x>0</x>
+        <y>59</y>
+      </coords>
+      <containsFormula>false</containsFormula>
+      <storyManager>
+        <hasBeenPlayed>false</hasBeenPlayed>
+        <storyHandlers>
+          <StoryHandler>
+            <row>0</row>
+            <col>0</col>
+            <fallBackLayer>0</fallBackLayer>
+            <storyID>19</storyID>
+            <storyType>Normal</storyType>
+            <contentDecals />
+            <loots />
+            <crews />
+          </StoryHandler>
+        </storyHandlers>
+      </storyManager>
+    </IslandData>
+    <IslandData>
+      <worldPosition>
+        <x>-22.81</x>
+        <y>11.96</y>
+      </worldPosition>
+      <worldRotation>31.92099</worldRotation>
+      <index>1</index>
+      <coords>
+        <x>0</x>
+        <y>59</y>
+      </coords>
+      <containsFormula>false</containsFormula>
+      <storyManager>
+        <hasBeenPlayed>false</hasBeenPlayed>
+        <storyHandlers>
+          <StoryHandler>
+            <row>0</row>
+            <col>0</col>
+            <fallBackLayer>0</fallBackLayer>
+            <storyID>7</storyID>
+            <storyType>Normal</storyType>
+            <contentDecals />
+            <loots />
+            <crews />
+          </StoryHandler>
+        </storyHandlers>
+      </storyManager>
+    </IslandData>
+    <IslandData>
+      <worldPosition>
+        <x>6.47</x>
+        <y>-7.24</y>
+      </worldPosition>
+      <worldRotation>346.302551</worldRotation>
+      <index>2</index>
+      <coords>
+        <x>0</x>
+        <y>59</y>
+      </coords>
+      <containsFormula>false</containsFormula>
+      <storyManager>
+        <hasBeenPlayed>false</hasBeenPlayed>
+        <storyHandlers>
+          <StoryHandler>
+            <row>0</row>
+            <col>0</col>
+            <fallBackLayer>0</fallBackLayer>
+            <storyID>7</storyID>
+            <storyType>Normal</storyType>
+            <contentDecals />
+            <loots />
+            <crews />
+          </StoryHandler>
+        </storyHandlers>
+      </storyManager>
+    </IslandData>
+  </islandDatas>
+</Chunk>

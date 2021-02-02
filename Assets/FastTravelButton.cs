@@ -108,7 +108,7 @@ public class FastTravelButton : MonoBehaviour, IPointerClickHandler
         }
         else
         {
-            MessageDisplay.Instance.Display("Travel to the " + IslandName + " ?");
+            MessageDisplay.Instance.Display("Travel to the " + IslandName + " ?", true);
 
             DisplayFastTravelInfo.Instance.SetBlack();
             MessageDisplay.Instance.onValidate += HandleOnValidate_CanTravel;

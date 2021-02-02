@@ -2,8 +2,8 @@ Nom;Fréquence / 5;Sprite ID;Display Name;;;;;;;;
 Maison_Test;1;4;Captain’s House;;;;;;;;
 [choix];;;;[choix 2];;;;[choix 3];;;
 SetChoices4;;;;SetChoices4;;;;SetChoices4;;;
-Choice : (test fights);Choice : (test dice);Choice : (clues);Choice : (other);Choice : (test boat upgrades);Choice : (test quests);Choice : (weak fights);Choice : (other);Choice : (trade & loot);Choice : (add health);Choice : (remove health);Choice : (leave)
-Node=>fight;Node=>dice;Node=>clues;Node=>choix 2;Node=>boat;Node=>quest;Node=>fight weak;Node=>choix 3;Node=>trade;PlayerSpeak : Je reprends toute ma santé !;PlayerSpeak : Je perds de la vie !;Leave
+Choice : (test fights);Choice : (test dice);Choice : (clues);Choice : (other);Choice : (test boat upgrades);Choice : (test quests);Choice : (test time);Choice : (other);Choice : (trade & loot);Choice : (add health);Choice : (remove health);Choice : (leave)
+Node=>fight;Node=>dice;Node=>clues;Node=>choix 2;Node=>boat;Node=>quest;Node=>time;Node=>choix 3;Node=>trade;PlayerSpeak : Je reprends toute ma santé !;PlayerSpeak : Je perds de la vie !;Leave
 ;;;;;;;;;AddHealth150;RemoveHealth20;
 ;;;;;;;;;Node=>choix 3;Node=>choix 3;
 ;;;;;;;;;;;
@@ -11,7 +11,7 @@ Node=>fight;Node=>dice;Node=>clues;Node=>choix 2;Node=>boat;Node=>quest;Node=>fi
 [fight weak];;;;;;;;;;;
 SetChoices4;;;;;;;;;;;
 Choice : (fight 1);;;Choice : (fight 2);;;Choice : (fight 3);;;Choice : (leave);Choice : (leave);
-NewCrew1/M/1;;;NewCrew1/M/1;;;NewCrew1/M/1;;;Leave;Leave;
+NewCrew1/M/1;;;NewCrew1/M/1;;;NewCrew1/M/1;;;Leave;l;
 LaunchCombat;PlayerSpeak : retour;PlayerSpeak : retour;LaunchCombat;PlayerSpeak : retour;PlayerSpeak : retour;LaunchCombat;PlayerSpeak : retour;PlayerSpeak : retour;;;
 Node=>choix;Node=>choix;Node=>choix;Node=>choix;Node=>choix;Node=>choix;Node=>choix;Node=>choix;Node=>choix;;;
 ;;;;;;;;;;;
@@ -64,3 +64,15 @@ Choice : (clue 1);Choice : (clue 2);Choice : (clue 3);Choice : (clue 4);;;;;
 NewCrew1/M/1;NewCrew1/M/1;NewCrew1/M/1;NewCrew1/M/1;;;;;;;;
 TellClueNarrator;TellClueNarrator;TellClueNarrator;TellClueNarrator;;;;;;;;
 Node=>choix;Node=>choix;Node=>choix;Node=>choix;;;;;;;;
+;;;;;;;;;;;
+[time];;;;;;;;;;;
+SetChoices4;;;;;;;;;;;
+Choice : Change time of day;Choice : Set Weather day;Choice : Set Weather night;Choice : (leave);;;;;;;;
+Narrator : Le temps va donc changer…;Narrator : On va passer au jour;PlayerSpeak : On va passer à la nuit…;Node=>time;;;;;;;;
+ChangeTimeOfDay;Narrator : C’est parti ! ;PlayerSpeak : C’est parti !;;;;;;;;;
+Narrator : 1…;SetWeatherDay;SetWeatherNight;;;;;;;;;
+Narrator : 2…;Narrator : 1…;PlayerSpeak : Voilà !;;;;;;;;;
+Narrator : 3…;Narrator : 2…;PlayerSpeak : C’était vraiment génial;;;;;;;;;
+Narrator : C’est bon !;Narrator : 3…;Narrator : mais c’est terminé maintenant.;;;;;;;;;
+Node=>time;Narrator : C’est bon !;Node=>time;;;;;;;;;
+;Node=>time;;;;;;;;;;

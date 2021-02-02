@@ -54,7 +54,6 @@ public class DisplayCrew : MonoBehaviour {
 
         CancelInvoke("Hide");
 
-        DisplayMinimap.Instance.fullDisplay_ButtonObj.SetActive(false);
 
         if ( onSkills)
         {
@@ -70,11 +69,20 @@ public class DisplayCrew : MonoBehaviour {
         CharacterMenuButton.Instance.UpdateUI();
         PlayerIcons.Instance.HandleOpenInventory();
 
+        DisplayMinimap.Instance.fullDisplay_ButtonObj.SetActive(false);
+        if (!StoryLauncher.Instance.PlayingStory)
+        {
+            DisplayMinimap.Instance.FadeOut();
+        }
     }
 
     public void Hide()
     {
         DisplayMinimap.Instance.fullDisplay_ButtonObj.SetActive(true);
+        if (!StoryLauncher.Instance.PlayingStory)
+        {
+            DisplayMinimap.Instance.FadeIn();
+        }
 
         rectTransform.DOAnchorPos(Vector2.up * decal, duration);
 

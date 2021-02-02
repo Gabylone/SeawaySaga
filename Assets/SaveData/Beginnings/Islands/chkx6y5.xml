@@ -8,10 +8,10 @@
   <islandDatas>
     <IslandData>
       <worldPosition>
-        <x>6.36427832</x>
-        <y>18.7715683</y>
+        <x>-3.36</x>
+        <y>16.71</y>
       </worldPosition>
-      <worldRotation>241.702225</worldRotation>
+      <worldRotation>273.1288</worldRotation>
       <index>0</index>
       <coords>
         <x>6</x>
@@ -34,8 +34,33 @@
                 <decal>1</decal>
               </contentDecal>
               <contentDecal>
+                <row>3</row>
+                <col>11</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>1</row>
+                <col>2</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>3</row>
+                <col>11</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>1</row>
+                <col>2</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>3</row>
+                <col>11</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
                 <row>0</row>
-                <col>13</col>
+                <col>15</col>
                 <decal>1</decal>
               </contentDecal>
               <contentDecal>
@@ -68,16 +93,6 @@
                 <col>114</col>
                 <decal>1</decal>
               </contentDecal>
-              <contentDecal>
-                <row>1</row>
-                <col>2</col>
-                <decal>1</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>5</row>
-                <col>10</col>
-                <decal>1</decal>
-              </contentDecal>
             </contentDecals>
             <loots />
             <crews />
@@ -87,10 +102,10 @@
     </IslandData>
     <IslandData>
       <worldPosition>
-        <x>19.4247475</x>
-        <y>-1.02912712</y>
+        <x>16.66</x>
+        <y>-5.83</y>
       </worldPosition>
-      <worldRotation>41.0701141</worldRotation>
+      <worldRotation>199.001526</worldRotation>
       <index>1</index>
       <coords>
         <x>6</x>
@@ -98,7 +113,7 @@
       </coords>
       <containsFormula>false</containsFormula>
       <storyManager>
-        <hasBeenPlayed>true</hasBeenPlayed>
+        <hasBeenPlayed>false</hasBeenPlayed>
         <storyHandlers>
           <StoryHandler>
             <row>0</row>
@@ -106,18 +121,7 @@
             <fallBackLayer>0</fallBackLayer>
             <storyID>3</storyID>
             <storyType>Normal</storyType>
-            <contentDecals>
-              <contentDecal>
-                <row>1</row>
-                <col>2</col>
-                <decal>1</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>5</row>
-                <col>10</col>
-                <decal>1</decal>
-              </contentDecal>
-            </contentDecals>
+            <contentDecals />
             <loots />
             <crews />
           </StoryHandler>

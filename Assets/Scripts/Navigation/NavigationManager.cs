@@ -32,6 +32,9 @@ public class NavigationManager : MonoBehaviour {
 
     public int chunksTravelled = 0;
 
+    int musicCount = 3;
+    public int musicRate = 5;
+
     public float minX = -40f;
     public float maxX = 40f;
     public float minY = -40f;
@@ -189,6 +192,13 @@ public class NavigationManager : MonoBehaviour {
 
     void ChangeChunkDelay()
     {
+        ++musicCount;
+
+        if ( musicCount == musicRate)
+        {
+            musicCount = 0;
+            MusicManager.Instance.PlayBaladMusic();
+        }
     }
 
     void CallTutorial()

@@ -230,6 +230,7 @@ public class LootUI : MonoBehaviour {
             return;
         }
 
+
         InGameMenu.Instance.Hide();
         DisplayCrew.Instance.Hide();
 
@@ -284,11 +285,11 @@ public class LootUI : MonoBehaviour {
         switchToTrade.SetActive(false);
         switchToPlayer.SetActive(false);
 
-        lootTitle_Obj.SetActive(false);
-        tradeTitle_Obj.SetActive(false);
+        /*lootTitle_Obj.SetActive(false);
+        tradeTitle_Obj.SetActive(false);*/
         categoryObj.SetActive(false);
 
-        takeAllButton.SetActive(false);
+        //takeAllButton.SetActive(false);
 
         background.color = background_PlayerSideColor;
 
@@ -305,7 +306,7 @@ public class LootUI : MonoBehaviour {
                 switchToTrade.SetActive(true);
                 switchToTrade_CanvasGroup.alpha = 1f;
 
-                categoryObj.SetActive(true);
+                //categoryObj.SetActive(true);
 
                 break;
             case CategoryContentType.PlayerLoot:
@@ -316,7 +317,7 @@ public class LootUI : MonoBehaviour {
                 switchToLoot.SetActive(true);
                 switchToLoot_CanvasGroup.alpha = 1f;
 
-                categoryObj.SetActive(true);
+                //categoryObj.SetActive(true);
                 break;
 
             case CategoryContentType.OtherTrade:
@@ -327,7 +328,7 @@ public class LootUI : MonoBehaviour {
                 switchToTrade.SetActive(true);
                 switchToTrade_CanvasGroup.alpha = 0.5f;
 
-                tradeTitle_Obj.SetActive(true);
+                //tradeTitle_Obj.SetActive(true);
 
                 background.color = background_OtherSideColor;
                 lootFade_Image_Down.color = lootFade_OtherSideColor;
@@ -348,16 +349,16 @@ public class LootUI : MonoBehaviour {
                 lootFade_Image_Down.color = lootFade_OtherSideColor;
                 lootFade_Image_Up.color = lootFade_OtherSideColor;
 
-                lootTitle_Obj.SetActive(true);
+                //lootTitle_Obj.SetActive(true);
 
-                if ( displayedItems.Count > 0)
+                /*if ( displayedItems.Count > 0)
                 {
                     takeAllButton.SetActive(true);
                 }
                 else
                 {
                     takeAllButton.SetActive(false);
-                }
+                }*/
 
                 break;
             case CategoryContentType.Combat:
@@ -390,7 +391,7 @@ public class LootUI : MonoBehaviour {
 
     IEnumerator TakeAllCoroutine()
     {
-        takeAllButton.SetActive(false);
+        //takeAllButton.SetActive(false);
 
         closeButton.SetActive(false);
 
@@ -499,25 +500,13 @@ public class LootUI : MonoBehaviour {
     #region category navigation
     void InitCategory ()
 	{
-        if ( currentSide == Crews.Side.Enemy)
+        if (OtherInventory.Instance.type != OtherInventory.Type.None)
         {
             categoryObj.SetActive(false);
-
-            if ( OtherInventory.Instance.type == OtherInventory.Type.Loot)
-            {
-                lootTitle_Obj.SetActive(true);
-                tradeTitle_Obj.SetActive(false);
-            }
-            else
-            {
-                lootTitle_Obj.SetActive(false);
-                tradeTitle_Obj.SetActive(true);
-            }
-
             return;
         }
 
-        lootTitle_Obj.SetActive(false);
+        //lootTitle_Obj.SetActive(false);
         categoryObj.SetActive(true);
 
         /*for (int catIndex = 0; catIndex < categoryButtons.Length; catIndex++) {
@@ -569,7 +558,7 @@ public class LootUI : MonoBehaviour {
 		if (!visible)
 			return;
 
-        if ( currentSide == Crews.Side.Enemy)
+        if (OtherInventory.Instance.type != OtherInventory.Type.None)
         {
             ItemCategory[] cats = new ItemCategory[4] { ItemCategory.Provisions, ItemCategory.Weapon, ItemCategory.Clothes, ItemCategory.Misc };
 
