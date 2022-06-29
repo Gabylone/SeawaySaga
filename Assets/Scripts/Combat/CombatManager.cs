@@ -5,7 +5,9 @@ using System.Collections.Generic;
 
 public class CombatManager : MonoBehaviour {
 
-	public static CombatManager Instance;
+    public static CombatManager Instance;
+
+	public Transform bottom;
 
     public bool fighting = false;
 
@@ -560,7 +562,7 @@ public class CombatManager : MonoBehaviour {
     private void HandleVictory()
     {
         // xp 
-        int xpPerMember = 40;
+        int xpPerMember = 30;
         foreach (var item in currPlayerFighters)
         {
             item.combatFeedback.Display("" + xpPerMember, Color.cyan);

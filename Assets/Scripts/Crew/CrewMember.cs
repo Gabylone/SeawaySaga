@@ -121,7 +121,7 @@ public class CrewMember {
     }
 	public int MaxEnergy {
         get {
-            return 5 + GetStat(Stat.Constitution);
+			return 12;
         }
     }
 
@@ -451,6 +451,10 @@ public class CrewMember {
     {
         return GetEquipment(CrewMember.EquipmentPart.Weapon) == null || GetEquipment(CrewMember.EquipmentPart.Weapon).weaponType != Item.WeaponType.Distance;
     }
+	public bool HasDistanceWeapon()
+	{
+		return GetEquipment(CrewMember.EquipmentPart.Weapon) == null || GetEquipment(CrewMember.EquipmentPart.Weapon).weaponType == Item.WeaponType.Distance;
+	}
 	#endregion
 
 	#region icon

@@ -38,12 +38,21 @@ public class Skill_GrapeShot : Skill {
 	public override bool MeetsRestrictions (CrewMember member)
 	{
 		if (member.GetEquipment (CrewMember.EquipmentPart.Weapon) == null)
-			return false;
+        {
+            currentRestriction = "No Weapon...";
+            return false;
+        }
 
-		return base.MeetsRestrictions (member) && member.GetEquipment(CrewMember.EquipmentPart.Weapon).weaponType == Item.WeaponType.Distance;
+        if (!member.HasDistanceWeapon())
+        {
+            currentRestriction = "No guns !";
+            return false;
+        }
+
+        return base.MeetsRestrictions (member);
 	}
 
-	public override bool MeetsConditions (CrewMember member)
+    public override bool MeetsConditions (CrewMember member)
 	{
 		bool moreThanOneMember = CombatManager.Instance.getCurrentFighters (Crews.otherSide (member.side)).Count > 1;
 

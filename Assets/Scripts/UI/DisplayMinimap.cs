@@ -10,6 +10,8 @@ public class DisplayMinimap : MonoBehaviour {
 
 
     private RectTransform rectTransform;
+    public GameObject void_Prefab;
+    public RectTransform void_parent;
 
     // minimap chunks
     [Header("Minimap Chunks")]
@@ -341,14 +343,27 @@ public class DisplayMinimap : MonoBehaviour {
 
                 Chunk chunk = Chunk.GetChunk(coords);
 
+                /*if ( chunk.state == ChunkState.UndiscoveredVoid
+                    || chunk.state == ChunkState.DiscoveredVoid)
+                {
+                    GameObject instance = Instantiate(void_Prefab, overallRectTranfsorm);
+                    instance.GetComponent<RectTransform>().anchoredPosition = GetPos(coords);
+                    continue;
+                }*/
 
                 if (chunk.state == ChunkState.DiscoveredIsland
 					|| chunk.state == ChunkState.VisitedIsland
                     || chunk.state == ChunkState.UndiscoveredIsland) {
 
 					PlaceMapChunks (coords);
-
+                    continue;
 				}
+
+                if ( chunk.state == ChunkState.DiscoveredVoid)
+                {
+                    PlaceVoid(coords);
+                    continue;
+                }
 			}
 		}
 
@@ -416,6 +431,16 @@ public class DisplayMinimap : MonoBehaviour {
 
 				switch (chunk.state) {
 
+                    case ChunkState.DiscoveredVoid:
+
+                        break;
+
+                    case ChunkState.UndiscoveredVoid:
+                        chunk.state = ChunkState.DiscoveredVoid;
+                        MapGenerator.Instance.discoveredVoids.coords.Add(c);
+                        PlaceVoid(c);
+                        break;
+
                     case ChunkState.UndiscoveredSea:
                         chunk.state = ChunkState.DiscoveredSea;
                         MapGenerator.Instance.discoveredCoords.coords.Add(c);
@@ -467,8 +492,6 @@ public class DisplayMinimap : MonoBehaviour {
             }
 
 		}
-
-
 
         MinimapTexture.Instance.UpdateBackgroundImage();
 	}
@@ -549,6 +572,23 @@ public class DisplayMinimap : MonoBehaviour {
             ++islandID;
         }
 
+    }
+
+    public void PlaceVoid(Coords coords)
+    {
+        GameObject instance = Instantiate(void_Prefab, void_parent);
+        instance.GetComponent<RectTransform>().anchoredPosition = GetPos(coords);
+    }
+
+    public Vector2 GetPos(Coords coords)
+    {
+        float x = (coords.x * overallRectTranfsorm.rect.width / MapGenerator.Instance.GetMapHorizontalScale);
+        float y = (coords.y * overallRectTranfsorm.rect.height / MapGenerator.Instance.GetMapVerticalScale);
+
+        float decalX = rangeX / NavigationManager.Instance.maxX;
+        float decalY = rangeY / NavigationManager.Instance.maxY;
+
+        return new Vector2(x, y);
     }
 	#endregion
 

@@ -260,10 +260,11 @@ public class Card : MonoBehaviour {
 
         float dur = 0.15f;
 
-        energyFill.DOSizeDelta(v, dur);
-        energyFillDelay.DOSizeDelta(v, dur * 3f).SetEase(Ease.OutCirc).SetDelay(dur * 3f);
+        /*energyFill.DOSizeDelta(v, dur);
+        energyFillDelay.DOSizeDelta(v, dur * 3f).SetEase(Ease.OutCirc).SetDelay(dur * 3f);*/
 
         energy_Text.text = "" + member.energy;
+		Tween.Bounce(energy_Text.transform, 0.3f, 1.3f);
 
 	}
 

@@ -19,8 +19,6 @@ public class PlayerBoatInfo : BoatInfo {
 		base.Randomize ();
 
 		SetCoords(SaveManager.Instance.GameData.homeCoords);
-//		coords = Coords.Zero;
-
 	}
 
     public override void SetDirection(Directions dir)

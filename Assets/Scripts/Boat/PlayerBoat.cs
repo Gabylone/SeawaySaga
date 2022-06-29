@@ -40,6 +40,8 @@ public class PlayerBoat : Boat {
         if (!moving)
         {
             SoundManager.Instance.PlaySound("click_med 05");
+            Tween.Bounce(_transform);
+            Flag.Instance.Bounce();
         }
 
         base.SetTargetPos(p);

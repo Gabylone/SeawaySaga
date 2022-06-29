@@ -59,8 +59,20 @@ public class Skill_Wallop : Skill {
 
     public override bool MeetsRestrictions (CrewMember member)
 	{
-        return base.MeetsRestrictions(member) && member.HasMeleeWepon();
-	}
+        if (member.GetEquipment(CrewMember.EquipmentPart.Weapon) == null)
+        {
+            currentRestriction = "No Weapon...";
+            return false;
+        }
+
+        if (!member.HasDistanceWeapon())
+        {
+            currentRestriction = "No melee weapon !";
+            return false;
+        }
+
+        return base.MeetsRestrictions(member);
+    }
 
 	public override bool MeetsConditions (CrewMember member)
 	{

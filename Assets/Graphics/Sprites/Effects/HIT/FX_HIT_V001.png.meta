@@ -90,7 +90,7 @@ TextureImporter:
       213: 4932508870537926917
     second: FX_HIT_V001_28
   externalObjects: {}
-  serializedVersion: 10
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -110,6 +110,8 @@ TextureImporter:
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -119,11 +121,11 @@ TextureImporter:
   textureSettings:
     serializedVersion: 2
     filterMode: 0
-    aniso: -1
-    mipBias: -100
+    aniso: 1
+    mipBias: 0
     wrapU: 1
     wrapV: 1
-    wrapW: -1
+    wrapW: 0
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -141,9 +143,13 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -542,6 +548,23 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      FX_HIT_V001_6: 3368257501274151946
+      FX_HIT_V001_10: -8276211676473558257
+      FX_HIT_V001_3: 6643806398475197578
+      FX_HIT_V001_9: -953187009456967877
+      FX_HIT_V001_2: 4504304957160805693
+      FX_HIT_V001_1: -1469546772097909723
+      FX_HIT_V001_4: 6630157231697917149
+      FX_HIT_V001_5: 7452096325865487984
+      FX_HIT_V001_15: -3258187353351078000
+      FX_HIT_V001_0: -825825092474876445
+      FX_HIT_V001_7: -1461718350006403463
+      FX_HIT_V001_13: 1358322591655322638
+      FX_HIT_V001_14: 8209382618645797822
+      FX_HIT_V001_8: -2673537565680683158
+      FX_HIT_V001_11: 6655017244051957004
+      FX_HIT_V001_12: -1119965196027447475
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

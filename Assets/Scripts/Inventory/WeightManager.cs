@@ -12,8 +12,10 @@ public class WeightManager : MonoBehaviour {
 	private GameObject weightGroup;
 	[SerializeField]
 	private Image weightImage;
+	private Color weightImage_Color;
 	[SerializeField]
 	private Text currentWeightText;
+	public Image fillImage;
     public Color text_InitColor;
     [SerializeField]
     private Text weightCapacityText;
@@ -33,12 +35,14 @@ public class WeightManager : MonoBehaviour {
     {
         Instance = this;
 
+		weightImage_Color = weightImage.color;
+
         onTooMuchWeight = null;
 
         text_InitColor = currentWeightText.color;
     }
 
-	public void Init () {
+    public void Init () {
 //
 		BoatUpgradeManager.onUpgradeBoat += HandleOnUpgradeBoat;
 
@@ -76,7 +80,7 @@ public class WeightManager : MonoBehaviour {
 			return false;
         }
 
-        weightImage.color = Color.white;
+        weightImage.color = weightImage_Color;
         currentWeightText.color = text_InitColor;
 
         return true;
@@ -86,14 +90,19 @@ public class WeightManager : MonoBehaviour {
 		UpdateDisplay ();
 	}
 	public void UpdateDisplay () {
-        currentWeightText.text = "" + CurrentWeight;
+
+		float f = (float)CurrentWeight / (float)CurrentCapacity;
+
+		fillImage.DOFillAmount(f, 0.2f).SetEase(Ease.OutBounce);
+
+		currentWeightText.text = "" + Mathf.Clamp(CurrentWeight, 0, CurrentCapacity);
         weightCapacityText.text = " / " + CurrentCapacity;
 	}
 	#endregion
 
 	#region feedback
 	public void HideFeedback () {
-        weightImage.color = Color.white;
+        weightImage.color = weightImage_Color;
         currentWeightText.color = text_InitColor;
     }
 	#endregion

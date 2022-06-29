@@ -4,7 +4,7 @@ using DG.Tweening;
 
 public class Tween : MonoBehaviour {
 
-	public static float defaultAmount = 1.05f;
+	public static float defaultAmount = 1.1f;
 	public static float defaultDuration = 0.2f;
 
 	public static void Scale (Transform t, float dur , float amount) {

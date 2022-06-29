@@ -32,22 +32,22 @@ public class DisplayInfo_Status : DisplayInfo {
 			str = "The member loses 10 health points at the start of each turn";
 			break;
 		case Fighter.Status.Provoking:
-			str = "The next 3 attack are directed to this member, as he's being very offensive and he's calling everybody names";
+			str = "The next 3 attack are directed to this member, as they're being very offensive and they're calling everybody names";
 		    break;
         case Fighter.Status.Parrying:
             str = "The next attack will be halved";
             break;
 		case Fighter.Status.Protected:
-			str = "Pumped up and looked over by a Cook, the damages directed to this member are halved";
+			str = "Pumped up and looked over by a Cook, the 2 next attacks on them are halved";
 			break;
 		case Fighter.Status.Toasted:
-                str = "After a cheerful toast with the Cook, the member does significantly more damage";
+                str = "After a cheerful toast with the Cook, the member does significantly more damage for 2 hits";
 			break;
 		case Fighter.Status.BearTrapped:
 			str = "The Filibuster layed a trap, his next attacker loses 30 health points";
 			break;
 		case Fighter.Status.Cussed:
-			str = "Insulted and humiliated by the Crook, the member only does half his damage";
+			str = "Insulted and humiliated by the Crook, the member only does half his damage for 2 hits";
 			break;
 		case Fighter.Status.None:
 			break;

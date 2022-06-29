@@ -32,6 +32,9 @@ public class Flag : MonoBehaviour {
 
     public Directions direction;
 
+    public float bounce_dur = 0.3f;
+    public float bounce_amount = 1.3f;
+
     public Sprite[] sprites;
 
     bool placingFlag = false;
@@ -49,6 +52,9 @@ public class Flag : MonoBehaviour {
         WorldTouch.onPointerExit += HandleOnPointerExit;
 
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+
+        WorldTouch.Instance.onSelectSomething += Hide;
+
     }
 
     private void Update()
@@ -60,6 +66,7 @@ public class Flag : MonoBehaviour {
             {
                 SoundManager.Instance.PlaySound("click_med 04");
                 placingFlag = true;
+
             }
 
             if (!visible)
@@ -91,7 +98,7 @@ public class Flag : MonoBehaviour {
 
     public void HandleOnEndMovement()
     {
-        Tween.Bounce(_transform);
+        Bounce();
 
         spriteRenderer.DOKill();
         spriteRenderer.DOFade(0f, Tween.defaultDuration);
@@ -116,7 +123,7 @@ public class Flag : MonoBehaviour {
         Show();
         UpdateFlagPos();
 
-        Tween.Bounce(_transform);
+        Bounce();
 
     }
 
@@ -141,5 +148,10 @@ public class Flag : MonoBehaviour {
         visible = false;
 
         group.SetActive(false);
+    }
+
+    public void Bounce()
+    {
+        Tween.Bounce(_transform, bounce_dur, bounce_amount);
     }
 }

@@ -40,15 +40,6 @@ public class BodyVisual : MonoBehaviour
             {
                 GetImage(id).enabled = true;
                 GetImage(id).sprite = bodySet.sprites[i];
-
-                if ( id == BodyID.Face)
-                {
-                    Debug.Log("FACE : setting sprite : " + bodySet.sprites[i].name);
-                }
-                else if ( id == BodyID.RightArm)
-                {
-
-                }
             }
             else
             {

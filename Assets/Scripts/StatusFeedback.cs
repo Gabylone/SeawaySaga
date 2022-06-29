@@ -63,6 +63,7 @@ public class StatusFeedback : MonoBehaviour {
     public void Show()
     {
         gameObject.SetActive(true);
+        Tween.Bounce(_transform);
     }
 
 	public void OnPointerDown () 

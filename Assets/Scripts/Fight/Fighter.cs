@@ -558,13 +558,20 @@ public class Fighter : MonoBehaviour {
 		// reduced damage
 		if ( otherFighter.HasStatus(Status.Cussed) ) {
 			damage = damage * 0.5f;
+			otherFighter.RemoveStatus(Status.Cussed);
 		}
 
-		if ( otherFighter.HasStatus(Status.Toasted) || otherFighter.HasStatus(Status.Enraged)) {
+		if ( otherFighter.HasStatus(Status.Toasted) ) {
+			damage = damage * 1.5f;
+			otherFighter.RemoveStatus(Status.Toasted);
+		}
+
+		if (otherFighter.HasStatus(Status.Enraged))
+		{
 			damage = damage * 1.5f;
 		}
 
-        if ( HasStatus(Status.Protected) ) {
+		if ( HasStatus(Status.Protected) ) {
 			damage = damage * 0.5f;
             RemoveStatus(Status.Protected);
         }
@@ -602,7 +609,7 @@ public class Fighter : MonoBehaviour {
         {
             if (otherFighter.crewMember.side == Crews.Side.Player)
             {
-                int xpPerMember = 25;
+                int xpPerMember = 15;
 
                 otherFighter.crewMember.AddXP(xpPerMember);
                 otherFighter.combatFeedback.Display("" + xpPerMember, Color.cyan);
@@ -843,13 +850,13 @@ public class Fighter : MonoBehaviour {
 
 	void CheckStatus () {
 
-		if ( HasStatus(Status.Cussed) ) {
+		/*if ( HasStatus(Status.Cussed) ) {
 			RemoveStatus (Status.Cussed);
-		}
+		}*/
 
-		if ( HasStatus(Status.Toasted) ) {
+		/*if ( HasStatus(Status.Toasted) ) {
 			RemoveStatus (Status.Toasted);
-		}
+		}*/
 
         if (HasStatus(Status.Parrying))
         {

@@ -136,6 +136,8 @@ public class SaveManager : MonoBehaviour
         SaveTool.Instance.SaveToCurrentMap ("game data",gameData);
 
 		SaveTool.Instance.SaveToCurrentMap ("discovered coords", MapGenerator.Instance.discoveredCoords);
+		SaveTool.Instance.SaveToCurrentMap ("discovered voids", MapGenerator.Instance.discoveredVoids);
+		SaveTool.Instance.SaveToCurrentMap ("undiscovered voids", MapGenerator.Instance.undiscoveredVoids);
 
 
     }
@@ -229,11 +231,12 @@ public class SaveManager : MonoBehaviour
 
 				++l;
 
-                ++currentLoadLimit;
+				yield return new WaitForEndOfFrame();
+
+				++currentLoadLimit;
 
                 if( currentLoadLimit == loadLimit)
                 {
-                    yield return new WaitForSeconds(timeBetweenFrames);
                     LoadingScreen.Instance.Push (l);
                     currentLoadLimit = 0;
                 }

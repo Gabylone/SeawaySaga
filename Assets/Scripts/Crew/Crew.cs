@@ -9,6 +9,7 @@ public struct CrewParams {
 	public int amount;
 
 	public bool overideGenre;
+	public bool zombie;
 	public bool male;
 
 }
@@ -36,15 +37,11 @@ public class Crew {
             int amount = Random.Range(Crews.playerCrew.CrewMembers.Count, 4);
 
             if (Random.value < 0.5f)
-                amount = Crews.playerCrew.CrewMembers.Count;
-
-            if ( MapGenerator.mapParameters.id == 0)
             {
-                amount = Random.Range(1, 2);
-            }
+				amount = Crews.playerCrew.CrewMembers.Count;
+			}
 
-            //			Debug.Log ("");
-            crewParams.amount = Mathf.Clamp(amount, 1, 4);
+			crewParams.amount = Mathf.Clamp(amount, 1, 4);
 
             if ( Crews.Instance.startJob != Job.None)
             {
@@ -56,8 +53,6 @@ public class Crew {
 			Member id = new Member (crewParams);
 
 			memberIDs.Add (id);
-
-
 		}
 
 	}

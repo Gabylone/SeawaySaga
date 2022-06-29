@@ -13,11 +13,12 @@ public class MemberSocket : MonoBehaviour
 
     public GameObject kickOut_Group;
 
-    private Outline outline;
+    public Outline outline;
 
     public float fadeDuration = 0.2f;
 
     public bool visible = false;
+    public GameObject group;
 
     public Image image;
 
@@ -25,9 +26,7 @@ public class MemberSocket : MonoBehaviour
     {
         tr = transform;
 
-        outline = GetComponent<Outline>();
-
-        canvasGroup.alpha = 0f;
+        Hide();
     }
 
     public void Show()
@@ -40,15 +39,19 @@ public class MemberSocket : MonoBehaviour
         canvasGroup.alpha = 0f;
         canvasGroup.DOFade(1f, fadeDuration);
 
+        group.SetActive(true);
+
         visible = true;
     }
 
     public void Hide()
     {
-        if (!visible)
+        /*if (!visible)
         {
             return;
-        }
+        }*/
+
+        group.SetActive(false);
 
         canvasGroup.DOFade(0f, fadeDuration);
         kickOut_Group.SetActive(false);

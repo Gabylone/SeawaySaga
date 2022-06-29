@@ -271,24 +271,33 @@ public class MemberIcon : MonoBehaviour {
     #endregion
 
     #region body
-    public void HideBody () {
+    public void HideBody()
+    {
 
         foreach (var item in iconVisual.bodyParts)
         {
             item.SetActive(false);
         }
 
-		animator.SetBool ("enabled", false);
+        animator.SetBool("enabled", false);
 
-		Vector3 targetScale = Vector3.one * initScale;
-		if (member.side == Crews.Side.Player)
-			targetScale.x = -targetScale.x;
-
+        Vector3 targetScale = Vector3.one * initScale;
+        if (member.side == Crews.Side.Player)
+            targetScale.x = -targetScale.x;
 
         iconVisual.rectTransform.DOScale(targetScale, moveDuration);
 
-	}
-	public void ShowBody () {
+
+        Invoke("HideBodyDelay", 0.01f);
+    }
+
+    void HideBodyDelay()
+    {
+        animator.SetBool("enabled", false);
+
+    }
+
+    public void ShowBody () {
 
         foreach (var item in iconVisual.bodyParts)
         {
@@ -303,9 +312,10 @@ public class MemberIcon : MonoBehaviour {
 
         iconVisual.rectTransform.DOScale(targetScale,moveDuration);
 
+
     }
 
-	public void InitVisual (Member memberID)
+    public void InitVisual (Member memberID)
 	{
 		iconVisual.InitVisual (memberID);
     }

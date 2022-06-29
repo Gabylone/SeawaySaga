@@ -133,8 +133,26 @@ public class Member {
 
         foreach (var item in CrewCreator.Instance.apparenceGroups)
         {
-            List<ApparenceItem> possibleItems = item.items.FindAll(x => x.locked == false);
-            int randomID = possibleItems[Random.Range(0, possibleItems.Count)].id;
+			List<ApparenceItem> possibleItems = item.items.FindAll(x => x.locked == false);
+			int randomID = possibleItems[Random.Range(0, possibleItems.Count)].id;
+
+			if (crewParams.zombie)
+            {
+                switch (item.items[0].apparenceType)
+                {
+                    case ApparenceType.eyes:
+						randomID = Random.Range(0, CrewCreator.Instance.zombie_EyesSprite.Length);
+                        break;
+                    case ApparenceType.mouth:
+						randomID = Random.Range(0, CrewCreator.Instance.zombie_MouthSprite.Length);
+                        break;
+					case ApparenceType.nose:
+						randomID = Random.Range(0, CrewCreator.Instance.zombie_NoseSprite.Length);
+                        break;
+					default:
+                        break;
+                }
+            }
 
             if ( item.items[0].apparenceType == ApparenceType.job)
             {
@@ -148,14 +166,22 @@ public class Member {
         }
         
         // NAME
-        if (Random.value < 0.5f)
+		if (crewParams.zombie)
         {
-            Name = CrewCreator.Instance.manNames[Random.Range(0, CrewCreator.Instance.manNames.Length)];
+			Name = "Zombie";
         }
         else
         {
-            Name = CrewCreator.Instance.womanNames[Random.Range(0, CrewCreator.Instance.womanNames.Length)];
-        }
+			if (Random.value < 0.5f)
+			{
+				Name = CrewCreator.Instance.manNames[Random.Range(0, CrewCreator.Instance.manNames.Length)];
+			}
+			else
+			{
+				Name = CrewCreator.Instance.womanNames[Random.Range(0, CrewCreator.Instance.womanNames.Length)];
+			}
+		}
+        
     }
 
     // icon index
@@ -176,4 +202,8 @@ public class Member {
         return id == member.id;
     }
 
+    public bool IsZombie()
+    {
+		return Name == "Zombie";
+    }
 }

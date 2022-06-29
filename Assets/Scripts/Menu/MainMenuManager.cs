@@ -37,7 +37,7 @@ public class MainMenuManager : MonoBehaviour {
 
 		Transitions.Instance.ScreenTransition.FadeOut (0.5f);
 
-		Screen.orientation = ScreenOrientation.Landscape;
+		Screen.orientation = ScreenOrientation.LandscapeLeft;
 
         mapsGroup.SetActive(false);
         MenuObj.SetActive(false);

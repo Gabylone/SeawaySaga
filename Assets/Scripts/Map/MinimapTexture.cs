@@ -9,8 +9,10 @@ public class MinimapTexture : MonoBehaviour {
 
     public Image targetImage;
     public Color color_VisitedSea;
-    public Color color_UnvisitedSea;
+    public Color color_DiscoveredVoid;
+	public Color color_UnvisitedSea;
     public Color color_InRange;
+
 
     public Image gridImage;
 
@@ -28,7 +30,7 @@ public class MinimapTexture : MonoBehaviour {
 		texture.mipMapBias = 0;
 		texture.wrapMode = TextureWrapMode.Clamp;
 
-		texture.Resize (MapGenerator.Instance.GetMapHorizontalScale, MapGenerator.Instance.GetMapVerticalScale);
+		texture.Reinitialize (MapGenerator.Instance.GetMapHorizontalScale, MapGenerator.Instance.GetMapVerticalScale);
 
 		for (int x = 0; x < MapGenerator.Instance.GetMapHorizontalScale; x++) {
 			for (int y = 0; y < MapGenerator.Instance.GetMapVerticalScale; y++) {
@@ -36,16 +38,21 @@ public class MinimapTexture : MonoBehaviour {
 				Chunk chunk = Chunk.GetChunk (new Coords (x, y));
 
 				switch (chunk.state) {
+                case ChunkState.UndiscoveredVoid:
 				case ChunkState.UndiscoveredSea:
 				case ChunkState.UndiscoveredIsland:
-					texture.SetPixel (x, y, color_UnvisitedSea);
+						texture.SetPixel (x, y, color_UnvisitedSea);
 					break;
 				case ChunkState.DiscoveredSea:
 				case ChunkState.DiscoveredIsland:
 				case ChunkState.VisitedIsland:
-					texture.SetPixel (x, y, color_VisitedSea);
+						texture.SetPixel (x, y, color_VisitedSea);
+						//texture.SetPixel(x, y, color_DiscoveredVoid);
 					break;
-				default:
+					case ChunkState.DiscoveredVoid:
+						texture.SetPixel(x, y, color_DiscoveredVoid);
+						break;
+					default:
 					break;
 				}
 			}
@@ -60,6 +67,9 @@ public class MinimapTexture : MonoBehaviour {
                 Coords c = Boats.Instance.playerBoatInfo.coords + new Coords(x, y);
                 if (c.OutOfMap())
                     continue;
+
+				if (Chunk.GetChunk(c).state == ChunkState.DiscoveredVoid)
+					continue;
                 //Debug.Log("eh ?");
                 texture.SetPixel(c.x, c.y, color_InRange);
             }

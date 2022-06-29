@@ -159,7 +159,7 @@ TextureImporter:
       213: 378685086542411681
     second: FX_HEAL_V001_51
   externalObjects: {}
-  serializedVersion: 10
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -179,6 +179,8 @@ TextureImporter:
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -187,12 +189,12 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: -1
-    aniso: -1
-    mipBias: -100
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
     wrapU: 1
     wrapV: 1
-    wrapW: -1
+    wrapW: 0
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -210,9 +212,13 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -1367,6 +1373,59 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      FX_HEAL_V001_49: 8152477224900293293
+      FX_HEAL_V001_17: -5137109751872292079
+      FX_HEAL_V001_21: -278476424262180093
+      FX_HEAL_V001_33: -6112742783854007944
+      FX_HEAL_V001_19: -1792409066805394471
+      FX_HEAL_V001_15: -4723085100189081586
+      FX_HEAL_V001_25: -678516206992962862
+      FX_HEAL_V001_45: 4209209996190783739
+      FX_HEAL_V001_46: -8521348067216141537
+      FX_HEAL_V001_23: -7029022167403545966
+      FX_HEAL_V001_14: -5281839193484772289
+      FX_HEAL_V001_6: 1595367522705369742
+      FX_HEAL_V001_1: -2020418149140956615
+      FX_HEAL_V001_20: 4452404409923836862
+      FX_HEAL_V001_32: -8666624633147215914
+      FX_HEAL_V001_5: -5490211771443298095
+      FX_HEAL_V001_0: 4939723878363623335
+      FX_HEAL_V001_3: 4675030672795750798
+      FX_HEAL_V001_29: -1267921312677151737
+      FX_HEAL_V001_48: -7130508003474399396
+      FX_HEAL_V001_50: -7054785128645557559
+      FX_HEAL_V001_38: 7158313950672551552
+      FX_HEAL_V001_26: 211729064600123351
+      FX_HEAL_V001_43: -1113841633475654773
+      FX_HEAL_V001_11: -4614509113890362784
+      FX_HEAL_V001_42: 5330099827986951037
+      FX_HEAL_V001_7: 7899075647593309780
+      FX_HEAL_V001_37: 913799769967419615
+      FX_HEAL_V001_22: 700434172008812306
+      FX_HEAL_V001_16: -1583385513779648480
+      FX_HEAL_V001_8: -4846702747108341744
+      FX_HEAL_V001_40: 8048290139994215287
+      FX_HEAL_V001_44: -7658995313052224057
+      FX_HEAL_V001_18: -3819529558975908441
+      FX_HEAL_V001_9: -5977084517534962378
+      FX_HEAL_V001_36: -4982635535381401733
+      FX_HEAL_V001_39: -4074044843888698470
+      FX_HEAL_V001_4: 1788380055287823516
+      FX_HEAL_V001_12: 7619683700251962339
+      FX_HEAL_V001_30: -7966938501381783457
+      FX_HEAL_V001_13: 8991512600312998572
+      FX_HEAL_V001_10: 4769499229411885628
+      FX_HEAL_V001_34: 5258313530645566796
+      FX_HEAL_V001_41: 7548599281876692720
+      FX_HEAL_V001_28: -5752041493094773154
+      FX_HEAL_V001_27: 1753215296591338635
+      FX_HEAL_V001_24: -7653834854883762118
+      FX_HEAL_V001_2: -7069174462970042455
+      FX_HEAL_V001_47: 5791021045878766730
+      FX_HEAL_V001_35: -4526871788562097033
+      FX_HEAL_V001_31: -4355880940182035185
+      FX_HEAL_V001_51: 378685086542411681
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

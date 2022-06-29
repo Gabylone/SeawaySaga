@@ -25,7 +25,7 @@ public class DisplayFastTravelInfo : Displayable
     {
         Show();
 
-        travel_Text.text = "" + travel;
+        travel_Text.text = "-" + travel;
         crew_Text.text = "" + crewHunger;
         food_Text.text = "" + food;
     }

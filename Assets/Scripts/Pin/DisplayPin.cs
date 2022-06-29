@@ -8,7 +8,7 @@ using DG.Tweening;
 
 public class DisplayPin : Displayable
 {
-    public DisplayPinInfo displayPinInfo;
+    public Pin pin;
 
     public static DisplayPin currentDraggedPin;
     public static bool draggingPin = false;
@@ -26,8 +26,11 @@ public class DisplayPin : Displayable
     public override void Start()
     {
         base.Start();
+    }
 
-        image.color = PinManager.Instance.GetPinColor(displayPinInfo.pin.colorType);
+    public void Display ( Sprite sprite)
+    {
+        image.sprite = sprite;
     }
 
     public void OnBeginDrag()
@@ -59,7 +62,7 @@ public class DisplayPin : Displayable
         currentDraggedPin = this;
         draggingPin = true;
 
-        PinDispencer.GetPinDispencer(displayPinInfo.pin.colorType).SetDeleteMode();
+        PinDispencer.GetPinDispencer(pin.id).SetDeleteMode();
     }
 
     private void Update()
@@ -89,9 +92,9 @@ public class DisplayPin : Displayable
 
         SoundManager.Instance.PlayRandomSound("click_light");
 
-        PinDispencer.GetPinDispencer(displayPinInfo.pin.colorType).SetPlaceMode();
+        PinDispencer.GetPinDispencer(pin.id).SetPlaceMode();
 
-        if (PinDispencer.GetPinDispencer(displayPinInfo.pin.colorType).pointerInside)
+        if (DeletePinButton.Instance.pointerInside)
         {
             PinManager.Instance.DeletePin(this);
             return;
@@ -108,24 +111,20 @@ public class DisplayPin : Displayable
         GetRectTransform.localScale = Vector3.one;
 
         // save info ( après parent )
-        displayPinInfo.pin.save_X = GetRectTransform.anchoredPosition.x;
-        displayPinInfo.pin.save_Y = GetRectTransform.anchoredPosition.y;
+        pin.save_X = GetRectTransform.anchoredPosition.x;
+        pin.save_Y = GetRectTransform.anchoredPosition.y;
 
         image.raycastTarget = true;
 
         canBeDraggedOnMap = true;
 
         ShowInfo();
-        displayPinInfo.inputField.ActivateInputField();
 
     }
 
     public void OnPointerClick()
     {
-        if ( !DisplayMinimap.Instance.fullyDisplayed)
-        {
-            return;
-        }
+       
 
         Select();
     }
@@ -152,9 +151,16 @@ public class DisplayPin : Displayable
 
     private void Select()
     {
+        if (!DisplayMinimap.Instance.fullyDisplayed)
+        {
+            return;
+        }
+
         Tween.Bounce(GetRectTransform);
 
-        if (displayPinInfo.visible)
+        ShowInfo();
+
+        /*if (displayPinInfo.visible)
         {
             SoundManager.Instance.PlaySound("button_big 01");
 
@@ -167,20 +173,21 @@ public class DisplayPin : Displayable
             ShowInfo();
         }
 
-        displayPinInfo.inputField.ActivateInputField();
+        displayPinInfo.inputField.ActivateInputField();*/
+
         GetRectTransform.SetAsLastSibling();
         
     }
 
     public void HideInfo()
     {
-        displayPinInfo.Hide();
+        //displayPinInfo.Hide();
     }
 
     public void ShowInfo()
     {
         PinManager.Instance.SetDisplayedPin(this);
 
-        displayPinInfo.Show();
+        //displayPinInfo.Show();
     }
 }

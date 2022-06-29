@@ -2,75 +2,69 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class PinDispencer : Displayable
 {
-    public bool pointerInside = false;
+    public int iconType;
 
-    public Pin.ColorType colorType;
+    public Image image;
 
-    public Image[] pinImages;
-
-    public GameObject deletePinGroup;
+    //public GameObject deletePinGroup;
     public GameObject placePinGroup;
 
-    public Transform deletePin_Transform;
-    public Outline deleteOutline;
+    int id = 0;
 
-    private static PinDispencer[] pinDispencers = new PinDispencer[(int)Pin.ColorType.None];
-
-    public static PinDispencer GetPinDispencer(Pin.ColorType colorType)
+    public static PinDispencer GetPinDispencer(int i)
     {
-        return pinDispencers[(int)colorType];
+        return PinManager.Instance.pinDispencers[i];
     }
 
     public override void Start()
     {
         base.Start();
 
-        pinDispencers[(int)colorType] = this;
-
-        foreach (var item in pinImages)
-        {
-            item.color = PinManager.Instance.GetPinColor(colorType);
-        }
-
         SetPlaceMode();
+    }
+
+    public void Display(int _id, Sprite _sprite)
+    {
+        image.sprite = _sprite;
+        id = _id;
     }
 
     public void CreatePin()
     {
+        Tween.Bounce
+            (GetRectTransform);
+
         // sound
         SoundManager.Instance.PlayRandomSound("click_light");
 
-        PinManager.Instance.CreatePin(colorType);
-    }
-
-    public void OnPointerEnter()
-    {
-        deleteOutline.enabled = true;
-        Tween.Scale(deletePin_Transform, 0.2f, 1.05f);
-
-        pointerInside = true;
-    }
-
-    public void OnPointerExit()
-    {
-        deleteOutline.enabled = false;
-        Tween.Scale(deletePin_Transform, 0.2f, 1f);
-
-        pointerInside = false;
+        PinManager.Instance.CreatePin(id);
     }
 
     public void SetPlaceMode()
     {
-        deletePinGroup.SetActive(false);
+        DeletePinButton.Instance.Hide();
+        //deletePinGroup.SetActive(false);
         placePinGroup.SetActive(true);
+        DisplayPinDispencers.Instance.GoBack();
+
     }
 
     public void SetDeleteMode()
     {
-        deletePinGroup.SetActive(true);
+        DisplayPinDispencers.Instance.Slide();
+        DeletePinButton.Instance.Show();
+        //deletePinGroup.SetActive(true);
         placePinGroup.SetActive(false);
     }
+
+    /*public void OnPointerClick(PointerEventData eventData)
+    {
+        CreatePin();
+    }*/
+
+
 }

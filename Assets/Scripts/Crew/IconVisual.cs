@@ -2,7 +2,6 @@
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
-using System;
 
 public class IconVisual : MonoBehaviour
 {
@@ -144,6 +143,11 @@ public class IconVisual : MonoBehaviour
 
     }
 
+    public void ChangeEyes(Sprite sprite)
+    {
+
+    }
+
     #region taint
     private void UpdateTaint()
     {
@@ -239,7 +243,30 @@ public class IconVisual : MonoBehaviour
 
     void SetSprite(ApparenceType apparenceType)
     {
-        Sprite spr = CrewCreator.Instance.GetApparenceItem(apparenceType, currentMember.GetCharacterID(apparenceType)).GetSprite();
+
+        int id = currentMember.GetCharacterID(apparenceType);
+
+        if (currentMember.IsZombie())
+        {
+            switch (apparenceType)
+            {
+                case ApparenceType.eyes:
+                    GetImage(apparenceType).sprite = CrewCreator.Instance.zombie_EyesSprite[id];
+                    return;
+                case ApparenceType.mouth:
+                    GetImage(apparenceType).sprite = CrewCreator.Instance.zombie_MouthSprite[id];
+                    return;
+                case ApparenceType.nose:
+                    GetImage(apparenceType).sprite = CrewCreator.Instance.zombie_NoseSprite[id];
+                    return;
+                default:
+                    break;
+            }
+        }
+
+        Sprite spr = CrewCreator.Instance.GetApparenceItem(apparenceType, id).GetSprite(); ;
+
+
         if (spr == null)
         {
             GetImage(apparenceType).enabled = false;
@@ -253,9 +280,29 @@ public class IconVisual : MonoBehaviour
 
     public Color GetColor(ApparenceType apparenceType)
     {
-        if (overrideSkinColor_Active && apparenceType == ApparenceType.skinColor)
+        if ( apparenceType == ApparenceType.hairColor)
         {
-            return overrideSkinColor_Color;
+            if (currentMember.IsZombie())
+            {
+                int id = Random.value < 0.5f ? 2 : 4;
+                return CrewCreator.Instance.GetApparenceItem(apparenceType, id).color;
+            }
+        }
+
+        if ( apparenceType == ApparenceType.skinColor)
+        {
+            if (overrideSkinColor_Active)
+            {
+                return overrideSkinColor_Color;
+            }
+
+            if (currentMember.IsZombie())
+            {
+                // mettre le meme nombre d'id de peaux zombies 
+                // que de peaux normales parce que le code est ECALATE
+                // ne pas hésiter à mettre des doubles
+                return CrewCreator.Instance.zombie_SkinColors[currentMember.GetCharacterID(ApparenceType.skinColor)];
+            }
         }
 
         int colorID = currentMember.GetCharacterID(apparenceType);

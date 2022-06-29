@@ -19,9 +19,9 @@ public class SkillManager : MonoBehaviour {
 
 	public static string[] jobNames = new string[5] {
 		"Brute",
-		"Doctor",
+		"Medic",
 		"Cook",
-		"Filibuster",
+		"Cannoneer",
 		"Crook"
 	};
 

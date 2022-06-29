@@ -12,6 +12,8 @@ public class Skill : MonoBehaviour {
 	public int energyCost = 5;
 	public int initCharge = 0;
 
+    public string currentRestriction;
+
     public int value = 10;
 
 	public bool hasTarget = false;
@@ -274,12 +276,26 @@ public class Skill : MonoBehaviour {
     public virtual bool MeetsRestrictions ( CrewMember member ) {
 
 		if ( canTargetSelf == false && targetType == TargetType.Self ) {
+            if ( Crews.enemyCrew.CrewMembers.Count > 1)
+            {
+                return true;
+            }
+            else
+            {
+                currentRestriction = "Can't target self";
+                return false;
+            }
 			return Crews.enemyCrew.CrewMembers.Count > 1;
 		}
 
 		return true;
 	}
     
+
+    public virtual string GetFeedback()
+    {
+        return "";
+    }
 
     public virtual bool MeetsConditions (CrewMember member) {
 
@@ -288,7 +304,7 @@ public class Skill : MonoBehaviour {
 		}
 
 		if (member.charges [GetSkillIndex (member)] > 0) {
-			return  false;
+            return  false;
 		}
 
 		return true;

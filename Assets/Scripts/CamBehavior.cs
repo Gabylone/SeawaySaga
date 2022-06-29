@@ -19,7 +19,7 @@ public class CamBehavior : MonoBehaviour
 
     Vector3 targetPos;
 
-    private Transform _transform;
+    public Transform _transform;
 
     bool zoomed = false;
 

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class DisplayPinInfo : Displayable
 {
-    public InputField inputField;
+    public Text uiText;
 
     public Pin pin;
 
@@ -13,7 +13,7 @@ public class DisplayPinInfo : Displayable
     {
         Tween.Bounce(GetRectTransform);
 
-        pin.content = inputField.text;
+        pin.content = uiText.text;
 
         Hide();
     }

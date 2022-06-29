@@ -56,8 +56,10 @@ public class MapGenerator : MonoBehaviour {
 	public int islandID;
 
 	public DiscoveredCoords discoveredCoords;
+	public DiscoveredVoids discoveredVoids;
+	public UndiscoveredVoids undiscoveredVoids;
 
-	public int islandCreation_LoadLimit = 1;
+    public int islandCreation_LoadLimit = 1;
 
     public string treasureName = "";
 
@@ -74,6 +76,8 @@ public class MapGenerator : MonoBehaviour {
         }
 
 		discoveredCoords = new DiscoveredCoords ();
+        discoveredVoids = new DiscoveredVoids();
+        undiscoveredVoids = new UndiscoveredVoids();
 
         string str_name = CrewCreator.Instance.boatNames[Random.Range(0, CrewCreator.Instance.boatNames.Length)];
         string str_adj = CrewCreator.Instance.boatAdjectives[Random.Range(0, CrewCreator.Instance.boatAdjectives.Length)];
@@ -146,15 +150,22 @@ public class MapGenerator : MonoBehaviour {
             for (int colIndex = 0; colIndex < cells.Length; colIndex++)
             {
                 // the cell contains islands ?
-                if (cells[colIndex].Length > 0)
+                if (!string.IsNullOrEmpty(cells[colIndex]))
                 {
                     // get coord
                     Coords c = new Coords(colIndex , (rows.Length-1) - rowIndex);
 
-                    // reset island positions
-                    IslandManager.Instance.ResetIslandPositions();
+                    string cellContent = cells[colIndex];
 
-                    string[] storyNames = cells[colIndex].Split(',');
+                    if (cellContent == "void")
+                    {
+                        Chunk.GetChunk(c).state = ChunkState.UndiscoveredVoid;
+                        MapGenerator.Instance.undiscoveredVoids.coords.Add(c);
+
+                        continue;
+                    }
+
+                    string[] storyNames = cellContent.Split(',');
 
                     bool formulaIsland = false;
 
@@ -259,15 +270,19 @@ public class MapGenerator : MonoBehaviour {
         return "col : " + letter + " row : " + (row+1);
     }
 
-    public void LoadMap() {
+    public void LoadMap()
+    {
 
         UpdateMapScale();
 
-		discoveredCoords = SaveTool.Instance.LoadFromCurrentMap ("discovered coords.xml", "DiscoveredCoords") as DiscoveredCoords;
+        discoveredCoords = SaveTool.Instance.LoadFromCurrentMap("discovered coords.xml", "DiscoveredCoords") as DiscoveredCoords;
+        discoveredVoids = SaveTool.Instance.LoadFromCurrentMap("discovered voids.xml", "DiscoveredVoids") as DiscoveredVoids;
+        undiscoveredVoids = SaveTool.Instance.LoadFromCurrentMap("undiscovered voids.xml", "UndiscoveredVoids") as UndiscoveredVoids;
 
-		Chunk.chunks.Clear ();
+        Chunk.chunks.Clear();
 
-		for (int x = 0; x < GetMapHorizontalScale; x++) {
+        for (int x = 0; x < GetMapHorizontalScale; x++)
+        {
 
             for (int y = 0; y < GetMapVerticalScale; y++)
             {
@@ -276,14 +291,28 @@ public class MapGenerator : MonoBehaviour {
                 Chunk.chunks.Add(c, new Chunk(c));
             }
 
-		}
+        }
 
-		foreach (var item in discoveredCoords.coords) {
+        foreach (var coords in discoveredCoords.coords)
+        {
+            Chunk chunk = Chunk.GetChunk(coords);
+            chunk.state = ChunkState.DiscoveredSea;
+        }
 
-			Chunk.GetChunk (item).state = ChunkState.DiscoveredSea;
+        foreach (var coords in undiscoveredVoids.coords)
+        {
+            Chunk chunk = Chunk.GetChunk(coords);
+            chunk.state = ChunkState.UndiscoveredVoid;
+        }
 
-		}
-	}
+        foreach (var coords in discoveredVoids.coords)
+        {
+            Chunk chunk = Chunk.GetChunk(coords);
+            chunk.state = ChunkState.DiscoveredVoid;
+        }
+
+        
+    }
 
     public void CreateIsland(Coords c, StoryType type, int storyAmount, int storyIndex, bool containsFormula)
     {
@@ -314,4 +343,24 @@ public class DiscoveredCoords {
 	public DiscoveredCoords () {
 		//
 	}
+}
+
+public class DiscoveredVoids
+{
+    public List<Coords> coords = new List<Coords>();
+
+    public DiscoveredVoids()
+    {
+        //
+    }
+}
+
+public class UndiscoveredVoids
+{
+    public List<Coords> coords = new List<Coords>();
+
+    public UndiscoveredVoids()
+    {
+        //
+    }
 }

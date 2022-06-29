@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
+using UnityEngine.EventSystems;
 using System.Collections;
 using System.Collections.Generic;
-
 using DG.Tweening;
 
 public class PinManager : Singleton<PinManager>
@@ -13,12 +13,14 @@ public class PinManager : Singleton<PinManager>
     public RectTransform firstParent;
     public RectTransform secondParent;
 
+    public List<PinDispencer> pinDispencers = new List<PinDispencer>();
+
+    public Sprite[] sprites;
+
     private DisplayPin previousDisplayedPin;
     public DisplayPin currentDisplayedPin;
 
     public float distanceToDeletePin = 1f;
-
-    public Color[] colors;
 
     public bool pointerInside = false;
 
@@ -27,28 +29,43 @@ public class PinManager : Singleton<PinManager>
         base.Awake();
     }
 
+    /*public List<RaycastResult> RaycastMouse()
+    {
+        PointerEventData pointerData = new PointerEventData(EventSystem.current)
+        {
+            pointerId = -1,
+        };
+
+        pointerData.position = Input.mousePosition;
+
+        List<RaycastResult> results = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(pointerData, results);
+
+        return results;
+    }*/
+
     private void Update()
     {
         DisplayPin displayPin = DisplayPin.currentDraggedPin;
 
         if (displayPin != null)
         {
-            PinDispencer pinDispencer = PinDispencer.GetPinDispencer(displayPin.displayPinInfo.pin.colorType);
+            RectTransform rect_transform = DeletePinButton.Instance.GetRectTransform;
 
-            float dis = Vector2.Distance(displayPin.GetRectTransform.position,pinDispencer.GetRectTransform.position);
+            float dis = Vector2.Distance(displayPin.GetRectTransform.position, rect_transform.position);
 
-            if (pinDispencer.pointerInside)
+            if (DeletePinButton.Instance.pointerInside)
             {
                 if (dis > distanceToDeletePin)
                 {
-                    pinDispencer.OnPointerExit();
+                    DeletePinButton.Instance.OnPointerExit();
                 }
             }
             else
             {
                 if ( dis < distanceToDeletePin)
                 {
-                    pinDispencer.OnPointerEnter();
+                    DeletePinButton.Instance.OnPointerEnter();
                 }
             }
         }
@@ -64,9 +81,11 @@ public class PinManager : Singleton<PinManager>
 
             pins.Add(pin);
 
-            newDisplayPin.displayPinInfo.pin = pin;
+            newDisplayPin.pin = pin;
+            /*newDisplayPin.displayPinInfo.pin = pin;
             newDisplayPin.displayPinInfo.inputField.text = pin.content;
-            newDisplayPin.displayPinInfo.Hide();
+            newDisplayPin.displayPinInfo.Hide();*/
+            newDisplayPin.Display(sprites[pin.id]);
 
             newDisplayPin.canBeDraggedOnMap = true;
 
@@ -84,24 +103,25 @@ public class PinManager : Singleton<PinManager>
 
     public void DeletePin(DisplayPin displayPin)
     {
-        pins.Remove(displayPin.displayPinInfo.pin);
+        pins.Remove(displayPin.pin);
 
         displayPin.Hide();
     }
 
-    public void CreatePin(Pin.ColorType colorType)
+    public void CreatePin(int id)
     {
         GameObject go = Instantiate(prefab, null);
 
         DisplayPin newDisplayPin = go.GetComponent<DisplayPin>();
+        newDisplayPin.Display(sprites[id]);
 
         // data
         Pin newPin = new Pin();
-        newPin.colorType = colorType;
+        newPin.id = id;
 
         pins.Add(newPin);
-        newDisplayPin.displayPinInfo.pin = newPin;
-        newDisplayPin.displayPinInfo.HideDelay();
+        newDisplayPin.pin = newPin;
+        //newDisplayPin.HideDelay();
 
         newDisplayPin.TakePin();
     }
@@ -117,11 +137,6 @@ public class PinManager : Singleton<PinManager>
 
         currentDisplayedPin = displayPin;
 
-    }
-
-    public Color GetPinColor(Pin.ColorType colorType)
-    {
-        return colors[(int)colorType];
     }
 
 }

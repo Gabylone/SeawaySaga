@@ -23,6 +23,8 @@ public class RandomPlacable : MonoBehaviour
 
     private SpriteRenderer spriteRenderer;
 
+    public GameObject select_feedback;
+
     // Start is called before the first frame update
     public virtual void Start()
     {
@@ -35,6 +37,8 @@ public class RandomPlacable : MonoBehaviour
         CombatManager.Instance.onFightEnd += Unlock;
 
         Invoke("StartDelay", 2f);
+
+        WorldTouch.Instance.onSelectSomething += Deselect;
     }
 
     void StartDelay()
@@ -122,10 +126,27 @@ public class RandomPlacable : MonoBehaviour
             return;
         }
 
+        Select();
+    }
+
+    void Select()
+    {
+        // deselect everything
+        WorldTouch.Instance.onSelectSomething();
+
         Tween.Bounce(_transform);
 
         Flag.Instance.Hide();
         PlayerBoat.Instance.SetTargetPos(_transform.position);
+
+        if ( select_feedback != null )
+        select_feedback.SetActive(true);
+    }
+
+    void Deselect()
+    {
+        if( select_feedback!=null)
+        select_feedback.SetActive(false);
     }
 
     public void Show()

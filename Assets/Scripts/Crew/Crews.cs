@@ -308,6 +308,7 @@ public class Crews : MonoBehaviour {
             if ( parms[2] == "TREASURE")
             {
                 level = MapGenerator.mapParameters.endFightLevel;
+				crewParams.zombie = true;
             }
             else
             {

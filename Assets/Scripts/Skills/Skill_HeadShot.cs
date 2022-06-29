@@ -118,11 +118,20 @@ public class Skill_HeadShot : Skill {
 
     public override bool MeetsRestrictions (CrewMember member)
 	{
-		if (member.GetEquipment (CrewMember.EquipmentPart.Weapon) == null)
-			return false;
+        if (member.GetEquipment(CrewMember.EquipmentPart.Weapon) == null)
+        {
+            currentRestriction = "No Weapon...";
+            return false;
+        }
 
-        return base.MeetsRestrictions(member) && member.GetEquipment(CrewMember.EquipmentPart.Weapon).weaponType == Item.WeaponType.Distance;
-	}
+        if (!member.HasDistanceWeapon())
+        {
+            currentRestriction = "No guns !";
+            return false;
+        }
+
+        return base.MeetsRestrictions(member);
+    }
 
 	public override bool MeetsConditions (CrewMember member)
 	{

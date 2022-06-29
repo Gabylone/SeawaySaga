@@ -139,6 +139,13 @@ public class LootUI : MonoBehaviour {
     {
         if (visible)
         {
+            if(scrollRect.content.sizeDelta.y < 200)
+            {
+                lootFade_Down.alpha = Mathf.Lerp(lootFade_Down.alpha, 0f, lootFade_Speed * Time.deltaTime);
+                lootFade_Up.alpha = Mathf.Lerp(lootFade_Up.alpha, 0f, lootFade_Speed * Time.deltaTime);
+                return;
+            }
+
             if ( scrollRect.verticalNormalizedPosition > 1 - lootFade_Buffer )
             {
                 lootFade_Down.alpha = Mathf.Lerp( lootFade_Down.alpha , 1f , lootFade_Speed * Time.deltaTime );

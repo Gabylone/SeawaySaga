@@ -79,7 +79,7 @@ public class Quest {
         goldValue = level * 20 + Random.Range(1, 9);
 
 
-        experience = 30;
+        experience = 40;
         
         SetOriginIsland(IslandManager.Instance.GetCurrentIslandData());
 

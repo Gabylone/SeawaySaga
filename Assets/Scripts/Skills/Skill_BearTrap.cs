@@ -94,7 +94,12 @@ public class Skill_BearTrap : Skill {
 	{
 		bool bearTrapped = CombatManager.Instance.GetCurrentFighter.HasStatus (Fighter.Status.BearTrapped);
 
-		return bearTrapped == false && base.MeetsRestrictions (member);
+        if(bearTrapped){
+            currentRestriction = "Already bear trapped !";
+            return false;
+        }
+
+		return  base.MeetsRestrictions (member);
 	}
 
 	public override bool MeetsConditions (CrewMember member)

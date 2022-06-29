@@ -188,6 +188,11 @@ public class MinimapChunk : MonoBehaviour
 
     public void OnPointerClick()
     {
+        if (!DisplayMinimap.Instance.fullyDisplayed)
+        {
+            return;
+        }
+
         TouchMinimapChunk();
     }
 }

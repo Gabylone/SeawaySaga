@@ -43,43 +43,21 @@ public class NavigationTrigger : MonoBehaviour {
         if (targetCoords.x < 0 || targetCoords.x > MapGenerator.Instance.GetMapHorizontalScale - 1 || targetCoords.y < 0 || targetCoords.y > MapGenerator.Instance.GetMapVerticalScale - 1)
         {
             gameObject.SetActive(false);
+            return;
         }
-        else
+
+        if ( Chunk.GetChunk(targetCoords).state == ChunkState.DiscoveredVoid
+            ||
+            Chunk.GetChunk(targetCoords).state == ChunkState.UndiscoveredVoid)
         {
-            gameObject.SetActive(true);
+            gameObject.SetActive(false);
+            return;
         }
+
+        gameObject.SetActive(true);
+
+
     }
-
-	/*void HandleOnSwipe (Directions direction)
-	{
-        Deselect();
-
-        Coords targetCoords = Boats.Instance.playerBoatInfo.coords + NavigationManager.Instance.getNewCoords(direction);
-
-        if ( direction == this.direction ) {
-
-            if (targetCoords.x < 0 || targetCoords.x > MapGenerator.Instance.MapScale - 1 || targetCoords.y < 0 || targetCoords.y > MapGenerator.Instance.MapScale - 1)
-            {
-                OutOfMapFeedback();
-                return;
-            }
-
-            Vector3 corner = NavigationManager.Instance.GetCornerPosition(direction);
-            Vector3 p = corner + (corner - PlayerBoat.Instance.getTransform.position).normalized * 2f;
-
-            PlayerBoat.Instance.SetTargetPos(p);
-
-			Select ();
-		}
-	}*/
-
-	/*void OnTriggerStay ( Collider other ) {
-
-		if (other.tag == "Player" && selected ) {
-			NavigationManager.Instance.ChangeChunk (direction);
-            Deselect();
-		}
-	}*/
 
     void OnTriggerEnter(Collider other)
     {
@@ -90,6 +68,8 @@ public class NavigationTrigger : MonoBehaviour {
             SoundManager.Instance.PlaySound("change chunk");
             SoundManager.Instance.PlayRandomSound("ting");
             SoundManager.Instance.PlaySound("Magic Chimes 05");
+
+            Tween.Bounce(_transform);
 
             Transitions.Instance.ScreenTransition.FadeIn(0.5f);
             Invoke("ChangeChunk", 0.5f);

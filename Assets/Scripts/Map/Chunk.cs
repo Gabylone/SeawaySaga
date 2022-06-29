@@ -10,7 +10,9 @@ public enum ChunkState {
 	DiscoveredSea,
 	UndiscoveredIsland,
 	DiscoveredIsland,
-	VisitedIsland
+	VisitedIsland,
+    UndiscoveredVoid,
+    DiscoveredVoid,
 
 }
 

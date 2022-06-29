@@ -14,6 +14,9 @@ public class WorldTouch : MonoBehaviour
     public delegate void OnPointerDownEvent();
     public static OnPointerDownEvent onPointerDown;
 
+    public delegate void OnSelectSomething();
+    public OnSelectSomething onSelectSomething;
+
     public bool debugTouch = false;
 
     public bool touching = false;
@@ -56,7 +59,6 @@ public class WorldTouch : MonoBehaviour
 
     public void Lock()
     {
-        
         locked = true;
     }
 
@@ -115,6 +117,8 @@ public class WorldTouch : MonoBehaviour
 
     public void OnMouseDown()
     {
+
+
         if (locked)
         {
             return;
@@ -129,6 +133,9 @@ public class WorldTouch : MonoBehaviour
         {
             return;
         }
+
+        // deselect everything
+        WorldTouch.Instance.onSelectSomething();
 
         touching = true;
         

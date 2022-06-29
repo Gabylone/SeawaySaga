@@ -42,6 +42,8 @@ public class EnemyBoat : Boat
 
     public GameObject group;
 
+    public GameObject select_feedback;
+
     public override void Start()
     {
         minimapBoat = DisplayMinimap.Instance.CreateMinimapBoat(DisplayMinimap.Instance.enemyBoatIconPrefab, GetTransform, GetBoatInfo());
@@ -51,6 +53,13 @@ public class EnemyBoat : Boat
         boxCollider = GetComponent<BoxCollider>();
 
         Hide();
+
+        WorldTouch.Instance.onSelectSomething += Deselect;
+    }
+
+    private void OnDestroy()
+    {
+        WorldTouch.onPointerDown -= Deselect;
 
     }
 
@@ -263,10 +272,14 @@ public class EnemyBoat : Boat
         SoundManager.Instance.PlaySound("enter port");
 
         StoryLauncher.Instance.PlayStory(boatInfo.storyManager, StoryLauncher.StorySource.boat);
+
+        Deselect();
     }
 
     public void LeaveBoat()
     {
+
+        Deselect();
 
         reachedPlayer = false;
         followPlayer = false;
@@ -275,6 +288,9 @@ public class EnemyBoat : Boat
 
         ExitScreen();
         SetSpeed(leavingSpeed);
+
+        boxCollider.enabled = true;
+
     }
 
     public void Withdraw()
@@ -295,11 +311,26 @@ public class EnemyBoat : Boat
 
     private void OnMouseDown()
     {
+        Select();
+    }
+    public void Select()
+    {
+        // deselect everything
+        WorldTouch.Instance.onSelectSomething();
+
         Tween.Bounce(GetTransform);
 
         PlayerBoat.Instance.SetTargetPos(GetTransform.position);
 
+        Flag.Instance.Hide();
+
         SoundManager.Instance.PlayRandomSound("button_big");
+
+        select_feedback.SetActive(true);
+    }
+    public void Deselect()
+    {
+        select_feedback.SetActive(false);
     }
     #endregion
 

@@ -11,34 +11,44 @@ public class LoadingScene : MonoBehaviour
     public RectTransform rectTransform_Background;
     public RectTransform rectTransform_Fill;
 
-    public bool activateAtStart = true;
-
     float currentTimer = 0f;
-    private float timerSpeed = 0.2f;
+    private float timerSpeed = 0.05f;
 
-    private float limit = 0.9f;
-    
+    private float limit = 0f;
+
     public static string sceneToLoad = "Menu";
+
+    public GameObject loadingBar_Go;
+    public GameObject playButton_Go;
+
+    public bool loadScene = false;
 
     void Start()
     {
         Transitions.Instance.ScreenTransition.FadeOut(1f);
         Invoke("StartDelay", 1f);
 
+        loadScene = false;
+
+        loadingBar_Go.SetActive(true);
+        playButton_Go.SetActive(false);
+
         UpdateUI(0);
-    }
-
-    private void LateUpdate()
-    {
-        UpdateUI(currentTimer);
-
-        if ( currentTimer < limit)
-        {
-            currentTimer += Time.deltaTime * timerSpeed;
-        }
-    }
+    } 
 
     void StartDelay()
+    {
+        if (sceneToLoad== "Main")
+        {
+            SaveTool.Instance.CreateDirectories();
+        }
+
+        Invoke("StartDelay2", 1f);
+        UpdateUI(0.1f);
+
+    }
+
+    void StartDelay2()
     {
         StartCoroutine(LoadScene());
     }
@@ -50,35 +60,58 @@ public class LoadingScene : MonoBehaviour
         //Begin to load the Scene you specify
         AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(sceneToLoad);
 
-        if ( MainMenuManager.debugLoading_ActivateSceneAtTheEnd)
+        asyncOperation.allowSceneActivation = false;
+
+        /*if ( MainMenuManager.debugLoading_ActivateSceneAtTheEnd)
         {
             asyncOperation.allowSceneActivation = false;
         }
         else
         {
             asyncOperation.allowSceneActivation = true;
-        }
+        }*/
 
 
         //When the load is still in progress, output the Text and progress bar
         while (!asyncOperation.isDone)
         {
-            //Output the current progress
-            
+            if (loadScene)
+            {
+                asyncOperation.allowSceneActivation = true;
+            }
 
             // Check if the load has finished
             if (asyncOperation.progress >= 0.9f)
             {
-                currentTimer = asyncOperation.progress;
-                limit = 100f;
+                UpdateUI(1f);
 
-                UpdateUI(asyncOperation.progress);
-
-                asyncOperation.allowSceneActivation = true;
+                playButton_Go.SetActive(true);
             }
+            else
+            {
+                UpdateUI(Mathf.Lerp(0.1f, 1f, asyncOperation.progress));
+            }
+            
 
             yield return null;
         }
+
+
+    }
+
+    public void PressPlay()
+
+    {
+        Tween.Bounce(playButton_Go.transform);
+
+        Transitions.Instance.ScreenTransition.FadeIn(1f);
+
+        Invoke("PressPlayDelay", 1f);
+    }
+
+    void PressPlayDelay()
+    {
+        loadScene = true;
     }
 
     void UpdateUI(float f)

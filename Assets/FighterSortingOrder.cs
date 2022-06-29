@@ -16,15 +16,17 @@ public class FighterSortingOrder : MonoBehaviour
 
     public float lerp = 0f;
 
+    public float posY = 0f;
+    int sortOrder = 0;
+
+    public int mult = 100;
+
     // Update is called once per frame
     void Update()
     {
-        lerp = Mathf.InverseLerp(minScreenHeight, maxScreenHeight, rectTransform.anchoredPosition.y);
-
-        int sortingOrder = (int)Mathf.Lerp(minSortingOrder, maxSortingOrder, lerp);
-
-        canvas.sortingOrder = maxSortingOrder - sortingOrder;
-
-
+        posY = rectTransform.position.y - CombatManager.Instance.bottom.transform.position.y;
+        lerp = posY / 8;
+        sortOrder = (int)Mathf.Lerp(minSortingOrder, maxSortingOrder, lerp);
+        canvas.sortingOrder = maxSortingOrder - sortOrder;
     }
 }

@@ -28,12 +28,16 @@ public class Map : MonoBehaviour, IPointerClickHandler {
 
     public GameObject[] membersGroups;
     public IconVisual[] targetIconVisuals;
+    public Text saveName_Text;
     public Text[] captainUITexts;
     public Text[] levelUITexts;
 
     public GameObject newGameGroup;
 
     public GameObject finishedGroup;
+
+    public GameObject confirmNewGame_Group;
+    public RectTransform validateNewGame_RectTransform;
 
     private bool load = false;
 
@@ -45,6 +49,8 @@ public class Map : MonoBehaviour, IPointerClickHandler {
         UpdateUI();
 
         max = System.Enum.GetValues(typeof(TutorialStep)).Length;
+
+        confirmNewGame_Group.SetActive(false);
     }
 
     public void UpdateUI()
@@ -94,6 +100,10 @@ public class Map : MonoBehaviour, IPointerClickHandler {
 
             GameData gameData = SaveTool.Instance.LoadFromSpecificPath(mapParameters.mapName, "game data.xml", "GameData") as GameData;
 
+            string str = gameData.playerCrew.MemberIDs[0].Name + ", captain of \n" +
+                gameData.playerBoatInfo.Name + ", and its crew";
+            saveName_Text.text = str;
+
             HideMemberIcons();
 
             for (int i = 0; i < gameData.playerCrew.MemberIDs.Count; i++)
@@ -105,7 +115,8 @@ public class Map : MonoBehaviour, IPointerClickHandler {
 
                 targetIconVisuals[i].InitVisual(member);
 
-                captainUITexts[i].text = member.Name;
+
+                //captainUITexts[i].text = member.Name;
 
                 levelUITexts[i].text = member.Lvl.ToString();
 
@@ -166,6 +177,17 @@ public class Map : MonoBehaviour, IPointerClickHandler {
             return;
         }
 
+
+        SoundManager.Instance.PlayRandomSound("button_tap_light");
+        SoundManager.Instance.PlayRandomSound("Swipe");
+
+        confirmNewGame_Group.SetActive(true);
+    }
+
+    public void ConfirmLaunchGame()
+    {
+        Tween.Bounce(validateNewGame_RectTransform);
+
         MapGenerator.mapParameters = this.mapParameters;
 
         Transitions.Instance.ScreenTransition.FadeIn(1f);
@@ -179,7 +201,7 @@ public class Map : MonoBehaviour, IPointerClickHandler {
             KeepOnLoad.dataToLoad = -1;
         }
 
-        if ( mapParameters.id == 0 && !load)
+        if (mapParameters.id == 0 && !load)
         {
             KeepOnLoad.displayTuto = true;
         }
@@ -195,10 +217,9 @@ public class Map : MonoBehaviour, IPointerClickHandler {
         SoundManager.Instance.PlayRandomSound("Writing");
         SoundManager.Instance.PlayRandomSound("Page");
 
-        SaveTool.Instance.CreateDirectories();
+        
 
         Invoke("LaunchMapDelay", 1f);
-
     }
 
     void LaunchMapDelay()

@@ -29,8 +29,16 @@ public class Skill_Cuss : Skill {
 
         SoundManager.Instance.PlayRandomSound("voice_mad");
 
-        string str = "What's that smell ? Is this YOU ?!";
-		fighter.Speak (str);
+		string[] strs = new string[6]
+		{
+			"What's that smell ? Is this YOU ?!",
+			"You look like the child of a tea pot and a seagull !",
+			"You're nothing but a trash, shameful bandit !",
+			"You stampcrab, sea vermin mollusc !",
+			"Come and get me, prove you're more than a smelly clam",
+			"Your parents should have used you as shark bait !"
+		};
+		fighter.Speak (strs[Random.Range(0,strs.Length)]);
 
 	}
 
@@ -45,7 +53,7 @@ public class Skill_Cuss : Skill {
 
         SoundManager.Instance.PlayRandomSound("voice_sad");
 
-        fighter.TargetFighter.AddStatus (Fighter.Status.Cussed,3);
+        fighter.TargetFighter.AddStatus (Fighter.Status.Cussed,2);
 
 		EndSkill ();
 

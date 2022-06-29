@@ -147,7 +147,7 @@ TextureImporter:
       213: 21300094
     second: toon_47
   externalObjects: {}
-  serializedVersion: 10
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 1
@@ -167,6 +167,8 @@ TextureImporter:
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -177,7 +179,7 @@ TextureImporter:
     serializedVersion: 2
     filterMode: 0
     aniso: 16
-    mipBias: -100
+    mipBias: 0
     wrapU: 1
     wrapV: 1
     wrapW: 1
@@ -198,9 +200,13 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -1283,6 +1289,55 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      toon_7: 21300014
+      toon_31: 21300062
+      toon_34: 21300068
+      toon_25: 21300050
+      toon_3: 21300006
+      toon_44: 21300088
+      toon_16: 21300032
+      toon_28: 21300056
+      toon_32: 21300064
+      toon_41: 21300082
+      toon_1: 21300002
+      toon_14: 21300028
+      toon_12: 21300024
+      toon_45: 21300090
+      toon_26: 21300052
+      toon_9: 21300018
+      toon_33: 21300066
+      toon_43: 21300086
+      toon_37: 21300074
+      toon_0: 21300000
+      toon_27: 21300054
+      toon_10: 21300020
+      toon_20: 21300040
+      toon_15: 21300030
+      toon_17: 21300034
+      toon_13: 21300026
+      toon_47: 21300094
+      toon_22: 21300044
+      toon_40: 21300080
+      toon_2: 21300004
+      toon_21: 21300042
+      toon_35: 21300070
+      toon_8: 21300016
+      toon_11: 21300022
+      toon_4: 21300008
+      toon_39: 21300078
+      toon_29: 21300058
+      toon_46: 21300092
+      toon_19: 21300038
+      toon_36: 21300072
+      toon_30: 21300060
+      toon_5: 21300010
+      toon_6: 21300012
+      toon_38: 21300076
+      toon_18: 21300036
+      toon_42: 21300084
+      toon_24: 21300048
+      toon_23: 21300046
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

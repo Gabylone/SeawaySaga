@@ -11,6 +11,12 @@ public class SkillButton_Combat : SkillButton {
 
     public CanvasGroup canvasGroup;
 
+	public Text uiText_Restriction;
+	public RectTransform rectTransform_Restriction;
+	public Vector2 resctriction_InitPos;
+	public float restriction_Duration;
+	public float restriction_Amount;
+
 	// charge
 	public Image chargeFillImage;
 	public GameObject chargeGroup;
@@ -23,6 +29,8 @@ public class SkillButton_Combat : SkillButton {
 	public override void Start ()
 	{
 		base.Start ();
+
+		uiText_Restriction.color = Color.clear;
 	}
 
 	public override void SetSkill (Skill _skill)
@@ -43,7 +51,7 @@ public class SkillButton_Combat : SkillButton {
 	void Disable() {
 		canTriggerSkill = false;
 		//skillImage.color = new Color ( 1,1,1,0.35f );
-        button.interactable = false;
+        //button.interactable = false;
 
         canvasGroup.alpha = 0.5f;
 
@@ -69,6 +77,7 @@ public class SkillButton_Combat : SkillButton {
 		}
 
 		if ( skill.energyCost > fighter.crewMember.energy ) {
+			skill.currentRestriction = "No energy...";
 			Disable ();
         }
 
@@ -81,6 +90,7 @@ public class SkillButton_Combat : SkillButton {
 	void UpdateCharge (int charge) {
 		if (charge > 0) {
 			Disable ();
+			skill.currentRestriction = "Ready in " + charge + " turns";
 			chargeGroup.SetActive (true);
 			chargeFillImage.fillAmount = (float)charge / (float)skill.initCharge;
 			chargeText.text = "" + charge;
@@ -91,11 +101,19 @@ public class SkillButton_Combat : SkillButton {
 
 	public void OnPointerUp () {
 
-		if (canTriggerSkill ) {
-			skill.Trigger (CombatManager.Instance.GetCurrentFighter);
+		Tween.Bounce(_transform);
+
+		if (!canTriggerSkill ) {
+			if (!string.IsNullOrEmpty(skill.currentRestriction))
+			{
+				RestrictionFeedback();
+			}
+			return;
 		}
 
-        chargeFillImage.DOKill();
+		skill.Trigger(CombatManager.Instance.GetCurrentFighter);
+
+		chargeFillImage.DOKill();
 		CrewMember member = CombatManager.Instance.GetCurrentFighter.crewMember;
 		int charge = member.charges[skill.GetSkillIndex(member)];
 		UpdateCharge (charge);
@@ -103,4 +121,20 @@ public class SkillButton_Combat : SkillButton {
         SoundManager.Instance.PlaySound("click_med 02");
 
     }
+
+	void RestrictionFeedback()
+    {
+		uiText_Restriction.text = skill.currentRestriction;
+		Tween.Bounce(rectTransform_Restriction);
+		uiText_Restriction.DOKill();
+		uiText_Restriction.color = Color.red;
+		uiText_Restriction.DOColor(Color.clear, 0.5f).SetDelay(restriction_Duration);
+
+		if ( resctriction_InitPos == Vector2.zero)
+        {
+			resctriction_InitPos = rectTransform_Restriction.position;
+		}
+		rectTransform_Restriction.position = resctriction_InitPos;
+		rectTransform_Restriction.DOMove(resctriction_InitPos + Vector2.right * restriction_Amount, 0.5f).SetDelay(restriction_Duration).SetEase(Ease.InBounce);
+	}
 }

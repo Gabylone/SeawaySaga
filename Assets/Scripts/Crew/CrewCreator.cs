@@ -19,6 +19,11 @@ public class CrewCreator : MonoBehaviour
     public Sprite[] weaponSprites;
     public Sprite[] handSprites;
 
+    public Sprite[] zombie_NoseSprite;
+    public Sprite[] zombie_MouthSprite;
+    public Sprite[] zombie_EyesSprite;
+    public Color[]  zombie_SkinColors;
+
     [Header("Colors")]
     [SerializeField]
     private Color darkHair;

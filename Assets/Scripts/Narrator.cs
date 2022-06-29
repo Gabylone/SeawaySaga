@@ -50,7 +50,7 @@ public class Narrator : MonoBehaviour {
 		InGameMenu.Instance.onOpenMenu += HandleOpenInventory;
 		InGameMenu.Instance.onCloseMenu += HandleCloseInventory;
 
-        HideNarrator();
+        Hide();
 
 	}
 
@@ -98,17 +98,18 @@ public class Narrator : MonoBehaviour {
     public void ShowNarrator (string text) {
 
         Tween.Bounce(_transform, dur, scale);
-        canvasGroup.DOKill();
-        canvasGroup.DOFade(1f, dur);
 
         SoundManager.Instance.PlayRandomSound("Book");
         SoundManager.Instance.PlayRandomSound("Page");
 
         narratorButtonObj.SetActive(true);
 
-        visible = true;
+        
 
-		narratorObj.SetActive (true);
+        canvasGroup.DOKill();
+        canvasGroup.DOFade(1f, dur);
+
+        narratorObj.SetActive (true);
 
 		narratorText.text = NameGeneration.CheckForKeyWords (text);
 
@@ -118,14 +119,42 @@ public class Narrator : MonoBehaviour {
             LayoutRebuilder.ForceRebuildLayoutImmediate(rectTransforms[i]);
             ++i;
         }
-	}
+
+        CancelInvoke("ShowNarratorDelay");
+        Invoke("ShowNarratorDelay", dur);
+    }
+
+    void ShowNarratorDelay()
+    {
+        visible = true;
+    }
+
     public void HideNarrator()
     {
         SoundManager.Instance.PlayRandomSound("Book");
         SoundManager.Instance.PlayRandomSound("Page");
 
-        narratorObj.SetActive(false);
         visible = false;
+
+        canvasGroup.DOKill();
+        canvasGroup.DOFade(0f, dur);
+
+        CancelInvoke("HideNarratorDelay");
+        Invoke("HideNarratorDelay", dur);
+
+       //narratorObj.SetActive(false);
+
+    }
+
+    void Hide()
+    {
+        visible = false;
+        narratorObj.SetActive(false);
+    }
+
+    public void HideNarratorDelay()
+    {
+        Hide();
 
         if (onCloseNarrator != null)
         {
@@ -136,21 +165,9 @@ public class Narrator : MonoBehaviour {
         {
             continueStory = false;
 
-            HideNarrator();
+            //HideNarrator();
             StoryReader.Instance.ContinueStory();
         }
-
-        /*canvasGroup.DOKill();
-        canvasGroup.DOFade(0f, dur);
-
-        CancelInvoke("HideNarratorDelay");
-        Invoke("HideNarratorDelay", dur);*/
-    }
-
-    public void HideNarratorDelay()
-    {
-        
-
     }
     #endregion
 
@@ -171,6 +188,11 @@ public class Narrator : MonoBehaviour {
 
     public void TryHide()
     {
+        if (!visible)
+        {
+            return;
+        }
+
         HideNarrator();
 
         if (CanHide)

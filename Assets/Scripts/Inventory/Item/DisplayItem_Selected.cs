@@ -78,7 +78,7 @@ public class DisplayItem_Selected : DisplayItem {
                 if (CrewMember.GetSelectedMember.GetEquipment(part) == null)
                 {
                     paramOutline.enabled = true;
-                    paramText.color = Color.green;
+                    //paramText.color = Color.green;
                     paramOutline.effectColor = Color.green;
                 }
                 else
@@ -87,13 +87,13 @@ public class DisplayItem_Selected : DisplayItem {
                     {
                         paramOutline.enabled = true;
                         paramOutline.effectColor = Color.green;
-                        paramText.color = Color.green;
+                        //paramText.color = Color.green;
                     }
                     else if (value.value < CrewMember.GetSelectedMember.GetEquipment(part).value)
                     {
                         paramOutline.enabled = true;
                         paramOutline.effectColor = Color.red; ;
-                        paramText.color = Color.red;
+                        //paramText.color = Color.red;
                     }
                     else
                     {

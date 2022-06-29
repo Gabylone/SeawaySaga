@@ -92,7 +92,7 @@ public class IslandManager : MonoBehaviour
     }
 
     #region island positions
-    public void ResetIslandPositions()
+    public Vector2 GetNewIslandPosition()
     {
         tmpPossiblePositions.Clear();
 
@@ -100,9 +100,7 @@ public class IslandManager : MonoBehaviour
         {
             tmpPossiblePositions.Add(item);
         }
-    }
-    public Vector2 GetNewIslandPosition()
-    {
+
         int index = Random.Range(0, tmpPossiblePositions.Count);
 
         Vector3 v = tmpPossiblePositions[index];

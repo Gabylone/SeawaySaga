@@ -33,29 +33,39 @@ public class Island : RandomPlacable {
 
     public bool targeted = false;
 
+    public static Island currentSelectedIsland;
+
+    public GameObject[] selectFeedbacks;
+
+    public GameObject currentSelectFeedback;
+
     #region mono
     public override void Start()
     {
         base.Start();
 
+
         image = GetComponentInChildren<Image>();
 
         islandTriggers = GetComponentsInChildren<IslandTrigger>(true);
+
+        Deselect();
+
+        WorldTouch.Instance.onSelectSomething += Deselect;
 
         Init();
     }
 
     void Init () {
 
-		WorldTouch.onPointerExit += Exit;
+		WorldTouch.onPointerDown += Deselect;
 
 		UpdatePositionOnScreen (Boats.Instance.playerBoatInfo.coords);
 	}
 
 	public void Exit ()
 	{
-		targeted = false;
-        DeactivateCollider();
+        Deselect();
 	}
 
     public override void HandleOnUpdateCurrentChunk()
@@ -112,14 +122,14 @@ public class Island : RandomPlacable {
 
             _transform.rotation = Quaternion.EulerAngles(0, islandData.worldRotation,0);
 
-            //GetComponentInChildren<Image>().sprite = sprites [islandData.storyManager.storyHandlers [0].Story.param];
-
             foreach (var item in islandMeshes)
             {
                 item.SetActive(false);
             }
 
-            islandMeshes[islandData.storyManager.storyHandlers[0].Story.param].SetActive(true);
+            int islandIndex = islandData.storyManager.storyHandlers[0].Story.param;
+            islandMeshes[islandIndex].SetActive(true);
+            currentSelectFeedback = selectFeedbacks[islandIndex];
 
 		} else {
 			
@@ -139,11 +149,49 @@ public class Island : RandomPlacable {
             return;
         }
 
+        if (targeted)
+        {
+            return;
+        }
+
+        Select();
+    }
+
+    public void Select()
+    {
+        // deselect everything
+        WorldTouch.Instance.onSelectSomething();
+
+        if (currentSelectedIsland != null)
+        {
+            currentSelectedIsland.Deselect();
+        }
+
+        currentSelectedIsland = this;
+
         ActivateCollider();
 
         SoundManager.Instance.PlayRandomSound("button_heavy");
 
         targeted = true;
+
+        if (currentSelectFeedback != null)
+        {
+            currentSelectFeedback.SetActive(true);
+        }
+
+
+    }
+
+    public void Deselect()
+    {
+        targeted = false;
+        DeactivateCollider();
+
+        foreach (var item in selectFeedbacks)
+        {
+            item.SetActive(false);
+        }
     }
 
     public void CollideWithPlayer()
@@ -151,7 +199,7 @@ public class Island : RandomPlacable {
         if (targeted)
         {
             Enter();
-            targeted = false;
+            Deselect();
         }
     }
 }
