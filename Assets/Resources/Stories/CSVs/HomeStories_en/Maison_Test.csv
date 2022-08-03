@@ -10,8 +10,8 @@ Node=>fight;Node=>dice;Node=>clues;Node=>choix 2;Node=>boat;Node=>quest;Node=>ti
 ;;;;;;;;;;;
 [fight weak];;;;;;;;;;;
 SetChoices4;;;;;;;;;;;
-Choice : (fight 1);;;Choice : (fight 2);;;Choice : (fight 3);;;Choice : (leave);Choice : (leave);
-NewCrew1/M/1;;;NewCrew1/M/1;;;NewCrew1/M/1;;;Leave;l;
+Choice : (fight 1);;;Choice : (fight 2);;;Choice : (fight TREASURE);;;Choice : (leave);Choice : (leave);
+NewCrew1/M/1;;;NewCrew1/M/1;;;NewCrew4/M/TREASURE;;;Leave;l;
 LaunchCombat;PlayerSpeak : retour;PlayerSpeak : retour;LaunchCombat;PlayerSpeak : retour;PlayerSpeak : retour;LaunchCombat;PlayerSpeak : retour;PlayerSpeak : retour;;;
 Node=>choix;Node=>choix;Node=>choix;Node=>choix;Node=>choix;Node=>choix;Node=>choix;Node=>choix;Node=>choix;;;
 ;;;;;;;;;;;
@@ -21,7 +21,7 @@ Node=>choix;Node=>choix;Node=>choix;Node=>choix;Node=>choix;Node=>choix;Node=>ch
 [fight];;;;;;;;;;;
 SetChoices4;;;;;;;;;;;
 Choice : (fight normal);Choice : (fight against 4);Choice : (fight strong);Choice : (leave);;;;;;;;
-NewCrew;NewCrew4;NewCrew4/M/10;Leave;;;;;;;;
+NewCrew;NewCrew4;NewCrew4/M/TREASURE;Leave;;;;;;;;
 LaunchCombat;LaunchCombat;LaunchCombat;;;;;;;;;
 Node=>choix;Node=>choix;Node=>choix;;;;;;;;;
 ;;;;;;;;;;;

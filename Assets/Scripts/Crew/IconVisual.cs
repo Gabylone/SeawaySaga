@@ -34,6 +34,8 @@ public class IconVisual : MonoBehaviour
     public GameObject poisonEffect_Obj;
     public Animator healEffect_Anim;
     public Animator hitEffect_Anim;
+    public float hitEffect_Decal = 1f;
+    public float hitEffect_CircleRange = 1f;
     public Transform hitEffect_Transform;
     public GameObject food_Obj;
     public Transform rhumBottle_Transform;
@@ -47,8 +49,8 @@ public class IconVisual : MonoBehaviour
 
     // face effects
     public bool aiming = false;
-    private bool knockedOut = false;
-    private bool mad = false;
+    public bool knockedOut = false;
+    public bool mad = false;
     public bool happy = false;
     public bool sad = false;
 
@@ -241,11 +243,28 @@ public class IconVisual : MonoBehaviour
     }
     #endregion
 
-    void SetSprite(ApparenceType apparenceType)
+    public void SetSprite(ApparenceType apparenceType)
     {
-
         int id = currentMember.GetCharacterID(apparenceType);
+        SetSprite(apparenceType, id);
+    }
 
+    public void SetRandomSprite(ApparenceType apparenceType)
+    {
+        if (currentMember.IsZombie())
+        {
+            return;
+        }
+
+        int l= CrewCreator.Instance.apparenceGroups[(int)apparenceType].items.Count;
+        int randomID = Random.Range(0, l);
+        if (apparenceType == ApparenceType.eyes && randomID == 3)
+            randomID -= 1;
+        SetSprite(apparenceType, randomID);
+    }
+
+    public void SetSprite(ApparenceType apparenceType, int id)
+    {
         if (currentMember.IsZombie())
         {
             switch (apparenceType)
@@ -274,21 +293,13 @@ public class IconVisual : MonoBehaviour
         else
         {
             GetImage(apparenceType).enabled = true;
-            GetImage(apparenceType).sprite = CrewCreator.Instance.GetApparenceItem(apparenceType, currentMember.GetCharacterID(apparenceType)).GetSprite();
+            //GetImage(apparenceType).sprite = CrewCreator.Instance.GetApparenceItem(apparenceType, currentMember.GetCharacterID(apparenceType)).GetSprite();
+            GetImage(apparenceType).sprite = spr;
         }
     }
 
     public Color GetColor(ApparenceType apparenceType)
     {
-        if ( apparenceType == ApparenceType.hairColor)
-        {
-            if (currentMember.IsZombie())
-            {
-                int id = Random.value < 0.5f ? 2 : 4;
-                return CrewCreator.Instance.GetApparenceItem(apparenceType, id).color;
-            }
-        }
-
         if ( apparenceType == ApparenceType.skinColor)
         {
             if (overrideSkinColor_Active)

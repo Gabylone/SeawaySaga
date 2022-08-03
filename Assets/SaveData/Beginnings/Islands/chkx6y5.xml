@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <Chunk xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <state>VisitedIsland</state>
+  <state>UndiscoveredIsland</state>
   <coords>
     <x>6</x>
     <y>5</y>
@@ -8,10 +8,10 @@
   <islandDatas>
     <IslandData>
       <worldPosition>
-        <x>16.66</x>
-        <y>-5.83</y>
+        <x>-6.81</x>
+        <y>6.54</y>
       </worldPosition>
-      <worldRotation>261.430054</worldRotation>
+      <worldRotation>201.691833</worldRotation>
       <index>0</index>
       <coords>
         <x>6</x>
@@ -19,7 +19,7 @@
       </coords>
       <containsFormula>true</containsFormula>
       <storyManager>
-        <hasBeenPlayed>true</hasBeenPlayed>
+        <hasBeenPlayed>false</hasBeenPlayed>
         <storyHandlers>
           <StoryHandler>
             <row>0</row>
@@ -27,205 +27,19 @@
             <fallBackLayer>0</fallBackLayer>
             <storyID>3</storyID>
             <storyType>Normal</storyType>
-            <contentDecals>
-              <contentDecal>
-                <row>1</row>
-                <col>2</col>
-                <decal>1</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>0</row>
-                <col>15</col>
-                <decal>1</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>0</row>
-                <col>42</col>
-                <decal>1</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>4</row>
-                <col>53</col>
-                <decal>1</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>0</row>
-                <col>68</col>
-                <decal>1</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>1</row>
-                <col>69</col>
-                <decal>1</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>5</row>
-                <col>53</col>
-                <decal>1</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>0</row>
-                <col>88</col>
-                <decal>1</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>1</row>
-                <col>100</col>
-                <decal>1</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>1</row>
-                <col>107</col>
-                <decal>1</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>1</row>
-                <col>114</col>
-                <decal>1</decal>
-              </contentDecal>
-            </contentDecals>
+            <contentDecals />
             <loots />
             <crews />
-          </StoryHandler>
-          <StoryHandler>
-            <row>2</row>
-            <col>71</col>
-            <fallBackLayer>0</fallBackLayer>
-            <fallbackNode>
-              <name>random foret</name>
-              <row>0</row>
-              <col>40</col>
-            </fallbackNode>
-            <storyID>2</storyID>
-            <storyType>Normal</storyType>
-            <contentDecals>
-              <contentDecal>
-                <row>2</row>
-                <col>26</col>
-                <decal>1</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>2</row>
-                <col>49</col>
-                <decal>1</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>0</row>
-                <col>49</col>
-                <decal>1</decal>
-              </contentDecal>
-            </contentDecals>
-            <loots>
-              <Loot>
-                <row>0</row>
-                <col>4</col>
-                <ids>
-                  <ArrayOfInt />
-                  <ArrayOfInt>
-                    <int>43</int>
-                    <int>57</int>
-                  </ArrayOfInt>
-                  <ArrayOfInt />
-                  <ArrayOfInt>
-                    <int>221</int>
-                    <int>218</int>
-                    <int>223</int>
-                  </ArrayOfInt>
-                </ids>
-                <weight>21</weight>
-                <AllItems>
-                  <ArrayOfItem />
-                  <ArrayOfItem>
-                    <Item>
-                      <ID>43</ID>
-                      <englishName>Solid stick</englishName>
-                      <frenchName>Bâton solide</frenchName>
-                      <value>11</value>
-                      <price>24</price>
-                      <weight>8</weight>
-                      <level>1</level>
-                      <spriteID>1</spriteID>
-                      <description>It's just your basic solid stick</description>
-                      <weaponType>Stick</weaponType>
-                      <category>Weapon</category>
-                    </Item>
-                    <Item>
-                      <ID>57</ID>
-                      <englishName>Carved branch</englishName>
-                      <frenchName>Hachette d'acier</frenchName>
-                      <value>19</value>
-                      <price>35</price>
-                      <weight>8</weight>
-                      <level>2</level>
-                      <spriteID>1</spriteID>
-                      <description>It's just your basic carved branch</description>
-                      <weaponType>Stick</weaponType>
-                      <category>Weapon</category>
-                    </Item>
-                  </ArrayOfItem>
-                  <ArrayOfItem />
-                  <ArrayOfItem>
-                    <Item>
-                      <ID>221</ID>
-                      <englishName>Children’s Book</englishName>
-                      <frenchName>Livre pour enfant</frenchName>
-                      <value>0</value>
-                      <price>7</price>
-                      <weight>3</weight>
-                      <level>0</level>
-                      <spriteID>17</spriteID>
-                      <description>It's just your basic children’s book</description>
-                      <weaponType>Distance</weaponType>
-                      <category>Misc</category>
-                    </Item>
-                    <Item>
-                      <ID>218</ID>
-                      <englishName>Recipe book</englishName>
-                      <frenchName>Livre de recettes</frenchName>
-                      <value>0</value>
-                      <price>1</price>
-                      <weight>1</weight>
-                      <level>0</level>
-                      <spriteID>17</spriteID>
-                      <description>It's just your basic recipe book</description>
-                      <weaponType>Distance</weaponType>
-                      <category>Misc</category>
-                    </Item>
-                    <Item>
-                      <ID>223</ID>
-                      <englishName>Spyglass</englishName>
-                      <frenchName>Longue vue</frenchName>
-                      <value>0</value>
-                      <price>3</price>
-                      <weight>1</weight>
-                      <level>0</level>
-                      <spriteID>27</spriteID>
-                      <description>It's just your basic spyglass</description>
-                      <weaponType>Distance</weaponType>
-                      <category>Misc</category>
-                    </Item>
-                  </ArrayOfItem>
-                </AllItems>
-              </Loot>
-            </loots>
-            <crews>
-              <Crew>
-                <hostile>true</hostile>
-                <row>0</row>
-                <col>4</col>
-                <MemberIDs />
-              </Crew>
-            </crews>
           </StoryHandler>
         </storyHandlers>
       </storyManager>
     </IslandData>
     <IslandData>
       <worldPosition>
-        <x>19.01</x>
-        <y>-17.49</y>
+        <x>8.99</x>
+        <y>-21.44</y>
       </worldPosition>
-      <worldRotation>324.803833</worldRotation>
+      <worldRotation>50.18486</worldRotation>
       <index>1</index>
       <coords>
         <x>6</x>

@@ -8,7 +8,10 @@ public class Boat : MonoBehaviour
 
     public bool moving = false;
 
+    private protected TrailRenderer[] trailRenderers;
+
     public MinimapBoat minimapBoat;
+    SpriteRenderer[] spriteRenderers;
 
     [Space]
     [Header("Boat Elements")]
@@ -28,6 +31,7 @@ public class Boat : MonoBehaviour
 
     public virtual void Start()
     {
+        trailRenderers = GetComponentsInChildren<TrailRenderer>();
         SetSpeed(startSpeed);
 
     }
@@ -40,6 +44,18 @@ public class Boat : MonoBehaviour
             if (agent.pathStatus == NavMeshPathStatus.PathComplete && agent.remainingDistance <= agent.stoppingDistance)
             {
                 EndMovenent();
+            }
+
+            foreach (var item in trailRenderers)
+            {
+                item.widthMultiplier = Mathf.Lerp(item.widthMultiplier, 3f, Time.deltaTime);
+            }
+        }
+        else
+        {
+            foreach (var item in trailRenderers)
+            {
+                item.widthMultiplier = Mathf.Lerp(item.widthMultiplier, 0f, Time.deltaTime);
             }
         }
 
@@ -104,13 +120,11 @@ public class Boat : MonoBehaviour
     #region map position 
     public virtual void UpdatePositionOnScreen()
     {
-        foreach (TrailRenderer renderer in GetComponentsInChildren<TrailRenderer>())
+        foreach (TrailRenderer renderer in trailRenderers)
         {
             renderer.emitting = false;
             renderer.Clear();
         }
-
-        Invoke("UpdatePositionOnScreenDelay", 0.1f);
     }
 
     public MinimapBoat GetMinimapBoat
@@ -126,13 +140,7 @@ public class Boat : MonoBehaviour
         return null;
     }
 
-    void UpdatePositionOnScreenDelay()
-    {
-        foreach (TrailRenderer renderer in GetComponentsInChildren<TrailRenderer>())
-        {
-            renderer.emitting = true;
-        }
-    }
+    
     public void SetSpeed(float newSpeed)
     {
         agent.speed = newSpeed;

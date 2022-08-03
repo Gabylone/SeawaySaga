@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <Chunk xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <state>VisitedIsland</state>
+  <state>DiscoveredIsland</state>
   <coords>
     <x>1</x>
     <y>3</y>
@@ -8,10 +8,10 @@
   <islandDatas>
     <IslandData>
       <worldPosition>
-        <x>-22.81</x>
-        <y>11.96</y>
+        <x>8.83</x>
+        <y>19.8</y>
       </worldPosition>
-      <worldRotation>34.0985146</worldRotation>
+      <worldRotation>136.866318</worldRotation>
       <index>0</index>
       <coords>
         <x>1</x>
@@ -19,7 +19,7 @@
       </coords>
       <containsFormula>false</containsFormula>
       <storyManager>
-        <hasBeenPlayed>true</hasBeenPlayed>
+        <hasBeenPlayed>false</hasBeenPlayed>
         <storyHandlers>
           <StoryHandler>
             <row>0</row>
@@ -27,173 +27,9 @@
             <fallBackLayer>0</fallBackLayer>
             <storyID>2</storyID>
             <storyType>Normal</storyType>
-            <contentDecals>
-              <contentDecal>
-                <row>2</row>
-                <col>26</col>
-                <decal>1</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>2</row>
-                <col>49</col>
-                <decal>1</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>2</row>
-                <col>49</col>
-                <decal>1</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>0</row>
-                <col>49</col>
-                <decal>1</decal>
-              </contentDecal>
-            </contentDecals>
-            <loots>
-              <Loot>
-                <row>0</row>
-                <col>4</col>
-                <ids>
-                  <ArrayOfInt />
-                  <ArrayOfInt>
-                    <int>39</int>
-                    <int>88</int>
-                    <int>42</int>
-                  </ArrayOfInt>
-                  <ArrayOfInt>
-                    <int>166</int>
-                    <int>153</int>
-                  </ArrayOfInt>
-                  <ArrayOfInt>
-                    <int>211</int>
-                    <int>231</int>
-                    <int>205</int>
-                  </ArrayOfInt>
-                </ids>
-                <weight>50</weight>
-                <AllItems>
-                  <ArrayOfItem />
-                  <ArrayOfItem>
-                    <Item>
-                      <ID>39</ID>
-                      <englishName>Rock on a stick</englishName>
-                      <frenchName>Epée rouillée</frenchName>
-                      <value>10</value>
-                      <price>15</price>
-                      <weight>8</weight>
-                      <level>1</level>
-                      <spriteID>0</spriteID>
-                      <description>It's just your basic rock on a stick</description>
-                      <weaponType>Stick</weaponType>
-                      <category>Weapon</category>
-                    </Item>
-                    <Item>
-                      <ID>88</ID>
-                      <englishName>Powerfull canon</englishName>
-                      <frenchName>Poivrière puissante</frenchName>
-                      <value>42</value>
-                      <price>71</price>
-                      <weight>8</weight>
-                      <level>4</level>
-                      <spriteID>7</spriteID>
-                      <description>It's just your basic powerfull canon</description>
-                      <weaponType>Distance</weaponType>
-                      <category>Weapon</category>
-                    </Item>
-                    <Item>
-                      <ID>42</ID>
-                      <englishName>Old Planch</englishName>
-                      <frenchName>Vielle hachette</frenchName>
-                      <value>6</value>
-                      <price>17</price>
-                      <weight>8</weight>
-                      <level>1</level>
-                      <spriteID>1</spriteID>
-                      <description>It's just your basic old planch</description>
-                      <weaponType>Stick</weaponType>
-                      <category>Weapon</category>
-                    </Item>
-                  </ArrayOfItem>
-                  <ArrayOfItem>
-                    <Item>
-                      <ID>166</ID>
-                      <englishName>Iron breastplate</englishName>
-                      <frenchName>Plastron de fer</frenchName>
-                      <value>27</value>
-                      <price>45</price>
-                      <weight>8</weight>
-                      <level>3</level>
-                      <spriteID>2</spriteID>
-                      <description>It's just your basic iron breastplate</description>
-                      <weaponType>Distance</weaponType>
-                      <category>Clothes</category>
-                    </Item>
-                    <Item>
-                      <ID>153</ID>
-                      <englishName>Farmer clothing</englishName>
-                      <frenchName>Habit de paysan</frenchName>
-                      <value>6</value>
-                      <price>14</price>
-                      <weight>8</weight>
-                      <level>1</level>
-                      <spriteID>0</spriteID>
-                      <description>It's just your basic farmer clothing</description>
-                      <weaponType>Distance</weaponType>
-                      <category>Clothes</category>
-                    </Item>
-                  </ArrayOfItem>
-                  <ArrayOfItem>
-                    <Item>
-                      <ID>211</ID>
-                      <englishName>Guitar</englishName>
-                      <frenchName>Guitare</frenchName>
-                      <value>0</value>
-                      <price>12</price>
-                      <weight>4</weight>
-                      <level>0</level>
-                      <spriteID>9</spriteID>
-                      <description>It's just your basic guitar</description>
-                      <weaponType>Distance</weaponType>
-                      <category>Misc</category>
-                    </Item>
-                    <Item>
-                      <ID>231</ID>
-                      <englishName>Spoon</englishName>
-                      <frenchName>Cuillère</frenchName>
-                      <value>0</value>
-                      <price>4</price>
-                      <weight>2</weight>
-                      <level>0</level>
-                      <spriteID>25</spriteID>
-                      <description>It's just your basic spoon</description>
-                      <weaponType>Distance</weaponType>
-                      <category>Misc</category>
-                    </Item>
-                    <Item>
-                      <ID>205</ID>
-                      <englishName>Shirt button</englishName>
-                      <frenchName>Bouton de chemise</frenchName>
-                      <value>0</value>
-                      <price>10</price>
-                      <weight>4</weight>
-                      <level>0</level>
-                      <spriteID>3</spriteID>
-                      <description>It's just your basic shirt button</description>
-                      <weaponType>Distance</weaponType>
-                      <category>Misc</category>
-                    </Item>
-                  </ArrayOfItem>
-                </AllItems>
-              </Loot>
-            </loots>
-            <crews>
-              <Crew>
-                <hostile>true</hostile>
-                <row>0</row>
-                <col>4</col>
-                <MemberIDs />
-              </Crew>
-            </crews>
+            <contentDecals />
+            <loots />
+            <crews />
           </StoryHandler>
         </storyHandlers>
       </storyManager>

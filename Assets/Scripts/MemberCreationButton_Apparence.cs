@@ -8,6 +8,8 @@ public class MemberCreationButton_Apparence : MemberCreatorButton, IPointerClick
 
     public MemberCreationButton_Apparence memberCreationButton_Apparence;
 
+    public bool voice = false;
+
     public override void Start()
     {
         base.Start();
@@ -23,7 +25,15 @@ public class MemberCreationButton_Apparence : MemberCreatorButton, IPointerClick
         SoundManager.Instance.PlaySound("click_med 04");
 
         Crews.playerCrew.captain.MemberID.SetCharacterID(apparenceItem.apparenceType, apparenceItem.id);
-        Crews.playerCrew.captain.Icon.InitVisual(Crews.playerCrew.captain.MemberID);
+
+        if (voice)
+        {
+            DialogueManager.Instance.PlayRandomVoice(Crews.playerCrew.captain, Random.value< 0.25f ? DialogueManager.Voice.Type.Greetings: DialogueManager.Voice.Type.Conversations);
+        }
+        else
+        {
+            Crews.playerCrew.captain.Icon.InitVisual(Crews.playerCrew.captain.MemberID);
+        }
 
         scrollView.CenterOnElement(rectTransform);
 

@@ -45,13 +45,18 @@ public class MemberCreationScrollView : MonoBehaviour
 
             MemberCreationButton_Apparence butt = inst.GetComponent<MemberCreationButton_Apparence>();
 
+            if (apparenceType == ApparenceType.voiceType)
+            {
+                butt.voice = true;
+            }
+
             butt.scrollView = this;
 
             butt.apparenceItem.id = i;
             butt.apparenceItem.apparenceType = apparenceType;
         }
 
-        categoryName_Text.text = "" + MemberCreator.Instance.apparenceType_Names[(int)apparenceType];
+        categoryName_Text.text = "" + MemberCreator.Instance.apparenceType_Names[(int)apparenceType]; 
     }
 
     public void CenterOnElement(Transform target)

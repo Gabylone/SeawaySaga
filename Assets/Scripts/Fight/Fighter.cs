@@ -153,8 +153,16 @@ public class Fighter : MonoBehaviour {
         timeInState += Time.deltaTime;
     }
 
-	#region initalization
-	public delegate void OnInit ();
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+			HitEffect();
+        }
+    }
+
+    #region initalization
+    public delegate void OnInit ();
 	public OnInit onReset;
 	public void Reset ( CrewMember crewMember, int id )
 	{
@@ -325,7 +333,9 @@ public class Fighter : MonoBehaviour {
 
 	public virtual void Die () {
 
-        SoundManager.Instance.PlaySound("Death");
+		DialogueManager.Instance.PlayRandomVoice(crewMember, iconVisual, DialogueManager.Voice.Type.Deaths);
+
+		SoundManager.Instance.PlaySound("Death");
 
 			// self
 		ChangeState (states.dead);
@@ -543,7 +553,10 @@ public class Fighter : MonoBehaviour {
 
         iconVisual.hitEffect_Anim.gameObject.SetActive(true);
         iconVisual.hitEffect_Anim.SetTrigger("Trigger");
-        iconVisual.hitEffect_Transform.position = GetTransform.position - Vector3.up * 3f + (Vector3)Random.insideUnitCircle * 1f;
+		Vector3 origin = GetTransform.position + Vector3.up * iconVisual.hitEffect_Decal;
+		Vector3 pos = origin + (Vector3)Random.insideUnitCircle * iconVisual.hitEffect_CircleRange;
+		iconVisual.hitEffect_Transform.position = pos;
+        iconVisual.hitEffect_Transform.up = -(pos-origin);
 
         Tween.Bounce(GetTransform, getHit_ScaleDuration , getHit_ScaleAmount);
     }
@@ -600,6 +613,11 @@ public class Fighter : MonoBehaviour {
 
 
         float damage = GetDamage (otherFighter, attack,mult);
+		if (otherFighter.CriticalHit())
+		{
+			otherFighter.combatFeedback.Display("CRITICAL !", Color.red, 2f);
+			damage *= 2f;
+		}
 
 		if ( CombatManager.Instance.debugKill ) {
 			damage = 200;
@@ -616,18 +634,11 @@ public class Fighter : MonoBehaviour {
             }
         }
 
-        if (otherFighter.CriticalHit())
-        {
-            otherFighter.combatFeedback.Display("CRITICAL !", Color.red, 2f);
-            Hurt(damage*2f);
-        }
-        else
-        {
-            Hurt(damage);
-        }
-    }
+		Hurt(damage);
 
-    public bool CriticalHit()
+	}
+
+	public bool CriticalHit()
     {
         float l = (float)crewMember.GetStat(Stat.Trickery) / 6f;
 
@@ -646,6 +657,8 @@ public class Fighter : MonoBehaviour {
         crewMember.RemoveHealth(amount);
 
         SoundManager.Instance.PlayRandomSound("Blunt");
+
+		DialogueManager.Instance.PlayRandomVoice(crewMember, iconVisual, DialogueManager.Voice.Type.Hurts);
 
         if (onGetHit != null)
             onGetHit();

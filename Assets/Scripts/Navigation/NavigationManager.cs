@@ -70,87 +70,68 @@ public class NavigationManager : MonoBehaviour {
     }
 
     #region movement
-    public void ChangeChunk(Coords coords, int trips)
+    public void ChangeChunk(Coords coords, int trips, int foodNeeded, int foodAvailable)
     {
         Boats.Instance.playerBoatInfo.SetCoords(coords);
 
         bool somebodyAteSomething = false;
 
-        string[] memberFoods = new string[4] { "" , "" , "" , ""};
+		string foodText = string.Empty;
 
-        for (int i = 0; i < trips; i++)
+		// feeding member while travelling
+		Loot loot = LootManager.Instance.PlayerLoot;
+
+        while (foodNeeded > 0)
         {
-            Crews.playerCrew.AddToStates();
-
-            // feeding member while travelling
-
-            Loot loot = LootManager.Instance.PlayerLoot;
-
-
-            int memberIndex = 0;
-            foreach (var crewMember in Crews.playerCrew.CrewMembers)
+            if (loot.AllItems[0].Count == 0)
             {
-                if (crewMember.CurrentHunger == crewMember.MaxHunger)
-                {
-                    if (loot.AllItems[0].Count == 0)
-                    {
-                        break;
-                    }
-
-                    Item foodItem = loot.AllItems[0][0];
-
-                    string foodName = foodItem.englishName;
-                    switch (foodItem.spriteID)
-                    {
-                        case 0:
-                            foodName = "<color=red>" + foodItem.englishName + "</color>";
-                            break;
-                        case 1:
-                            foodName = "<color=blue>" + foodItem.englishName + "</color>";
-                            break;
-                        case 2:
-                            foodName = "<color=green>" + foodItem.englishName + "</color>";
-                            break;
-                        default:
-                            break;
-                    }
-
-                    if (memberFoods[memberIndex].Length > 2)
-                    {
-                        memberFoods[memberIndex] += ", some " + foodName;
-                    }
-                    else
-                    {
-                        memberFoods[memberIndex] += "<b>" + crewMember.MemberName + "</b> ate some " + foodName;
-                    }
-
-                    somebodyAteSomething = true;
-                    InGameMenu.Instance.EatItem(foodItem, crewMember);
-
-                }
-
-                ++memberIndex;
+                break;
             }
 
-            if ( somebodyAteSomething)
+            Item foodItem = loot.AllItems[0][0];
+
+            string foodName = foodItem.englishName;
+            switch (foodItem.spriteID)
             {
-                Chunk chunk = Chunk.GetChunk(MinimapChunk.currentMinimapChunk.coords);
-                string IslandName = chunk.GetIslandData(MinimapChunk.currentMinimapChunk.index).storyManager.storyHandlers[0].Story.displayName;
-
-                string str = "On the way to the " + IslandName + "\n";
-
-                foreach (var item in memberFoods)
-                {
-                    if ( item.Length > 2)
-                    {
-                        str += item + "\n";
-                    }
-
-                }
-
-                Narrator.Instance.ShowNarratorNoneStoryInput(str);
+                case 0:
+                    foodName = "<color=red>" + foodItem.englishName + "</color>";
+                    break;
+                case 1:
+                    foodName = "<color=blue>" + foodItem.englishName + "</color>";
+                    break;
+                case 2:
+                    foodName = "<color=green>" + foodItem.englishName + "</color>";
+                    break;
+                default:
+                    break;
             }
 
+            if (string.IsNullOrEmpty(foodText))
+            {
+                foodText += "<b>Your Crew</b> ate some " + foodName;
+            }
+            else
+            {
+                foodText += ", some " + foodName;
+            }
+
+			foodNeeded -= foodItem.value;
+
+			LootManager.Instance.PlayerLoot.RemoveItem(foodItem);
+
+		}
+
+		// narrator feedback
+		Chunk chunk = Chunk.GetChunk(MinimapChunk.currentMinimapChunk.coords);
+		string IslandName = chunk.GetIslandData(MinimapChunk.currentMinimapChunk.index).storyManager.storyHandlers[0].Story.displayName;
+
+		string str = "On the way to the " + IslandName + "\n";
+
+		Narrator.Instance.ShowNarratorNoneStoryInput(str + foodText);
+
+		// travelling info update
+		for (int i = 0; i < trips; i++)
+        {
             chunksTravelled++;
             TimeManager.Instance.NextHour();
             Boats.Instance.HandleOnMoveToChunk();

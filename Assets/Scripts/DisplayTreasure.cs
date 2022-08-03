@@ -116,10 +116,10 @@ public class DisplayTreasure : MonoBehaviour {
         MessageDisplay.Instance.onValidate += CloseTreasure;
 
         string currentMapKey = "map_data" + MapGenerator.mapParameters.id;
-        string nextMapKey = "map_data" + (MapGenerator.mapParameters.id + 1);
+        //string nextMapKey = "map_data" + (MapGenerator.mapParameters.id + 1);
 
-        string currentMap_data = PlayerPrefs.GetString(currentMapKey, "locked");
-        string nextMap_Data = PlayerPrefs.GetString(nextMapKey, "locked");
+        //string currentMap_data = PlayerPrefs.GetString(currentMapKey, "locked");
+        //string nextMap_Data = PlayerPrefs.GetString(nextMapKey, "locked");
 
         PlayerPrefs.SetString(currentMapKey, "finished");
 
@@ -131,10 +131,18 @@ public class DisplayTreasure : MonoBehaviour {
         }
         else
         {
-            Debug.Log("next map KEY is : " + nextMapKey);
-            Debug.Log("next map data is : " + nextMap_Data);
+            //Debug.Log("next map KEY is : " + nextMapKey);
+            //Debug.Log("next map data is : " + nextMap_Data);
 
-            if (nextMap_Data == "locked")
+            MessageDisplay.Instance.Display(
+                "Congratulations on finishing the first story! " +
+                "Thanks so much for playing the game, if you want to support us, " +
+                "you can buy one of the other stories " +
+                "with a bigger world and other exiting quests!");
+
+            MessageDisplay.Instance.HideCancelButton();
+
+            /*if (nextMap_Data == "locked")
             {
                 PlayerPrefs.SetString(nextMapKey, "unlocked");
 
@@ -146,7 +154,7 @@ public class DisplayTreasure : MonoBehaviour {
             {
                 MessageDisplay.Instance.Display("The next story is already unlocked");
                 MessageDisplay.Instance.HideCancelButton();
-            }
+            }*/
 
 
         }

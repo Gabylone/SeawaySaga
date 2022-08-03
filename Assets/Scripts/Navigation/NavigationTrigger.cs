@@ -14,6 +14,8 @@ public class NavigationTrigger : MonoBehaviour {
 
     private bool selected = false;
 
+    public GameObject select_Feedback;
+
     public float outOfMapFeedbackDuration = 1f;
 
     void Start()
@@ -24,6 +26,8 @@ public class NavigationTrigger : MonoBehaviour {
         NavigationManager.Instance.onUpdateCurrentChunk += HandleOnUpdateCurrentChunk;
 
         WorldTouch.onPointerDown += HandleOnTouchWorld;
+
+        WorldTouch.Instance.onSelectSomething += Deselect;
 
         // decomment this to activate swipe
         //Swipe.onSwipe += HandleOnSwipe;
@@ -76,6 +80,30 @@ public class NavigationTrigger : MonoBehaviour {
         }
     }
 
+    private void OnMouseDown()
+    {
+        if (StoryLauncher.Instance.PlayingStory)
+        {
+            return;
+        }
+
+        if (!WorldTouch.Instance.IsEnabled())
+        {
+            return;
+        }
+
+        WorldTouch.Instance.onSelectSomething();
+
+        Tween.Bounce(_transform);
+
+        Flag.Instance.Hide();
+        PlayerBoat.Instance.SetTargetPos(_transform.position);
+        select_Feedback.SetActive(true);
+
+        selected = true;
+        Debug.Log("mouse down");
+    }
+
     void ChangeChunk()
     {
         SoundManager.Instance.PlayRandomSound("Swipe");
@@ -88,7 +116,7 @@ public class NavigationTrigger : MonoBehaviour {
     {
         selected = false;
 
-        //_boxCollider.enabled = false;
+        select_Feedback.SetActive(false);
     }
 
 }

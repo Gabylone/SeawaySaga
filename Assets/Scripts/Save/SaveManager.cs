@@ -256,7 +256,7 @@ public class SaveManager : MonoBehaviour
 
         NavigationManager.Instance.UpdateCurrentChunk();
 
-        Vector3 islandPos = IslandManager.Instance.islands[0].transform.position + new Vector3(-2f, 0, -1.5f);
+        Vector3 islandPos = IslandManager.Instance.islands[0].transform.position + new Vector3(-5f, 0, -4.5f);
 
         PlayerBoat.Instance.transform.position = islandPos;
         PlayerBoat.Instance.SetTargetPos(islandPos);

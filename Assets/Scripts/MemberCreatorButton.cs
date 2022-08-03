@@ -6,8 +6,6 @@ using UnityEngine.UI;
 
 public class MemberCreatorButton : MonoBehaviour {
 
-    public Text pearlPriceUIText;
-
     public ApparenceItem apparenceItem;
 
     public Transform initParent;
@@ -148,7 +146,7 @@ public class MemberCreatorButton : MonoBehaviour {
         {
             if (apparenceItem.GetSprite() == null)
             {
-                if ( apparenceItem.apparenceType == ApparenceType.bodyType)
+                if ( apparenceItem.apparenceType == ApparenceType.bodyType || apparenceItem.apparenceType == ApparenceType.voiceType)
                 {
                     image.enabled = false;
                     GetComponentInChildren<Text>().text = "" + (apparenceItem.id + 1);

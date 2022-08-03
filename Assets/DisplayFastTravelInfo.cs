@@ -21,12 +21,12 @@ public class DisplayFastTravelInfo : Displayable
         base.Start();
     }
 
-    public void Display ( int travel, int crewHunger , int food )
+    public void Display ( int travel, int food )
     {
         Show();
 
         travel_Text.text = "-" + travel;
-        crew_Text.text = "" + crewHunger;
+        //crew_Text.text = "" + crewHunger;
         food_Text.text = "" + food;
     }
 

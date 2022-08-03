@@ -8,6 +8,9 @@ public class PlayerBoat : Boat {
 
     public LayerMask layerMask;
 
+    public bool targetingBoat = false;
+    public Transform boatTarget;
+
     void Awake()
     {
         Instance = this;
@@ -33,6 +36,11 @@ public class PlayerBoat : Boat {
     public override void Update()
     {
         base.Update();
+
+        if (targetingBoat)
+        {
+            SetTargetPos(boatTarget.position);
+        }
     }
 
     public override void SetTargetPos(Vector3 p)
@@ -103,12 +111,17 @@ public class PlayerBoat : Boat {
 
         SetTargetPos(GetTransform.position);
 
-        Invoke("UpdatePositionOnScreenDelay", 0.001f);
+        Invoke("UpdatePositionOnScreenDelay", 0.1f);
     }
 
     void UpdatePositionOnScreenDelay()
     {
         agent.enabled = true;
+
+        foreach (TrailRenderer renderer in trailRenderers)
+        {
+            renderer.emitting = true;
+        }
     }
 
     IEnumerator UpdatePositionOnScreenCoroutine()

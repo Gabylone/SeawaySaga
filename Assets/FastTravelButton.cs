@@ -18,6 +18,9 @@ public class FastTravelButton : MonoBehaviour, IPointerClickHandler
 
     bool displaying = false;
 
+    int foodNeeded;
+    int foodAvailable;
+
     private Transform targetTransform;
 
     private void Awake()
@@ -67,7 +70,13 @@ public class FastTravelButton : MonoBehaviour, IPointerClickHandler
 
         if ( StoryLauncher.Instance.PlayingStory)
         {
-            MessageDisplay.Instance.Display("You cannot travel while on an island. Get on your boat !");
+            MessageDisplay.Instance.Display("You're not on deck right now. Get back behind the wheel to travel !");
+            return;
+        }
+
+        if (TimeManager.Instance.raining)
+        {
+            MessageDisplay.Instance.Display("You cannot travel with this storm !");
             return;
         }
 
@@ -82,9 +91,7 @@ public class FastTravelButton : MonoBehaviour, IPointerClickHandler
 
         string IslandName = chunk.GetIslandData(MinimapChunk.currentMinimapChunk.index).storyManager.storyHandlers[0].Story.displayName;
 
-        // get travel info
-        int trips_Food = GetFoodTrips();
-        int trips_Hunger = GetMemberTrips();
+        
 
         // get trips
         Vector2 current = (Vector2)Coords.current;
@@ -92,8 +99,12 @@ public class FastTravelButton : MonoBehaviour, IPointerClickHandler
         float dis = Vector2.Distance(current, target);
         int trips = Mathf.RoundToInt(dis);
 
+        // get travel info
+        foodAvailable = GetFoodTrips();
+        foodNeeded = trips * Crews.playerCrew.CrewMembers.Count;
+
         // display travel info
-        DisplayFastTravelInfo.Instance.Display(trips, trips_Food , trips_Hunger);
+        DisplayFastTravelInfo.Instance.Display(foodNeeded, foodAvailable );
 
         // deselect current minimap chunk
         if ( MinimapChunk.currentMinimapChunk != null)
@@ -101,9 +112,9 @@ public class FastTravelButton : MonoBehaviour, IPointerClickHandler
             MinimapChunk.currentMinimapChunk.Deselect();
         }
 
-        if (trips_Food + trips_Hunger < trips)
+        if (foodAvailable < foodNeeded)
         {
-            MessageDisplay.Instance.Display("You don't have enough food, or you crew has not eaten enough.\nIt would take <color=red>" + trips + "</color> trips to get to the <size=32><b>" + IslandName + "</b></size>");
+            MessageDisplay.Instance.Display("You don't have enough food to travel.\nIt would take <color=red>" + trips + "</color> trips to get to the <size=32><b>" + IslandName + "</b></size>");
             DisplayFastTravelInfo.Instance.SetRed();
         }
         else
@@ -139,26 +150,12 @@ public class FastTravelButton : MonoBehaviour, IPointerClickHandler
         int trips = Mathf.RoundToInt(dis);
 
 
-        NavigationManager.Instance.ChangeChunk(MinimapChunk.currentMinimapChunk.coords, trips);
+        NavigationManager.Instance.ChangeChunk(MinimapChunk.currentMinimapChunk.coords, trips, foodNeeded, foodAvailable);
 
         SoundManager.Instance.PlayRandomSound("Swipe");
 
         Invoke("ChangeChunkDelay", 0.5f);
 
-    }
-
-    private int GetMemberTrips()
-    {
-        int trips = 0;
-
-        foreach (var item in Crews.playerCrew.CrewMembers)
-        {
-            int memberAvailableTrips = item.MaxHunger - item.CurrentHunger;
-
-            trips += memberAvailableTrips;
-        }
-
-        return trips;
     }
 
     public int GetFoodTrips()

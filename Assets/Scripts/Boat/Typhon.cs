@@ -75,6 +75,9 @@ public class Typhon : RandomPlacable
     void TriggerDelayDelay()
     {
         WorldTouch.Instance.Unlock();
+
+        Boats.Instance.ResumeBoats();
+
     }
 
     private void OnDrawGizmosSelected()

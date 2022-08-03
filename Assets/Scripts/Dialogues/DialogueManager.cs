@@ -12,6 +12,45 @@ public class DialogueManager : MonoBehaviour {
 	[SerializeField] private RectTransform bubble_Image;
 	[SerializeField] private Text bubble_Text;
 
+	[Header("Sound")]
+	public AudioSource source;
+	public List<Voice> voices = new List<Voice>();
+	[System.Serializable]
+	public class Voice
+    {
+		public enum Type
+        {
+			Greetings,
+			Conversations,
+			Hurts,
+			Deaths,
+        }
+		
+		public AudioClip GetRandomVoice(Type type)
+        {
+            switch (type)
+            {
+                case Type.Greetings:
+					return greetings[Random.Range(0, greetings.Count)];
+                case Type.Conversations:
+					return conversations[Random.Range(0, conversations.Count)];
+				case Type.Hurts:
+					return hurts[Random.Range(0, hurts.Count)];
+				case Type.Deaths:
+					return deaths[Random.Range(0, deaths.Count)];
+				default:
+                    break;
+            }
+
+			return null;
+        }
+
+		public List<AudioClip> greetings = new List<AudioClip>();
+		public List<AudioClip> conversations = new List<AudioClip>();
+		public List<AudioClip> hurts = new List<AudioClip>();
+		public List<AudioClip> deaths = new List<AudioClip>();
+    }
+
 	private Transform target;
 
 	private bool DisplayingText = false;
@@ -20,6 +59,7 @@ public class DialogueManager : MonoBehaviour {
 	[SerializeField]
 	private Vector3 speaker_Decal = Vector3.up * 2f;
 	private CrewMember talkingMember;
+	private IconVisual currentIconVisual;
 
 	[SerializeField] private Vector2 bubbleBounds = new Vector2();
 
@@ -32,9 +72,6 @@ public class DialogueManager : MonoBehaviour {
 
 	public float DisplayTime = 2f;
 	private float CurrentTime = 0f;
-
-	[Header("Sounds")]
-	[SerializeField] private AudioClip[] speakSounds;
 
 	bool timed = false;
 
@@ -181,7 +218,11 @@ public class DialogueManager : MonoBehaviour {
 
     public void SetDialogue (string phrase, CrewMember crewMember) {
 		crewMember.Icon.animator.SetTrigger ("speak");
-		crewMember.Icon.animator.SetInteger ("speakIndex",Random.Range(0,3) );
+        crewMember.Icon.animator.SetInteger("speakIndex", Random.Range(0, 3));
+
+		talkingMember = crewMember;
+
+		SpeakSound();
 
 		SetDialogue (phrase, crewMember.Icon.dialogueAnchor);
 	}
@@ -221,7 +262,9 @@ public class DialogueManager : MonoBehaviour {
 
     public void ContinueDialogue()
     {
-        ++TextIndex;
+		SpeakSound();
+
+		++TextIndex;
         bubble_Text.text = Texts[TextIndex];
 
         UpdateBubbleScale();
@@ -263,6 +306,20 @@ public class DialogueManager : MonoBehaviour {
 	}
 	#endregion
 
+	void SpeakSound()
+    {
+		if ( talkingMember == null)
+        {
+            Debug.Log("no crew member for sound speak");
+			return;
+        }
+
+		if (Random.value <= 0.3f)
+		{
+			PlayRandomVoice(talkingMember, Voice.Type.Conversations);
+		}
+	}
+
 	void UpdateBubbleScale ()
 	{
 		// scale
@@ -281,9 +338,97 @@ public class DialogueManager : MonoBehaviour {
 		bubble_Image.transform.position = target.position;
 	}
 
-	public AudioClip[] SpeakSounds {
-		get {
-			return speakSounds;
+    int faceIndex = 0;
+	public void PlayRandomVoice(CrewMember crewMember, Voice.Type type)
+    {
+		PlayRandomVoice(crewMember, crewMember.Icon.iconVisual, type);
+    }
+
+	public void PlayRandomVoice(CrewMember crewMember, IconVisual iconVisual, Voice.Type type)
+    {
+		talkingMember = crewMember;
+		currentIconVisual = iconVisual;
+
+        source.clip = GetRandomVoice(crewMember, type);
+
+        source.Play();
+
+		// enfait peut être pas d'oeils tout cours.
+		int id = crewMember.MemberID.GetCharacterID(ApparenceType.eyes);
+		// id 3 = eye patch, ça fait bizarre si il disparait / réaparait :)
+		if ( id != 3)
+        {
+			currentIconVisual.SetRandomSprite(ApparenceType.eyes);
+			Tween.Bounce(currentIconVisual.GetImage(ApparenceType.eyes).transform);
 		}
+
+		currentIconVisual.SetRandomSprite(ApparenceType.eyebrows);
+		Tween.Bounce(currentIconVisual.GetImage(ApparenceType.eyebrows).transform);
+		currentIconVisual.SetRandomSprite(ApparenceType.mouth);
+		Tween.Bounce(currentIconVisual.GetImage(ApparenceType.mouth).transform);
+
+		Debug.Log("playing random voice");
+
+		CancelInvoke("PlayRandomVoiceDelay");
+		Invoke("PlayRandomVoiceDelay", 0.35f);
+    }
+
+	void PlayRandomVoiceDelay()
+    {
+		if ( talkingMember == null)
+        {
+			Debug.Log("voice delay : crew member is null");
+			return;
+		}
+
+		currentIconVisual.InitVisual();
+
 	}
+
+	public AudioClip GetRandomVoice( CrewMember crewMember, Voice.Type type)
+    {
+		return voices[crewMember.MemberID.GetCharacterID(ApparenceType.voiceType)].GetRandomVoice(type);
+    }
+
+
+	/*public AudioClip[] clips_tmp;
+
+	public void LoadSounds()
+    {
+		voices.Clear();
+		string voiceName = "";
+        foreach (var item in clips_tmp)
+        {
+            string str = item.name.Remove(7);
+
+			if ( voiceName != str)
+            {
+				voiceName = str;
+                Voice newVoice = new Voice();
+
+				voices.Add(newVoice);
+            }
+
+			Voice voice = voices[voices.Count - 1];
+			if (item.name.EndsWith("g"))
+			{
+				// greetings
+				voice.greetings.Add(item);
+			}
+			else if (item.name.EndsWith("h"))
+			{
+				// hurt
+				voice.hurts.Add(item);
+			}
+			else if (item.name.EndsWith("d"))
+			{
+				// death
+				voice.deaths.Add(item);
+			}
+			else
+			{
+				voice.conversations.Add(item);
+			}
+		}
+    }*/
 }

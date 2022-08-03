@@ -95,13 +95,13 @@ public class Member {
 			Lvl = crewParams.level;
 		} else {
 
-            Lvl = Random.Range(Crews.playerCrew.captain.Level - 3, Crews.playerCrew.captain.Level + 3);
+            Lvl = Random.Range(Crews.playerCrew.captain.Level - 3, Crews.playerCrew.captain.Level + 4);
 
-            if ( MapGenerator.mapParameters.id == 0)
+            /*if ( MapGenerator.mapParameters.id == 0)
             {
                 Lvl = Random.Range(1 ,2);
 
-            }
+            }*/
 
 
             if ( StoryReader.Instance.CurrentStoryHandler.storyType == StoryType.Quest ) {
@@ -149,6 +149,9 @@ public class Member {
 					case ApparenceType.nose:
 						randomID = Random.Range(0, CrewCreator.Instance.zombie_NoseSprite.Length);
                         break;
+					case ApparenceType.hairColor:
+						randomID = Random.value < 0.5f ? 2 : 4;
+						break;
 					default:
                         break;
                 }

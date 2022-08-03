@@ -4,49 +4,49 @@ using UnityEngine;
 
 public class Wave : MonoBehaviour {
 
-    Transform _transform;
+    public Transform _transform;
+    Animator _animator;
 
-    public float minimumX = 0f;
-    public float minimumY = 0f;
-    public float maximumX = 0f;
-    public float maximumY = 0f;
-
-    public float maxStartDelay = 2f;
-
-    public float minScale = 1.2f;
-    public float maxScale = 1.2f;
+    public bool move = false;
+    public float speed = 1f;
 
     private void Start()
     {
-        if (NavigationManager.Instance != null)
-        {
-            NavigationManager.Instance.onUpdateCurrentChunk += HandleOnUpdateCurrentChunk;
-        }
-
         _transform = GetComponent<Transform>();
 
-        _transform.localScale = Vector3.one * Random.Range( minScale , maxScale );
+        _animator = GetComponent<Animator>();
 
-        GetComponent<Animator>().enabled = false;
-
-        Invoke("StartDelay", Random.Range(0,maxStartDelay));
-
-        Move();
-    }
-
-    private void HandleOnUpdateCurrentChunk()
-    {
-        Move();
-    }
-
-    void StartDelay()
-    {
-        GetComponent<Animator>().enabled = true;
+        Invoke("StartDelay", Random.Range(0, WaveManager.Instance.maxStartDelay));
 
     }
 
-    public void Move()
+    public void UpdateMovement()
     {
-        _transform.position = PlayerBoat.Instance.transform.position + new Vector3(Random.Range(minimumX, maximumX), 0.39f , Random.Range(minimumY, maximumY));
+        _transform.Translate(Vector3.right * speed * Time.deltaTime, Space.World);
+    }
+
+    public void StartDelay()
+    {
+        Invoke("ResetPos", WaveManager.Instance.rate);
+    }
+
+    public void ResetPos()
+    {
+        gameObject.SetActive(true);
+        _transform.position = WaveManager.Instance.GetRandomPos();
+        move = true;
+        speed = Random.Range(WaveManager.Instance.minSpeed, WaveManager.Instance.maxSpeed);
+
+        Invoke("ResetPosDelay", WaveManager.Instance.duration);
+    }
+
+    void ResetPosDelay()
+    {
+
+        move = false;
+
+        gameObject.SetActive(false);
+
+        Invoke("ResetPos", WaveManager.Instance.rate);
     }
 }

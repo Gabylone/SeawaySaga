@@ -51,6 +51,9 @@ public class Map : MonoBehaviour, IPointerClickHandler {
         max = System.Enum.GetValues(typeof(TutorialStep)).Length;
 
         confirmNewGame_Group.SetActive(false);
+
+        /*string currentMapKey = "map_data" + mapParameters.id;
+        PlayerPrefs.SetString(currentMapKey, mapParameters.id == 0 ? "unlocked" : "locked");*/
     }
 
     public void UpdateUI()
@@ -161,21 +164,21 @@ public class Map : MonoBehaviour, IPointerClickHandler {
         string currentMapKey = "map_data" + mapParameters.id;
         string currentMap_data = PlayerPrefs.GetString(currentMapKey, mapParameters.id == 0 ? "unlocked" : "locked");
 
-        if (currentMap_data == "finished"&& !retry)
+        /*if (currentMap_data == "finished"&& !retry)
         {
             return;
-        }
+        }*/
 
         Tween.Bounce(transform, 0.1f , 1.01f);
 
 
-        if (currentMap_data == "locked")
+        /*if (currentMap_data == "locked")
         {
             SoundManager.Instance.PlayRandomSound("button_tap_light");
             SoundManager.Instance.PlaySound("ui_wrong");
             //DisplayPurchase.Instance.Display(apparenceItem, transform);
             return;
-        }
+        }*/
 
 
         SoundManager.Instance.PlayRandomSound("button_tap_light");
@@ -258,5 +261,19 @@ public class Map : MonoBehaviour, IPointerClickHandler {
     public void OnPointerClick(PointerEventData eventData)
     {
         LaunchMap();
+    }
+
+    public void UnlockIsland(UnityEngine.Purchasing.Product product)
+    {
+        string currentMapKey = "map_data" + mapParameters.id;
+
+        PlayerPrefs.SetString(currentMapKey, "unlocked");
+
+        UpdateUI();
+    }
+
+    public void IAPIssue(UnityEngine.Purchasing.Product product , UnityEngine.Purchasing.PurchaseFailureReason purchaseFailureReason)
+    {
+        MessageDisplay.Instance.Display("The purchase failed for the following reason :\n" + purchaseFailureReason.ToString());
     }
 }

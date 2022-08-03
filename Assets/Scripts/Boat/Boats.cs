@@ -83,8 +83,6 @@ public class Boats : MonoBehaviour {
 
     public void WithdrawBoats()
     {
-        //Debug.Log("boats are withdrawing");
-
         pausingBoats = true;
 
         foreach (var item in enemyBoats)

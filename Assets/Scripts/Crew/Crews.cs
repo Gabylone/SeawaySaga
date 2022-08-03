@@ -203,6 +203,8 @@ public class Crews : MonoBehaviour {
         } else {
 
 
+			DialogueManager.Instance.PlayRandomVoice(Crews.enemyCrew.captain, DialogueManager.Voice.Type.Greetings);
+
 			if (storyCrew.hostile) {
 				
 				//DialogueManager.Instance.SetDialogueTimed ("He's back, on guard !", Crews.enemyCrew.captain);

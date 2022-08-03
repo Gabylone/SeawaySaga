@@ -243,37 +243,36 @@ public class CrewMember {
 
     #region health
     public float GetDamage ( float incomingAttack ) {
-//		
-		float maxHits = 10;
-		float minHits = 2;
-
-		float maxAttack = 120f;
+		//		
+		
+		float maxAttack = 124f;
 
 		incomingAttack = Mathf.Clamp (incomingAttack, 0, maxAttack);
 
 		float dif = ((float)Defense - incomingAttack);
 
-		float lerp = (dif + maxAttack) / (maxAttack*2);
+		float lerp = 1 - (dif + maxAttack) / (maxAttack*2);
 
-		float hits = minHits + ((maxHits - minHits) * lerp);
+		float maxDamage = 40f;
+		float minDamage = 2f;
 
-		float damageTaken = maxAttack / hits;
+		float damageTaken = minDamage + ((maxDamage - minDamage) * lerp);
 
-        if ( side == Crews.Side.Player) {
+        //float damageTaken = maxAttack / hits;
+		//damageTaken = Mathf.Clamp(damageTaken, 1f, maxAttack);
+
+		if ( side == Crews.Side.Player) {
             //
-            //Debug.Log("init dam taken : " + damageTaken);
             damageTaken = Crews.Instance.reducedDamage * damageTaken / 100;
-            //Debug.Log("lowered dam taken : " + damageTaken);
         }
 
 		int roundedDamage = Mathf.RoundToInt(damageTaken);
 
-//			Debug.Log ("attack : " + incomingAttack);
-//			Debug.Log ("defense : " + Defense);
-//			Debug.Log ("dif : " + dif);
-//			Debug.Log ("lerp : " + lerp);
-//			Debug.Log ("hits : " + hits);
-//			Debug.Log ("damageTaken : " + damageTaken);
+			/*Debug.Log ("attack : " + incomingAttack);
+			Debug.Log ("defense : " + Defense);
+			Debug.Log ("dif : " + dif);
+			Debug.Log ("lerp : " + lerp);
+			Debug.Log ("damageTaken : " + damageTaken);*/
 
 		return roundedDamage;
 	}
@@ -413,12 +412,12 @@ public class CrewMember {
 	public int Attack {
 		get {
 
-			int i = GetStat(Stat.Strenght) * 5;
+			int i = GetStat(Stat.Strenght) * 4;
 
             if (GetEquipment (EquipmentPart.Weapon) != null) {
 
 				if ( GetEquipment(EquipmentPart.Weapon).weaponType == Item.WeaponType.Distance ){
-					i = GetStat (Stat.Dexterity) * 5;
+					i = GetStat (Stat.Dexterity) * 4;
 				}
 				return i + GetEquipment (EquipmentPart.Weapon).value;
 			}
@@ -430,7 +429,7 @@ public class CrewMember {
 	public int Defense {
 		get {
 
-			int i = GetStat(Stat.Constitution) * 5;
+			int i = GetStat(Stat.Constitution) * 4;
 
 			if (GetEquipment (EquipmentPart.Clothes) != null)
 				return i + GetEquipment (EquipmentPart.Clothes).value;

@@ -257,6 +257,8 @@ public enum ApparenceType
     shoesColor,
 
     faceType,
+
+    voiceType,
 }
 
 [System.Serializable]

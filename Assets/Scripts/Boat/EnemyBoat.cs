@@ -9,8 +9,6 @@ public class EnemyBoat : Boat
 
     public bool followPlayer = false;
 
-    private bool reachedPlayer = false;
-
     public float decalToCenter = -2f;
 
     public float distanceToExitScreen = 0.5f;
@@ -212,12 +210,21 @@ public class EnemyBoat : Boat
         metPlayer = false;
 
         GetMinimapBoat.MoveToCoords(boatInfo.coords);
+
+        Invoke("UpdatePositionOnScreenDelay", 0.1f);
+    }
+
+    void UpdatePositionOnScreenDelay()
+    {
+        foreach (TrailRenderer renderer in trailRenderers)
+        {
+            renderer.emitting = true;
+        }
     }
 
     #region world
     void OnTriggerEnter(Collider other)
     {
-
         if (other.tag == "Player")
         {
             MeetPlayer();
@@ -232,22 +239,27 @@ public class EnemyBoat : Boat
         // a story is currently going
         if (StoryLauncher.Instance.PlayingStory)
         {
+            Debug.Log("enemy boat break : story playing");
             return;
         }
 
         // the boat has already met the player
-        if (metPlayer)
+        /*if (metPlayer)
         {
+            Debug.Log("enemy boat break : already met");
             return;
-        }
+        }*/
+
         // the boat is not actually idle
         if (!moving)
         {
+            Debug.Log("enemy boat break : not moving");
             return;
         }
         // another boat is meeting the player
         if (Boats.Instance.pausingBoats)
         {
+            Debug.Log("enemy boat break : pausing boats ( another boat is meeting the player )");
             return;
         }
 
@@ -263,11 +275,10 @@ public class EnemyBoat : Boat
         // if he met the player in the WHOLE story
         boatInfo.alreadyMet = true;
 
-        reachedPlayer = true;
-
         boxCollider.enabled = false;
 
         SetSpeed(0);
+        EndMovenent();
 
         SoundManager.Instance.PlaySound("enter port");
 
@@ -281,7 +292,6 @@ public class EnemyBoat : Boat
 
         Deselect();
 
-        reachedPlayer = false;
         followPlayer = false;
 
         SoundManager.Instance.PlaySound("leave port");
@@ -295,17 +305,38 @@ public class EnemyBoat : Boat
 
     public void Withdraw()
     {
+        if ( movementType == MovementType.MoveAround || exitingScreen)
+        {
+            Debug.Log("not withdrawing : moving around / exiting screen");
+            return;
+        }
+
+
+        
+
+        Invoke("WithdrawDelay", 0.1f);
+    }
+
+    void WithdrawDelay() {
+
+        Debug.Log("withdrawing boat");
+
         EndMovenent();
+        SetSpeed(0);
 
         Vector3 dirFromPlayer = (PlayerBoat.Instance.GetTransform.position - GetTransform.position).normalized;
-        Vector3 posAwayFromPos = GetTransform.position + (dirFromPlayer * distanceFromOtherPlayer);
 
-        //SetTargetPos(posAwayFromPos);
+        float x = Random.Range(NavigationManager.Instance.minX, NavigationManager.Instance.maxX);
+        float y = Random.Range(NavigationManager.Instance.minY, NavigationManager.Instance.maxY);
 
+        Vector3 posAwayFromPos = new Vector3(x, 0f, y);
+
+        SetTargetPos(posAwayFromPos);
     }
 
     public void Resume()
     {
+        Debug.Log("resuming boat");
         GoToTargetDestination();
     }
 
@@ -324,12 +355,17 @@ public class EnemyBoat : Boat
 
         Flag.Instance.Hide();
 
+        PlayerBoat.Instance.targetingBoat = true;
+        PlayerBoat.Instance.boatTarget = GetTransform;
+
         SoundManager.Instance.PlayRandomSound("button_big");
 
         select_feedback.SetActive(true);
     }
     public void Deselect()
     {
+        PlayerBoat.Instance.targetingBoat = false;
+        PlayerBoat.Instance.boatTarget = null;
         select_feedback.SetActive(false);
     }
     #endregion
@@ -347,8 +383,6 @@ public class EnemyBoat : Boat
             gameObject.SetActive(value);
 
             visible = value;
-
-            reachedPlayer = false;
 
             group.SetActive(value);
 
