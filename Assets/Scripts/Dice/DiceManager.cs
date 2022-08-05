@@ -650,7 +650,7 @@ public class DiceManager : MonoBehaviour {
     {
         onEndThrow += CheckStat_HandleOnEndThrow;
 
-        thrower.memberIcon.animator.SetTrigger("throw dice");
+        thrower.Icon.animator.SetTrigger("throw dice");
 
         ThrowDirection = 1;
 

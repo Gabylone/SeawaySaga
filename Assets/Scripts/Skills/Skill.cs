@@ -192,7 +192,7 @@ public class Skill : MonoBehaviour {
             fighter.TargetFighter.RemoveStatus(Fighter.Status.BearTrapped, 1);
             fighter.combatFeedback.Display("TRAPPED !", Color.red);
 
-            fighter.TargetFighter.iconVisual.bearTrap_Transform.GetComponent<Animator>().SetBool("opened", false);
+            fighter.TargetFighter.iconVisual.bearTrap_Animator.SetBool("opened", false);
             Invoke("HideBearTrap", timeToMoveBack);
 
             SoundManager.Instance.PlaySound("beartrap_close");

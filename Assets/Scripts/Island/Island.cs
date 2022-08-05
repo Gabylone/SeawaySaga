@@ -146,6 +146,7 @@ public class Island : RandomPlacable {
 
         if (!WorldTouch.Instance.IsEnabled())
         {
+            Debug.Log("world touch disable");
             return;
         }
 
@@ -153,6 +154,9 @@ public class Island : RandomPlacable {
         {
             return;
         }
+
+        Debug.Log("mouse down");
+
 
         Select();
     }

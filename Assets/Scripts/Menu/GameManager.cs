@@ -22,7 +22,9 @@ public class GameManager : MonoBehaviour {
 
 	void Start () {
 
-        Instance = this;
+		Application.targetFrameRate = 60;
+
+		Instance = this;
 
 		InitializeGame ();
 	}
@@ -34,6 +36,7 @@ public class GameManager : MonoBehaviour {
 		FormulaManager.Instance.Init ();
 
 		Crews.Instance.Init ();
+
 
         if (loadOnStart) {
 			

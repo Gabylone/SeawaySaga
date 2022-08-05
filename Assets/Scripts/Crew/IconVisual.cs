@@ -40,6 +40,7 @@ public class IconVisual : MonoBehaviour
     public GameObject food_Obj;
     public Transform rhumBottle_Transform;
     public Transform bearTrap_Transform;
+    public Animator bearTrap_Animator;
 
     /// <summary>
     /// override skin color
@@ -62,6 +63,11 @@ public class IconVisual : MonoBehaviour
     private void Start()
     {
         rectTransform = GetComponent<RectTransform>();
+        if (bearTrap_Transform != null)
+        {
+            bearTrap_Animator = bearTrap_Transform.GetComponent<Animator>();
+
+        }
     }
 
     private void Update()

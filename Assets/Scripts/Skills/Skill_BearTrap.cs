@@ -69,7 +69,7 @@ public class Skill_BearTrap : Skill {
 
         yield return new WaitForSeconds(throwDuration);
 
-        fighter.iconVisual.bearTrap_Transform.GetComponent<Animator>().SetBool("opened", true);
+        fighter.iconVisual.bearTrap_Animator.SetBool("opened", true);
 
         SoundManager.Instance.PlaySound("beartrap_arm");
 

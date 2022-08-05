@@ -23,8 +23,8 @@ public class WorldTouch : MonoBehaviour
 
     public bool swipped = false;
 
-    float timer = 0f;
-    float timeToTouch = 0.25f;
+    private float timer = 0f;
+    private float timeToTouch = 0.25f;
 
 	public Image testimage;
 

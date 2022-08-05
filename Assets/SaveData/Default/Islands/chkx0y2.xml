@@ -8,10 +8,10 @@
   <islandDatas>
     <IslandData>
       <worldPosition>
-        <x>16.66</x>
-        <y>-5.83</y>
+        <x>-3.36</x>
+        <y>16.71</y>
       </worldPosition>
-      <worldRotation>339.962738</worldRotation>
+      <worldRotation>335.566437</worldRotation>
       <index>0</index>
       <coords>
         <x>0</x>
@@ -29,16 +29,6 @@
             <storyType>Home</storyType>
             <contentDecals>
               <contentDecal>
-                <row>0</row>
-                <col>2</col>
-                <decal>1</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>0</row>
-                <col>20</col>
-                <decal>1</decal>
-              </contentDecal>
-              <contentDecal>
                 <row>3</row>
                 <col>2</col>
                 <decal>1</decal>
@@ -54,233 +44,18 @@
                 <decal>1</decal>
               </contentDecal>
             </contentDecals>
-            <loots>
-              <Loot>
-                <row>0</row>
-                <col>21</col>
-                <ids>
-                  <ArrayOfInt>
-                    <int>8</int>
-                    <int>21</int>
-                  </ArrayOfInt>
-                  <ArrayOfInt>
-                    <int>52</int>
-                    <int>42</int>
-                    <int>42</int>
-                    <int>51</int>
-                  </ArrayOfInt>
-                  <ArrayOfInt>
-                    <int>152</int>
-                    <int>169</int>
-                    <int>155</int>
-                    <int>156</int>
-                  </ArrayOfInt>
-                  <ArrayOfInt>
-                    <int>212</int>
-                    <int>214</int>
-                    <int>207</int>
-                  </ArrayOfInt>
-                </ids>
-                <weight>74</weight>
-                <AllItems>
-                  <ArrayOfItem>
-                    <Item>
-                      <ID>8</ID>
-                      <englishName>Salmon</englishName>
-                      <frenchName>Saumon</frenchName>
-                      <value>6</value>
-                      <price>10</price>
-                      <weight>2</weight>
-                      <level>0</level>
-                      <spriteID>1</spriteID>
-                      <description>Feeds the member. Heals him, only if he’s not hungry. Fishes feed fairly.</description>
-                      <weaponType>Distance</weaponType>
-                      <category>Provisions</category>
-                    </Item>
-                    <Item>
-                      <ID>21</ID>
-                      <englishName>Small ham</englishName>
-                      <frenchName>Petit jambon</frenchName>
-                      <value>8</value>
-                      <price>14</price>
-                      <weight>2</weight>
-                      <level>0</level>
-                      <spriteID>2</spriteID>
-                      <description>Feeds the member. Heals him, only if he’s not hungry. Meats feeds greatly</description>
-                      <weaponType>Distance</weaponType>
-                      <category>Provisions</category>
-                    </Item>
-                  </ArrayOfItem>
-                  <ArrayOfItem>
-                    <Item>
-                      <ID>52</ID>
-                      <englishName>Sloppy gun</englishName>
-                      <frenchName>Pistolet négligé</frenchName>
-                      <value>8</value>
-                      <price>21</price>
-                      <weight>8</weight>
-                      <level>1</level>
-                      <spriteID>6</spriteID>
-                      <description>It's just your basic sloppy gun</description>
-                      <weaponType>Distance</weaponType>
-                      <category>Weapon</category>
-                    </Item>
-                    <Item>
-                      <ID>42</ID>
-                      <englishName>Old Planch</englishName>
-                      <frenchName>Vielle hachette</frenchName>
-                      <value>6</value>
-                      <price>17</price>
-                      <weight>8</weight>
-                      <level>1</level>
-                      <spriteID>1</spriteID>
-                      <description>It's just your basic old planch</description>
-                      <weaponType>Stick</weaponType>
-                      <category>Weapon</category>
-                    </Item>
-                    <Item>
-                      <ID>42</ID>
-                      <englishName>Old Planch</englishName>
-                      <frenchName>Vielle hachette</frenchName>
-                      <value>6</value>
-                      <price>17</price>
-                      <weight>8</weight>
-                      <level>1</level>
-                      <spriteID>1</spriteID>
-                      <description>It's just your basic old planch</description>
-                      <weaponType>Stick</weaponType>
-                      <category>Weapon</category>
-                    </Item>
-                    <Item>
-                      <ID>51</ID>
-                      <englishName>Sloppy canon</englishName>
-                      <frenchName>Poivrière négligée</frenchName>
-                      <value>12</value>
-                      <price>20</price>
-                      <weight>8</weight>
-                      <level>1</level>
-                      <spriteID>7</spriteID>
-                      <description>It's just your basic sloppy canon</description>
-                      <weaponType>Distance</weaponType>
-                      <category>Weapon</category>
-                    </Item>
-                  </ArrayOfItem>
-                  <ArrayOfItem>
-                    <Item>
-                      <ID>152</ID>
-                      <englishName>Linnen gown</englishName>
-                      <frenchName>Toge en tissu</frenchName>
-                      <value>10</value>
-                      <price>24</price>
-                      <weight>8</weight>
-                      <level>1</level>
-                      <spriteID>0</spriteID>
-                      <description>It's just your basic linnen gown</description>
-                      <weaponType>Distance</weaponType>
-                      <category>Clothes</category>
-                    </Item>
-                    <Item>
-                      <ID>169</ID>
-                      <englishName>Parade armor</englishName>
-                      <frenchName>Armure de parade</frenchName>
-                      <value>37</value>
-                      <price>58</price>
-                      <weight>8</weight>
-                      <level>4</level>
-                      <spriteID>2</spriteID>
-                      <description>It's just your basic parade armor</description>
-                      <weaponType>Distance</weaponType>
-                      <category>Clothes</category>
-                    </Item>
-                    <Item>
-                      <ID>155</ID>
-                      <englishName>Fur</englishName>
-                      <frenchName>Fourrure</frenchName>
-                      <value>14</value>
-                      <price>26</price>
-                      <weight>8</weight>
-                      <level>1</level>
-                      <spriteID>1</spriteID>
-                      <description>It's just your basic fur</description>
-                      <weaponType>Distance</weaponType>
-                      <category>Clothes</category>
-                    </Item>
-                    <Item>
-                      <ID>156</ID>
-                      <englishName>Overall</englishName>
-                      <frenchName>Salopette</frenchName>
-                      <value>10</value>
-                      <price>20</price>
-                      <weight>8</weight>
-                      <level>1</level>
-                      <spriteID>0</spriteID>
-                      <description>It's just your basic overall</description>
-                      <weaponType>Distance</weaponType>
-                      <category>Clothes</category>
-                    </Item>
-                  </ArrayOfItem>
-                  <ArrayOfItem>
-                    <Item>
-                      <ID>212</ID>
-                      <englishName>Ink Pot</englishName>
-                      <frenchName>Encrier</frenchName>
-                      <value>0</value>
-                      <price>8</price>
-                      <weight>3</weight>
-                      <level>0</level>
-                      <spriteID>10</spriteID>
-                      <description>It's just your basic ink pot</description>
-                      <weaponType>Distance</weaponType>
-                      <category>Misc</category>
-                    </Item>
-                    <Item>
-                      <ID>214</ID>
-                      <englishName>Key</englishName>
-                      <frenchName>Clé</frenchName>
-                      <value>0</value>
-                      <price>5</price>
-                      <weight>2</weight>
-                      <level>0</level>
-                      <spriteID>12</spriteID>
-                      <description>It's just your basic key</description>
-                      <weaponType>Distance</weaponType>
-                      <category>Misc</category>
-                    </Item>
-                    <Item>
-                      <ID>207</ID>
-                      <englishName>Feather</englishName>
-                      <frenchName>Plume</frenchName>
-                      <value>0</value>
-                      <price>3</price>
-                      <weight>1</weight>
-                      <level>0</level>
-                      <spriteID>5</spriteID>
-                      <description>It's just your basic feather</description>
-                      <weaponType>Distance</weaponType>
-                      <category>Misc</category>
-                    </Item>
-                  </ArrayOfItem>
-                </AllItems>
-              </Loot>
-            </loots>
-            <crews>
-              <Crew>
-                <hostile>true</hostile>
-                <row>0</row>
-                <col>21</col>
-                <MemberIDs />
-              </Crew>
-            </crews>
+            <loots />
+            <crews />
           </StoryHandler>
         </storyHandlers>
       </storyManager>
     </IslandData>
     <IslandData>
       <worldPosition>
-        <x>8.99</x>
-        <y>-21.44</y>
+        <x>-14.64</x>
+        <y>23.28</y>
       </worldPosition>
-      <worldRotation>32.11647</worldRotation>
+      <worldRotation>169.7339</worldRotation>
       <index>1</index>
       <coords>
         <x>0</x>

@@ -30,6 +30,19 @@ public class UIButton : MonoBehaviour {
 	[SerializeField] private bool playSounds = false;
 	[SerializeField] private AudioClip openSound;
 	[SerializeField] private AudioClip closeSound;
+	private Button uiButton;
+	public Button GetButton
+    {
+        get
+        {
+			if (uiButton == null)
+            {
+				uiButton = button.GetComponent<Button>();
+            }
+
+			return uiButton;
+        }
+    }
 
 	[SerializeField]
 	private float duration = 2f;
@@ -111,7 +124,7 @@ public class UIButton : MonoBehaviour {
 			menu.gameObject.SetActive (true);
 			button.gameObject.SetActive (true);
 
-			button.GetComponent<Button> ().interactable = !opened;
+			uiButton.interactable = !opened;
 		}
 	}
 
@@ -121,7 +134,7 @@ public class UIButton : MonoBehaviour {
 		}
 		set {
 			locked = value;
-			button.GetComponent<Button> ().interactable = !value;
+			uiButton.interactable = !value;
 		}
 	}
 }

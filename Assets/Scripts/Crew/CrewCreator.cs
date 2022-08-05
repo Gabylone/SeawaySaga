@@ -179,18 +179,9 @@ public class CrewCreator : MonoBehaviour
     public MemberIcon NewIcon(Member memberID)
     {
 
-        GameObject iconObj = Instantiate(memberIconPrefabs[(int)targetSide]) as GameObject;
+        Transform _parent = targetSide == Crews.Side.Player ? crewParent_Player : crewParent_Enemy;
+        GameObject iconObj = Instantiate(memberIconPrefabs[(int)targetSide], _parent) as GameObject;
         MemberIcon icon = iconObj.GetComponent<MemberIcon>();
-
-        // set object transform
-        if (targetSide == Crews.Side.Player)
-        {
-            iconObj.transform.SetParent(crewParent_Player);
-        }
-        else
-        {
-            iconObj.transform.SetParent(crewParent_Enemy);
-        }
 
         iconObj.transform.localScale = Vector3.one;
         iconObj.transform.position = Crews.getCrew(targetSide).CrewAnchors[(int)Crews.PlacingType.Hidden].position;

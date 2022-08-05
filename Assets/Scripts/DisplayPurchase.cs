@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class DisplayPurchase : MonoBehaviour {
 
-    public static DisplayPurchase Instance;
+    /*public static DisplayPurchase Instance;
 
     public GameObject group;
 
@@ -76,6 +76,6 @@ public class DisplayPurchase : MonoBehaviour {
         Destroy(targetTransform.gameObject);
 
         Hide();
-    }
+    }*/
 
 }

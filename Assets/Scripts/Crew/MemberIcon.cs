@@ -28,7 +28,9 @@ public class MemberIcon : MonoBehaviour {
 	public float initScale;
 
 	public Crews.PlacingType currentPlacingType = Crews.PlacingType.None;
-	public Crews.PlacingType previousPlacingType  = Crews.PlacingType.None;
+    public Crews.PlacingType previousPlacingType = Crews.PlacingType.None;
+
+    private StatGroup statGroup;
 
     public Vector2 decal = Vector2.zero;
 
@@ -57,6 +59,8 @@ public class MemberIcon : MonoBehaviour {
         {
             diceStat_Group.SetActive(false);
         }
+
+        statGroup = GetComponentInChildren<StatGroup>();
 
         LootUI.useInventory += HandleUseInventory;
     }
@@ -99,10 +103,11 @@ public class MemberIcon : MonoBehaviour {
     #region overing
     public void OnPointerDown()
     {
+
         if (member.side == Crews.Side.Enemy)
         {
             StoryInput.Instance.LockFromMember();
-            GetComponentInChildren<StatGroup>().Display(member);
+            statGroup.Display(member);
             return;
         }
 

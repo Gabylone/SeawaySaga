@@ -8,10 +8,10 @@
         <y>0</y>
       </previousCoords>
       <coords>
-        <x>3</x>
+        <x>0</x>
         <y>2</y>
       </coords>
-      <currentDirection>NorthEast</currentDirection>
+      <currentDirection>SouthWest</currentDirection>
       <id>0</id>
       <storyManager>
         <hasBeenPlayed>false</hasBeenPlayed>
@@ -30,9 +30,9 @@
       </storyManager>
       <alreadyMet>false</alreadyMet>
       <color>
-        <r>0.168754235</r>
-        <g>0.159240812</g>
-        <b>0.156583056</b>
+        <r>0.36544317</r>
+        <g>0.255403757</g>
+        <b>0.555574</b>
         <a>1</a>
       </color>
       <timeToShowBoat>1.5</timeToShowBoat>
@@ -44,119 +44,11 @@
         <y>0</y>
       </previousCoords>
       <coords>
-        <x>5</x>
-        <y>1</y>
-      </coords>
-      <currentDirection>North</currentDirection>
-      <id>1</id>
-      <storyManager>
-        <hasBeenPlayed>false</hasBeenPlayed>
-        <storyHandlers>
-          <StoryHandler>
-            <row>0</row>
-            <col>0</col>
-            <fallBackLayer>0</fallBackLayer>
-            <storyID>0</storyID>
-            <storyType>Boat</storyType>
-            <contentDecals />
-            <loots />
-            <crews />
-          </StoryHandler>
-        </storyHandlers>
-      </storyManager>
-      <alreadyMet>false</alreadyMet>
-      <color>
-        <r>0.8858472</r>
-        <g>0.9295671</g>
-        <b>0.979299068</b>
-        <a>1</a>
-      </color>
-      <timeToShowBoat>1.5</timeToShowBoat>
-    </OtherBoatInfo>
-    <OtherBoatInfo>
-      <Name>bateau</Name>
-      <previousCoords>
-        <x>0</x>
-        <y>0</y>
-      </previousCoords>
-      <coords>
-        <x>0</x>
-        <y>1</y>
-      </coords>
-      <currentDirection>NorthEast</currentDirection>
-      <id>2</id>
-      <storyManager>
-        <hasBeenPlayed>false</hasBeenPlayed>
-        <storyHandlers>
-          <StoryHandler>
-            <row>0</row>
-            <col>0</col>
-            <fallBackLayer>0</fallBackLayer>
-            <storyID>2</storyID>
-            <storyType>Boat</storyType>
-            <contentDecals />
-            <loots />
-            <crews />
-          </StoryHandler>
-        </storyHandlers>
-      </storyManager>
-      <alreadyMet>false</alreadyMet>
-      <color>
-        <r>0.7883694</r>
-        <g>0.5181184</g>
-        <b>0.227444023</b>
-        <a>1</a>
-      </color>
-      <timeToShowBoat>1.5</timeToShowBoat>
-    </OtherBoatInfo>
-    <OtherBoatInfo>
-      <Name>bateau</Name>
-      <previousCoords>
-        <x>0</x>
-        <y>0</y>
-      </previousCoords>
-      <coords>
-        <x>3</x>
-        <y>1</y>
-      </coords>
-      <currentDirection>SouthWest</currentDirection>
-      <id>3</id>
-      <storyManager>
-        <hasBeenPlayed>false</hasBeenPlayed>
-        <storyHandlers>
-          <StoryHandler>
-            <row>0</row>
-            <col>0</col>
-            <fallBackLayer>0</fallBackLayer>
-            <storyID>0</storyID>
-            <storyType>Boat</storyType>
-            <contentDecals />
-            <loots />
-            <crews />
-          </StoryHandler>
-        </storyHandlers>
-      </storyManager>
-      <alreadyMet>false</alreadyMet>
-      <color>
-        <r>0.130446449</r>
-        <g>0.601849</g>
-        <b>0.867901564</b>
-        <a>1</a>
-      </color>
-      <timeToShowBoat>1.5</timeToShowBoat>
-    </OtherBoatInfo>
-    <OtherBoatInfo>
-      <Name>bateau</Name>
-      <previousCoords>
-        <x>0</x>
-        <y>0</y>
-      </previousCoords>
-      <coords>
-        <x>3</x>
-        <y>0</y>
+        <x>6</x>
+        <y>2</y>
       </coords>
       <currentDirection>SouthEast</currentDirection>
-      <id>4</id>
+      <id>1</id>
       <storyManager>
         <hasBeenPlayed>false</hasBeenPlayed>
         <storyHandlers>
@@ -174,9 +66,9 @@
       </storyManager>
       <alreadyMet>false</alreadyMet>
       <color>
-        <r>0.7114982</r>
-        <g>0.6308176</g>
-        <b>0.494475752</b>
+        <r>0.0204947013</r>
+        <g>0.0100320652</g>
+        <b>0.008328988</b>
         <a>1</a>
       </color>
       <timeToShowBoat>1.5</timeToShowBoat>
@@ -188,11 +80,83 @@
         <y>0</y>
       </previousCoords>
       <coords>
-        <x>5</x>
+        <x>3</x>
+        <y>2</y>
+      </coords>
+      <currentDirection>SouthEast</currentDirection>
+      <id>2</id>
+      <storyManager>
+        <hasBeenPlayed>false</hasBeenPlayed>
+        <storyHandlers>
+          <StoryHandler>
+            <row>0</row>
+            <col>0</col>
+            <fallBackLayer>0</fallBackLayer>
+            <storyID>3</storyID>
+            <storyType>Boat</storyType>
+            <contentDecals />
+            <loots />
+            <crews />
+          </StoryHandler>
+        </storyHandlers>
+      </storyManager>
+      <alreadyMet>false</alreadyMet>
+      <color>
+        <r>0.3042145</r>
+        <g>0.563646257</g>
+        <b>0.445711851</b>
+        <a>1</a>
+      </color>
+      <timeToShowBoat>1.5</timeToShowBoat>
+    </OtherBoatInfo>
+    <OtherBoatInfo>
+      <Name>bateau</Name>
+      <previousCoords>
+        <x>0</x>
+        <y>0</y>
+      </previousCoords>
+      <coords>
+        <x>1</x>
         <y>1</y>
       </coords>
-      <currentDirection>NorthEast</currentDirection>
-      <id>5</id>
+      <currentDirection>SouthWest</currentDirection>
+      <id>3</id>
+      <storyManager>
+        <hasBeenPlayed>false</hasBeenPlayed>
+        <storyHandlers>
+          <StoryHandler>
+            <row>0</row>
+            <col>0</col>
+            <fallBackLayer>0</fallBackLayer>
+            <storyID>3</storyID>
+            <storyType>Boat</storyType>
+            <contentDecals />
+            <loots />
+            <crews />
+          </StoryHandler>
+        </storyHandlers>
+      </storyManager>
+      <alreadyMet>false</alreadyMet>
+      <color>
+        <r>0.280754268</r>
+        <g>0.2923846</g>
+        <b>0.5738928</b>
+        <a>1</a>
+      </color>
+      <timeToShowBoat>1.5</timeToShowBoat>
+    </OtherBoatInfo>
+    <OtherBoatInfo>
+      <Name>bateau</Name>
+      <previousCoords>
+        <x>0</x>
+        <y>0</y>
+      </previousCoords>
+      <coords>
+        <x>2</x>
+        <y>2</y>
+      </coords>
+      <currentDirection>West</currentDirection>
+      <id>4</id>
       <storyManager>
         <hasBeenPlayed>false</hasBeenPlayed>
         <storyHandlers>
@@ -210,9 +174,9 @@
       </storyManager>
       <alreadyMet>false</alreadyMet>
       <color>
-        <r>0.680152237</r>
-        <g>0.8359761</g>
-        <b>0.88666904</b>
+        <r>0.0125438673</r>
+        <g>0.329011947</g>
+        <b>0.16930373</b>
         <a>1</a>
       </color>
       <timeToShowBoat>1.5</timeToShowBoat>
@@ -224,10 +188,46 @@
         <y>0</y>
       </previousCoords>
       <coords>
-        <x>2</x>
-        <y>2</y>
+        <x>0</x>
+        <y>1</y>
       </coords>
-      <currentDirection>NorthWest</currentDirection>
+      <currentDirection>East</currentDirection>
+      <id>5</id>
+      <storyManager>
+        <hasBeenPlayed>false</hasBeenPlayed>
+        <storyHandlers>
+          <StoryHandler>
+            <row>0</row>
+            <col>0</col>
+            <fallBackLayer>0</fallBackLayer>
+            <storyID>1</storyID>
+            <storyType>Boat</storyType>
+            <contentDecals />
+            <loots />
+            <crews />
+          </StoryHandler>
+        </storyHandlers>
+      </storyManager>
+      <alreadyMet>false</alreadyMet>
+      <color>
+        <r>0.416751444</r>
+        <g>0.0142137809</g>
+        <b>0.300792545</b>
+        <a>1</a>
+      </color>
+      <timeToShowBoat>1.5</timeToShowBoat>
+    </OtherBoatInfo>
+    <OtherBoatInfo>
+      <Name>bateau</Name>
+      <previousCoords>
+        <x>0</x>
+        <y>0</y>
+      </previousCoords>
+      <coords>
+        <x>6</x>
+        <y>1</y>
+      </coords>
+      <currentDirection>West</currentDirection>
       <id>6</id>
       <storyManager>
         <hasBeenPlayed>false</hasBeenPlayed>
@@ -246,9 +246,9 @@
       </storyManager>
       <alreadyMet>false</alreadyMet>
       <color>
-        <r>0.396801353</r>
-        <g>0.901400447</g>
-        <b>0.805536</b>
+        <r>0.5359351</r>
+        <g>0.06346391</g>
+        <b>0.808340549</b>
         <a>1</a>
       </color>
       <timeToShowBoat>1.5</timeToShowBoat>
@@ -260,10 +260,10 @@
         <y>0</y>
       </previousCoords>
       <coords>
-        <x>7</x>
-        <y>0</y>
+        <x>5</x>
+        <y>2</y>
       </coords>
-      <currentDirection>South</currentDirection>
+      <currentDirection>West</currentDirection>
       <id>7</id>
       <storyManager>
         <hasBeenPlayed>false</hasBeenPlayed>
@@ -282,9 +282,9 @@
       </storyManager>
       <alreadyMet>false</alreadyMet>
       <color>
-        <r>0.323759</r>
-        <g>0.171864435</g>
-        <b>0.3841998</b>
+        <r>0.030241875</r>
+        <g>0.03049906</g>
+        <b>0.04650033</b>
         <a>1</a>
       </color>
       <timeToShowBoat>1.5</timeToShowBoat>
@@ -296,10 +296,10 @@
         <y>0</y>
       </previousCoords>
       <coords>
-        <x>0</x>
+        <x>7</x>
         <y>0</y>
       </coords>
-      <currentDirection>West</currentDirection>
+      <currentDirection>SouthWest</currentDirection>
       <id>8</id>
       <storyManager>
         <hasBeenPlayed>false</hasBeenPlayed>
@@ -308,7 +308,7 @@
             <row>0</row>
             <col>0</col>
             <fallBackLayer>0</fallBackLayer>
-            <storyID>3</storyID>
+            <storyID>0</storyID>
             <storyType>Boat</storyType>
             <contentDecals />
             <loots />
@@ -318,9 +318,9 @@
       </storyManager>
       <alreadyMet>false</alreadyMet>
       <color>
-        <r>0.185819432</r>
-        <g>0.204825431</g>
-        <b>0.262734324</b>
+        <r>0.4700833</r>
+        <g>0.3133279</g>
+        <b>0.3840596</b>
         <a>1</a>
       </color>
       <timeToShowBoat>1.5</timeToShowBoat>
@@ -332,10 +332,10 @@
         <y>0</y>
       </previousCoords>
       <coords>
-        <x>6</x>
-        <y>1</y>
+        <x>1</x>
+        <y>2</y>
       </coords>
-      <currentDirection>East</currentDirection>
+      <currentDirection>West</currentDirection>
       <id>9</id>
       <storyManager>
         <hasBeenPlayed>false</hasBeenPlayed>
@@ -354,9 +354,9 @@
       </storyManager>
       <alreadyMet>false</alreadyMet>
       <color>
-        <r>0.226523355</r>
-        <g>0.615403235</g>
-        <b>0.7185412</b>
+        <r>0.0393680967</r>
+        <g>0.04174311</g>
+        <b>0.0454651155</b>
         <a>1</a>
       </color>
       <timeToShowBoat>1.5</timeToShowBoat>
@@ -369,9 +369,9 @@
       </previousCoords>
       <coords>
         <x>2</x>
-        <y>2</y>
+        <y>1</y>
       </coords>
-      <currentDirection>West</currentDirection>
+      <currentDirection>South</currentDirection>
       <id>10</id>
       <storyManager>
         <hasBeenPlayed>false</hasBeenPlayed>
@@ -380,7 +380,7 @@
             <row>0</row>
             <col>0</col>
             <fallBackLayer>0</fallBackLayer>
-            <storyID>0</storyID>
+            <storyID>1</storyID>
             <storyType>Boat</storyType>
             <contentDecals />
             <loots />
@@ -390,9 +390,9 @@
       </storyManager>
       <alreadyMet>false</alreadyMet>
       <color>
-        <r>0.0769823939</r>
-        <g>0.08243459</g>
-        <b>0.103755012</b>
+        <r>0.107503206</r>
+        <g>0.2953029</g>
+        <b>0.015242869</b>
         <a>1</a>
       </color>
       <timeToShowBoat>1.5</timeToShowBoat>
@@ -404,10 +404,10 @@
         <y>0</y>
       </previousCoords>
       <coords>
-        <x>2</x>
-        <y>2</y>
+        <x>7</x>
+        <y>0</y>
       </coords>
-      <currentDirection>NorthEast</currentDirection>
+      <currentDirection>North</currentDirection>
       <id>11</id>
       <storyManager>
         <hasBeenPlayed>false</hasBeenPlayed>
@@ -416,7 +416,7 @@
             <row>0</row>
             <col>0</col>
             <fallBackLayer>0</fallBackLayer>
-            <storyID>0</storyID>
+            <storyID>1</storyID>
             <storyType>Boat</storyType>
             <contentDecals />
             <loots />
@@ -426,9 +426,9 @@
       </storyManager>
       <alreadyMet>false</alreadyMet>
       <color>
-        <r>0.485560477</r>
-        <g>0.6574636</g>
-        <b>0.9304825</b>
+        <r>0.30158177</r>
+        <g>0.414699018</g>
+        <b>0.3796185</b>
         <a>1</a>
       </color>
       <timeToShowBoat>1.5</timeToShowBoat>

@@ -13,6 +13,9 @@ public class MemberCreatorButton : MonoBehaviour {
     public RectTransform rectTransform;
 
     public Image image;
+    private Image baseImage; // ?
+
+    private Text uiText;
 
     public bool selected = false;
 
@@ -29,6 +32,9 @@ public class MemberCreatorButton : MonoBehaviour {
     public virtual void Start()
     {
         rectTransform = GetComponent<RectTransform>();
+        baseImage = GetComponent<Image>();
+        uiText = GetComponentInChildren<Text>();
+
 
         UpdateImage();
 
@@ -60,12 +66,6 @@ public class MemberCreatorButton : MonoBehaviour {
     public virtual void OnPointerUp()
     {
         initParent = transform.parent;
-
-        if (apparenceItem.locked)
-        {
-            DisplayPurchase.Instance.Display(apparenceItem, rectTransform);
-            return;
-        }
 
     }
 
@@ -140,7 +140,7 @@ public class MemberCreatorButton : MonoBehaviour {
             apparenceItem.apparenceType == ApparenceType.shoesColor)
         {
             image.enabled = false;
-            GetComponent<Image>().color = apparenceItem.color;
+            baseImage.color = apparenceItem.color;
         }
         else
         {

@@ -10,7 +10,7 @@ public class DebugLoadingButton : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        Tween.Bounce(transform);
+        /*Tween.Bounce(transform);
 
         if ( skipLoading)
         {
@@ -21,6 +21,6 @@ public class DebugLoadingButton : MonoBehaviour, IPointerClickHandler
             MainMenuManager.debugLoading_ActivateSceneAtTheEnd = true;
         }
 
-        GetComponent<Image>().color = Color.green;
+        GetComponent<Image>().color = Color.green;*/
     }
 }
