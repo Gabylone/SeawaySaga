@@ -1,0 +1,266 @@
+<?xml version="1.0"?>
+<GameData xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <progression>0</progression>
+  <globalID>1</globalID>
+  <playerCrew>
+    <hostile>false</hostile>
+    <row>0</row>
+    <col>0</col>
+    <MemberIDs>
+      <Member>
+        <id>0</id>
+        <Name>The Captain</Name>
+        <health>100</health>
+        <maxHealth>100</maxHealth>
+        <currentHunger>0</currentHunger>
+        <Lvl>1</Lvl>
+        <xp>0</xp>
+        <skillPoints>0</skillPoints>
+        <specialSkillsIndexes>
+          <int>17</int>
+        </specialSkillsIndexes>
+        <stats>
+          <int>1</int>
+          <int>1</int>
+          <int>1</int>
+          <int>1</int>
+        </stats>
+        <daysOnBoard>0</daysOnBoard>
+        <equipedWeapon>
+          <ID>40</ID>
+          <englishName>Flintlock pistol</englishName>
+          <frenchName>Flintlock pistol</frenchName>
+          <value>10</value>
+          <price>15</price>
+          <weight>4</weight>
+          <level>1</level>
+          <spriteID>11</spriteID>
+          <description />
+          <weaponType>Distance</weaponType>
+          <category>Weapon</category>
+        </equipedWeapon>
+        <equipedCloth>
+          <ID>61</ID>
+          <englishName>Simple linen top</englishName>
+          <frenchName>null</frenchName>
+          <value>10</value>
+          <price>13</price>
+          <weight>2</weight>
+          <level>1</level>
+          <spriteID>0</spriteID>
+          <description />
+          <weaponType>Distance</weaponType>
+          <category>Clothes</category>
+        </equipedCloth>
+        <job>Cannoneer</job>
+        <characterIDS>
+          <int>6</int>
+          <int>2</int>
+          <int>6</int>
+          <int>5</int>
+          <int>7</int>
+          <int>8</int>
+          <int>6</int>
+          <int>3</int>
+          <int>1</int>
+          <int>0</int>
+          <int>6</int>
+          <int>8</int>
+          <int>7</int>
+          <int>4</int>
+          <int>0</int>
+          <int>0</int>
+          <int>7</int>
+        </characterIDS>
+      </Member>
+    </MemberIDs>
+  </playerCrew>
+  <playerLoot>
+    <row>0</row>
+    <col>0</col>
+    <ids>
+      <ArrayOfInt>
+        <int>25</int>
+        <int>16</int>
+        <int>16</int>
+        <int>18</int>
+        <int>17</int>
+        <int>27</int>
+      </ArrayOfInt>
+      <ArrayOfInt />
+      <ArrayOfInt />
+      <ArrayOfInt />
+    </ids>
+    <weight>12</weight>
+    <AllItems>
+      <ArrayOfItem>
+        <Item>
+          <ID>25</ID>
+          <englishName>Brussel sprouts</englishName>
+          <frenchName>Chou de Bruxelles</frenchName>
+          <value>1</value>
+          <price>1</price>
+          <weight>2</weight>
+          <level>0</level>
+          <spriteID>0</spriteID>
+          <description>A bunch of small crunchy brussel sprouts. Nutty and sweet.</description>
+          <weaponType>Distance</weaponType>
+          <category>Provisions</category>
+        </Item>
+        <Item>
+          <ID>16</ID>
+          <englishName>Chicken</englishName>
+          <frenchName>Poulet</frenchName>
+          <value>7</value>
+          <price>5</price>
+          <weight>2</weight>
+          <level>0</level>
+          <spriteID>2</spriteID>
+          <description>A piece of white meat with a light and savoury flavour.</description>
+          <weaponType>Distance</weaponType>
+          <category>Provisions</category>
+        </Item>
+        <Item>
+          <ID>16</ID>
+          <englishName>Chicken</englishName>
+          <frenchName>Poulet</frenchName>
+          <value>7</value>
+          <price>5</price>
+          <weight>2</weight>
+          <level>0</level>
+          <spriteID>2</spriteID>
+          <description>A piece of white meat with a light and savoury flavour.</description>
+          <weaponType>Distance</weaponType>
+          <category>Provisions</category>
+        </Item>
+        <Item>
+          <ID>18</ID>
+          <englishName>Pork</englishName>
+          <frenchName>Porc</frenchName>
+          <value>9</value>
+          <price>6</price>
+          <weight>2</weight>
+          <level>0</level>
+          <spriteID>2</spriteID>
+          <description>A fatty and rich chunk of meat with salty and savoury undertones.</description>
+          <weaponType>Distance</weaponType>
+          <category>Provisions</category>
+        </Item>
+        <Item>
+          <ID>17</ID>
+          <englishName>Beef</englishName>
+          <frenchName>Boeuf</frenchName>
+          <value>9</value>
+          <price>6</price>
+          <weight>2</weight>
+          <level>0</level>
+          <spriteID>2</spriteID>
+          <description>A chunk of tender red meat with a light earthy flavour.</description>
+          <weaponType>Distance</weaponType>
+          <category>Provisions</category>
+        </Item>
+        <Item>
+          <ID>27</ID>
+          <englishName>Lemon</englishName>
+          <frenchName>Citron</frenchName>
+          <value>1</value>
+          <price>1</price>
+          <weight>2</weight>
+          <level>0</level>
+          <spriteID>0</spriteID>
+          <description>Sour, but refreshing.</description>
+          <weaponType>Distance</weaponType>
+          <category>Provisions</category>
+        </Item>
+      </ArrayOfItem>
+      <ArrayOfItem />
+      <ArrayOfItem />
+      <ArrayOfItem />
+    </AllItems>
+  </playerLoot>
+  <playerWeight>0</playerWeight>
+  <playerGold>50</playerGold>
+  <karma>0</karma>
+  <bounty>0</bounty>
+  <formulas>
+    <Formula>
+      <name>bemu</name>
+      <coords>
+        <x>0</x>
+        <y>40</y>
+      </coords>
+      <verified>false</verified>
+      <found>false</found>
+    </Formula>
+    <Formula>
+      <name>buza</name>
+      <coords>
+        <x>31</x>
+        <y>37</y>
+      </coords>
+      <verified>false</verified>
+      <found>false</found>
+    </Formula>
+    <Formula>
+      <name>kyvete</name>
+      <coords>
+        <x>4</x>
+        <y>11</y>
+      </coords>
+      <verified>false</verified>
+      <found>false</found>
+    </Formula>
+    <Formula>
+      <name>kydy</name>
+      <coords>
+        <x>37</x>
+        <y>3</y>
+      </coords>
+      <verified>false</verified>
+      <found>false</found>
+    </Formula>
+    <Formula>
+      <name>bajefe</name>
+      <coords>
+        <x>16</x>
+        <y>1</y>
+      </coords>
+      <verified>false</verified>
+      <found>false</found>
+    </Formula>
+  </formulas>
+  <clueIndexesFound />
+  <playerBoatInfo>
+    <Name>The Risen Star</Name>
+    <previousCoords>
+      <x>0</x>
+      <y>0</y>
+    </previousCoords>
+    <coords>
+      <x>15</x>
+      <y>22</y>
+    </coords>
+    <previousDirection>None</previousDirection>
+    <currentDirection>North</currentDirection>
+    <shipRange>1</shipRange>
+    <crewCapacity>2</crewCapacity>
+    <cargoLevel>1</cargoLevel>
+    <level>1</level>
+  </playerBoatInfo>
+  <treasureCoords>
+    <x>1</x>
+    <y>25</y>
+  </treasureCoords>
+  <homeCoords>
+    <x>15</x>
+    <y>22</y>
+  </homeCoords>
+  <currentQuests />
+  <finishedQuests />
+  <raining>false</raining>
+  <currentRain>0</currentRain>
+  <night>false</night>
+  <timeOfDay>5</timeOfDay>
+  <treasureName>The Blind Prisoner</treasureName>
+  <pins />
+</GameData>

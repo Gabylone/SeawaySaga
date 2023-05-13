@@ -150,7 +150,6 @@ public class SoundManager : MonoBehaviour
     #region ambiance
     public void PlayAmbiance(string ambianceName)
     {
-        Debug.Log("playing ambiance : " + ambianceName);
 
         if (!SoundEnabled)
         {
@@ -305,7 +304,6 @@ public class SoundManager : MonoBehaviour
 
     void UpdateSeaAmbianceSound()
     {
-        Debug.Log("updating sea sambiance");
 
         if (!SoundEnabled)
         {

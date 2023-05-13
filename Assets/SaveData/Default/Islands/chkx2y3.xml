@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <Chunk xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <state>VisitedIsland</state>
+  <state>DiscoveredIsland</state>
   <coords>
     <x>2</x>
     <y>3</y>
@@ -8,10 +8,10 @@
   <islandDatas>
     <IslandData>
       <worldPosition>
-        <x>-4.73</x>
-        <y>-5.82</y>
+        <x>24.62</x>
+        <y>15.01</y>
       </worldPosition>
-      <worldRotation>20.6098366</worldRotation>
+      <worldRotation>313.35614</worldRotation>
       <index>0</index>
       <coords>
         <x>2</x>
@@ -19,41 +19,15 @@
       </coords>
       <containsFormula>false</containsFormula>
       <storyManager>
-        <hasBeenPlayed>true</hasBeenPlayed>
+        <hasBeenPlayed>false</hasBeenPlayed>
         <storyHandlers>
           <StoryHandler>
             <row>0</row>
             <col>0</col>
             <fallBackLayer>0</fallBackLayer>
-            <storyID>22</storyID>
-            <storyType>Normal</storyType>
-            <contentDecals>
-              <contentDecal>
-                <row>0</row>
-                <col>1</col>
-                <decal>1</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>3</row>
-                <col>4</col>
-                <decal>1</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>0</row>
-                <col>10</col>
-                <decal>1</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>5</row>
-                <col>24</col>
-                <decal>1</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>8</row>
-                <col>29</col>
-                <decal>1</decal>
-              </contentDecal>
-            </contentDecals>
+            <storyID>4</storyID>
+            <storyType>Home</storyType>
+            <contentDecals />
             <loots />
             <crews />
           </StoryHandler>
@@ -62,10 +36,10 @@
     </IslandData>
     <IslandData>
       <worldPosition>
-        <x>-14.64</x>
-        <y>23.28</y>
+        <x>-22.81</x>
+        <y>11.96</y>
       </worldPosition>
-      <worldRotation>66.362915</worldRotation>
+      <worldRotation>235.308731</worldRotation>
       <index>1</index>
       <coords>
         <x>2</x>

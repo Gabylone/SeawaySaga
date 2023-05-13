@@ -50,8 +50,6 @@ public class Map : MonoBehaviour, IPointerClickHandler {
     {
         Init();
 
-        PlayerPrefs.DeleteAll();
-
         /*string currentMapKey = "map_data" + mapParameters.id;
         PlayerPrefs.SetString(currentMapKey, mapParameters.id == 0 ? "unlocked" : "locked");*/
     }
@@ -80,7 +78,6 @@ public class Map : MonoBehaviour, IPointerClickHandler {
 
         string currentMap_data = PlayerPrefs.GetString("map_data" + mapParameters.id, mapParameters.id == 0 ? "unlocked": "locked");
 
-        Debug.Log("IAP : " + currentMap_data);
 
         if (retry)
         {

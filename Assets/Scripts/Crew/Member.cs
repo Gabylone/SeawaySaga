@@ -109,7 +109,7 @@ public class Member {
 			}
 		}
 
-		Lvl = Mathf.Clamp ( Lvl , 1 , 10 );
+		Lvl = Mathf.Clamp ( Lvl , 1 , MapGenerator.mapParameters.endFightLevel );
 
         // JOB & SKILLS
         List<int> possibleIDs = new List<int>();

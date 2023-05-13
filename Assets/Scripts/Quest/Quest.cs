@@ -74,7 +74,7 @@ public class Quest {
 	public void Init ()
 	{
 		level = Random.Range(Crews.playerCrew.captain.Level -1, Crews.playerCrew.captain.Level+4);
-		level = Mathf.Clamp (level, 1, 10);
+		level = Mathf.Clamp (level, 1, MapGenerator.mapParameters.endFightLevel);
 
         goldValue = level * 8 + Random.Range(1, 9);
 

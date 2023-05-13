@@ -8,6 +8,8 @@ public class DisplayLevel : MonoBehaviour {
 	public Image backGround;
 	public Image fillImage;
 
+	public GameObject barGroup;
+
 	public Text text;
 
 	// Use this for initialization
@@ -21,7 +23,7 @@ public class DisplayLevel : MonoBehaviour {
 
 	}
 
-	void HandleOnDisplayCrewMemberDisplay(CrewMember member)
+    void HandleOnDisplayCrewMemberDisplay(CrewMember member)
 	{
 		UpdateUI ();
 	}
@@ -33,9 +35,18 @@ public class DisplayLevel : MonoBehaviour {
 
 		CrewMember member = CrewMember.GetSelectedMember;
 
-		// INFO
-//		text.text = "niveau " + member.Level.ToString ();
-		text.text = member.Level.ToString ();
+		if ( member.Level == member.maxLevel)
+		{
+			barGroup.SetActive (false);
+		}
+		else
+		{
+            barGroup.SetActive(true);
+        }
+
+        // INFO
+        //		text.text = "niveau " + member.Level.ToString ();
+        text.text = member.Level.ToString ();
 
 		float l = (float)member.CurrentXp / (float)member.xpToLevelUp;
 		float width = -backGround.rectTransform.rect.width + backGround.rectTransform.rect.width * l;

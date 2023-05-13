@@ -35,7 +35,13 @@ public class CrewMember {
 	}
 
 	// STATS
-	public int maxLevel = 10;
+	public int maxLevel
+	{
+		get
+		{
+			return MapGenerator.mapParameters.endFightLevel;
+        }
+	}
 
 	// EXPERIENCE
 	public int xpToLevelUp {

@@ -132,12 +132,12 @@ public class ItemLoader : MonoBehaviour {
 						level = Random.Range (Crews.playerCrew.captain.Level - 4, Crews.playerCrew.captain.Level + 6);
 					}*/
 
-					int minLevel = Mathf.Clamp(Crews.playerCrew.captain.Level - 5, 1, 10);
+					int minLevel = Mathf.Clamp(Crews.playerCrew.captain.Level - 5, 1, MapGenerator.mapParameters.endFightLevel);
 
 
 					level = Random.Range(minLevel, Crews.playerCrew.captain.Level + 5);
 
-                    level = Mathf.Clamp (level, 1, 10);
+                    level = Mathf.Clamp (level, 1, MapGenerator.mapParameters.endFightLevel);
 					tmpItems[i] = GetRandomItemOfCertainLevel ((ItemCategory)itemType,level);
 				}
 
