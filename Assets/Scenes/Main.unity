@@ -45037,7 +45037,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   storyID: 13
   launchStoryOnStart: 0
-  testStoryName: Manoir
+  testStoryName: Taverne
   testStoryType: 0
   nodeName: 
   X1: 0
@@ -50437,6 +50437,7 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 1bf93c9694a306e4da666f0e3edf79f0, type: 3}
   - {fileID: 21300000, guid: 2293b85dacded4e4db9641dc37727cf3, type: 3}
+  - {fileID: 21300000, guid: a501a98cfbfd92242a16e50aad266363, type: 3}
   - {fileID: 21300000, guid: a501a98cfbfd92242a16e50aad266363, type: 3}
   - {fileID: 21300000, guid: 64e471118b3f12a4ab2d59fdf7e29dc1, type: 3}
   - {fileID: 21300000, guid: 518306f6174929947bd98018a008e15c, type: 3}
@@ -79891,7 +79892,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1828384932}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.27349675
+  m_Size: 0.22724842
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -84141,7 +84142,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8607247d5032c7e4ba0ff47de6ea4422, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reducedDamage: 40
+  reducedDamage: 50
   firstFight: 1
   startMemberAmount: 1
   startLevel: 1
@@ -85266,6 +85267,81 @@ PrefabInstance:
       propertyPath: soundImage
       value: 
       objectReference: {fileID: 1203944371}
+    - target: {fileID: 7162752508077246224, guid: 08f822275dcb2d540a49bbeb9f3f4337,
+        type: 3}
+      propertyPath: sounds.Array.data[3].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 0c08c86ead73c3f4aa90ffdb18f24889, type: 3}
+    - target: {fileID: 7162752508077246224, guid: 08f822275dcb2d540a49bbeb9f3f4337,
+        type: 3}
+      propertyPath: sounds.Array.data[4].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 8305effe770f49e48ac6f4f4d21dc9ee, type: 3}
+    - target: {fileID: 7162752508077246224, guid: 08f822275dcb2d540a49bbeb9f3f4337,
+        type: 3}
+      propertyPath: sounds.Array.data[5].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: be6c6c3aeaf960c409a1f708dea6c30e, type: 3}
+    - target: {fileID: 7162752508077246224, guid: 08f822275dcb2d540a49bbeb9f3f4337,
+        type: 3}
+      propertyPath: sounds.Array.data[6].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: ee28645bb006fc0489487b5fa73eeade, type: 3}
+    - target: {fileID: 7162752508077246224, guid: 08f822275dcb2d540a49bbeb9f3f4337,
+        type: 3}
+      propertyPath: sounds.Array.data[7].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 6e4dcaa53502d7145b7a772d1f927f26, type: 3}
+    - target: {fileID: 7162752508077246224, guid: 08f822275dcb2d540a49bbeb9f3f4337,
+        type: 3}
+      propertyPath: sounds.Array.data[7].name
+      value: ambiance_boat_night
+      objectReference: {fileID: 0}
+    - target: {fileID: 7162752508077246224, guid: 08f822275dcb2d540a49bbeb9f3f4337,
+        type: 3}
+      propertyPath: sounds.Array.data[8].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 1808cfc4d4db57a43a2dc3fed2ca4032, type: 3}
+    - target: {fileID: 7162752508077246224, guid: 08f822275dcb2d540a49bbeb9f3f4337,
+        type: 3}
+      propertyPath: sounds.Array.data[9].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: ee28645bb006fc0489487b5fa73eeade, type: 3}
+    - target: {fileID: 7162752508077246224, guid: 08f822275dcb2d540a49bbeb9f3f4337,
+        type: 3}
+      propertyPath: sounds.Array.data[10].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: e0e7154f6fef08643aa8beea4968a37a, type: 3}
+    - target: {fileID: 7162752508077246224, guid: 08f822275dcb2d540a49bbeb9f3f4337,
+        type: 3}
+      propertyPath: sounds.Array.data[11].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 8f0549f3e9974c148aaaa46e860f2c2d, type: 3}
+    - target: {fileID: 7162752508077246224, guid: 08f822275dcb2d540a49bbeb9f3f4337,
+        type: 3}
+      propertyPath: sounds.Array.data[45].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 149c38ac87ca58244a30252d6da479d3, type: 3}
+    - target: {fileID: 7162752508077246224, guid: 08f822275dcb2d540a49bbeb9f3f4337,
+        type: 3}
+      propertyPath: sounds.Array.data[46].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 149c38ac87ca58244a30252d6da479d3, type: 3}
+    - target: {fileID: 7162752508077246224, guid: 08f822275dcb2d540a49bbeb9f3f4337,
+        type: 3}
+      propertyPath: sounds.Array.data[47].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: dd955578d76b8f94a8e183c162cd602c, type: 3}
+    - target: {fileID: 7162752508077246224, guid: 08f822275dcb2d540a49bbeb9f3f4337,
+        type: 3}
+      propertyPath: sounds.Array.data[47].name
+      value: ambiance_boat_day
+      objectReference: {fileID: 0}
+    - target: {fileID: 7162752508077246224, guid: 08f822275dcb2d540a49bbeb9f3f4337,
+        type: 3}
+      propertyPath: sounds.Array.data[252].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 0bae04f39e0ac4f4a87eeff31c50c4eb, type: 3}
     - target: {fileID: 7162752508077246226, guid: 08f822275dcb2d540a49bbeb9f3f4337,
         type: 3}
       propertyPath: m_Name

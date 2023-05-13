@@ -13,7 +13,8 @@ public class InGameBackGround : MonoBehaviour {
     {
         Island,
         House,
-        Tavern,
+        TavernFull,
+        TavernEmpty,
         Cave,
         Forest,
         Village,
@@ -119,7 +120,7 @@ public class InGameBackGround : MonoBehaviour {
 
         SoundManager.Instance.UpdateAmbianceSound();
 
-        if ( currentType == Type.Tavern)
+        if ( currentType == Type.TavernFull)
         {
             MusicManager.Instance.PlayTavernMusic();
         }
@@ -154,7 +155,8 @@ public class InGameBackGround : MonoBehaviour {
                 }
                 break;
             case Type.House:
-            case Type.Tavern:
+            case Type.TavernFull:
+            case Type.TavernEmpty:
             case Type.Cave:
                 if (TimeManager.Instance.raining)
                 {
@@ -185,12 +187,11 @@ public class InGameBackGround : MonoBehaviour {
             case Type.Village:
             case Type.Boat:
                 return false;
-                break;
             case Type.House:
-            case Type.Tavern:
+            case Type.TavernEmpty:
+            case Type.TavernFull:
             case Type.Cave:
                 return true;
-                break;
             default:
                 break;
         }

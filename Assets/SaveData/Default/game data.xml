@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <GameData xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <progression>1</progression>
+  <progression>2</progression>
   <globalID>1</globalID>
   <playerCrew>
     <hostile>false</hostile>
@@ -17,7 +17,7 @@
         <xp>0</xp>
         <skillPoints>0</skillPoints>
         <specialSkillsIndexes>
-          <int>5</int>
+          <int>17</int>
         </specialSkillsIndexes>
         <stats>
           <int>1</int>
@@ -27,16 +27,16 @@
         </stats>
         <daysOnBoard>0</daysOnBoard>
         <equipedWeapon>
-          <ID>39</ID>
-          <englishName>Wooden club</englishName>
-          <frenchName>Wooden club</frenchName>
+          <ID>40</ID>
+          <englishName>Flintlock pistol</englishName>
+          <frenchName>Flintlock pistol</frenchName>
           <value>10</value>
-          <price>10</price>
-          <weight>5</weight>
+          <price>15</price>
+          <weight>4</weight>
           <level>1</level>
-          <spriteID>0</spriteID>
+          <spriteID>11</spriteID>
           <description />
-          <weaponType>Stick</weaponType>
+          <weaponType>Distance</weaponType>
           <category>Weapon</category>
         </equipedWeapon>
         <equipedCloth>
@@ -52,25 +52,25 @@
           <weaponType>Distance</weaponType>
           <category>Clothes</category>
         </equipedCloth>
-        <job>Brute</job>
+        <job>Cannoneer</job>
         <characterIDS>
           <int>0</int>
+          <int>1</int>
           <int>8</int>
+          <int>7</int>
           <int>9</int>
+          <int>6</int>
+          <int>2</int>
           <int>3</int>
-          <int>9</int>
+          <int>1</int>
           <int>0</int>
           <int>6</int>
-          <int>0</int>
-          <int>1</int>
-          <int>0</int>
-          <int>7</int>
-          <int>5</int>
-          <int>3</int>
-          <int>10</int>
+          <int>9</int>
+          <int>18</int>
+          <int>2</int>
           <int>4</int>
-          <int>3</int>
-          <int>1</int>
+          <int>2</int>
+          <int>16</int>
         </characterIDS>
       </Member>
     </MemberIDs>
@@ -80,67 +80,95 @@
     <col>0</col>
     <ids>
       <ArrayOfInt>
-        <int>8</int>
-        <int>36</int>
-        <int>10</int>
-        <int>6</int>
+        <int>16</int>
+        <int>37</int>
+        <int>4</int>
+        <int>14</int>
+        <int>28</int>
+        <int>3</int>
       </ArrayOfInt>
       <ArrayOfInt />
       <ArrayOfInt />
       <ArrayOfInt />
     </ids>
-    <weight>8</weight>
+    <weight>12</weight>
     <AllItems>
       <ArrayOfItem>
         <Item>
-          <ID>8</ID>
-          <englishName>Salmon</englishName>
-          <frenchName>Saumon</frenchName>
-          <value>6</value>
-          <price>4</price>
+          <ID>16</ID>
+          <englishName>Chicken</englishName>
+          <frenchName>Poulet</frenchName>
+          <value>7</value>
+          <price>5</price>
           <weight>2</weight>
           <level>0</level>
-          <spriteID>1</spriteID>
-          <description>A soft and mild-flavored filet that melts in your mouth.</description>
+          <spriteID>2</spriteID>
+          <description>A piece of white meat with a light and savoury flavour.</description>
           <weaponType>Distance</weaponType>
           <category>Provisions</category>
         </Item>
         <Item>
-          <ID>36</ID>
-          <englishName>Asparagus</englishName>
-          <frenchName>Asperges</frenchName>
+          <ID>37</ID>
+          <englishName>Apricot</englishName>
+          <frenchName>Abricot</frenchName>
+          <value>1</value>
+          <price>1</price>
+          <weight>2</weight>
+          <level>0</level>
+          <spriteID>0</spriteID>
+          <description>A velvety apricot with a tangy and sweet taste.</description>
+          <weaponType>Distance</weaponType>
+          <category>Provisions</category>
+        </Item>
+        <Item>
+          <ID>4</ID>
+          <englishName>Monkfish</englishName>
+          <frenchName>Lotte</frenchName>
+          <value>5</value>
+          <price>3</price>
+          <weight>2</weight>
+          <level>0</level>
+          <spriteID>1</spriteID>
+          <description>Meaty white flesh with a mild and sweet flavor.</description>
+          <weaponType>Distance</weaponType>
+          <category>Provisions</category>
+        </Item>
+        <Item>
+          <ID>14</ID>
+          <englishName>Bacon</englishName>
+          <frenchName>Lardon</frenchName>
+          <value>6</value>
+          <price>4</price>
+          <weight>2</weight>
+          <level>0</level>
+          <spriteID>2</spriteID>
+          <description>A dry-cured and smoked meat cut from a pig's belly.</description>
+          <weaponType>Distance</weaponType>
+          <category>Provisions</category>
+        </Item>
+        <Item>
+          <ID>28</ID>
+          <englishName>Pear</englishName>
+          <frenchName>Poire</frenchName>
           <value>2</value>
           <price>1</price>
           <weight>2</weight>
           <level>0</level>
           <spriteID>0</spriteID>
-          <description>A delicate spear of asparagus.</description>
+          <description>A tangy fruit with a buttery texture that melts in the mouth.</description>
           <weaponType>Distance</weaponType>
           <category>Provisions</category>
         </Item>
         <Item>
-          <ID>10</ID>
-          <englishName>Lobster</englishName>
-          <frenchName>Homard</frenchName>
-          <value>6</value>
-          <price>4</price>
+          <ID>3</ID>
+          <englishName>Clam</englishName>
+          <frenchName>Palourde</frenchName>
+          <value>3</value>
+          <price>2</price>
           <weight>2</weight>
           <level>0</level>
           <spriteID>1</spriteID>
-          <description>Sweet and delicate lobster flesh. Very satisfying and rich flavour.</description>
-          <weaponType>Distance</weaponType>
-          <category>Provisions</category>
-        </Item>
-        <Item>
-          <ID>6</ID>
-          <englishName>Crab</englishName>
-          <frenchName>Crabe</frenchName>
-          <value>4</value>
-          <price>3</price>
-          <weight>2</weight>
-          <level>0</level>
-          <spriteID>1</spriteID>
-          <description>Slightly fishy and savoury flesh, with a mineral sweetness to it.</description>
+          <description>A strong clam with a nice salty and fishy taste. A classic.</description>
           <weaponType>Distance</weaponType>
           <category>Provisions</category>
         </Item>
@@ -156,7 +184,7 @@
   <bounty>0</bounty>
   <formulas>
     <Formula>
-      <name>masepu</name>
+      <name>lukypi</name>
       <coords>
         <x>0</x>
         <y>14</y>
@@ -167,7 +195,7 @@
   </formulas>
   <clueIndexesFound />
   <playerBoatInfo>
-    <Name>The Sinking Shark</Name>
+    <Name>The Ugly Anchor</Name>
     <previousCoords>
       <x>0</x>
       <y>0</y>
@@ -197,6 +225,6 @@
   <currentRain>0</currentRain>
   <night>false</night>
   <timeOfDay>5</timeOfDay>
-  <treasureName>The Hateful Nautilus</treasureName>
+  <treasureName>The Greedy Skull</treasureName>
   <pins />
 </GameData>

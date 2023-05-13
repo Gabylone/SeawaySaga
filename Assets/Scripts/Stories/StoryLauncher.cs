@@ -81,7 +81,6 @@ public class StoryLauncher : MonoBehaviour {
 
         playingStory = true;
 
-        SoundManager.Instance.UpdateAmbianceSound();
     }
 
     void HideEverything()
@@ -118,6 +117,8 @@ public class StoryLauncher : MonoBehaviour {
 
     void DisplayBackground()
     {
+        SoundManager.Instance.UpdateAmbianceSound();
+
         Transitions.Instance.ScreenTransition.FadeIn(0.5f);
 
 

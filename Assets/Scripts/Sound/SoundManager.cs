@@ -150,6 +150,8 @@ public class SoundManager : MonoBehaviour
     #region ambiance
     public void PlayAmbiance(string ambianceName)
     {
+        Debug.Log("playing ambiance : " + ambianceName);
+
         if (!SoundEnabled)
         {
             return;
@@ -170,6 +172,10 @@ public class SoundManager : MonoBehaviour
 
         ambiantSource.clip = sound.clip;
         ambiantSource.Play();
+    }
+    public void StopAmbiance()
+    {
+        ambiantSource.Stop();
     }
     public void PlayRain()
     {
@@ -299,6 +305,8 @@ public class SoundManager : MonoBehaviour
 
     void UpdateSeaAmbianceSound()
     {
+        Debug.Log("updating sea sambiance");
+
         if (!SoundEnabled)
         {
             return;
@@ -317,16 +325,18 @@ public class SoundManager : MonoBehaviour
         }
         else if ( TimeManager.Instance.dayState == TimeManager.DayState.Day)
         {
-            PlayAmbiance("ambiance_beach_day");
+            PlayAmbiance("ambiance_boat_day");
         }
         else
         {
-            PlayAmbiance("ambiance_beach_night");
+            PlayAmbiance("ambiance_boat_night");
         }
     }
 
     void UpdateLandAmbianceSound()
     {
+        Debug.Log("updating land ambiance");
+
         if (!SoundEnabled)
         {
             return;
@@ -338,6 +348,9 @@ public class SoundManager : MonoBehaviour
 
         switch (InGameBackGround.Instance.currentType)
         {
+            /*case InGameBackGround.Type.Dark:
+                StopAmbiance();
+                break;*/
             case InGameBackGround.Type.Island:
                 CheckRain();
 
@@ -353,7 +366,10 @@ public class SoundManager : MonoBehaviour
             case InGameBackGround.Type.House:
                 SoundManager.Instance.PlayAmbiance("ambiance_house");
                 break;
-            case InGameBackGround.Type.Tavern:
+            case InGameBackGround.Type.TavernEmpty:
+                    SoundManager.Instance.PlayAmbiance("ambiance_house");
+                break;
+            case InGameBackGround.Type.TavernFull:
                 if (TimeManager.Instance.dayState == TimeManager.DayState.Night)
                 {
                     SoundManager.Instance.PlayAmbiance("ambiance_tavern_night");
@@ -394,6 +410,16 @@ public class SoundManager : MonoBehaviour
                 }
                 break;
             case InGameBackGround.Type.Boat:
+                if (TimeManager.Instance.dayState == TimeManager.DayState.Night)
+                {
+                    SoundManager.Instance.PlayAmbiance("ambiance_boat_night");
+
+                }
+                else
+                {
+                    SoundManager.Instance.PlayAmbiance("ambiance_boat_day");
+
+                }
                 // same sea ambiance
                 break;
         }
