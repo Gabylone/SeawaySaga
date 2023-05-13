@@ -1,0 +1,257 @@
+<?xml version="1.0"?>
+<GameData xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <progression>0</progression>
+  <globalID>1</globalID>
+  <playerCrew>
+    <hostile>false</hostile>
+    <row>0</row>
+    <col>0</col>
+    <MemberIDs>
+      <Member>
+        <id>0</id>
+        <Name>André</Name>
+        <health>100</health>
+        <maxHealth>100</maxHealth>
+        <currentHunger>0</currentHunger>
+        <Lvl>1</Lvl>
+        <xp>0</xp>
+        <skillPoints>0</skillPoints>
+        <specialSkillsIndexes>
+          <int>5</int>
+        </specialSkillsIndexes>
+        <stats>
+          <int>1</int>
+          <int>1</int>
+          <int>1</int>
+          <int>1</int>
+        </stats>
+        <daysOnBoard>0</daysOnBoard>
+        <equipedWeapon>
+          <ID>39</ID>
+          <englishName>Wooden club</englishName>
+          <frenchName>Wooden club</frenchName>
+          <value>10</value>
+          <price>10</price>
+          <weight>5</weight>
+          <level>1</level>
+          <spriteID>0</spriteID>
+          <description />
+          <weaponType>Stick</weaponType>
+          <category>Weapon</category>
+        </equipedWeapon>
+        <equipedCloth>
+          <ID>61</ID>
+          <englishName>Simple linen top</englishName>
+          <frenchName>null</frenchName>
+          <value>10</value>
+          <price>13</price>
+          <weight>2</weight>
+          <level>1</level>
+          <spriteID>0</spriteID>
+          <description />
+          <weaponType>Distance</weaponType>
+          <category>Clothes</category>
+        </equipedCloth>
+        <job>Brute</job>
+        <characterIDS>
+          <int>0</int>
+          <int>2</int>
+          <int>9</int>
+          <int>5</int>
+          <int>1</int>
+          <int>3</int>
+          <int>0</int>
+          <int>0</int>
+          <int>1</int>
+          <int>0</int>
+          <int>4</int>
+          <int>0</int>
+          <int>5</int>
+          <int>7</int>
+          <int>1</int>
+          <int>3</int>
+          <int>5</int>
+        </characterIDS>
+      </Member>
+    </MemberIDs>
+  </playerCrew>
+  <playerLoot>
+    <row>0</row>
+    <col>0</col>
+    <ids>
+      <ArrayOfInt>
+        <int>19</int>
+        <int>35</int>
+        <int>8</int>
+        <int>14</int>
+        <int>18</int>
+        <int>32</int>
+      </ArrayOfInt>
+      <ArrayOfInt />
+      <ArrayOfInt />
+      <ArrayOfInt />
+    </ids>
+    <weight>12</weight>
+    <AllItems>
+      <ArrayOfItem>
+        <Item>
+          <ID>19</ID>
+          <englishName>Lamb</englishName>
+          <frenchName>Mouton</frenchName>
+          <value>8</value>
+          <price>5</price>
+          <weight>2</weight>
+          <level>0</level>
+          <spriteID>2</spriteID>
+          <description>A tender meat with a strong and pleasant flavour.</description>
+          <weaponType>Distance</weaponType>
+          <category>Provisions</category>
+        </Item>
+        <Item>
+          <ID>35</ID>
+          <englishName>Apple</englishName>
+          <frenchName>Pomme</frenchName>
+          <value>2</value>
+          <price>1</price>
+          <weight>2</weight>
+          <level>0</level>
+          <spriteID>0</spriteID>
+          <description>A ripe apple with a satisfying crunch.</description>
+          <weaponType>Distance</weaponType>
+          <category>Provisions</category>
+        </Item>
+        <Item>
+          <ID>8</ID>
+          <englishName>Salmon</englishName>
+          <frenchName>Saumon</frenchName>
+          <value>6</value>
+          <price>4</price>
+          <weight>2</weight>
+          <level>0</level>
+          <spriteID>1</spriteID>
+          <description>A soft and mild-flavored filet that melts in your mouth.</description>
+          <weaponType>Distance</weaponType>
+          <category>Provisions</category>
+        </Item>
+        <Item>
+          <ID>14</ID>
+          <englishName>Bacon</englishName>
+          <frenchName>Lardon</frenchName>
+          <value>6</value>
+          <price>4</price>
+          <weight>2</weight>
+          <level>0</level>
+          <spriteID>2</spriteID>
+          <description>A dry-cured and smoked meat cut from a pig's belly.</description>
+          <weaponType>Distance</weaponType>
+          <category>Provisions</category>
+        </Item>
+        <Item>
+          <ID>18</ID>
+          <englishName>Pork</englishName>
+          <frenchName>Porc</frenchName>
+          <value>9</value>
+          <price>6</price>
+          <weight>2</weight>
+          <level>0</level>
+          <spriteID>2</spriteID>
+          <description>A fatty and rich chunk of meat with salty and savoury undertones.</description>
+          <weaponType>Distance</weaponType>
+          <category>Provisions</category>
+        </Item>
+        <Item>
+          <ID>32</ID>
+          <englishName>Clementine</englishName>
+          <frenchName>Clémentine</frenchName>
+          <value>2</value>
+          <price>1</price>
+          <weight>2</weight>
+          <level>0</level>
+          <spriteID>0</spriteID>
+          <description>A small clementine packed with flavour.</description>
+          <weaponType>Distance</weaponType>
+          <category>Provisions</category>
+        </Item>
+      </ArrayOfItem>
+      <ArrayOfItem />
+      <ArrayOfItem />
+      <ArrayOfItem />
+    </AllItems>
+  </playerLoot>
+  <playerWeight>0</playerWeight>
+  <playerGold>50</playerGold>
+  <karma>0</karma>
+  <bounty>0</bounty>
+  <formulas>
+    <Formula>
+      <name>gyqu</name>
+      <coords>
+        <x>3</x>
+        <y>4</y>
+      </coords>
+      <verified>false</verified>
+      <found>false</found>
+    </Formula>
+    <Formula>
+      <name>koxo</name>
+      <coords>
+        <x>6</x>
+        <y>2</y>
+      </coords>
+      <verified>false</verified>
+      <found>false</found>
+    </Formula>
+    <Formula>
+      <name>fezy</name>
+      <coords>
+        <x>6</x>
+        <y>1</y>
+      </coords>
+      <verified>false</verified>
+      <found>false</found>
+    </Formula>
+    <Formula>
+      <name>wacysy</name>
+      <coords>
+        <x>8</x>
+        <y>1</y>
+      </coords>
+      <verified>false</verified>
+      <found>false</found>
+    </Formula>
+  </formulas>
+  <clueIndexesFound />
+  <playerBoatInfo>
+    <Name>The Deep Crab</Name>
+    <previousCoords>
+      <x>0</x>
+      <y>0</y>
+    </previousCoords>
+    <coords>
+      <x>4</x>
+      <y>46</y>
+    </coords>
+    <previousDirection>None</previousDirection>
+    <currentDirection>North</currentDirection>
+    <shipRange>1</shipRange>
+    <crewCapacity>2</crewCapacity>
+    <cargoLevel>1</cargoLevel>
+    <level>1</level>
+  </playerBoatInfo>
+  <treasureCoords>
+    <x>7</x>
+    <y>4</y>
+  </treasureCoords>
+  <homeCoords>
+    <x>4</x>
+    <y>46</y>
+  </homeCoords>
+  <currentQuests />
+  <finishedQuests />
+  <raining>false</raining>
+  <currentRain>0</currentRain>
+  <night>false</night>
+  <timeOfDay>5</timeOfDay>
+  <treasureName>The Modest Raider</treasureName>
+  <pins />
+</GameData>

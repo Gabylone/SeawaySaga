@@ -227,10 +227,10 @@ public class StoryCheck : MonoBehaviour {
 
 		theresAnError = true;
 
-		Debug.Log (storyToCheck.dataName);
-		Debug.LogError (str);
-		Debug.LogError ("CELL CONTENT : " + content);
-		Debug.LogError ("ROW : " + alphabet [decal] + " / COLL " + index);
+		//Debug.Log (storyToCheck.dataName);
+		//Debug.LogError (str);
+		//Debug.LogError ("CELL CONTENT : " + content);
+		//Debug.LogError ("ROW : " + alphabet [decal] + " / COLL " + index);
 	}
 
     public static string GetCellName(int decal, int col)

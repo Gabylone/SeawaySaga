@@ -18,7 +18,13 @@ public class Skill_BearTrap : Skill {
 	{
 		base.Trigger (fighter);
 
-		string str = "Come if you have the guts !";
+        string[] strs = new string[2]
+        {
+            "Come if you have the guts!",
+            "One step closer and you’ll regret this!"
+        };
+
+        string str = strs[Random.Range(0, strs.Length)];
 		fighter.Speak (str);
 	}
 
@@ -49,7 +55,7 @@ public class Skill_BearTrap : Skill {
 
     IEnumerator ThrowCoroutine()
     {
-        fighter.iconVisual.bearTrap_Transform.SetParent(fighter.BodyTransform);
+        fighter.iconVisual.bearTrap_Transform.SetParent(fighter.GetTransform.parent);
 
         Vector2 decal = decalToFighter;
 

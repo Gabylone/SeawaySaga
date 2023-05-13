@@ -125,14 +125,17 @@ public class ItemLoader : MonoBehaviour {
 				if ( (ItemCategory)itemType == ItemCategory.Misc || (ItemCategory)itemType == ItemCategory.Provisions ) {
 					tmpItems [i] = GetRandomItem ((ItemCategory)itemType);
 				} else {
-                    // il ne peut prendre le capitaine ennemi que si otherinventory.trade ( ou loot ) == true
-                    /*if (OtherInventory.Instance.type != OtherInventory.Type.Trade) {
+					// il ne peut prendre le capitaine ennemi que si otherinventory.trade ( ou loot ) == true
+					/*if (OtherInventory.Instance.type != OtherInventory.Type.Trade) {
 						level = Random.Range (Crews.playerCrew.captain.Level - 2, Crews.playerCrew.captain.Level + 2);
 					} else {
 						level = Random.Range (Crews.playerCrew.captain.Level - 4, Crews.playerCrew.captain.Level + 6);
 					}*/
 
-                    level = Random.Range(Crews.playerCrew.captain.Level - 5, Crews.playerCrew.captain.Level + 5);
+					int minLevel = Mathf.Clamp(Crews.playerCrew.captain.Level - 5, 1, 10);
+
+
+					level = Random.Range(minLevel, Crews.playerCrew.captain.Level + 5);
 
                     level = Mathf.Clamp (level, 1, 10);
 					tmpItems[i] = GetRandomItemOfCertainLevel ((ItemCategory)itemType,level);
@@ -158,7 +161,7 @@ public class ItemLoader : MonoBehaviour {
 
 	public Item GetRandomItemOfCertainLevel ( ItemCategory category , int targetLevel = 0 ) {
 
-//		Debug.Log ( items [(int)category] [2].ID + " AAAAAAAAAAAAAA" );
+//		//Debug.Log ( items [(int)category] [2].ID + " AAAAAAAAAAAAAA" );
 		Item[] tmpItems = System.Array.FindAll (items [(int)category], x => x.level == targetLevel);
 
 		return tmpItems [Random.Range (0, tmpItems.Length)];
@@ -178,7 +181,7 @@ public class ItemLoader : MonoBehaviour {
             }
         }
 
-        Debug.LogError("Could't find item named : " + itemName + " in category " +  category);
+        //Debug.LogError("Could't find item named : " + itemName + " in category " +  category);
 
         return items[(int)category][0];
     }
@@ -192,7 +195,7 @@ public class ItemLoader : MonoBehaviour {
 
 		}
 
-		Debug.Log ("did not find item");
+		//Debug.Log ("did not find item");
 
 		return new Item ();
 
@@ -200,7 +203,7 @@ public class ItemLoader : MonoBehaviour {
 
 	public Item GetItem ( ItemCategory itemType , int itemID ) {
 		if ( itemID >= items[(int)itemType].Length ) {
-			Debug.LogError ( "item id out of range " + " ID : " + itemID + " / cat : " + itemType + " L : " + items[(int)itemType].Length );
+			//Debug.LogError ( "item id out of range " + " ID : " + itemID + " / cat : " + itemType + " L : " + items[(int)itemType].Length );
 			return items [(int)itemType][0];
 		}
 		return items[(int)itemType][itemID];

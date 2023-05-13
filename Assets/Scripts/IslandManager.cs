@@ -36,6 +36,18 @@ public class IslandManager : MonoBehaviour
         {
             islands[i].id = i;
         }
+
+        ResetIslandPositions();
+
+    }
+
+    public void ResetIslandPositions()
+    {
+        tmpPossiblePositions.Clear();
+        foreach (var item in possiblePosisitions)
+        {
+            tmpPossiblePositions.Add(item);
+        }
     }
 
     public IslandData GetCurrentIslandData()
@@ -46,13 +58,71 @@ public class IslandManager : MonoBehaviour
         return currentIslandData;
     }
 
+    public IslandData GetClosestIslandDataForQuest()
+    {
+        int a = 1;
+
+        while (true)
+        {
+            Debug.Log("A : " + a);
+
+            Coords playerCoords = PlayerBoat.Instance.GetBoatInfo().coords;
+            for (int x = -a; x < a + 1; x++)
+            {
+                for (int y = -a; y < a + 1; y++)
+                {
+                    if (x > -a && x < a && y > -a && y < a)
+                    {
+                        continue;
+                    }
+
+                    if (x >= MapGenerator.Instance.GetMapHorizontalScale || x < 0 ||
+                        y >= MapGenerator.Instance.GetMapVerticalScale || y <= 0)
+                    {
+                        continue;
+                    }
+
+
+                    Coords c = new Coords(playerCoords.x + x, playerCoords.y + y);
+                    Chunk chunk = Chunk.GetChunk(c);
+
+                    if (chunk.HasIslands())
+                    {
+                        Quest islandQuest = QuestManager.Instance.currentQuests.Find(x => x.GetTargetIslandData() != null && chunk.coords == x.GetTargetIslandData().coords);
+
+                        // the island has already a quest
+                        if (islandQuest != null)
+                        {
+                            ////Debug.Log("QUEST : Island already has a quest");
+                            continue;
+                        }
+
+                        return chunk.islandDatas[0];
+                    }
+                }
+            }
+
+            ++a;
+
+            if (a > 50)
+            {
+                Debug.LogError("find closest island : broke out of loop");
+                break;
+            }
+        }
+
+
+                Debug.LogError("returnning random island instead of closest");
+        return GetRandomIslandDataForQuest();
+    }
+
     public IslandData GetRandomIslandDataForQuest()
     {
         List<IslandData> potentialIslands = new List<IslandData>();
 
         foreach (var chunk in Chunk.chunks.Values)
         {
-            if ( !chunk.HasIslands())
+            if (!chunk.HasIslands())
             {
                 continue;
             }
@@ -63,7 +133,7 @@ public class IslandManager : MonoBehaviour
                 // PEUT BEUGUER PARCE que serialization bizarre
                 if (islandData == GetCurrentIslandData())
                 {
-                    //Debug.Log("QUEST : Island is current island");
+                    ////Debug.Log("QUEST : Island is current island");
                     continue;
                 }
 
@@ -72,7 +142,7 @@ public class IslandManager : MonoBehaviour
                 // the island has already a quest
                 if (islandQuest != null)
                 {
-                    //Debug.Log("QUEST : Island already has a quest");
+                    ////Debug.Log("QUEST : Island already has a quest");
                     continue;
                 }
 
@@ -80,6 +150,7 @@ public class IslandManager : MonoBehaviour
                 potentialIslands.Add(islandData);
             }
         }
+
 
         // no potential island, returning house ( et on verra )
         if (potentialIslands.Count == 0)
@@ -94,12 +165,8 @@ public class IslandManager : MonoBehaviour
     #region island positions
     public Vector2 GetNewIslandPosition()
     {
-        tmpPossiblePositions.Clear();
-
-        foreach (var item in possiblePosisitions)
-        {
-            tmpPossiblePositions.Add(item);
-        }
+        if (tmpPossiblePositions.Count == 0)
+            ResetIslandPositions();
 
         int index = Random.Range(0, tmpPossiblePositions.Count);
 

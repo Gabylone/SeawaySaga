@@ -136,10 +136,31 @@ public class InGameMenu : MonoBehaviour
             CrewMember.GetSelectedMember.CurrentHunger -= hunger;
         }*/
 
-        if (OtherInventory.Instance.type == OtherInventory.Type.None)
+        switch (OtherInventory.Instance.type)
+        {
+            case OtherInventory.Type.None:
+                LootManager.Instance.PlayerLoot.RemoveItem(foodItem);
+                break;
+            case OtherInventory.Type.Loot:
+            case OtherInventory.Type.Trade:
+                if ( LootUI.Instance.currentSide == Crews.Side.Player)
+                {
+                    LootManager.Instance.PlayerLoot.RemoveItem(foodItem);
+                }
+                else
+                {
+                    LootManager.Instance.OtherLoot.RemoveItem(foodItem);
+                }
+
+                break;
+            default:
+                break;
+        }
+
+        /*if (OtherInventory.Instance.type == OtherInventory.Type.None)
             LootManager.Instance.PlayerLoot.RemoveItem(foodItem);
         else
-            LootManager.Instance.OtherLoot.RemoveItem(foodItem);
+            LootManager.Instance.OtherLoot.RemoveItem(foodItem);*/
 
     }
 
@@ -163,13 +184,13 @@ public class InGameMenu : MonoBehaviour
             return;
         }
 
-        if (OtherInventory.Instance.type == OtherInventory.Type.Loot)
+        /*if (OtherInventory.Instance.type == OtherInventory.Type.Loot)
         {
             if (!WeightManager.Instance.CheckWeight(item.weight))
             {
                 return;
             }
-        }
+        }*/
 
         // equip during trade
         if (OtherInventory.Instance.type == OtherInventory.Type.Trade)

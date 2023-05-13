@@ -80,7 +80,7 @@ public class StoryInput : MonoBehaviour {
 
         if (activateInputDebug)
         {
-            Debug.Log("trigger wait for input");
+            //Debug.Log("trigger wait for input");
         }
 
         CancelInvoke("WaitForInputDelay");
@@ -90,7 +90,7 @@ public class StoryInput : MonoBehaviour {
 
         if (activateInputDebug)
         {
-            Debug.Log("waiting input delay");
+            //Debug.Log("waiting input delay");
         }
 
         waitForInput = true;
@@ -105,7 +105,7 @@ public class StoryInput : MonoBehaviour {
 
         if (activateInputDebug)
         {
-            Debug.Log("pressing input");
+            //Debug.Log("pressing input");
         }
 
         waitForInput = false;
@@ -124,7 +124,7 @@ public class StoryInput : MonoBehaviour {
 
         if (activateInputDebug)
         {
-            Debug.Log("pressing input delay");
+            //Debug.Log("pressing input delay");
         }
     }
 

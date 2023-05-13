@@ -44,7 +44,6 @@ public class Island : RandomPlacable {
     {
         base.Start();
 
-
         image = GetComponentInChildren<Image>();
 
         islandTriggers = GetComponentsInChildren<IslandTrigger>(true);
@@ -118,7 +117,7 @@ public class Island : RandomPlacable {
 
             //GetComponent<RectTransform> ().anchoredPosition = chunk.IslandData.positionOnScreen;
             _transform.localPosition = new Vector3(islandData.worldPosition.x, 0f, islandData.worldPosition.y);;
-            //Debug.Log( "local position : " + _transform.localPosition.x + " / local position " + _transform.localPosition.y );
+            ////Debug.Log( "local position : " + _transform.localPosition.x + " / local position " + _transform.localPosition.y );
 
             _transform.rotation = Quaternion.EulerAngles(0, islandData.worldRotation,0);
 
@@ -146,7 +145,7 @@ public class Island : RandomPlacable {
 
         if (!WorldTouch.Instance.IsEnabled())
         {
-            Debug.Log("world touch disable");
+            //Debug.Log("world touch disable");
             return;
         }
 
@@ -155,7 +154,7 @@ public class Island : RandomPlacable {
             return;
         }
 
-        Debug.Log("mouse down");
+        //Debug.Log("mouse down");
 
 
         Select();

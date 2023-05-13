@@ -101,7 +101,7 @@ public class ClueManager : MonoBehaviour
             else
             {
                 str = str.Replace("*", " ");
-                str += "But CAPITAINE heard this already... Maybe he knows enough about the treasure to start following the rumors people told him...";
+                str += "But CAPITAINE heard this already... Maybe they know enough about the treasure to start following the remours people told them...";
 
                 Narrator.Instance.ShowNarratorInput(str);
             }
@@ -110,7 +110,21 @@ public class ClueManager : MonoBehaviour
         {
             if ( alreadyKnown)
             {
-                str += "*But you clearly already know this*And it seems you know everything about the treasure, too...*So you just go find follow the leads people gave you...";
+
+                string[] strs = new string[2]
+                {
+                    "*But you clearly already know this" +
+                    "*And it seems you know everything about the treasure, too..." +
+                    "*So you just follow the leads people gave you…",
+
+                    "*You already know this, don’t you?" +
+                    "*And it seems you know everything about the treasure too…" +
+                    "*So now think about what people told you, and follow their indications!"
+                };
+
+                string niktemor = strs[Random.Range(0, strs.Length)];
+
+                str += niktemor;
             }
 
             DialogueManager.Instance.OtherSpeak_Story(str);

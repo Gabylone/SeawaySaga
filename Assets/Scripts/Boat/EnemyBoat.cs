@@ -23,6 +23,8 @@ public class EnemyBoat : Boat
 
     public float distanceFromOtherPlayer = 5f;
 
+    public GameObject[] meshes_Objs;
+
     public enum MovementType
     {
         FollowPlayer,
@@ -44,7 +46,7 @@ public class EnemyBoat : Boat
 
     public override void Start()
     {
-        minimapBoat = DisplayMinimap.Instance.CreateMinimapBoat(DisplayMinimap.Instance.enemyBoatIconPrefab, GetTransform, GetBoatInfo());
+        
 
         base.Start();
 
@@ -53,6 +55,8 @@ public class EnemyBoat : Boat
         Hide();
 
         WorldTouch.Instance.onSelectSomething += Deselect;
+
+        
     }
 
     private void OnDestroy()
@@ -61,9 +65,22 @@ public class EnemyBoat : Boat
 
     }
 
+    public override MinimapBoat GetMinimapBoat
+    {
+        get
+        {
+            if (minimapBoat== null)
+            minimapBoat = DisplayMinimap.Instance.CreateMinimapBoat(DisplayMinimap.Instance.enemyBoatIconPrefab, GetTransform, GetBoatInfo());
+
+            return minimapBoat;
+        }
+    }
+
     public override void SetTargetPos(Vector3 p)
     {
         base.SetTargetPos(p);
+
+
     }
 
     public override void Update()
@@ -109,6 +126,17 @@ public class EnemyBoat : Boat
         Visible = true;
 
         GetMinimapBoat.Show(boatInfo);
+
+        if (boatInfo.storyManager.CurrentStoryHandler.Story.id == 3)
+        {
+            meshes_Objs[0].SetActive(false);
+            meshes_Objs[1].SetActive(true);
+        }
+        else
+        {
+            meshes_Objs[0].SetActive(true);
+            meshes_Objs[1].SetActive(false);
+        }
 
         UpdatePositionOnScreen();
         UpdateMastColor();
@@ -239,27 +267,27 @@ public class EnemyBoat : Boat
         // a story is currently going
         if (StoryLauncher.Instance.PlayingStory)
         {
-            Debug.Log("enemy boat break : story playing");
+            //Debug.Log("enemy boat break : story playing");
             return;
         }
 
         // the boat has already met the player
         /*if (metPlayer)
         {
-            Debug.Log("enemy boat break : already met");
+            //Debug.Log("enemy boat break : already met");
             return;
         }*/
 
         // the boat is not actually idle
         if (!moving)
         {
-            Debug.Log("enemy boat break : not moving");
+            //Debug.Log("enemy boat break : not moving");
             return;
         }
         // another boat is meeting the player
         if (Boats.Instance.pausingBoats)
         {
-            Debug.Log("enemy boat break : pausing boats ( another boat is meeting the player )");
+            //Debug.Log("enemy boat break : pausing boats ( another boat is meeting the player )");
             return;
         }
 
@@ -307,7 +335,7 @@ public class EnemyBoat : Boat
     {
         if ( movementType == MovementType.MoveAround || exitingScreen)
         {
-            Debug.Log("not withdrawing : moving around / exiting screen");
+            //Debug.Log("not withdrawing : moving around / exiting screen");
             return;
         }
 
@@ -319,7 +347,7 @@ public class EnemyBoat : Boat
 
     void WithdrawDelay() {
 
-        Debug.Log("withdrawing boat");
+        //Debug.Log("withdrawing boat");
 
         EndMovenent();
         SetSpeed(0);
@@ -334,9 +362,15 @@ public class EnemyBoat : Boat
         SetTargetPos(posAwayFromPos);
     }
 
+    public override void EndMovenent()
+    {
+        base.EndMovenent();
+
+    }
+
     public void Resume()
     {
-        Debug.Log("resuming boat");
+        //Debug.Log("resuming boat");
         GoToTargetDestination();
     }
 

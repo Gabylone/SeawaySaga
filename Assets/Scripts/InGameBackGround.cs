@@ -67,7 +67,7 @@ public class InGameBackGround : MonoBehaviour {
 
             if ( !paramIsValid)
             {
-                Debug.LogError("Unparsable background type : " + backgroundName + " going with island");
+                //Debug.LogError("Unparsable background type : " + backgroundName + " going with island");
             }
 
             if (currentType != backgroundType)
@@ -82,6 +82,8 @@ public class InGameBackGround : MonoBehaviour {
             }
             else
             {
+                UpdateSprite();
+                //SetSprite(currentType);
                 StoryReader.Instance.NextCell();
                 StoryReader.Instance.UpdateStory();
             }
@@ -113,17 +115,29 @@ public class InGameBackGround : MonoBehaviour {
     {
         currentType = type;
 
-        if (type == Type.Dark)
+        UpdateSprite();
+
+        SoundManager.Instance.UpdateAmbianceSound();
+
+        if ( currentType == Type.Tavern)
+        {
+            MusicManager.Instance.PlayTavernMusic();
+        }
+    }
+
+    void UpdateSprite()
+    {
+        if (currentType == Type.Dark)
         {
             image.color = blackColor;
         }
         else
         {
-            image.sprite = sprites[(int)type];
+            image.sprite = sprites[(int)currentType];
             image.color = Color.white;
         }
 
-        switch (type)
+        switch (currentType)
         {
             case Type.Island:
             case Type.Forest:
@@ -154,13 +168,6 @@ public class InGameBackGround : MonoBehaviour {
                 break;
             default:
                 break;
-        }
-
-        SoundManager.Instance.UpdateAmbianceSound();
-
-        if ( currentType == Type.Tavern)
-        {
-            MusicManager.Instance.PlayTavernMusic();
         }
     }
 

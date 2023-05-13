@@ -25,10 +25,10 @@ CheckQuest=>choix;;;;;Narrator : The bird screams nonsence and flies away, leav
 [choix];;;;;AddToInventory;PlayerSpeak : Damn you bird !;PlayerSpeak : Damn you bird !;;PlayerSpeak : Gotcha !;PlayerSpeak : Damn you, nibbler !;Node=>ile normale;;AddToInventory;PlayerSpeak : That was close !;;AddToInventory;PlayerSpeak : Oh well, nice try…
 SetChoices2;;;;;Switch=>ile charme;Switch=>ile charme;Node=>ile normale;;Narrator : The creature drops the object, before disappearing under a rock.;Switch=>ile dex;;;PlayerSpeak : Splendid !;RemoveHealth10;;PlayerSpeak : What luck !;Switch=>ile str
 Choice : We’re saling away! (leave);Choice : We’ll stay until NEXTTIME (sleep);;;;Node=>ile normale;Node=>ile normale;;;AddToInventory;Node=>ile normale;;;Switch=>ile const;Switch=>ile const;;Switch=>ile str;Node=>ile normale
-Leave;SetBG(Island);;;;;;;;Switch=>ile dex;;;;Node=>ile normale;Node=>ile normale;;Node=>ile normale;
-;ChangeTimeOfDay;;;;;;;;Node=>ile normale;;;;;;;;
-;Narrator : The captain wakes on the islet. The morning air is pure and fresh.;;;;;;;;;;;;;;;;
-[ile avec arbuste];Node=>choix;;;;;;;;;;;;;;;;
+Leave;ChangeTimeOfDay;;;;;;;;Switch=>ile dex;;;;Node=>ile normale;Node=>ile normale;;Node=>ile normale;
+;Narrator : The captain wakes on the islet. The morning air is pure and fresh.;;;;;;;;Node=>ile normale;;;;;;;;
+;Node=>choix;;;;;;;;;;;;;;;;
+[ile avec arbuste];;;;;;;;;;;;;;;;;
 Narrator : A few bushes have grown here and there.;;;;;;;;;;;;;;;;;
 CheckQuest=>choix food;;;;;;;;;;;;;;;;;
 [choix food];;;;;;;;;;;;;;;;;

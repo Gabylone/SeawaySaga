@@ -38,7 +38,7 @@ public class SkillButton_Inventory : SkillButton
     {
         if ( CrewMember.GetSelectedMember == null)
         {
-            Debug.Log("selected member");
+            //Debug.Log("selected member");
             return;
         }
 
@@ -95,7 +95,7 @@ public class SkillButton_Inventory : SkillButton
         SoundManager.Instance.PlaySound("click_med 01");
         SoundManager.Instance.PlayRandomSound("Bag");
 
-        MessageDisplay.Instance.Display("Are you want to get this skill ?", true);
+        MessageDisplay.Instance.Display("Are you sure you want to get this skill?", true);
         MessageDisplay.Instance.onValidate += HandleOnValidateMessage;
     }
 

@@ -54,8 +54,15 @@ public class Skill_Flee : Skill {
         fighter.combatFeedback.Display("Fled !", Color.green);
 
         fighter.escaped = true;
-        
-        string str = "See you, sucker !";
+
+        string[] strs = new string[2]
+        {
+            "See you, suckers!",
+            "I’m out of here!"
+        };
+
+        string str = strs[Random.Range(0, strs.Length)];
+
         fighter.Speak(str);
         fighter.Fade();
 

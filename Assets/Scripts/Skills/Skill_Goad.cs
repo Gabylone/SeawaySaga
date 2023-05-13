@@ -24,21 +24,29 @@ public class Skill_Goad : Skill {
 	{
 		base.OnSetTarget ();
 
-        string str;
+        
+
 
         if ( fighter.TargetFighter == fighter)
         {
-            str = "You're nothing but a scoundrel ! Come'n get me if you're not a wuss";
+            string str = "You're nothing but a scoundrel! Come'n get me if you're not a wuss!";
+            fighter.Speak (str);
         }
         else
         {
-            str = "I heard " + fighter.TargetFighter.crewMember.MemberName + " says you're nothing but pirate scum !";
+            string[] strs = new string[4]
+    {
+            "Eat this as loud as you can!",
+            "Remember, the mouth stays open!",
+            "Get ready for the hate!",
+            "Here, and eat it slowly!"
+            };
+
+            string str = strs[Random.Range(0, strs.Length)];
+            fighter.Speak (str);
         }
 
-
-        fighter.Speak (str);
-
-	}
+    }
 
 	public override void HandleOnApplyEffect ()
 	{

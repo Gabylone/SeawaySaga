@@ -18,7 +18,13 @@ public class Skill_Dynamite : Skill {
     {
         base.Trigger(fighter);
 
-        string str = "Fire in the hole !";
+        string[] strs = new string[2]
+        {
+            "Fire in the hole!",
+            "This is going to hurt!"
+        };
+
+        string str = strs[Random.Range(0, strs.Length)];
 
         fighter.Speak(str);
     }

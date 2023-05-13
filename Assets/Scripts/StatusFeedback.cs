@@ -6,7 +6,8 @@ using DG.Tweening;
 
 public class StatusFeedback : MonoBehaviour {
 
-	public Image statusImage_Fill;
+	public Image image;
+    public Image fillImage;
 
     public Text text_Count;
 
@@ -41,18 +42,23 @@ public class StatusFeedback : MonoBehaviour {
 
         this.status = status;
 
-		statusImage_Fill.sprite = SkillManager.statusSprites [(int)status];
+		image.sprite = SkillManager.Instance.statusSprites [(int)status];
 	}
 
     private void UpdateUI(int i)
     {
-        text_Count.text = "" + i;
+        //text_Count.text = "" + i;
+
+        float f = (float)i / max;
+        fillImage.DOFillAmount(f, 0.5f);
     }
 
-	public void SetColor (Color color)
+    public void SetColor (Color color)
 	{
-		statusImage_Fill.color = color;
-        text_Count.color = color;
+		image.color = color;
+
+        fillImage.color = Color.Lerp(Color.clear, color, 0.75f);
+        //text_Count.color = color;
 	}
 
 	public void Hide ()

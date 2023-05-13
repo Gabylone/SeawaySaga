@@ -86,7 +86,7 @@ public class CrewManager : MonoBehaviour {
 
             if (Crews.playerCrew.CrewMembers.Count == 0)
             {
-                MessageDisplay.Instance.Display("All of your crew members died in the storm");
+                MessageDisplay.Instance.Display("All of your crew members died in the storm.");
                 MessageDisplay.Instance.onValidate += HandleOnValidate;
             }
 

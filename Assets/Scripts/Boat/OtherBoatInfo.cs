@@ -13,6 +13,8 @@ public class OtherBoatInfo : BoatInfo {
 
     public bool alreadyMet = false;
 
+    public bool moveNextTime = false;
+
     public Color color;
 
     public float timeToShowBoat = 1.5f;
@@ -42,47 +44,67 @@ public class OtherBoatInfo : BoatInfo {
 	{
 		base.TryMoveOnMap ();
 
-		if ( Random.value < 0.4f ) {
-			MoveToOtherChunk ();
-		}
-	}
+        if ( moveNextTime)
+        {
+            moveNextTime = false;
+
+            MoveToOtherChunk();
+        }
+        else
+        {
+            if (Random.value < 0.25f)
+            {
+                moveNextTime = true;
+            }
+        }
+    }
 
 	public void MoveToOtherChunk ()
 	{
 		Coords newCoords = coords + NavigationManager.Instance.getNewCoords (currentDirection);
 
-		if (newCoords.x >= MapGenerator.Instance.GetMapHorizontalScale - 1) {
+		SetCoords(newCoords);
 
-			newCoords.x = coords.x;
-			SwitchDirection ();
+        newCoords = coords + NavigationManager.Instance.getNewCoords(currentDirection);
 
-		} else if (newCoords.x < 0) {
+        if (newCoords.x >= MapGenerator.Instance.GetMapHorizontalScale - 1)
+        {
 
-			newCoords.x = coords.x;
-			SwitchDirection ();
-			//
-		} else if (newCoords.y>= MapGenerator.Instance.GetMapVerticalScale - 1) {
+            newCoords.x = coords.x;
+            SwitchDirection();
 
-			newCoords.y = coords.y;
-			SwitchDirection ();
+        }
+        else if (newCoords.x < 0)
+        {
 
-		} else if (newCoords.y < 0) {
+            newCoords.x = coords.x;
+            SwitchDirection();
+            //
+        }
+        else if (newCoords.y >= MapGenerator.Instance.GetMapVerticalScale - 1)
+        {
 
-			newCoords.y = coords.y;
-			SwitchDirection ();
+            newCoords.y = coords.y;
+            SwitchDirection();
 
-		} else {
+        }
+        else if (newCoords.y < 0)
+        {
 
+            newCoords.y = coords.y;
+            SwitchDirection();
+
+        }
+        else
+        {
             if (Random.value < changeOfChangeDirection)
             {
                 // currentDirection = (Directions)Random.Range (0, 8);
             }
 
-		}
+        }
 
-		SetCoords(newCoords);
-
-	}
+    }
 
 	private void SwitchDirection () {
 

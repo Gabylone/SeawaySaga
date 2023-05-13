@@ -72,7 +72,7 @@ public class Chunk
     {
         if (StoryReader.Instance.CurrentStoryHandler.Story.dataName == "Jeu")
         {
-            Debug.Log("c'est l'histoire du jeu");
+            //Debug.Log("c'est l'histoire du jeu");
             bool secondLayer = StoryReader.Instance.currentStoryLayer == 1;
             return secondLayer && IslandManager.Instance.currentIsland.islandData.containsFormula;
         }
@@ -113,7 +113,7 @@ public class Chunk
 	public static Chunk GetChunk (Coords c) {
 		
 		if (chunks.ContainsKey (c) == false) {
-			Debug.LogError ("chunk " + c.ToString() + " does not exist");
+			//Debug.LogError ("chunk " + c.ToString() + " does not exist");
 			return chunks [new Coords ()];
 		}
 

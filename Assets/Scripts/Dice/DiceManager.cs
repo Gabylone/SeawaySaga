@@ -78,7 +78,10 @@ public class DiceManager : MonoBehaviour {
     public CanvasGroup backgroundCanvasGroup;
     public Text backgroundText;
 
-	private bool throwing = false;
+    public GameObject help_Obj;
+    public CanvasGroup help_CanvasGroup;
+
+    private bool throwing = false;
 	private float timer = 0f;
 
     public Color color_CriticalFailure;
@@ -98,9 +101,10 @@ public class DiceManager : MonoBehaviour {
 		ResetDice ();
 
         backgroundObj.SetActive(false);
+        help_Obj.SetActive(false);
 
 
-		StoryFunctions.Instance.getFunction += HandleGetFunction;
+        StoryFunctions.Instance.getFunction += HandleGetFunction;
 	}
 
 	void HandleGetFunction (FunctionType func, string cellParameters)
@@ -121,15 +125,7 @@ public class DiceManager : MonoBehaviour {
 		if ( updateState != null ) {
 			updateState ();
 			timeInState += Time.deltaTime;
-
 		}
-
-        /*if (Input.GetKeyDown(KeyCode.D))
-        {
-            ThrowDice(DiceTypes.CHA, 6);
-        }*/
-
-//		print ("QUICK THROW RESULT : " + QuickThrow (1));
 	}
 
 	#region init
@@ -180,6 +176,11 @@ public class DiceManager : MonoBehaviour {
 
 	public void ThrowDice (DiceTypes type, int diceAmount) {
 
+        if ( diceAmount > 6)
+        {
+            diceAmount = 6;
+        }
+
         ResetDice();
 
         ShowDice();
@@ -194,8 +195,11 @@ public class DiceManager : MonoBehaviour {
 
         result = Result.None;
 
+        help_Obj.SetActive(true);
+        help_CanvasGroup.alpha = 0f;
+        help_CanvasGroup.DOFade(1f, 0.2f);
 
-		Throwing = true;
+        Throwing = true;
 
 		currentThrow = new Throw (diceAmount, type);
 
@@ -257,11 +261,11 @@ public class DiceManager : MonoBehaviour {
 
             Tween.Bounce(dice.bodyTransform);
 
-            if (dice.targetResult == 6)
+            if (dice.targetResult >= 5)
             {
                 dice.SettleUp();
 
-                for (int i = 0; i < diceIndex; i++)
+                /*for (int i = 0; i < diceIndex; i++)
                 {
                     Dice previousDice = dices[i];
 
@@ -285,14 +289,14 @@ public class DiceManager : MonoBehaviour {
 
                         break;
                     }
-                }
+                }*/
 
             }
             else
             {
                 if ( dice.targetResult == 1)
                 {
-                    for (int i = 0; i < diceIndex; i++)
+                    /*for (int i = 0; i < diceIndex; i++)
                     {
                         Dice previousDice = dices[i];
 
@@ -316,7 +320,7 @@ public class DiceManager : MonoBehaviour {
 
                             break;
                         }
-                    }
+                    }*/
                 }
 
                 dice.SettleDown();
@@ -329,17 +333,17 @@ public class DiceManager : MonoBehaviour {
         {
             Dice item = dices[i];
 
-            if ( item.targetResult == 6)
+            if ( item.targetResult >= 5)
             {
                 result = Result.Success;
                 break;
             }
 
-            if ( item.targetResult == 1)
+            /*if ( item.targetResult == 1)
             {
                 result = Result.CriticalFailure;
                 break;
-            }
+            }*/
 
             result = Result.Failure;
         }
@@ -408,11 +412,16 @@ public class DiceManager : MonoBehaviour {
 
     public void EndThrow()
     {
+        help_CanvasGroup.DOFade(0f, 0.5f);
+
         Invoke("EndThrowDelay", 0.5f);
+
     }
 
     void EndThrowDelay()
     {
+        help_Obj.SetActive(false);
+
         ResetDice();
 
         if (onEndThrow != null)
@@ -466,7 +475,6 @@ public class DiceManager : MonoBehaviour {
 		}
 	}
 	#endregion
-
 
 	#region states
 	public void ChangeState ( states newState ) {
@@ -548,11 +556,31 @@ public class DiceManager : MonoBehaviour {
         {
             if ( decal == 0)
             {
-                DialogueManager.Instance.PlayerSpeak("I already nailed this !");
+                string[] strs = new string[4]
+                {
+                    "I already nailed this!",
+                    "That’s right, this one wasn’t difficult. Nothing left to do with it.",
+                    "I remember I’ve done this already! A great success.",
+                    "Been there, done that already. Easy."
+                 };
+
+                string str = strs[Random.Range(0, strs.Length)];
+
+                DialogueManager.Instance.PlayerSpeak(str);
             }
             else
             {
-                DialogueManager.Instance.PlayerSpeak("I already blew this, no need retrying !");
+                string[] strs = new string[4]
+                {
+                    "I already blew this, no need to retry!",
+"It’s no use! Could only try this once it seems.",
+"I blew it and it looks like it was my only chance. Darn it!",
+                "Nothing left to do with this anymore.Only had one shot and I messed it up!"
+                 };
+
+                string str = strs[Random.Range(0, strs.Length)];
+
+                DialogueManager.Instance.PlayerSpeak(str);
             }
 
             DialogueManager.Instance.onEndDialogue += HandleOnEndDialogue;
@@ -581,7 +609,7 @@ public class DiceManager : MonoBehaviour {
                 currentStat = Stat.Constitution;
                 break;
             default:
-                Debug.LogError("PAS DE Dé " + cellParams + " : lancé de force");
+                //Debug.LogError("PAS DE Dé " + cellParams + " : lancé de force");
                 currentStat = Stat.Strenght;
                 break;
         }
@@ -671,7 +699,7 @@ public class DiceManager : MonoBehaviour {
                 ThrowDice(DiceTypes.CON, thrower.GetStat(Stat.Constitution));
                 break;
             default:
-                Debug.LogError("PAS DE Dé " + cellParams + " : lancé de force");
+                //Debug.LogError("PAS DE Dé " + cellParams + " : lancé de force");
                 ThrowDice(DiceTypes.STR, thrower.GetStat(Stat.Strenght));
                 break;
         }

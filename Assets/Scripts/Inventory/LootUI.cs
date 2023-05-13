@@ -258,7 +258,7 @@ public class LootUI : MonoBehaviour {
             if (preventAdvanceStory)
             {
                 preventAdvanceStory = false;
-                Debug.Log("setting prevent story to FALSE");
+                //Debug.Log("setting prevent story to FALSE");
             }
             else
             {
@@ -589,7 +589,7 @@ public class LootUI : MonoBehaviour {
 		get {
 
 			if (categoryContent == null) {
-				Debug.LogError ("pas de category content");
+				//Debug.LogError ("pas de category content");
 				return null;
 			}
 

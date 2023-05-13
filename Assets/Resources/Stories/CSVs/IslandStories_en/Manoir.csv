@@ -13,7 +13,7 @@ CheckQuest=>suite quete;;;;;;;;;;
 SetChoices3;;;;;;;[toquer];;;
 Choice : (leave);Choice : (open mansion door);Choice : (knock on the door);;;;;RandomRange3;;;
 Leave;Fade;Node=>toquer;;;;;Narrator : …;;Narrator : You knock at the door, and a old, chalky, dusty voice starts sounding, behind the wooden door :;Narrator : Nobody answers
-;Node=>ouvrir porte;;;;;;Narrator : After a few seconds, the door opens wide.;;Narrator : « Come in ! It’s opened »;Node=>choix porte
+;Node=>ouvrir porte;;;;;;Narrator : After a few seconds, the door opens wide.;;Narrator : « Come in ! It’s open »;Node=>choix porte
 ;;;;;;;Narrator : But there is no one inside.;;Switch=>debut salon;
 ;;;;;;;SetChoices2;;Switch=>ouvrir porte;
 [ouvrir porte];;[porte fermée];;;;;Choice : (leave);Choice : (enter);Node=>choix porte;
@@ -143,16 +143,16 @@ Node=>maison vide;Switch=>partir;Fade;;;;;;;;
 ;;;;;;;;;;
 ;;;;;;;;;;
 [dame nourriture];;;;;;;;;;
-RandomRange5;;;;;;;;;;
-OtherSpeak : I’ve got nothing.;OtherSpeak : I have some, but it comes at a price!;OtherSpeak : I just came back from the market!;Node=>mémé cuisine;OtherSpeak : I always have treats for adventurers stopping by.;;;;;;
-Node=>choix autre;TradeFood;OtherSpeak : Take a look in the kitchen.;;LootFood;;;;;;
-;Node=>choix autre;Node=>choix vielle dame;;Node=>choix autre;;;;;;
+RandomRange4;;;;;;;;;;
+OtherSpeak : I’ve got nothing.;OtherSpeak : I have some, but it comes at a price!;OtherSpeak : I just came back from the market!;OtherSpeak : I always have treats for adventurers stopping by.;;;;;;;
+Node=>choix autre;TradeFood;OtherSpeak : Take a look in the kitchen.;LootFood;;;;;;;
+;Node=>choix autre;Node=>choix vielle dame;Node=>choix autre;;;;;;;
 ;;;;;;;;;;
 ;;;;;;;;;;
 ;;;;;;;;;;
 [mémé cuisine];;;;;;;;;;
 OtherSpeak : I should be able to cook something nice for you.;;;;[mémé a cuisiné];;;;;;
-OtherSpeak :Unfortunately, I lost my recipe book!;;;;Switch=>mémé a cuisiné;OtherSpeak : Here’s my hero!;;;;;
+OtherSpeak : Unfortunately, I lost my recipe book!;;;;Switch=>mémé a cuisiné;OtherSpeak : Here’s my hero!;;;;;
 OtherSpeak : Would you be so kind as to bring me one? I’ll make a FEAST if you do !;;;;OtherSpeak : Alright the feast is ready!;OtherSpeak : Sadly, I don’t have anything to offer...;;;;;
 CheckInInventory<Livre de recettes>/Misc;;;;LootFood;Node=>choix vielle dame;;;;;
 SetChoices2;;SetChoices2;;OtherSpeak : Did you like it dear?;;;;;;

@@ -226,7 +226,7 @@ public class DisplayQuest : MonoBehaviour {
     {
         MessageDisplay.Instance.onValidate += HandleOnValidate;
 
-        MessageDisplay.Instance.Display("Abandon quest ?", true);
+        MessageDisplay.Instance.Display("Abandon quest?", true);
     }
 
     public void HandleOnValidate()

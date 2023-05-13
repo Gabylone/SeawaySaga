@@ -92,6 +92,11 @@ public class NavigationTrigger : MonoBehaviour {
             return;
         }
 
+        if ( WorldTouch.Instance.IsPointerOverUIObject())
+        {
+            return;
+        }
+
         WorldTouch.Instance.onSelectSomething();
 
         Tween.Bounce(_transform);
@@ -101,7 +106,7 @@ public class NavigationTrigger : MonoBehaviour {
         select_Feedback.SetActive(true);
 
         selected = true;
-        Debug.Log("mouse down");
+        //Debug.Log("mouse down");
     }
 
     void ChangeChunk()

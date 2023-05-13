@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using System.Xml.Linq;
 
 public class DisplayCaptainName : MonoBehaviour, IPointerClickHandler
 {
@@ -18,6 +19,13 @@ public class DisplayCaptainName : MonoBehaviour, IPointerClickHandler
 
         InputField.onEndEdit.AddListener(delegate { ChangeName(InputField); });
         rectTransform = GetComponent<RectTransform>();
+    }
+
+    public void SetRandomName()
+    {
+        Tween.Bounce(rectTransform, 0.2f, 1.05f);
+        Crews.playerCrew.captain.MemberID.Name = CrewCreator.Instance.manNames[Random.Range(0, CrewCreator.Instance.manNames.Length)];
+        InputField.text = Crews.playerCrew.captain.MemberID.Name;
     }
 
     public void OnPointerClick(PointerEventData eventData)

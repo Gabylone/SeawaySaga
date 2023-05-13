@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using DG.Tweening;
+using System.Linq;
 
 public class RandomPlacable : MonoBehaviour
 {
@@ -25,6 +26,8 @@ public class RandomPlacable : MonoBehaviour
 
     public GameObject select_feedback;
 
+    public bool rock = false;
+
     // Start is called before the first frame update
     public virtual void Start()
     {
@@ -36,7 +39,10 @@ public class RandomPlacable : MonoBehaviour
         CombatManager.Instance.onFightStart += Lock;
         CombatManager.Instance.onFightEnd += Unlock;
 
+        CancelInvoke("StartDelay");
         Invoke("StartDelay", 2f);
+
+        Hide();
 
         WorldTouch.Instance.onSelectSomething += Deselect;
     }
@@ -59,6 +65,23 @@ public class RandomPlacable : MonoBehaviour
     public virtual void HandleOnUpdateCurrentChunk()
     {
         canTrigger = true;
+
+        if (rock)
+        {
+            Hide();
+            TrySpawn();
+        }
+    }
+
+    public void TrySpawn()
+    {
+        if (CanSpawn())
+        {
+            Show();
+
+            float y = Random.Range( 0, 360f );
+            _transform.localRotation = Quaternion.Euler(Vector3.up * y);
+        }
     }
 
     public bool CanSpawn()
@@ -80,7 +103,7 @@ public class RandomPlacable : MonoBehaviour
 
         ResetPosition();
 
-        for (int i = 0; i < Chunk.currentChunk.islandDatas.Length; i++)
+        for (int i = 0; i < IslandManager.Instance.islands.Length; i++)
         {
             if (Vector3.Distance(_transform.position, IslandManager.Instance.islands[i]._transform.position) < minDistanceToIsland)
             {
@@ -151,8 +174,11 @@ public class RandomPlacable : MonoBehaviour
 
     public void Show()
     {
-        spriteRenderer.color = Color.clear;
-        spriteRenderer.DOColor(Color.white, 0.2f);
+        if (!rock)
+        {
+            spriteRenderer.color = Color.clear;
+            spriteRenderer.DOColor(Color.white, 0.2f);
+        }
         
         gameObject.SetActive(true);
     }

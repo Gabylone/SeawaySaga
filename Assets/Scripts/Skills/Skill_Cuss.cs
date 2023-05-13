@@ -29,14 +29,15 @@ public class Skill_Cuss : Skill {
 
         SoundManager.Instance.PlayRandomSound("voice_mad");
 
-		string[] strs = new string[6]
+		string[] strs = new string[7]
 		{
-			"What's that smell ? Is this YOU ?!",
-			"You look like the child of a tea pot and a seagull !",
-			"You're nothing but a trash, shameful bandit !",
-			"You stampcrab, sea vermin mollusc !",
-			"Come and get me, prove you're more than a smelly clam",
-			"Your parents should have used you as shark bait !"
+			"What's that smell? It’s YOU?!",
+			"You look like the offspring of a teapot and a seagull!",
+			"You're nothing but trash, shameful bandit!",
+			"You stampcrab, sea vermin mollusc!",
+			"Come and get me, prove you're more than a smelly clam!",
+			"Your parents should have used you as shark bait!",
+			"I can smell your stinky stupid face from here! Ever heard of the word bath?"
 		};
 		fighter.Speak (strs[Random.Range(0,strs.Length)]);
 

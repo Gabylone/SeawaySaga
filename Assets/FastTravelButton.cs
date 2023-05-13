@@ -70,13 +70,13 @@ public class FastTravelButton : MonoBehaviour, IPointerClickHandler
 
         if ( StoryLauncher.Instance.PlayingStory)
         {
-            MessageDisplay.Instance.Display("You're not on deck right now. Get back behind the wheel to travel !");
+            MessageDisplay.Instance.Display("You can't fast travel until someone takes the helm!");
             return;
         }
 
         if (TimeManager.Instance.raining)
         {
-            MessageDisplay.Instance.Display("You cannot travel with this storm !");
+            MessageDisplay.Instance.Display("You cannot fast travel in this dangerous storm!");
             return;
         }
 
@@ -84,7 +84,7 @@ public class FastTravelButton : MonoBehaviour, IPointerClickHandler
 
         if (chunk.state != ChunkState.VisitedIsland)
         {
-            MessageDisplay.Instance.Display("Visit this island before traveling there !");
+            MessageDisplay.Instance.Display("You need to visit this island first to be able to fast travel to it!");
             return;
         }
 
@@ -114,12 +114,12 @@ public class FastTravelButton : MonoBehaviour, IPointerClickHandler
 
         if (foodAvailable < foodNeeded)
         {
-            MessageDisplay.Instance.Display("You don't have enough food to travel.\nIt would take <color=red>" + trips + "</color> trips to get to the <size=32><b>" + IslandName + "</b></size>");
+            MessageDisplay.Instance.Display("You don't have enough food to fast travel.\nIt would take <color=red>" + trips + "</color> trips to get to the <size=32><b>" + IslandName + "</b></size>");
             DisplayFastTravelInfo.Instance.SetRed();
         }
         else
         {
-            MessageDisplay.Instance.Display("Travel to the " + IslandName + " ?", true);
+            MessageDisplay.Instance.Display("Travel to the " + IslandName + "?", true);
 
             DisplayFastTravelInfo.Instance.SetBlack();
             MessageDisplay.Instance.onValidate += HandleOnValidate_CanTravel;

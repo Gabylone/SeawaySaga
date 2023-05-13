@@ -24,13 +24,17 @@ public class PlayerBoat : Boat {
 
         NavigationManager.Instance.onUpdateCurrentChunk += HandleOnUpdateChunk;
 
-        Invoke("StartDelay", 0.001f);
+    }
+
+    public void Init()
+    {
+        minimapBoat = DisplayMinimap.Instance.CreateMinimapBoat(DisplayMinimap.Instance.playerBoatIconPrefab, GetTransform, GetBoatInfo());
 
     }
 
     void StartDelay()
     {
-        minimapBoat = DisplayMinimap.Instance.CreateMinimapBoat(DisplayMinimap.Instance.playerBoatIconPrefab, GetTransform, GetBoatInfo());
+        
     }
 
     public override void Update()
@@ -74,6 +78,17 @@ public class PlayerBoat : Boat {
     }
     #endregion
 
+    public override MinimapBoat GetMinimapBoat
+    {
+        get
+        {
+            if (minimapBoat == null)
+                minimapBoat = DisplayMinimap.Instance.CreateMinimapBoat(DisplayMinimap.Instance.playerBoatIconPrefab, GetTransform, GetBoatInfo());
+
+            return minimapBoat;
+        }
+    }
+
     public override void EndMovenent ()
 	{
 		base.EndMovenent ();
@@ -86,8 +101,6 @@ public class PlayerBoat : Boat {
         Tween.Bounce(GetTransform);
 
         WorldTouch.Instance.touching = false;
-
-        //SetTargetPos(GetTransform.position);
 
         if (agent.isOnNavMesh)
         {

@@ -132,7 +132,7 @@ OtherSpeak : Ahoy!;;;;;;;;;;;
 OtherSpeak : What do you need, good sir?;;;;;;;;;;;
 [choix poissoniers];;;;;[choix poissoniers – other];;;;;;
 SetChoices4;;;;;SetChoices3;;;;;;
-Choice : Nevermind! (leave);Choice : Do you know anything about NOMTRESOR?;;Choice : Sell me some food!;Choice: (other);Choice : How's life here in this lovely village? (quest);;Choice : Telll me more about this place;;Choice: (other);;
+Choice : Nevermind! (leave);Choice : Do you know anything about NOMTRESOR?;;Choice : Sell me some food!;Choice : (other);Choice : How's life here in this lovely village? (quest);;Choice : Telll me more about this place;;Choice : (other);;
 OtherSpeak : See you next time!;RandomRange2;;RandomPercent60;Node=>choix poissoniers – other;RandomPercent65;;RandomRange2;;Node=>choix poissoniers;;
 HideOther;OtherSpeak : Of course, it's a legend well known where I come from.;OtherSpeak : Nope, never heard of it.;TradeFood;;OtherSpeak : Oh it's beautiful and mellow!;NewQuest=>choix poissoniers;OtherSpeak : I dont have any time to chit-chat !;GiveTip;;;
 Node=>random village;TellClue;Node=>choix poissoniers;Node=>choix poissoniers;;OtherSpeak : We have great weather, almost no crime, the pirates stay out of our business...;Node=>choix poissoniers – other;Node=>choix poissoniers – other;Node=>choix poissoniers – other;;;

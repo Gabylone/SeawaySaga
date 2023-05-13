@@ -1,5 +1,5 @@
 Nom;Fréquence %;Sprite ID;Display Name;;;;;
-Cargaison;62,5;0;The Stolen Shipment;;;;;
+Cargaison;62,5;0;Stolen Shipment;;;;;
 [debut];;;;;;;;
 OtherSpeak : Bandits!;;;;;;;;
 OtherSpeak : They took everything!;;;;;;;;
@@ -33,7 +33,7 @@ LaunchCombat;;;;;;;;
 RandomRange4;;;;;;;;
 PlayerSpeak : Nice! That’s the stolen weapon crates we were looking for!;;PlayerSpeak : Nice! The stock of stolen armors!;;PlayerSpeak : Blimey! Those are the stolen food crates we were looking for!;;PlayerSpeak : Nice! That’s the stolen stuff!;;
 SetChoices2;;SetChoices2;;SetChoices2;;SetChoices2;;
-Choice : (keep the weapons)(loot);Choice : (return the weapons)(quest);Choice : (keep the armors)(loot);Choice : (return the armors)(quest);Choice : (keep the food) (loot);Choice : (return the food) (quete);Choice : (keep everything) (loot);Choice : (return the stolen goods) (quest);
+Choice : (keep the weapons)(loot);Choice : (return the weapons)(quest);Choice : (keep the armors)(loot);Choice : (return the armors)(quest);Choice : (keep the food) (loot);Choice : (return the food)(quest);Choice : (keep everything) (loot);Choice : (return the stolen goods) (quest);
 PlayerSpeak : Forget the money, we’ll keep the goods.;PlayerSpeak : We got everything, let’s finish the job!;PlayerSpeak : Forget the money, let’s keep everything.;PlayerSpeak : Let’s head back!;PlayerSpeak : Forget the money, we’ll keep everything.;PlayerSpeak : Let’s head back!;PlayerSpeak : Forget about the money, we’ll keep everything.;PlayerSpeak : Let’s head back!;
 RemoveKarma;AccomplishQuest;RemoveKarma;AccomplishQuest;RemoveKarma;AccomplishQuest;RemoveKarma;AccomplishQuest;
 LootWeapons;Leave;LootClothes;Leave;LootFood;Leave;LootMisc;Leave;

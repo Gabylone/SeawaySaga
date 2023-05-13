@@ -17,7 +17,7 @@
         <xp>0</xp>
         <skillPoints>0</skillPoints>
         <specialSkillsIndexes>
-          <int>17</int>
+          <int>5</int>
         </specialSkillsIndexes>
         <stats>
           <int>1</int>
@@ -27,49 +27,49 @@
         </stats>
         <daysOnBoard>0</daysOnBoard>
         <equipedWeapon>
-          <ID>46</ID>
-          <englishName>Rusty blunderbuss</englishName>
-          <frenchName>Poivrière rouillée</frenchName>
-          <value>6</value>
-          <price>9</price>
-          <weight>8</weight>
+          <ID>39</ID>
+          <englishName>Wooden club</englishName>
+          <frenchName>Wooden club</frenchName>
+          <value>10</value>
+          <price>10</price>
+          <weight>5</weight>
           <level>1</level>
-          <spriteID>6</spriteID>
-          <description>It's just your basic rusty blunderbuss</description>
-          <weaponType>Distance</weaponType>
+          <spriteID>0</spriteID>
+          <description />
+          <weaponType>Stick</weaponType>
           <category>Weapon</category>
         </equipedWeapon>
         <equipedCloth>
-          <ID>152</ID>
-          <englishName>Linnen gown</englishName>
-          <frenchName>Toge en tissu</frenchName>
+          <ID>61</ID>
+          <englishName>Simple linen top</englishName>
+          <frenchName>null</frenchName>
           <value>10</value>
-          <price>24</price>
-          <weight>8</weight>
+          <price>13</price>
+          <weight>2</weight>
           <level>1</level>
           <spriteID>0</spriteID>
-          <description>It's just your basic linnen gown</description>
+          <description />
           <weaponType>Distance</weaponType>
           <category>Clothes</category>
         </equipedCloth>
-        <job>Cannoneer</job>
+        <job>Brute</job>
         <characterIDS>
+          <int>0</int>
+          <int>8</int>
+          <int>9</int>
           <int>3</int>
+          <int>9</int>
+          <int>0</int>
+          <int>6</int>
           <int>0</int>
           <int>1</int>
+          <int>0</int>
           <int>7</int>
-          <int>2</int>
           <int>5</int>
-          <int>1</int>
           <int>3</int>
-          <int>1</int>
-          <int>0</int>
-          <int>6</int>
-          <int>5</int>
-          <int>12</int>
-          <int>1</int>
-          <int>6</int>
-          <int>1</int>
+          <int>10</int>
+          <int>4</int>
+          <int>3</int>
           <int>1</int>
         </characterIDS>
       </Member>
@@ -80,95 +80,67 @@
     <col>0</col>
     <ids>
       <ArrayOfInt>
+        <int>8</int>
+        <int>36</int>
+        <int>10</int>
         <int>6</int>
-        <int>12</int>
-        <int>20</int>
-        <int>33</int>
-        <int>36</int>
-        <int>36</int>
       </ArrayOfInt>
       <ArrayOfInt />
       <ArrayOfInt />
       <ArrayOfInt />
     </ids>
-    <weight>12</weight>
+    <weight>8</weight>
     <AllItems>
       <ArrayOfItem>
+        <Item>
+          <ID>8</ID>
+          <englishName>Salmon</englishName>
+          <frenchName>Saumon</frenchName>
+          <value>6</value>
+          <price>4</price>
+          <weight>2</weight>
+          <level>0</level>
+          <spriteID>1</spriteID>
+          <description>A soft and mild-flavored filet that melts in your mouth.</description>
+          <weaponType>Distance</weaponType>
+          <category>Provisions</category>
+        </Item>
+        <Item>
+          <ID>36</ID>
+          <englishName>Asparagus</englishName>
+          <frenchName>Asperges</frenchName>
+          <value>2</value>
+          <price>1</price>
+          <weight>2</weight>
+          <level>0</level>
+          <spriteID>0</spriteID>
+          <description>A delicate spear of asparagus.</description>
+          <weaponType>Distance</weaponType>
+          <category>Provisions</category>
+        </Item>
+        <Item>
+          <ID>10</ID>
+          <englishName>Lobster</englishName>
+          <frenchName>Homard</frenchName>
+          <value>6</value>
+          <price>4</price>
+          <weight>2</weight>
+          <level>0</level>
+          <spriteID>1</spriteID>
+          <description>Sweet and delicate lobster flesh. Very satisfying and rich flavour.</description>
+          <weaponType>Distance</weaponType>
+          <category>Provisions</category>
+        </Item>
         <Item>
           <ID>6</ID>
           <englishName>Crab</englishName>
           <frenchName>Crabe</frenchName>
-          <value>6</value>
-          <price>10</price>
+          <value>4</value>
+          <price>3</price>
           <weight>2</weight>
           <level>0</level>
           <spriteID>1</spriteID>
-          <description>Feeds the member. Heals him, only if he’s not hungry. Fishes feed fairly.</description>
-          <weaponType>Distance</weaponType>
-          <category>Provisions</category>
-        </Item>
-        <Item>
-          <ID>12</ID>
-          <englishName>Sturgeon</englishName>
-          <frenchName>Esturgeon</frenchName>
-          <value>6</value>
-          <price>12</price>
-          <weight>2</weight>
-          <level>0</level>
-          <spriteID>1</spriteID>
-          <description>Feeds the member. Heals him, only if he’s not hungry. Fishes feed fairly.</description>
-          <weaponType>Distance</weaponType>
-          <category>Provisions</category>
-        </Item>
-        <Item>
-          <ID>20</ID>
-          <englishName>Big ham</englishName>
-          <frenchName>Gros jambon</frenchName>
-          <value>8</value>
-          <price>14</price>
-          <weight>2</weight>
-          <level>0</level>
-          <spriteID>2</spriteID>
-          <description>Feeds the member. Heals him, only if he’s not hungry. Meats feeds greatly</description>
-          <weaponType>Distance</weaponType>
-          <category>Provisions</category>
-        </Item>
-        <Item>
-          <ID>33</ID>
-          <englishName>Orange</englishName>
-          <frenchName>Orange</frenchName>
-          <value>4</value>
-          <price>6</price>
-          <weight>2</weight>
-          <level>0</level>
-          <spriteID>0</spriteID>
-          <description>Feeds the member. Heals him, only if he’s not hungry. Vegetables and fruits heal poorly</description>
-          <weaponType>Distance</weaponType>
-          <category>Provisions</category>
-        </Item>
-        <Item>
-          <ID>36</ID>
-          <englishName>Aspergu</englishName>
-          <frenchName>Asperges</frenchName>
-          <value>4</value>
-          <price>6</price>
-          <weight>2</weight>
-          <level>0</level>
-          <spriteID>0</spriteID>
-          <description>Feeds the member. Heals him, only if he’s not hungry. Vegetables and fruits heal poorly</description>
-          <weaponType>Distance</weaponType>
-          <category>Provisions</category>
-        </Item>
-        <Item>
-          <ID>36</ID>
-          <englishName>Aspergu</englishName>
-          <frenchName>Asperges</frenchName>
-          <value>4</value>
-          <price>6</price>
-          <weight>2</weight>
-          <level>0</level>
-          <spriteID>0</spriteID>
-          <description>Feeds the member. Heals him, only if he’s not hungry. Vegetables and fruits heal poorly</description>
+          <description>Slightly fishy and savoury flesh, with a mineral sweetness to it.</description>
           <weaponType>Distance</weaponType>
           <category>Provisions</category>
         </Item>
@@ -184,10 +156,10 @@
   <bounty>0</bounty>
   <formulas>
     <Formula>
-      <name>vavyco</name>
+      <name>masepu</name>
       <coords>
-        <x>6</x>
-        <y>2</y>
+        <x>0</x>
+        <y>14</y>
       </coords>
       <verified>false</verified>
       <found>false</found>
@@ -195,15 +167,16 @@
   </formulas>
   <clueIndexesFound />
   <playerBoatInfo>
-    <Name>The Purple Octopus</Name>
+    <Name>The Sinking Shark</Name>
     <previousCoords>
       <x>0</x>
       <y>0</y>
     </previousCoords>
     <coords>
-      <x>0</x>
-      <y>2</y>
+      <x>2</x>
+      <y>3</y>
     </coords>
+    <previousDirection>None</previousDirection>
     <currentDirection>North</currentDirection>
     <shipRange>1</shipRange>
     <crewCapacity>2</crewCapacity>
@@ -212,11 +185,11 @@
   </playerBoatInfo>
   <treasureCoords>
     <x>0</x>
-    <y>2</y>
+    <y>0</y>
   </treasureCoords>
   <homeCoords>
-    <x>0</x>
-    <y>2</y>
+    <x>2</x>
+    <y>3</y>
   </homeCoords>
   <currentQuests />
   <finishedQuests />
@@ -224,6 +197,6 @@
   <currentRain>0</currentRain>
   <night>false</night>
   <timeOfDay>5</timeOfDay>
-  <treasureName>The Yelling Buccaneer</treasureName>
+  <treasureName>The Hateful Nautilus</treasureName>
   <pins />
 </GameData>

@@ -58,7 +58,7 @@ public class Quest {
         {
             storyID = StoryLoader.Instance.Quests.Find(x => x.dataName == "Clue Quest").id;
             QuestManager.Instance.launchClueQuest = false;
-            Debug.Log("la quête de l'indice devrait se lancer là");
+            //Debug.Log("la quête de l'indice devrait se lancer là");
         }
         else
         {
@@ -76,7 +76,7 @@ public class Quest {
 		level = Random.Range(Crews.playerCrew.captain.Level -1, Crews.playerCrew.captain.Level+4);
 		level = Mathf.Clamp (level, 1, 10);
 
-        goldValue = level * 20 + Random.Range(1, 9);
+        goldValue = level * 8 + Random.Range(1, 9);
 
 
         experience = 40;
@@ -114,10 +114,12 @@ public class Quest {
 
 	public void SetRandomCoords () {
 
-		SetTargetIsland (IslandManager.Instance.GetRandomIslandDataForQuest());
+		SetTargetIsland (IslandManager.Instance.GetClosestIslandDataForQuest());
+		//SetTargetIsland (IslandManager.Instance.GetRandomIslandDataForQuest());
 
-        //Debug.Log("target island : " + targetIslandData.storyManager.storyHandlers[0].Story.displayName);
-	}
+        Debug.Log("target island : " + targetIslandData.storyManager.storyHandlers[0].Story.displayName);
+        Debug.Log("target island coords : " + targetIslandData.coords);
+    }
 
     public IslandData GetTargetIslandData()
     {

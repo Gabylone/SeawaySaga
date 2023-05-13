@@ -221,7 +221,9 @@ public class MemberIcon : MonoBehaviour {
     {
         diceStat_Group.SetActive(true);
 
-        diceStat_Text.text = "" + member.GetStat(stat);
+        int i = member.GetStat(stat);
+        string dice_str = i == 1 ? "die" : "dice";
+        diceStat_Text.text = "" + i + " " + dice_str;
 
         diceStat_Text.color = SkillManager.Instance.statColors[(int)stat];
 

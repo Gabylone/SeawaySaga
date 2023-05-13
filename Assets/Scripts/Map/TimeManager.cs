@@ -103,7 +103,7 @@ public class TimeManager : MonoBehaviour {
 			}
 		} else {
 
-            if (currentRain == (rainRate-5) && !warned)
+            if (currentRain == (rainRate-6) && !warned)
             {
                 Invoke("ShowNarrator", 2f);
             }
@@ -118,7 +118,7 @@ public class TimeManager : MonoBehaviour {
     void ShowNarrator()
     {
         warned = true;
-        string str = "Black clouds begin to emerge from the horizon. CAPITAINE hears thunder rumbling at a distance. The sky darkens and the air is thickening";
+        string str = "Black clouds begin to emerge on the horizon. CAPITAINE hears the rumbling of thunder from afar. The sky darkens menacingly and the air is getting thicker.";
 
         MessageDisplay.Instance.Display(str);
         MessageDisplay.Instance.onValidate += HandleOnValidate;
@@ -128,7 +128,7 @@ public class TimeManager : MonoBehaviour {
 
     void HandleOnValidate()
     {
-        string str = "A storm is coming. Better bring the crew and NOMTRESOR to safety at an inn, or camp in a nearby island.";
+        string str = "A storm is coming! Better bring the crew of NOMBATEAU to safety on a nearby island and wait until it passes.";
         MessageDisplay.Instance.onValidate -= HandleOnValidate;
         MessageDisplay.Instance.Display(str);
     }
@@ -163,7 +163,7 @@ public class TimeManager : MonoBehaviour {
 
             if (l == 24)
             {
-                Debug.LogError("reach limit weather");
+                //Debug.LogError("reach limit weather");
                 break;
             }
         }
@@ -240,7 +240,7 @@ public class TimeManager : MonoBehaviour {
 			SetRain ();
 			break;
             default :
-			Debug.LogError ("Set Weather : <" + str + "> doesnt go in any label ?");
+			//Debug.LogError ("Set Weather : <" + str + "> doesnt go in any label ?");
 			break;
 		}
 
@@ -276,7 +276,7 @@ public class TimeManager : MonoBehaviour {
 
         currentRain = 0;
 
-        string str = "CAPITAINE and NOMTRESOR have been hit by a storm, better get to safety quickly before anyone gets hurt.";
+        string str = "NOMBATEAU is caught in a storm! Better find shelter quickly before anyone gets hurt.";
         MessageDisplay.Instance.Display(str);
 
         UpdateWeather();
@@ -303,6 +303,7 @@ public class TimeManager : MonoBehaviour {
 
 		SaveManager.Instance.GameData.timeOfDay = timeOfDay;
 		SaveManager.Instance.GameData.currentRain = currentRain;
+
 	}
 
 	public void Load () {

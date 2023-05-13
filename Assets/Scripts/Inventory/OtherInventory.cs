@@ -20,6 +20,7 @@ public class OtherInventory : MonoBehaviour {
 
 	void Awake () {
 		Instance = this;
+
 	}
 
 	void Start () {
@@ -165,7 +166,19 @@ public class OtherInventory : MonoBehaviour {
 		Loot loot = LootManager.Instance.GetIslandLoot (GetCellMult(2), false);
 
 		if ( loot.IsEmpty () ) {
-			DialogueManager.Instance.OtherSpeak_Story ("Looks like you already bought everything from me !");
+
+            string[] strs = new string[5]
+            {
+                "Looks like you already bought everything from me!",
+                "Sorry my friend, I’m afraid there’s nothing left to buy!",
+                "I’m out-of-stock, sorry! Shop is empty but my purse is full, that’s for sure!",
+                "Looks like I sold everything! I need to restock as soon as possible.",
+                "Today was a good day, all my merchandise was sold.Couldn’t be happier!"
+            };
+
+            string str = strs[Random.Range(0, strs.Length)];
+
+            DialogueManager.Instance.OtherSpeak_Story (str);
 			return;
         }
 
@@ -189,7 +202,18 @@ public class OtherInventory : MonoBehaviour {
 
 		if ( loot.IsEmpty () ) {
 
-			DialogueManager.Instance.PlayerSpeak_Story ("There was something but now nothing's left !");
+            string[] strs = new string[5]
+            {
+            "There was something but now nothing's left!",
+            "There’s nothing left that’s worth taking.",
+            "Seems like there’s nothing interesting here.",
+            "I don’t see anything of value here! Let’s keep moving.",
+            "I can’t find anything valuable that’s left."
+            };
+
+            string str = strs[Random.Range(0, strs.Length)];
+
+            DialogueManager.Instance.PlayerSpeak_Story (str);
 			return;
         }
 

@@ -145,13 +145,13 @@ public class BoatUpgradeManager : MonoBehaviour {
         switch (currentUpgradeType)
         {
             case UpgradeType.Crew:
-                MessageDisplay.Instance.Display("This allow you to welcome new crew members on your boat ! Another sword at your side, but also another mouth to feed. The more the merier !", true);
+                MessageDisplay.Instance.Display("Allows recruiting new crew members on your boat, the more the merrier! Another friend at your side, but also another mouth to feed!", true);
                 break;
             case UpgradeType.Cargo:
-                MessageDisplay.Instance.Display("This allow you to carry more food, weapons, armor, and miscellaneous items. Be careful not to get lost in all that equipment !", true);
+                MessageDisplay.Instance.Display("Allows carrying more food, weapons, armour, and miscellaneous items. Be careful not to get lost in all that equipment!", true);
                 break;
             case UpgradeType.Longview:
-                MessageDisplay.Instance.Display("This allows you to see further away in the sea. This can be a life saver if your stranded in a gigantic ocean, days away from starving !", true);
+                MessageDisplay.Instance.Display("Allows seeing further away around the ship. A lifesaver if you're sailing on a vast ocean, starving and looking for land!", true);
                 break;
         }
 
@@ -229,9 +229,11 @@ public class BoatUpgradeManager : MonoBehaviour {
     int memberToRemove = -1;
     public void RemoveMember(int i)
     {
-        memberToRemove = i;
+        // fonction morte parce que le code c'est de la merde espece d'enculé 
 
-        MessageDisplay.Instance.Display("Abandon " + Crews.playerCrew.CrewMembers[i].MemberName + " ?", true);
+        memberToRemove = i;
+        
+        //MessageDisplay.Instance.Display("Are you sure you want to remove " + Crews.playerCrew.CrewMembers[i].MemberName + " from the crew?", true);
         MessageDisplay.Instance.onValidate += ConfirmRemoveMember;
     }
 

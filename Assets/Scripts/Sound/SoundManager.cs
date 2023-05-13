@@ -29,11 +29,15 @@ public class SoundManager : MonoBehaviour
     public AudioSource ambiantSource;
     public AudioSource rainSource;
 
-    public Image soundImage;
+    public Text soundText;
     public Sprite soundOn_Sprite;
     public Sprite soundOff_Sprite;
 
     public List<Sound> sounds = new List<Sound>();
+
+    public AudioSource menuMusic;
+
+    public bool playMenuMusic = false;
 
     void Awake()
     {
@@ -46,6 +50,13 @@ public class SoundManager : MonoBehaviour
         loopFxSources = loopSourceParent.GetComponentsInChildren<AudioSource>();
 
         SoundEnabled = PlayerPrefs.GetInt("SoundEnabled", 1) == 1;
+
+        if (SoundEnabled && playMenuMusic)
+        {
+            menuMusic.Play();
+        }
+
+        soundText.text = SoundEnabled ? "Sound : On": "Sound : Off";
 
         UpdateAmbianceSound();
     }
@@ -62,7 +73,7 @@ public class SoundManager : MonoBehaviour
 
         if (sound == null)
         {
-            Debug.LogError("no sound named : " + soundName);
+            //Debug.LogError("no sound named : " + soundName);
             return;
         }
 
@@ -88,7 +99,7 @@ public class SoundManager : MonoBehaviour
             }
         }
 
-        Debug.LogError("coudln't find loop sound named : " + soundName);
+        //Debug.LogError("coudln't find loop sound named : " + soundName);
     }
 
     public void PlayRandomSound(string soundName)
@@ -97,7 +108,7 @@ public class SoundManager : MonoBehaviour
 
         if (tmp_Sounds.Count == 0)
         {
-            //Debug.LogError("no random sound named : " + soundName);
+            ////Debug.LogError("no random sound named : " + soundName);
             return;
         }
 
@@ -111,7 +122,7 @@ public class SoundManager : MonoBehaviour
 
         if (sound == null)
         {
-            Debug.LogError("no sound named : " + soundName);
+            //Debug.LogError("no sound named : " + soundName);
             return;
         }
 
@@ -148,7 +159,7 @@ public class SoundManager : MonoBehaviour
 
         if (sound == null)
         {
-            Debug.LogError("no sound named : " + ambianceName);
+            //Debug.LogError("no sound named : " + ambianceName);
             return;
         }
 
@@ -201,7 +212,7 @@ public class SoundManager : MonoBehaviour
             }
         }
 
-        Debug.Log("Loaded " + sounds.Count + " sounds");
+        //Debug.Log("Loaded " + sounds.Count + " sounds");
 #endif
     }
     #endregion
@@ -212,7 +223,28 @@ public class SoundManager : MonoBehaviour
 
         PlayerPrefs.SetInt("SoundEnabled", SoundEnabled ? 1 : 0);
 
-        soundImage.sprite = SoundEnabled ? soundOn_Sprite : soundOff_Sprite;
+        soundText.text = SoundEnabled ? "Sound : On": "Sound : Off";
+
+
+        if ( MusicManager.Instance != null)
+        {
+            MusicManager.Instance.audioSource.Stop();
+        }
+        else
+        {
+            if ( SoundEnabled)
+            {
+        ambiantSource.Play();
+                menuMusic.Play();
+            }
+            else
+            {
+        ambiantSource.Stop();
+                menuMusic.Stop();
+            }
+        }
+
+        SoundManager.Instance.PlaySound("click_med 03");
 
     }
 

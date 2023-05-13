@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class Skill : MonoBehaviour {
 
 	public Fighter fighter;
@@ -241,6 +242,7 @@ public class Skill : MonoBehaviour {
 
 	public virtual void EndSkillDelay () {
 
+
         if (fighter.crewMember.CanUseSkills() == false)
         {
             fighter.EndTurn();
@@ -269,6 +271,10 @@ public class Skill : MonoBehaviour {
         {
             int skillIndex = GetSkillIndex(fighter.crewMember);
             fighter.crewMember.charges[skillIndex] = initCharge;
+        }
+        else
+        {
+            Debug.Log("skill is null");
         }
     }
     #endregion
@@ -319,7 +325,7 @@ public class Skill : MonoBehaviour {
 		}
 
 		if (skillIndex < 0) {
-			Debug.LogError ("pas trouvé l'index de " + skillName);
+			//Debug.LogError ("pas trouvé l'index de " + skillName);
 		}
 
 		return skillIndex;

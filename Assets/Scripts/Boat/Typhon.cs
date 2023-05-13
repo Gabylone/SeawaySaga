@@ -23,6 +23,7 @@ public class Typhon : RandomPlacable
 
         Hide();
 
+        CancelInvoke("HandleOnEnterNewChunkDelay");
         Invoke("HandleOnEnterNewChunkDelay", 0.1f);
     }
 

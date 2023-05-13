@@ -68,7 +68,8 @@ public enum FunctionType {
 	AddCurrentQuest,
 
 	// ship
-	DestroyShip
+	DestroyShip,
+    CheckIfAllFormulasVerified,
 
 }
 
@@ -91,7 +92,7 @@ public class StoryFunctions : MonoBehaviour {
 
         if (debug)
         {
-            Debug.Log("reading cell");
+            //Debug.Log("reading cell");
         }
 
 		if (content.Length == 0) {
@@ -100,7 +101,7 @@ public class StoryFunctions : MonoBehaviour {
 				"\n at row : " + (StoryReader.Instance.Col+2) + "" +
 				"\n and collumn : " + StoryReader.Instance.Row;
 
-			Debug.LogError (text);
+			//Debug.LogError (text);
 
 			StoryLauncher.Instance.EndStory ();
 			return;
@@ -111,7 +112,7 @@ public class StoryFunctions : MonoBehaviour {
 
             if ( debug)
             {
-                Debug.Log("going through node " + content);
+                //Debug.Log("going through node " + content);
             }
 
             int decal = StoryReader.Instance.CurrentStoryHandler.GetDecal();
@@ -119,7 +120,7 @@ public class StoryFunctions : MonoBehaviour {
             {
                 if (debug)
                 {
-                    Debug.Log("switching : decal " + decal);
+                    //Debug.Log("switching : decal " + decal);
                 }
 
                 StoryReader.Instance.NextCell();
@@ -146,7 +147,7 @@ public class StoryFunctions : MonoBehaviour {
 
                 if (debug)
                 {
-                    Debug.Log("func : " + func.ToString());
+                    //Debug.Log("func : " + func.ToString());
                 }
 
                 if (getFunction != null)
@@ -157,8 +158,9 @@ public class StoryFunctions : MonoBehaviour {
 
 		}
 
-        Debug.LogError(
-            "cell (" + content + ") returns no function (" + StoryCheck.GetCellName(StoryReader.Instance.Row, StoryReader.Instance.Col) + ")");
+        //Debug.LogError(
+        //    "cell (" + content + ") returns no function (" + StoryCheck.GetCellName(StoryReader.Instance.Row, StoryReader.Instance.Col) + ")");
+
 
         StoryLauncher.Instance.EndStory ();
 

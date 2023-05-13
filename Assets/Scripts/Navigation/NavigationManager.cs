@@ -78,6 +78,8 @@ public class NavigationManager : MonoBehaviour {
 
 		string foodText = string.Empty;
 
+		IslandManager.Instance.ResetIslandPositions();
+
 		// feeding member while travelling
 		Loot loot = LootManager.Instance.PlayerLoot;
 
@@ -259,7 +261,7 @@ public class NavigationManager : MonoBehaviour {
 
 		}
 
-		Debug.Log ("coun't find a direction");
+		//Debug.Log ("coun't find a direction");
 		return Directions.None;
 	}
 	public string getDirName ( Directions dir ) {
@@ -589,13 +591,13 @@ public struct Coords {
 			++radius;
 
 			if (radius > 10) {
-				Debug.Log ("Get closest island reached 10 : breaking");
+				//Debug.Log ("Get closest island reached 10 : breaking");
 				break;
 			}
 
 		}
 
-		Debug.Log ("could not find closest island, returning current");
+		//Debug.Log ("could not find closest island, returning current");
 
 		return current;
 

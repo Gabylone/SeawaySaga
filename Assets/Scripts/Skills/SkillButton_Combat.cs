@@ -17,6 +17,9 @@ public class SkillButton_Combat : SkillButton {
 	public float restriction_Duration;
 	public float restriction_Amount;
 
+	public Outline outline;
+	public bool displayOutline = false;
+
 	// charge
 	public Image chargeFillImage;
 	public GameObject chargeGroup;
@@ -46,18 +49,31 @@ public class SkillButton_Combat : SkillButton {
         button.interactable = true;
 
         canvasGroup.alpha = 1f;
+
+
+		if ( displayOutline)
+		{
+			outline.enabled = true;
+		}
 	}
 
-	void Disable() {
+	void Disable()
+	{
 		canTriggerSkill = false;
 		//skillImage.color = new Color ( 1,1,1,0.35f );
-        //button.interactable = false;
+		//button.interactable = false;
 
-        canvasGroup.alpha = 0.5f;
+		canvasGroup.alpha = 0.5f;
+
+
+        if (displayOutline)
+        {
+            outline.enabled = false;
+        }
 
     }
 
-    void CheckSkill ()
+	void CheckSkill ()
 	{
 		if (skill.energyCost == 0) {
 
@@ -79,18 +95,19 @@ public class SkillButton_Combat : SkillButton {
 		if ( skill.energyCost > fighter.crewMember.energy ) {
 			skill.currentRestriction = "No energy...";
 			Disable ();
-        }
+		}
 
 		// CHARGE
 		int charge = fighter.crewMember.charges[skill.GetSkillIndex(fighter.crewMember)];
-		UpdateCharge (charge);
+
+		UpdateCharge(charge);
 
 	}
 
 	void UpdateCharge (int charge) {
 		if (charge > 0) {
 			Disable ();
-			skill.currentRestriction = "Ready in " + charge + " turns";
+			skill.currentRestriction = "Ready in " + charge + (charge == 1 ? " turn" : " turns");
 			chargeGroup.SetActive (true);
 			chargeFillImage.fillAmount = (float)charge / (float)skill.initCharge;
 			chargeText.text = "" + charge;

@@ -97,7 +97,7 @@ public class WorldTouch : MonoBehaviour
 
                 if (Physics.Raycast(ray, out hit , 1000f ))
                 {
-                    Debug.Log("raycast hitting : " + hit.collider.name);
+                    //Debug.Log("raycast hitting : " + hit.collider.name);
                 }*/
             }
 
@@ -126,6 +126,7 @@ public class WorldTouch : MonoBehaviour
 
         if (!IsEnabled())
         {
+
             return;
         }
 
@@ -160,9 +161,15 @@ public class WorldTouch : MonoBehaviour
 
         if (!IsEnabled())
         {
+
+            if (PlayerBoat.Instance.moving)
+            {
+                PlayerBoat.Instance.EndMovenent();
+            }
+
             if (debugTouch)
             {
-                Debug.Log("! Disabled !");
+               Debug.Log("! Disabled !");
             }
 
             return;
@@ -170,6 +177,12 @@ public class WorldTouch : MonoBehaviour
 
         if (!touching)
         {
+
+            if (PlayerBoat.Instance.moving)
+            {
+                PlayerBoat.Instance.EndMovenent();
+            }
+
             if (debugTouch)
             {
                 Debug.Log("! Not touching !");
@@ -180,13 +193,18 @@ public class WorldTouch : MonoBehaviour
 
         touching = false;
 
+        if (debugTouch)
+        {
+            Debug.Log("mouse up");
+        }
+
         if (onPointerExit != null)
         {
             onPointerExit();
         }
     }
 
-    private bool IsPointerOverUIObject()
+    public bool IsPointerOverUIObject()
     {
         PointerEventData eventDataCurrentPosition = new PointerEventData(EventSystem.current);
 
@@ -216,7 +234,7 @@ public class WorldTouch : MonoBehaviour
 
         if ( debugTouch && results.Count > 0)
         {
-            Debug.Log("UI : results : " + results[0].gameObject.name + " (out of " + results.Count + ")");
+            //Debug.Log("UI : results : " + results[0].gameObject.name + " (out of " + results.Count + ")");
         }
 
         return results.Count > 0;

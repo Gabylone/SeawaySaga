@@ -61,9 +61,11 @@ public class MinimapChunk : MonoBehaviour
 
 	public void ShowQuestFeedback () {
 		questGroup.SetActive (true);
-	}
+        rectTransform.SetAsLastSibling();
 
-	public void HideQuestFeedback() {
+    }
+
+    public void HideQuestFeedback() {
 		questGroup.SetActive (false);
 	}
 
@@ -130,7 +132,7 @@ public class MinimapChunk : MonoBehaviour
 
         if (islandData.storyManager.hasBeenPlayed)
         {
-            int a = 0;
+            /*int a = 0;
             foreach (var item in islandData.storyManager.storyHandlers)
             {
                 if (item.storyType == StoryType.Quest)
@@ -147,7 +149,9 @@ public class MinimapChunk : MonoBehaviour
                 }
 
                 ++a;
-            }
+            }*/
+
+            str = islandData.storyManager.storyHandlers[0].Story.displayName;
         }
         else
         {
@@ -171,6 +175,8 @@ public class MinimapChunk : MonoBehaviour
         currentMinimapChunk = this;
 
         outline.enabled = true;
+
+        rectTransform.SetAsLastSibling();
     }
 
     public void GetIslandNames()

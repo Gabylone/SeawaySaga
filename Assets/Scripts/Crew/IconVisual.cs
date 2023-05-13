@@ -197,6 +197,7 @@ public class IconVisual : MonoBehaviour
 
     public void TaintLoop(Color c)
     {
+
         tainted = true;
 
         loopTaint = true;
@@ -206,6 +207,7 @@ public class IconVisual : MonoBehaviour
 
     public void TaintOnce(Color c)
     {
+
         tainted = true;
 
         timer = 0f;
@@ -217,6 +219,7 @@ public class IconVisual : MonoBehaviour
 
     public void ResetTaint()
     {
+
         tainted = false;
 
         InitVisual();
@@ -329,6 +332,12 @@ public class IconVisual : MonoBehaviour
     #region weapons
     public void UpdateWeaponSprite(Member member)
     {
+        if ( CombatManager.Instance== null)
+        {
+            return;
+        }
+
+
         if (CombatManager.Instance != null && !CombatManager.Instance.fighting || member.equipedWeapon == null)
         {
             weaponImage.enabled = false;

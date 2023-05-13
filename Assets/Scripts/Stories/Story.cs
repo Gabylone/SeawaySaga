@@ -30,7 +30,7 @@ public class Story {
 		Node node = nodes.Find (x => x.name == str);
 
 		if ( node == null ) {
-			Debug.LogError ( "node " + str + " doesn't exist in story " + dataName );
+			//Debug.LogError ( "node " + str + " doesn't exist in story " + dataName );
 		}
 
 		return node;

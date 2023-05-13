@@ -25,6 +25,11 @@ public class MusicManager : MonoBehaviour
 
     public void PlayCombatMusic()
     {
+        if (!SoundManager.Instance.SoundEnabled)
+        {
+            return;
+        }
+
         audioSource.loop = true;
         audioSource.clip = combatMusics[Random.Range(0, combatMusics.Length)];
         audioSource.Play();
@@ -38,12 +43,22 @@ public class MusicManager : MonoBehaviour
 
     public void PlayBaladMusic()
     {
+        if (!SoundManager.Instance.SoundEnabled)
+        {
+            return;
+        }
+
         audioSource.clip = baladMusic[Random.Range(0, baladMusic.Length)];
         audioSource.Play();
     }
 
     public void PlayTavernMusic()
     {
+        if (!SoundManager.Instance.SoundEnabled)
+        {
+            return;
+        }
+
         audioSource.clip = tavernMusic;
         audioSource.Play();
     }

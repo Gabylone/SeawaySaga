@@ -33,7 +33,15 @@ public class Skill_HeadShot : Skill {
             SoundManager.Instance.PlayRandomSound("voice_mad");
             SoundManager.Instance.PlayRandomSound("Tribal");
 
-            string str = "Don't you move, I'm gonna shoot you right between the eyes";
+            string[] strs = new string[3]
+            {
+                "Don't move, I'm gonna shoot you right between the eyes!",
+                "Steady, this is going to leave a mark!",
+                "Hold still, I have a good one for you!"
+
+            };
+
+            string str = strs[Random.Range(0, strs.Length)];
 
             fighter.Speak(str);
 

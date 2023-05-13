@@ -102,8 +102,8 @@ public class StoryLoader : MonoBehaviour {
 				bool canParse = double.TryParse (value ,out frequence);
 
 				if ( canParse== false){ 
-                    Debug.LogError("ne peut pas parse la freq dans : " + newStory.dataName + " TRY PARSE : ");
-					Debug.LogError(value);
+                    //Debug.LogError("ne peut pas parse la freq dans : " + newStory.dataName + " TRY PARSE : ");
+					//Debug.LogError(value);
                 }
 
                 // set story frequence
@@ -114,20 +114,20 @@ public class StoryLoader : MonoBehaviour {
 
 				minFreq += newStory.freq;
 
-                //				Debug.Log ("current freq : " + minFreq);
-                //				Debug.Log ("story : " + newStory.name + " FREQUENCE MAX : " + newStory.rangeMax);
-                //				Debug.Log ("story : " + newStory.name + " FREQUENCE MIN : " + newStory.rangeMin);
+                //				//Debug.Log ("current freq : " + minFreq);
+                //				//Debug.Log ("story : " + newStory.name + " FREQUENCE MAX : " + newStory.rangeMax);
+                //				//Debug.Log ("story : " + newStory.name + " FREQUENCE MIN : " + newStory.rangeMin);
 
                 string freq_Str = rowContent[2];
 
                 bool containsParam = int.TryParse (freq_Str, out newStory.param);
 				if (containsParam == false ) {
 
-                    Debug.Log("sprite id pas parcable : (" + freq_Str + ") dans l'histoire " + newStory.dataName);
+                    //Debug.Log("sprite id pas parcable : (" + freq_Str + ") dans l'histoire " + newStory.dataName);
 
-                    Debug.Log("fffffff" + rows[rowIndex+1][0]);
-                    Debug.Log("fffffff" + rows[rowIndex+1][1]);
-                    Debug.Log("fffffff" + rows[rowIndex+1][2]);
+                    //Debug.Log("fffffff" + rows[rowIndex+1][0]);
+                    //Debug.Log("fffffff" + rows[rowIndex+1][1]);
+                    //Debug.Log("fffffff" + rows[rowIndex+1][2]);
 
 					print (rowContent [0]);
 					print (rowContent [1]);
@@ -163,11 +163,11 @@ public class StoryLoader : MonoBehaviour {
 
                     if ( collumnIndex >= newStory.content.Count)
                     {
-                        /*Debug.Log("loading : " + storyFiles[index].name);
-                        Debug.Log("collumn index : " + collumnIndex);
-                        Debug.Log("txt : " + txt);
-                        Debug.Log( "content l : " + newStory.content.Count );
-                        Debug.Log("row index : " + rowIndex );*/
+                        /*//Debug.Log("loading : " + storyFiles[index].name);
+                        //Debug.Log("collumn index : " + collumnIndex);
+                        //Debug.Log("txt : " + txt);
+                        //Debug.Log( "content l : " + newStory.content.Count );
+                        //Debug.Log("row index : " + rowIndex );*/
                     }
                     else
                     {
@@ -224,10 +224,10 @@ public class StoryLoader : MonoBehaviour {
 		}
 
 
-		Debug.LogError ("percentage is outside of range : " + random + " story type : (" + type + ")");
-		Debug.LogError ("RANGE MIN : " + getStories(type)[0].rangeMin);
-//		Debug.LogError ("RANGE MIN : " + getStories(type)[getStories(type).Count-1].rangeMin);
-		Debug.LogError ("RANGE MAX : " + getStories(type)[getStories(type).Count-1].rangeMax);
+		//Debug.LogError ("percentage is outside of range : " + random + " story type : (" + type + ")");
+		//Debug.LogError ("RANGE MIN : " + getStories(type)[0].rangeMin);
+//		//Debug.LogError ("RANGE MIN : " + getStories(type)[getStories(type).Count-1].rangeMin);
+		//Debug.LogError ("RANGE MAX : " + getStories(type)[getStories(type).Count-1].rangeMax);
 
 		return Random.Range (0,getStories(type).Count);
 

@@ -70,7 +70,7 @@ public class CombatFeedback : MonoBehaviour {
         // status
         statusImage.color = color;
         statusImage.gameObject.SetActive(true);
-        statusImage.sprite = SkillManager.statusSprites[(int)status];
+        statusImage.sprite = SkillManager.Instance.statusSprites [(int)status];
 
         CancelInvoke("ShowFeedbackInfo");
         Invoke("ShowFeedbackInfo", delay);

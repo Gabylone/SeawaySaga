@@ -1,5 +1,5 @@
 Nom;Fréquence / 5;Boat Type;Display Name;;;;;;;;;;;;;;
-Impériaux;41,67;0;Imperial Boat;;;;;;;;;;;;;;
+Impériaux;20;0;Imperial Boat;;;;;;;;;;;;;;
 Narrator : Sail ho! An immense imperial boat catches up, its weapons threateningly pointed at NOMBATEAU. An officer on the deck hails you.;;;;;;;;;;;;;;;;;
 [apparition capitaine];;;;;;;;;;;;;;;;;
 NewCrew;;;;;;;;;;;;;;;;;
@@ -15,7 +15,7 @@ Node=>déjà choix;;Node=>choix;SetChoices2;;;;;;;;;;;;;;
 ;;;OtherSpeak : Silence, scum, you’re finished!;HideOther;;;;;;;;;;;;;
 ;;;Node=>combat;Fade;;;;;;;;;;;;;
 [déjà choix];;;;Node=>mauvais karma;;;[besoin];;;;;;;;;;
-OtherSpeak : Don’t mind if I do!;OtherSpeak : Don’t push your luck now…;;;;;;Switch=>déjà choix;;;;;[mec1];;[mec2];;[mec3];
+PlayerSpeak : Don’t mind if I do!;OtherSpeak : Don’t push your luck now…;;;;;;Switch=>déjà choix;;;;;[mec1];;[mec2];;[mec3];
 Node=>besoin;Node=>choix;;;;;;OtherSpeak : Anything else?;;;;;NewCrew1;;NewCrew1;;NewCrew1;
 ;;;;;;;SetChoices4;;;;;OtherSpeak : That old salt CAPITAINE! It would be my pleasure!;;OtherSpeak : It’s an honor, sir !;;OtherSpeak : Sir, it would be an honor to be part of the crew !;
 ;;;;;;;Choice : Wouldn't mind some extra hands if ye can spare 'em. (member);Choice : Any food? (loot);Choice : Weapons! (loot);Choice : We be fine for now. (leave);;SetChoices2;;SetChoices2;;SetChoices2;

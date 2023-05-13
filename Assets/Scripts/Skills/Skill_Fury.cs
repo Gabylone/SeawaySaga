@@ -13,7 +13,13 @@ public class Skill_Fury: Skill {
         SoundManager.Instance.PlayLoop("dice_wait");
         SoundManager.Instance.PlayRandomSound("voice_mad");
 
-        string str = "You've got me MAD !";
+        string[] strs = new string[2]
+        {
+            "You've got me mad!",
+            "Now I’m really mad!"
+        };
+
+        string str = strs[Random.Range(0, strs.Length)];
 		fighter.Speak (str);
 	}
 

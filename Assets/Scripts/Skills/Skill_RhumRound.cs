@@ -14,16 +14,29 @@ public class Skill_RhumRound : Skill {
 	{
 		base.Trigger (fighter);
 
-		string str = "Tonight we feast !";
+        string[] strs = new string[2]
+        {
+            "Tonight we feast!",
+            "Mates! Drinks are on me tonight once we finish them!"
+        };
 
-		fighter.Speak (str);
+        string str = strs[Random.Range(0, strs.Length)];
+
+        fighter.Speak (str);
 	}
 
     public override void StartAnimation()
     {
         base.StartAnimation();
 
-        string str = "CHEERS !";
+        string[] strs = new string[2]
+        {
+            "Come on, lads! Let's grab a bite and smash them!",
+            "Eat up everyone! Now go and get them!"
+        };
+
+        string str = strs[Random.Range(0, strs.Length)];
+
         fighter.Speak(str);
         SoundManager.Instance.PlayRandomSound("Potion");
 

@@ -45,9 +45,9 @@ public class StoryManager  {
 	public StoryHandler CurrentStoryHandler {
 		get {
 			if ( StoryReader.Instance.currentStoryLayer >= storyHandlers.Count ) {
-				Debug.LogError ("Le layer d'histoire est au dessus du nombre de story handlers");
-				Debug.Log ("Current Story Layer : " + StoryReader.Instance.currentStoryLayer);
-				Debug.Log ("Story Handlers Count : " + storyHandlers.Count);
+				//Debug.LogError ("Le layer d'histoire est au dessus du nombre de story handlers");
+				//Debug.Log ("Current Story Layer : " + StoryReader.Instance.currentStoryLayer);
+				//Debug.Log ("Story Handlers Count : " + storyHandlers.Count);
 				return storyHandlers [0];
 			}
 			return storyHandlers [StoryReader.Instance.currentStoryLayer];

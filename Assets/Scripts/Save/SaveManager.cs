@@ -15,11 +15,14 @@ public class SaveManager : MonoBehaviour
 
 	private GameData gameData;
 
+	public delegate void OnSaveGameData();
+	public OnSaveGameData onSaveGameData;
+
 	public GameData GameData {
 		get {
             if ( gameData == null)
             {
-                Debug.LogError("no game data");
+                //Debug.LogError("no game data");
             }
 
 			return gameData;
@@ -140,6 +143,10 @@ public class SaveManager : MonoBehaviour
 		SaveTool.Instance.SaveToCurrentMap ("undiscovered voids", MapGenerator.Instance.undiscoveredVoids);
 
 
+		if (onSaveGameData != null)
+		{
+			onSaveGameData();
+		}
     }
     #endregion
 
@@ -323,7 +330,7 @@ public class PlayerInfo
     {
         if (apparenceItems.Contains(apparenceItem))
         {
-            Debug.Log("apparence item already exists apparence item : " + apparenceItem.apparenceType + " id : " + apparenceItem.id);
+            //Debug.Log("apparence item already exists apparence item : " + apparenceItem.apparenceType + " id : " + apparenceItem.id);
             //apparenceItems.Remove(apparenceItem);
             return;
         }

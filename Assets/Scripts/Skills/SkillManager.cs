@@ -8,11 +8,12 @@ public class SkillManager : MonoBehaviour {
 
 	public static Skill[] skills;
 
-	public static Sprite[] skillSprites;
-	public static Sprite[] statusSprites;
+	public Sprite[] skillSprites;
+	public Sprite[] statusSprites;
 	public static Sprite[] jobSprites;
     public Sprite[] statSprites;
     public Color[] statColors;
+	public Color[] skillColors;
 
     public delegate void OnLevelUpStat();
     public OnLevelUpStat onLevelUpStat;
@@ -54,7 +55,7 @@ public class SkillManager : MonoBehaviour {
 
 			if (cells.Length <= 1)
 				print (item.type);
-			
+
 			item.skillName = cells [1];
 			item.energyCost = int.Parse ( cells[3] );
 			item.initCharge = int.Parse ( cells[4] );
@@ -65,9 +66,7 @@ public class SkillManager : MonoBehaviour {
 			++rowIndex;
 		}
 
-		skillSprites = Resources.LoadAll<Sprite	> ("Graph/SkillsSprites");
 		jobSprites = Resources.LoadAll<Sprite> ("Graph/JobSprites");
-		statusSprites = Resources.LoadAll<Sprite> ("Graph/StatusSprites");
 
 
 	}
@@ -181,7 +180,7 @@ public class SkillManager : MonoBehaviour {
 
         if ( fittingSkills.Count == 0)
         {
-            Debug.Log("no fitting skills : skipping turn");
+            //Debug.Log("no fitting skills : skipping turn");
 
             return getSkill(Skill.Type.SkipTurn);
         }

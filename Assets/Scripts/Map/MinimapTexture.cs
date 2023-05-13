@@ -13,6 +13,9 @@ public class MinimapTexture : MonoBehaviour {
 	public Color color_UnvisitedSea;
     public Color color_InRange;
 
+    public int x = 0;
+    public int y = 0;
+
 
     public Image gridImage;
 
@@ -21,18 +24,71 @@ public class MinimapTexture : MonoBehaviour {
         Instance = this;
     }
 
-	public void UpdateBackgroundImage () {
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.V))
+		{
+			/*int x = Random.Range(0, MapGenerator.Instance.GetMapHorizontalScale);
+			int y = Random.Range(0, MapGenerator.Instance.GetMapVerticalScale);*/
 
-		Texture2D texture = new Texture2D (MapGenerator.Instance.GetMapHorizontalScale, MapGenerator.Instance.GetMapVerticalScale);
+            Texture2D texture = targetImage.sprite.texture;
 
-		texture.filterMode = FilterMode.Point;
-		texture.anisoLevel = 0;
-		texture.mipMapBias = 0;
-		texture.wrapMode = TextureWrapMode.Clamp;
+            targetImage.sprite.texture.SetPixel(x, y, Color.red);
+            targetImage.sprite.texture.Apply();
+            
+        }
+        
+    }
 
-		texture.Reinitialize (MapGenerator.Instance.GetMapHorizontalScale, MapGenerator.Instance.GetMapVerticalScale);
+    public void InitBackgroundImage()
+    {
 
-		for (int x = 0; x < MapGenerator.Instance.GetMapHorizontalScale; x++) {
+        Texture2D texture = new Texture2D(MapGenerator.Instance.GetMapHorizontalScale, MapGenerator.Instance.GetMapVerticalScale, TextureFormat.RGBA32, false);
+
+        texture.filterMode = FilterMode.Point;
+        texture.anisoLevel = 0;
+        texture.mipMapBias = 0;
+        texture.wrapMode = TextureWrapMode.Clamp;
+
+        for (int x = 0; x < MapGenerator.Instance.GetMapHorizontalScale; x++)
+        {
+            for (int y = 0; y < MapGenerator.Instance.GetMapVerticalScale; y++)
+            {
+
+                Chunk chunk = Chunk.GetChunk(new Coords(x, y));
+
+                switch (chunk.state)
+                {
+                    case ChunkState.UndiscoveredVoid:
+                    case ChunkState.UndiscoveredSea:
+                    case ChunkState.UndiscoveredIsland:
+                        texture.SetPixel(x, y, color_UnvisitedSea);
+                        break;
+                    case ChunkState.DiscoveredSea:
+                    case ChunkState.DiscoveredIsland:
+                    case ChunkState.VisitedIsland:
+                        texture.SetPixel(x, y, color_VisitedSea);
+                        break;
+                    case ChunkState.DiscoveredVoid:
+                        texture.SetPixel(x, y, color_DiscoveredVoid);
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+
+        texture.Apply();
+
+        targetImage.sprite = Sprite.Create ( texture, new Rect (0, 0, MapGenerator.Instance.GetMapHorizontalScale,  MapGenerator.Instance.GetMapVerticalScale) , Vector2.one * 0.5f );
+
+    }
+
+    public void UpdateBackgroundImage () {
+
+        Texture2D texture = targetImage.sprite.texture;
+
+        for (int x = 0; x < MapGenerator.Instance.GetMapHorizontalScale; x++) {
 			for (int y = 0; y < MapGenerator.Instance.GetMapVerticalScale; y++) {
 
 				Chunk chunk = Chunk.GetChunk (new Coords (x, y));
@@ -70,14 +126,14 @@ public class MinimapTexture : MonoBehaviour {
 
 				if (Chunk.GetChunk(c).state == ChunkState.DiscoveredVoid)
 					continue;
-                //Debug.Log("eh ?");
+                ////Debug.Log("eh ?");
                 texture.SetPixel(c.x, c.y, color_InRange);
             }
         }
 
         texture.Apply ();
 
-		targetImage.sprite = Sprite.Create ( texture, new Rect (0, 0, MapGenerator.Instance.GetMapHorizontalScale,  MapGenerator.Instance.GetMapVerticalScale) , Vector2.one * 0.5f );
+		//targetImage.sprite = Sprite.Create ( texture, new Rect (0, 0, MapGenerator.Instance.GetMapHorizontalScale,  MapGenerator.Instance.GetMapVerticalScale) , Vector2.one * 0.5f );
 
 	}
 }

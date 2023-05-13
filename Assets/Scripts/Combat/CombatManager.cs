@@ -192,7 +192,7 @@ public class CombatManager : MonoBehaviour {
 			return;
 		}
 
-		Invoke ("StartNewTurn" , 1f);
+		Invoke ("StartNewTurn" , 0.3f);
 
 	}
 
@@ -504,10 +504,10 @@ public class CombatManager : MonoBehaviour {
     #region escape
     private void HandleEscape()
     {
-        string str = "Cowardly, CAPITAINE and his crew escape from the fight. They better not come back until they match the strenght of their foes";
+        string str = "Cowardly, CAPITAINE and their crew escape from the fight. Better train harder and come back another time!";
         if (Crews.playerCrew.CrewMembers.Count == 1)
         {
-            str = "Cowardly, CAPITAINE escapes from the fight. He better not come back until he matches the strenght of his foes";
+            str = "Cowardly, CAPITAINE escapes from the fight. Better train harder and come back another time!";
         }
 
         DisplayCombatResults.Instance.Display("ESCAPE !", str);
@@ -541,7 +541,7 @@ public class CombatManager : MonoBehaviour {
     private void HandleDefeat()
     {
         
-        string str = "The captain didn't manage too bring his crew to victory. Maybe in an another life, he'll find wealth and glory.";
+        string str = "The captain didn't manage to bring their crew to victory. May they find wealth and glory in another life!";
 
         DisplayCombatResults.Instance.Display("DEFEAT !", str);
         DisplayCombatResults.Instance.onConfirm += HandleOnConfirm_Defeat;
@@ -570,14 +570,14 @@ public class CombatManager : MonoBehaviour {
         }
 
         // gold
-        int goldReceived = crewValue * Random.Range(10, 15);
+        int goldReceived = crewValue * Random.Range(5, 10);
         GoldManager.Instance.AddGold(goldReceived);
 
-        string str = "CAPITAINE and his crew sucessfly defeated their foes. Loot, gold and experience await them";
+        string str = "CAPITAINE and their crew successfully defeated their foes. Loot, gold and experience await!";
 
         if ( Crews.playerCrew.CrewMembers.Count == 1)
         {
-            str = "CAPITAINE sucessfly defeated his foes. Loot, gold and experience await him";
+            str = "CAPITAINE successfully defeated their foes. Loot, gold and experience await!";
         }
 
         str = NameGeneration.CheckForKeyWords(str);
@@ -633,6 +633,9 @@ public class CombatManager : MonoBehaviour {
     void HideFightDelay()
     {
         InGameBackGround.Instance.SetWhite();
+
+		SaveManager.Instance.SaveGameData();
+		SaveManager.Instance.SaveCurrentIsland();
     }
 	#endregion
 
@@ -828,7 +831,7 @@ public class CombatManager : MonoBehaviour {
         {
             StoryReader.Instance.ContinueStory();
 
-            Debug.LogError("no enemies to start fight with... continuing story");
+            //Debug.LogError("no enemies to start fight with... continuing story");
 
             return;
         }

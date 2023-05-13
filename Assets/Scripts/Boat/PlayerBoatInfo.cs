@@ -21,6 +21,12 @@ public class PlayerBoatInfo : BoatInfo {
 		SetCoords(SaveManager.Instance.GameData.homeCoords);
 	}
 
+    public override void SetCoords(Coords newCoords)
+    {
+        base.SetCoords(newCoords);
+
+    }
+
     public override void SetDirection(Directions dir)
     {
         base.SetDirection(dir);

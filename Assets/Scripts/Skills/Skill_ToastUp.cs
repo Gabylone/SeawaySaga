@@ -54,7 +54,14 @@ public class Skill_ToastUp : Skill {
 
         rumBottle_Transform.gameObject.SetActive(false);
 
-        string str = "Drink up, " + member.MemberName + " , you'll fight like a mad man";
+        string[] strs = new string[2]
+        {
+            "Drink up, " + member.MemberName + " , you'll fight like a mad man",
+            "Gulp this down to the last drop, you’ll be a bloodthirsty beast!"
+        };
+
+        string str = strs[Random.Range(0, strs.Length)];
+
         fighter.Speak(str);
     }
 

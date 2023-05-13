@@ -9,7 +9,9 @@ public class BoatInfo {
 	public Coords previousCoords;
 	public Coords coords;
 
+	public Directions previousDirection = Directions.None;
 	public Directions currentDirection;
+
 
 
     public BoatInfo () {
@@ -31,6 +33,7 @@ public class BoatInfo {
 
     public virtual void SetCoords(Coords newCoords)
     {
+
         previousCoords = coords;
 
         coords = newCoords;
@@ -41,6 +44,7 @@ public class BoatInfo {
 
     public virtual void SetDirection ( Directions dir)
     {
+		previousDirection = currentDirection;
         currentDirection = dir;
     }
 

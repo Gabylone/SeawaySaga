@@ -61,6 +61,8 @@ public class Boats : MonoBehaviour {
 		playerBoatInfo.Init ();
 		playerBoatInfo.Randomize ();
 
+        PlayerBoat.Instance.Init();
+
 		boatData = new BoatData ();
 		boatData.boats = new List<OtherBoatInfo> ();
 
@@ -128,7 +130,7 @@ public class Boats : MonoBehaviour {
     }
 
     public void HandleOnUpdateCurrentChunk()
-    {
+    {   
         foreach (var enemyBoat in enemyBoats)
         {
             enemyBoat.Hide();
@@ -150,7 +152,7 @@ public class Boats : MonoBehaviour {
 
         foreach (var item in boatData.boats)
         {
-            item.TryMoveOnMap();
+           // item.TryMoveOnMap();
 
             // if same coords as player, appear
             if (item.coords == Boats.Instance.playerBoatInfo.coords)
@@ -165,7 +167,7 @@ public class Boats : MonoBehaviour {
 
                 if (currentBoatAmount == enemyBoats.Length)
                 {
-                    Debug.LogError("reached max boat amout on screen");
+                    //Debug.LogError("reached max boat amout on screen");
                     break;
                 }
 
@@ -179,7 +181,7 @@ public class Boats : MonoBehaviour {
 
         currentEnemyBoat.Hide();
 
-        Debug.Log("destroying boat");
+        //Debug.Log("destroying boat");
 
         DisplayMinimap.Instance.UpdateOtherBoatsMinimapIcon();
 
@@ -252,6 +254,7 @@ public class Boats : MonoBehaviour {
 	#endregion
 }
 
+[System.Serializable]
 public class BoatData {
 	
 	public List<OtherBoatInfo>	boats;

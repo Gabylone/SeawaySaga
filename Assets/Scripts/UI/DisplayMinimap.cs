@@ -25,10 +25,11 @@ public class DisplayMinimap : MonoBehaviour {
     public MinimapBoat enemyBoatIconPrefab;
     public MinimapBoat playerBoatIconPrefab;
     public Transform minimapIconsParent;
+    public int minimapIcons_DisplayIndex = 0;
 
 
-    /*public Vector2 enemyBoatIconDecal;
-    public List<MinimapBoat> minimapBoatIcons = new List<MinimapBoat>();*/
+    public Vector2 enemyBoatIconDecal;
+    public List<MinimapBoat> minimapBoatIcons = new List<MinimapBoat>();
 
     [Header("Player Boat Icons")]
     public float centerTweenDuration = 0.5f;
@@ -53,6 +54,7 @@ public class DisplayMinimap : MonoBehaviour {
 
     [Header("Zoom")]
     public float zoom_Speed = 1f;
+    public float zoom_MobileSpeed = 5f;
     public float zoom_LerpSpeed = 1f;
     public float zoom_Max = 5f;
     public float zoom_Min = 1f;
@@ -62,6 +64,9 @@ public class DisplayMinimap : MonoBehaviour {
 	[Header("Full Display")]
     public float fullDisplay_Duration = 0.8f;
     private bool fullDisplay_Exiting = false;
+
+    public float fullDisplay_OffsetMin = 50f;
+    public float normalDisplay_OffsetMin = 5f;
 
     public GameObject fullDisplay_ButtonObj;
 
@@ -87,6 +92,11 @@ public class DisplayMinimap : MonoBehaviour {
     public float decal_X = 0f;
     public float decal_Y = 0f;
 
+    public Sprite icon_Normal;
+    public Sprite icon_Raft;
+
+    public RectTransform zoom_Target;
+    public RectTransform zoom_Target2;
 
     void Awake () {
 		Instance = this;
@@ -122,47 +132,82 @@ public class DisplayMinimap : MonoBehaviour {
 
     private void Update()
     {
-        UpdateZoom();
 
         if (fullyDisplayed)
         {
             UpdateZoomControl();
         }
+
+        UpdateZoom();
+
     }
 
     void UpdateZoom()
     {
-        if (overallRectTranfsorm.localScale.x >= targetScale + 0.1f)
+        overallRectTranfsorm.localScale = Vector3.one * targetScale;
+
+        /*if (overallRectTranfsorm.localScale.x >= targetScale + 0.1f)
         {
-            overallRectTranfsorm.localScale = Vector3.Lerp(overallRectTranfsorm.localScale, Vector3.one * targetScale, zoom_LerpSpeed * Time.deltaTime);
-            CenterOnBoat_Quick();
+            //overallRectTranfsorm.localScale = Vector3.MoveTowards(overallRectTranfsorm.localScale, Vector3.one * targetScale, zoom_LerpSpeed * Time.deltaTime);
+            //CenterOnBoat_Quick();
 
         }
         else if (overallRectTranfsorm.localScale.x <= targetScale - 0.1f)
         {
-            overallRectTranfsorm.localScale = Vector3.Lerp(overallRectTranfsorm.localScale, Vector3.one * targetScale, zoom_LerpSpeed * Time.deltaTime);
-            CenterOnBoat_Quick();
-        }
+            overallRectTranfsorm.localScale = Vector3.one * targetScale;
+            //overallRectTranfsorm.localScale = Vector3.MoveTowards(overallRectTranfsorm.localScale, Vector3.one * targetScale, zoom_LerpSpeed * Time.deltaTime);
+            //CenterOnBoat_Quick();
+        }*/
     }
 
     void UpdateZoomControl()
     {
 
-        if (Input.mouseScrollDelta.y >= 0.1f)
+        /*Vector2 inputPos = InputManager.Instance.GetInputPosition();
+        float x = inputPos.x * PinManager.Instance.firstParent.rect.width / Screen.width;
+        float y = inputPos.y * PinManager.Instance.firstParent.rect.height / Screen.height;
+        Vector2 p = new Vector2(x, y);
+
+        zoom_Target.anchoredPosition = p;
+        zoom_Target2.position = zoom_Target.position;
+        Vector2 pivot = zoom_Target2.anchoredPosition / overallRectTranfsorm.rect.size;
+        overallRectTranfsorm.pivot = pivot;*/
+
+        if (Input.touchSupported)
         {
-            if (targetScale <= zoom_Max)
+            // Pinch to zoom
+            if (Input.touchCount == 2)
             {
-                targetScale += zoom_Speed * Time.deltaTime;
+
+                // get current touch positions
+                Touch tZero = Input.GetTouch(0);
+                Touch tOne = Input.GetTouch(1);
+                // get touch position from the previous frame
+                Vector2 tZeroPrevious = tZero.position - tZero.deltaPosition;
+                Vector2 tOnePrevious = tOne.position - tOne.deltaPosition;
+
+                float oldTouchDistance = Vector2.Distance(tZeroPrevious, tOnePrevious);
+                float currentTouchDistance = Vector2.Distance(tZero.position, tOne.position);
+
+                // get offset value
+                float deltaDistance = oldTouchDistance - currentTouchDistance;
+                Zoom(-deltaDistance, zoom_MobileSpeed);
             }
         }
-        else if (Input.mouseScrollDelta.y <= -0.1f)
+        else
         {
-            if (targetScale >= zoom_Min)
-            {
-                targetScale -= zoom_Speed * Time.deltaTime;
-            }
+            float scroll = Input.GetAxis("Mouse ScrollWheel");
+            Zoom(scroll, zoom_Speed);
         }
+
+        targetScale = Mathf.Clamp(targetScale , zoom_Min, zoom_Max);
     }
+
+    void Zoom(float deltaMagnitudeDiff, float speed)
+    {
+        targetScale += deltaMagnitudeDiff * speed;
+    }
+
 
     public void Init () {
 		InitMap ();
@@ -203,6 +248,7 @@ public class DisplayMinimap : MonoBehaviour {
 
     public MinimapChunk GetMinimapChunk ( IslandData islandData )
     {
+
         MinimapChunk minimapChunk = minimapChunks.Find( x => x.coords == islandData.coords && x.index == islandData.index);
 
         if ( minimapChunk == null)
@@ -262,8 +308,6 @@ public class DisplayMinimap : MonoBehaviour {
 	public void HandleChunkEvent ()
 	{
 		UpdateRange (GetCurrentShipRange);
-
-        UpdateOtherBoatsMinimapIcon();
 
         //CenterOnBoat();
 
@@ -369,7 +413,9 @@ public class DisplayMinimap : MonoBehaviour {
 
         QuestManager.Instance.ShowQuestsOnMap();
 
-        CenterOnBoat_Quick();
+        Invoke("CenterOnBoat_Quick", 0.001f);
+
+        MinimapTexture.Instance.InitBackgroundImage();
 
 	}
 
@@ -477,57 +523,16 @@ public class DisplayMinimap : MonoBehaviour {
                     default:
                         break;
 
-
-
 				}
-
-                /*foreach (var item in Boats.Instance.getBoats)
-                {
-                    if ( item.coords == c)
-                    {
-                        PlaceNPCBoat();
-                    }
-                }*/
                 
             }
 
 		}
 
+        UpdateOtherBoatsMinimapIcon();
+
         MinimapTexture.Instance.UpdateBackgroundImage();
 	}
-    void PlaceNPCBoat(Coords c)
-    {
-        /*if (c == Coords.current)
-        {
-            return;
-        }
-
-        GameObject minimapChunk_Obj = Instantiate(minimapChunkPrefab, minimapChunkParent);
-
-        MinimapChunk minimapChunk = minimapChunk_Obj.GetComponent<MinimapChunk>();
-
-        // SCALE
-        minimapChunk.rectTransform.localScale = Vector3.one;
-
-        // POS
-        float x = (minimapChunkScale / 2) + (coords.x * overallRectTranfsorm.rect.width / MapGenerator.Instance.GetMapHorizontalScale);
-        float y = (minimapChunkScale / 2) + (coords.y * overallRectTranfsorm.rect.height / MapGenerator.Instance.GetMapVerticalScale);
-
-        float decalX = rangeX * islandData.worldPosition.x / NavigationManager.Instance.maxX;
-        float decalY = rangeY * islandData.worldPosition.y / NavigationManager.Instance.maxY;
-
-        Vector2 pos = new Vector2(x + decalX, y + decalY);
-
-        minimapChunk.rectTransform.anchoredPosition = pos;
-
-        minimapChunk.InitChunk(coords, islandID);
-
-        minimapChunk.HideQuestFeedback();
-
-        minimapChunks.Add(minimapChunk);
-
-        ++islandID;*/
-    }
     #endregion
 
     #region map chunk
@@ -535,7 +540,7 @@ public class DisplayMinimap : MonoBehaviour {
 
         /*if ( minimapChunks.ContainsKey(c))
         {
-            Debug.Log("un minimap chunk est déjà présent à : " + c.ToString());
+            //Debug.Log("un minimap chunk est déjà présent à : " + c.ToString());
             return;
         }*/
 
@@ -588,6 +593,7 @@ public class DisplayMinimap : MonoBehaviour {
         float decalX = rangeX / NavigationManager.Instance.maxX;
         float decalY = rangeY / NavigationManager.Instance.maxY;
 
+
         return new Vector2(x, y);
     }
 	#endregion
@@ -623,87 +629,87 @@ public class DisplayMinimap : MonoBehaviour {
     } 
 
 	public void UpdateOtherBoatsMinimapIcon()
+    {
+        UpdateOtherBoatsMinimapIcon(GetCurrentShipRange);
+    }
+
+    public void UpdateOtherBoatsMinimapIcon(int range)
 	{
-        /*foreach (var item in minimapBoatIcons)
+        minimapIcons_DisplayIndex = 0;
+
+        foreach (var item in minimapBoatIcons)
         {
-            item.gameObject.SetActive(false);
+            item.Hide();
         }
 
-		foreach ( OtherBoatInfo boatInfo in Boats.Instance.getBoats ) {
+        for (int x = -range; x <= range; x++)
+        {
+            for (int y = -range; y <= range; y++)
+            {
 
-            PlaceOtherBoatIcon(boatInfo);
+                Coords c = Boats.Instance.playerBoatInfo.coords + new Coords(x, y);
 
-            //++boatIndexInRange;
+                if (c.OutOfMap() || c == Coords.current)
+                    continue;
 
-        }*/
+                foreach (var item in Boats.Instance.getBoats)
+                {
+                    if ( item.coords == c)
+                    {
+                        PlaceOtherBoatIcon(item, c);
+                    }
+                }
+
+            }
+
+        }
 	}
 
-	/*void PlaceOtherBoatIcon (OtherBoatInfo boatInfo) {
+	void PlaceOtherBoatIcon (OtherBoatInfo boatInfo, Coords c) {
 
         // if new boat appears, instantiate icon
+        MinimapBoat targetMinimapBoat;
 
-        MinimapBoat targetMinimapBoat = minimapBoatIcons.Find( x => x.boatInfo.id == boatInfo.id );
-
-		if (targetMinimapBoat == null ) {
-
-            GameObject boatIcon = Instantiate(enemyBoatIconPrefab, enemyIconParent.transform);
-
-            targetMinimapBoat = boatIcon.GetComponent<MinimapBoat>();
-
-            targetMinimapBoat.rectTransform.localScale = Vector3.one;
-
-            targetMinimapBoat.rectTransform.sizeDelta = Vector2.one * minimapChunkScale;
-
-            targetMinimapBoat.boatInfo = boatInfo;
-
-            //targetMinimapBoat.GetComponentInChildren<Image>().color = boatInfo.color;
-
-            minimapBoatIcons.Add(targetMinimapBoat);
-
-            //Debug.Log("coudn't find boat for ship : ");
-
-        }
-        
-        // boat approches
-        if (boatInfo.coords.x <= Boats.Instance.playerBoatInfo.coords.x + (GetCurrentShipRange + 1) &&
-            boatInfo.coords.x >= Boats.Instance.playerBoatInfo.coords.x - (GetCurrentShipRange + 1) &&
-            boatInfo.coords.y <= Boats.Instance.playerBoatInfo.coords.y + (GetCurrentShipRange + 1) &&
-            boatInfo.coords.y >= Boats.Instance.playerBoatInfo.coords.y - (GetCurrentShipRange + 1)
-            )
+        if ( minimapIcons_DisplayIndex >= minimapBoatIcons.Count)
         {
-
-            Vector2 targetPos = GetIconPos(boatInfo.coords);
-
-            if (boatInfo.coords.x <= Boats.Instance.playerBoatInfo.coords.x + GetCurrentShipRange &&
-                boatInfo.coords.x >= Boats.Instance.playerBoatInfo.coords.x - GetCurrentShipRange &&
-                boatInfo.coords.y <= Boats.Instance.playerBoatInfo.coords.y + GetCurrentShipRange &&
-                boatInfo.coords.y >= Boats.Instance.playerBoatInfo.coords.y - GetCurrentShipRange
-                )
-            {
-                targetMinimapBoat.rectTransform.DOAnchorPos(targetPos, centerTweenDuration);
-
-                targetMinimapBoat.GetComponentInChildren<Image>().color = boatInfo.color;
-            }
-            else
-            {
-                targetMinimapBoat.rectTransform.anchoredPosition = targetPos;
-
-                Color c = boatInfo.color;
-                c.a = 0.5f;
-
-                targetMinimapBoat.GetComponentInChildren<Image>().color = c;
-            }
-
-            targetMinimapBoat.gameObject.SetActive(true);
+            targetMinimapBoat = Instantiate(enemyBoatIconPrefab, minimapIconsParent);
+            minimapBoatIcons.Add(targetMinimapBoat);
         }
         else
         {
-            targetMinimapBoat.gameObject.SetActive(false);
+            targetMinimapBoat = minimapBoatIcons[minimapIcons_DisplayIndex];
         }
 
-    }*/
+        float x = (minimapChunkScale / 2) + (c.x * overallRectTranfsorm.rect.width / MapGenerator.Instance.GetMapHorizontalScale);
+        float y = (minimapChunkScale / 2) + (c.y * overallRectTranfsorm.rect.height / MapGenerator.Instance.GetMapVerticalScale);
+
+        Vector2 pos = new Vector2(x, y);
+
+        Directions oppositeDir = NavigationManager.GetOppositeDirection(boatInfo.currentDirection);
+        Vector2 to = NavigationManager.Instance.getDir(boatInfo.currentDirection);
+        Vector2 from = NavigationManager.Instance.getDir(oppositeDir);
+
+        float dur = 5f;
+
+        //targetMinimapBoat.world_RectTransform.anchoredPosition = pos + from * (minimapChunkScale / 2f);
+        targetMinimapBoat.world_RectTransform.anchoredPosition = pos;
+            targetMinimapBoat.world_RectTransform.DOKill();
+
+
+        if (boatInfo.moveNextTime)
+        {
+
+            //targetMinimapBoat.world_RectTransform.DOAnchorPos(pos, dur);
+            targetMinimapBoat.world_RectTransform.DOAnchorPos(pos + to * (minimapChunkScale / 2f), dur).SetLoops(10, LoopType.Restart);
+        }
+
+        targetMinimapBoat.Show(boatInfo);
+
+        minimapIcons_DisplayIndex++;
+    }
     #endregion
 
+    #region nnnn
     public void OnPointerClick()
     {
         if (fullyDisplayed)
@@ -724,9 +730,10 @@ public class DisplayMinimap : MonoBehaviour {
 	void Hide () {
 		scrollViewRectTransform.gameObject.SetActive (false);
 	}
+    #endregion 
 
-	#region full display
-	public void FullDisplay ()
+    #region full display
+    public void FullDisplay ()
 	{
         fullDisplay_ButtonObj.SetActive(false);
 
@@ -742,6 +749,9 @@ public class DisplayMinimap : MonoBehaviour {
 	}
     void FullDisplayDelay()
     {
+        scrollViewRectTransform.offsetMin = new Vector2(fullDisplay_OffsetMin, scrollViewRectTransform.offsetMin.y);
+        scrollViewRectTransform.offsetMax = -new Vector2(fullDisplay_OffsetMin, scrollViewRectTransform.offsetMin.y);
+
         ShowFullMapGroup();
 
         SoundManager.Instance.PlayRandomSound("button_tap_light");
@@ -775,6 +785,8 @@ public class DisplayMinimap : MonoBehaviour {
         {
             onFullDisplay();
         }
+
+        UpdateOtherBoatsMinimapIcon();
     }
 
 	public void ExitFullDisplay ()
@@ -810,6 +822,10 @@ public class DisplayMinimap : MonoBehaviour {
 
         rayBlockerImage.gameObject.SetActive(false);
 
+        scrollViewRectTransform.offsetMin = new Vector2(normalDisplay_OffsetMin, scrollViewRectTransform.offsetMin.y);
+        scrollViewRectTransform.offsetMax = -new Vector2(normalDisplay_OffsetMin, scrollViewRectTransform.offsetMin.y);
+
+
         rectTransform.anchorMin = new Vector2( 0, 0);
         rectTransform.anchorMax = new Vector2( 0, 0);
 
@@ -819,7 +835,8 @@ public class DisplayMinimap : MonoBehaviour {
 
         viewPortMask.enabled = true;
 
-        CenterOnBoat_Quick();
+        CancelInvoke("CenterOnBoat");
+        Invoke("CenterOnBoat", 0.5f);
 
         outlineImage.gameObject.SetActive(true);
 		Transitions.Instance.ScreenTransition.FadeOut (fullDisplay_Duration/2f);

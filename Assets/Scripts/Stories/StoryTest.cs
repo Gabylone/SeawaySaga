@@ -48,7 +48,7 @@ public class StoryTest : MonoBehaviour {
 		for (int i = 0; i < 8; ++i ) {
 
 			if ( Vector2.Angle ( dir , NavigationManager.Instance.getDir((Directions)i) ) < 45f ) {
-				Debug.Log (NavigationManager.Instance.getDirName((Directions)(i)));
+				//Debug.Log (NavigationManager.Instance.getDirName((Directions)(i)));
 			}
 
 		}

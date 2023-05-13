@@ -36,6 +36,9 @@ public class DisplayBoatName : MonoBehaviour, IPointerClickHandler
 
         Boats.Instance.playerBoatInfo.Name = boat_fulName;
         InputField.text = boat_fulName;
+
+        Tween.Bounce(rectTransform, 0.2f, bounceAmount);
+
     }
 
     public void OnPointerClick(PointerEventData eventData)

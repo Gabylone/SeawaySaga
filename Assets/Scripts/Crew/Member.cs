@@ -157,6 +157,17 @@ public class Member {
                 }
             }
 
+			if (item.items[0].apparenceType== ApparenceType.bodyType)
+			{
+				if ( randomID > 3)
+				{
+					if ( Random.value < 0.75f)
+					{
+						SetCharacterID(ApparenceType.beard, 0);
+                    }
+				}
+			}
+
             if ( item.items[0].apparenceType == ApparenceType.job)
             {
                 if ( Crews.Instance.startJob != Job.None)
@@ -175,14 +186,7 @@ public class Member {
         }
         else
         {
-			if (Random.value < 0.5f)
-			{
-				Name = CrewCreator.Instance.manNames[Random.Range(0, CrewCreator.Instance.manNames.Length)];
-			}
-			else
-			{
-				Name = CrewCreator.Instance.womanNames[Random.Range(0, CrewCreator.Instance.womanNames.Length)];
-			}
+            Name = CrewCreator.Instance.manNames[Random.Range(0, CrewCreator.Instance.manNames.Length)];
 		}
         
     }

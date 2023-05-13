@@ -10,6 +10,8 @@ public class CombatButtons : MonoBehaviour {
 	SkillButton[] defaultSkillButtons;
     SkillButton[] skillButtons;
 
+    public Sprite[] skillBackgrounds_Sprites;
+
     Vector2 initPos;
 
     public Vector2 decal;
@@ -21,6 +23,8 @@ public class CombatButtons : MonoBehaviour {
 
     public Transform openSkilkButton_transform;
 	public Button openSkillButton;
+    public Outline openSkillOutline;
+    public Image openSkillTextBackground;
 	public Image jobImage;
 
     public float tweenDuration = 0.5f;
@@ -148,6 +152,11 @@ public class CombatButtons : MonoBehaviour {
 
         defaultGroup.SetActive (true);
 
+        /*if (CombatManager.Instance.GetCurrentFighter != null)
+        {
+            CombatManager.Instance.GetCurrentFighter.card.HideTargetFeedback();
+        }*/
+
 		UpdateDefaultButtons ();
 	}
 
@@ -159,7 +168,9 @@ public class CombatButtons : MonoBehaviour {
 
 		int skillIndex = 0;
 
-		foreach (var item in skillButtons) {
+        
+
+        foreach (var item in skillButtons) {
 
 			if (skillIndex < member.SpecialSkills.Count) {
 
@@ -199,12 +210,35 @@ public class CombatButtons : MonoBehaviour {
 	{
 		CrewMember member = CombatManager.Instance.GetCurrentFighter.crewMember;
 
-		openSkillButton.interactable = false;
+        openSkillButton.interactable = true;
+
+        openSkillTextBackground.sprite = skillBackgrounds_Sprites[(int)member.job];
+
+        bool displayOutline = false;
+
+        int a = 3;
+		foreach (var item in member.SpecialSkills) {
+			
+			if (member.energy >= item.energyCost && member.charges[a] == 0) {
+                displayOutline = true;
+            }
+
+			++a;
+		}
+
+        /*foreach (var item in skillButtons)
+        {
+            item.textBackground.color = SkillManager.Instance.skillColors[(int)member.job];
+        }*/
+
+        openSkillOutline.enabled = displayOutline;
+
+        /*openSkillButton.interactable = false;
 		foreach (var item in member.SpecialSkills ) {
 			if ( member.energy >= item.energyCost ) {
 				openSkillButton.interactable = true;
 				break;
 			}
-		}
-	}
+		}*/
+    }
 }

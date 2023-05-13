@@ -14,6 +14,8 @@ public class StoryLauncher : MonoBehaviour {
 	public delegate void EndStoryEvent ();
 	public EndStoryEvent onEndStory;
 
+    public GameObject world_group;
+
     int musicCount ;
     public int musicRate = 5;
 
@@ -77,8 +79,6 @@ public class StoryLauncher : MonoBehaviour {
 
         Invoke("DisplayBackground", 1f);
 
-
-
         playingStory = true;
 
         SoundManager.Instance.UpdateAmbianceSound();
@@ -135,6 +135,7 @@ public class StoryLauncher : MonoBehaviour {
         InGameBackGround.Instance.ShowBackground();
         Transitions.Instance.ScreenTransition.FadeOut(0.5f);
 
+        world_group.SetActive(false);
 
         ++musicCount;
 
@@ -205,6 +206,9 @@ public class StoryLauncher : MonoBehaviour {
 
         Transitions.Instance.ScreenTransition.FadeOut(0.5f);
 
+        world_group.SetActive(true);
+
+
         playingStory = false;
 
         // place captain
@@ -226,7 +230,7 @@ public class StoryLauncher : MonoBehaviour {
         }
         else
         {
-            Debug.Log("no current islaned");
+            //Debug.Log("no current islaned");
         }
 
         SoundManager.Instance.UpdateAmbianceSound();

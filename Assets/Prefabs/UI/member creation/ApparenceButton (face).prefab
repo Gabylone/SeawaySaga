@@ -31,6 +31,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 10}
   m_LocalScale: {x: 1.0002736, y: 1.0002736, z: 1.0002736}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 224564021443986494}
   m_Father: {fileID: 0}
@@ -64,11 +65,13 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: caef793a5243cae4a94dde917d96ffbb, type: 3}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 48bf761442cfc854a9731cd369036830, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -89,21 +92,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64a95d0bc2de3c24dbc601b3e8ca0857, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pearlPriceUIText: {fileID: 0}
   apparenceItem:
     apparenceType: 0
     sprite: {fileID: 0}
     color: {r: 0, g: 0, b: 0, a: 0}
     locked: 0
     id: 0
-    finished: 0
   initParent: {fileID: 0}
+  rectTransform: {fileID: 0}
   image: {fileID: 114455875713463952}
   selected: 0
   scaleAmount: 1.05
   scrollView: {fileID: 0}
   outline: {fileID: 7269518918360366569}
   canvasGroup: {fileID: 3142202756328185962}
+  memberCreationButton_Apparence: {fileID: 0}
+  voice: 0
 --- !u!114 &7269518918360366569
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -159,6 +163,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 224162512535236940}
   m_RootOrder: 0
@@ -191,6 +196,8 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []

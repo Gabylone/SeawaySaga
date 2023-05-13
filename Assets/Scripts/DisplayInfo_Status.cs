@@ -17,37 +17,37 @@ public class DisplayInfo_Status : DisplayInfo {
 
 		switch (status) {
 		case Fighter.Status.KnockedOut:
-			str = "Knocked Out by a Brute ! The member passed his next turn";
+			str = "Skips the next turn";
 			break;
 		case Fighter.Status.PreparingAttack:
-			str = "The member's preparing to attack big, next turn";
+			str = "After waiting for 1 turn, deals 3 times the normal damage";
 			break;
 		case Fighter.Status.Enraged:
-			str = "The Brute gains 10 energy points at the start of the turn";
+			str = "Gains full energy at the start of the turn and deals x1.5 damage";
 			break;
 		case Fighter.Status.Jagged:
-			str = "The member gains 10 health points at the start of each turn";
+			str = "Gets 10 health points back at the start of the next 3 turns";
 			break;
 		case Fighter.Status.Poisonned:
-			str = "The member loses 10 health points at the start of each turn";
+			str = "Loses 10 health points at the start of the next 3 turns";
 			break;
 		case Fighter.Status.Provoking:
-			str = "The next 3 attack are directed to this member, as they're being very offensive and they're calling everybody names";
+			str = "Becomes the target of the enemy's next 3 attacks";
 		    break;
         case Fighter.Status.Parrying:
-            str = "The next attack will be halved";
+            str = "Halves the damage taken from the next attack";
             break;
 		case Fighter.Status.Protected:
-			str = "Pumped up and looked over by a Cook, the 2 next attacks on them are halved";
+			str = "Halves the damage taken from the next 2 attacks";
 			break;
 		case Fighter.Status.Toasted:
-                str = "After a cheerful toast with the Cook, the member does significantly more damage for 2 hits";
+                str = "Deals double damage for the next 2 attacks";
 			break;
 		case Fighter.Status.BearTrapped:
-			str = "The Filibuster layed a trap, his next attacker loses 30 health points";
+			str = "Deals 30 damage to the next melee attacker who triggers the trap";
 			break;
 		case Fighter.Status.Cussed:
-			str = "Insulted and humiliated by the Crook, the member only does half his damage for 2 hits";
+			str = "Deals half damage for the next 2 attacks";
 			break;
 		case Fighter.Status.None:
 			break;
@@ -73,34 +73,34 @@ public class DisplayInfo_Status : DisplayInfo {
                 str = "Knocked Out";
                 break;
             case Fighter.Status.PreparingAttack:
-                str = "Preparing Attack";
+                str = "Focused";
                 break;
             case Fighter.Status.Enraged:
                 str = "Enraged";
                 break;
             case Fighter.Status.Jagged:
-                str = "Jagged";
+                str = "Healed";
                 break;
             case Fighter.Status.Poisonned:
-                str = "Poisonned";
+                str = "Poisoned";
                 break;
             case Fighter.Status.Provoking:
-                str = "Provoking";
+                str = "Chewing";
                 break;
             case Fighter.Status.Parrying:
                 str = "Parrying";
                 break;
             case Fighter.Status.Protected:
-                str = "Protected";
+                str = "Pumped Up";
                 break;
             case Fighter.Status.Toasted:
-                str = "Toasted";
+                str = "Tipsy";
                 break;
             case Fighter.Status.BearTrapped:
-                str = "Bear Trapped";
+                str = "Trap";
                 break;
             case Fighter.Status.Cussed:
-                str = "Cussed";
+                str = "Insulted";
                 break;
             case Fighter.Status.None:
                 break;

@@ -180,7 +180,7 @@ public class ChoiceManager : MonoBehaviour {
 			++tmpDecal;
 
 			if ( tmpDecal > 60 ) {
-				Debug.LogError ("set choice reached limit");
+				//Debug.LogError ("set choice reached limit");
 				break;
 			}
 

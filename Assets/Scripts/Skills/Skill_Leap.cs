@@ -34,7 +34,13 @@ public class Skill_Leap: Skill {
             SoundManager.Instance.PlaySound("Tribal 01");
             SoundManager.Instance.PlayRandomSound("voice_mad");
 
-            string str = "You wait and see... I'm gonna smash your brains out";
+            string[] strs = new string[2]
+            {
+                "You wait and see... I'm gonna smash your brains out!",
+                "Oh boy, this one is going to hurt!"
+            };
+
+            string str = strs[Random.Range(0, strs.Length)];
 
             fighter.Speak(str);
 

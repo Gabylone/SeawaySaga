@@ -33,15 +33,13 @@ public class Boat : MonoBehaviour
     {
         trailRenderers = GetComponentsInChildren<TrailRenderer>();
         SetSpeed(startSpeed);
-
     }
 
     public virtual void Update()
     {
-
         if (moving)
         {
-            if (agent.pathStatus == NavMeshPathStatus.PathComplete && agent.remainingDistance <= agent.stoppingDistance)
+            if (agent.isActiveAndEnabled && agent.remainingDistance <= agent.stoppingDistance && WorldTouch.Instance.touching == false)
             {
                 EndMovenent();
             }
@@ -100,20 +98,27 @@ public class Boat : MonoBehaviour
         agent.isStopped = false;
         agent.SetDestination(p);
 
-        moving = true;
+        CancelInvoke("SetTargetPosDelay");
+        Invoke("SetTargetPosDelay", 0.0001f);
+        
         targetPos = p;
 
     }
 
+    void SetTargetPosDelay()
+    {
+        moving = true;
+    }
+
     public virtual void EndMovenent()
     {
-
         moving = false;
 
         if (agent.isOnNavMesh)
         {
             agent.isStopped = true;
         }
+
     }
     #endregion
 
@@ -127,7 +132,7 @@ public class Boat : MonoBehaviour
         }
     }
 
-    public MinimapBoat GetMinimapBoat
+    public virtual MinimapBoat GetMinimapBoat
     {
         get
         {

@@ -95,7 +95,7 @@ public class MapGenerator : MonoBehaviour {
 
         if (textAsset == null)
         {
-            Debug.LogError("coulnd't find map : " + mapParameters.mapName + " in resources");
+            //Debug.LogError("coulnd't find map : " + mapParameters.mapName + " in resources");
         }
 
         string[] rows = textAsset.text.Split('\n');
@@ -117,7 +117,7 @@ public class MapGenerator : MonoBehaviour {
 
         if (textAsset == null)
         {
-            Debug.LogError("coulnd't find map : " + mapParameters.mapName + " in resources");
+            //Debug.LogError("coulnd't find map : " + mapParameters.mapName + " in resources");
         }
 
         string[] rows = textAsset.text.Split('\n');
@@ -234,7 +234,7 @@ public class MapGenerator : MonoBehaviour {
 
                         if (!foundStory)
                         {
-                            Debug.LogError("couldn't find story : " + storyName + " (" + storyName.Length + ") at " + GetCellLoc(rowIndex,colIndex));
+                            //Debug.LogError("couldn't find story : " + storyName + " (" + storyName.Length + ") at " + GetCellLoc(rowIndex,colIndex));
                         }
 
                     }

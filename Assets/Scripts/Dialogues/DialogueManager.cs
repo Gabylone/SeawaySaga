@@ -14,6 +14,7 @@ public class DialogueManager : MonoBehaviour {
 
 	[Header("Sound")]
 	public AudioSource source;
+	public AudioClip[] zombieVoices;
 	public List<Voice> voices = new List<Voice>();
 	[System.Serializable]
 	public class Voice
@@ -310,7 +311,7 @@ public class DialogueManager : MonoBehaviour {
     {
 		if ( talkingMember == null)
         {
-            Debug.Log("no crew member for sound speak");
+            //Debug.Log("no crew member for sound speak");
 			return;
         }
 
@@ -346,12 +347,29 @@ public class DialogueManager : MonoBehaviour {
 
 	public void PlayRandomVoice(CrewMember crewMember, IconVisual iconVisual, Voice.Type type)
     {
+
 		talkingMember = crewMember;
 		currentIconVisual = iconVisual;
 
-        source.clip = GetRandomVoice(crewMember, type);
 
-        source.Play();
+
+        if (SoundManager.Instance.SoundEnabled)
+        {
+            if (crewMember.MemberID.IsZombie())
+            {
+                source.clip = zombieVoices[Random.Range(0, zombieVoices.Length)];
+                source.Play();
+                return;
+            }
+            else
+            {
+                source.clip = GetRandomVoice(crewMember, type);
+            }
+
+            source.Play();
+        }
+
+        
 
 		// enfait peut être pas d'oeils tout cours.
 		int id = crewMember.MemberID.GetCharacterID(ApparenceType.eyes);
@@ -367,7 +385,7 @@ public class DialogueManager : MonoBehaviour {
 		currentIconVisual.SetRandomSprite(ApparenceType.mouth);
 		Tween.Bounce(currentIconVisual.GetImage(ApparenceType.mouth).transform);
 
-		Debug.Log("playing random voice");
+		//Debug.Log("playing random voice");
 
 		CancelInvoke("PlayRandomVoiceDelay");
 		Invoke("PlayRandomVoiceDelay", 0.35f);
@@ -377,7 +395,7 @@ public class DialogueManager : MonoBehaviour {
     {
 		if ( talkingMember == null)
         {
-			Debug.Log("voice delay : crew member is null");
+			//Debug.Log("voice delay : crew member is null");
 			return;
 		}
 

@@ -79,7 +79,7 @@ public class LootManager : MonoBehaviour {
         if ( debugItems)
         {
             playerLoot.Randomize (ItemLoader.allCategories,10);
-            Debug.LogError("debugging items");
+            //Debug.LogError("debugging items");
         }
         else
         {
@@ -182,7 +182,7 @@ public class LootManager : MonoBehaviour {
 			return ItemCategory.Misc;
 		}
 
-		Debug.LogError ("getLootCategoryFromString : couldn't find category in : " + arg);
+		//Debug.LogError ("getLootCategoryFromString : couldn't find category in : " + arg);
 
 		return ItemCategory.Misc;
 
@@ -197,7 +197,7 @@ public class LootManager : MonoBehaviour {
 		StoryReader.Instance.NextCell ();
 
 		if ( LootManager.Instance.getLoot(Crews.Side.Player).AllItems [(int)targetCat].Count == 0 ) {
-			Debug.LogError ( "REMOVE IN INVENTORY : la catégorie visée est vide : ignorement" );
+			//Debug.LogError ( "REMOVE IN INVENTORY : la catégorie visée est vide : ignorement" );
 			StoryReader.Instance.UpdateStory ();
 			return;
 		}
@@ -240,7 +240,7 @@ public class LootManager : MonoBehaviour {
             item = ItemLoader.Instance.GetItem(targetCat,itemName);
 
 			if (item == null) {
-				Debug.LogError ("item : " + itemName + " was not found, returning random");
+				//Debug.LogError ("item : " + itemName + " was not found, returning random");
 				item = ItemLoader.Instance.GetRandomItem (targetCat);
 			}
 				
@@ -335,17 +335,22 @@ public class LootManager : MonoBehaviour {
 				return null;
 			}
 
-                return clotheSprites[id];
+			if ( id >= clotheSprites.Length)
+				{
+					return clotheSprites[0];
+				}
+
+			return clotheSprites[id];
 
 		case ItemCategory.Misc:
 
 			if (miscSprites.Length == 0) {
-				Debug.LogError ("misc sprites est vide");
+				//Debug.LogError ("misc sprites est vide");
 				return null;
 			}
 
 			if (id >= miscSprites.Length) {
-				Debug.LogError ("item sprite id (" + id + ") est trop grand pour la liste (" + miscSprites.Length + ")");
+				//Debug.LogError ("item sprite id (" + id + ") est trop grand pour la liste (" + miscSprites.Length + ")");
 				return miscSprites [0];
 			}
 
@@ -357,6 +362,12 @@ public class LootManager : MonoBehaviour {
                     return null;
 
 			}
+
+                if (id >= miscSprites.Length)
+                {
+                    //Debug.LogError ("item sprite id (" + id + ") est trop grand pour la liste (" + miscSprites.Length + ")");
+                    return miscSprites[0];
+                }
 
                 return miscSprites[id];
 

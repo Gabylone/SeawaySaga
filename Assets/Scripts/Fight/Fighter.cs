@@ -1,6 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
-using System.Collections;
 using DG.Tweening;
 
 public class Fighter : MonoBehaviour {
@@ -153,14 +151,6 @@ public class Fighter : MonoBehaviour {
         timeInState += Time.deltaTime;
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-			HitEffect();
-        }
-    }
-
     #region initalization
     public delegate void OnInit ();
 	public OnInit onReset;
@@ -295,9 +285,24 @@ public class Fighter : MonoBehaviour {
 			
 
 		CombatManager.Instance.GetCurrentFighter.TargetFighter = this;
-//		targetFighter = CombatManager.Instance.currentFighter;
+		if ( HasStatus(Status.Provoking) )
+		{
+            string[] strs = new string[4]
+			{
+            "I’ll kill the noisy eater first!",
+			"Stop chewing, I hate it!",
+			"Let’s get the chewer!",
+			"Close your damn mouth when you eat!",
+            };
 
-		Tween.Bounce (GetTransform);
+            string str = strs[Random.Range(0, strs.Length)];
+
+            CombatManager.Instance.GetCurrentFighter.Speak(str);
+        }
+
+        //		targetFighter = CombatManager.Instance.currentFighter;
+
+        Tween.Bounce (GetTransform);
 
 		if (onSetAsTarget != null)
 			onSetAsTarget ();
@@ -658,7 +663,10 @@ public class Fighter : MonoBehaviour {
 
         SoundManager.Instance.PlayRandomSound("Blunt");
 
-		DialogueManager.Instance.PlayRandomVoice(crewMember, iconVisual, DialogueManager.Voice.Type.Hurts);
+		if( Random.value < 0.5f)
+        {
+			DialogueManager.Instance.PlayRandomVoice(crewMember, iconVisual, DialogueManager.Voice.Type.Hurts);
+		}
 
         if (onGetHit != null)
             onGetHit();

@@ -65,7 +65,7 @@ public class Skill_Wallop : Skill {
             return false;
         }
 
-        if (!member.HasDistanceWeapon())
+        if (!member.HasMeleeWepon())
         {
             currentRestriction = "No melee weapon !";
             return false;

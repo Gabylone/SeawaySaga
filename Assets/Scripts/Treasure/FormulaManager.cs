@@ -4,6 +4,8 @@ using System.Collections;
 using System.Collections.Generic;
 
 using DG.Tweening;
+using System.Linq;
+using System.Diagnostics;
 
 public class FormulaManager : MonoBehaviour {
 
@@ -48,6 +50,9 @@ public class FormulaManager : MonoBehaviour {
         case FunctionType.CheckIfFormulaIsland:
                 CheckIfFormulaIsland();
             break;
+            case FunctionType.CheckIfAllFormulasVerified:
+                CheckIfAllFormulasVerified();
+                break;
         }
 	}
 
@@ -163,6 +168,22 @@ public class FormulaManager : MonoBehaviour {
 
     }
 
+    void CheckIfAllFormulasVerified()
+    {
+        UnityEngine.Debug.Log("checking all formulas");
+
+        StoryReader.Instance.NextCell();
+
+        List<Formula> fs = formulas.FindAll(x => !x.verified);
+
+        if (fs.Count == 0)
+        {
+            StoryReader.Instance.SetDecal(1);
+        }
+
+        StoryReader.Instance.UpdateStory();
+    }
+
     void CheckFormulaDelay()
     {
         string stringToCheck = inputField.text.ToLower();
@@ -174,37 +195,71 @@ public class FormulaManager : MonoBehaviour {
 
         if (containedFormula == null)
         {
-            DialogueManager.Instance.PlayerSpeak_Story("Nothing seems to happen, I must have spoke something wrong");
+            string[] strs = new string[3]
+        {
+            "Nothing seems to happen, I must have spoken something wrong.",
+            "Nothing’s happening. This is probably not the right word.",
+            "Looks like that’s not it. Would be worth trying something else."
+        };
+
+            string str = strs[Random.Range(0, strs.Length)];
+
+            DialogueManager.Instance.PlayerSpeak_Story(str);
             StoryReader.Instance.SetDecal(0);
         }
         else if (containedFormula.verified)
         {
+            string[] strs = new string[3]
+            {
+            "I already spoke this word, and it already worked.",
+            "I already spoke this word and it worked.*Now onto the next one.",
+            "This word worked already, no need to say it again."
+            };
+            string str = strs[Random.Range(0, strs.Length)];
+
             // ALREADY SPOKE
-            DialogueManager.Instance.PlayerSpeak_Story("I already spoke this word, and it already worked");
+            DialogueManager.Instance.PlayerSpeak_Story(str);
             StoryReader.Instance.SetDecal(0);
         }
         else
         {
             containedFormula.verified = true;
 
-            bool allFormulasHaveBeenVerified = true;
+            List<Formula> fs = formulas.FindAll(x => !x.verified);
+            UnityEngine.Debug.Log("formulas count : " + formulas.Count);
 
-            foreach (var formula in formulas)
+            if (fs.Count == 0)
             {
-                if (formula.verified == false)
+                string[] strs = new string[3]
                 {
-                    allFormulasHaveBeenVerified = false;
-                }
-            }
+                    "Looks like something happened!*The door unlocked!",
+                    "Huzzah! This is it. *The door is now open!",
+                    "Finally!*Now it looks like the door opened!",
+                };
+                string str = strs[Random.Range(0, strs.Length)];
 
-            if (allFormulasHaveBeenVerified)
-            {
-                DialogueManager.Instance.PlayerSpeak_Story("Look like something happened !*The door is OPENING COMPLETLY !");
+                DialogueManager.Instance.PlayerSpeak_Story(str);
                 StoryReader.Instance.SetDecal(2);
+
+                UnityEngine.Debug.Log("door is opened");
             }
             else
             {
-                DialogueManager.Instance.PlayerSpeak_Story("Look like something happened !*The door moved a little, but did not open*I need to keep looking");
+
+                List<Formula> unverifiedFormulas = formulas.FindAll(x => !x.verified);
+
+                UnityEngine.Debug.Log("some formulas left : " + unverifiedFormulas.Count);
+
+                string locksLeft = "" + unverifiedFormulas.Count;
+                string[] strs = new string[3]
+                {
+                    "Looks like something happened!*One of the locks opened.*Only " + locksLeft + " left.",
+                    "It worked!*A lock opened.*Only " + locksLeft + " left.",
+                    "Looks like it worked!*A lock opened.*Only " + locksLeft + " left."
+            }   ;
+                string str = strs[Random.Range(0, strs.Length)];
+
+                DialogueManager.Instance.PlayerSpeak_Story(str);
                 StoryReader.Instance.SetDecal(1);
             }
         }

@@ -29,14 +29,14 @@ public class SaveTool : MonoBehaviour
         if(!DirectoryExists(GetSavePath() + "PlayerInfo"))
         {
             Directory.CreateDirectory(GetSavePath() + "PlayerInfo");
-            Debug.Log("PlayerInfo directory DOESNT EXIST, creating it");
+            //Debug.Log("PlayerInfo directory DOESNT EXIST, creating it");
         }
         else
         {
         }
 
 		if ( DirectoryExists(GetCurrentMapPath()) == false ) {
-//			Debug.Log ("BYTES SaveData folder doesnt exist, creating it");
+//			//Debug.Log ("BYTES SaveData folder doesnt exist, creating it");
 			Directory.CreateDirectory (GetCurrentMapPath ());
 		}
 	}

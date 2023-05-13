@@ -59,8 +59,24 @@ public class Skill_BistouryBlow : Skill {
 
         pills_Transform.gameObject.SetActive(false);
 
-        string str = "This will make you feel better, " + member.MemberName;
-        fighter.Speak(str);
+        if (fighter.TargetFighter == fighter)
+        {
+            string str = "This will make me feel better.";
+            fighter.Speak(str);
+        }
+        else
+        {
+            string[] strs = new string[2]
+            {
+                "This will make you feel better, " + member.MemberName + ".",
+                "Here, eat up "  + member.MemberName + " ! It’ll help."
+            };
+
+            string str = strs[Random.Range(0, strs.Length)];
+            fighter.Speak(str);
+        }
+
+        
     }
 
     public override void StartAnimation()

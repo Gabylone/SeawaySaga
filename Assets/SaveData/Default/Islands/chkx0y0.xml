@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <Chunk xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <state>UndiscoveredIsland</state>
+  <state>UndiscoveredVoid</state>
   <coords>
     <x>0</x>
     <y>0</y>
@@ -8,10 +8,10 @@
   <islandDatas>
     <IslandData>
       <worldPosition>
-        <x>-15.44</x>
-        <y>-17.91</y>
+        <x>-14.64</x>
+        <y>23.28</y>
       </worldPosition>
-      <worldRotation>11.7657137</worldRotation>
+      <worldRotation>155.20993</worldRotation>
       <index>0</index>
       <coords>
         <x>0</x>
@@ -26,6 +26,62 @@
             <col>0</col>
             <fallBackLayer>0</fallBackLayer>
             <storyID>19</storyID>
+            <storyType>Normal</storyType>
+            <contentDecals />
+            <loots />
+            <crews />
+          </StoryHandler>
+        </storyHandlers>
+      </storyManager>
+    </IslandData>
+    <IslandData>
+      <worldPosition>
+        <x>8.83</x>
+        <y>19.8</y>
+      </worldPosition>
+      <worldRotation>2.88030624</worldRotation>
+      <index>1</index>
+      <coords>
+        <x>0</x>
+        <y>0</y>
+      </coords>
+      <containsFormula>false</containsFormula>
+      <storyManager>
+        <hasBeenPlayed>false</hasBeenPlayed>
+        <storyHandlers>
+          <StoryHandler>
+            <row>0</row>
+            <col>0</col>
+            <fallBackLayer>0</fallBackLayer>
+            <storyID>19</storyID>
+            <storyType>Normal</storyType>
+            <contentDecals />
+            <loots />
+            <crews />
+          </StoryHandler>
+        </storyHandlers>
+      </storyManager>
+    </IslandData>
+    <IslandData>
+      <worldPosition>
+        <x>-14.64</x>
+        <y>23.28</y>
+      </worldPosition>
+      <worldRotation>33.631382</worldRotation>
+      <index>2</index>
+      <coords>
+        <x>0</x>
+        <y>0</y>
+      </coords>
+      <containsFormula>false</containsFormula>
+      <storyManager>
+        <hasBeenPlayed>false</hasBeenPlayed>
+        <storyHandlers>
+          <StoryHandler>
+            <row>0</row>
+            <col>0</col>
+            <fallBackLayer>0</fallBackLayer>
+            <storyID>14</storyID>
             <storyType>Normal</storyType>
             <contentDecals />
             <loots />

@@ -51,7 +51,14 @@ public class Skill_DoubleTalk : Skill {
     {
         fighter.combatFeedback.Display("Fled !", Color.green);
 
-        string str = "Catch us if you can !";
+        string[] strs = new string[3]
+        {
+            "Catch us if you can!",
+            "You’ll never catch us!",
+            "Ha! Too slow!"
+        };
+
+        string str = strs[Random.Range(0, strs.Length)];
         fighter.Speak(str);
 
         Invoke("EscapeDelay", escapeDelay);

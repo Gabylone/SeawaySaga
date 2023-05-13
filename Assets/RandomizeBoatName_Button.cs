@@ -20,8 +20,5 @@ public class RandomizeBoatName_Button : MonoBehaviour, IPointerClickHandler
 
         SoundManager.Instance.PlaySound("click_med 03");
 
-        Tween.Bounce(DisplayBoatName.Instance.rectTransform, 0.2f, bounceAmount);
-
-        DisplayBoatName.Instance.SetRandomBoatName();
     }
 }

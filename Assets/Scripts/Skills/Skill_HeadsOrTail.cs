@@ -23,7 +23,15 @@ public class Skill_HeadsOrTail : Skill {
 
     public override void OnSetTarget()
     {
-        string str = "Heads or tail ?!";
+
+        string[] strs = new string[2]
+        {
+            "Heads or tails?",
+            "Time to flip a coin!"
+        };
+
+        string str = strs[Random.Range(0, strs.Length)];
+
         fighter.Speak(str);
 
         fighter.animator.SetTrigger("throw");

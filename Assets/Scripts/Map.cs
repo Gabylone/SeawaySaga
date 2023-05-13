@@ -39,6 +39,8 @@ public class Map : MonoBehaviour, IPointerClickHandler {
     public GameObject confirmNewGame_Group;
     public RectTransform validateNewGame_RectTransform;
 
+    public bool debug = false;
+
     private bool load = false;
 
     public bool retry = false;
@@ -46,14 +48,26 @@ public class Map : MonoBehaviour, IPointerClickHandler {
     // Use this for initialization
     void Start()
     {
+        Init();
+
+        PlayerPrefs.DeleteAll();
+
+        /*string currentMapKey = "map_data" + mapParameters.id;
+        PlayerPrefs.SetString(currentMapKey, mapParameters.id == 0 ? "unlocked" : "locked");*/
+    }
+
+    private void OnEnable()
+    {
+        Init();
+    }
+
+    void Init()
+    {
         UpdateUI();
 
         max = System.Enum.GetValues(typeof(TutorialStep)).Length;
 
         confirmNewGame_Group.SetActive(false);
-
-        /*string currentMapKey = "map_data" + mapParameters.id;
-        PlayerPrefs.SetString(currentMapKey, mapParameters.id == 0 ? "unlocked" : "locked");*/
     }
 
     public void UpdateUI()
@@ -66,13 +80,15 @@ public class Map : MonoBehaviour, IPointerClickHandler {
 
         string currentMap_data = PlayerPrefs.GetString("map_data" + mapParameters.id, mapParameters.id == 0 ? "unlocked": "locked");
 
+        Debug.Log("IAP : " + currentMap_data);
+
         if (retry)
         {
             padlockGroup.SetActive(false);
         }
         else
         {
-            if (currentMap_data == "locked")
+            if (currentMap_data == "locked" )
             {
                 padlockGroup.SetActive(true);
                 newGameGroup.SetActive(false);
@@ -93,15 +109,22 @@ public class Map : MonoBehaviour, IPointerClickHandler {
             }
         }
 
-        
-
+        GameData gameData;
         if (SaveTool.Instance.FileExists(mapParameters.mapName, "game data"))
         {
+            gameData = SaveTool.Instance.LoadFromSpecificPath(mapParameters.mapName, "game data.xml", "GameData") as GameData;
+
+            if (gameData.playerCrew.MemberIDs.Count == 0)
+            {
+                Debug.LogError("no crew for : " + mapParameters.mapName + " setting new game");
+                SaveTool.Instance.DeleteFolder(mapParameters.mapName);
+                UpdateUI();
+                goto NewGame;
+            }
+
             loadGroup.SetActive(true);
 
             load = true;
-
-            GameData gameData = SaveTool.Instance.LoadFromSpecificPath(mapParameters.mapName, "game data.xml", "GameData") as GameData;
 
             string str = gameData.playerCrew.MemberIDs[0].Name + ", captain of \n" +
                 gameData.playerBoatInfo.Name + ", and its crew";
@@ -112,32 +135,22 @@ public class Map : MonoBehaviour, IPointerClickHandler {
             for (int i = 0; i < gameData.playerCrew.MemberIDs.Count; i++)
             {
                 Member member = gameData.playerCrew.MemberIDs[i];
-
                 membersGroups[i].SetActive(true);
-
-
                 targetIconVisuals[i].InitVisual(member);
-
-
-                //captainUITexts[i].text = member.Name;
-
                 levelUITexts[i].text = member.Lvl.ToString();
-
-                /*Sprite[] jobSprites = Resources.LoadAll<Sprite>("Graph/JobSprites");
-                jobImage.sprite = jobSprites[(int)captain.job];*/
             }
 
             newGameGroup.SetActive(false);
-
+            return;
         }
-        else
-        {
-            load = false;
 
-            HideMemberIcons();
+        // NEW GAME
+        NewGame:
+        load = false;
 
-            newGameGroup.SetActive(currentMap_data != "locked");
-        }
+        HideMemberIcons();
+
+        newGameGroup.SetActive(currentMap_data != "locked");
     }
 
     void HideMemberIcons()
@@ -157,6 +170,15 @@ public class Map : MonoBehaviour, IPointerClickHandler {
 
         progression_FillImage.rectTransform.sizeDelta = new Vector2(-(w) + (l1 * w), 0);
 
+    }
+
+    public void CancelLaunchMap()
+    {
+        Tween.Bounce(transform, 0.1f, 1.01f);
+        SoundManager.Instance.PlayRandomSound("button_tap_light");
+        SoundManager.Instance.PlayRandomSound("Swipe");
+
+        confirmNewGame_Group.SetActive(false);
     }
 
     public void LaunchMap()
@@ -233,7 +255,7 @@ public class Map : MonoBehaviour, IPointerClickHandler {
 
     public void EraseMap()
     {
-        MessageDisplay.Instance.Display("Erase game ?", true);
+        MessageDisplay.Instance.Display("Erase game?", true);
 
         MessageDisplay.Instance.onValidate += ConfirmEraseMap;
 
@@ -269,7 +291,7 @@ public class Map : MonoBehaviour, IPointerClickHandler {
 
         PlayerPrefs.SetString(currentMapKey, "unlocked");
 
-        UpdateUI();
+        Invoke("UpdateUI", 0f);
     }
 
     public void IAPIssue(UnityEngine.Purchasing.Product product , UnityEngine.Purchasing.PurchaseFailureReason purchaseFailureReason)

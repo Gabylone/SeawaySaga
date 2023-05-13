@@ -3,9 +3,9 @@ Grotte;3,39;4;Cave;;;;;;;;;;;;;;;;
 Narrator : There’s no beach on this island. From the shallow water rises a small forest.;;;;;;;;;;;;;;;;;;;
 [debut];;;;;;;;;;;;;;;;;;;
 SetChoices3;;;;;;;;;;;;;;;;;;;
-Choice : (leave);Choice : (set up camp) (sleep);Choice : (enter the woods);;;;;;;;;;;;;;;;;
-PlayerSpeak : Ciao !;SetBG(Island);Fade;;;;;;;;;;;;;;;;;
-Leave;;Node=>bois;;;;;;;;;;;;;;;;;
+Choice : (leave);Choice : We’ll stay until NEXTTIME (sleep);Choice : (enter the woods);;;;;;;;;;;;;;;;;
+PlayerSpeak : Ciao !;ChangeTimeOfDay;Fade;;;;;;;;;;;;;;;;;
+Leave;Narrator : The captain wakes up on the beach. The morning air is pure and fresh.;Node=>bois;;;;;;;;;;;;;;;;;
 ;Node=>debut;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;
@@ -38,7 +38,7 @@ Node=>trompette;Node=>peluche;Node=>nuit;Node=>dés;Node=>vaudoo;Node=>perle;Nod
 ;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;
 [porte ouverte];;[trompette];;[peluche];;[nuit];;[dés];;[vaudoo];;[perle];;[corde];;;;[bougie];
-Narrator : CAPITAINE hears a soft «click» from the door.;;Narrator : Engraved in the stone is the silhouette of a snake, dancing out of a basket.;;Narrator : Acces is granted to innocent souls, and their soft companions.;;PlayerSpeak : It looks like stars, and the moon.;;Narrator : « I am an instrument of death for the scaly, the silvery and the glossy, but an instrument of leisure for the father and his son » can be read above a small recess in the stone.;;Narrator : The engravings read : « People poke me full of needles but I won't be the one suffering from it » above a small hole.;;Narrator : The engravings read : « I grow in the darkness of the sea but shine brightly into the light ». Right underneath them is a small round recess.;;Narrator : As CAPITAINE gets closer to read the engravings, the rock rumbles and sinks down in the earth, revealing a large hole.;;;;Narrator : The engravings read : « My flame is not eternal, seal your letters before I got out »;
+Narrator : CAPITAINE hears a soft «click» from the door.;;Narrator : Engraved in the stone is the silhouette of a snake, dancing out of a basket.;;Narrator : Access is granted to innocent souls, and their soft companions.;;PlayerSpeak : It looks like stars, and the moon.;;Narrator : « I am an instrument of death for the scaly, the silvery and the glossy, but an instrument of leisure for the father and his son » can be read above a small recess in the stone.;;Narrator : The engravings read : « People poke me full of needles but I won't be the one suffering from it » above a small hole.;;Narrator : The engravings read : « I grow in the darkness of the sea but shine brightly into the light ». Right underneath them is a small round recess.;;Narrator : As CAPITAINE gets closer to read the engravings, the rock rumbles and sinks down in the earth, revealing a large hole.;;;;Narrator : The engravings read : « My flame is not eternal, seal your letters before I got out »;
 PlayerSpeak : !;;PlayerSpeak : Something’s missing here...;;PlayerSpeak : Something’s missing...;;CheckDay;;PlayerSpeak : Something’s missing...;;PlayerSpeak : Something’s missing...;;PlayerSpeak : Something’s missing;;SetChoices3;;;;PlayerSpeak : Something’s missing...;
 Fade;;CheckInInventory<Flute>/Misc;;CheckInInventory<Peluche>/Misc;;Fade;SetChoices1;CheckInInventory<Canne à pêche>/Misc;;CheckInInventory<Poupée vaudou>/Misc;;CheckInInventory<Perle>/Misc;;Choice : (go down with a rope) (loot);;Choice : (go down);Choice : (leave);CheckInInventory<Bougie>/Misc;
 Switch=>ouverte?;;SetChoices1;SetChoices1;SetChoices1;SetChoices1;Node=>choix porte;Choice : I’m missing something…;SetChoices1;SetChoices1;SetChoices1;SetChoices1;SetChoices1;SetChoices1;CheckInInventory<Corde>/Misc;;PlayerSpeak : It’s way deeper than I thought...;Fade;SetChoices1;SetChoices1

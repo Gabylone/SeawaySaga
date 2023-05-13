@@ -123,41 +123,19 @@ public class DisplayTreasure : MonoBehaviour {
 
         PlayerPrefs.SetString(currentMapKey, "finished");
 
-        if (MapGenerator.mapParameters.id == 3)
-        {
-            MessageDisplay.Instance.Display("Well done ! You finished the game");
-            MessageDisplay.Instance.HideCancelButton();
-
-        }
-        else
-        {
-            //Debug.Log("next map KEY is : " + nextMapKey);
-            //Debug.Log("next map data is : " + nextMap_Data);
-
-            MessageDisplay.Instance.Display(
-                "Congratulations on finishing the first story! " +
-                "Thanks so much for playing the game, if you want to support us, " +
-                "you can buy one of the other stories " +
-                "with a bigger world and other exiting quests!");
-
-            MessageDisplay.Instance.HideCancelButton();
-
-            /*if (nextMap_Data == "locked")
+        string[] strs = new string[4]
             {
-                PlayerPrefs.SetString(nextMapKey, "unlocked");
+                "Congratulations on finishing the first story, and thanks so much for playing the game!\nIf you want to support us, you can buy the other stories. Each one contains a bigger map full of more challenging and exciting adventures.\nTry out the Archipelago next!",
+                "Great job, you completed the Archipelago!\nIf you’re looking for something even more challenging now, you can try out the next story, the Long Journey!\nJust make sure to bring enough resources to sail through the boundless and deadly sea!",
+                "Congratulations on surviving the perilous Long Journey!\nNow the last and most difficult challenge awaits, the Labyrinth!\nUncover the tangled secrets of this fabled place in the final arduous and enigmatic story.\nGood luck!",
+                "Huzzah! You did it, you finished Seaway Saga!\nThis means a lot to us and we’re extremely grateful that you bought and played through the other stories.\nThank you so much, and congratulations!\nGabriel & Romain"
+            };
 
-                MessageDisplay.Instance.Display("You unlocked the next story !");
-                MessageDisplay.Instance.HideCancelButton();
+        string str = strs[MapGenerator.mapParameters.id];
 
-            }
-            else
-            {
-                MessageDisplay.Instance.Display("The next story is already unlocked");
-                MessageDisplay.Instance.HideCancelButton();
-            }*/
+        MessageDisplay.Instance.Display(str);
 
-
-        }
+        MessageDisplay.Instance.HideCancelButton();
 
         PlayerInfo.Instance.Save();
     }

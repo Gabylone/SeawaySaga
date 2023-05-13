@@ -24,7 +24,14 @@ public class Skill_HelpMate : Skill {
 	{
 		base.OnSetTarget ();
 
-		string str = "Cheer up, " + fighter.TargetFighter.crewMember.MemberName + " ! You can do it, son";
+        string[] strs = new string[3]
+        {
+            "Cheer up, " + fighter.TargetFighter.crewMember.MemberName + " ! You can do it, son!",
+            "Stay focused my friend, you trained for this very moment!",
+            "I know you can win mate, I believe in you!"
+        };
+
+        string str = strs[Random.Range(0, strs.Length)];
 		fighter.Speak (str);
     }
 

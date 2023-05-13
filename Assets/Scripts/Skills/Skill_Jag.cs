@@ -21,7 +21,14 @@ public class Skill_Jag : Skill {
 
 		CrewMember member = fighter.TargetFighter.crewMember;
 
-        string str = "Take this, " + member.MemberName + " you'll feel better, I promise";
+        string[] strs = new string[2]
+        {
+            "Take this, " + member.MemberName + " you'll feel better, I promise!",
+            "Let me patch you up! This will help you for a moment!"
+        };
+
+        string str = strs[Random.Range(0, strs.Length)];
+
         fighter.Speak(str);
     }
 

@@ -84,6 +84,14 @@ public class Flag : MonoBehaviour {
     {
         Ray ray = cam.ScreenPointToRay(Input.mousePosition);
 
+        if ( _transform.position.x < -33f || _transform.position.x > 33f ) {
+            spriteRenderer.color = Color.red;
+        }
+        else
+        {
+            spriteRenderer.color = Color.white;
+        }
+
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, layerMask))
         {

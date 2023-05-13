@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class SkillButton : MonoBehaviour {
 
 	public Image skillImage;
+	public Image textBackground;
 
 	public GameObject descriptionGroup;
 
@@ -45,7 +46,9 @@ public class SkillButton : MonoBehaviour {
 	{
 		skill = _skill;
 
-		skillImage.sprite = SkillManager.skillSprites [(int)skill.type];
+		skillImage.sprite = SkillManager.Instance.skillSprites [(int)skill.type];
+
+
 
         uiText_SkillName.text = _skill.skillName;
 	}

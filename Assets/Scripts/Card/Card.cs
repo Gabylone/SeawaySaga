@@ -54,6 +54,8 @@ public class Card : MonoBehaviour {
 
 	bool playingTurn = false;
 
+	public GameObject currentTurn_Obj;
+
 	public Transform endTurnFeedback;
 	float endTurnFeedbackDuration = 0.7f;
 
@@ -93,7 +95,7 @@ public class Card : MonoBehaviour {
             }
             else
             {
-                Debug.Log("tainting fighter green : nirmal");
+                //Debug.Log("tainting fighter green : nirmal");
                 ShowTargetFeedback(CombatManager.Instance.selectionColor_Allies);
             }
         }
@@ -104,8 +106,8 @@ public class Card : MonoBehaviour {
 
                 if (linkedFighter.crewMember.side == Crews.Side.Player)
                 {
-                Debug.Log("tainting fighter green ????");
-                    ShowTargetFeedback(CombatManager.Instance.selectionColor_Allies);
+                //Debug.Log("tainting fighter green ????");
+                    ShowTargetFeedback(CombatManager.Instance.selectionColor_Self);
                 }
             }
             else
@@ -117,12 +119,25 @@ public class Card : MonoBehaviour {
 		}
 	}
 
+	bool keepOnHide = false;
+
 	void ShowTargetFeedback(Color color) {
+
+		/*if ( color == CombatManager.Instance.selectionColor_Self)
+		{
+			// 
+			keepOnHide = true;
+		}*/
+
+		if ( CombatManager.Instance.GetCurrentFighter == linkedFighter)
+		{
+
+		}
 
         linkedFighter.iconVisual.TaintLoop(color);
     }
 
-    void HideTargetFeedback () {
+    public void HideTargetFeedback () {
 
 
         linkedFighter.iconVisual.ResetTaint();
@@ -173,6 +188,7 @@ public class Card : MonoBehaviour {
 	{
 		playingTurn = true;
 
+
         ShowEnergy();
 
         UpdateMember();
@@ -182,11 +198,13 @@ public class Card : MonoBehaviour {
 
     public void ShowEnergy()
     {
+		currentTurn_Obj.SetActive(true);
         energyGroup.SetActive(true);
     }
 
     public void HideEnergy()
     {
+		currentTurn_Obj.SetActive(false);
         energyGroup.SetActive(false);
     }
 

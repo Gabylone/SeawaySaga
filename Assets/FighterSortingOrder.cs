@@ -24,9 +24,12 @@ public class FighterSortingOrder : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        posY = rectTransform.position.y - CombatManager.Instance.bottom.transform.position.y;
-        lerp = posY / 8;
-        sortOrder = (int)Mathf.Lerp(minSortingOrder, maxSortingOrder, lerp);
-        canvas.sortingOrder = maxSortingOrder - sortOrder;
+        if (CombatManager.Instance.fighting)
+        {
+            posY = rectTransform.position.y - CombatManager.Instance.bottom.transform.position.y;
+            lerp = posY / 8;
+            sortOrder = (int)Mathf.Lerp(minSortingOrder, maxSortingOrder, lerp);
+            canvas.sortingOrder = maxSortingOrder - sortOrder;
+        }
     }
 }

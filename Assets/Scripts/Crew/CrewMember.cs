@@ -19,7 +19,7 @@ public class CrewMember {
 					return Crews.playerCrew.captain;
 				} else {
 					return Crews.playerCrew.captain;
-					Debug.LogError("no captain, merde chier");
+					//Debug.LogError("no captain, merde chier");
                     return null;
 				}
 			}
@@ -107,7 +107,12 @@ public class CrewMember {
 
 	public Skill GetSkill (Skill.Type type)
 	{
-		return SpecialSkills.Find (x => x.type == type);
+		Skill skill = SpecialSkills.Find(x => x.type == type);
+
+		if ( skill == null)
+			skill = DefaultSkills.Find(x => x.type == type);
+
+		return skill;
 	}
 
 	/// <summary>
@@ -268,11 +273,11 @@ public class CrewMember {
 
 		int roundedDamage = Mathf.RoundToInt(damageTaken);
 
-			/*Debug.Log ("attack : " + incomingAttack);
-			Debug.Log ("defense : " + Defense);
-			Debug.Log ("dif : " + dif);
-			Debug.Log ("lerp : " + lerp);
-			Debug.Log ("damageTaken : " + damageTaken);*/
+			/*//Debug.Log ("attack : " + incomingAttack);
+			//Debug.Log ("defense : " + Defense);
+			//Debug.Log ("dif : " + dif);
+			//Debug.Log ("lerp : " + lerp);
+			//Debug.Log ("damageTaken : " + damageTaken);*/
 
 		return roundedDamage;
 	}
@@ -288,7 +293,7 @@ public class CrewMember {
         Crews.Instance.KillMember(this);
 
         //if (this == selectedMember)
-        //Debug.Log ("le membre mourrant est bel et bien le séléctionné");
+        ////Debug.Log ("le membre mourrant est bel et bien le séléctionné");
 
         SetSelectedMember(null);
 
@@ -327,7 +332,7 @@ public class CrewMember {
         if (Health - hungerDamage <= 0)
         {
             MessageDisplay.Instance.onValidate += HandleOnValidate;
-            MessageDisplay.Instance.Display("After " + daysOnBoard + " days on board, " + MemberName + " tragically dies of hunger");
+            MessageDisplay.Instance.Display("After " + daysOnBoard + " days on board, " + MemberName + " tragically dies of hunger.");
         }
 
         SoundManager.Instance.PlaySound("Defeat");
@@ -567,7 +572,7 @@ public class CrewMember {
 
             int maxHunger = (int)Mathf.Lerp(Crews.maxHunger_MinConstitution, Crews.maxHunger_MaxConstitution, lerp);
 
-            //Debug.Log("max hunger of " + MemberName + " : " + maxHunger);
+            ////Debug.Log("max hunger of " + MemberName + " : " + maxHunger);
 
             return maxHunger;
         }

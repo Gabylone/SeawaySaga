@@ -26,7 +26,16 @@ public class Skill_PledgeOfFeast : Skill {
 
         // cook speaks
         fighter.animator.SetTrigger("combat speak");
-        string str = "Come on, lads! Let's grab a bite and smash them !";
+
+        string[] strs = new string[2]
+        {
+            "Come on, lads! Let's grab a bite and smash them!",
+            "Eat up everyone! Now go and get them!"
+
+        };
+
+        string str = strs[Random.Range(0, strs.Length)];
+
         fighter.Speak(str);
 
         yield return new WaitForSeconds(showFoodDelay);

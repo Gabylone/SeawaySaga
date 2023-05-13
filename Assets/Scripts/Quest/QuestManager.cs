@@ -115,7 +115,7 @@ public class QuestManager : MonoBehaviour {
     void CheckIfQuestIsAccomplished ()
 	{
 		if ( Quest.currentQuest == null ) {
-			Debug.LogError ("QUEST IS NULL : CheckIfQuestIsAccomplished");
+			//Debug.LogError ("QUEST IS NULL : CheckIfQuestIsAccomplished");
 			return;
 		}
 
@@ -133,12 +133,12 @@ public class QuestManager : MonoBehaviour {
         Quest quest = Quest.currentQuest;
 
         if ( quest == null ) {
-			Debug.LogError ("QUEST IS NULL : accomplish quest");
+			//Debug.LogError ("QUEST IS NULL : accomplish quest");
 			return;
 		}
 
         DisplayCombatResults.Instance.onConfirm += AccomplishQuest_HandleOnConfirm;
-        DisplayCombatResults.Instance.Display("Quest Accomplished !", "Go back to " + quest.giver.Name + " to receive gold and experience...");
+        DisplayCombatResults.Instance.Display("Quest Fulfilled!", "Go back to " + quest.giver.Name + " to receive gold and experience...");
 
         quest.accomplished = true;
 
@@ -215,14 +215,35 @@ public class QuestManager : MonoBehaviour {
 	#region completed quest
 	void HandleCompletedQuest (Quest quest )
 	{
-		string phrase = "I've told you I have a problem, but you gave up on me";
-		if (quest.accomplished) {
-			phrase = "I'll never thank you enough for helping me";
+		if (!quest.accomplished) {
+			string[] strs = new string[5]
+			{
+				"I've told you I have a problem, but you gave up on me!",
+				"You said you would help me but you gave up?! What am I going to do now?",
+				"I was really counting on you but you just thought it wasn’t worth it, huh? How disappointing.",
+				"I see, so you decided not to help me after all. I get it, we all have our own problems.",
+				"You can’t give up like that! I wish I could do it myself but I’m stuck here.Ma’s right, I’m useless!"
+			};
+
+			string str = strs[UnityEngine.Random.Range(0, strs.Length)];
+
+			DialogueManager.Instance.OtherSpeak_Story(str);
 		}
+		else
+        {
+			string[] strs = new string[5]
+			{
+				"I'll never thank you enough for helping me.",
+				"Thank you so much for your help, we need more people like you!",
+				"You’re a lifesaver, my friend. Thanks so much for helping me!",
+				"You did it, amazing! I’m truly grateful for your aid!",
+				"Great job, you have no idea how happy I am right now. Thanks!"
+			};
 
-        DialogueManager.Instance.OtherSpeak_Story(phrase);
+			string str = strs[UnityEngine.Random.Range(0, strs.Length)];
 
-        //Invoke("HandleCompletedQuest_Delay", DialogueManager.Instance.DisplayTime);
+			DialogueManager.Instance.OtherSpeak_Story(str);
+		}
 	}
     void HandleOnEndDialogue()
     {
@@ -262,7 +283,7 @@ public class QuestManager : MonoBehaviour {
 		Quest quest = Quest.currentQuest;
 
         DisplayCombatResults.Instance.onConfirm += FinishQuest_HandleOnConfirm;
-        DisplayCombatResults.Instance.Display("Quest Finished !", "In addition to receiving gold and experience, you just made a good action ! Your karma just got better");
+        DisplayCombatResults.Instance.Display("Quest Complete!", "In addition to receiving gold and experience, your karma also increased thanks to your good actions!");
         DisplayCombatResults.Instance.DisplayResults(quest.goldValue, quest.experience);
 	}
 
@@ -332,7 +353,7 @@ public class QuestManager : MonoBehaviour {
 
 	#region map stuff
 	public void SendPlayerBackToGiver () {
-		Debug.LogError ("SEND PLAYER BACK TO GIVER DOESNT EXIST ANYMORE");
+		//Debug.LogError ("SEND PLAYER BACK TO GIVER DOESNT EXIST ANYMORE");
 	}
 
     #endregion

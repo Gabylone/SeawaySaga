@@ -73,7 +73,7 @@ public class StoryReader : MonoBehaviour {
 		string content = GetContent;
 
 		if ( content == null) {
-			Debug.LogError ( " no function at index : " + col.ToString () + " / decal : " + row.ToString () );
+			//Debug.LogError ( " no function at index : " + col.ToString () + " / decal : " + row.ToString () );
 		}
 
 		StoryFunctions.Instance.Read ( content );
@@ -95,7 +95,7 @@ public class StoryReader : MonoBehaviour {
 
         if (node == null)
         {
-            Debug.LogError("node : " + node.name + " in story " + CurrentStoryHandler.Story.displayName + " doesn't exist");
+            //Debug.LogError("node : " + node.name + " in story " + CurrentStoryHandler.Story.displayName + " doesn't exist");
         }
 
 		StoryReader.Instance.Row = node.row;
@@ -137,11 +137,11 @@ public class StoryReader : MonoBehaviour {
 		Node node = story.nodes.Find ( x => x.name == text);
 
 		if ( node == null ) {
-			Debug.LogError ("couldn't find node " + text + " (l:"+text.Length+ ") in story : " + story.dataName);
+			//Debug.LogError ("couldn't find node " + text + " (l:"+text.Length+ ") in story : " + story.dataName);
 
             foreach (var item in story.nodes)
             {
-                Debug.LogError("out of node : " + item.name + " (l:" + item.name.Length + ")");
+                //Debug.LogError("out of node : " + item.name + " (l:" + item.name.Length + ")");
             }
 
 			return null;
@@ -171,13 +171,13 @@ public class StoryReader : MonoBehaviour {
 
         if ( decal >=  CurrentStoryHandler.Story.content.Count)
         {
-            Debug.LogError( "decal (" + decal + ") out of story content count (" + CurrentStoryHandler.Story.content.Count + ")");
+            //Debug.LogError( "decal (" + decal + ") out of story content count (" + CurrentStoryHandler.Story.content.Count + ")");
             return "none";
         }
 
         if ( StoryReader.Instance.Col >= CurrentStoryHandler.Story.content[decal].Count)
         {
-            Debug.LogError( "col (" + StoryReader.Instance.Col + ") out of story content DECAL count (" + CurrentStoryHandler.Story.content[decal].Count + ")");
+            //Debug.LogError( "col (" + StoryReader.Instance.Col + ") out of story content DECAL count (" + CurrentStoryHandler.Story.content[decal].Count + ")");
             return "none";
         }
 
@@ -297,14 +297,14 @@ public class StoryReader : MonoBehaviour {
 			
 			if ( Row >= CurrentStoryHandler.Story.content.Count ) {
 
-				Debug.LogError ("ROW is outside of story << " + CurrentStoryHandler.Story.dataName + " >> content : ROW : " + Row + " /// STORY CONTENT : " + CurrentStoryHandler.Story.content.Count);
+				//Debug.LogError ("ROW is outside of story << " + CurrentStoryHandler.Story.dataName + " >> content : ROW : " + Row + " /// STORY CONTENT : " + CurrentStoryHandler.Story.content.Count);
 
 				return "AAAAH";
 			}
 
 			if ( Col >= CurrentStoryHandler.Story.content [Row].Count ) {
 
-				Debug.LogError ("INDEX is outside of story content : INDEX : " + Col + " /// COUNT : " + CurrentStoryHandler.Story.content[Row].Count);
+				//Debug.LogError ("INDEX is outside of story content : INDEX : " + Col + " /// COUNT : " + CurrentStoryHandler.Story.content[Row].Count);
 
 				return "AAAAH";
 			}

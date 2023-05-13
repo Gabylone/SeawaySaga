@@ -160,7 +160,7 @@ public class Crews : MonoBehaviour {
 	}
 	public void LoadPlayerCrew () {
 
-//		Debug.Log ("loading player crew ?");
+//		//Debug.Log ("loading player crew ?");
 
 		playerCrew.managedCrew = SaveManager.Instance.GameData.playerCrew;
 
@@ -183,7 +183,7 @@ public class Crews : MonoBehaviour {
 
 			StoryReader.Instance.SetDecal (1);
 
-            //Debug.Log("!!! OPENING COMBAT LOOT !!!");
+            ////Debug.Log("!!! OPENING COMBAT LOOT !!!");
 
             if (storyCrew.hostile)
             {
@@ -192,8 +192,21 @@ public class Crews : MonoBehaviour {
                 if (!loot.IsEmpty())
                 {
                     LootUI.Instance.preventAdvanceStory = true;
-                    DialogueManager.Instance.PlayerSpeak_Story("We fought here !*Looks like we forgot to pick some of their stuff...*After the fight...");
-                    DialogueManager.Instance.onEndDialogue += HandleOnEndDialogue;
+
+					string[] strs = new string[5]
+					{
+					"We fought here! *Looks like we forgot to pick some of their stuff... *After the fight...",
+					"We fought here! *Looks like there’s still something to grab.",
+					"I remember this place, we had a good fight. Seems like there’s still something of use over there.",
+					"There’s some loot left it seems! Might have missed that after we fought.",
+					"Wait, I remember fighting here! There’s even some remaining loot it seems."
+					};
+
+					string str = strs[Random.Range(0, strs.Length)];
+
+					DialogueManager.Instance.PlayerSpeak_Story(str);
+                    
+					DialogueManager.Instance.onEndDialogue += HandleOnEndDialogue;
                     return;
                 }
             }
@@ -329,8 +342,16 @@ public class Crews : MonoBehaviour {
 
 		if (Crews.playerCrew.CrewMembers.Count >= Crews.playerCrew.CurrentMemberCapacity) {
 
-			string phrase = "The boat is too small, I can't even put a foot in it";
-            DialogueManager.Instance.OtherSpeak_Story(phrase);
+			string[] strs = new string[3]
+			{
+				"The boat is too small, I can't even put a foot in it!",
+				"There’s not enough room on this boat, it’s ridiculous!",
+				"There’s no way we can all fit on the boat, it’s just too cramped!",
+			};
+
+			string str = strs[Random.Range(0, strs.Length)];
+
+			DialogueManager.Instance.OtherSpeak_Story(str);
 
 		} else {
 
@@ -342,9 +363,9 @@ public class Crews : MonoBehaviour {
 
             Crews.playerCrew.AddMember(newMember);
 
-            string title = newMember.MemberName + " joins the crew !";
+            string title = newMember.MemberName + " joins the crew!";
 
-            string content = "NOMBATEAU now counts a new crew member. Under CAPITAINE's orders, " + newMember.MemberName + " will fight, sail and explore. Keep an eye on the food cellar, though. Another weapon in combat is also another mouth to feed.";
+            string content = "NOMBATEAU welcomes a new crew member. Under CAPITAINE's orders, " + newMember.MemberName + " will fight, sail and explore. Keep an eye on the food cellar as a new helpful member is also another mouth to feed!";
 
             DisplayCombatResults.Instance.Display(title, content);
             DisplayCombatResults.Instance.onConfirm += HandleOnConfirm;
@@ -408,7 +429,7 @@ public class Crews : MonoBehaviour {
         if (Crews.playerCrew.CrewMembers.Count == 0)
         {
             MessageDisplay.Instance.onValidate += HandleOnValidate;
-            MessageDisplay.Instance.Display("The crew members of NOMTRESOR have all perished");
+            MessageDisplay.Instance.Display("The crew members of NOMBATEAU have all perished.");
             GameManager.Instance.BackToMenu();
         }
 
