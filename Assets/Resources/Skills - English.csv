@@ -1,7 +1,7 @@
 ;nom;;;;;description
 ;fr;en;Cost;Charge;Prop.;Actif
 Default;Attack;Attack;5;0;2;With a melee weapon according to the crew member’s Force and Weapon Value
-;Shoot;Shoot;5;0;2;With a distance weapon according to the crew member’s Dexterity and Weapon Value
+;Shoot;Shoot;5;0;2;With a range weapon according to the crew member’s Dexterity and Weapon Value
 ;Defend;Defend;1;2;0;The fighter defend themselves. The next attack only does half the damage.
 ;Flee;Flee;3;0;2;Roll some dice. Succeed : Runaway Fail : Nothing happens Critical : Knock Out
 ;End Turn;End Turn;0;0;0;Ends the member’s turn
@@ -15,7 +15,7 @@ Chirurgien;Sutures;Sutures;7;3;3;The Medic heals the target for 30 health points
 ;Expert Corpsman;Expert Corpsman;9;4;4;The Medic heals the entire crew for 25 health points.
 Cuistot;Pep Talk;Pep Talk;3;3;2;The target is Pumped Up, halving the damage taken from the next 2 attacks. Also cancels the Knocked Out status.
 ;Loud Chewing;Loud Chewing;3;3;2;The Cook gives a snack to a crew member who loudly eats it, triggering the enemy and becoming the target of their next 3 attacks.
-;Swig O’ Rum;Swig O’ Rum;3;3;2;The target gets Tipsy, doubling the damage of their next 2 attacks. Can be cancelled by Cuss.
+;Sleight of Hand;Swig O’ Rum;3;3;2;The target gets Tipsy, doubling the damage of their next 2 attacks. Can be cancelled by Cuss.
 ;Banquet;Banquet;10;3;2;The Cook feeds the entire crew, restoring their energy points.
 Cannoneer;Headshot;Headshot;6;3;2;After waiting for 1 turn, the Cannoneer inflicts 3 times the normal damage to the target
 ;Grapeshot;Grapeshot;7;4;3;The Cannoneer deals 1/3 of the normal damage to 4 random targets

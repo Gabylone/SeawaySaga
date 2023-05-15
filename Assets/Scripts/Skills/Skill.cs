@@ -201,10 +201,24 @@ public class Skill : MonoBehaviour {
             int damage = SkillManager.getSkill(Skill.Type.BearTrap).value;
             fighter.Hurt(damage);
 
-            if (fighter.killed && fighter.crewMember.side == Crews.Side.Player)
+            if (fighter.killed  )
             {
-                fighter.EndTurn();
-                CombatManager.Instance.NextTurn();
+                Debug.Log("killed by bear trap");
+
+                /*fighter.EndTurn();
+                CombatManager.Instance.NextTurn();*/
+
+                if (fighter.crewMember.side == Crews.Side.Player)
+                {
+                    
+                    Debug.Log("side = player");
+                }
+                else
+                {
+                    Debug.Log("side = enemy");
+                }
+
+                
             }
             else
             {
@@ -242,6 +256,12 @@ public class Skill : MonoBehaviour {
 
 	public virtual void EndSkillDelay () {
 
+
+        if (fighter.killed || fighter.escaped)
+        {
+            Debug.Log("what the actual fuck");
+            return;
+        }
 
         if (fighter.crewMember.CanUseSkills() == false)
         {

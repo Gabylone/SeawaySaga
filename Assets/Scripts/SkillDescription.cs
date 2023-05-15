@@ -11,7 +11,6 @@ public class SkillDescription : MonoBehaviour
 
     public GameObject group;
 
-    public Text uiText_Title;
     public Text uiText_Description;
 
     public CanvasGroup canvasGroup;
@@ -34,7 +33,6 @@ public class SkillDescription : MonoBehaviour
 
         group.SetActive(true);
 
-        uiText_Title.text = skill.skillName;
         uiText_Description.text = skill.description;
     }
 

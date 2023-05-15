@@ -314,6 +314,7 @@ public class Fighter : MonoBehaviour {
 
 		ui_Group.SetActive (false);
 		gameObject.SetActive (false);
+		iconVisual.bearTrap_Transform.gameObject.SetActive(false);
 
 	}
 
@@ -340,7 +341,14 @@ public class Fighter : MonoBehaviour {
 
 		DialogueManager.Instance.PlayRandomVoice(crewMember, iconVisual, DialogueManager.Voice.Type.Deaths);
 
-		SoundManager.Instance.PlaySound("Death");
+        iconVisual.bearTrap_Transform.gameObject.SetActive(false);
+
+        SoundManager.Instance.PlaySound("Death");
+
+		if ( CombatManager.Instance.GetCurrentFighter == this)
+		{
+			CombatManager.Instance.NextTurn();
+		}
 
 			// self
 		ChangeState (states.dead);
@@ -348,6 +356,8 @@ public class Fighter : MonoBehaviour {
         iconVisual.SetDeadEyes();
 
 		animator.SetBool ("dead", true);
+
+		Debug.Log("fighter dead");
 
 		killed = true;
 
@@ -673,6 +683,7 @@ public class Fighter : MonoBehaviour {
 
         if (crewMember.Health <= 0)
         {
+			Debug.Log("hurt till dead");
             crewMember.Kill();
             Die();
         }

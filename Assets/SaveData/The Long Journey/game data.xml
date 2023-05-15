@@ -1,0 +1,138 @@
+<?xml version="1.0"?>
+<GameData xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <progression>12</progression>
+  <globalID>14</globalID>
+  <playerCrew>
+    <hostile>false</hostile>
+    <row>0</row>
+    <col>0</col>
+    <MemberIDs>
+      <Member>
+        <id>0</id>
+        <Name>Jacquelines</Name>
+        <health>7</health>
+        <maxHealth>100</maxHealth>
+        <currentHunger>0</currentHunger>
+        <Lvl>1</Lvl>
+        <xp>0</xp>
+        <skillPoints>0</skillPoints>
+        <specialSkillsIndexes>
+          <int>17</int>
+        </specialSkillsIndexes>
+        <stats>
+          <int>1</int>
+          <int>1</int>
+          <int>1</int>
+          <int>1</int>
+        </stats>
+        <daysOnBoard>2</daysOnBoard>
+        <job>Cannoneer</job>
+        <characterIDS>
+          <int>2</int>
+          <int>7</int>
+          <int>7</int>
+          <int>0</int>
+          <int>9</int>
+          <int>0</int>
+          <int>5</int>
+          <int>1</int>
+          <int>0</int>
+          <int>0</int>
+          <int>5</int>
+          <int>7</int>
+          <int>3</int>
+          <int>16</int>
+          <int>1</int>
+          <int>1</int>
+          <int>9</int>
+        </characterIDS>
+      </Member>
+    </MemberIDs>
+  </playerCrew>
+  <playerLoot>
+    <row>0</row>
+    <col>0</col>
+    <ids>
+      <ArrayOfInt />
+      <ArrayOfInt />
+      <ArrayOfInt />
+      <ArrayOfInt />
+    </ids>
+    <weight>0</weight>
+    <AllItems>
+      <ArrayOfItem />
+      <ArrayOfItem />
+      <ArrayOfItem />
+      <ArrayOfItem />
+    </AllItems>
+  </playerLoot>
+  <playerWeight>0</playerWeight>
+  <playerGold>6</playerGold>
+  <karma>0</karma>
+  <bounty>0</bounty>
+  <formulas>
+    <Formula>
+      <name>xiqofy</name>
+      <coords>
+        <x>1</x>
+        <y>78</y>
+      </coords>
+      <verified>false</verified>
+      <found>false</found>
+    </Formula>
+    <Formula>
+      <name>vedi</name>
+      <coords>
+        <x>2</x>
+        <y>71</y>
+      </coords>
+      <verified>false</verified>
+      <found>false</found>
+    </Formula>
+    <Formula>
+      <name>hotuku</name>
+      <coords>
+        <x>2</x>
+        <y>40</y>
+      </coords>
+      <verified>false</verified>
+      <found>false</found>
+    </Formula>
+  </formulas>
+  <clueIndexesFound>
+    <int>2</int>
+  </clueIndexesFound>
+  <playerBoatInfo>
+    <Name>The Sinking Curse</Name>
+    <previousCoords>
+      <x>1</x>
+      <y>1</y>
+    </previousCoords>
+    <coords>
+      <x>0</x>
+      <y>2</y>
+    </coords>
+    <previousDirection>NorthEast</previousDirection>
+    <currentDirection>NorthWest</currentDirection>
+    <shipRange>1</shipRange>
+    <crewCapacity>2</crewCapacity>
+    <cargoLevel>1</cargoLevel>
+    <level>1</level>
+  </playerBoatInfo>
+  <treasureCoords>
+    <x>1</x>
+    <y>81</y>
+  </treasureCoords>
+  <homeCoords>
+    <x>2</x>
+    <y>1</y>
+  </homeCoords>
+  <currentQuests />
+  <finishedQuests />
+  <raining>false</raining>
+  <currentRain>52</currentRain>
+  <night>false</night>
+  <timeOfDay>9</timeOfDay>
+  <treasureName>The Silent Mast</treasureName>
+  <pins />
+</GameData>

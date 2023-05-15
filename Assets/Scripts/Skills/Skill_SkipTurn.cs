@@ -6,6 +6,13 @@ public class Skill_SkipTurn: Skill {
 
     public override void Trigger(Fighter fighter)
     {
+        if (fighter.killed)
+        {
+            Debug.LogError("d'ou il est mort il trigger un skill");
+        }
+
+        Debug.Log("triggering skip turn");
+
         base.Trigger(fighter);
 
         //HandleOnApplyEffect();

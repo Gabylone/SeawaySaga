@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <Chunk xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <state>DiscoveredIsland</state>
+  <state>VisitedIsland</state>
   <coords>
     <x>2</x>
     <y>3</y>
@@ -8,10 +8,10 @@
   <islandDatas>
     <IslandData>
       <worldPosition>
-        <x>24.62</x>
-        <y>15.01</y>
+        <x>-3.36</x>
+        <y>16.71</y>
       </worldPosition>
-      <worldRotation>313.35614</worldRotation>
+      <worldRotation>58.68888</worldRotation>
       <index>0</index>
       <coords>
         <x>2</x>
@@ -19,7 +19,7 @@
       </coords>
       <containsFormula>false</containsFormula>
       <storyManager>
-        <hasBeenPlayed>false</hasBeenPlayed>
+        <hasBeenPlayed>true</hasBeenPlayed>
         <storyHandlers>
           <StoryHandler>
             <row>0</row>
@@ -27,19 +27,107 @@
             <fallBackLayer>0</fallBackLayer>
             <storyID>4</storyID>
             <storyType>Home</storyType>
-            <contentDecals />
+            <contentDecals>
+              <contentDecal>
+                <row>0</row>
+                <col>2</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>2</row>
+                <col>20</col>
+                <decal>1</decal>
+              </contentDecal>
+            </contentDecals>
             <loots />
-            <crews />
+            <crews>
+              <Crew>
+                <hostile>true</hostile>
+                <row>2</row>
+                <col>21</col>
+                <MemberIDs>
+                  <Member>
+                    <id>6</id>
+                    <Name>Zombie</Name>
+                    <health>5</health>
+                    <maxHealth>100</maxHealth>
+                    <currentHunger>0</currentHunger>
+                    <Lvl>10</Lvl>
+                    <xp>0</xp>
+                    <skillPoints>0</skillPoints>
+                    <specialSkillsIndexes>
+                      <int>17</int>
+                      <int>18</int>
+                      <int>19</int>
+                      <int>20</int>
+                    </specialSkillsIndexes>
+                    <stats>
+                      <int>4</int>
+                      <int>3</int>
+                      <int>4</int>
+                      <int>2</int>
+                    </stats>
+                    <daysOnBoard>0</daysOnBoard>
+                    <equipedWeapon>
+                      <ID>58</ID>
+                      <englishName>Duelling pistol</englishName>
+                      <frenchName>Duelling pistol</frenchName>
+                      <value>100</value>
+                      <price>15</price>
+                      <weight>4</weight>
+                      <level>10</level>
+                      <spriteID>12</spriteID>
+                      <description />
+                      <weaponType>Distance</weaponType>
+                      <category>Weapon</category>
+                    </equipedWeapon>
+                    <equipedCloth>
+                      <ID>70</ID>
+                      <englishName>Impenetrable breastplate armor</englishName>
+                      <frenchName>null</frenchName>
+                      <value>100</value>
+                      <price>130</price>
+                      <weight>8</weight>
+                      <level>10</level>
+                      <spriteID>2</spriteID>
+                      <description />
+                      <weaponType>Distance</weaponType>
+                      <category>Clothes</category>
+                    </equipedCloth>
+                    <job>Cannoneer</job>
+                    <characterIDS>
+                      <int>3</int>
+                      <int>8</int>
+                      <int>3</int>
+                      <int>10</int>
+                      <int>1</int>
+                      <int>0</int>
+                      <int>2</int>
+                      <int>0</int>
+                      <int>1</int>
+                      <int>0</int>
+                      <int>2</int>
+                      <int>7</int>
+                      <int>3</int>
+                      <int>16</int>
+                      <int>3</int>
+                      <int>0</int>
+                      <int>5</int>
+                    </characterIDS>
+                  </Member>
+                </MemberIDs>
+              </Crew>
+            </crews>
           </StoryHandler>
         </storyHandlers>
       </storyManager>
     </IslandData>
     <IslandData>
       <worldPosition>
-        <x>-22.81</x>
-        <y>11.96</y>
+        <x>-17.67</x>
+        <y>-7.35</y>
       </worldPosition>
-      <worldRotation>235.308731</worldRotation>
+      <worldRotation>25.08522</worldRotation>
       <index>1</index>
       <coords>
         <x>2</x>

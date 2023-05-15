@@ -8,11 +8,39 @@
   <islandDatas>
     <IslandData>
       <worldPosition>
-        <x>-4.73</x>
-        <y>-5.82</y>
+        <x>24.62</x>
+        <y>15.01</y>
       </worldPosition>
-      <worldRotation>336.08194</worldRotation>
+      <worldRotation>190.284561</worldRotation>
       <index>0</index>
+      <coords>
+        <x>7</x>
+        <y>6</y>
+      </coords>
+      <containsFormula>false</containsFormula>
+      <storyManager>
+        <hasBeenPlayed>false</hasBeenPlayed>
+        <storyHandlers>
+          <StoryHandler>
+            <row>0</row>
+            <col>0</col>
+            <fallBackLayer>0</fallBackLayer>
+            <storyID>7</storyID>
+            <storyType>Normal</storyType>
+            <contentDecals />
+            <loots />
+            <crews />
+          </StoryHandler>
+        </storyHandlers>
+      </storyManager>
+    </IslandData>
+    <IslandData>
+      <worldPosition>
+        <x>16.03</x>
+        <y>7.11</y>
+      </worldPosition>
+      <worldRotation>300.414978</worldRotation>
+      <index>1</index>
       <coords>
         <x>7</x>
         <y>6</y>
@@ -39,35 +67,7 @@
         <x>-15.44</x>
         <y>-17.91</y>
       </worldPosition>
-      <worldRotation>320.3362</worldRotation>
-      <index>1</index>
-      <coords>
-        <x>7</x>
-        <y>6</y>
-      </coords>
-      <containsFormula>false</containsFormula>
-      <storyManager>
-        <hasBeenPlayed>false</hasBeenPlayed>
-        <storyHandlers>
-          <StoryHandler>
-            <row>0</row>
-            <col>0</col>
-            <fallBackLayer>0</fallBackLayer>
-            <storyID>7</storyID>
-            <storyType>Normal</storyType>
-            <contentDecals />
-            <loots />
-            <crews />
-          </StoryHandler>
-        </storyHandlers>
-      </storyManager>
-    </IslandData>
-    <IslandData>
-      <worldPosition>
-        <x>5.01</x>
-        <y>7.65</y>
-      </worldPosition>
-      <worldRotation>41.2361526</worldRotation>
+      <worldRotation>48.6257477</worldRotation>
       <index>2</index>
       <coords>
         <x>7</x>

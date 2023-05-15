@@ -175,19 +175,26 @@ public class CombatManager : MonoBehaviour {
 			return;
 		}
 
+		Debug.Log("next turn ");
+
         ++memberIndex;
 
         if (memberIndex >= fighters.Count)
             memberIndex = 0;
 
+		Debug.Log("member index : " + memberIndex);
+
         if ( GetCurrentFighter.killed )
         {
+			Debug.Log("fighter is dead");
 			NextTurn ();
 			return;
 		}
 
 		if ( GetCurrentFighter.escaped )
         {
+            Debug.Log("fighter is escaped");
+
             NextTurn();
 			return;
 		}
@@ -367,6 +374,8 @@ public class CombatManager : MonoBehaviour {
 
 	#region Enemy Action Choice
 	private void EnemyActionChoice_Start () {
+
+		Debug.Log("enemy action choice start");
 
 		Skill skill = SkillManager.RandomSkill (currentMember);
 		skill.Trigger (CombatManager.Instance.GetCurrentFighter);

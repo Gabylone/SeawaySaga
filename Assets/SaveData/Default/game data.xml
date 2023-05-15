@@ -1,286 +1,79 @@
 <?xml version="1.0"?>
 <GameData xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <progression>0</progression>
-  <globalID>4</globalID>
+  <progression>2</progression>
+  <globalID>8</globalID>
   <playerCrew>
     <hostile>false</hostile>
     <row>0</row>
     <col>0</col>
     <MemberIDs>
       <Member>
-        <id>0</id>
-        <Name>The Captain</Name>
-        <health>100</health>
-        <maxHealth>100</maxHealth>
-        <currentHunger>0</currentHunger>
-        <Lvl>7</Lvl>
-        <xp>0</xp>
-        <skillPoints>0</skillPoints>
-        <specialSkillsIndexes>
-          <int>21</int>
-          <int>22</int>
-          <int>23</int>
-          <int>24</int>
-        </specialSkillsIndexes>
-        <stats>
-          <int>4</int>
-          <int>1</int>
-          <int>3</int>
-          <int>2</int>
-        </stats>
-        <daysOnBoard>0</daysOnBoard>
-        <equipedWeapon>
-          <ID>51</ID>
-          <englishName>Light spiked mace</englishName>
-          <frenchName>Light spiked mace</frenchName>
-          <value>70</value>
-          <price>70</price>
-          <weight>8</weight>
-          <level>7</level>
-          <spriteID>6</spriteID>
-          <description />
-          <weaponType>Stick</weaponType>
-          <category>Weapon</category>
-        </equipedWeapon>
-        <equipedCloth>
-          <ID>67</ID>
-          <englishName>High-grade leather shirt</englishName>
-          <frenchName>null</frenchName>
-          <value>70</value>
-          <price>91</price>
-          <weight>6</weight>
-          <level>7</level>
-          <spriteID>1</spriteID>
-          <description />
-          <weaponType>Distance</weaponType>
-          <category>Clothes</category>
-        </equipedCloth>
-        <job>Gambler</job>
-        <characterIDS>
-          <int>10</int>
-          <int>0</int>
-          <int>3</int>
-          <int>2</int>
-          <int>0</int>
-          <int>5</int>
-          <int>1</int>
-          <int>4</int>
-          <int>0</int>
-          <int>0</int>
-          <int>2</int>
-          <int>9</int>
-          <int>3</int>
-          <int>0</int>
-          <int>2</int>
-          <int>1</int>
-          <int>5</int>
-        </characterIDS>
-      </Member>
-      <Member>
-        <id>1</id>
-        <Name>Oscar</Name>
-        <health>100</health>
-        <maxHealth>100</maxHealth>
-        <currentHunger>0</currentHunger>
-        <Lvl>7</Lvl>
-        <xp>0</xp>
-        <skillPoints>0</skillPoints>
-        <specialSkillsIndexes>
-          <int>9</int>
-          <int>10</int>
-          <int>11</int>
-          <int>12</int>
-        </specialSkillsIndexes>
-        <stats>
-          <int>3</int>
-          <int>2</int>
-          <int>3</int>
-          <int>2</int>
-        </stats>
-        <daysOnBoard>0</daysOnBoard>
-        <equipedWeapon>
-          <ID>52</ID>
-          <englishName>Duelling pistol</englishName>
-          <frenchName>Duelling pistol</frenchName>
-          <value>70</value>
-          <price>15</price>
-          <weight>4</weight>
-          <level>7</level>
-          <spriteID>12</spriteID>
-          <description />
-          <weaponType>Distance</weaponType>
-          <category>Weapon</category>
-        </equipedWeapon>
-        <equipedCloth>
-          <ID>67</ID>
-          <englishName>High-grade leather shirt</englishName>
-          <frenchName>null</frenchName>
-          <value>70</value>
-          <price>91</price>
-          <weight>6</weight>
-          <level>7</level>
-          <spriteID>1</spriteID>
-          <description />
-          <weaponType>Distance</weaponType>
-          <category>Clothes</category>
-        </equipedCloth>
-        <job>Surgeon</job>
-        <characterIDS>
-          <int>7</int>
-          <int>9</int>
-          <int>3</int>
-          <int>7</int>
-          <int>7</int>
-          <int>1</int>
-          <int>6</int>
-          <int>0</int>
-          <int>0</int>
-          <int>0</int>
-          <int>0</int>
-          <int>5</int>
-          <int>8</int>
-          <int>12</int>
-          <int>0</int>
-          <int>1</int>
-          <int>4</int>
-        </characterIDS>
-      </Member>
-      <Member>
         <id>2</id>
-        <Name>Claude</Name>
-        <health>100</health>
+        <Name>Agathe</Name>
+        <health>94</health>
         <maxHealth>100</maxHealth>
         <currentHunger>0</currentHunger>
-        <Lvl>7</Lvl>
+        <Lvl>10</Lvl>
         <xp>0</xp>
         <skillPoints>0</skillPoints>
         <specialSkillsIndexes>
-          <int>9</int>
-          <int>10</int>
-          <int>11</int>
-          <int>12</int>
-        </specialSkillsIndexes>
-        <stats>
-          <int>3</int>
-          <int>2</int>
-          <int>3</int>
-          <int>2</int>
-        </stats>
-        <daysOnBoard>0</daysOnBoard>
-        <equipedWeapon>
-          <ID>52</ID>
-          <englishName>Duelling pistol</englishName>
-          <frenchName>Duelling pistol</frenchName>
-          <value>70</value>
-          <price>15</price>
-          <weight>4</weight>
-          <level>7</level>
-          <spriteID>12</spriteID>
-          <description />
-          <weaponType>Distance</weaponType>
-          <category>Weapon</category>
-        </equipedWeapon>
-        <equipedCloth>
-          <ID>67</ID>
-          <englishName>High-grade leather shirt</englishName>
-          <frenchName>null</frenchName>
-          <value>70</value>
-          <price>91</price>
-          <weight>6</weight>
-          <level>7</level>
-          <spriteID>1</spriteID>
-          <description />
-          <weaponType>Distance</weaponType>
-          <category>Clothes</category>
-        </equipedCloth>
-        <job>Surgeon</job>
-        <characterIDS>
+          <int>5</int>
+          <int>6</int>
           <int>7</int>
           <int>8</int>
-          <int>9</int>
-          <int>2</int>
-          <int>1</int>
-          <int>3</int>
-          <int>0</int>
-          <int>1</int>
-          <int>0</int>
-          <int>0</int>
-          <int>2</int>
-          <int>3</int>
-          <int>14</int>
-          <int>10</int>
-          <int>5</int>
-          <int>0</int>
-          <int>13</int>
-        </characterIDS>
-      </Member>
-      <Member>
-        <id>3</id>
-        <Name>Christopher</Name>
-        <health>100</health>
-        <maxHealth>100</maxHealth>
-        <currentHunger>0</currentHunger>
-        <Lvl>7</Lvl>
-        <xp>0</xp>
-        <skillPoints>0</skillPoints>
-        <specialSkillsIndexes>
-          <int>13</int>
-          <int>14</int>
-          <int>15</int>
-          <int>16</int>
         </specialSkillsIndexes>
         <stats>
-          <int>3</int>
-          <int>3</int>
-          <int>3</int>
-          <int>1</int>
+          <int>5</int>
+          <int>4</int>
+          <int>2</int>
+          <int>2</int>
         </stats>
         <daysOnBoard>0</daysOnBoard>
         <equipedWeapon>
-          <ID>51</ID>
-          <englishName>Light spiked mace</englishName>
-          <frenchName>Light spiked mace</frenchName>
-          <value>70</value>
-          <price>70</price>
+          <ID>57</ID>
+          <englishName>Knight's morning star</englishName>
+          <frenchName>Knight's morning star</frenchName>
+          <value>100</value>
+          <price>100</price>
           <weight>8</weight>
-          <level>7</level>
-          <spriteID>6</spriteID>
+          <level>10</level>
+          <spriteID>9</spriteID>
           <description />
           <weaponType>Stick</weaponType>
           <category>Weapon</category>
         </equipedWeapon>
         <equipedCloth>
-          <ID>67</ID>
-          <englishName>High-grade leather shirt</englishName>
+          <ID>70</ID>
+          <englishName>Impenetrable breastplate armor</englishName>
           <frenchName>null</frenchName>
-          <value>70</value>
-          <price>91</price>
-          <weight>6</weight>
-          <level>7</level>
-          <spriteID>1</spriteID>
+          <value>100</value>
+          <price>130</price>
+          <weight>8</weight>
+          <level>10</level>
+          <spriteID>2</spriteID>
           <description />
           <weaponType>Distance</weaponType>
           <category>Clothes</category>
         </equipedCloth>
-        <job>Cook</job>
+        <job>Brute</job>
         <characterIDS>
-          <int>0</int>
-          <int>6</int>
-          <int>2</int>
+          <int>4</int>
           <int>5</int>
+          <int>2</int>
+          <int>9</int>
+          <int>1</int>
           <int>8</int>
-          <int>4</int>
-          <int>5</int>
-          <int>0</int>
-          <int>0</int>
-          <int>0</int>
-          <int>4</int>
-          <int>11</int>
-          <int>2</int>
           <int>4</int>
           <int>4</int>
           <int>1</int>
+          <int>0</int>
           <int>4</int>
+          <int>6</int>
+          <int>12</int>
+          <int>1</int>
+          <int>3</int>
+          <int>0</int>
+          <int>13</int>
         </characterIDS>
       </Member>
     </MemberIDs>
@@ -290,67 +83,95 @@
     <col>0</col>
     <ids>
       <ArrayOfInt>
-        <int>7</int>
-        <int>15</int>
-        <int>0</int>
-        <int>30</int>
+        <int>8</int>
+        <int>31</int>
+        <int>8</int>
+        <int>33</int>
+        <int>11</int>
+        <int>2</int>
       </ArrayOfInt>
       <ArrayOfInt />
       <ArrayOfInt />
       <ArrayOfInt />
     </ids>
-    <weight>8</weight>
+    <weight>12</weight>
     <AllItems>
       <ArrayOfItem>
         <Item>
-          <ID>7</ID>
-          <englishName>Shrimp</englishName>
-          <frenchName>Crevette</frenchName>
-          <value>3</value>
-          <price>2</price>
+          <ID>8</ID>
+          <englishName>Salmon</englishName>
+          <frenchName>Saumon</frenchName>
+          <value>6</value>
+          <price>4</price>
           <weight>2</weight>
           <level>0</level>
           <spriteID>1</spriteID>
-          <description>A small but delicious shrimp with fishy and sweet undertones.</description>
+          <description>A soft and mild-flavored filet that melts in your mouth.</description>
           <weaponType>Distance</weaponType>
           <category>Provisions</category>
         </Item>
         <Item>
-          <ID>15</ID>
-          <englishName>Rabbit</englishName>
-          <frenchName>Lapin</frenchName>
-          <value>7</value>
-          <price>5</price>
-          <weight>2</weight>
-          <level>0</level>
-          <spriteID>2</spriteID>
-          <description>A fine-textured meat with an intense flavour and earthy notes.</description>
-          <weaponType>Distance</weaponType>
-          <category>Provisions</category>
-        </Item>
-        <Item>
-          <ID>0</ID>
-          <englishName>Herring</englishName>
-          <frenchName>Hareng</frenchName>
-          <value>5</value>
-          <price>3</price>
-          <weight>2</weight>
-          <level>0</level>
-          <spriteID>1</spriteID>
-          <description>Oily and moist chunks of herring with savoury and fishy undertones.</description>
-          <weaponType>Distance</weaponType>
-          <category>Provisions</category>
-        </Item>
-        <Item>
-          <ID>30</ID>
-          <englishName>Carrot</englishName>
-          <frenchName>Carotte</frenchName>
+          <ID>31</ID>
+          <englishName>Pineapple</englishName>
+          <frenchName>Ananas</frenchName>
           <value>4</value>
           <price>3</price>
           <weight>2</weight>
           <level>0</level>
           <spriteID>0</spriteID>
-          <description>Crunchy and earthy. Packed with vitamins.</description>
+          <description>A juicy tropical fruit with a deliciously sweet taste.</description>
+          <weaponType>Distance</weaponType>
+          <category>Provisions</category>
+        </Item>
+        <Item>
+          <ID>8</ID>
+          <englishName>Salmon</englishName>
+          <frenchName>Saumon</frenchName>
+          <value>6</value>
+          <price>4</price>
+          <weight>2</weight>
+          <level>0</level>
+          <spriteID>1</spriteID>
+          <description>A soft and mild-flavored filet that melts in your mouth.</description>
+          <weaponType>Distance</weaponType>
+          <category>Provisions</category>
+        </Item>
+        <Item>
+          <ID>33</ID>
+          <englishName>Orange</englishName>
+          <frenchName>Orange</frenchName>
+          <value>3</value>
+          <price>2</price>
+          <weight>2</weight>
+          <level>0</level>
+          <spriteID>0</spriteID>
+          <description>Juicy, sweet and refreshing. The essential one.</description>
+          <weaponType>Distance</weaponType>
+          <category>Provisions</category>
+        </Item>
+        <Item>
+          <ID>11</ID>
+          <englishName>Mackerel</englishName>
+          <frenchName>Maquereau</frenchName>
+          <value>3</value>
+          <price>2</price>
+          <weight>2</weight>
+          <level>0</level>
+          <spriteID>1</spriteID>
+          <description>A creamy and slightly salty fish. Robust and meaty.</description>
+          <weaponType>Distance</weaponType>
+          <category>Provisions</category>
+        </Item>
+        <Item>
+          <ID>2</ID>
+          <englishName>Tuna</englishName>
+          <frenchName>Thon</frenchName>
+          <value>6</value>
+          <price>4</price>
+          <weight>2</weight>
+          <level>0</level>
+          <spriteID>1</spriteID>
+          <description>A rich and oily chunk of tuna with a tender texture.</description>
           <weaponType>Distance</weaponType>
           <category>Provisions</category>
         </Item>
@@ -361,12 +182,12 @@
     </AllItems>
   </playerLoot>
   <playerWeight>0</playerWeight>
-  <playerGold>50</playerGold>
+  <playerGold>46</playerGold>
   <karma>0</karma>
   <bounty>0</bounty>
   <formulas>
     <Formula>
-      <name>repuku</name>
+      <name>bohu</name>
       <coords>
         <x>0</x>
         <y>14</y>
@@ -377,7 +198,7 @@
   </formulas>
   <clueIndexesFound />
   <playerBoatInfo>
-    <Name>The Skinny Trident</Name>
+    <Name>The Ivory Rum</Name>
     <previousCoords>
       <x>0</x>
       <y>0</y>
@@ -407,6 +228,6 @@
   <currentRain>0</currentRain>
   <night>false</night>
   <timeOfDay>5</timeOfDay>
-  <treasureName>The Putrid Anchor</treasureName>
+  <treasureName>The Fierce Devil</treasureName>
   <pins />
 </GameData>
