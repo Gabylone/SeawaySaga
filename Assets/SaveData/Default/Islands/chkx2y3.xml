@@ -8,10 +8,10 @@
   <islandDatas>
     <IslandData>
       <worldPosition>
-        <x>-3.36</x>
-        <y>16.71</y>
+        <x>-6.81</x>
+        <y>6.54</y>
       </worldPosition>
-      <worldRotation>58.68888</worldRotation>
+      <worldRotation>296.8666</worldRotation>
       <index>0</index>
       <coords>
         <x>2</x>
@@ -25,94 +25,182 @@
             <row>0</row>
             <col>0</col>
             <fallBackLayer>0</fallBackLayer>
-            <storyID>4</storyID>
-            <storyType>Home</storyType>
+            <storyID>17</storyID>
+            <storyType>Normal</storyType>
             <contentDecals>
               <contentDecal>
-                <row>0</row>
-                <col>2</col>
+                <row>1</row>
+                <col>3</col>
                 <decal>1</decal>
               </contentDecal>
               <contentDecal>
-                <row>2</row>
-                <col>20</col>
+                <row>1</row>
+                <col>11</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>0</row>
+                <col>17</col>
+                <decal>0</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>0</row>
+                <col>28</col>
+                <decal>0</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>0</row>
+                <col>44</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>5</row>
+                <col>47</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>0</row>
+                <col>58</col>
+                <decal>0</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>1</row>
+                <col>94</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>1</row>
+                <col>96</col>
+                <decal>0</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>1</row>
+                <col>94</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>3</row>
+                <col>94</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>0</row>
+                <col>143</col>
+                <decal>2</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>4</row>
+                <col>94</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>10</row>
+                <col>94</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>4</row>
+                <col>94</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>10</row>
+                <col>94</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>0</row>
+                <col>94</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>0</row>
+                <col>119</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>1</row>
+                <col>120</col>
+                <decal>1</decal>
+              </contentDecal>
+              <contentDecal>
+                <row>4</row>
+                <col>47</col>
                 <decal>1</decal>
               </contentDecal>
             </contentDecals>
             <loots />
             <crews>
               <Crew>
-                <hostile>true</hostile>
-                <row>2</row>
-                <col>21</col>
+                <hostile>false</hostile>
+                <row>0</row>
+                <col>79</col>
                 <MemberIDs>
                   <Member>
-                    <id>6</id>
-                    <Name>Zombie</Name>
-                    <health>5</health>
+                    <id>1</id>
+                    <Name>Flo</Name>
+                    <health>100</health>
                     <maxHealth>100</maxHealth>
                     <currentHunger>0</currentHunger>
-                    <Lvl>10</Lvl>
+                    <Lvl>4</Lvl>
                     <xp>0</xp>
                     <skillPoints>0</skillPoints>
                     <specialSkillsIndexes>
-                      <int>17</int>
-                      <int>18</int>
-                      <int>19</int>
-                      <int>20</int>
+                      <int>21</int>
+                      <int>22</int>
                     </specialSkillsIndexes>
                     <stats>
-                      <int>4</int>
-                      <int>3</int>
-                      <int>4</int>
+                      <int>1</int>
+                      <int>2</int>
+                      <int>2</int>
                       <int>2</int>
                     </stats>
                     <daysOnBoard>0</daysOnBoard>
                     <equipedWeapon>
-                      <ID>58</ID>
-                      <englishName>Duelling pistol</englishName>
-                      <frenchName>Duelling pistol</frenchName>
-                      <value>100</value>
+                      <ID>46</ID>
+                      <englishName>Flintlock pistol</englishName>
+                      <frenchName>Flintlock pistol</frenchName>
+                      <value>40</value>
                       <price>15</price>
                       <weight>4</weight>
-                      <level>10</level>
-                      <spriteID>12</spriteID>
+                      <level>4</level>
+                      <spriteID>11</spriteID>
                       <description />
                       <weaponType>Distance</weaponType>
                       <category>Weapon</category>
                     </equipedWeapon>
                     <equipedCloth>
-                      <ID>70</ID>
-                      <englishName>Impenetrable breastplate armor</englishName>
+                      <ID>64</ID>
+                      <englishName>Basic leather shirt</englishName>
                       <frenchName>null</frenchName>
-                      <value>100</value>
-                      <price>130</price>
-                      <weight>8</weight>
-                      <level>10</level>
-                      <spriteID>2</spriteID>
+                      <value>40</value>
+                      <price>52</price>
+                      <weight>5</weight>
+                      <level>4</level>
+                      <spriteID>1</spriteID>
                       <description />
                       <weaponType>Distance</weaponType>
                       <category>Clothes</category>
                     </equipedCloth>
-                    <job>Cannoneer</job>
+                    <job>Gambler</job>
                     <characterIDS>
-                      <int>3</int>
-                      <int>8</int>
-                      <int>3</int>
-                      <int>10</int>
-                      <int>1</int>
                       <int>0</int>
                       <int>2</int>
                       <int>0</int>
+                      <int>0</int>
+                      <int>3</int>
+                      <int>3</int>
+                      <int>6</int>
                       <int>1</int>
                       <int>0</int>
-                      <int>2</int>
-                      <int>7</int>
-                      <int>3</int>
-                      <int>16</int>
-                      <int>3</int>
                       <int>0</int>
                       <int>5</int>
+                      <int>11</int>
+                      <int>11</int>
+                      <int>11</int>
+                      <int>1</int>
+                      <int>1</int>
+                      <int>14</int>
                     </characterIDS>
                   </Member>
                 </MemberIDs>
@@ -124,10 +212,10 @@
     </IslandData>
     <IslandData>
       <worldPosition>
-        <x>-17.67</x>
-        <y>-7.35</y>
+        <x>19.01</x>
+        <y>-17.49</y>
       </worldPosition>
-      <worldRotation>25.08522</worldRotation>
+      <worldRotation>82.74619</worldRotation>
       <index>1</index>
       <coords>
         <x>2</x>

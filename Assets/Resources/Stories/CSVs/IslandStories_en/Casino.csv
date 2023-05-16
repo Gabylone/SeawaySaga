@@ -11,7 +11,7 @@ Leave;Narrator : Approaching the music, CAPITAINE hears a cacophonic chatter in
 ;Node=>entrée casino;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;
 [entrée casino];;;;;;;;;;;;;;;;;;;;
-SetBG(Tavern);;;;;;;;;;;;;;;;;;;;
+SetBG(TavernFull);;;;;;;;;;;;;;;;;;;;
 RandomRange4;;;;;;;;;;;;;;;;;;;;
 Node=>casino 1;Node=>casino 2;Node=>casino 3;Node=>casino 4;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;

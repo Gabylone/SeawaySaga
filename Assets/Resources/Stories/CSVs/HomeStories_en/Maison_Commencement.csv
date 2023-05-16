@@ -27,7 +27,7 @@ Leave;Node=>chambre;Fade;Fade;;;;;;;;;
 ;;Node=>cuisine;Node=>cuisine-mère;;;;;;[mère partie];[cuisine-mère-morte];;
 ;;;;;;;Node=>mère partie;;PlayerSpeak : Ma?;Narrator : Your mom is sprawled lifeless on the floor.;;
 [cuisine];;;[cuisine-mère];;;;Node=>cuisine-mère-morte;Node=>attaqua mère;Narrator : Your mother probably fled after seeing her own child kill their father.;Node=>cuisine;;[attaqua mère]
-SetBG(Tavern);;;NewCrew1/F/10;;;;;;Node=>cuisine;;;PlayerSpeak : I'm sorry ma...
+SetBG(TavernEmpty);;;NewCrew1/F/10;;;;;;Node=>cuisine;;;PlayerSpeak : I'm sorry ma...
 SetChoices2;;;OtherSpeak : Oh it's my dear CAPITAINE! It's so nice to see you, darling!;;;;;;;;;OtherSpeak : It’s alright, dear.
 Choice : (go back to the living room)(leave);Choice : (check the pantry)(loot);;[choix-cuisine];;;;;;;;;Node=>choix-mère
 Fade;LootFood;;SetChoices3;;;;;;;;;

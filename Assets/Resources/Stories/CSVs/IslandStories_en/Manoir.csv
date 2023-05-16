@@ -190,7 +190,7 @@ Node=>salon vide;PlayerSpeak : YAAAARGH!;CheckStatDEX;;;;;;;;
 ;;Node=>maison vide;Node=>salon vide;;;;;;;
 ;;;;;;;;;;
 [cuisine];;;;;;;;;;
-SetBG(Tavern);;;;;;;;;;
+SetBG(TavernEmpty);;;;;;;;;;
 Narrator : The kitchen is very spacious, clearly a lot of servants used to work here.;;;;;;;;;;
 SetChoices3;;;;;;;;;;
 Choice : (go back to the  entrance) (leave);Choice : (search the cellar) (loot);Choice : (take a kitchenware) (loot);;[vaisselle];;;;;;
