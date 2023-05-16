@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <GameData xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <progression>3</progression>
-  <globalID>2</globalID>
+  <progression>1</progression>
+  <globalID>3</globalID>
   <playerCrew>
     <hostile>false</hostile>
     <row>0</row>
@@ -13,63 +13,201 @@
         <health>100</health>
         <maxHealth>100</maxHealth>
         <currentHunger>0</currentHunger>
-        <Lvl>1</Lvl>
+        <Lvl>5</Lvl>
         <xp>0</xp>
         <skillPoints>0</skillPoints>
         <specialSkillsIndexes>
           <int>5</int>
+          <int>6</int>
+          <int>7</int>
         </specialSkillsIndexes>
         <stats>
-          <int>1</int>
-          <int>1</int>
-          <int>1</int>
+          <int>2</int>
+          <int>3</int>
+          <int>2</int>
           <int>1</int>
         </stats>
         <daysOnBoard>0</daysOnBoard>
         <equipedWeapon>
-          <ID>39</ID>
-          <englishName>Wooden club</englishName>
-          <frenchName>Wooden club</frenchName>
-          <value>10</value>
-          <price>10</price>
-          <weight>5</weight>
-          <level>1</level>
-          <spriteID>0</spriteID>
+          <ID>47</ID>
+          <englishName>Battle sword</englishName>
+          <frenchName>Battle sword</frenchName>
+          <value>50</value>
+          <price>50</price>
+          <weight>6</weight>
+          <level>5</level>
+          <spriteID>4</spriteID>
           <description />
           <weaponType>Stick</weaponType>
           <category>Weapon</category>
         </equipedWeapon>
         <equipedCloth>
-          <ID>61</ID>
-          <englishName>Simple linen top</englishName>
+          <ID>65</ID>
+          <englishName>Sturdy leather shirt</englishName>
           <frenchName>null</frenchName>
-          <value>10</value>
-          <price>13</price>
-          <weight>2</weight>
-          <level>1</level>
-          <spriteID>0</spriteID>
+          <value>50</value>
+          <price>65</price>
+          <weight>5</weight>
+          <level>5</level>
+          <spriteID>1</spriteID>
           <description />
           <weaponType>Distance</weaponType>
           <category>Clothes</category>
         </equipedCloth>
         <job>Brute</job>
         <characterIDS>
-          <int>8</int>
-          <int>9</int>
+          <int>0</int>
           <int>3</int>
-          <int>4</int>
-          <int>0</int>
           <int>7</int>
-          <int>4</int>
-          <int>0</int>
-          <int>1</int>
-          <int>0</int>
           <int>2</int>
+          <int>3</int>
+          <int>5</int>
+          <int>6</int>
+          <int>0</int>
+          <int>0</int>
+          <int>0</int>
           <int>5</int>
           <int>7</int>
-          <int>13</int>
+          <int>17</int>
+          <int>5</int>
+          <int>6</int>
           <int>3</int>
           <int>0</int>
+        </characterIDS>
+      </Member>
+      <Member>
+        <id>1</id>
+        <Name>Carles</Name>
+        <health>100</health>
+        <maxHealth>100</maxHealth>
+        <currentHunger>0</currentHunger>
+        <Lvl>5</Lvl>
+        <xp>0</xp>
+        <skillPoints>0</skillPoints>
+        <specialSkillsIndexes>
+          <int>5</int>
+          <int>6</int>
+          <int>7</int>
+        </specialSkillsIndexes>
+        <stats>
+          <int>4</int>
+          <int>1</int>
+          <int>1</int>
+          <int>2</int>
+        </stats>
+        <daysOnBoard>0</daysOnBoard>
+        <equipedWeapon>
+          <ID>47</ID>
+          <englishName>Battle sword</englishName>
+          <frenchName>Battle sword</frenchName>
+          <value>50</value>
+          <price>50</price>
+          <weight>6</weight>
+          <level>5</level>
+          <spriteID>4</spriteID>
+          <description />
+          <weaponType>Stick</weaponType>
+          <category>Weapon</category>
+        </equipedWeapon>
+        <equipedCloth>
+          <ID>65</ID>
+          <englishName>Sturdy leather shirt</englishName>
+          <frenchName>null</frenchName>
+          <value>50</value>
+          <price>65</price>
+          <weight>5</weight>
+          <level>5</level>
+          <spriteID>1</spriteID>
+          <description />
+          <weaponType>Distance</weaponType>
+          <category>Clothes</category>
+        </equipedCloth>
+        <job>Brute</job>
+        <characterIDS>
+          <int>3</int>
+          <int>3</int>
+          <int>9</int>
+          <int>3</int>
+          <int>7</int>
+          <int>1</int>
+          <int>3</int>
+          <int>2</int>
+          <int>1</int>
+          <int>0</int>
+          <int>1</int>
+          <int>6</int>
+          <int>2</int>
+          <int>12</int>
+          <int>0</int>
+          <int>3</int>
+          <int>14</int>
+        </characterIDS>
+      </Member>
+      <Member>
+        <id>2</id>
+        <Name>Jason</Name>
+        <health>100</health>
+        <maxHealth>100</maxHealth>
+        <currentHunger>0</currentHunger>
+        <Lvl>5</Lvl>
+        <xp>0</xp>
+        <skillPoints>0</skillPoints>
+        <specialSkillsIndexes>
+          <int>13</int>
+          <int>14</int>
+          <int>15</int>
+        </specialSkillsIndexes>
+        <stats>
+          <int>3</int>
+          <int>2</int>
+          <int>1</int>
+          <int>2</int>
+        </stats>
+        <daysOnBoard>0</daysOnBoard>
+        <equipedWeapon>
+          <ID>47</ID>
+          <englishName>Battle sword</englishName>
+          <frenchName>Battle sword</frenchName>
+          <value>50</value>
+          <price>50</price>
+          <weight>6</weight>
+          <level>5</level>
+          <spriteID>4</spriteID>
+          <description />
+          <weaponType>Stick</weaponType>
+          <category>Weapon</category>
+        </equipedWeapon>
+        <equipedCloth>
+          <ID>65</ID>
+          <englishName>Sturdy leather shirt</englishName>
+          <frenchName>null</frenchName>
+          <value>50</value>
+          <price>65</price>
+          <weight>5</weight>
+          <level>5</level>
+          <spriteID>1</spriteID>
+          <description />
+          <weaponType>Distance</weaponType>
+          <category>Clothes</category>
+        </equipedCloth>
+        <job>Cook</job>
+        <characterIDS>
+          <int>0</int>
+          <int>0</int>
+          <int>0</int>
+          <int>4</int>
+          <int>7</int>
+          <int>3</int>
+          <int>3</int>
+          <int>2</int>
+          <int>0</int>
+          <int>0</int>
+          <int>4</int>
+          <int>3</int>
+          <int>4</int>
+          <int>8</int>
+          <int>4</int>
+          <int>2</int>
           <int>14</int>
         </characterIDS>
       </Member>
@@ -80,99 +218,83 @@
     <col>0</col>
     <ids>
       <ArrayOfInt>
-        <int>21</int>
-        <int>22</int>
-        <int>26</int>
-        <int>11</int>
+        <int>13</int>
+        <int>10</int>
+        <int>7</int>
+        <int>29</int>
       </ArrayOfInt>
       <ArrayOfInt />
       <ArrayOfInt />
-      <ArrayOfInt>
-        <int>95</int>
-      </ArrayOfInt>
+      <ArrayOfInt />
     </ids>
-    <weight>9</weight>
+    <weight>8</weight>
     <AllItems>
       <ArrayOfItem>
         <Item>
-          <ID>21</ID>
-          <englishName>Ham</englishName>
-          <frenchName>Petit jambon</frenchName>
+          <ID>13</ID>
+          <englishName>Hake</englishName>
+          <frenchName>Colin</frenchName>
+          <value>4</value>
+          <price>3</price>
+          <weight>2</weight>
+          <level>0</level>
+          <spriteID>1</spriteID>
+          <description>Sweet tasting white flesh, firm and meaty.</description>
+          <weaponType>Distance</weaponType>
+          <category>Provisions</category>
+        </Item>
+        <Item>
+          <ID>10</ID>
+          <englishName>Lobster</englishName>
+          <frenchName>Homard</frenchName>
           <value>6</value>
           <price>4</price>
           <weight>2</weight>
           <level>0</level>
-          <spriteID>2</spriteID>
-          <description>A small piece of delicious roasted ham.</description>
+          <spriteID>1</spriteID>
+          <description>Sweet and delicate lobster flesh. Very satisfying and rich flavour.</description>
           <weaponType>Distance</weaponType>
           <category>Provisions</category>
         </Item>
         <Item>
-          <ID>22</ID>
-          <englishName>Rump steak</englishName>
-          <frenchName>Rumsteak</frenchName>
-          <value>10</value>
-          <price>7</price>
-          <weight>2</weight>
-          <level>0</level>
-          <spriteID>2</spriteID>
-          <description>A big and juicy piece of tender beef meat.</description>
-          <weaponType>Distance</weaponType>
-          <category>Provisions</category>
-        </Item>
-        <Item>
-          <ID>26</ID>
-          <englishName>Chestnuts</englishName>
-          <frenchName>Châtaigne</frenchName>
-          <value>3</value>
-          <price>2</price>
-          <weight>2</weight>
-          <level>0</level>
-          <spriteID>0</spriteID>
-          <description>A handful of buttery nuts with a sweet taste.</description>
-          <weaponType>Distance</weaponType>
-          <category>Provisions</category>
-        </Item>
-        <Item>
-          <ID>11</ID>
-          <englishName>Mackerel</englishName>
-          <frenchName>Maquereau</frenchName>
+          <ID>7</ID>
+          <englishName>Shrimp</englishName>
+          <frenchName>Crevette</frenchName>
           <value>3</value>
           <price>2</price>
           <weight>2</weight>
           <level>0</level>
           <spriteID>1</spriteID>
-          <description>A creamy and slightly salty fish. Robust and meaty.</description>
+          <description>A small but delicious shrimp with fishy and sweet undertones.</description>
+          <weaponType>Distance</weaponType>
+          <category>Provisions</category>
+        </Item>
+        <Item>
+          <ID>29</ID>
+          <englishName>Corn</englishName>
+          <frenchName>Maïs</frenchName>
+          <value>4</value>
+          <price>3</price>
+          <weight>2</weight>
+          <level>0</level>
+          <spriteID>0</spriteID>
+          <description>A cob of corn slathered in butter, with a sprinkle of salt.</description>
           <weaponType>Distance</weaponType>
           <category>Provisions</category>
         </Item>
       </ArrayOfItem>
       <ArrayOfItem />
       <ArrayOfItem />
-      <ArrayOfItem>
-        <Item>
-          <ID>95</ID>
-          <englishName>Earrings</englishName>
-          <frenchName>Boucles d'oreille</frenchName>
-          <value>0</value>
-          <price>10</price>
-          <weight>1</weight>
-          <level>0</level>
-          <spriteID>20</spriteID>
-          <description>An elegant pair of earrings. Probably worth some money!</description>
-          <weaponType>Distance</weaponType>
-          <category>Misc</category>
-        </Item>
-      </ArrayOfItem>
+      <ArrayOfItem />
     </AllItems>
   </playerLoot>
   <playerWeight>0</playerWeight>
   <playerGold>50</playerGold>
-  <karma>-1</karma>
-  <bounty>25</bounty>
+  <karma>0</karma>
+  <bounty>0</bounty>
   <formulas>
     <Formula>
-      <name>vyno</name>
+      <name>viri</name>
       <coords>
         <x>0</x>
         <y>14</y>
@@ -183,7 +305,7 @@
   </formulas>
   <clueIndexesFound />
   <playerBoatInfo>
-    <Name>The Black Wave</Name>
+    <Name>The Laughing Goby</Name>
     <previousCoords>
       <x>0</x>
       <y>0</y>
@@ -213,6 +335,6 @@
   <currentRain>0</currentRain>
   <night>false</night>
   <timeOfDay>5</timeOfDay>
-  <treasureName>The Flying Judge</treasureName>
+  <treasureName>The Risen Jellyfish</treasureName>
   <pins />
 </GameData>

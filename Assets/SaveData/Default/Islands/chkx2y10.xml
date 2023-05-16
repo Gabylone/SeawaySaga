@@ -11,8 +11,36 @@
         <x>24.62</x>
         <y>15.01</y>
       </worldPosition>
-      <worldRotation>272.805817</worldRotation>
+      <worldRotation>27.19657</worldRotation>
       <index>0</index>
+      <coords>
+        <x>2</x>
+        <y>10</y>
+      </coords>
+      <containsFormula>false</containsFormula>
+      <storyManager>
+        <hasBeenPlayed>false</hasBeenPlayed>
+        <storyHandlers>
+          <StoryHandler>
+            <row>0</row>
+            <col>0</col>
+            <fallBackLayer>0</fallBackLayer>
+            <storyID>7</storyID>
+            <storyType>Normal</storyType>
+            <contentDecals />
+            <loots />
+            <crews />
+          </StoryHandler>
+        </storyHandlers>
+      </storyManager>
+    </IslandData>
+    <IslandData>
+      <worldPosition>
+        <x>16.03</x>
+        <y>7.11</y>
+      </worldPosition>
+      <worldRotation>272.990479</worldRotation>
+      <index>1</index>
       <coords>
         <x>2</x>
         <y>10</y>
@@ -39,35 +67,7 @@
         <x>8.83</x>
         <y>19.8</y>
       </worldPosition>
-      <worldRotation>183.406464</worldRotation>
-      <index>1</index>
-      <coords>
-        <x>2</x>
-        <y>10</y>
-      </coords>
-      <containsFormula>false</containsFormula>
-      <storyManager>
-        <hasBeenPlayed>false</hasBeenPlayed>
-        <storyHandlers>
-          <StoryHandler>
-            <row>0</row>
-            <col>0</col>
-            <fallBackLayer>0</fallBackLayer>
-            <storyID>7</storyID>
-            <storyType>Normal</storyType>
-            <contentDecals />
-            <loots />
-            <crews />
-          </StoryHandler>
-        </storyHandlers>
-      </storyManager>
-    </IslandData>
-    <IslandData>
-      <worldPosition>
-        <x>-4.73</x>
-        <y>-5.82</y>
-      </worldPosition>
-      <worldRotation>259.499054</worldRotation>
+      <worldRotation>104.882248</worldRotation>
       <index>2</index>
       <coords>
         <x>2</x>

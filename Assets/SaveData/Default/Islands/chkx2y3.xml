@@ -8,10 +8,10 @@
   <islandDatas>
     <IslandData>
       <worldPosition>
-        <x>-6.81</x>
-        <y>6.54</y>
+        <x>16.03</x>
+        <y>7.11</y>
       </worldPosition>
-      <worldRotation>296.8666</worldRotation>
+      <worldRotation>327.131866</worldRotation>
       <index>0</index>
       <coords>
         <x>2</x>
@@ -25,198 +25,122 @@
             <row>0</row>
             <col>0</col>
             <fallBackLayer>0</fallBackLayer>
-            <storyID>17</storyID>
-            <storyType>Normal</storyType>
+            <storyID>4</storyID>
+            <storyType>Home</storyType>
             <contentDecals>
               <contentDecal>
-                <row>1</row>
-                <col>3</col>
-                <decal>1</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>1</row>
-                <col>11</col>
-                <decal>1</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>0</row>
-                <col>17</col>
-                <decal>0</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>0</row>
-                <col>28</col>
-                <decal>0</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>0</row>
-                <col>44</col>
-                <decal>1</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>5</row>
-                <col>47</col>
-                <decal>1</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>0</row>
-                <col>58</col>
-                <decal>0</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>1</row>
-                <col>94</col>
-                <decal>1</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>1</row>
-                <col>96</col>
-                <decal>0</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>1</row>
-                <col>94</col>
-                <decal>1</decal>
-              </contentDecal>
-              <contentDecal>
                 <row>3</row>
-                <col>94</col>
+                <col>2</col>
                 <decal>1</decal>
               </contentDecal>
               <contentDecal>
-                <row>0</row>
-                <col>143</col>
-                <decal>2</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>4</row>
-                <col>94</col>
+                <row>7</row>
+                <col>2</col>
                 <decal>1</decal>
               </contentDecal>
               <contentDecal>
-                <row>10</row>
-                <col>94</col>
-                <decal>1</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>4</row>
-                <col>94</col>
-                <decal>1</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>10</row>
-                <col>94</col>
-                <decal>1</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>0</row>
-                <col>94</col>
-                <decal>1</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>0</row>
-                <col>119</col>
-                <decal>1</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>1</row>
-                <col>120</col>
-                <decal>1</decal>
-              </contentDecal>
-              <contentDecal>
-                <row>4</row>
-                <col>47</col>
+                <row>11</row>
+                <col>2</col>
                 <decal>1</decal>
               </contentDecal>
             </contentDecals>
             <loots />
-            <crews>
-              <Crew>
-                <hostile>false</hostile>
-                <row>0</row>
-                <col>79</col>
-                <MemberIDs>
-                  <Member>
-                    <id>1</id>
-                    <Name>Flo</Name>
-                    <health>100</health>
-                    <maxHealth>100</maxHealth>
-                    <currentHunger>0</currentHunger>
-                    <Lvl>4</Lvl>
-                    <xp>0</xp>
-                    <skillPoints>0</skillPoints>
-                    <specialSkillsIndexes>
-                      <int>21</int>
-                      <int>22</int>
-                    </specialSkillsIndexes>
-                    <stats>
-                      <int>1</int>
-                      <int>2</int>
-                      <int>2</int>
-                      <int>2</int>
-                    </stats>
-                    <daysOnBoard>0</daysOnBoard>
-                    <equipedWeapon>
-                      <ID>46</ID>
-                      <englishName>Flintlock pistol</englishName>
-                      <frenchName>Flintlock pistol</frenchName>
-                      <value>40</value>
-                      <price>15</price>
-                      <weight>4</weight>
-                      <level>4</level>
-                      <spriteID>11</spriteID>
-                      <description />
-                      <weaponType>Distance</weaponType>
-                      <category>Weapon</category>
-                    </equipedWeapon>
-                    <equipedCloth>
-                      <ID>64</ID>
-                      <englishName>Basic leather shirt</englishName>
-                      <frenchName>null</frenchName>
-                      <value>40</value>
-                      <price>52</price>
-                      <weight>5</weight>
-                      <level>4</level>
-                      <spriteID>1</spriteID>
-                      <description />
-                      <weaponType>Distance</weaponType>
-                      <category>Clothes</category>
-                    </equipedCloth>
-                    <job>Gambler</job>
-                    <characterIDS>
-                      <int>0</int>
-                      <int>2</int>
-                      <int>0</int>
-                      <int>0</int>
-                      <int>3</int>
-                      <int>3</int>
-                      <int>6</int>
-                      <int>1</int>
-                      <int>0</int>
-                      <int>0</int>
-                      <int>5</int>
-                      <int>11</int>
-                      <int>11</int>
-                      <int>11</int>
-                      <int>1</int>
-                      <int>1</int>
-                      <int>14</int>
-                    </characterIDS>
-                  </Member>
-                </MemberIDs>
-              </Crew>
-            </crews>
+            <crews />
           </StoryHandler>
         </storyHandlers>
       </storyManager>
     </IslandData>
     <IslandData>
       <worldPosition>
-        <x>19.01</x>
-        <y>-17.49</y>
+        <x>-6.81</x>
+        <y>6.54</y>
       </worldPosition>
-      <worldRotation>82.74619</worldRotation>
+      <worldRotation>258.477966</worldRotation>
       <index>1</index>
+      <coords>
+        <x>2</x>
+        <y>3</y>
+      </coords>
+      <containsFormula>false</containsFormula>
+      <storyManager>
+        <hasBeenPlayed>false</hasBeenPlayed>
+        <storyHandlers>
+          <StoryHandler>
+            <row>0</row>
+            <col>0</col>
+            <fallBackLayer>0</fallBackLayer>
+            <storyID>3</storyID>
+            <storyType>Normal</storyType>
+            <contentDecals />
+            <loots />
+            <crews />
+          </StoryHandler>
+        </storyHandlers>
+      </storyManager>
+    </IslandData>
+    <IslandData>
+      <worldPosition>
+        <x>6.47</x>
+        <y>-7.24</y>
+      </worldPosition>
+      <worldRotation>7.86852837</worldRotation>
+      <index>2</index>
+      <coords>
+        <x>2</x>
+        <y>3</y>
+      </coords>
+      <containsFormula>false</containsFormula>
+      <storyManager>
+        <hasBeenPlayed>false</hasBeenPlayed>
+        <storyHandlers>
+          <StoryHandler>
+            <row>0</row>
+            <col>0</col>
+            <fallBackLayer>0</fallBackLayer>
+            <storyID>25</storyID>
+            <storyType>Normal</storyType>
+            <contentDecals />
+            <loots />
+            <crews />
+          </StoryHandler>
+        </storyHandlers>
+      </storyManager>
+    </IslandData>
+    <IslandData>
+      <worldPosition>
+        <x>-14.64</x>
+        <y>23.28</y>
+      </worldPosition>
+      <worldRotation>216.405029</worldRotation>
+      <index>3</index>
+      <coords>
+        <x>2</x>
+        <y>3</y>
+      </coords>
+      <containsFormula>false</containsFormula>
+      <storyManager>
+        <hasBeenPlayed>false</hasBeenPlayed>
+        <storyHandlers>
+          <StoryHandler>
+            <row>0</row>
+            <col>0</col>
+            <fallBackLayer>0</fallBackLayer>
+            <storyID>22</storyID>
+            <storyType>Normal</storyType>
+            <contentDecals />
+            <loots />
+            <crews />
+          </StoryHandler>
+        </storyHandlers>
+      </storyManager>
+    </IslandData>
+    <IslandData>
+      <worldPosition>
+        <x>-1.44</x>
+        <y>-16.52</y>
+      </worldPosition>
+      <worldRotation>265.539124</worldRotation>
+      <index>4</index>
       <coords>
         <x>2</x>
         <y>3</y>
